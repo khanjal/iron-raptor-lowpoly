@@ -19,7 +19,7 @@ BUILD = {
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
-                       ids=["GI_Fridge_01", "GI_Fridge_Damaged_01"]),
+                       ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
     "int_wardrobe": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Wardrobe"], "STYLE_LIST": ["Classic", "Damaged"]},
                          ids=["GI_Wardrobe_01", "GI_Wardrobe_Damaged_01"]),
     "int_dresser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Dresser", "Toolbox", "Microwave", "Chest", "Mailbox", "Locker"], "STYLE_LIST": ["Classic"]},
@@ -93,9 +93,7 @@ def _a(id, name, type, tags, group=None):
 
 # Style variants that are only a colour theme of art/scripts/home_styles.py THEMES: base id -> {theme: id of the GLB that used to be built for it}. The viewer
 # applies the theme to the palette image (the manifest carries the themes once); Damaged is never listed: it also drops parts and tilts (see docs/style-audit.md).
-THEMED = {
-    "GI_Fridge_01": {"Modern": "GI_Fridge_Modern_01", "Retro": "GI_Fridge_Retro_01"},
-}
+THEMED = {}
 
 _a("GV_Sedan_Blue_01", "Sedan", "vehicles/road/sedan", "modern urban suburban car blue red new civilian", "sedan")
 _a("GV_Sedan_Red_Damaged_01", "Sedan, red, wrecked", "vehicles/road/sedan", "modern urban suburban car red damaged wreck rusty abandoned", "sedan")
@@ -182,7 +180,9 @@ _a("GP_Waitress_01", "Waitress", "people/civilian/waitress", "diner retro adult 
 _a("GP_Sheriff_01", "Sheriff", "people/law/sheriff", "rural law enforcement adult uniform tan hat human")
 _a("GP_Grey_01", "Grey alien", "people/alien/grey", "sci-fi alien grey humanoid")
 # appliances and storage that open
-_a("GI_Fridge_01", "Fridge", "appliances/kitchen/fridge", "classic kitchen white new cold", "fridge")
+_a("GI_Fridge_01", "Fridge, two-door", "appliances/kitchen/fridge", "classic kitchen white new cold two-door freezer-top", "fridge")
+_a("GI_Fridge_Modern_01", "Fridge, French door", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
+_a("GI_Fridge_Retro_01", "Fridge, retro", "appliances/kitchen/fridge", "retro kitchen cream rounded new cold single-door", "fridge")
 _a("GI_Fridge_Damaged_01", "Fridge, rusty", "appliances/kitchen/fridge", "kitchen rusty damaged abandoned cold", "fridge")
 _a("GI_Microwave_01", "Microwave", "appliances/kitchen/microwave", "classic kitchen new")
 _a("GI_Wardrobe_01", "Wardrobe", "furniture/storage/wardrobe", "classic bedroom wood new", "wardrobe")

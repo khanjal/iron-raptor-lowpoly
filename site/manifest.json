@@ -521,15 +521,15 @@
   },
   {
    "id": "GI_Fridge_01",
-   "name": "Fridge",
+   "name": "Fridge, two-door",
    "type": "appliances/kitchen/fridge",
    "tags": [
     "classic",
     "cold",
+    "freezer-top",
     "kitchen",
-    "modern",
     "new",
-    "retro",
+    "two-door",
     "white"
    ],
    "rigged": false,
@@ -576,20 +576,12 @@
    },
    "clips": [],
    "variants": [
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_01.interactions.json",
-   "lights": 1,
-   "themes": [
-    {
-     "name": "Modern",
-     "was": "GI_Fridge_Modern_01"
-    },
-    {
-     "name": "Retro",
-     "was": "GI_Fridge_Retro_01"
-    }
-   ]
+   "lights": 1
   },
   {
    "id": "GI_Fridge_Damaged_01",
@@ -646,9 +638,140 @@
    },
    "clips": [],
    "variants": [
-    "GI_Fridge_01"
+    "GI_Fridge_01",
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01"
    ],
    "interactions": "models/GI_Fridge_Damaged_01.interactions.json"
+  },
+  {
+   "id": "GI_Fridge_Modern_01",
+   "name": "Fridge, French door",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "bottom-freezer",
+    "cold",
+    "drawer",
+    "french-door",
+    "kitchen",
+    "modern",
+    "new",
+    "steel"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.7,
+    1.8,
+    0.777
+   ],
+   "glb": "models/GI_Fridge_Modern_01.glb",
+   "thumb": "thumbs/GI_Fridge_Modern_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Retro_01",
+    "GI_Fridge_Damaged_01"
+   ],
+   "interactions": "models/GI_Fridge_Modern_01.interactions.json",
+   "lights": 1
+  },
+  {
+   "id": "GI_Fridge_Retro_01",
+   "name": "Fridge, retro",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "cold",
+    "cream",
+    "kitchen",
+    "new",
+    "retro",
+    "rounded",
+    "single-door"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.7,
+    1.8,
+    0.777
+   ],
+   "glb": "models/GI_Fridge_Retro_01.glb",
+   "thumb": "thumbs/GI_Fridge_Retro_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Damaged_01"
+   ],
+   "interactions": "models/GI_Fridge_Retro_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GI_Microwave_01",
@@ -4015,54 +4138,5 @@
    "variants": []
   }
  ],
- "themes": {
-  "Modern": {
-   "1": "#1B1B1E",
-   "58": "#1B1B1E",
-   "63": "#8A8D91",
-   "56": "#8A8D91",
-   "57": "#E6E2D6",
-   "64": "#8A8D91",
-   "66": "#E6E2D6",
-   "13": "#1B1B1E",
-   "62": "#E6E2D6",
-   "60": "#E6E2D6",
-   "69": "#A9B4BC",
-   "68": "#A9B4BC",
-   "73": "#E6E2D6",
-   "3": "#1B1B1E",
-   "39": "#4A525A",
-   "40": "#8A8D91",
-   "67": "#9A9A94",
-   "47": "#1B1B1E",
-   "70": "#A9B4BC",
-   "79": "#E6E2D6",
-   "80": "#8A8D91",
-   "74": "#1B1B1E",
-   "75": "#8A8D91",
-   "76": "#E6E2D6"
-  },
-  "Retro": {
-   "0": "#7A5A44",
-   "1": "#6B3A28",
-   "63": "#E08A3C",
-   "56": "#3F7D3A",
-   "65": "#C9A43A",
-   "64": "#E08A3C",
-   "66": "#C9A43A",
-   "13": "#E08A3C",
-   "68": "#EBDDB5",
-   "6": "#E9DCC0",
-   "73": "#E0B83A",
-   "62": "#E9DCC0",
-   "60": "#C9A43A",
-   "71": "#7FA98A",
-   "3": "#7A5A44",
-   "46": "#D9C9A8",
-   "42": "#E08A3C",
-   "75": "#3F7D3A",
-   "76": "#E08A3C",
-   "59": "#EBDDB5"
-  }
- }
+ "themes": {}
 }

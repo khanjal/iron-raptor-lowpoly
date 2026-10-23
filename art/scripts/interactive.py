@@ -12,7 +12,8 @@ What "interactive" means in the model
   * Slot_<name> empties mark where loose items go (a shelf, a rail, a drawer bottom): the spawn position is the surface the item's
     base sits on, the size is the room above it. A slot with a `part` (Drawer1) rides on that part: parent the spawned items to it.
   * The shipped pose is shut, except Damaged, where parts hang ajar by different amounts (doors off true, a drawer left out).
-    Styles are the colour themes of home_styles.py. Everything faces -Y (the front); wall pieces have the origin at the centre.
+    Styles are the colour themes of home_styles.py, except where a piece has a @variant here: a style with its own design (the Modern and Retro
+    fridges). Everything faces -Y (the front); wall pieces have the origin at the centre.
 """
 
 import importlib
@@ -33,6 +34,14 @@ Prop = props_lib.Prop
 lathe = props_lib.lathe
 
 ITEMS = {}
+VARIANTS = {}      # (piece, style) -> builder, for a style that is a different design and not just the classic one in other colours
+
+
+def variant(name, style):
+    def deco(fn):
+        VARIANTS[(name, style)] = fn
+        return fn
+    return deco
 
 
 def item(group, name):
@@ -156,6 +165,67 @@ def fridge(a=0.0):
     p.slot("Shelf3", (0, 0, 1.01), (0.6, 0.55, 0.17))
     p.slot("Freezer1", (0, 0, 1.215), (0.6, 0.55, 0.27))
     p.slot("Freezer2", (0, 0, 1.51), (0.6, 0.55, 0.27))
+    return p
+
+
+@variant("Fridge", "Retro")
+def fridge_retro(a=0.0):
+    """One tall rounded door with a single long handle (a 1950s fridge): the classic one is two doors with a freezer on top."""
+    p = Prop("GI_Fridge_01")
+    w, d, h, z0 = 0.72, 0.68, 1.5, 0.1
+    r, thick = 0.03, 0.06                       # the door's edges are half-round: a cylinder as thick as the door
+    yf = -d / 2
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            p.cyl("metal_galv", (sx * (w / 2 - 0.1), sy * (d / 2 - 0.12), z0 / 2), 0.035, z0, n=6, top_radius=0.025)      # round chrome feet
+    shell(p, "enamel_cream", w, d, h, z0=z0, inner="paint_white")
+    p.box("paint_white", (0, 0.05, z0 + h - 0.18), (w - 0.12, d - 0.18, 0.28))                                          # the little freezer box inside
+    p.box("metal_galv", (0, yf + 0.06, z0 + h - 0.18), (w - 0.12, 0.01, 0.28))
+    for z in (0.4, 0.7, 1.0):
+        shelf(p, "clear_glass", w, d, z, t=0.015)
+    z_lo, z_hi = z0 + 0.02 + r, z0 + h - r
+    yc, zc = yf - thick / 2, (z_lo + z_hi) / 2
+
+    def rounded_edges():
+        for sx in (-1, 1):
+            p.cyl("enamel_cream", (sx * (w / 2 - r), yc, zc), r, z_hi - z_lo, n=8)                                      # the two upright edges
+        for z in (z_lo, z_hi):
+            p.cyl("enamel_cream", (0, yc, z), r, w - 2 * r, n=8, axis="x")                                               # the top and bottom edges
+        hx = -w / 2 + 0.08                                                                                              # one long chrome handle, away from the hinge
+        for z in (zc + 0.55, zc + 0.05):
+            p.box("metal_galv", (hx, yc - thick / 2 - 0.015, z), (0.02, 0.03, 0.03))
+        p.box("metal_galv", (hx, yc - thick / 2 - 0.035, zc + 0.3), (0.025, 0.02, 0.7))
+        p.box("metal_galv", (0, yc - thick / 2 - 0.002, z_hi - 0.12), (w - 0.1, 0.006, 0.03))                          # a chrome trim band and a badge
+        p.box("metal_galv", (0.17, yc - thick / 2 - 0.004, z_hi - 0.12), (0.12, 0.008, 0.05))
+
+    door(p, "Door", "right", "enamel_cream", -w / 2 + r, w / 2 - r, z_lo, z_hi, yf, a, thick=thick, limit=100, handle=None, extra=rounded_edges)
+    p.slot("Crisper", (0, 0, z0 + 0.03), (0.6, 0.55, 0.3))
+    p.slot("Shelf1", (0, 0, 0.41), (0.6, 0.55, 0.27))
+    p.slot("Shelf2", (0, 0, 0.71), (0.6, 0.55, 0.27))
+    p.slot("Shelf3", (0, 0, 1.01), (0.6, 0.55, 0.22))
+    p.slot("Freezer1", (0, 0.05, z0 + h - 0.32), (0.55, 0.45, 0.25))
+    return p
+
+
+@variant("Fridge", "Modern")
+def fridge_modern(a=0.0):
+    """Two French doors on top and a pull-out freezer drawer below, in steel with black pulls."""
+    p = Prop("GI_Fridge_01")
+    w, d, h = 0.9, 0.72, 1.85
+    yf = -d / 2
+    p.box("black", (0, 0, 0.05), (w - 0.06, d - 0.06, 0.1))
+    shell(p, "metal_galv", w, d, h - 0.1, z0=0.1, inner="paint_white")
+    p.box("paint_white", (0, 0, 0.64), (w - 0.06, d - 0.06, 0.03))                                                    # the floor of the fresh-food side
+    for z in (0.92, 1.22, 1.52):
+        shelf(p, "clear_glass", w, d, z, t=0.015)
+    door(p, "DoorL", "left", "metal_galv", -w / 2, 0.0, 0.66, h, yf, a, thick=0.04, limit=100, handle="black")
+    door(p, "DoorR", "right", "metal_galv", 0.0, w / 2, 0.66, h, yf, a, thick=0.04, limit=100, handle="black",
+         extra=lambda: p.box("glow_cyan", (0.26, yf - 0.047, 1.5), (0.1, 0.006, 0.06)))                               # the display
+    drawer(p, "DrawerFreezer", "metal_galv", "paint_white", 0.0, 0.38, w - 0.02, 0.54, d, yf, a, travel=0.4, handle="black", pull="bar")
+    p.slot("Shelf1", (0, 0, 0.93), (0.8, 0.6, 0.27))
+    p.slot("Shelf2", (0, 0, 1.23), (0.8, 0.6, 0.27))
+    p.slot("Shelf3", (0, 0, 1.53), (0.8, 0.6, 0.27))
+    p.slot("Crisper", (0, 0, 0.66), (0.8, 0.6, 0.24))
     return p
 
 
@@ -559,7 +629,7 @@ def run():
         for style in styles:
             props_lib.THEME = {} if style == "Classic" else home_styles.THEMES[style]
             try:
-                prop = fn(a=1.0 if style == "Damaged" else 0.0)
+                prop = VARIANTS.get((key, style), fn)(a=1.0 if style == "Damaged" else 0.0)
             finally:
                 props_lib.THEME = {}
             prop = _name(prop, style)

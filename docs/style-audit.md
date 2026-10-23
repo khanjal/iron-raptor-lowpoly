@@ -10,7 +10,9 @@ A style is a colour theme (`THEMES`) unless the piece has an `@variant`, which i
 | Retro | 161 | 18 | 143 |
 | Damaged | 161 | 12 + `damage()` on all | 0 (every one is its own model) |
 
-The counts are an upper bound for the colour-only column: `python tools/paints.py A B` is the real test of a pair, and it has been run on the three style pairs that exist here (`GI_Fridge` Modern and Retro fold, Damaged does not).
+Since this was written the Modern and Retro fridges in `interactive.py` were given their own designs (a French-door fridge with a pull-out freezer, and a one-door rounded one), which takes them out of the colour-only column.
+
+The counts are an upper bound for the colour-only column: `python tools/paints.py A B` is the real test of a pair, and it has been run on the style pairs that exist here: the old colour-only fridge Modern and Retro matched their theme, Damaged does not.
 
 ## Pieces with their own design
 

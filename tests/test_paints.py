@@ -70,13 +70,31 @@ class Paints(unittest.TestCase):
                 self.assertNotIn(was, catalog.ASSETS)
                 self.assertFalse((MODELS / f"{was}.glb").exists(), was)
 
-    def test_manifest_carries_the_themes_once_and_lists_them_on_the_model(self):
-        doc = json.loads((ROOT / "site" / "manifest.json").read_text())
-        fridge = next(a for a in doc["assets"] if a["id"] == "GI_Fridge_01")
-        self.assertEqual([t["name"] for t in fridge["themes"]], ["Modern", "Retro"])
-        self.assertEqual(set(doc["themes"]), {"Modern", "Retro"})
-        self.assertIn("retro", fridge["tags"])
-        self.assertNotIn("GI_Fridge_Retro_01", fridge["variants"])
+    def test_apply_themes_lists_the_styles_on_the_model_and_defines_them_once(self):
+        from unittest import mock
+        assets = [dict(id="A", variants=["A_Modern", "B"], tags=["x"]), dict(id="B", variants=["A"], tags=[])]
+        doc = {}
+        with mock.patch.object(catalog, "THEMED", {"A": {"Modern": "A_Modern"}}):
+            mm.apply_themes(doc, assets, ENTRIES)
+        self.assertEqual(set(doc["themes"]), {"Modern"})
+        self.assertEqual(assets[0]["themes"], [dict(name="Modern", was="A_Modern")])
+        self.assertEqual(assets[0]["variants"], ["B"])
+        self.assertEqual(assets[0]["tags"], ["modern", "x"])
+        self.assertNotIn("themes", assets[1])
+
+    def test_fridges_that_differ_in_design_have_their_own_builders(self):
+        """The Modern and Retro fridges are different designs (French doors over a pull-out freezer; one rounded door), so they are @variant builders in
+        interactive.py and not themes. The script needs Blender to run, so this reads it."""
+        import ast
+        tree = ast.parse((ROOT / "art" / "scripts" / "interactive.py").read_text(encoding="utf-8"))
+        found = set()
+        for fn in ast.walk(tree):
+            if isinstance(fn, ast.FunctionDef):
+                for dec in fn.decorator_list:
+                    if isinstance(dec, ast.Call) and getattr(dec.func, "id", "") == "variant":
+                        found.add(tuple(ast.literal_eval(x) for x in dec.args))
+        self.assertLessEqual({("Fridge", "Modern"), ("Fridge", "Retro")}, found)
+        self.assertNotIn("GI_Fridge_01", catalog.THEMED)
 
     def test_manifest_lists_the_paints_on_the_base(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text())
