@@ -30,7 +30,7 @@ for _m in (common, props_lib):
 Prop = props_lib.Prop
 
 SIZE = 256
-OUT = common.REPO / "Assets" / "Art" / "Global" / "Ground"
+OUT = common.out_dir() / "Assets" / "Art" / "Global" / "Ground"
 
 
 def hexrgb(h):

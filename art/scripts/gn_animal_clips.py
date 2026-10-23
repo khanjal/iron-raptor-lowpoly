@@ -22,11 +22,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+import common
 import species
 import species_pets
 
 REPO = HERE.parents[1]
-SPEED_FILE = REPO / "Assets" / "Art" / "Global" / "Animals" / "Anims" / "gait-speeds.json"
+SPEED_FILE = common.out_dir() / "Assets" / "Art" / "Global" / "Animals" / "Anims" / "gait-speeds.json"
 DOG_SLIDE = 0.45                                           # the walk's slide, as a fraction of the leg length (the trot and run have their own in quadruped_walk.py)
 
 names = globals().get("SPECIES_LIST") or list(species.SPECIES)

@@ -188,7 +188,8 @@ class Prop:
         if self.post is not None:
             self.post(obj)
         # moving parts: one object per role, its origin on the pivot, parented to the body
-        for role in [o.name for o in bpy.data.objects if o.name in self.groups]:
+        pre = common.name_prefix()                                   # (set while building in a shared Blender file: see common.configure)
+        for role in [o.name for o in bpy.data.objects if o.name in {pre + r for r in self.groups}]:
             stale = bpy.data.objects[role]
             stale.name = f"{role}__old"                              # free the plain role names for this prop
             if stale.data is not None:
@@ -215,10 +216,10 @@ class Prop:
                     loc = list(part_obj.location); loc[idx] += g["rest"]; part_obj.location = loc
             reg["parts"][role] = dict(kind=g["kind"], axis=g["axis"], pivot=[round(v, 4) for v in piv], limit=g["limit"], rest=g["rest"])
         for name, (pos, size, on_part) in self.slots.items():
-            stale = bpy.data.objects.get(f"Slot_{name}")
+            stale = bpy.data.objects.get(f"{pre}Slot_{name}")
             if stale is not None:
-                stale.name = f"Slot_{name}__old"
-            e = bpy.data.objects.new(f"Slot_{name}", None)
+                stale.name = f"{pre}Slot_{name}__old"
+            e = bpy.data.objects.new(f"{pre}Slot_{name}", None)
             e.empty_display_type = "PLAIN_AXES"
             e.empty_display_size = 0.05
             coll.objects.link(e)
@@ -240,10 +241,10 @@ class Prop:
             for kind, name, pos, frac, info in self.emitters:
                 where = Vector(pos) if pos is not None else Vector([lo[i] + (hi[i] - lo[i]) * frac[i] for i in range(3)])
                 label = f"{kind.capitalize()}_{name}"
-                stale = bpy.data.objects.get(label)
+                stale = bpy.data.objects.get(pre + label)
                 if stale is not None:
-                    stale.name = f"{label}__old"
-                e = bpy.data.objects.new(label, None)
+                    stale.name = f"{pre}{label}__old"
+                e = bpy.data.objects.new(pre + label, None)
                 e.empty_display_type = {"light": "SPHERE", "sound": "CIRCLE", "switch": "CUBE"}.get(kind, "PLAIN_AXES")
                 e.empty_display_size = 0.06
                 coll.objects.link(e)

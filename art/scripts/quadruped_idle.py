@@ -80,7 +80,9 @@ if globals().get("EXPORT", True):                              # EXPORT=False: b
     print("exported", out)
 
 # leave the shared file as found: the rig at rest, the clip's action not left behind for the next export
-quadruped_rig.rest_pose(rig)
-action = rig.animation_data.action
-rig.animation_data.action = None
-bpy.data.actions.remove(action)
+# (KEEP=True leaves it on the rig, for the caller to stash as a clip of a GLB: common.stash_clip)
+if not globals().get("KEEP", False):
+    quadruped_rig.rest_pose(rig)
+    action = rig.animation_data.action
+    rig.animation_data.action = None
+    bpy.data.actions.remove(action)
