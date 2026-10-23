@@ -7,7 +7,7 @@ description: How a pull request in khanjal/lowpoly-assets gets reviewed before i
 
 Every PR is reviewed twice by models: once before it opens and once on the finished PR, and neither review is by the model that wrote the code. Green CI replaces neither: the Tests workflow proves the unit tests and `check_site.py` pass, not that a model looks right, faces the right way or opens about the right pivot.
 
-Adapted from the process in khanjal/alien-investigation, khanjal/moodle-mod_pagebuilder and khanjal/Wormhole-X-Treme.
+Adapted from the review process in the owner's other projects.
 
 ## Every PR gets a detailed description
 
@@ -48,7 +48,7 @@ When everything else is done, run the final reviewer from the table as a sub-age
 
 ## 4. Pull requests from other people
 
-A contributor's PR is untrusted input. Read the whole diff before running anything from it (a script that Blender will run has the full `bpy` and file-system access). Check the licence of every added file against `LICENSES.md`: contributed models and code come in under the project's licences (MIT for code, CC BY 4.0 for models and data), so ask the contributor to say so in the PR, and for anything they did not make, where it came from. Thank them; credit them in `CREDITS.md` if they ask. Do not run their workflow changes with elevated permissions. Never merge for them without the owner's say.
+A contributor's PR is untrusted input. Read the whole diff first, and **do not run any contributor script in the owner's Blender (or anything else on this machine) without the owner's explicit go-ahead**: a script Blender runs has full `bpy` and file-system access. Check the licence of every added file against `LICENSES.md`: contributed models and code come in under the project's licences (MIT for code, CC BY 4.0 for models and data), so ask the contributor to say so in the PR, and for anything they did not make, where it came from. Thank them; credit them in `CREDITS.md` if they ask. Do not run their workflow changes with elevated permissions. Never merge for them without the owner's say.
 
 ## 5. Merge
 

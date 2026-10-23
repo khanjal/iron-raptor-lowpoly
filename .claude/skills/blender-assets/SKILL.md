@@ -7,7 +7,7 @@ description: How the models in khanjal/lowpoly-assets are made and checked (Pyth
 
 Models are code: Python in `art/scripts/` run inside Blender through the Blender MCP, exported under the output folder (`out/` by default, `LOWPOLY_OUT` or `common.configure(out=...)`), then shown by `site/`. Read `art/README.md` for the file list and the README for the pipeline; this skill is what is *not* obvious from them, mostly learned from mistakes in the game repo this was extracted from.
 
-Adapted from the `blender-assets` skill in khanjal/alien-investigation (Unity, Git LFS and `.meta` parts removed; GLB and the site added).
+Adapted from the `blender-assets` skill in the game repo (Unity, Git LFS and `.meta` parts removed; GLB and the site added).
 
 ## Running scripts
 
@@ -47,7 +47,7 @@ Reference pictures: describe what you learned in words; never trace, copy or com
 ## Check it before you export
 
 1. Look: lay the objects out and `look` at them from a 3/4 angle (several models per image). Slopes, hinges, handles, hollowness, which way things face.
-2. `art/scripts/audit.py` lists models with parts that touch nothing (floating handles, seats above frames). `audit_props.py`, `audit_animals.py`, `audit_bodies.py` and `audit_layout.py` cover props, animals, people and layouts. Fix the real ones; loose items (logs on the ground, books) are expected.
+2. `art/scripts/audit.py` lists models with parts that touch nothing (floating handles, seats above frames). `audit_props.py`, `audit_animals.py` and `audit_bodies.py` cover props, animals and people (`audit_layout.py` needs a layout dump from the game's Unity project and does not run here). Fix the real ones; loose items (logs on the ground, books) are expected.
 3. Re-import one exported file into Blender to check hierarchy and pivots survive (the FBX importer adds a 90 degree X rotation to the root; that is normal).
 4. Look at it in the site's viewer (below). Things fine in Blender can be wrong in glTF (axes, pivots of moving parts).
 
@@ -60,7 +60,7 @@ Reference pictures: describe what you learned in words; never trace, copy or com
 A new or changed model is not finished until the browser has it. In this order:
 
 1. Add or edit the entry in `tools/catalog.py` (three-level `category/group/kind` type, tags, variants; the rules are tested).
-2. Put the GLB in `site/models/` (Blender build with `formats="fbx,glb"`; new builds carry the credit line from `GLB_COPYRIGHT` in `common.py`; older files: `python tools/stamp_glb.py`).
+2. Build it: in Blender, `runpy.run_path(r"<repo>	oolsuild_site_assets.py", init_globals={"GROUPS": ["<group>"]}, run_name="__main__")`, one group per call (group names are the keys of `BUILD` in `tools/catalog.py`; `ONLY=[...]` limits an animals or people group). It runs the art script, writes the GLB into `site/models/` and the facts file into `out/meta/`, and removes what it built. Writing GLBs with `common.configure(formats="fbx,glb")` alone goes to `out/glb/`, which the site does not read. New builds carry the credit line (`GLB_COPYRIGHT` in `common.py`); older files: `python tools/stamp_glb.py`.
 3. `python tools/make_manifest.py`, then thumbnails: `python tools/thumb_server.py` and open `http://localhost:8766/tools/thumbs.html` (`?only=ID,ID` for some).
 4. `python tools/check_site.py` and `python -m unittest discover -s tests -t .`.
 5. Run the site (`cd site && python -m http.server 8000`) and open the model: size, which way it faces, moving parts turn about the right pivots, clips play. Say what you looked at.

@@ -5,7 +5,7 @@ description: The end-to-end procedure for landing a change in khanjal/lowpoly-as
 
 # Shipping a change in lowpoly-assets
 
-Adapted from the `ship-it` skills in khanjal/alien-investigation, khanjal/moodle-mod_pagebuilder and khanjal/Wormhole-X-Treme. Each step exists because skipping it causes trouble later; follow the sequence, and judge a step that clearly does not apply rather than forcing it.
+Adapted from the `ship-it` skills in the owner's other projects. Each step exists because skipping it causes trouble later; follow the sequence, and judge a step that clearly does not apply rather than forcing it.
 
 ## 1. Confirm the starting point
 
