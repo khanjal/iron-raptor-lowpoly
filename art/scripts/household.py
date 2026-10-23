@@ -676,8 +676,8 @@ def shower():
     p.box("porcelain", (0, 0, 0.04), (0.9, 0.9, 0.08))
     for k, (x, y, w, d) in enumerate(((0, 0.44, 0.9, 0.04), (-0.44, 0, 0.04, 0.9))):
         p.box("tile_blue", (x, y, 1.0), (w, d, 2.0))
-    p.box("glass", (0.44, 0, 1.0), (0.02, 0.88, 1.9))
-    p.box("glass", (0, -0.44, 1.0), (0.88, 0.02, 1.9))
+    p.box("clear_glass", (0.44, 0, 1.0), (0.02, 0.88, 1.9))
+    p.box("clear_glass", (0, -0.44, 1.0), (0.88, 0.02, 1.9))
     p.cyl("metal_galv", (-0.3, 0.38, 1.9), 0.01, 0.4, n=4, axis="y")
     p.cyl("metal_galv", (-0.3, 0.28, 1.88), 0.07, 0.03, n=8, axis="y")
     return p
@@ -988,7 +988,7 @@ def coffee_machine():
     p = Prop("GH_CoffeeMachine_01")
     p.box("black", (0, 0, 0.18), (0.3, 0.3, 0.36))
     p.box("metal_dark", (0, -0.0, 0.4), (0.3, 0.3, 0.06))
-    p.box("glass", (0, -0.12, 0.12), (0.14, 0.14, 0.18))
+    p.box("clear_glass", (0, -0.12, 0.12), (0.14, 0.14, 0.18))
     p.box("fabric_grey", (0, 0.15, 0.2), (0.2, 0.01, 0.3))
     return p
 

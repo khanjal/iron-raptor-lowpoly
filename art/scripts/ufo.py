@@ -32,7 +32,7 @@ def abduction_ufo():
     lathe(p, "alien_grey", [(0.9, 3.3), (1.15, 3.35), (1.45, 3.0), (1.8, 2.3), (2.05, 1.5)], n=12)
     lathe(p, "metal_dark", [(1.1, 3.37), (1.2, 3.37)], n=12, cap=False)                  # a dark panel line round the rim
     lathe(p, "glow_cyan", [(0.62, 3.14), (0.82, 3.3)], n=12, cap=False)                  # the glowing band under the rim
-    lathe(p, "glass", [(1.95, 1.35), (2.45, 1.1), (2.95, 0.55), (3.25, 0.0001)], n=8)    # the dome
+    lathe(p, "clear_glass", [(1.95, 1.35), (2.45, 1.1), (2.95, 0.55), (3.25, 0.0001)], n=8)    # the dome
     p.cyl("glow_cyan", (0, 0, 0.04), 0.9, 0.08, n=12)                                    # the emitter the beam comes out of
     p.cyl("metal_dark", (0, 0, 0.12), 1.05, 0.08, n=12)                                  # its dark collar (above the disc: the disc shows from below)
 

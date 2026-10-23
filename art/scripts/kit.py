@@ -302,7 +302,7 @@ def door_loft():
 @plain("windows", "Window_Single")
 def window_single():
     p = Prop("GK_Window_Single")
-    p.box("glass", (0, 0, 0.6), (0.9, 0.04, 1.1))
+    p.box("clear_glass", (0, 0, 0.6), (0.9, 0.04, 1.1))
     for x in (-0.46, 0.46):
         p.box("paint_white", (x, 0, 0.6), (0.08, 0.1, 1.2))
     for z in (0.02, 1.18):
@@ -315,7 +315,7 @@ def window_single():
 @plain("windows", "Window_Double")
 def window_double():
     p = Prop("GK_Window_Double")
-    p.box("glass", (0, 0, 0.6), (1.9, 0.04, 1.1))
+    p.box("clear_glass", (0, 0, 0.6), (1.9, 0.04, 1.1))
     for x in (-0.96, 0.0, 0.96):
         p.box("paint_white", (x, 0, 0.6), (0.08, 0.1, 1.2))
     for z in (0.02, 1.18):
@@ -326,8 +326,8 @@ def window_double():
 @plain("windows", "Window_Sash")
 def window_sash():
     p = Prop("GK_Window_Sash")
-    p.box("glass", (0, 0, 0.3), (0.9, 0.03, 0.54))
-    p.box("glass", (0, -0.03, 0.9), (0.9, 0.03, 0.54))
+    p.box("clear_glass", (0, 0, 0.3), (0.9, 0.03, 0.54))
+    p.box("clear_glass", (0, -0.03, 0.9), (0.9, 0.03, 0.54))
     for z in (0.02, 0.6, 1.18):
         p.box("wood_dark", (0, 0, z), (1.0, 0.1, 0.07))
     for x in (-0.47, 0.47):
@@ -343,7 +343,7 @@ def window_broken():
     for z in (0.02, 1.18):
         p.box("wood_dark", (0, 0, z), (1.0, 0.1, 0.08))
     for k, (x, z, w, h, r) in enumerate(((-0.3, 0.2, 0.3, 0.3, 10), (0.35, 1.0, 0.25, 0.28, -15), (0.3, 0.3, 0.2, 0.2, 30))):
-        p.box("glass", (x, 0, z), (w, 0.02, h), rot=(0, r, 0))
+        p.box("clear_glass", (x, 0, z), (w, 0.02, h), rot=(0, r, 0))
     return p
 
 
@@ -466,7 +466,7 @@ def vent(sk):
 def skylight():
     p = Prop("GK_Skylight")
     p.box("metal_dark", (0, 0, 0.1), (1.0, 1.0, 0.2))
-    p.box("glass", (0, 0, 0.22), (0.86, 0.86, 0.03))
+    p.box("clear_glass", (0, 0, 0.22), (0.86, 0.86, 0.03))
     return p
 
 

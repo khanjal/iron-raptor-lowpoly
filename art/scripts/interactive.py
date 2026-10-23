@@ -147,7 +147,7 @@ def fridge(a=0.0):
     shell(p, "enamel_cream", w, d, h - 0.1, z0=0.1, inner="paint_white")
     p.box("paint_white", (0, 0, 1.2), (w - 0.06, d - 0.06, 0.03))
     for z in (0.45, 0.75, 1.0, 1.5):
-        shelf(p, "glass", w, d, z, t=0.015)
+        shelf(p, "clear_glass", w, d, z, t=0.015)
     door(p, "Door", "right", "enamel_cream", -w / 2, w / 2, 0.1, 1.19, yf, a, thick=0.04, limit=100)
     door(p, "DoorFreezer", "right", "enamel_cream", -w / 2, w / 2, 1.21, 1.8, yf, a, thick=0.04, limit=100)
     p.slot("Crisper", (0, 0, 0.13), (0.6, 0.55, 0.3))
@@ -435,10 +435,10 @@ def medicine_cabinet(a=0.0):
     p = Prop("GI_MedicineCabinet_01")
     w, d, h = 0.4, 0.14, 0.55
     shell(p, "paint_white", w, d, h, t=0.015, z0=-h / 2, inner="fabric_grey")
-    shelf(p, "glass", w, d, -0.07, t=0.01, inset=0.015)
-    shelf(p, "glass", w, d, 0.1, t=0.01, inset=0.015)
+    shelf(p, "clear_glass", w, d, -0.07, t=0.01, inset=0.015)
+    shelf(p, "clear_glass", w, d, 0.1, t=0.01, inset=0.015)
     door(p, "Door", "left", "paint_white", -0.2, 0.2, -h / 2 + 0.015, h / 2 - 0.015, -d / 2, a, thick=0.02, limit=110, handle="metal_galv",
-         extra=lambda: p.box("glass", (0, -d / 2 - 0.021, 0), (0.34, 0.006, 0.46)))
+         extra=lambda: p.box("clear_glass", (0, -d / 2 - 0.021, 0), (0.34, 0.006, 0.46)))
     p.slot("ShelfLow", (0, 0, -0.06), (0.34, 0.1, 0.15))
     p.slot("ShelfHigh", (0, 0, 0.11), (0.34, 0.1, 0.15))
     return p
