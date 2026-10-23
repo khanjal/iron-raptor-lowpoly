@@ -65,7 +65,7 @@ A new or changed model is not finished until the browser has it. In this order:
 4. `python tools/check_site.py` and `python -m unittest discover -s tests -t .`.
 5. Run the site (`cd site && python -m http.server 8000`) and open the model: size, which way it faces, moving parts turn about the right pivots, clips play. Say what you looked at.
 
-Keep the counts in README and NOTES.md in step with the manifest (the "131" appears in several places); docs whose counts did not match the code were a repeated review finding.
+Keep the counts in README and NOTES.md in step with the manifest (the count appears in the badge, the intro and "The asset browser"); docs whose counts did not match the code were a repeated review finding.
 
 ## Review lessons
 
