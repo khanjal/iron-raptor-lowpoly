@@ -5,7 +5,7 @@
 What it checks:
   manifest   parses; ids are unique; every field is there with the right type; type is a lowercase category path; tags are lowercase words; size is positive
   files      every entry's glb exists and is a valid GLB (header, JSON chunk), its thumbnail is a 256 x 256 PNG
-  against the GLB   the triangle count equals the manifest's; `rigged` matches the GLB having a skin; the clip names equal the GLB's animation names;
+  against the GLB   the credit line is in asset.copyright (tools/stamp_glb.py); the triangle count equals the manifest's; `rigged` matches the GLB having a skin; the clip names equal the GLB's animation names;
              every `parts` entry names a node that exists in the GLB, and the node sits at the part's pivot (the axis conversion
              Blender -> glTF) plus `rest` along the axis for a slide
   variants   name existing ids, and are symmetric
@@ -17,6 +17,9 @@ import re
 import struct
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import stamp_glb  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 TYPE_RE = re.compile(r"^[a-z0-9-]+(/[a-z0-9-]+)+$")
@@ -116,6 +119,8 @@ def check_entry(a, site, errors):
 
 
 def check_against_glb(a, doc, err):
+    if doc.get("asset", {}).get("copyright") != stamp_glb.COPYRIGHT:
+        err("the GLB has no credit line in asset.copyright (run tools/stamp_glb.py)")
     t = triangles(doc)
     if t != a["triangles"]:
         err(f"manifest says {a['triangles']} triangles, the GLB has {t}")

@@ -20,3 +20,6 @@ __pycache__/
 # Editor
 .vscode/
 .idea/
+
+# Release zips (tools/make_release_zips.py)
+/dist/

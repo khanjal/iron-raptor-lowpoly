@@ -186,6 +186,7 @@ input[type=range] { flex: 1; min-width: 7rem; accent-color: var(--accent); }
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: .2rem 1rem; margin: 1rem 0; }
 .facts dt { color: var(--muted); }
 .facts dd { margin: 0; word-break: break-word; }
+.credit { margin: .25rem 0 0; color: var(--muted); font-size: .8rem; }
 footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
 
 .only-narrow { display: none; }

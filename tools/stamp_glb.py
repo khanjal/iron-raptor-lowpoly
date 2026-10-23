@@ -1,0 +1,58 @@
+"""Write the credit line into the `asset.copyright` field of GLB files (standard library only, no Blender), so it travels with the model.
+
+    python tools/stamp_glb.py                 # every site/models/*.glb
+    python tools/stamp_glb.py a.glb b.glb     # just these
+
+Only the JSON chunk is rewritten (padded with spaces to a multiple of 4 bytes, the binary chunk is copied unchanged), and a file that already has the
+line is left alone, so running it twice changes nothing. Blender's exporter writes the same line when art/scripts/common.py builds a GLB
+(`GLB_COPYRIGHT`, which must equal COPYRIGHT here: tests/test_stamp_glb.py checks), so this tool is for models built before that.
+"""
+
+import json
+import struct
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/lowpoly-assets"
+JSON_CHUNK = 0x4E4F534A
+
+
+def stamp_bytes(raw, copyright=COPYRIGHT):
+    """The GLB bytes with asset.copyright set (the same bytes when it is already set)."""
+    if len(raw) < 20 or raw[:4] != b"glTF":
+        raise ValueError("not a GLB (bad magic)")
+    jlen, jtype = struct.unpack_from("<II", raw, 12)
+    if jtype != JSON_CHUNK:
+        raise ValueError("first chunk is not JSON")
+    doc = json.loads(raw[20:20 + jlen].decode("utf-8"))
+    if doc.get("asset", {}).get("copyright") == copyright:
+        return raw
+    doc.setdefault("asset", {})["copyright"] = copyright
+    body = json.dumps(doc, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    body += b" " * (-len(body) % 4)
+    rest = raw[20 + jlen:]
+    return b"glTF" + struct.pack("<II", 2, 12 + 8 + len(body) + len(rest)) + struct.pack("<II", len(body), JSON_CHUNK) + body + rest
+
+
+def stamp(path, copyright=COPYRIGHT):
+    """Stamp one file in place; True if it changed."""
+    path = Path(path)
+    raw = path.read_bytes()
+    new = stamp_bytes(raw, copyright)
+    if new == raw:
+        return False
+    path.write_bytes(new)
+    return True
+
+
+if __name__ == "__main__":
+    files = [Path(a) for a in sys.argv[1:]] or sorted((ROOT / "site" / "models").glob("*.glb"))
+    changed = 0
+    for f in files:
+        try:
+            changed += stamp(f)
+        except ValueError as e:
+            print(f"FAIL {f}: {e}")
+            sys.exit(1)
+    print(f"{changed} of {len(files)} files stamped")

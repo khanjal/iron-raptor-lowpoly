@@ -105,7 +105,7 @@ clips play on every one of them.
 
 ## On the farm
 
-`Assets/Editor/FarmsteadArt.cs` puts these models on the Farmstead graybox when you run `Tools > Alien Investigation > Build Farmstead Layout`
+`Assets/Editor/FarmsteadArt.cs` puts these models on the Farmstead graybox when you run `Tools > <game name> > Build Farmstead Layout`
 (or Auto Setup Scene). The graybox primitives keep every collider, so the NavMesh and `FarmsteadSelfTest` do not change; the model hides the
 primitive's renderer and stands in its place (`Dress`). Fences, the cover groups (bushes, boulders, stumps, dead trees in `FarmsteadLayout.CoverGroups`) and the set dressing in
 `FarmsteadLayout.ArtProps` have no colliders, except the boulders and the tractor (cover you can bump into; the NavMesh goes round them). The ground, roads, drive, yard and cornfield soil use the tiling `Tex_*.png` from `ground.py`.
@@ -165,7 +165,7 @@ scale, so the round trip works):
   `ArtImportRules` sets `GlobalPalette.png` to Filter Mode: Point, Generate Mip Maps: off, Compression: None on every import, so a
   re-export cannot undo it. Ground textures tile (Repeat); decals clamp and use alpha as transparency.
 - **One shared material.** Every FBX references a material called `GlobalPalette` with that texture. Remap it to a single URP Lit material
-  (smoothness low) rather than letting Unity create one per file. Run `Tools > Alien Investigation > Set Up Art Materials` once (it
+  (smoothness low) rather than letting Unity create one per file. Run `Tools > <game name> > Set Up Art Materials` once (it
   creates `M_GlobalPalette.mat` and re-imports every model); the importer then applies the remap to each FBX on import.
 - **Axes.** Static meshes are exported with the axis conversion baked in; rigged ones are not (baking rotates bones). Check that both come in
   upright with scale 1 and that rigged ones have no stray -90 degree rotation (turn on Bake Axis Conversion if they do).

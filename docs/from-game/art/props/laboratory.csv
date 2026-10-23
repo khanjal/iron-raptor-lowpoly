@@ -1,0 +1,68 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-LB-001,Lab bench with sink and gas taps,Seating,laboratory,lab floor,furniture,normal,common,large,none,cover,partial,Assets/Art/Global/Household/GH_LabBench_01.fbx,laboratory,,"the bench exists; stand-in: GH_LabBench_01 is a box, a top and one pipe; no sink or gas taps"
+PC-LB-002,Microscope,Lab equipment,laboratory,lab floor,tech,normal,common,small,none,light,have,Assets/Art/Global/Household/GH_Microscope_01.fbx,laboratory,,a lit eyepiece
+PC-LB-003,Fume hood,Lab equipment,laboratory,lab floor,appliance,normal,common,large,none,noise;light,missing,,laboratory,,an extractor roar and a sash that slides
+PC-LB-004,Biosafety cabinet,Lab equipment,laboratory,lab floor,appliance,high,uncommon,large,none,light;noise,missing,,laboratory,,a glass sash and UV light
+PC-LB-005,Centrifuge,Lab equipment,laboratory,lab floor,appliance,high,common,medium,switch,noise,missing,,laboratory,,a rising whine
+PC-LB-006,Incubator,Lab equipment,laboratory,lab floor,appliance,high,common,medium,none,light;noise,missing,,laboratory,,a warm glow
+PC-LB-007,Autoclave,Lab equipment,laboratory,lab floor,appliance,high,uncommon,large,none,noise;light,missing,,laboratory,,a hiss of steam
+PC-LB-008,Ultra-low freezer (-80 C),Kitchen and appliances,laboratory,lab floor,appliance,high,common,large,openable,noise;light,missing,,laboratory,,frost and a loud alarm if the door is open
+PC-LB-009,Laboratory refrigerator,Kitchen and appliances,laboratory,lab floor,appliance,normal,common,large,openable,noise;light,partial,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx,laboratory,,a lab fridge with glass doors
+PC-LB-010,Glove box (isolator),Lab equipment,laboratory,lab floor,appliance,high,uncommon,large,none,light,missing,,laboratory,,
+PC-LB-011,Hot plate and stirrer,Lab equipment,laboratory,lab floor,appliance,normal,common,small,none,light,missing,,laboratory,,
+PC-LB-012,Analytical balance,Lab equipment,laboratory,lab floor,tech,normal,common,small,none,none,missing,,laboratory,,
+PC-LB-013,Spectrometer / mass spec,Lab equipment,laboratory,lab floor,tech,high,uncommon,large,none,noise;light,missing,,laboratory,,a big hum
+PC-LB-014,PCR machine / sequencer,Lab equipment,laboratory,lab floor,tech,high,uncommon,medium,none,light,missing,,laboratory,,lights flicker in sequence
+PC-LB-015,Oscilloscope,Lab equipment,laboratory,lab floor,tech,normal,uncommon,small,none,light;noise,missing,,laboratory,,a green trace
+PC-LB-016,Lab computer workstation,Computing and office tech,laboratory,lab floor,tech,high,common,medium,possessable,light;objective candidate,partial,Assets/Art/Global/Decor/GD_Monitor_01.fbx;Assets/Art/Global/Decor/GD_ComputerTower_01.fbx,laboratory,,log-in screens
+PC-LB-017,Server rack,Computing and office tech,laboratory,lab floor,tech,high,uncommon,large,possessable,noise;light;objective candidate,have,Assets/Art/Global/Household/GH_ServerRack_01.fbx,laboratory,,a hum; blinking LEDs
+PC-LB-018,"Glassware (beakers, flasks, test tubes)",Cookware and tableware,laboratory,lab floor,clutter,normal,common,small,carryable,noise,missing,,laboratory,,a smash is a noise
+PC-LB-019,Test tube rack,Clutter and small items,laboratory,lab floor,clutter,normal,common,small,carryable,none,missing,,laboratory,,
+PC-LB-020,Petri dishes and trays,Cookware and tableware,laboratory,lab floor,clutter,normal,common,small,none,none,missing,,laboratory,,
+PC-LB-021,Pipette stand,Hand and power tools,laboratory,lab floor,tool,normal,common,small,none,none,missing,,laboratory,,
+PC-LB-022,Gas cylinder rack,"Containers, drums and tanks",laboratory,lab floor,container,normal,common,medium,none,noise,missing,,laboratory,,chained; a clang
+PC-LB-023,Liquid nitrogen dewar,"Containers, drums and tanks",laboratory,lab floor,container,high,uncommon,medium,none,none,missing,,laboratory,,a white fog
+PC-LB-024,Sample vials in racks,"Containers, drums and tanks",laboratory,lab floor,container,normal,common,small,carryable,objective candidate,partial,Assets/Art/Global/Vehicles/GV_ShipSampleRack_01.fbx,laboratory,,the specimen jar exists
+PC-LB-025,Specimen jars (shelf),"Containers, drums and tanks",laboratory,lab floor,container,normal,common,medium,carryable,objective candidate,have,Assets/Art/Global/Vehicles/GV_ShipJars_01.fbx,laboratory,,alien specimens in jars
+PC-LB-026,Stasis / specimen tank (large),"Containers, drums and tanks",laboratory,lab floor,container,high,rare,large,none,light;objective candidate,partial,Assets/Art/Global/Vehicles/GV_ShipPod_01.fbx,laboratory,,a glowing tank
+PC-LB-027,Lab cart (trolley),Furniture,laboratory,lab floor,furniture,normal,common,medium,movable,noise,missing,,laboratory,,a rattle
+PC-LB-028,Rolling lab stool,Seating,laboratory,lab floor,furniture,normal,common,small,movable,noise,missing,,laboratory,,
+PC-LB-029,Whiteboard with equations,Furniture,laboratory,lab floor,furniture,normal,common,large,none,objective candidate,have,Assets/Art/Global/Household/GH_Whiteboard_01.fbx,laboratory,,a plan on the board
+PC-LB-030,Lab notebook and sample log,Clutter and small items,laboratory,lab floor,clutter,normal,common,small,none,objective candidate,missing,,laboratory,,a wipe candidate
+PC-LB-031,Safety goggles and gloves,Clothing and personal items,laboratory,lab floor,clothing,normal,common,small,none,none,missing,,laboratory,,
+PC-LB-032,Wash station (foot pedal sink),Bathroom fixtures,laboratory,lab floor,appliance,normal,common,medium,none,noise,missing,,laboratory,,
+PC-LB-033,Eyewash and safety shower,Bathroom fixtures,laboratory,lab floor,appliance,normal,common,medium,none,noise,missing,,laboratory,,a flood and an alarm
+PC-LB-034,Biohazard waste bin,"Bins, buckets and mailboxes",laboratory,lab floor,container,normal,common,medium,openable,none,missing,,laboratory,,red bag
+PC-LB-035,Sharps container,"Boxes, crates and cases",laboratory,lab floor,container,normal,common,small,none,none,missing,,laboratory,,
+PC-LB-036,"Exam / autopsy table (stylised, no gore)","Tables, desks and counters",laboratory,lab floor,furniture,normal,rare,large,none,none,partial,Assets/Art/Global/Household/GH_Gurney_01.fbx,laboratory,,comic; the gurney stands in
+PC-LB-037,Overhead surgical light,Lighting and fire,laboratory,lab floor,decor,normal,uncommon,medium,none,light,missing,,laboratory,,
+PC-LB-038,Ceiling cable trays and pipes,Cookware and tableware,laboratory,lab floor,structure,normal,common,large,none,none,missing,,laboratory,,for an Insectoid
+PC-LB-039,Fluorescent tube light,Lighting and fire,laboratory,lab floor,decor,normal,common,medium,none,light,have,Assets/Art/Global/Decor/GD_Fluorescent_01.fbx,laboratory,,a flicker
+PC-LB-040,Emergency light and exit sign,Lighting and fire,laboratory,lab floor,decor,normal,common,small,none,light,missing,,laboratory,,red glow
+PC-LB-041,Containment room (glass cell),Buildings and structures,laboratory,containment,structure,high,uncommon,large,none,light;hiding spot,missing,,laboratory,,a cell with an observation window
+PC-LB-042,Restraint table,"Tables, desks and counters",laboratory,containment,furniture,high,rare,large,none,none,missing,,laboratory,,a comic restraint
+PC-LB-043,Alien artifact on a pedestal,Alien ship and alien tech,laboratory,containment,oddity,high,rare,small,none,light;objective candidate,missing,,laboratory,,glowing
+PC-LB-044,Dissected ship parts table,Alien ship and alien tech,laboratory,containment,furniture,high,rare,medium,none,objective candidate,partial,Assets/Art/Global/Ships/SH_HullPanel_01.fbx;Assets/Art/Global/Ships/SH_EngineCoil_01.fbx,laboratory,,the parts are the fetch
+PC-LB-045,Holographic display,Electronics,laboratory,containment,tech,high,rare,medium,none,light,partial,Assets/Art/Global/Vehicles/GV_ShipHoloTable_01.fbx,laboratory,,the holo table
+PC-LB-046,Cryo storage locker,Lab equipment,laboratory,containment,appliance,high,rare,large,openable,light;objective candidate,missing,,laboratory,,a frosted unit
+PC-LB-047,Biohazard sign,Signs and flags,laboratory,containment,decor,normal,common,small,none,none,missing,,laboratory,,story dressing
+PC-LB-048,Intercom panel,"Phones, radio and communications",laboratory,containment,tech,normal,common,small,possessable,noise,have,Assets/Art/Global/Decor/GD_Intercom_01.fbx,laboratory,,a voice from the wall
+PC-LB-049,Airlock / decon chamber,Buildings and structures,laboratory,containment,structure,high,uncommon,large,openable,noise,missing,,laboratory,,a pressure hiss
+PC-LB-050,Glass partition with a door,"Doors, windows and building parts",laboratory,containment,structure,normal,common,large,none,none,missing,,laboratory,,
+PC-LB-051,Containment cell door with a keypad,"Doors, windows and building parts",laboratory,containment,structure,high,uncommon,large,openable,none,missing,,laboratory,,
+PC-LB-052,Acid / corrosives cabinet,Storage furniture,laboratory,chemical storage,furniture,normal,common,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,laboratory,,stand-in: the plain cabinet; no corrosives labels or venting
+PC-LB-053,Chemical bottle shelves,Shelving and racks,laboratory,chemical storage,furniture,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_JarShelf_01.fbx,laboratory,,bottles rattle
+PC-LB-054,Gas manifold and regulators,Buildings and structures,laboratory,chemical storage,structure,normal,uncommon,medium,none,noise,missing,,laboratory,,a hiss
+PC-LB-055,"Break room (table, fridge, vending)",Buildings and structures,laboratory,support,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Table_Dining_01.fbx;Assets/Art/Global/Interactive/Classic/GI_VendingMachine_01.fbx,laboratory,,stand-in: the dining table and the vending machine; the room is a kit build
+PC-LB-056,Coffee station,Kitchen and appliances,laboratory,support,appliance,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx,laboratory,,
+PC-LB-057,Staff lockers,Storage furniture,laboratory,support,furniture,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,laboratory,,
+PC-LB-058,Changing room bench,Seating,laboratory,support,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,laboratory,,
+PC-LB-059,Cleanroom gowning cabinet,Storage furniture,laboratory,support,furniture,high,uncommon,medium,openable,none,missing,,laboratory,,
+PC-LB-060,Air shower,Buildings and structures,laboratory,support,structure,high,rare,large,none,noise,missing,,laboratory,,a loud whoosh
+PC-LB-061,Pass-through hatch,"Doors, windows and building parts",laboratory,support,structure,normal,uncommon,small,openable,none,missing,,laboratory,,
+PC-LB-062,Supply closet (shelves),"Doors, windows and building parts",laboratory,support,structure,normal,common,medium,openable,none,missing,,laboratory,,
+PC-LB-063,Power cell (charged),Alien ship and alien tech,laboratory,support,tool,high,rare,small,carryable,light;objective candidate,have,Assets/Art/Global/Ships/SH_PowerCell_01.fbx,laboratory,,the lab's power
+PC-LB-064,Telescope dish / antenna (observatory),"Phones, radio and communications",laboratory,support,tech,high,rare,large,possessable,objective candidate,missing,,laboratory,,the research station: a 25 m dish
+PC-LB-065,Control room console,Screens and audio,laboratory,support,tech,high,uncommon,large,possessable,light;objective candidate,partial,Assets/Art/Global/Vehicles/GV_ShipConsole_01.fbx,laboratory,,the observatory's
+PC-LB-066,Logbook,Clutter and small items,laboratory,support,clutter,low,uncommon,small,none,objective candidate,missing,,laboratory,,a wipe objective
+PC-LB-067,Scientist's coat on a hook,Field gear and disguises,laboratory,support,clothing,normal,common,small,none,none,partial,Assets/Art/Global/Clothes/FD_Jacket_Hanger_01.fbx,laboratory,,a disguise

@@ -1,6 +1,6 @@
 # Notes: turning the art pipeline into its own project
 
-Tracked in the game repo: khanjal/alien-investigation issue #355 (the plan and the asset browser) and #344 (the quality pass).
+Tracked in the game repo: issue #355 (the plan and the asset browser) and #344 (the quality pass).
 
 ## Done
 - This folder, with `art/` copied from the game repo's `main` (commit 9a3d59ce).
@@ -24,7 +24,7 @@ Tests and CI (added after the first push): `tests/` (39 unit tests: the Blender-
 Pages is not available for a private repository on the Free plan. The docs (docs.github.com, "Creating a GitHub Pages site"): "If the account that owns the repository uses GitHub Free or GitHub Free for organizations, the repository must be public." ("GitHub's plans": GitHub Pro and Team list Pages for private repositories, and "To publish a GitHub Pages site privately, you need to have an organization account" on GitHub Enterprise Cloud.) So: test locally now; publish when the repo is made public (which needs the licence and third-party decisions below) or the plan is upgraded; then enable Settings > Pages > Source: GitHub Actions and merge `.github/workflows/pages.yml`.
 
 ## From now on this repo makes the models (2026-10-23)
-alien-investigation no longer makes its own art; it consumes what is built here. The planned assets, the open issues and PRs about models, and what the game expects to stay stable are in [`docs/from-game/README.md`](docs/from-game/README.md) (with copies of the asset list, the prop catalogue and the art notes). Syncing the `art/` changes merged in the game repo since 9a3d59ce is the first job there.
+The game repo no longer makes its own art; it consumes what is built here. The planned assets, the open issues and PRs about models, and what the game expects to stay stable are in [`docs/from-game/README.md`](docs/from-game/README.md) (with copies of the asset list, the prop catalogue and the art notes). Syncing the `art/` changes merged in the game repo since 9a3d59ce is the first job there.
 
 ## Not copied yet (open PRs in the game repo, merge first or copy by hand)
 - #358: road vehicles rebuilt (`vehicles.py`, `cars.py`).
@@ -50,6 +50,11 @@ alien-investigation no longer makes its own art; it consumes what is built here.
 
 ## Public since 2026-10-23
 - The repository was made public (owner's decision) on 2026-10-23, with the commit email still in the history (`docs/PUBLISHING.md` describes the safer route that was not taken). GitHub Pages is set to deploy from Actions; the Tests and Pages workflows now run automatically.
+
+## Downloads and credit (2026-10-23, branch `licence`)
+- Release zips: `tools/make_release_zips.py` (one zip of every GLB, one per category, each with `CREDIT.txt` and `LICENSE-MODELS`) and `.github/workflows/release.yml` (on a `v*` tag, or by hand; runs the tests first, uses only the `gh` CLI). GLB only: FBX is not committed. **Not run on GitHub yet**: push a tag to try it.
+- Credit travels with the files: `asset.copyright` in every GLB (`tools/stamp_glb.py` for the existing 131, `GLB_COPYRIGHT` in `common.py` for new Blender builds; `check_site.py` and a test keep the two in step), a note under the viewer's Download button and in the page footer.
+- The game's name is gone from the docs (README, NOTES, `art/README.md`, `docs/from-game/`); "the game" / "the game repo" instead. Issue numbers (#355, #364...) are the game repo's. Unity menu paths read `Tools > <game name> > ...`. The repo's earlier commits still have the name.
 
 ## More families (2026-10-23, branch `licence`)
 Added on request: produce variety, insects, sports gear, office gear. 68 new models, so the browser now has 131.

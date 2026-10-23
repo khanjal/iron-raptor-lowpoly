@@ -20,7 +20,7 @@ Give credit in a place a reader of your project would look: a credits screen, a 
 
 - Link to the project and name the licence.
 - If you changed a model, say so ("edited from ...").
-- You do not need to put the credit on the model or in each file.
+- You do not need to put the credit on the model or in each file. (Each GLB carries it anyway, in its `asset.copyright` field, and the release zips have a `CREDIT.txt`.)
 - If the project's name or address changes, use the current one.
 
 ## The code

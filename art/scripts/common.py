@@ -577,7 +577,8 @@ def export_fbx(coll, rel_path, rigged=False, sockets=True):
 
 
 # ===== glTF (GLB) for the web viewer ============================================================================
-GLB_FPS = 60                                                         # the frame rate the GLB's animations are sampled at (export_glb sets the scene to it)
+GLB_COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/lowpoly-assets"   # written to every GLB's asset.copyright; equals tools/stamp_glb.py COPYRIGHT (tested)
+GLB_FPS = 60                                                       # the frame rate the GLB's animations are sampled at (export_glb sets the scene to it)
 
 
 def stash_clip(rig_obj, action, clip_name, fps=24):
@@ -688,7 +689,7 @@ def export_glb(coll, name, rigged=None, meta=True):
     want = dict(filepath=str(out), export_format="GLB", use_selection=True, export_apply=not rigged, export_yup=True,
                 export_cameras=False, export_lights=False, export_extras=False, export_animations=bool(info["clips"]),
                 export_animation_mode="NLA_TRACKS", export_force_sampling=True, export_optimize_animation_size=True,
-                export_morph=False, export_skins=rigged, export_texcoords=True, export_normals=True)
+                export_morph=False, export_skins=rigged, export_texcoords=True, export_normals=True, export_copyright=GLB_COPYRIGHT)
     try:
         bpy.ops.export_scene.gltf(**{k: v for k, v in want.items() if k in props})
     finally:

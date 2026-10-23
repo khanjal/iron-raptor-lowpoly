@@ -1,0 +1,972 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-SH-001,Refrigerator,Kitchen and appliances,shared,kitchen,appliance,normal,common,medium,openable,noise;light,have,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx,farm;trailer-park;suburb;town;cabin,,"hum and a light that matters; door and shelves are parts; Retro, Modern, Damaged exist"
+PC-SH-002,Stove / oven,Kitchen and appliances,shared,kitchen,appliance,normal,common,medium,openable,noise,have,Assets/Art/Global/Interactive/Classic/GI_Stove_01.fbx,farm;trailer-park;suburb;town;cabin,,oven door is a part; pilot light or ring glow
+PC-SH-003,Microwave oven,Kitchen and appliances,shared,kitchen,appliance,normal,common,small,openable,noise;light,have,Assets/Art/Global/Interactive/Classic/GI_Microwave_01.fbx,farm;trailer-park;suburb;town;cabin,,beep and a clock glow; a classic night-time noise
+PC-SH-004,Toaster,Kitchen and appliances,shared,kitchen,appliance,normal,common,small,switch,noise,have,Assets/Art/Global/Interactive/Classic/GI_Toaster_01.fbx,farm;trailer-park;suburb;town;cabin,,pops up loudly
+PC-SH-005,Kettle,Kitchen and appliances,shared,kitchen,appliance,normal,common,small,switch,noise,have,Assets/Art/Global/Household/GH_Kettle_01.fbx,farm;trailer-park;suburb;town;cabin,,whistle or click-off as a distraction
+PC-SH-006,Coffee maker,Kitchen and appliances,shared,kitchen,appliance,normal,common,small,switch,noise;light,have,Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx,farm;trailer-park;suburb;town;cabin,,gurgle and a red light; the farmer's night coffee
+PC-SH-007,Dishwasher,Kitchen and appliances,shared,kitchen,appliance,normal,uncommon,medium,openable,noise,missing,,farm;trailer-park;suburb;town;cabin,,hum and a swish cycle that masks footsteps (a noise mask)
+PC-SH-008,Blender,Kitchen and appliances,shared,kitchen,appliance,normal,uncommon,small,switch,noise,missing,,farm;trailer-park;suburb;town;cabin,,very loud on a switch; a possess target
+PC-SH-009,Stand mixer,Kitchen and appliances,shared,kitchen,appliance,normal,rare,small,switch,noise,missing,,suburb;town,,decor and noise
+PC-SH-010,Toaster oven,Kitchen and appliances,shared,kitchen,appliance,normal,uncommon,small,switch,light,missing,,farm;trailer-park;suburb;cabin,,"glowing elements, a timer ding"
+PC-SH-011,Slow cooker,Kitchen and appliances,shared,kitchen,appliance,normal,uncommon,small,switch,none,missing,,farm;trailer-park;suburb;cabin,,"a warm light in a dark kitchen, a smell"
+PC-SH-012,Rice cooker,Kitchen and appliances,shared,kitchen,appliance,normal,rare,small,switch,light,missing,,trailer-park;suburb,,indicator light
+PC-SH-013,Electric can opener,Kitchen and appliances,shared,kitchen,appliance,normal,rare,small,switch,noise,missing,,farm;trailer-park;suburb;cabin,,short buzz
+PC-SH-014,Range hood and fan,Kitchen and appliances,shared,kitchen,appliance,normal,uncommon,medium,switch,noise;light,missing,,farm;trailer-park;suburb;town;cabin,,fan noise masks sound; a lamp
+PC-SH-015,Kitchen counter with cabinets,"Tables, desks and counters",shared,kitchen,furniture,normal,common,large,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Counter_Kitchen_01.fbx,farm;trailer-park;suburb;town;cabin,,doors and drawers open; the Damaged ones hang ajar
+PC-SH-016,Kitchen sink with tap,Kitchen and appliances,shared,kitchen,appliance,normal,common,medium,switch,noise,have,Assets/Art/Global/Household/GH_Sink_Kitchen_01.fbx,farm;trailer-park;suburb;town;cabin,,a dripping tap is a sound cue
+PC-SH-017,Breakfast bar stool,Seating,shared,kitchen,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_BarStool_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-018,Bread box,"Boxes, crates and cases",shared,kitchen,container,normal,common,small,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_BreadBox_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-019,Cookie jar,"Containers, drums and tanks",shared,kitchen,container,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Bakery/FD_CookieJar_01.fbx,farm;trailer-park;suburb;cabin,,lid clatters
+PC-SH-020,Pot,Cookware and tableware,shared,kitchen,tool,normal,common,small,carryable,noise,have,Assets/Art/Global/Household/GH_Pot_01.fbx,farm;trailer-park;suburb;cabin,,clangs when dropped
+PC-SH-021,Frying pan / skillet,Cookware and tableware,shared,kitchen,tool,normal,common,small,carryable,noise,missing,,farm;trailer-park;suburb;cabin,,"a heavy pan: clang when dropped, a thrown noise"
+PC-SH-022,Cast-iron pot on the stove,Cookware and tableware,shared,kitchen,tool,normal,uncommon,small,none,none,missing,,farm;cabin,,a pot of something cooling
+PC-SH-023,Colander,Cookware and tableware,shared,kitchen,tool,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-024,Plates and dishes,Cookware and tableware,shared,kitchen,clutter,normal,common,small,carryable,noise,have,Assets/Art/Global/Household/GH_Plates_01.fbx,farm;trailer-park;suburb;town;cabin,,smash noise; dirty ones left on tables tell a story
+PC-SH-025,Dish rack with dishes,Cookware and tableware,shared,kitchen,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,wet dishes drying beside the sink
+PC-SH-026,Mugs,Cookware and tableware,shared,kitchen,clutter,normal,common,small,carryable,none,have,Assets/Art/Global/Household/GH_Mug_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-027,Glassware and tumblers,Cookware and tableware,shared,kitchen,clutter,normal,common,small,carryable,noise,missing,,farm;trailer-park;suburb;town;cabin,,break noise
+PC-SH-028,Cutlery drawer,Cookware and tableware,shared,kitchen,container,normal,common,small,openable,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Dresser_01.fbx,farm;trailer-park;suburb;cabin,,clattering drawer; drawer exists on other props only
+PC-SH-029,Knife block,Cookware and tableware,shared,kitchen,tool,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,"a comic hazard prop, never gory"
+PC-SH-030,Cutting board and knife,Cookware and tableware,shared,kitchen,tool,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-031,Rolling pin,Cookware and tableware,shared,kitchen,tool,normal,uncommon,small,carryable,none,missing,,farm;trailer-park;suburb;cabin,,a classic weapon-less prop for a comedy farmer
+PC-SH-032,Wooden spoon jar,Clutter and small items,shared,kitchen,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-033,Salt and pepper shakers,Cookware and tableware,shared,kitchen,clutter,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,,small throwables
+PC-SH-034,Spice rack,Shelving and racks,shared,kitchen,furniture,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,"wall-hung rack, jars slots"
+PC-SH-035,Kitchen scale,Hand and power tools,shared,kitchen,tool,normal,rare,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-036,Pantry shelf unit,Shelving and racks,shared,kitchen,furniture,normal,common,large,openable,none,partial,Assets/Art/Global/Household/GH_JarShelf_01.fbx,farm;trailer-park;suburb;cabin,,the jar shelf exists; a full pantry unit with tier slots is #270
+PC-SH-037,Jar of pickles,Food and drink,shared,kitchen,food,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Canned/FD_Jar_Pickles_01.fbx,farm;trailer-park;suburb;cabin,,glass: noise if dropped
+PC-SH-038,Jam jar,Food and drink,shared,kitchen,food,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Canned/FD_Jar_Jam_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-039,Canned soup,Food and drink,shared,kitchen,food,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Canned/FD_Can_Soup_01.fbx,farm;trailer-park;campground;suburb;cabin,,a rolling can is a distraction
+PC-SH-040,Canned beans,Food and drink,shared,kitchen,food,normal,common,small,carryable,none,have,Assets/Art/Global/Food/Canned/FD_Can_Beans_01.fbx,farm;trailer-park;campground;suburb;cabin,,
+PC-SH-041,Flour sack,Food and drink,shared,kitchen,food,normal,common,medium,carryable,none,have,Assets/Art/Global/Food/Boxed/FD_FlourSack_01.fbx,farm;cabin,,poof of flour on a drop
+PC-SH-042,Cereal box,Food and drink,shared,kitchen,food,normal,common,small,carryable,none,have,Assets/Art/Global/Food/Boxed/FD_CerealBox_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-043,Fruit bowl,Wall and surface decor,shared,kitchen,decor,normal,common,small,none,none,partial,Assets/Art/Global/Food/Produce/FD_Apple_01.fbx;Assets/Art/Global/Food/Produce/FD_Orange_01.fbx,farm;trailer-park;suburb;cabin,,"the fruit exists, the bowl does not"
+PC-SH-044,Eggs (carton),Food and drink,shared,kitchen,food,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Dairy/FD_EggCarton_01.fbx,farm;trailer-park;suburb;town;cabin,,splat as a one-shot distraction
+PC-SH-045,Milk bottle,Food and drink,shared,kitchen,food,normal,common,small,carryable,noise,have,Assets/Art/Global/Food/Dairy/FD_MilkBottle_01.fbx,farm;cabin,,the farm's fresh milk
+PC-SH-046,Bread loaf,Food and drink,shared,kitchen,food,normal,common,small,carryable,none,have,Assets/Art/Global/Food/Bakery/FD_BreadLoaf_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-047,Pie cooling,Food and drink,shared,kitchen,food,normal,uncommon,small,carryable,none,have,Assets/Art/Global/Food/Bakery/FD_Pie_01.fbx,farm;town;cabin,,on a windowsill; a lure for a hungry NPC
+PC-SH-048,Cake,Food and drink,shared,kitchen,food,normal,uncommon,small,carryable,none,have,Assets/Art/Global/Food/Bakery/FD_Cake_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-049,Wall clock,Wall and surface decor,shared,kitchen,decor,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_Clock_Wall_01.fbx,farm;trailer-park;suburb;town;cabin,,a ticking clock you can stop (#156)
+PC-SH-050,Kitchen radio,"Phones, radio and communications",shared,kitchen,tech,normal,common,small,switch;possessable,noise,have,Assets/Art/Global/Decor/GD_Radio_Retro_01.fbx,farm;trailer-park;suburb;town;cabin,,possess and jam target; plays the news
+PC-SH-051,Wall landline phone,"Phones, radio and communications",shared,kitchen,tech,low,common,small,switch;possessable,noise;objective candidate,partial,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,farm;trailer-park;suburb;town;cabin,,the model is a desk phone; a wall mount version is missing
+PC-SH-052,Wall calendar,Wall and surface decor,shared,kitchen,decor,normal,common,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_Calendar_01.fbx,farm;trailer-park;suburb;town;cabin,,a circled date is a story clue
+PC-SH-053,Kitchen trash can,"Containers, drums and tanks",shared,kitchen,container,normal,common,medium,openable,noise,have,Assets/Art/Global/Decor/GD_TrashCan_01.fbx,farm;trailer-park;suburb;town;cabin,,lid noise
+PC-SH-054,Recycling bin,"Bins, buckets and mailboxes",shared,kitchen,container,normal,common,medium,openable,none,missing,,suburb;town,,blue or green bin
+PC-SH-055,Pet food and water bowls,Clutter and small items,shared,kitchen,clutter,normal,common,small,movable,none,partial,Assets/Art/Global/Food/Pet/FD_DogBone_01.fbx;Assets/Art/Global/Food/Pet/FD_CatFoodTin_01.fbx,farm;trailer-park;suburb;cabin,,"the food exists, the bowls do not"
+PC-SH-056,Pet door / cat flap,"Doors, windows and building parts",shared,kitchen,structure,normal,uncommon,small,openable,noise,missing,,farm;trailer-park;suburb;cabin,,a way in for small races; a flap clack
+PC-SH-057,Window with curtains and sill items,Soft furnishings,shared,kitchen,decor,normal,common,medium,none,none,partial,Assets/Art/Global/Kit/GK_Window_Single_01.fbx;Assets/Art/Global/Household/GH_Curtains_Open_01.fbx,farm;trailer-park;suburb;town;cabin,,stand-in: the single window kit piece and the open curtains; no sill items
+PC-SH-058,Oven mitts and dish towels,Clutter and small items,shared,kitchen,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-059,Lazy Susan and napkin holder,Clutter and small items,shared,kitchen,clutter,normal,rare,small,none,none,missing,,suburb;town,,
+PC-SH-060,Paper towel holder,Clutter and small items,shared,kitchen,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-061,Teapot,Cookware and tableware,shared,kitchen,decor,normal,uncommon,small,carryable,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-062,Thermos,Cookware and tableware,shared,kitchen,tool,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Thermos_01.fbx,farm;trailer-park;campground;suburb;cabin,,a night-shift item; a warm thing to leave behind
+PC-SH-063,Lunchbox,"Boxes, crates and cases",shared,kitchen,container,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Lunchbox_01.fbx,farm;trailer-park;suburb;town;industrial;cabin,,
+PC-SH-064,Bottle of whiskey,Food and drink,shared,kitchen,food,normal,uncommon,small,carryable,noise,have,Assets/Art/Global/Food/Drinks/FD_WhiskeyBottle_01.fbx,farm;trailer-park;suburb;town;cabin,,a lure for the drunk or a stash in the barn
+PC-SH-065,Beer cans and bottles,Clutter and small items,shared,kitchen,clutter,normal,common,small,carryable,noise;distraction,have,Assets/Art/Global/Food/Drinks/FD_BeerCan_01.fbx,farm;trailer-park;campground;suburb;town;cabin,,empty cans are the classic throwable
+PC-SH-066,Soda cans,Clutter and small items,shared,kitchen,clutter,normal,common,small,carryable,noise;distraction,have,Assets/Art/Global/Food/Drinks/FD_SodaCan_Red_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the crinkle and rattle in a pocket; vending machine stock
+PC-SH-067,Wine bottle,Food and drink,shared,kitchen,food,normal,uncommon,small,carryable,noise,have,Assets/Art/Global/Food/Drinks/FD_WineBottle_01.fbx,farm;trailer-park;suburb;town;cabin,,cellar rack stock
+PC-SH-068,Dining table,"Tables, desks and counters",shared,dining room,furniture,normal,common,large,none,cover,have,Assets/Art/Global/Household/GH_Table_Dining_01.fbx,farm;trailer-park;suburb;town;cabin,,cover for a small alien under the cloth
+PC-SH-069,Dining chair,Seating,shared,dining room,furniture,normal,common,medium,movable,noise,have,Assets/Art/Global/Household/GH_Chair_Dining_01.fbx,farm;trailer-park;suburb;town;cabin,,scrapes; a pushed chair is a noise
+PC-SH-070,Kitchen chair,Seating,shared,dining room,furniture,normal,common,medium,movable,noise,have,Assets/Art/Global/Household/GH_Chair_Kitchen_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-071,High chair,Seating,shared,dining room,furniture,normal,uncommon,medium,none,none,missing,,farm;trailer-park;suburb;cabin,,for a baby in the household
+PC-SH-072,Sideboard / buffet,"Tables, desks and counters",shared,dining room,furniture,normal,common,large,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Dresser_01.fbx,farm;suburb,,dresser stands in
+PC-SH-073,China cabinet with plates,Cookware and tableware,shared,dining room,furniture,normal,uncommon,large,openable,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,farm;suburb,,glass doors; a shatter when bumped
+PC-SH-074,Tablecloth and runner,Soft furnishings,shared,dining room,decor,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-075,Centerpiece (vase of flowers),Wall and surface decor,shared,dining room,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_VaseFlowers_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-076,Candlestick and candles,Lighting and fire,shared,dining room,decor,normal,common,small,none,light,have,Assets/Art/Global/Decor/GD_Candle_01.fbx,farm;trailer-park;suburb;cabin,,a flame is a light that the AI counts
+PC-SH-077,Family photos on the sideboard,Wall and surface decor,shared,dining room,decor,normal,common,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_PhotoFrame_01.fbx,farm;trailer-park;suburb;cabin,,the photo objective candidate
+PC-SH-078,Table lamp,Lighting and fire,shared,dining room,decor,normal,common,small,switch,light,have,Assets/Art/Global/Decor/GD_TableLamp_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the staple light prop
+PC-SH-079,Wall frames and pictures,Wall and surface decor,shared,dining room,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Frame_Landscape_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,"four frames, a pool of wall art"
+PC-SH-080,Mirror (wall),Wall and surface decor,shared,dining room,decor,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_Mirror_Wall_01.fbx,farm;trailer-park;suburb;town;cabin,,a player may see a reflection
+PC-SH-081,Wall shelf,Shelving and racks,shared,dining room,furniture,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Shelf_Wall_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-082,Rug (room size),Soft furnishings,shared,dining room,decor,normal,common,large,none,none,have,Assets/Art/Global/Household/GH_Rug_01.fbx,farm;trailer-park;suburb;town;cabin,,quiet footfall surface
+PC-SH-083,Runner rug,Soft furnishings,shared,dining room,decor,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Rug_02.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-084,Round rug,Soft furnishings,shared,dining room,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Rug_03.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-085,Oval rug,Soft furnishings,shared,dining room,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Rug_04.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-086,Sofa,Seating,shared,living room,furniture,normal,common,large,none,cover;hiding spot,have,Assets/Art/Global/Household/GH_Sofa_01.fbx,farm;trailer-park;suburb;town;cabin,,"Modern, Retro, Damaged (slashed) exist"
+PC-SH-087,Loveseat,Seating,shared,living room,furniture,normal,uncommon,large,none,cover,partial,Assets/Art/Global/Household/GH_Sofa_01.fbx,trailer-park;suburb,,sofa stands in; a shorter one is a variant
+PC-SH-088,Armchair / recliner,Seating,shared,living room,furniture,normal,common,medium,none,cover,have,Assets/Art/Global/Household/GH_Armchair_01.fbx,farm;trailer-park;suburb;town;cabin,,the grandparent's chair
+PC-SH-089,Recliner with footrest,Seating,shared,living room,furniture,normal,uncommon,medium,movable,none,partial,Assets/Art/Global/Household/GH_Armchair_01.fbx,trailer-park;suburb,,Dale's recliner in the trailer park design
+PC-SH-090,Rocking chair,Seating,shared,living room,furniture,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_RockingChair_01.fbx,farm;cabin,,creak; swaying is a tell
+PC-SH-091,Coffee table,"Tables, desks and counters",shared,living room,furniture,normal,common,medium,none,cover,have,Assets/Art/Global/Household/GH_Table_Coffee_01.fbx,farm;trailer-park;suburb;town;cabin,,a small hiding spot
+PC-SH-092,Side table / end table,"Tables, desks and counters",shared,living room,furniture,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Table_Side_01.fbx,farm;trailer-park;suburb;cabin,,holds the lamp
+PC-SH-093,Ottoman / pouffe,Seating,shared,living room,furniture,normal,uncommon,small,movable,none,missing,,trailer-park;suburb,,
+PC-SH-094,TV stand / media console,Furniture,shared,living room,furniture,normal,common,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,farm;trailer-park;suburb;town;cabin,,stand-in: the cabinet; no media console
+PC-SH-095,CRT television,Screens and audio,shared,living room,tech,low,common,medium,switch;possessable,light;noise,have,Assets/Art/Global/Decor/GD_TV_CRT_01.fbx,farm;trailer-park;cabin,,blue flicker; the Energy Being's distraction
+PC-SH-096,Flat-screen television,Screens and audio,shared,living room,tech,normal,common,medium,switch;possessable,light;noise,have,Assets/Art/Global/Decor/GD_TV_Flat_01.fbx,farm;trailer-park;suburb;town;cabin,,a lit window in a dark room
+PC-SH-097,Remote control,Electronics,shared,living room,tech,normal,common,small,carryable;switch,none,missing,,farm;trailer-park;suburb;town;cabin,,missing from the couch: a human notices; a sound when pressed
+PC-SH-098,Game console,Screens and audio,shared,living room,tech,high,uncommon,small,switch,light,missing,,trailer-park;suburb,,power LED glow
+PC-SH-099,Gamepad and headset,Screens and audio,shared,living room,tech,high,common,small,carryable,none,missing,,trailer-park;suburb,,
+PC-SH-100,VCR / DVD player,Screens and audio,shared,living room,tech,normal,common,small,switch,light,missing,,farm;trailer-park;suburb;cabin,,a blinking 12:00
+PC-SH-101,Record player and records,Screens and audio,shared,living room,tech,low,uncommon,small,switch,noise,missing,,farm;cabin,,noise masking; a scratchy tune
+PC-SH-102,Floor lamp,Lighting and fire,shared,living room,decor,normal,common,medium,switch,light,have,Assets/Art/Global/Decor/GD_FloorLamp_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,tall light cone
+PC-SH-103,Ceiling lamp shade,Lighting and fire,shared,living room,decor,normal,common,small,switch,light,have,Assets/Art/Global/Decor/GD_CeilingShade_01.fbx,farm;trailer-park;suburb;cabin,,the bulb's pull-chain
+PC-SH-104,Chandelier,Lighting and fire,shared,living room,decor,normal,uncommon,medium,none,light,have,Assets/Art/Global/Decor/GD_Chandelier_01.fbx,suburb;town,,rare; a fall hazard in a comedy
+PC-SH-105,Fireplace,Buildings and structures,shared,living room,structure,normal,common,large,none,light;noise,have,Assets/Art/Global/Household/GH_Fireplace_01.fbx,farm;suburb;cabin,,embers glow: a light the AI counts
+PC-SH-106,Fireplace tools and poker,Hand and power tools,shared,living room,tool,normal,common,small,carryable,noise,missing,,farm;cabin,,
+PC-SH-107,Firewood basket,"Boxes, crates and cases",shared,living room,container,normal,common,medium,none,none,partial,Assets/Art/Global/Props/GT_FirewoodStack_Small_01.fbx,farm;cabin,,stand-in: the small firewood stack; no basket
+PC-SH-108,Wood stove,Kitchen and appliances,shared,living room,appliance,low,common,large,none,light;noise,have,Assets/Art/Global/Household/GH_WoodStove_01.fbx,farm;campground;cabin,,creaks and ticks as it cools
+PC-SH-109,Mantel clock,Wall and surface decor,shared,living room,decor,normal,uncommon,small,none,noise,partial,Assets/Art/Global/Decor/GD_Clock_Wall_01.fbx,farm;suburb,,strikes the hour: a noise you can stop
+PC-SH-110,Bookcase,Shelving and racks,shared,living room,furniture,normal,common,large,openable,hiding spot,have,Assets/Art/Global/Household/GH_Bookcase_01.fbx,farm;trailer-park;suburb;laboratory;town;cabin,,five seeded variants GH_Bookcase_01..05
+PC-SH-111,Books (stack),Clutter and small items,shared,living room,clutter,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_BookStack_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,filler for slots
+PC-SH-112,Open book,Clutter and small items,shared,living room,clutter,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_OpenBook_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-113,Magazines and newspapers,Clutter and small items,shared,living room,clutter,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Newspaper_01.fbx,farm;trailer-park;suburb;town;cabin,,the day's paper; clippings are a story
+PC-SH-114,Mail pile,Clutter and small items,shared,living room,clutter,normal,common,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_MailPile_01.fbx,farm;trailer-park;suburb;industrial;cabin,,a letter can be a clue
+PC-SH-115,Potted plant,"Plants, trees and crops",shared,living room,plant,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_PottedPlant_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-116,Hanging plant,"Plants, trees and crops",shared,living room,plant,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_HangingPlant_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-117,Cactus in a pot,"Plants, trees and crops",shared,living room,plant,normal,uncommon,small,none,none,have,Assets/Art/Global/Decor/GD_Cactus_01.fbx,farm;trailer-park;suburb;town;cabin,,comic hazard
+PC-SH-118,"Large floor plant (fern, ficus)","Plants, trees and crops",shared,living room,plant,normal,common,medium,none,cover,missing,,suburb;town,,a hiding spot for a Grey
+PC-SH-119,Vase of flowers,Wall and surface decor,shared,living room,decor,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_VaseFlowers_01.fbx,farm;trailer-park;suburb;cabin,,knockable
+PC-SH-120,Throw blanket,Soft furnishings,shared,living room,decor,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Blanket_01.fbx,farm;trailer-park;campground;suburb;cabin,,can hide a body-shaped lump
+PC-SH-121,Cushion,Soft furnishings,shared,living room,decor,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Cushion_01.fbx,farm;trailer-park;suburb;cabin,,"throwable, silent"
+PC-SH-122,Curtains,Soft furnishings,shared,living room,decor,normal,common,medium,none,cover,have,Assets/Art/Global/Household/GH_Curtains_Open_01.fbx,farm;trailer-park;suburb;town;cabin,,a Shadow Entity steps behind them; closed variant exists
+PC-SH-123,Window blinds,Soft furnishings,shared,living room,decor,normal,common,medium,none,none,missing,,trailer-park;suburb,,rattle
+PC-SH-124,Antler or deer trophy mount,Wall and surface decor,shared,living room,decor,normal,uncommon,medium,none,none,have,Assets/Art/Global/Decor/GD_DeerTrophy_01.fbx,farm;town;cabin,,
+PC-SH-125,Mounted fish or bass trophy,Wall and surface decor,shared,living room,decor,normal,uncommon,small,none,none,missing,,farm;town;cabin,,singing-fish gag variant (#267)
+PC-SH-126,Ceramic figurines,Wall and surface decor,shared,living room,decor,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a knock-over for noise
+PC-SH-127,Candy dish,Clutter and small items,shared,living room,clutter,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-128,Ashtray,Clutter and small items,shared,living room,clutter,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,stale smoke; a story clue
+PC-SH-129,Tin foil on the antenna,Oddities and gags,shared,living room,oddity,normal,rare,small,none,none,partial,Assets/Art/Global/Decor/GD_TinfoilPane_01.fbx,farm;trailer-park,,the paranoid farmer's touch
+PC-SH-130,Alien drawings and UFO clippings,Oddities and gags,shared,living room,oddity,normal,rare,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_NewspaperClippings_01.fbx,farm;trailer-park;suburb;cabin,,story dressing (#42)
+PC-SH-131,Poster,Wall and surface decor,shared,living room,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Poster_01.fbx,farm;trailer-park;suburb;laboratory;town;cabin,,
+PC-SH-132,Light switch,Electronics,shared,living room,tech,normal,common,small,switch,none,have,Assets/Art/Global/Decor/GD_LightSwitch_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the way to a dark room
+PC-SH-133,Wall thermostat,"Security, sensors and smart devices",shared,living room,tech,normal,common,small,switch,none,missing,,farm;trailer-park;suburb;town;cabin,,click and a click of the furnace
+PC-SH-134,Smoke detector,"Security, sensors and smart devices",shared,living room,tech,high,common,small,none,light;noise,missing,,farm;trailer-park;suburb;town;cabin,,blinking light; chirps when its battery is low
+PC-SH-135,Wi-Fi router and modem,Computing and office tech,shared,living room,tech,high,common,small,possessable,light,missing,,suburb;town,,"blinking LEDs, a jam target (tech level)"
+PC-SH-136,Landline phone,"Phones, radio and communications",shared,living room,tech,low,common,small,switch;possessable,noise;objective candidate,have,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,farm;trailer-park;suburb;town;cabin,,the PhoneLine objective on the farm
+PC-SH-137,Rotary phone,"Phones, radio and communications",shared,living room,tech,low,uncommon,small,switch;possessable,noise,have,Assets/Art/Global/Decor/GD_RotaryPhone_01.fbx,farm;town;cabin,,a loud bell
+PC-SH-138,Mobile phone,"Phones, radio and communications",shared,living room,tech,normal,common,small,carryable;switch;possessable,light;noise;objective candidate,have,Assets/Art/Global/Decor/GD_MobilePhone_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,photo slot; a call alerts the police
+PC-SH-139,Cordless phone and base,"Phones, radio and communications",shared,living room,tech,normal,uncommon,small,switch,noise;distraction,missing,,farm;trailer-park;suburb;town;cabin,,a ringing phone lures a human
+PC-SH-140,Answering machine,"Phones, radio and communications",shared,living room,tech,low,rare,small,switch,noise,missing,,farm;cabin,,a tape of a message is a story hint
+PC-SH-141,Intercom,"Phones, radio and communications",shared,living room,tech,normal,uncommon,small,switch;possessable,noise,have,Assets/Art/Global/Decor/GD_Intercom_01.fbx,suburb;laboratory;town,,a voice from the wall
+PC-SH-142,Security camera,"Security, sensors and smart devices",shared,living room,tech,normal,common,small,possessable,light,have,Assets/Art/Global/Decor/GD_SecurityCamera_01.fbx,suburb;laboratory;military-base;town,,a node in the detection net
+PC-SH-143,Baby monitor,Screens and audio,shared,living room,tech,high,uncommon,small,possessable,light;noise,missing,,trailer-park;suburb,,a listening node; the kid's room
+PC-SH-144,Floor register / heater vent,"Doors, windows and building parts",shared,living room,structure,normal,common,small,none,noise,missing,,farm;trailer-park;suburb;cabin,,a vent hum; for an Insectoid
+PC-SH-145,Radiator,"Heating, cooling, water and power",shared,living room,appliance,low,common,medium,none,noise,have,Assets/Art/Global/Household/GH_Radiator_01.fbx,farm;town;cabin,,clanks
+PC-SH-146,Space heater,"Heating, cooling, water and power",shared,living room,appliance,normal,uncommon,small,switch,light,missing,,trailer-park;suburb,,glow; a trip hazard
+PC-SH-147,Window air conditioner,"Heating, cooling, water and power",shared,living room,appliance,normal,common,medium,switch,noise,have,Assets/Art/Global/Household/GH_AirConditioner_01.fbx,trailer-park;suburb;town,,a noise mask
+PC-SH-148,Ceiling fan,"Heating, cooling, water and power",shared,living room,appliance,normal,common,medium,switch,noise;light,missing,,trailer-park;suburb,,a wobble noise
+PC-SH-149,Standing fan,"Heating, cooling, water and power",shared,living room,appliance,normal,common,medium,switch,noise,missing,,farm;trailer-park;suburb;town;cabin,,noise mask
+PC-SH-150,Photo album,Clutter and small items,shared,living room,clutter,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,,a photo clue
+PC-SH-151,Wedding photo above the sofa,Wall and surface decor,shared,living room,decor,normal,common,medium,none,none,partial,Assets/Art/Global/Decor/GD_Frame_Portrait_01.fbx,farm;trailer-park;suburb;town;cabin,,a framed portrait stands in
+PC-SH-152,Needlepoint or embroidered sign,Signs and flags,shared,living room,decor,normal,uncommon,small,none,none,missing,,farm;cabin,,folk art; story
+PC-SH-153,Knitting basket,"Boxes, crates and cases",shared,living room,container,normal,uncommon,small,none,none,missing,,farm;cabin,,the grandparent's
+PC-SH-154,Sewing machine,Hand and power tools,shared,living room,tool,normal,uncommon,medium,switch,noise,missing,,farm;suburb,,the spare corner in the farmhouse; or stored in the attic; merged here: PC-SH-375 (Sewing machine (stored))
+PC-SH-155,Piano,"Tables, desks and counters",shared,living room,furniture,normal,rare,large,none,noise;cover,missing,,farm;suburb;town,,a loud key if bumped
+PC-SH-156,Piano stool,Seating,shared,living room,furniture,normal,rare,small,movable,none,missing,,farm;suburb,,
+PC-SH-157,Guitar,Wall and surface decor,shared,living room,decor,normal,uncommon,medium,carryable,noise,missing,,farm;trailer-park;campground;suburb;town;cabin,,a thrum when bumped; a lure
+PC-SH-158,Dartboard,Wall and surface decor,shared,living room,decor,normal,uncommon,small,none,none,missing,,trailer-park;suburb;town,,darts as comic hazards
+PC-SH-159,Pool table,"Tables, desks and counters",shared,living room,furniture,normal,rare,large,none,cover;noise,missing,,trailer-park;suburb;town,,balls clatter
+PC-SH-160,Gun cabinet (non-lethal: tranq and nets only),Storage furniture,shared,living room,furniture,normal,rare,medium,openable,none,missing,,farm;cabin,,decor only; the farmer has no shotgun per the design notes
+PC-SH-161,Hunting trophy rifle rack,Wall and surface decor,shared,living room,decor,normal,rare,medium,none,none,missing,,farm;cabin,,"decor, empty or a fishing rod rack"
+PC-SH-162,Fireplace screen,Wall and surface decor,shared,living room,decor,normal,uncommon,small,none,none,missing,,farm;suburb;cabin,,
+PC-SH-163,Double bed,Beds and bedding,shared,bedroom,furniture,normal,common,large,none,hiding spot;cover,have,Assets/Art/Global/Household/GH_Bed_Double_01.fbx,farm;trailer-park;suburb;town;cabin,,hide under the bed; the sleeper wakes
+PC-SH-164,Single bed,Beds and bedding,shared,bedroom,furniture,normal,common,large,none,hiding spot,have,Assets/Art/Global/Household/GH_Bed_Single_01.fbx,farm;trailer-park;suburb;town;cabin,,a guest or spare bed
+PC-SH-165,Bunk bed,Beds and bedding,shared,bedroom,furniture,normal,common,large,none,hiding spot,have,Assets/Art/Global/Household/GH_Bed_Bunk_01.fbx,farm;trailer-park;campground;suburb;military-base;cabin,,two sleepers; a ladder
+PC-SH-166,Bed frame without mattress,Clutter and small items,shared,bedroom,clutter,normal,uncommon,medium,none,none,missing,,suburb;industrial,,storage
+PC-SH-167,Nightstand with drawer,Storage furniture,shared,bedroom,furniture,normal,common,small,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_Nightstand_01.fbx,farm;trailer-park;suburb;town;cabin,,where hidden oddities live (#267)
+PC-SH-168,Wardrobe,Storage furniture,shared,bedroom,furniture,normal,common,large,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Wardrobe_01.fbx,farm;trailer-park;suburb;town;cabin,,the classic hiding spot
+PC-SH-169,Closet with sliding door,"Doors, windows and building parts",shared,bedroom,structure,normal,common,large,openable,hiding spot,missing,,trailer-park;suburb;town,,a walk-in closet; hangers rattle
+PC-SH-170,Dresser,Storage furniture,shared,bedroom,furniture,normal,common,medium,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_Dresser_01.fbx,farm;trailer-park;suburb;town;cabin,,drawers of clothes and secrets
+PC-SH-171,Vanity table and stool,Seating,shared,bedroom,furniture,normal,uncommon,medium,none,none,missing,,farm;suburb,,a mirror and cosmetics
+PC-SH-172,Full-length mirror,Wall and surface decor,shared,bedroom,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Mirror_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-173,Trunk at the foot of the bed,"Boxes, crates and cases",shared,bedroom,container,normal,uncommon,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Chest_01.fbx,farm;suburb;cabin,,
+PC-SH-174,Pillow,Wall and surface decor,shared,bedroom,decor,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Pillow_01.fbx,farm;trailer-park;campground;suburb;town;cabin,,a soft throwable
+PC-SH-175,Blanket,Soft furnishings,shared,bedroom,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Blanket_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-176,Bedside alarm clock,"Security, sensors and smart devices",shared,bedroom,tech,normal,common,small,switch,noise;light;distraction,missing,,farm;trailer-park;suburb;town;cabin,,an alarm as a distraction; a glowing red clock
+PC-SH-177,Bedside lamp,Lighting and fire,shared,bedroom,decor,normal,common,small,switch,light,partial,Assets/Art/Global/Decor/GD_TableLamp_01.fbx,farm;trailer-park;suburb;town;cabin,,a lamp with a switch on each nightstand
+PC-SH-178,Night light,Lighting and fire,shared,bedroom,decor,normal,common,small,none,light,missing,,farm;trailer-park;suburb;cabin,,a plug-in glow in the hall or the kids' room
+PC-SH-179,Slippers,Clothing and personal items,shared,bedroom,clothing,normal,common,small,none,none,partial,Assets/Art/Global/Clothes/FD_Shoes_Pair_01.fbx,farm;trailer-park;suburb;town;cabin,,stand-in: the pair of shoes; no slippers
+PC-SH-180,Clothes on a chair,Clutter and small items,shared,bedroom,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Clothes/FD_Shirt_Hanger_01.fbx,farm;trailer-park;suburb;town;cabin,,an untidy human
+PC-SH-181,Clothes hamper,"Boxes, crates and cases",shared,bedroom,container,normal,common,medium,openable,none,partial,Assets/Art/Global/Decor/GD_LaundryBasket_01.fbx,farm;trailer-park;suburb;town;cabin,,the laundry basket stands in
+PC-SH-182,Shoe rack,Shelving and racks,shared,bedroom,furniture,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,a boot lineup
+PC-SH-183,Jewelry box,"Boxes, crates and cases",shared,bedroom,container,normal,uncommon,small,openable,objective candidate,missing,,farm;suburb,,a drawer item
+PC-SH-184,Safe (small),Storage furniture,shared,bedroom,furniture,normal,rare,small,openable,objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_Safe_01.fbx,farm;trailer-park;suburb;laboratory;town;cabin,,"an objective candidate (a code, a key)"
+PC-SH-185,Curtains (bedroom),Soft furnishings,shared,bedroom,decor,normal,common,medium,none,cover,have,Assets/Art/Global/Household/GH_Curtains_Closed_01.fbx,farm;trailer-park;suburb;town;cabin,,blackout curtains for a day sleeper
+PC-SH-186,Window box fan,"Heating, cooling, water and power",shared,bedroom,appliance,normal,common,small,switch,noise,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-187,Medicine on the nightstand,Clutter and small items,shared,bedroom,clutter,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,,a pill bottle
+PC-SH-188,Wall crucifix or framed saying,Wall and surface decor,shared,bedroom,decor,normal,uncommon,small,none,none,missing,,farm;suburb,,
+PC-SH-189,"Hanging clothes (dress, jacket, shirt)",Clothing and personal items,shared,bedroom,clothing,normal,common,medium,none,none,have,Assets/Art/Global/Clothes/FD_Dress_Hanger_01.fbx;Assets/Art/Global/Clothes/FD_Jacket_Hanger_01.fbx;Assets/Art/Global/Clothes/FD_Shirt_Hanger_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,wardrobe stock; hide behind them
+PC-SH-190,Folded pants and towels,Clothing and personal items,shared,bedroom,clothing,normal,common,small,none,none,have,Assets/Art/Global/Clothes/FD_Pants_Folded_01.fbx;Assets/Art/Global/Clothes/FD_Towel_Folded_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,drawer stock
+PC-SH-191,Scarf,Clothing and personal items,shared,bedroom,clothing,normal,common,small,none,none,have,Assets/Art/Global/Clothes/FD_Scarf_01.fbx,farm;trailer-park;campground;suburb;town;cabin,,
+PC-SH-192,Boots and shoes,Clothing and personal items,shared,bedroom,clothing,normal,common,small,none,none,have,Assets/Art/Global/Clothes/FD_Shoes_Pair_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,by the door; a boot thrown is a distraction
+PC-SH-193,Sleeping bag,Clothing and personal items,shared,bedroom,clothing,normal,common,medium,carryable,none,missing,,campground;military-base;cabin,,a hiding lump; zipper noise
+PC-SH-194,Cot / camp bed,Beds and bedding,shared,bedroom,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,campground;military-base;industrial,,"folds with a clatter; stand-in: GH_Cot_01 is a crib (slatted sides), not a folding camp cot"
+PC-SH-195,Child's bed,Beds and bedding,shared,kids room,furniture,normal,common,medium,none,hiding spot,have,Assets/Art/Global/Household/GH_Bed_Child_01.fbx,farm;trailer-park;suburb;cabin,,the kid's room
+PC-SH-196,Cot / crib,Beds and bedding,shared,kids room,furniture,normal,uncommon,medium,none,none,have,Assets/Art/Global/Household/GH_Cot_01.fbx,farm;trailer-park;suburb;cabin,,a baby
+PC-SH-197,Toy box,"Boxes, crates and cases",shared,kids room,container,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Household/GH_ToyBox_01.fbx,farm;trailer-park;suburb;cabin,,a small alien hides in one
+PC-SH-198,Teddy bear,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_TeddyBear_01.fbx,farm;trailer-park;suburb;cabin,,a plushie throwable; a squeaky variant
+PC-SH-199,Doll,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Doll_01.fbx,farm;trailer-park;suburb;cabin,,"creepy, a comic"
+PC-SH-200,Toy truck,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,noise,have,Assets/Art/Global/Decor/GD_ToyTruck_01.fbx,farm;trailer-park;suburb;cabin,,a rolling toy is a distraction
+PC-SH-201,Building blocks,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,noise,have,Assets/Art/Global/Decor/GD_ToyBlocks_01.fbx,farm;trailer-park;suburb;cabin,,a spill makes noise
+PC-SH-202,Football,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,distraction,have,Assets/Art/Global/Decor/GD_Football_01.fbx,farm;trailer-park;suburb;cabin,,bounces
+PC-SH-203,Kid's alien drawings,Oddities and gags,shared,kids room,oddity,normal,rare,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_KidDrawing_01.fbx,farm;trailer-park;suburb;cabin,,the kid saw us
+PC-SH-204,Kid's desk and chair,Seating,shared,kids room,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Desk_Wood_01.fbx,farm;trailer-park;suburb;cabin,,the kid sits at the desk upstairs
+PC-SH-205,Kid's backpack,"Boxes, crates and cases",shared,kids room,container,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Backpack_01.fbx,farm;trailer-park;campground;suburb;cabin,,school and homework clues
+PC-SH-206,School books and homework,Clutter and small items,shared,kids room,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_BookStack_01.fbx,farm;trailer-park;suburb;cabin,,stand-in: the book stack; no homework papers
+PC-SH-207,Rocking horse,"Toys, play and fairground",shared,kids room,toy,normal,uncommon,medium,none,noise,missing,,farm;suburb,,creak
+PC-SH-208,Dollhouse,"Toys, play and fairground",shared,kids room,toy,normal,uncommon,medium,none,none,missing,,farm;suburb,,a tiny room for oddities
+PC-SH-209,Toy car track and cars,"Toys, play and fairground",shared,kids room,toy,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_ToyTruck_01.fbx,farm;trailer-park;suburb;cabin,,cars on the carpet are a trip hazard
+PC-SH-210,Board games and puzzles,"Toys, play and fairground",shared,kids room,toy,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a box on the shelf
+PC-SH-211,Jigsaw puzzle on a table,"Toys, play and fairground",shared,kids room,toy,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a half-finished one
+PC-SH-212,Playing cards,"Toys, play and fairground",shared,kids room,toy,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;cabin,,a deck on a table
+PC-SH-213,Crayons and colouring books,Clutter and small items,shared,kids room,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-214,Stuffed animal collection,"Toys, play and fairground",shared,kids room,toy,normal,common,medium,none,none,partial,Assets/Art/Global/Decor/GD_TeddyBear_01.fbx,farm;trailer-park;suburb;cabin,,a shelf of bears
+PC-SH-215,Toy robot (battery),"Toys, play and fairground",shared,kids room,toy,normal,uncommon,small,switch;possessable,noise;distraction,missing,,farm;suburb,,a possess target that walks and beeps
+PC-SH-217,Toy piano or xylophone,"Toys, play and fairground",shared,kids room,toy,normal,uncommon,small,none,noise;distraction,missing,,farm;trailer-park;suburb;cabin,,a noise on a knock
+PC-SH-218,Squeaky toy,"Toys, play and fairground",shared,kids room,toy,normal,common,small,carryable,noise;distraction,missing,,farm;trailer-park;suburb;cabin,,a planted distraction
+PC-SH-219,Whoopee cushion,"Toys, play and fairground",shared,kids room,toy,normal,rare,small,carryable,noise;distraction,missing,,farm;trailer-park;suburb;cabin,,#267 comic item
+PC-SH-220,Water guns and foam-dart blasters,"Toys, play and fairground",shared,kids room,toy,normal,uncommon,small,carryable,none,missing,,campground;suburb,,a soft projectile
+PC-SH-221,Night light with stars projector,Lighting and fire,shared,kids room,decor,high,uncommon,small,none,light,missing,,trailer-park;suburb,,stars on the ceiling
+PC-SH-222,Posters and stickers,Wall and surface decor,shared,kids room,decor,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_Poster_01.fbx,farm;trailer-park;suburb;cabin,,a kid's wall
+PC-SH-223,Bean bag chair,Seating,shared,kids room,furniture,normal,common,medium,none,none,missing,,trailer-park;suburb,,a lump to hide beside
+PC-SH-224,Toilet,Bathroom fixtures,shared,bathroom,appliance,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_Toilet_01.fbx,farm;trailer-park;suburb;town;cabin,,a flush masks other noise
+PC-SH-225,Bathroom sink,Bathroom fixtures,shared,bathroom,appliance,normal,common,medium,switch,noise,have,Assets/Art/Global/Household/GH_Sink_Bath_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-226,Bathtub,Bathroom fixtures,shared,bathroom,appliance,normal,common,large,none,cover;hiding spot,have,Assets/Art/Global/Household/GH_Tub_01.fbx,farm;trailer-park;suburb;town;cabin,,a shower curtain closes
+PC-SH-227,Shower stall,Bathroom fixtures,shared,bathroom,appliance,normal,common,large,none,noise;hiding spot,have,Assets/Art/Global/Household/GH_Shower_01.fbx,farm;trailer-park;campground;suburb;military-base;town;cabin,,the water masks sound
+PC-SH-228,Shower curtain and rod,Soft furnishings,shared,bathroom,decor,normal,common,medium,none,cover,missing,,farm;trailer-park;suburb;town;cabin,,a curtain that rustles
+PC-SH-229,Medicine cabinet,Storage furniture,shared,bathroom,furniture,normal,common,small,openable,objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_MedicineCabinet_01.fbx,farm;trailer-park;suburb;town;cabin,,a mirror door; a tidy-up clue
+PC-SH-230,Towel rail,Buildings and structures,shared,bathroom,structure,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_TowelRail_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-231,Towels (folded and hung),Clothing and personal items,shared,bathroom,clothing,normal,common,small,none,none,have,Assets/Art/Global/Clothes/FD_Towel_Folded_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-232,Bath mat,Soft furnishings,shared,bathroom,decor,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,quiet footfall
+PC-SH-233,Toilet paper holder and roll,Clutter and small items,shared,bathroom,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,a roll thrown as a silent distraction
+PC-SH-234,Plunger,Hand and power tools,shared,bathroom,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-235,Toilet brush,Hand and power tools,shared,bathroom,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-236,Bathroom scale,Hand and power tools,shared,bathroom,tool,normal,common,small,none,noise,missing,,farm;trailer-park;suburb;town;cabin,,a click on a step
+PC-SH-237,Toothbrush and cup,Clutter and small items,shared,bathroom,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-238,Razor and shaving kit,Clutter and small items,shared,bathroom,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,a comic shaving cream gag
+PC-SH-239,Hair dryer,Electronics,shared,bathroom,tech,normal,common,small,switch,noise,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-240,Rubber duck,"Toys, play and fairground",shared,bathroom,toy,normal,common,small,none,distraction,missing,,farm;trailer-park;suburb;cabin,,the squeak; a #267 armada
+PC-SH-241,Laundry hamper in the bathroom,"Boxes, crates and cases",shared,bathroom,container,normal,common,small,openable,none,partial,Assets/Art/Global/Decor/GD_LaundryBasket_01.fbx,farm;trailer-park;suburb;cabin,,the laundry basket stands in
+PC-SH-242,Mirror (bathroom),Wall and surface decor,shared,bathroom,decor,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_Mirror_01.fbx,farm;trailer-park;suburb;town;cabin,,steam
+PC-SH-243,Bath towel hook,Buildings and structures,shared,bathroom,structure,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a robe on a hook
+PC-SH-244,Bathrobe,Clothing and personal items,shared,bathroom,clothing,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,a robe on the hook
+PC-SH-245,Wall heater / exhaust fan,"Heating, cooling, water and power",shared,bathroom,appliance,normal,common,small,switch,noise,missing,,farm;trailer-park;suburb;town;cabin,,a fan is a masking noise
+PC-SH-246,Soap and shampoo bottles,Clutter and small items,shared,bathroom,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-247,Bathtub toys,"Toys, play and fairground",shared,bathroom,toy,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-248,Cabinet under the sink,Storage furniture,shared,bathroom,furniture,normal,common,small,openable,hiding spot,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,farm;trailer-park;suburb;town;cabin,,a pipe and a bucket
+PC-SH-249,Outhouse seat,Buildings and structures,shared,bathroom,structure,low,uncommon,medium,none,none,partial,Assets/Art/Farm/Buildings/Outhouse/,farm;campground,,see the farm file
+PC-SH-250,First aid kit,Field gear and disguises,shared,bathroom,tool,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_FirstAidKit_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a wall-mounted box
+PC-SH-251,Night-time glow of the bathroom light,Lighting and fire,shared,bathroom,decor,normal,common,small,none,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a window light that the AI counts
+PC-SH-252,Washing machine,Laundry,shared,laundry,appliance,normal,common,medium,openable,noise,have,Assets/Art/Global/Interactive/Classic/GI_Washer_01.fbx,farm;trailer-park;campground;suburb;town;industrial;cabin,,hum and a spin cycle that masks noise
+PC-SH-253,Dryer,Laundry,shared,laundry,appliance,normal,common,medium,openable,noise;light,have,Assets/Art/Global/Interactive/Classic/GI_Dryer_01.fbx,farm;trailer-park;campground;suburb;town;industrial;cabin,,thump of a stray shoe; a warm vent
+PC-SH-254,Laundry basket,"Boxes, crates and cases",shared,laundry,container,normal,common,medium,carryable,none,have,Assets/Art/Global/Decor/GD_LaundryBasket_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-255,Ironing board,Furniture,shared,laundry,furniture,normal,common,medium,movable,noise,have,Assets/Art/Global/Decor/GD_IroningBoard_01.fbx,farm;trailer-park;suburb;town;cabin,,folds with a clank
+PC-SH-256,Iron,Hand and power tools,shared,laundry,tool,normal,common,small,switch,light,missing,,farm;trailer-park;suburb;town;cabin,,a hot-plate glow
+PC-SH-257,Clothes drying rack,Laundry,shared,laundry,furniture,normal,common,medium,movable,cover,missing,,farm;trailer-park;suburb;cabin,,wet clothes hang here; sheets are cover
+PC-SH-258,Laundry detergent and fabric softener,Clutter and small items,shared,laundry,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-259,Utility sink / laundry tub,Laundry,shared,laundry,appliance,normal,common,medium,switch,noise,missing,,farm;suburb,,a dripping tap
+PC-SH-260,Lint trap and dryer hose,Buildings and structures,shared,laundry,structure,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a vent for an Insectoid
+PC-SH-261,Coin-op washer and dryer bank,Laundry,shared,laundry,appliance,normal,common,large,none,noise;light,partial,Assets/Art/Global/Interactive/Classic/GI_Washer_01.fbx;Assets/Art/Global/Interactive/Classic/GI_Dryer_01.fbx,trailer-park;town;industrial,,a laundromat: a lit stop on the way
+PC-SH-262,Laundry folding table,"Tables, desks and counters",shared,laundry,furniture,normal,common,medium,none,none,missing,,trailer-park;town,,
+PC-SH-263,Hanging clothes line (indoor),"Doors, windows and building parts",shared,laundry,structure,normal,common,small,none,none,missing,,farm;cabin,,a strung rope in the cellar
+PC-SH-264,Sock odd one,Clutter and small items,shared,laundry,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,#156 clutter gag
+PC-SH-265,Desk (wood),"Tables, desks and counters",shared,office,furniture,normal,common,large,none,cover,have,Assets/Art/Global/Household/GH_Desk_Wood_01.fbx,farm;trailer-park;suburb;town;cabin,,the photo objective sits on the farmhouse desk
+PC-SH-266,Office desk,"Tables, desks and counters",shared,office,furniture,normal,common,large,none,cover,have,Assets/Art/Global/Household/GH_Desk_Office_01.fbx,laboratory;military-base;town;industrial,,a work desk
+PC-SH-267,Office chair,Seating,shared,office,furniture,normal,common,medium,movable,noise,have,Assets/Art/Global/Household/GH_Chair_Office_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,wheels squeak
+PC-SH-268,Filing cabinet,Storage furniture,shared,office,furniture,normal,common,large,openable,noise,have,Assets/Art/Global/Interactive/Classic/GI_FilingCabinet_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,drawers rumble; evidence files
+PC-SH-269,Desktop computer tower,Computing and office tech,shared,office,tech,high,common,medium,switch;possessable,light;noise;objective candidate,have,Assets/Art/Global/Decor/GD_ComputerTower_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,fan hum and LED; wipe objective
+PC-SH-270,Computer monitor,Screens and audio,shared,office,tech,high,common,medium,switch;possessable,light,have,Assets/Art/Global/Decor/GD_Monitor_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,a lit window in a dark room
+PC-SH-271,Keyboard and mouse,Computing and office tech,shared,office,tech,high,common,small,none,none,have,Assets/Art/Global/Decor/GD_Keyboard_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,
+PC-SH-272,Laptop,Computing and office tech,shared,office,tech,high,common,small,switch;carryable;possessable,light;objective candidate,have,Assets/Art/Global/Decor/GD_Laptop_01.fbx,farm;trailer-park;campground;suburb;laboratory;town;cabin,,open or closed; a glowing screen counts in LightLevel
+PC-SH-273,Tablet,Computing and office tech,shared,office,tech,high,common,small,switch;carryable;possessable,light,missing,,trailer-park;suburb;laboratory;town,,lit screen; a story device; a glowing screen in a dark room; a child's in the kids room; merged here: PC-SH-216 (Tablet (child's))
+PC-SH-274,Printer / scanner,Computing and office tech,shared,office,tech,high,common,medium,switch,noise;light,missing,,suburb;laboratory;military-base;town,,whirring and a paper tray
+PC-SH-275,Copier,Computing and office tech,shared,office,tech,high,uncommon,large,switch,noise;light,missing,,laboratory;military-base;town,,a flash of light as a distraction
+PC-SH-276,Shredder,Computing and office tech,shared,office,tech,high,uncommon,small,switch,noise,missing,,laboratory;military-base;town,,a loud wipe objective
+PC-SH-277,Desk lamp,Lighting and fire,shared,office,decor,normal,common,small,switch,light,have,Assets/Art/Global/Decor/GD_DeskLamp_01.fbx,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,a light the AI counts
+PC-SH-278,Whiteboard,Furniture,shared,office,furniture,normal,common,large,none,objective candidate,have,Assets/Art/Global/Household/GH_Whiteboard_01.fbx,laboratory;military-base;town,,a plan on a whiteboard
+PC-SH-279,Bulletin board,Wall and surface decor,shared,office,decor,normal,common,medium,none,objective candidate,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,campground;laboratory;military-base;town;industrial,,a case board; pins and string
+PC-SH-280,Wall map with red string,Oddities and gags,shared,office,oddity,normal,rare,medium,none,objective candidate,missing,,farm;trailer-park;town,ufo,the conspiracy farmer's wall (#267)
+PC-SH-281,Desk calendar,Wall and surface decor,shared,office,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Calendar_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-282,"Stapler, tape and pens",Clutter and small items,shared,office,clutter,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;laboratory;town;cabin,,
+PC-SH-283,Paper stack and folders,Clutter and small items,shared,office,clutter,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;laboratory;military-base;town;industrial;cabin,,
+PC-SH-284,Clipboard,Field gear and disguises,shared,office,tool,normal,common,small,carryable,objective candidate,missing,,laboratory;military-base;town;industrial,,the FBI's tool
+PC-SH-285,Ledger / farm account books,Clutter and small items,shared,office,clutter,low,uncommon,small,none,objective candidate,missing,,farm;cabin,,a barn office ledger
+PC-SH-286,Typewriter,Electronics,shared,office,tech,low,rare,small,none,noise,missing,,farm;town;cabin,,keys clack
+PC-SH-287,Rotary card file and address book,Clutter and small items,shared,office,clutter,low,rare,small,none,objective candidate,missing,,farm;town,,
+PC-SH-288,Desk phone,"Phones, radio and communications",shared,office,tech,normal,common,small,switch;possessable,noise;objective candidate,have,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,laboratory;military-base;town;industrial,,
+PC-SH-289,USB drive and hard drive,Computing and office tech,shared,office,tech,high,uncommon,small,carryable,objective candidate,missing,,farm;trailer-park;suburb;laboratory;military-base;town;cabin,,the evidence to wipe
+PC-SH-290,Webcam and microphone,"Phones, radio and communications",shared,office,tech,high,uncommon,small,possessable,light,missing,,trailer-park;suburb,,Gerry's podcast rig
+PC-SH-291,Headphones,"Phones, radio and communications",shared,office,tech,high,common,small,none,none,missing,,trailer-park;suburb;town,,a human who can't hear you
+PC-SH-292,Power strip and extension cord,Computing and office tech,shared,office,tech,normal,common,small,switch,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a switch that cuts power to the desk
+PC-SH-293,UPS and battery backup,Computing and office tech,shared,office,tech,high,rare,small,none,noise;light,missing,,laboratory;military-base;industrial,,beeps on a blackout
+PC-SH-294,Fax machine,"Phones, radio and communications",shared,office,tech,low,rare,medium,none,noise,missing,,town;industrial,,a beeping fax at night
+PC-SH-295,Water cooler,Kitchen and appliances,shared,office,appliance,normal,common,medium,none,noise,missing,,laboratory;military-base;town;industrial,,gurgle; a light
+PC-SH-296,Office plant,"Plants, trees and crops",shared,office,plant,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_PottedPlant_01.fbx,laboratory;town,,stand-in: the household potted plant
+PC-SH-297,Wall clock (office),Wall and surface decor,shared,office,decor,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_Clock_Wall_01.fbx,laboratory;military-base;town;industrial,,tick
+PC-SH-298,Safe (office),Storage furniture,shared,office,furniture,normal,uncommon,small,openable,objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_Safe_01.fbx,military-base;town;industrial,,sheriff's evidence locker or the ticket office safe
+PC-SH-299,Key cabinet,Storage furniture,shared,office,furniture,normal,uncommon,small,openable,objective candidate,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,trailer-park;military-base;town;industrial,,the manager's keys
+PC-SH-300,Wall safe behind a picture,Storage furniture,shared,office,furniture,normal,rare,small,openable,objective candidate,missing,,farm;suburb,,a hidden panel
+PC-SH-301,Bookshelf of manuals,Shelving and racks,shared,office,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bookcase_02.fbx,laboratory;military-base;town;industrial,,
+PC-SH-302,Coat rack,Shelving and racks,shared,hall,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_CoatRack_01.fbx,farm;trailer-park;suburb;town;cabin,,coats are cover for a small alien
+PC-SH-303,Coat hooks,Buildings and structures,shared,hall,structure,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_CoatHooks_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-304,Umbrella stand,"Containers, drums and tanks",shared,hall,container,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_UmbrellaStand_01.fbx,farm;trailer-park;suburb;town;cabin,,clatter if bumped
+PC-SH-305,Doormat,Soft furnishings,shared,hall,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Doormat_01.fbx,farm;trailer-park;suburb;town;cabin,,a spare key under it is a classic
+PC-SH-306,Boots by the door,Clothing and personal items,shared,hall,clothing,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_BootsPair_01.fbx,farm;trailer-park;suburb;town;cabin,,dirty boots tell you who is home
+PC-SH-307,Shoe bench,Seating,shared,hall,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-308,Hall table,"Tables, desks and counters",shared,hall,furniture,normal,common,small,none,none,partial,Assets/Art/Global/Household/GH_Table_Side_01.fbx,farm;trailer-park;suburb;town;cabin,,keys and mail
+PC-SH-309,Key hooks and dish,Wall and surface decor,shared,hall,decor,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,,a car key for a vehicle objective
+PC-SH-310,Mailbox slot or mail table,Clutter and small items,shared,hall,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-311,Stairs (runner and handrail),"Doors, windows and building parts",shared,hall,structure,normal,common,large,none,noise,have,Assets/Art/Global/Kit/GK_Stairs_Run_01.fbx,farm;trailer-park;suburb;town;cabin,,a squeaky tread is a risk
+PC-SH-312,Mudroom bench and cubbies,Seating,shared,hall,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Bench_01.fbx,farm;suburb,,coats and boots
+PC-SH-313,Dog bed,Beds and bedding,shared,hall,furniture,normal,common,medium,none,none,missing,,farm;trailer-park;suburb;cabin,,the pet's spot
+PC-SH-314,Hallway rug runner,Soft furnishings,shared,hall,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Rug_02.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-315,Grandfather clock,Furniture,shared,hall,furniture,normal,uncommon,large,none,noise,missing,,farm;suburb,,chimes at the hour
+PC-SH-316,Landing window onto the porch roof,"Doors, windows and building parts",shared,hall,structure,normal,common,medium,openable,none,partial,Assets/Art/Global/Kit/GK_Window_Sash_01.fbx,farm;suburb,,a second way out
+PC-SH-317,Fuse box,"Heating, cooling, water and power",shared,hall,furniture,normal,common,small,openable;switch,noise;objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_FuseBox_01.fbx,farm;trailer-park;suburb;town;industrial;cabin,,the main breaker kills the house
+PC-SH-318,Breaker panel (modern),"Heating, cooling, water and power",shared,hall,furniture,normal,common,small,openable;switch,objective candidate,have,Assets/Art/Global/Interactive/Modern/GI_FuseBox_Modern_01.fbx,suburb;town;industrial,,a Blackout target
+PC-SH-319,Attic access hatch and pull-down ladder,"Doors, windows and building parts",shared,hall,structure,normal,common,small,openable,noise,missing,,farm;suburb,,a creak
+PC-SH-320,Wooden shelf unit (3 to 5 shelves),Shelving and racks,shared,cellar,furniture,normal,common,large,none,cover;hiding spot,partial,Assets/Art/Global/Household/GH_JarShelf_01.fbx;Assets/Art/Global/Household/GH_Shelf_Wall_01.fbx,farm;trailer-park;suburb;industrial;cabin,,free-standing racks with tier slots are #270; today only the jar shelf and wall shelves
+PC-SH-321,Metal wire or bolted steel rack,Shelving and racks,shared,cellar,furniture,normal,common,large,none,cover,missing,,farm;trailer-park;suburb;laboratory;military-base;industrial;cabin,,the cellar and garage staple; rattles when bumped (#270)
+PC-SH-322,Pegboard with hooks,Shelving and racks,shared,cellar,furniture,normal,common,medium,none,none,missing,,farm;trailer-park;suburb;industrial;cabin,,tools outlined in paint
+PC-SH-323,Ceiling-hung storage rack,Buildings and structures,shared,cellar,structure,normal,uncommon,medium,none,none,missing,,suburb;industrial,,overhead
+PC-SH-324,Plastic storage tub (tote),"Containers, drums and tanks",shared,cellar,container,normal,common,medium,openable;carryable;movable,none,missing,,farm;trailer-park;suburb;military-base;industrial;cabin,,#270: colours and mixed lids; a Christmas bin
+PC-SH-325,Shoebox-size plastic bin,"Bins, buckets and mailboxes",shared,cellar,container,normal,common,small,openable;carryable,none,missing,,farm;trailer-park;suburb;cabin,,small tubs
+PC-SH-326,Cardboard box (taped),"Boxes, crates and cases",shared,cellar,container,normal,common,medium,carryable;movable,hiding spot,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,labelled XMAS or KITCHEN; a Mimic disguise
+PC-SH-327,Cardboard box (open flaps),"Boxes, crates and cases",shared,cellar,container,normal,common,medium,carryable,hiding spot,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-328,Wooden crate,"Boxes, crates and cases",shared,cellar,container,normal,common,medium,carryable;movable,cover,have,Assets/Art/Global/Props/GT_Crate_01.fbx,farm;trailer-park;suburb;military-base;town;industrial;cabin,,stackable cover
+PC-SH-329,Milk crate,"Boxes, crates and cases",shared,cellar,container,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;town;industrial;cabin,,
+PC-SH-330,Footlocker,"Boxes, crates and cases",shared,cellar,container,normal,uncommon,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Chest_01.fbx,suburb;military-base;cabin,,the chest stands in
+PC-SH-331,Trunk (steamer),"Boxes, crates and cases",shared,cellar,container,normal,uncommon,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Chest_01.fbx,farm;suburb;cabin,,a wedding dress or a secret
+PC-SH-332,Wicker basket,"Boxes, crates and cases",shared,cellar,container,normal,common,small,carryable,none,partial,Assets/Art/Global/Decor/GD_PicnicBasket_01.fbx,farm;trailer-park;campground;suburb;cabin,,the picnic basket stands in
+PC-SH-333,Hat box,"Boxes, crates and cases",shared,cellar,container,normal,rare,small,openable,none,missing,,farm;suburb,,#267
+PC-SH-334,Suitcase,"Boxes, crates and cases",shared,cellar,container,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Suitcase_01.fbx,farm;trailer-park;suburb;town;industrial;cabin,,a packed one tells a story
+PC-SH-335,Ammo-style metal can,"Containers, drums and tanks",shared,cellar,container,normal,uncommon,small,openable,none,missing,,military-base;cabin,,a clunk
+PC-SH-336,Barrel,"Containers, drums and tanks",shared,cellar,container,normal,common,medium,movable,cover;noise,have,Assets/Art/Global/Props/GT_Barrel_01.fbx,farm;military-base;industrial,,a dull boom when hit
+PC-SH-337,Bucket,"Bins, buckets and mailboxes",shared,cellar,container,normal,common,small,carryable,noise;distraction,have,Assets/Art/Global/Props/GT_Bucket_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a rattle when kicked
+PC-SH-338,Paint cans,"Containers, drums and tanks",shared,cellar,container,normal,common,small,carryable,noise,missing,,farm;trailer-park;suburb;industrial;cabin,,
+PC-SH-339,Jerry can,"Containers, drums and tanks",shared,cellar,container,normal,common,small,carryable,none,have,Assets/Art/Global/Props/GT_Jerrycan_01.fbx,farm;campground;military-base;industrial,,fuel; a carry objective
+PC-SH-340,Jar shelf with jars,"Containers, drums and tanks",shared,cellar,container,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_JarShelf_01.fbx,farm;cabin,,preserves
+PC-SH-341,Wine rack,Shelving and racks,shared,cellar,furniture,normal,uncommon,medium,none,none,missing,,farm;suburb,,bottles rattle
+PC-SH-342,Root-cellar potato and apple bins,"Bins, buckets and mailboxes",shared,cellar,container,low,uncommon,medium,none,none,missing,,farm;cabin,,the pantry's stock
+PC-SH-343,Canned goods shelf,Shelving and racks,shared,cellar,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_JarShelf_01.fbx;Assets/Art/Global/Food/Canned/FD_Can_Soup_01.fbx,farm;trailer-park;suburb;cabin,,stand-in: the jar shelf and one soup can; no stocked shelf
+PC-SH-344,Water heater,"Heating, cooling, water and power",shared,cellar,appliance,normal,common,large,none,noise,have,Assets/Art/Global/Household/GH_WaterHeater_01.fbx,farm;trailer-park;suburb;town;cabin,,gurgle and click; pipes into the wall
+PC-SH-345,Boiler,"Heating, cooling, water and power",shared,cellar,appliance,low,common,large,none,noise;light,have,Assets/Art/Global/Household/GH_Boiler_01.fbx,farm;town;cabin,,a roar when it fires
+PC-SH-346,Furnace and ducts,Kitchen and appliances,shared,cellar,appliance,normal,common,large,none,noise;light,missing,,trailer-park;suburb,,the blower
+PC-SH-347,Oil tank,"Containers, drums and tanks",shared,cellar,container,low,uncommon,large,none,none,missing,,farm;cabin,,the heating oil
+PC-SH-348,Water pump and pressure tank,"Heating, cooling, water and power",shared,cellar,appliance,low,uncommon,medium,none,noise,missing,,farm;cabin,,a well pump kicks on
+PC-SH-349,Sump pump,"Heating, cooling, water and power",shared,cellar,appliance,normal,uncommon,small,none,noise,missing,,farm;suburb,,a gurgle in the dark
+PC-SH-350,Pipes and valves,Buildings and structures,shared,cellar,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Boiler_01.fbx,farm;trailer-park;suburb;industrial;cabin,,exposed plumbing that enters the wall
+PC-SH-351,Cobwebs and dust,Wall and surface decor,shared,cellar,decor,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a decal or a mesh in corners
+PC-SH-352,Basement stairs (cellar),"Doors, windows and building parts",shared,cellar,structure,normal,common,large,none,noise,have,Assets/Art/Global/Kit/GK_Stairs_Cellar_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-353,Old sofa and discarded furniture,Seating,shared,cellar,furniture,normal,common,large,none,cover,partial,Assets/Art/Global/Household/GH_Sofa_01.fbx,trailer-park;suburb,,the Damaged style is a wreck
+PC-SH-354,Old TV (CRT),Screens and audio,shared,cellar,tech,low,uncommon,medium,switch,light,have,Assets/Art/Global/Decor/GD_TV_CRT_01.fbx,farm;trailer-park;suburb;cabin,,in the cellar
+PC-SH-355,Work lamp,Lighting and fire,shared,cellar,decor,normal,common,small,switch,light,partial,Assets/Art/Global/Props/GL_BareBulb_01.fbx,farm;trailer-park;suburb;industrial;cabin,,a bare bulb on a cord
+PC-SH-356,Mop bucket,Hand and power tools,shared,cellar,tool,normal,common,small,carryable,noise,have,Assets/Art/Global/Decor/GD_MopBucket_01.fbx,farm;trailer-park;suburb;town;industrial;cabin,,wheels squeak
+PC-SH-357,Broom,Hand and power tools,shared,cellar,tool,normal,common,small,carryable;movable,none,have,Assets/Art/Global/Decor/GD_Broom_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,falls with a clack
+PC-SH-358,Dustpan and brush,Cookware and tableware,shared,cellar,tool,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-359,Floor drain,"Doors, windows and building parts",shared,cellar,structure,normal,common,small,none,none,have,Assets/Art/Global/Kit/GK_FloorGrate_01.fbx,farm;trailer-park;suburb;industrial;cabin,,a grate; the floor grate kit piece
+PC-SH-360,Chest freezer,Kitchen and appliances,shared,cellar,appliance,normal,common,large,openable,noise;light,missing,,farm;trailer-park;suburb;town;cabin,,hum and a cold light; frozen goods
+PC-SH-361,Fire extinguisher,Field gear and disguises,shared,cellar,tool,normal,common,small,carryable,noise;distraction,have,Assets/Art/Global/Decor/GD_FireExtinguisher_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a hiss and a cloud as a distraction
+PC-SH-362,Christmas decorations box,"Boxes, crates and cases",shared,cellar,container,normal,uncommon,medium,openable,none,missing,,farm;trailer-park;suburb;cabin,,tinsel and a plastic tree
+PC-SH-363,Artificial Christmas tree,Oddities and gags,shared,cellar,oddity,normal,rare,large,none,none,missing,,farm;trailer-park;suburb;cabin,comic,Christmas in July (#267)
+PC-SH-364,Sheets draped over furniture,Wall and surface decor,shared,cellar,decor,normal,uncommon,large,none,cover;hiding spot,missing,,farm;suburb;cabin,,a ghostly cover
+PC-SH-365,Attic floor planks and joists,"Doors, windows and building parts",shared,attic,structure,normal,common,large,none,none,partial,Assets/Art/Global/Kit/GK_Floor_Planks_Clapboard_01.fbx,farm;suburb;cabin,,a loft floor piece exists
+PC-SH-366,Roof rafters and insulation,"Doors, windows and building parts",shared,attic,structure,normal,common,large,none,none,partial,Assets/Art/Global/Kit/GK_Beam_Clapboard_01.fbx,farm;trailer-park;suburb;cabin,,beams exist
+PC-SH-367,Attic window (round or gable),"Doors, windows and building parts",shared,attic,structure,normal,uncommon,medium,none,none,partial,Assets/Art/Global/Kit/GK_Window_Single_01.fbx,farm;suburb;cabin,,stand-in: the single window kit piece; no round or gable window
+PC-SH-368,Trunks and steamer chests,"Boxes, crates and cases",shared,attic,container,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Chest_01.fbx,farm;suburb;cabin,,the family history
+PC-SH-369,Old wedding dress on a dummy,Oddities and gags,shared,attic,oddity,normal,rare,medium,none,none,missing,,farm;suburb,secret,a mannequin
+PC-SH-370,Dress form / mannequin,Oddities and gags,shared,attic,oddity,normal,uncommon,medium,none,none,missing,,farm;suburb;town,,a body-shaped fright
+PC-SH-371,Rolled rugs,"Containers, drums and tanks",shared,attic,container,normal,common,medium,none,none,missing,,farm;trailer-park;suburb;cabin,,an Insectoid can hide
+PC-SH-372,Old toys and a rocking horse,"Toys, play and fairground",shared,attic,toy,normal,common,medium,none,none,missing,,farm;suburb,,
+PC-SH-373,Baby crib and high chair (stored),Seating,shared,attic,furniture,normal,uncommon,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,farm;suburb,,stand-in: GH_Cot_01 is the crib; no high chair
+PC-SH-374,Dusty mirror,Wall and surface decor,shared,attic,decor,normal,uncommon,medium,none,none,have,Assets/Art/Global/Household/GH_Mirror_01.fbx,farm;suburb,,
+PC-SH-376,Photo boxes and albums,Clutter and small items,shared,attic,clutter,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,,#267
+PC-SH-377,Old luggage,"Containers, drums and tanks",shared,attic,container,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_Suitcase_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-378,Dormer lamp or bulb on a string,Lighting and fire,shared,attic,decor,normal,common,small,none,light,have,Assets/Art/Global/Props/GL_BareBulb_01.fbx,farm;trailer-park;suburb;cabin,,the one light up here
+PC-SH-379,Boxes of records and tapes,"Boxes, crates and cases",shared,attic,container,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,,
+PC-SH-380,Old lamp and lampshades,Lighting and fire,shared,attic,decor,normal,uncommon,small,none,none,have,Assets/Art/Global/Decor/GD_TableLamp_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-381,Bats in the rafters,Animals and pets,shared,attic,wildlife,normal,uncommon,small,none,noise,missing,,farm;cabin,,#156 ambient life
+PC-SH-382,Mouse droppings and nests,Clutter and small items,shared,attic,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,story dressing
+PC-SH-383,Ceiling hatch and ladder (pull-down),"Doors, windows and building parts",shared,attic,structure,normal,common,small,openable,noise,partial,Assets/Art/Global/Kit/GK_Ladder_01.fbx,farm;suburb,,the ladder exists in the kit
+PC-SH-384,Old record player and 78s,Screens and audio,shared,attic,tech,low,rare,medium,switch,noise,missing,,farm;suburb;cabin,,
+PC-SH-385,Taxidermy squirrel,Oddities and gags,shared,attic,oddity,normal,rare,small,none,none,missing,,farm;cabin,comic,#267
+PC-SH-386,Ventriloquist dummy,Oddities and gags,shared,attic,oddity,normal,rare,medium,none,none,missing,,farm;suburb,comic,#267 creepy comic
+PC-SH-387,Old trunk of costumes (clown suit),Oddities and gags,shared,attic,oddity,normal,rare,medium,openable,none,missing,,suburb;leisure,secret,#267
+PC-SH-388,Garage door (roll-up or sectional),"Doors, windows and building parts",shared,garage,structure,normal,common,large,openable,noise,have,Assets/Art/Global/Kit/GK_Door_Garage_01.fbx,suburb;military-base;town;industrial,,a rolling door is loud
+PC-SH-389,Workbench,Seating,shared,garage,furniture,normal,common,large,none,none,have,Assets/Art/Global/Household/GH_Workbench_01.fbx,farm;suburb;laboratory;military-base;industrial,,the farm workshop's bench
+PC-SH-390,Tool chest (rolling),"Boxes, crates and cases",shared,garage,container,normal,common,medium,openable,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Toolbox_01.fbx,suburb;military-base;industrial,,a drawer stack
+PC-SH-391,Toolbox,"Boxes, crates and cases",shared,garage,container,normal,common,small,openable;carryable,noise,have,Assets/Art/Global/Interactive/Classic/GI_Toolbox_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a clatter
+PC-SH-392,Metal storage locker,Storage furniture,shared,garage,furniture,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,suburb;laboratory;military-base;industrial,,clang
+PC-SH-393,Freezer in the garage,Kitchen and appliances,shared,garage,appliance,normal,common,large,openable,noise,missing,,farm;suburb,,a second chest freezer
+PC-SH-394,Spare refrigerator,Kitchen and appliances,shared,garage,appliance,normal,common,large,openable,noise;light,have,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx,farm;trailer-park;suburb,,beer in the garage
+PC-SH-395,Lawn mower (push),Hand and power tools,shared,garage,tool,normal,common,medium,movable,noise,missing,,trailer-park;suburb,,loud when started; a fuel can beside
+PC-SH-396,Ride-on mower,Farm and work machines,shared,garage,vehicle,normal,uncommon,large,none,noise,missing,,farm;suburb,,a hiding silhouette
+PC-SH-397,Snow blower and snow shovel,Hand and power tools,shared,garage,tool,normal,uncommon,medium,none,noise,missing,,suburb;cabin,,winter dressing
+PC-SH-398,Ladder (step or extension),Hand and power tools,shared,garage,tool,normal,common,medium,movable,noise,have,Assets/Art/Global/Kit/GK_Ladder_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,falls with a bang
+PC-SH-399,Garden hose and reel,Hand and power tools,shared,garage,tool,normal,common,medium,none,none,missing,,farm;trailer-park;suburb,,
+PC-SH-400,Garbage cans (wheeled),"Containers, drums and tanks",shared,garage,container,normal,common,medium,openable,noise;hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_TrashCan_01.fbx,trailer-park;suburb;town,,lids clatter; raccoon bait
+PC-SH-401,Recycling bin (blue),"Bins, buckets and mailboxes",shared,garage,container,normal,common,medium,openable,none,missing,,suburb;town,,
+PC-SH-402,Bicycle (adult road),Bikes and small vehicles,shared,garage,vehicle,normal,common,medium,movable,noise,missing,,farm;trailer-park;campground;suburb,,leaning on a wall; a kickstand pose
+PC-SH-403,Bicycle (mountain),Bikes and small vehicles,shared,garage,vehicle,normal,common,medium,movable,none,missing,,campground;suburb;cabin,,
+PC-SH-404,Bicycle (kid's),Bikes and small vehicles,shared,garage,vehicle,normal,common,small,movable,none,missing,,farm;trailer-park;suburb,,on its side in the grass
+PC-SH-405,Bicycle (BMX),Bikes and small vehicles,shared,garage,vehicle,normal,uncommon,small,movable,none,missing,,trailer-park;suburb,,
+PC-SH-406,Tricycle,Bikes and small vehicles,shared,garage,vehicle,normal,uncommon,small,movable,none,missing,,trailer-park;suburb,,a toddler's
+PC-SH-407,Skateboard and scooter,Bikes and small vehicles,shared,garage,vehicle,normal,common,small,movable,noise;distraction,missing,,trailer-park;suburb,,rolling noise
+PC-SH-408,Basketball,"Toys, play and fairground",shared,garage,toy,normal,common,small,carryable,distraction,missing,,trailer-park;suburb,,a bounce lure
+PC-SH-409,"Camping gear (tent bag, cooler)","Containers, drums and tanks",shared,garage,container,normal,common,medium,none,none,partial,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,campground;suburb;cabin,,the cooler exists
+PC-SH-410,Fishing rods and tackle,Hand and power tools,shared,garage,tool,normal,common,medium,carryable,none,missing,,farm;campground;suburb;cabin,,
+PC-SH-411,Car jack and jack stands,Hand and power tools,shared,garage,tool,normal,common,small,carryable,noise,missing,,suburb;military-base;industrial,,a clank
+PC-SH-412,Tyre (loose) and rims,Clutter and small items,shared,garage,clutter,normal,common,medium,movable,cover,missing,,farm;trailer-park;suburb;industrial,,cars on blocks
+PC-SH-413,Car battery and charger,Computing and office tech,shared,garage,tech,normal,uncommon,small,switch,light,missing,,suburb;industrial,,a charger LED
+PC-SH-414,Oil drum and oil cans,"Containers, drums and tanks",shared,garage,container,normal,common,small,carryable,noise,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,suburb;military-base;industrial,,the drum stands in
+PC-SH-415,Air compressor,Hand and power tools,shared,garage,tool,normal,common,medium,switch,noise,missing,,suburb;military-base;industrial,,a loud pump kicks in
+PC-SH-416,Shop vac,Hand and power tools,shared,garage,tool,normal,uncommon,medium,switch,noise,missing,,suburb;industrial,,very loud
+PC-SH-417,Paint cans and brushes,Hand and power tools,shared,garage,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;industrial;cabin,,
+PC-SH-418,Garage shelving and bins,Shelving and racks,shared,garage,furniture,normal,common,large,none,none,missing,,suburb;industrial,,
+PC-SH-419,Wall-mounted tool rack,Shelving and racks,shared,garage,furniture,normal,common,medium,none,none,missing,,farm;trailer-park;suburb;military-base;industrial;cabin,,outlines of tools
+PC-SH-420,Neon beer sign,Lighting and fire,shared,garage,decor,normal,uncommon,small,switch,light,partial,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,trailer-park;suburb;town,,man-cave glow
+PC-SH-421,Charcoal bag and propane,"Containers, drums and tanks",shared,garage,container,normal,common,small,none,none,missing,,trailer-park;campground;suburb,,
+PC-SH-422,Kayak or canoe on racks,Boats and water,shared,garage,vehicle,normal,uncommon,large,none,none,missing,,campground;suburb;cabin,,racks on the wall
+PC-SH-423,Hammer,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,noise,missing,,farm;military-base;industrial;cabin,,a clank
+PC-SH-424,Mallet and sledgehammer,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,noise,missing,,farm;military-base;industrial;cabin,,
+PC-SH-425,Axe and splitting maul,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,missing,,farm;campground;cabin,,chopping block exists
+PC-SH-426,Hand saw,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,none,missing,,farm;industrial;cabin,,
+PC-SH-427,"Pliers, wrenches and screwdrivers",Hand and power tools,shared,workshop,tool,normal,common,small,carryable,noise,missing,,farm;military-base;industrial,,
+PC-SH-428,Cordless drill,Hand and power tools,shared,workshop,tool,normal,common,small,carryable;switch,noise,missing,,suburb;military-base;industrial,,a buzz
+PC-SH-429,Bench vise,Hand and power tools,shared,workshop,tool,normal,common,small,none,none,missing,,farm;military-base;industrial,,
+PC-SH-430,Angle grinder,Hand and power tools,shared,workshop,tool,normal,uncommon,small,none,noise;light,missing,,military-base;industrial,,sparks as a light
+PC-SH-431,Welder and mask,Hand and power tools,shared,workshop,tool,normal,uncommon,medium,none,noise;light,missing,,farm;military-base;industrial,,a bright arc
+PC-SH-432,Bench grinder,Hand and power tools,shared,workshop,tool,normal,uncommon,small,none,noise;light,missing,,farm;industrial,,sparks
+PC-SH-433,Table saw,Hand and power tools,shared,workshop,tool,normal,uncommon,large,none,noise,missing,,farm;industrial,,
+PC-SH-434,Chainsaw,Hand and power tools,shared,workshop,tool,normal,uncommon,medium,none,noise,missing,,farm;cabin,,"a roar, a comic start"
+PC-SH-435,Sawhorses,Hand and power tools,shared,workshop,tool,normal,common,medium,movable,cover,missing,,farm;suburb;military-base;industrial,,cover; noise when kicked
+PC-SH-436,Extension cord reel,Hand and power tools,shared,workshop,tool,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a trip hazard
+PC-SH-437,Work light (clip-on),Hand and power tools,shared,workshop,tool,normal,common,small,switch,light,missing,,farm;military-base;industrial,,
+PC-SH-438,Hand truck / dolly,Hand and power tools,shared,workshop,tool,normal,common,medium,movable,noise,missing,,military-base;town;industrial,,squeak; in the workshop or the warehouse; merged here: PC-SH-975 (Hand truck)
+PC-SH-439,Come-along and chains,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,noise,missing,,farm;industrial,,chain clink
+PC-SH-440,Rope coil,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,none,missing,,farm;campground;industrial;cabin,,tie for a distraction
+PC-SH-441,Tarp,Hand and power tools,shared,workshop,tool,normal,common,medium,none,cover;hiding spot,missing,,farm;trailer-park;campground;industrial,,crinkle
+PC-SH-442,Pallet,"Boxes, crates and cases",shared,workshop,container,normal,common,medium,none,cover,partial,Assets/Art/Global/Vehicles/GV_ShipCrates_01.fbx,farm;military-base;town;industrial,,wooden pallets
+PC-SH-443,Cinder blocks,Clutter and small items,shared,workshop,clutter,normal,common,small,none,cover,missing,,farm;trailer-park;industrial,,a car on blocks
+PC-SH-444,Bricks and planks,Clutter and small items,shared,workshop,clutter,normal,common,small,none,none,missing,,farm;suburb,,a stack
+PC-SH-445,Nuts and bolts jars,"Containers, drums and tanks",shared,workshop,container,normal,common,small,none,noise,missing,,farm;industrial,,a jar rattle
+PC-SH-446,Paint shelf,Shelving and racks,shared,workshop,furniture,normal,common,medium,none,none,missing,,farm;industrial,,
+PC-SH-447,Fuel can and funnel,"Containers, drums and tanks",shared,workshop,container,normal,common,small,none,none,partial,Assets/Art/Global/Props/GT_Jerrycan_01.fbx,farm;industrial,,pairs with the generator
+PC-SH-448,Generator,"Heating, cooling, water and power",shared,workshop,tool,normal,uncommon,large,switch,noise;light;objective candidate,have,Assets/Art/Farm/Props/FM_Generator_01.fbx,farm;trailer-park;campground;military-base;industrial,,a hum that masks noise; the power cell slot
+PC-SH-449,Power cell,Alien ship and alien tech,shared,workshop,tool,normal,rare,small,carryable,objective candidate;light,have,Assets/Art/Global/Ships/SH_PowerCell_01.fbx,farm;laboratory;military-base,,"an objective item, glowing"
+PC-SH-450,Battery tender and car battery,Hand and power tools,shared,workshop,tool,normal,uncommon,small,none,light,missing,,farm;suburb,,
+PC-SH-451,Spare tyres,Clutter and small items,shared,workshop,clutter,normal,common,medium,movable,none,missing,,farm;industrial,,a stack to hide behind
+PC-SH-452,Wheelbarrow,Hand and power tools,shared,workshop,tool,normal,common,medium,movable,noise;cover,have,Assets/Art/Global/Props/GT_Wheelbarrow_01.fbx,farm;suburb;cabin,,a squeaky wheel
+PC-SH-453,Pitchfork,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,have,Assets/Art/Global/Props/GT_Pitchfork_01.fbx,farm;cabin,,tines
+PC-SH-454,Shovel,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,have,Assets/Art/Global/Props/GT_Shovel_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a dig site marker
+PC-SH-455,Rake,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,have,Assets/Art/Global/Props/GT_Rake_01.fbx,farm;suburb;cabin,,the Goose-Game classic drag-through
+PC-SH-456,Hoe,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,missing,,farm;suburb,,garden
+PC-SH-457,Spade,Hand and power tools,shared,workshop,tool,normal,common,medium,carryable,none,missing,,farm;suburb,,
+PC-SH-458,Scythe,Hand and power tools,shared,workshop,tool,low,uncommon,medium,carryable,none,missing,,farm;cabin,,a comic farmer prop
+PC-SH-459,Pruning shears,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,none,missing,,farm;suburb,,
+PC-SH-460,Watering can,Hand and power tools,shared,workshop,tool,normal,common,small,carryable,noise,missing,,farm;suburb;cabin,,a splash
+PC-SH-461,Garden hose,Hand and power tools,shared,workshop,tool,normal,common,medium,none,none,missing,,farm;trailer-park;suburb,,a coil
+PC-SH-462,Sprinkler,Hand and power tools,shared,workshop,tool,normal,common,small,none,noise,missing,,farm;trailer-park;suburb,,a hiss that masks noise; a surprise sprinkler is a comic hazard
+PC-SH-463,Stepladder,Hand and power tools,shared,workshop,tool,normal,common,medium,movable,noise,partial,Assets/Art/Global/Kit/GK_Ladder_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,stand-in: the straight ladder kit piece; no stepladder
+PC-SH-464,Stool,Seating,shared,workshop,furniture,normal,common,small,movable,none,have,Assets/Art/Global/Props/GT_Stool_01.fbx,farm;industrial;cabin,,milking
+PC-SH-465,Wood chopping block,Buildings and structures,shared,workshop,structure,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_ChoppingBlock_01.fbx,farm;cabin,,an axe stuck in it
+PC-SH-466,Firewood stack,Buildings and structures,shared,workshop,structure,normal,common,medium,none,cover,have,Assets/Art/Global/Props/GT_FirewoodStack_01.fbx,farm;campground;cabin,,cover
+PC-SH-467,Flashlight,Field gear and disguises,shared,workshop,tool,normal,common,small,carryable;switch,light,have,Assets/Art/Global/Decor/GD_Flashlight_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the humans' torch and a player's tool
+PC-SH-468,Lantern,Lighting and fire,shared,workshop,decor,low,common,small,carryable,light,partial,Assets/Art/Global/Decor/GD_KeroseneLamp_01.fbx,farm;campground;cabin,,a barn lantern
+PC-SH-469,Porch light (wall lantern),Lighting and fire,shared,porch,decor,normal,common,small,switch,light,partial,Assets/Art/Global/Props/GL_BareBulb_01.fbx,farm;trailer-park;suburb;town;cabin,,the farm's lit porch; the bare bulb model stands in
+PC-SH-470,Porch swing,Seating,shared,porch,furniture,normal,uncommon,large,none,noise,missing,,farm;suburb;cabin,,creaks; chain hooks
+PC-SH-471,Porch rocking chair,Seating,shared,porch,furniture,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_RockingChair_01.fbx,farm;suburb;cabin,,a creak
+PC-SH-472,Porch steps,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,noise,have,Assets/Art/Global/Kit/GK_Stairs_Porch_01.fbx,farm;trailer-park;suburb;town;cabin,,wood steps
+PC-SH-473,Porch rail,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,none,have,Assets/Art/Global/Kit/GK_Porch_Rail_Clapboard_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-474,Screen door,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Kit/GK_Door_Screen_01.fbx,farm;trailer-park;suburb;town;cabin,,the spring slam
+PC-SH-475,Front door,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Kit/GK_Door_Exterior_01.fbx,farm;trailer-park;suburb;town;cabin,,a creaky door versus a quiet one
+PC-SH-476,Back door,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,openable,none,have,Assets/Art/Global/Kit/GK_Door_Exterior_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-477,Door wreath,Wall and surface decor,shared,porch,decor,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,,
+PC-SH-478,Welcome mat,Soft furnishings,shared,porch,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Doormat_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-479,Doorbell,"Phones, radio and communications",shared,porch,tech,normal,common,small,switch;possessable,noise,missing,,farm;trailer-park;suburb;town;cabin,,a ding that calls the household
+PC-SH-480,Smart doorbell camera,"Phones, radio and communications",shared,porch,tech,high,uncommon,small,possessable,light,missing,,suburb;town,,a lit node
+PC-SH-481,Porch motion-sensor light,"Security, sensors and smart devices",shared,porch,tech,normal,common,small,none,light,missing,,trailer-park;suburb,,12 homes in Cedar Flats; a Shadow Entity's enemy; lights on at 5 m; merged here: PC-SH-856 (Motion-sensor porch light)
+PC-SH-482,Hanging flower basket,"Plants, trees and crops",shared,porch,plant,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_HangingPlant_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-483,Wind chimes,Wall and surface decor,shared,porch,decor,normal,common,small,none,noise,missing,,farm;trailer-park;suburb;town;cabin,,a chime in the wind
+PC-SH-484,Bug zapper,Electronics,shared,porch,tech,normal,uncommon,small,none,light;noise,missing,,farm;trailer-park;suburb;cabin,,a blue light and a crackle; a comic distraction
+PC-SH-485,Moths around the light,Animals and pets,shared,porch,wildlife,normal,common,small,none,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,#156 particle ring
+PC-SH-486,Cat on the porch rail,Animals and pets,shared,porch,wildlife,normal,common,small,none,none,have,Assets/Art/Global/Animals/GN_CatTabby_faceted_01.fbx,farm;trailer-park;suburb;town;cabin,,a witness to be calmed
+PC-SH-487,"Lawn chair (folding, webbed)",Seating,shared,porch,furniture,normal,common,medium,movable,noise,missing,,farm;trailer-park;campground;suburb,,the night-watch's chair; a squeak
+PC-SH-488,Cooler by the chair,"Boxes, crates and cases",shared,porch,container,normal,common,small,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,farm;trailer-park;campground;suburb,,beer
+PC-SH-489,Ashtray stand / cigarette butts,Clutter and small items,shared,porch,clutter,normal,common,small,none,none,missing,,trailer-park;town,,a glow of a cigarette
+PC-SH-490,Newspaper on the step,Clutter and small items,shared,porch,clutter,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Newspaper_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-491,Boot scraper,Hand and power tools,shared,porch,tool,normal,uncommon,small,none,none,missing,,farm;cabin,,iron
+PC-SH-492,Porch bench,Seating,shared,porch,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-493,Mailbox on a post,"Bins, buckets and mailboxes",shared,porch,container,normal,common,small,openable,none,have,Assets/Art/Global/Props/GT_MailboxPost_01.fbx,farm;trailer-park;suburb;town;cabin,,the flag up means mail
+PC-SH-494,Mailbox bank (cluster),"Bins, buckets and mailboxes",shared,porch,container,normal,common,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Mailbox_01.fbx,trailer-park;suburb;town,,a row of boxes
+PC-SH-495,Package on the porch,"Containers, drums and tanks",shared,porch,container,normal,common,small,carryable,objective candidate,partial,Assets/Art/Global/Decor/GD_Suitcase_01.fbx,suburb;town,,a delivery box
+PC-SH-496,Fire escape or porch roof,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,none,missing,,farm;trailer-park;suburb;town;cabin,,the landing window leads here
+PC-SH-497,Gutters and downspout,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,none,have,Assets/Art/Global/Kit/GK_Eave_Gutter_Clapboard_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-498,Chimney,"Doors, windows and building parts",shared,porch,structure,normal,common,large,none,none,have,Assets/Art/Global/Kit/GK_Chimney_Clapboard_01.fbx,farm;trailer-park;suburb;town;cabin,,smoke
+PC-SH-499,Satellite dish,"Phones, radio and communications",shared,porch,tech,normal,common,medium,possessable,none,missing,,farm;trailer-park;suburb;cabin,,a jam target
+PC-SH-500,TV antenna on the roof,"Phones, radio and communications",shared,porch,tech,low,uncommon,medium,none,none,missing,,farm;trailer-park;cabin,,
+PC-SH-501,Weather vane,Wall and surface decor,shared,porch,decor,low,uncommon,medium,none,none,missing,,farm;suburb;cabin,,turns in the wind
+PC-SH-502,Shutters,"Doors, windows and building parts",shared,porch,structure,normal,common,small,none,none,have,Assets/Art/Global/Kit/GK_Shutter_Pair_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-503,Awning,"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,none,have,Assets/Art/Global/Kit/GK_Awning_01.fbx,farm;trailer-park;suburb;town;cabin,,a shade; a roof for a lawn chair
+PC-SH-504,Window (with light spilling),"Doors, windows and building parts",shared,porch,structure,normal,common,medium,none,light,have,Assets/Art/Global/Kit/GK_Window_Single_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the lit windows are the map's readability
+PC-SH-505,Boarded window,"Doors, windows and building parts",shared,porch,structure,normal,uncommon,medium,none,none,have,Assets/Art/Global/Kit/GK_Window_Boarded_01.fbx,trailer-park;town,,abandoned houses
+PC-SH-506,Broken window pane,"Doors, windows and building parts",shared,porch,structure,normal,uncommon,medium,none,noise,have,Assets/Art/Global/Kit/GK_Window_Broken_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,glass crunch
+PC-SH-507,Security light (flood),Lighting and fire,shared,porch,decor,normal,common,medium,switch,light,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the barn floodlight is the same idea
+PC-SH-508,Solar path lights,Lighting and fire,shared,porch,decor,high,uncommon,small,none,light,missing,,suburb;cabin,,tiny glows
+PC-SH-509,String lights,Lighting and fire,shared,porch,decor,normal,common,medium,none,light,missing,,trailer-park;campground;suburb;leisure,,a warm glow; a dark gap for a Shadow Entity
+PC-SH-510,Tiki torches,Lighting and fire,shared,porch,decor,normal,uncommon,small,none,light,missing,,trailer-park;suburb,,flame
+PC-SH-511,Citronella candle,Lighting and fire,shared,porch,decor,normal,uncommon,small,none,light,missing,,trailer-park;campground;suburb,,
+PC-SH-512,Patio heater,"Heating, cooling, water and power",shared,porch,appliance,normal,uncommon,medium,none,light;noise,missing,,suburb;town,,an orange glow
+PC-SH-513,"Swing set (A-frame, 1 to 3 swings)","Toys, play and fairground",shared,yard,toy,normal,common,large,none,noise,missing,,farm;trailer-park;suburb;leisure,,#265: random parts; chains squeak; swings move in the wind; one lamp; open ground; the trailer park's playground set; merged here: PC-TP-081 (Playground swing set)
+PC-SH-514,Swing set with slide and glider,"Toys, play and fairground",shared,yard,toy,normal,uncommon,large,none,noise,missing,,trailer-park;suburb,,a combination set
+PC-SH-515,Tire swing on a branch,"Toys, play and fairground",shared,yard,toy,normal,uncommon,medium,none,noise,missing,,farm;suburb;cabin,,on the landmark oak (#266)
+PC-SH-516,Plastic play centre / jungle gym,"Toys, play and fairground",shared,yard,toy,normal,common,large,none,hiding spot,missing,,farm;trailer-park;suburb,,a molded playhouse with a slide and tunnel; a hiding spot for a small alien
+PC-SH-517,Wooden playhouse or treehouse,"Toys, play and fairground",shared,yard,structure,normal,uncommon,large,none,hiding spot,missing,,farm;suburb;cabin,,a kid-height hideout
+PC-SH-518,Slide (stand-alone),"Toys, play and fairground",shared,yard,toy,normal,common,medium,none,noise,missing,,suburb;leisure,,clang
+PC-SH-519,Seesaw,"Toys, play and fairground",shared,yard,toy,normal,uncommon,medium,none,noise,missing,,suburb;leisure,,creak
+PC-SH-520,Merry-go-round,"Toys, play and fairground",shared,yard,toy,normal,rare,large,none,noise,missing,,suburb;leisure,,
+PC-SH-521,Sandbox with toys,"Toys, play and fairground",shared,yard,toy,normal,common,medium,none,none,missing,,trailer-park;suburb;leisure,,a lid; buckets and spades
+PC-SH-522,Trampoline,"Toys, play and fairground",shared,yard,toy,normal,common,large,none,noise;cover,missing,,trailer-park;suburb,,a springy boing; the net is cover
+PC-SH-523,Paddling pool,"Toys, play and fairground",shared,yard,toy,normal,common,medium,none,noise,missing,,trailer-park;suburb,,splash; a splash hose
+PC-SH-524,Above-ground pool,"Toys, play and fairground",shared,yard,structure,normal,uncommon,large,none,light;noise,missing,,trailer-park;suburb,,a ladder and a pump hum
+PC-SH-525,Inground pool with a light,"Toys, play and fairground",shared,yard,structure,normal,rare,large,none,light;noise,missing,,trailer-park;suburb,,the underwater light is blue
+PC-SH-526,Pool skimmer and chemical shed,Hand and power tools,shared,yard,tool,normal,rare,small,none,none,missing,,trailer-park;suburb,,
+PC-SH-527,Clothesline between poles,Laundry,shared,yard,structure,low,common,large,none,cover;noise,missing,,farm;trailer-park;campground;suburb,,"random clothes or none; sheets block sight lines and rustle (#265); sheets for cover; between poles or two trees; merged here: PC-TP-043 (Clothesline), PC-CG-025 (Clothesline between trees)"
+PC-SH-528,Rotary washing line,Laundry,shared,yard,structure,low,uncommon,large,none,cover,missing,,farm;suburb,,a rotary dryer
+PC-SH-529,"Laundry hung on the line (shirts, sheets, socks, overalls)",Clothing and personal items,shared,yard,clothing,normal,common,medium,none,cover;noise,partial,Assets/Art/Global/Clothes/FD_Shirt_Hanger_01.fbx;Assets/Art/Global/Clothes/FD_Pants_Folded_01.fbx,farm;trailer-park;suburb,,the hanger clothes exist; line versions do not
+PC-SH-530,Clothes peg bag,"Containers, drums and tanks",shared,yard,container,normal,common,small,none,none,missing,,farm;suburb,,
+PC-SH-531,Charcoal barbecue grill,Lighting and fire,shared,yard,appliance,normal,common,medium,none,light,missing,,farm;trailer-park;campground;suburb,,embers glow
+PC-SH-532,Gas barbecue grill,Lighting and fire,shared,yard,appliance,normal,common,medium,none,light,missing,,trailer-park;suburb,,a propane tank beside
+PC-SH-533,Propane tank (20 lb),"Containers, drums and tanks",shared,yard,container,normal,common,small,none,none,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park;campground;suburb,,a comic hazard (valve hiss)
+PC-SH-534,Picnic table with benches,Seating,shared,yard,furniture,normal,common,large,none,cover,missing,,farm;trailer-park;campground;suburb;leisure,,a 1.8 m by 1.5 m table; cover
+PC-SH-535,Patio table with umbrella,"Tables, desks and counters",shared,yard,furniture,normal,common,large,none,cover,missing,,trailer-park;suburb,,an umbrella shadow
+PC-SH-536,Patio chairs,Seating,shared,yard,furniture,normal,common,medium,movable,none,missing,,trailer-park;suburb,,scrape
+PC-SH-537,Adirondack chair,Seating,shared,yard,furniture,normal,uncommon,medium,none,none,missing,,campground;suburb;cabin,,
+PC-SH-538,Hammock between two trees,Seating,shared,yard,furniture,normal,uncommon,large,none,noise;hiding spot,missing,,farm;campground;suburb;cabin,,the sleeper; a rope creak; the hammock sleeper at site 9; merged here: PC-CG-026 (Hammock between two pines)
+PC-SH-539,Garden bench,Seating,shared,yard,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-540,Fire pit / fire ring,Lighting and fire,shared,yard,structure,normal,common,medium,none,light,missing,,farm;trailer-park;campground;suburb;cabin,,embers light; stone ring
+PC-SH-541,Birdbath,Wall and surface decor,shared,yard,decor,normal,common,small,none,none,missing,,farm;trailer-park;suburb,,a splashing bird
+PC-SH-542,Bird feeder,Wall and surface decor,shared,yard,decor,normal,common,small,none,none,missing,,farm;suburb;cabin,,seeds and sparrows
+PC-SH-543,Birdhouse,Wall and surface decor,shared,yard,decor,normal,common,small,none,none,missing,,farm;suburb;cabin,,a tit nest
+PC-SH-544,Garden gnome,Wall and surface decor,shared,yard,decor,normal,common,small,none,none,missing,,farm;trailer-park;suburb,,a gnome-filled garden at Cedar Flats; a collection in a closet (#267)
+PC-SH-545,Pink flamingo and lawn ornaments,Wall and surface decor,shared,yard,decor,normal,uncommon,small,none,none,missing,,trailer-park;suburb,,kitsch
+PC-SH-546,Wind spinner / pinwheel,Wall and surface decor,shared,yard,decor,normal,uncommon,small,none,noise,missing,,trailer-park;suburb,,moves in the wind driver
+PC-SH-547,Flag on a pole (US flag),Signs and flags,shared,yard,decor,normal,common,medium,none,noise,missing,,campground;suburb;military-base;town,,flaps; the ranger station's as well; merged here: PC-SH-903 (Flag pole and flag)
+PC-SH-548,Rain barrel,"Containers, drums and tanks",shared,yard,container,normal,common,medium,none,none,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,farm;suburb;cabin,,the barrel stands in
+PC-SH-549,Compost bin,"Bins, buckets and mailboxes",shared,yard,container,normal,common,medium,none,none,missing,,farm;suburb;cabin,,smell
+PC-SH-550,Garden shed,Buildings and structures,shared,yard,structure,normal,common,large,none,hiding spot,partial,Assets/Art/Farm/Buildings/Shed/,farm;trailer-park;suburb;cabin,,the farm shed exists
+PC-SH-551,Dog house,Animal housing and farm fittings,shared,yard,structure,normal,common,medium,none,hiding spot,have,Assets/Art/Farm/Props/FM_DogHouse_01.fbx,farm;trailer-park;suburb,,beside the porch
+PC-SH-552,Dog chain and stake,Buildings and structures,shared,yard,structure,normal,common,small,none,noise,missing,,farm;trailer-park,,a chain rattle
+PC-SH-553,Wheelbarrow of weeds,Hand and power tools,shared,yard,tool,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_Wheelbarrow_01.fbx,farm;suburb,,#265
+PC-SH-554,Garden fence section,"Fences, gates and barriers",shared,yard,structure,normal,common,medium,none,none,have,Assets/Art/Global/Props/GI_FenceSection_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,wood post and rail
+PC-SH-555,Garden gate,"Fences, gates and barriers",shared,yard,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Props/GI_Gate_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a latch and hinge squeak
+PC-SH-556,Picket fence,"Fences, gates and barriers",shared,yard,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Props/GI_FenceSection_01.fbx,trailer-park;suburb;town,,a white picket
+PC-SH-557,Chain-link fence,"Fences, gates and barriers",shared,yard,structure,normal,common,medium,none,none,missing,,trailer-park;suburb;laboratory;military-base;industrial,,climbable look; the invisible wall behind
+PC-SH-558,Privacy (wooden slat) fence,"Fences, gates and barriers",shared,yard,structure,normal,common,medium,none,cover,missing,,trailer-park;suburb,,solid sight blocker
+PC-SH-559,Hedge,"Plants, trees and crops",shared,yard,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,trailer-park;suburb;town,,the bush stands in
+PC-SH-560,Basketball hoop on a pole,"Toys, play and fairground",shared,yard,toy,normal,common,large,none,noise,missing,,trailer-park;suburb,,a bounce; a clang
+PC-SH-561,Soccer goal,"Toys, play and fairground",shared,yard,toy,normal,uncommon,large,none,none,missing,,suburb;leisure,,
+PC-SH-562,Garden hose coiled by the tap,Hand and power tools,shared,yard,tool,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,#156
+PC-SH-563,Sprinkler (oscillating),Hand and power tools,shared,yard,tool,normal,common,small,none,noise,missing,,farm;trailer-park;suburb,,a hiss
+PC-SH-564,Lawn mower left in the grass,Hand and power tools,shared,yard,tool,normal,common,medium,none,none,missing,,trailer-park;suburb,,a stalled mow
+PC-SH-565,Pool noodle and toys,"Toys, play and fairground",shared,yard,toy,normal,common,small,none,none,missing,,trailer-park;suburb,,
+PC-SH-566,Barbecue tools,Lighting and fire,shared,yard,tool,normal,common,small,none,none,missing,,trailer-park;suburb,,
+PC-SH-567,Cooler and beer cans,"Containers, drums and tanks",shared,yard,container,normal,common,small,none,none,have,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-568,Doghouse bowl,Clutter and small items,shared,yard,clutter,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,a chewed bowl
+PC-SH-569,Yard light (pole-mounted),Lighting and fire,shared,yard,decor,normal,common,large,switch,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,farm;trailer-park;town,,the yard pole is the biggest light
+PC-SH-570,Tire planter,"Plants, trees and crops",shared,yard,plant,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb,,painted
+PC-SH-571,Trellis and arbor,Buildings and structures,shared,yard,structure,normal,uncommon,medium,none,none,missing,,farm;suburb,,a rose arch
+PC-SH-572,Cold frame and greenhouse,Buildings and structures,shared,yard,structure,normal,uncommon,large,none,hiding spot,missing,,farm;suburb,,glass panes
+PC-SH-573,Vegetable garden bed,"Plants, trees and crops",shared,garden,plant,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Tilled_Soil.png,farm;trailer-park;suburb,,rows of tomatoes and beans; texture only; no bed frame or plants
+PC-SH-574,Raised bed (wood),"Plants, trees and crops",shared,garden,plant,normal,common,medium,none,none,missing,,farm;suburb,,
+PC-SH-575,Tomato cage and stakes,"Plants, trees and crops",shared,garden,plant,normal,common,small,none,none,missing,,farm;suburb,,
+PC-SH-576,Sunflowers,"Plants, trees and crops",shared,garden,plant,normal,uncommon,large,none,cover,missing,,farm;suburb,,#262: tall cover
+PC-SH-577,Flower bed (perennials),"Plants, trees and crops",shared,garden,plant,normal,common,medium,none,none,partial,Assets/Art/Global/Decor/GD_VaseFlowers_01.fbx,farm;trailer-park;suburb;cabin,,stand-in: the vase of flowers; no planted bed
+PC-SH-578,Rose bush,"Plants, trees and crops",shared,garden,plant,normal,uncommon,medium,none,none,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,farm;suburb,,thorns
+PC-SH-579,Herb pots,"Plants, trees and crops",shared,garden,plant,normal,uncommon,small,none,none,partial,Assets/Art/Global/Decor/GD_PottedPlant_01.fbx,farm;trailer-park;suburb;cabin,,stand-in: the potted plant; no herb pots
+PC-SH-580,Fruit bush (berries),"Plants, trees and crops",shared,garden,plant,normal,common,medium,none,none,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,farm;campground;cabin,,stand-in: the farm bush; no berries
+PC-SH-581,Beehive,Buildings and structures,shared,garden,structure,normal,uncommon,medium,none,none,missing,,farm;suburb;cabin,,a hum and bees; do not disturb
+PC-SH-582,Potting bench,Seating,shared,garden,furniture,normal,uncommon,medium,none,none,missing,,farm;suburb,,
+PC-SH-583,Terracotta pots,"Containers, drums and tanks",shared,garden,container,normal,common,small,none,noise,missing,,farm;trailer-park;suburb;cabin,,a clatter if knocked
+PC-SH-584,Garden stakes and twine,Hand and power tools,shared,garden,tool,normal,common,small,none,none,missing,,farm;suburb,,
+PC-SH-585,Farm pickup truck,Cars and trucks,shared,road,vehicle,normal,common,large,none,cover;noise,have,Assets/Art/Global/Vehicles/GV_Pickup_01.fbx,farm;trailer-park;campground;town;industrial,,alarm and horn (possess); 7 paint jobs
+PC-SH-586,Sedan (family car),Cars and trucks,shared,road,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/Sedan/,trailer-park;suburb;town;industrial,,"14 paint jobs, New and Damaged"
+PC-SH-587,Station wagon,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover,have,Assets/Art/Global/Vehicles/Wagon/,campground;suburb;town,,8 files
+PC-SH-588,SUV,Cars and trucks,shared,road,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/SUV/,campground;suburb;military-base;town,,the FBI SUV is one livery
+PC-SH-589,Minivan,Cars and trucks,shared,road,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/Minivan/,trailer-park;campground;suburb,,8 files
+PC-SH-590,Delivery van / mail truck,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover,have,Assets/Art/Global/Vehicles/Van/,suburb;town;industrial,,the brown and mail liveries
+PC-SH-591,Ambulance,Cars and trucks,shared,road,vehicle,normal,rare,large,none,light,have,Assets/Art/Global/Vehicles/Ambulance/,suburb;town,,lights
+PC-SH-592,Tow truck,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,none,have,Assets/Art/Global/Vehicles/TowTruck/,town;industrial,,the scrapyard
+PC-SH-593,ATV,Bikes and small vehicles,shared,road,vehicle,normal,uncommon,medium,none,noise,have,Assets/Art/Global/Vehicles/ATV/,farm;campground;cabin,,a loud ride
+PC-SH-594,Motorcycle,Bikes and small vehicles,shared,road,vehicle,normal,uncommon,medium,none,noise,have,Assets/Art/Global/Vehicles/Motorcycle/,trailer-park;suburb;town,,a loud engine
+PC-SH-595,Military jeep,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover,have,Assets/Art/Global/Vehicles/Jeep/,campground;military-base,,olive and tan; the motor pool; merged here: PC-MB-065 (Military jeep (olive))
+PC-SH-596,Flatbed trailer,Farm and work machines,shared,road,vehicle,low,uncommon,large,none,cover,have,Assets/Art/Global/Vehicles/Trailer/GV_Trailer_Flatbed_01.fbx,farm;military-base;industrial,,a hay wagon base
+PC-SH-597,Sheriff cruiser,Cars and trucks,shared,road,vehicle,normal,common,large,none,light,have,Assets/Art/Global/Vehicles/GV_SheriffCruiser_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the Tier 1 vehicle; light bar; parked at the sheriff's office; merged here: PC-TN-097 (Cruiser (Sheriff))
+PC-SH-598,State police cruiser,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,light,have,Assets/Art/Global/Vehicles/Police/,campground;military-base;town,,in the Police folder
+PC-SH-599,FBI SUV and van,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,light,have,Assets/Art/Global/Vehicles/Police/,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,black with an antenna
+PC-SH-600,Man in Black sedan,Cars and trucks,shared,road,vehicle,normal,rare,large,none,none,have,Assets/Art/Global/Vehicles/Police/,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,all-black
+PC-SH-601,Classic 1950s pickup,Cars and trucks,shared,road,vehicle,low,uncommon,large,none,cover;noise,missing,,farm;trailer-park;town,,"#266: loud, with a key and a creaky door"
+PC-SH-602,Classic muscle car,Cars and trucks,shared,road,vehicle,low,rare,large,none,noise,missing,,suburb;town;leisure,,#266
+PC-SH-603,Vintage station wagon with wood sides,Cars and trucks,shared,road,vehicle,low,rare,large,none,none,missing,,suburb;cabin,,
+PC-SH-604,Rusty wreck / car on blocks,Cars and trucks,shared,road,vehicle,low,common,large,none,cover,partial,Assets/Art/Global/Vehicles/Sedan/GV_Sedan_Black_Damaged_01.fbx,farm;trailer-park;industrial,,the Damaged style stands in; on cinder blocks
+PC-SH-605,Futuristic electric car,Cars and trucks,shared,road,vehicle,high,uncommon,large,none,cover,missing,,suburb;laboratory;town,,"#266: quiet, a charge port, possessable; an original design"
+PC-SH-606,Electric-car charger / wall box,Computing and office tech,shared,road,tech,high,uncommon,small,possessable,light,missing,,suburb;laboratory;town,,a charge LED
+PC-SH-607,Hybrid compact car,Cars and trucks,shared,road,vehicle,high,common,large,none,none,missing,,suburb;town,,quiet at low speed
+PC-SH-608,Electric pickup,Cars and trucks,shared,road,vehicle,high,rare,large,none,none,missing,,town;industrial,,#266
+PC-SH-609,"Camper van (original design, no brand)",Cars and trucks,shared,road,vehicle,low,uncommon,large,none,cover,missing,,trailer-park;campground;cabin,,no brand
+PC-SH-610,Class C motorhome,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover;noise,missing,,trailer-park;campground,,the generator hum
+PC-SH-611,Class A motorhome,Cars and trucks,shared,road,vehicle,normal,rare,large,none,cover,missing,,trailer-park;campground,,big cover
+PC-SH-612,Travel trailer / caravan,Cars and trucks,shared,road,vehicle,normal,common,large,none,cover,missing,,trailer-park;campground,,a RV pad rig
+PC-SH-613,Fifth-wheel trailer,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover,missing,,trailer-park;campground;industrial,,
+PC-SH-614,Pickup with a camper shell,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,none,missing,,campground;cabin,,
+PC-SH-615,Boat trailer with boat,Boats and water,shared,road,vehicle,normal,uncommon,large,none,none,missing,,campground;suburb;cabin,,
+PC-SH-616,Canoe,Boats and water,shared,road,vehicle,low,common,medium,movable,none,missing,,campground;cabin,,on the shore or racks; racks and the dock; merged here: PC-CG-063 (Canoe on the shore)
+PC-SH-617,Rowboat / fishing boat,Boats and water,shared,road,vehicle,low,uncommon,large,none,none,missing,,campground;cabin,,
+PC-SH-618,School bus,Cars and trucks,shared,road,vehicle,normal,rare,large,none,cover,missing,,town;industrial;leisure,,cover in a lot
+PC-SH-619,Semi truck and trailer,Cars and trucks,shared,road,vehicle,normal,uncommon,large,none,cover,missing,,military-base;town;industrial,,the truck stop maze
+PC-SH-620,Fuel tanker,Cars and trucks,shared,road,vehicle,normal,rare,large,none,objective candidate,missing,,military-base;town;industrial,,an objective in the truck stop; a diesel tanker; merged here: PC-SH-963 (Diesel fuel tanker)
+PC-SH-621,Garbage truck,Cars and trucks,shared,road,vehicle,normal,rare,large,none,noise,missing,,suburb;town,,pick-up day
+PC-SH-622,Ice-cream truck,Cars and trucks,shared,road,vehicle,normal,rare,large,none,noise;distraction,missing,,suburb;leisure,,a jingle lure
+PC-SH-623,Food truck,Cars and trucks,shared,road,vehicle,normal,rare,large,none,light,missing,,town;leisure,,glow
+PC-SH-624,Forklift,Farm and work machines,shared,road,vehicle,normal,uncommon,large,none,noise,missing,,military-base;town;industrial,,reverse beep
+PC-SH-625,Golf cart,Bikes and small vehicles,shared,road,vehicle,normal,uncommon,medium,none,none,missing,,trailer-park;military-base;town;leisure,,"silent; quiet; a resident's or the maintenance crew's; merged here: PC-SH-898 (Maintenance golf cart), PC-TP-096 (Golf cart (resident))"
+PC-SH-626,Helicopter (FBI or military),Aircraft,shared,road,vehicle,high,rare,large,none,light;noise,missing,,campground;military-base;town,,a searchlight
+PC-SH-627,Crashed ship,Alien ship and alien tech,shared,road,vehicle,high,rare,large,none,light;objective candidate,have,Assets/Art/Global/Vehicles/GV_CrashedShip_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the base on every map
+PC-SH-628,"Road section (asphalt, straight)","Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,with centre line and edge decals
+PC-SH-629,Road dirt (county road),"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Road_Dirt_01.fbx,farm;campground;cabin,,
+PC-SH-630,Road T-junction,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Road_Intersection_T_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-631,Road curve,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Road_Curve_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-632,Gravel driveway,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Driveway_Gravel_01.fbx,farm;trailer-park;suburb;town;cabin,,
+PC-SH-633,Curb,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,none,have,Assets/Art/Global/Ground/Road/GI_Curb_01.fbx,trailer-park;suburb;town;industrial,,
+PC-SH-634,Sidewalk,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,none,have,Assets/Art/Global/Ground/Road/GI_Sidewalk_01.fbx,suburb;town;industrial,,
+PC-SH-635,Parking lines decal,Wall and surface decor,shared,road,decor,normal,common,medium,none,none,have,Assets/Art/Global/Ground/Decal_ParkingLines.png,trailer-park;military-base;town;industrial;leisure,,the decal texture exists in Decal_ParkingLines.png; the decal exists (`ground.py`)
+PC-SH-636,Oil stain decal,Wall and surface decor,shared,road,decor,normal,common,small,none,none,have,Assets/Art/Global/Ground/Decal_OilStain.png,farm;suburb;industrial,,a stain under a car (Decal_OilStain.png exists); the decal exists (`ground.py`)
+PC-SH-637,Puddle decal,Wall and surface decor,shared,road,decor,normal,common,small,none,none,have,Assets/Art/Global/Ground/Decal_Puddle.png,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,Decal_Puddle.png exists; the decal exists (`ground.py`)
+PC-SH-638,Tyre tracks decal,Wall and surface decor,shared,road,decor,normal,common,medium,none,none,have,Assets/Art/Global/Ground/Decal_TyreTracks.png,farm;campground,,Decal_TyreTracks.png exists; the decal exists (`ground.py`)
+PC-SH-639,Footprints (alien) decal,Wall and surface decor,shared,road,decor,normal,common,small,none,none,have,Assets/Art/Global/Ground/Decal_AlienFootprint.png,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,Decal_AlienFootprint.png exists: a trace; the decal exists (`ground.py`)
+PC-SH-640,Scorch decal and burn marks,Wall and surface decor,shared,road,decor,normal,common,medium,none,none,have,Assets/Art/Global/Ground/Decal_Scorch.png,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the crash marks; the decal exists (`ground.py`)
+PC-SH-641,Street lamp (cobra head),Lighting and fire,shared,road,decor,normal,common,large,none,light,partial,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,trailer-park;suburb;military-base;town;industrial,,pole lamp stands in
+PC-SH-642,Utility pole,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Props/GL_UtilityPole_01.fbx,farm;trailer-park;campground;suburb,,a crossarm and pins
+PC-SH-643,Transformer pole,"Heating, cooling, water and power",shared,road,structure,normal,common,large,none,noise;objective candidate,have,Assets/Art/Global/Props/GL_UtilityPoleTransformer_01.fbx,farm;trailer-park;suburb,,the park's transformer is objective 4 at Cedar Flats
+PC-SH-644,Power line / service drop,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,have,Assets/Art/Global/Props/GL_ServiceEntry_01.fbx,farm;trailer-park;suburb;cabin,,meter box and weatherhead
+PC-SH-645,Padmount transformer (green box),"Heating, cooling, water and power",shared,road,structure,normal,common,medium,none,noise;objective candidate,missing,,trailer-park;suburb;town,,a hum; a sabotage target
+PC-SH-646,Fire hydrant,"Roads, street furniture and utilities",shared,road,structure,normal,common,small,none,none,missing,,trailer-park;suburb;town;industrial,,a wrench opens it for noise
+PC-SH-647,Stop sign and road signs,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,"cattle crossing, no trespassing, beware of dog"
+PC-SH-648,Mile marker,Buildings and structures,shared,road,structure,normal,common,small,none,none,missing,,farm;campground;cabin,,
+PC-SH-649,Guard rail,"Fences, gates and barriers",shared,road,structure,normal,common,medium,none,none,missing,,campground;military-base;town,,
+PC-SH-650,Culvert and ditch,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,none,missing,,farm;campground;cabin,,a drainage route
+PC-SH-651,Bridge,"Roads, street furniture and utilities",shared,road,structure,normal,common,large,none,none,missing,,campground;town,,the forest-road chokepoint
+PC-SH-652,Traffic cones,Clutter and small items,shared,road,clutter,normal,common,small,carryable,distraction,missing,,military-base;town;industrial;leisure,,knocked over noise
+PC-SH-653,Sawhorse barricade,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,none,missing,,military-base;town;industrial,,roadblocks
+PC-SH-654,Police tape,Clutter and small items,shared,road,clutter,normal,common,small,none,none,missing,,suburb;town,,crime scene
+PC-SH-655,Bus stop shelter,"Roads, street furniture and utilities",shared,road,structure,normal,common,medium,none,cover,missing,,suburb;town,,
+PC-SH-656,Pay phone,"Phones, radio and communications",shared,road,tech,low,rare,medium,switch,noise,missing,,town;industrial,,
+PC-SH-657,Newspaper vending box,"Boxes, crates and cases",shared,road,container,low,uncommon,medium,none,none,missing,,suburb;town,,
+PC-SH-658,Speed bump,"Roads, street furniture and utilities",shared,road,structure,normal,common,small,none,none,missing,,trailer-park;suburb;town,,
+PC-SH-659,Railroad crossing sign and tracks,"Roads, street furniture and utilities",shared,road,structure,low,uncommon,large,none,noise,missing,,town;industrial,,a train horn
+PC-SH-660,Hitching post / bike rack,Buildings and structures,shared,road,structure,normal,common,small,none,none,missing,,town;leisure,,
+PC-SH-661,Trash can (street),"Containers, drums and tanks",shared,road,container,normal,common,medium,openable,noise,have,Assets/Art/Global/Decor/GD_TrashCan_01.fbx,suburb;town;leisure,,
+PC-SH-662,Dumpster,"Bins, buckets and mailboxes",shared,road,container,normal,common,large,openable,hiding spot;noise,have,Assets/Art/Global/Interactive/Classic/GI_Dumpster_01.fbx,trailer-park;campground;town;industrial,,a bin of raccoons
+PC-SH-663,Oak tree,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreeOak_01.fbx,farm;campground;suburb;cabin,,#266: the landmark tree candidate
+PC-SH-664,Pine tree,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreePine_01.fbx,farm;campground;military-base;cabin,,the campground's 700 pines
+PC-SH-665,Dead tree,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreeDead_01.fbx,farm;campground;cabin,,an owl perch
+PC-SH-666,Willow tree,"Plants, trees and crops",shared,wild,plant,normal,uncommon,large,none,cover,missing,,farm;campground;suburb,,#266: a curtain of cover by the creek
+PC-SH-667,Maple tree,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,missing,,farm;suburb;cabin,,#266
+PC-SH-668,Birch tree,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,missing,,farm;campground;cabin,,#266
+PC-SH-669,Cedar and spruce,"Plants, trees and crops",shared,wild,plant,normal,common,large,none,cover,missing,,campground;cabin,,#266
+PC-SH-670,Apple tree,"Plants, trees and crops",shared,wild,plant,normal,uncommon,large,none,cover,missing,,farm;suburb,,#262: orchard
+PC-SH-671,Pear and cherry tree,"Plants, trees and crops",shared,wild,plant,normal,uncommon,large,none,cover,missing,,farm;suburb,,#262
+PC-SH-672,Stump,"Plants, trees and crops",shared,wild,plant,normal,common,small,none,cover,have,Assets/Art/Farm/Vegetation/FM_Stump_01.fbx,farm;campground;cabin,,a cover group
+PC-SH-673,Boulder,Buildings and structures,shared,wild,structure,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_Boulder_01.fbx,farm;campground;military-base;cabin,,a solid rock
+PC-SH-674,Bush,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,have,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,no collider
+PC-SH-675,Tall weeds and brush,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,missing,,farm;trailer-park;campground,,cover; rustle
+PC-SH-676,Wildflowers,"Plants, trees and crops",shared,wild,plant,normal,common,small,none,none,missing,,farm;campground;cabin,,
+PC-SH-677,Ferns,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,missing,,campground;cabin,,forest floor
+PC-SH-678,Reeds and cattails,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,missing,,farm;campground;cabin,,the lake edge
+PC-SH-679,Moss and lichen on rocks,"Plants, trees and crops",shared,wild,plant,normal,common,small,none,none,partial,Assets/Art/Global/Ground/Tex_Moss.png,campground;cabin,,texture; Tex_Moss.png exists; texture only
+PC-SH-680,Mushrooms,"Plants, trees and crops",shared,wild,plant,normal,common,small,none,none,missing,,campground;cabin,,a ring of toadstools as an oddity
+PC-SH-681,Fallen log,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,partial,Assets/Art/Global/Props/GT_FirewoodPile_Loose_01.fbx,farm;campground;cabin,,a log to hide behind
+PC-SH-682,Branches and brush pile,"Plants, trees and crops",shared,wild,plant,normal,common,medium,none,cover,missing,,farm;campground;cabin,,snap noise
+PC-SH-683,Creek and shallows,"Doors, windows and building parts",shared,wild,structure,normal,common,large,none,noise,missing,,farm;campground;cabin,,splash; short out Energy Beings
+PC-SH-684,Pond with reeds,Buildings and structures,shared,wild,structure,normal,common,large,none,noise,missing,,farm;campground,,#86
+PC-SH-685,Lake dock,"Doors, windows and building parts",shared,wild,structure,normal,common,large,none,noise,missing,,campground;cabin,,"planks; planks creak; Spruce Lake's is 32 x 2 m; the cabin's has a canoe tied up (Canoe); merged here: PC-CG-060 (Dock (32 x 2 m)), PC-CB-027 (Lake dock and canoe)"
+PC-SH-686,Footbridge,"Roads, street furniture and utilities",shared,wild,structure,normal,uncommon,medium,none,noise,missing,,farm;campground;cabin,,
+PC-SH-687,Flagstone path,Buildings and structures,shared,wild,structure,normal,common,medium,none,none,missing,,farm;suburb;cabin,,
+PC-SH-688,Gravel path,Buildings and structures,shared,wild,structure,normal,common,large,none,noise,partial,Assets/Art/Global/Ground/Tex_Gravel.png,farm;campground;cabin,,crunch; texture only
+PC-SH-689,Anthill and burrow,Clutter and small items,shared,wild,clutter,normal,common,small,none,none,missing,,farm;campground,,an Insectoid hint
+PC-SH-690,Birds' nest,Clutter and small items,shared,wild,clutter,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,in a tree
+PC-SH-691,Pig,Animals and pets,shared,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_Pig_faceted_01.fbx,farm;trailer-park,,squeal; Bacon the pig at Cedar Flats
+PC-SH-692,Chicken hen,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,have,Assets/Art/Global/Animals/GN_ChickenHen_faceted_01.fbx,farm;trailer-park,,the noise trap
+PC-SH-693,Turkey,Animals and pets,shared,wild,wildlife,normal,uncommon,medium,none,noise,have,Assets/Art/Global/Animals/GN_TurkeyTom_faceted_01.fbx,farm;campground,,gobble; the tom's display
+PC-SH-694,Duck and goose,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,noise,missing,,farm;campground,,honk: geese are guard animals
+PC-SH-695,"Dog (farm, collie)",Animals and pets,shared,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_DogCollie_faceted_01.fbx,farm;trailer-park;suburb;cabin,,sleeps by the porch
+PC-SH-696,"Dog (guard, shepherd)",Animals and pets,shared,wild,wildlife,normal,uncommon,large,none,noise,have,Assets/Art/Global/Animals/GN_DogShepherd_faceted_01.fbx,farm;suburb;military-base;industrial,,K9 and guard
+PC-SH-697,Dog (stray),Animals and pets,shared,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_DogStray_faceted_01.fbx,trailer-park;town;industrial,,scavenge
+PC-SH-698,Small yappy dog,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,have,Assets/Art/Global/Animals/GN_DogDachshund_faceted_01.fbx,trailer-park;suburb,,the yappers at lot 15
+PC-SH-699,"Other dog breeds (beagle, bulldog, husky, retriever)",Animals and pets,shared,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_DogBeagle_faceted_01.fbx,trailer-park;campground;suburb;town,,eight breeds exist
+PC-SH-700,Cat,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,have,Assets/Art/Global/Animals/GN_CatTabby_faceted_01.fbx,farm;trailer-park;suburb;town;industrial;cabin,,eight coats
+PC-SH-701,Kitten,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,none,have,Assets/Art/Global/Animals/GN_CatKitten_faceted_01.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-702,"Deer (doe, buck, fawn)",Animals and pets,shared,wild,wildlife,normal,common,large,none,noise,have,Assets/Art/Global/Animals/GN_DeerDoe_faceted_01.fbx,farm;campground;cabin,,tree-line cameo
+PC-SH-703,Fox,Animals and pets,shared,wild,wildlife,normal,uncommon,medium,none,none,have,Assets/Art/Global/Animals/GN_Fox_faceted_01.fbx,farm;campground;cabin,,
+PC-SH-704,Raccoon,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,have,Assets/Art/Global/Animals/GN_Raccoon_faceted_01.fbx,farm;trailer-park;campground;suburb;town,,knocks over bins
+PC-SH-705,Opossum,Animals and pets,shared,wild,wildlife,normal,common,small,none,none,have,Assets/Art/Global/Animals/GN_Opossum_faceted_01.fbx,farm;trailer-park;suburb,,plays dead
+PC-SH-706,Skunk,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,none,have,Assets/Art/Global/Animals/GN_Skunk_faceted_01.fbx,farm;campground;suburb,,the spray gag
+PC-SH-707,Black bear,Animals and pets,shared,wild,wildlife,normal,uncommon,large,none,noise,have,Assets/Art/Global/Animals/GN_Bear_faceted_01.fbx,campground;cabin,,the dumpster visitor
+PC-SH-708,Rabbit (wild and hutch),Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;campground;suburb,,freeze then bolt
+PC-SH-709,Squirrel and chipmunk,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,campground;suburb;cabin,,chatter
+PC-SH-710,Owl,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,noise,missing,,farm;campground;cabin,,a free alarm; the barn ridge
+PC-SH-711,Bats,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,noise,missing,,farm;campground;cabin,,crossing the moon
+PC-SH-712,Crows and ravens,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;campground;town,,caw; the scarecrow
+PC-SH-713,Songbirds and pigeons,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,flush when approached: a soft alarm
+PC-SH-714,Mice and rats,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;town;industrial;cabin,,scurry
+PC-SH-715,Frogs and crickets,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;campground;cabin,,sound beds
+PC-SH-716,Fireflies,Animals and pets,shared,wild,wildlife,normal,common,small,none,light,missing,,farm;campground;cabin,,low glows
+PC-SH-717,Coyote,Animals and pets,shared,wild,wildlife,normal,uncommon,medium,none,noise,missing,,farm;campground;military-base,,howl
+PC-SH-718,Snakes and lizards,Animals and pets,shared,wild,wildlife,normal,uncommon,small,none,none,missing,,campground;military-base,,slither
+PC-SH-719,Fish (pond or lake),Animals and pets,shared,wild,wildlife,normal,common,small,none,none,missing,,farm;campground;cabin,,
+PC-SH-720,Moths and flies at the light,Animals and pets,shared,wild,wildlife,normal,common,small,none,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,#156
+PC-SH-721,Bees and wasps,Animals and pets,shared,wild,wildlife,normal,common,small,none,noise,missing,,farm;campground;suburb,,a hum around the hive
+PC-SH-722,Spider web with dew,Wall and surface decor,shared,wild,decor,normal,common,small,none,none,missing,,farm;cabin,,#156
+PC-SH-723,Saucer-class crashed ship (shell),Alien ship and alien tech,shared,ship,vehicle,high,rare,large,none,light;objective candidate,have,Assets/Art/Global/Vehicles/GV_CrashedShip_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,"hollow, ramp, light inside"
+PC-SH-724,Egg-class ship,Alien ship and alien tech,shared,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Vehicles/GV_ShipEgg_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a ship variety (#212)
+PC-SH-725,Freighter-class ship,Alien ship and alien tech,shared,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Vehicles/GV_ShipFreighter_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a ship variety
+PC-SH-726,Scout ship,Alien ship and alien tech,shared,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_Scout_01.fbx,laboratory;military-base,,a flyer
+PC-SH-727,Escape pod,Alien ship and alien tech,shared,ship,vehicle,high,rare,medium,none,none,have,Assets/Art/Global/Ships/SH_EscapePod_01.fbx,farm;campground;military-base,,
+PC-SH-728,Probe drone (alien),Alien ship and alien tech,shared,ship,vehicle,high,rare,small,none,light,have,Assets/Art/Global/Ships/SH_ProbeDrone_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a floating scout
+PC-SH-729,Abduction UFO,Alien ship and alien tech,shared,ship,vehicle,high,rare,large,none,light,have,Assets/Art/Global/Ships/SH_AbductionUfo_01.fbx,farm;trailer-park;campground,,flies in for a tagged cow
+PC-SH-730,Ship control console,Alien ship and alien tech,shared,ship,tech,high,rare,large,switch,light;objective candidate,have,Assets/Art/Global/Vehicles/GV_ShipConsole_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the crew's hub
+PC-SH-731,Bank terminal (green),Alien ship and alien tech,shared,ship,tech,high,rare,medium,switch,light;objective candidate,have,Assets/Art/Global/Vehicles/GV_ShipTerminalBank_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,banking
+PC-SH-732,Launch terminal (red),Alien ship and alien tech,shared,ship,tech,high,rare,medium,switch,light;objective candidate,have,Assets/Art/Global/Vehicles/GV_ShipTerminalLaunch_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-733,Stasis pod,Alien ship and alien tech,shared,ship,furniture,high,rare,large,none,light,have,Assets/Art/Global/Vehicles/GV_ShipPod_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,ship set dressing
+PC-SH-734,Medical couch,Alien ship and alien tech,shared,ship,furniture,high,rare,large,none,none,have,Assets/Art/Global/Vehicles/GV_ShipCouch_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-735,Ship lockers,Alien ship and alien tech,shared,ship,furniture,high,rare,large,openable,none,have,Assets/Art/Global/Vehicles/GV_ShipLockers_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-736,Ship tool rack,Alien ship and alien tech,shared,ship,furniture,high,rare,medium,none,none,have,Assets/Art/Global/Vehicles/GV_ShipToolRack_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-737,Ship sample rack,Alien ship and alien tech,shared,ship,furniture,high,rare,medium,none,none,have,Assets/Art/Global/Vehicles/GV_ShipSampleRack_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-738,Ship conduit / cable run,Alien ship and alien tech,shared,ship,structure,high,rare,large,none,light,have,Assets/Art/Global/Vehicles/GV_ShipConduit_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-739,Holo-map table,Alien ship and alien tech,shared,ship,tech,high,rare,medium,none,light,have,Assets/Art/Global/Vehicles/GV_ShipHoloTable_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-740,Pilot's helm and nav screen,Alien ship and alien tech,shared,ship,tech,high,rare,medium,none,light,have,Assets/Art/Global/Vehicles/GV_ShipHelm_01.fbx;Assets/Art/Global/Vehicles/GV_ShipNavScreen_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-741,Radar post,Alien ship and alien tech,shared,ship,tech,high,rare,medium,none,light,have,Assets/Art/Global/Vehicles/GV_ShipRadarPost_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-742,Ship crates and drums,Alien ship and alien tech,shared,ship,container,high,rare,medium,none,none,have,Assets/Art/Global/Vehicles/GV_ShipCrates_01.fbx;Assets/Art/Global/Vehicles/GV_ShipDrums_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the cargo hold
+PC-SH-743,Ship bunk and mess table,Alien ship and alien tech,shared,ship,furniture,high,rare,medium,none,none,have,Assets/Art/Global/Vehicles/GV_ShipBunk_01.fbx;Assets/Art/Global/Vehicles/GV_ShipMess_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-744,"Specimen jars (cow, plant, little alien)",Alien ship and alien tech,shared,ship,container,high,rare,small,carryable,light,have,Assets/Art/Global/Vehicles/GV_ShipJars_01.fbx;Assets/Art/Global/Ships/SH_SpecimenJar_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,also the lab's specimens
+PC-SH-745,Containment pod,Alien ship and alien tech,shared,ship,container,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_ContainmentPod_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,carried
+PC-SH-746,Beacon,Alien ship and alien tech,shared,ship,tech,high,rare,small,carryable,light;objective candidate,have,Assets/Art/Global/Ships/SH_Beacon_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the mothership beacon
+PC-SH-747,Hull panel,Alien ship and alien tech,shared,ship,tool,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_HullPanel_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a ship part
+PC-SH-748,Nav crystal,Alien ship and alien tech,shared,ship,tool,high,rare,small,carryable,objective candidate;light,have,Assets/Art/Global/Ships/SH_NavCrystal_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-749,Engine coil,Alien ship and alien tech,shared,ship,tool,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_EngineCoil_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the ship part to fetch
+PC-SH-750,Thruster nozzle,Alien ship and alien tech,shared,ship,tool,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_ThrusterNozzle_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-751,Fuel canister,Alien ship and alien tech,shared,ship,container,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_FuelCanister_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-752,Shield emitter,Alien ship and alien tech,shared,ship,tool,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_ShieldEmitter_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-753,Comms array,Alien ship and alien tech,shared,ship,tech,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_CommsArray_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-754,Black box,Alien ship and alien tech,shared,ship,tech,high,rare,small,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_BlackBox_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-755,Warp ring segment,Alien ship and alien tech,shared,ship,tool,high,rare,large,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_WarpRingSegment_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-756,Landing leg,Alien ship and alien tech,shared,ship,tool,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_LandingLeg_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-757,Console module,Alien ship and alien tech,shared,ship,tech,high,rare,medium,carryable,objective candidate,have,Assets/Art/Global/Ships/SH_ConsoleModule_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-758,Repair tool,Alien ship and alien tech,shared,ship,tool,high,rare,small,carryable,none,have,Assets/Art/Global/Ships/SH_RepairTool_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-759,Scanner (alien),Alien ship and alien tech,shared,ship,tech,high,rare,small,carryable,light,have,Assets/Art/Global/Ships/SH_Scanner_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-760,Translator,Alien ship and alien tech,shared,ship,tech,high,rare,small,carryable,none,have,Assets/Art/Global/Ships/SH_Translator_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-761,Hull shards and debris,Alien ship and alien tech,shared,ship,clutter,high,common,medium,none,none,have,Assets/Art/Global/Ships/SH_HullShard_A_01.fbx;Assets/Art/Global/Ships/SH_HullShard_B_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the crash trail
+PC-SH-762,Cable tangle,Alien ship and alien tech,shared,ship,clutter,high,common,medium,none,none,have,Assets/Art/Global/Ships/SH_CableTangle_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,sparks
+PC-SH-763,Scorched ground,Alien ship and alien tech,shared,ship,clutter,high,common,large,none,none,have,Assets/Art/Global/Ships/SH_ScorchedGround_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the crash marks
+PC-SH-764,Flashlight (human),Field gear and disguises,shared,any,tool,normal,common,small,carryable;switch,light,have,Assets/Art/Global/Decor/GD_Flashlight_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the humans' torch; HumanFlashlight in game
+PC-SH-765,Tranquilliser rifle,Field gear and disguises,shared,any,tool,high,uncommon,medium,carryable,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,non-lethal: sheriff and FBI gear (GG-02)
+PC-SH-766,Net gun,Field gear and disguises,shared,any,tool,high,uncommon,medium,carryable,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,capture (GG-03)
+PC-SH-767,Handcuffs and zip-ties,Field gear and disguises,shared,any,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,capture state
+PC-SH-768,EMF meter,Field gear and disguises,shared,any,tech,high,uncommon,small,none,light;noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the FBI vs Energy Beings (GG-05)
+PC-SH-769,Thermal camera,Field gear and disguises,shared,any,tech,high,rare,small,none,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the hunter's scope and FBI
+PC-SH-770,Binoculars,Field gear and disguises,shared,any,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,Karen's night-watch
+PC-SH-771,Night-vision goggles,Field gear and disguises,shared,any,tech,high,rare,small,none,none,missing,,military-base;town,,MIB gear
+PC-SH-772,Handheld radio,"Phones, radio and communications",shared,any,tech,normal,common,small,carryable;possessable;switch,noise,have,Assets/Art/Global/Decor/GD_Radio_Handheld_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,police and campers
+PC-SH-773,CB radio,"Phones, radio and communications",shared,any,tech,low,uncommon,small,possessable,noise,have,Assets/Art/Global/Decor/GD_Radio_CB_01.fbx,farm;trailer-park;town;industrial,,trucks and farms
+PC-SH-774,Police radio on the dash,Field gear and disguises,shared,any,tech,normal,common,small,possessable,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,calls backup
+PC-SH-775,Clipboard and evidence bags,Field gear and disguises,shared,any,tool,normal,common,small,carryable,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the FBI forensic tech (GG-07)
+PC-SH-776,Evidence flags and tent,Field gear and disguises,shared,any,tool,normal,common,medium,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,traces
+PC-SH-777,Camera (DSLR),Field gear and disguises,shared,any,tool,normal,uncommon,small,carryable,light,missing,,campground;laboratory;town,,a flash is a light
+PC-SH-778,Drone (FBI / hobbyist),Field gear and disguises,shared,any,tech,high,rare,small,none,light;noise,missing,,campground;military-base;town,,a moving spotlight
+PC-SH-779,MIB alien detector,Alien ship and alien tech,shared,any,tech,high,rare,small,carryable,light;noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,Tier 3
+PC-SH-780,Tripod floodlight,Hand and power tools,shared,any,tool,normal,uncommon,medium,none,light,have,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the FBI's lit area
+PC-SH-781,Command trailer / RV,Field gear and disguises,shared,any,vehicle,normal,rare,large,none,light,missing,,campground;military-base;town,,FBI base
+PC-SH-782,Traffic roadblock,Field gear and disguises,shared,any,structure,normal,common,medium,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the chokepoint
+PC-SH-783,Hi-vis vest,Field gear and disguises,shared,any,clothing,normal,common,small,none,none,missing,,military-base;town;industrial,,disguise
+PC-SH-784,Hard hat,Field gear and disguises,shared,any,clothing,normal,common,small,none,none,missing,,laboratory;military-base;industrial,,
+PC-SH-785,Lab coat,Field gear and disguises,shared,any,clothing,normal,common,small,none,none,missing,,laboratory;military-base,,disguise
+PC-SH-786,Hazmat suit,Field gear and disguises,shared,any,clothing,high,rare,medium,none,none,missing,,laboratory;military-base,,
+PC-SH-787,Sunglasses (the MIB's),Field gear and disguises,shared,any,clothing,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-788,Tinfoil hat,Oddities and gags,shared,any,oddity,normal,rare,small,none,none,missing,,farm;trailer-park,ufo,#267
+PC-SH-789,Cowboy hat,Clothing and personal items,shared,any,clothing,normal,common,small,none,none,missing,,farm;town;leisure,,
+PC-SH-790,Baseball cap,Clothing and personal items,shared,any,clothing,normal,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-791,Hunting vest and boots,Clothing and personal items,shared,any,clothing,normal,common,small,none,none,missing,,farm;campground;cabin,,
+PC-SH-792,Backpack,"Boxes, crates and cases",shared,any,container,normal,common,small,carryable,none,have,Assets/Art/Global/Decor/GD_Backpack_01.fbx,campground;suburb;military-base;cabin,,
+PC-SH-793,Lunchbox and thermos,"Boxes, crates and cases",shared,any,container,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_Lunchbox_01.fbx,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-794,Robot vacuum,Electronics,shared,any,tech,high,uncommon,small,movable;possessable,noise;distraction,missing,,suburb;laboratory;town,,#265: drives a slow route on the NavMesh; a strange noise source
+PC-SH-795,Smart thermostat,"Security, sensors and smart devices",shared,any,tech,high,uncommon,small,none,light,missing,,suburb;town,,a lit dial
+PC-SH-796,Smart TV with a streaming stick,Screens and audio,shared,any,tech,high,common,medium,possessable,light,partial,Assets/Art/Global/Decor/GD_TV_Flat_01.fbx,suburb;town,,the flat TV exists
+PC-SH-797,3D printer,Computing and office tech,shared,any,tech,high,rare,medium,none,noise;light,missing,,suburb;laboratory;industrial,,a hum
+PC-SH-798,Ham radio rig,"Phones, radio and communications",shared,any,tech,low,uncommon,medium,possessable,noise;objective candidate,missing,,farm;town;cabin,,the farmer's night radio
+PC-SH-799,Police scanner,"Phones, radio and communications",shared,any,tech,normal,uncommon,small,possessable,noise,missing,,farm;suburb;cabin,,a voice from a box
+PC-SH-800,Weather radio,"Phones, radio and communications",shared,any,tech,normal,uncommon,small,none,light;noise,missing,,farm;cabin,,the alert beeps
+PC-SH-801,Boom box / portable stereo,Screens and audio,shared,any,tech,low,common,medium,switch;possessable,noise;distraction,missing,,trailer-park;campground;suburb,,a lure
+PC-SH-802,Bluetooth speaker,Screens and audio,shared,any,tech,high,common,small,possessable,noise;light;distraction,partial,Assets/Art/Global/Decor/Modern/GD_Radio_Modern_01.fbx,trailer-park;campground;suburb,,a thrown speaker is a distraction
+PC-SH-803,Walkie-talkie pair,"Phones, radio and communications",shared,any,tech,normal,common,small,none,noise,missing,,campground;suburb,,
+PC-SH-804,Electric scooter,Bikes and small vehicles,shared,any,vehicle,high,uncommon,small,none,none,missing,,suburb;town,,
+PC-SH-805,Solar panels,Electronics,shared,any,tech,high,uncommon,large,none,none,missing,,suburb;laboratory;cabin,,a roof
+PC-SH-806,Solar lantern,Electronics,shared,any,tech,high,common,small,none,light,missing,,campground;cabin,,
+PC-SH-807,Battery pack and power bank,Computing and office tech,shared,any,tech,high,common,small,carryable,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a charger LED
+PC-SH-808,Charging cables,Clutter and small items,shared,any,clutter,high,common,small,none,none,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,
+PC-SH-809,IP camera (indoor),Computing and office tech,shared,any,tech,high,common,small,possessable,light,missing,,suburb;laboratory;town,,a node
+PC-SH-810,Trail camera,"Security, sensors and smart devices",shared,any,tech,normal,uncommon,small,none,light,missing,,farm;campground;cabin,,a hunter's camera: a detection node
+PC-SH-811,Car radio and dashboard,"Phones, radio and communications",shared,any,tech,normal,common,small,possessable,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a horn and radio
+PC-SH-812,Car alarm (siren),"Security, sensors and smart devices",shared,any,tech,normal,common,small,possessable,noise;distraction,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,the classic noise source
+PC-SH-813,Burglar alarm panel,"Security, sensors and smart devices",shared,any,tech,normal,uncommon,small,none,noise;light,missing,,suburb;military-base;town;industrial,,a beep timer
+PC-SH-814,Motion sensor,"Security, sensors and smart devices",shared,any,tech,normal,common,small,none,light,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,an infrared node; a PIR node; security rooms as well as any room; merged here: PC-SH-919 (Motion sensor / PIR)
+PC-SH-815,Electronic key fob,Electronics,shared,any,tech,high,common,small,none,noise,missing,,suburb;town,,a beep distraction
+PC-SH-816,Streaming webcam / podcasting setup,Computing and office tech,shared,any,tech,high,rare,small,none,light,missing,,trailer-park;suburb,,Gerry's evidence rig
+PC-SH-817,Stack of love letters,Oddities and gags,shared,any,oddity,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,secret,#267
+PC-SH-818,Wig and fake moustache,Oddities and gags,shared,any,oddity,normal,common,small,carryable,none,missing,,farm;trailer-park;suburb;cabin,secret,#267
+PC-SH-819,Locked diary,Oddities and gags,shared,any,oddity,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;town;cabin,secret,#267: a key and a hint
+PC-SH-820,Hidden stash of sweets,Oddities and gags,shared,any,oddity,normal,common,small,none,none,partial,Assets/Art/Global/Food/Boxed/FD_CandyBar_01.fbx,farm;trailer-park;suburb;cabin,secret,#267; the sweets exist; the stash is placement
+PC-SH-821,Shoebox of old photos,Oddities and gags,shared,any,oddity,normal,common,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,secret,#267
+PC-SH-822,Garden gnome collection in a closet,Oddities and gags,shared,any,oddity,normal,uncommon,medium,none,none,missing,,farm;trailer-park;suburb;cabin,secret,#267
+PC-SH-823,Bag of cash in a flour tin,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,objective candidate,missing,,farm;trailer-park;cabin,secret,#267
+PC-SH-824,Dusty trophy,Oddities and gags,shared,any,oddity,normal,common,small,none,none,missing,,farm;trailer-park;suburb;town;cabin,secret,#267
+PC-SH-825,Hidden bottle in the barn,Oddities and gags,shared,any,oddity,normal,common,small,none,none,partial,Assets/Art/Global/Food/Drinks/FD_WhiskeyBottle_01.fbx,farm;cabin,secret,#267; the bottle exists; the hiding place is placement
+PC-SH-826,Fake teeth in a glass,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,none,missing,,farm;trailer-park;suburb;cabin,bodypart,"#267: comic, not gory"
+PC-SH-827,Lava lamp,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,light,missing,,farm;trailer-park;suburb;town;cabin,secret,#267
+PC-SH-828,Jar of buttons,Oddities and gags,shared,any,oddity,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,comic,#267
+PC-SH-829,Pet rock with a hat,Oddities and gags,shared,any,oddity,normal,rare,small,none,none,missing,,farm;trailer-park;suburb;cabin,comic,#267
+PC-SH-830,Fish in the bathtub,Oddities and gags,shared,any,oddity,normal,rare,medium,none,none,partial,Assets/Art/Global/Food/Prepared/FD_Fish_01.fbx;Assets/Art/Global/Household/GH_Tub_01.fbx,trailer-park;suburb,comic,#267; a fish and a tub exist; the gag is the combination
+PC-SH-831,Very large cheese,Oddities and gags,shared,any,oddity,normal,rare,medium,carryable,none,partial,Assets/Art/Global/Food/Dairy/FD_CheeseWedge_01.fbx,farm;suburb,comic,#267; the cheese wedge exists at normal size
+PC-SH-832,Rubber duck armada,Oddities and gags,shared,any,oddity,normal,rare,small,none,none,missing,,farm;trailer-park;suburb;cabin,comic,#267
+PC-SH-833,Unicycle,Oddities and gags,shared,any,oddity,normal,rare,medium,none,none,missing,,suburb;leisure,comic,#267
+PC-SH-834,Singing fish plaque,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,noise;distraction,missing,,farm;trailer-park;suburb;town;cabin,comic,#267
+PC-SH-835,UFO sighting log (hand drawn),Oddities and gags,shared,any,oddity,normal,rare,small,none,objective candidate,missing,,farm;trailer-park;cabin,ufo,#267: the farmer is paranoid
+PC-SH-836,Crop circle photograph,Oddities and gags,shared,any,oddity,normal,rare,small,none,objective candidate,missing,,farm;trailer-park;cabin,ufo,#267
+PC-SH-837,"""Believe"" poster",Oddities and gags,shared,any,oddity,normal,uncommon,small,none,none,partial,Assets/Art/Global/Decor/GD_Poster_01.fbx,farm;trailer-park;suburb;laboratory;cabin,ufo,#267
+PC-SH-838,Homemade antenna,Oddities and gags,shared,any,oddity,normal,rare,medium,possessable,none,missing,,farm;trailer-park;cabin,ufo,#267
+PC-SH-839,UFO book collection,Oddities and gags,shared,any,oddity,normal,rare,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,ufo,#267
+PC-SH-840,"Classroom skeleton (""skeleton in the closet"")",Oddities and gags,shared,any,oddity,normal,rare,large,none,hiding spot,missing,,suburb;laboratory;town,bodypart,#267: cartoonish and non-gory
+PC-SH-841,Rubber or mannequin hand in a drawer,Oddities and gags,shared,any,oddity,normal,rare,small,carryable,none,missing,,farm;trailer-park;suburb;cabin,bodypart,#267
+PC-SH-842,Prosthetic leg by the bed,Oddities and gags,shared,any,oddity,normal,rare,medium,none,none,missing,,farm;suburb,bodypart,#267
+PC-SH-843,Glass eye in a cup,Oddities and gags,shared,any,oddity,normal,rare,small,none,none,missing,,farm;suburb,bodypart,#267
+PC-SH-844,"Jar of ""pickled something""",Oddities and gags,shared,any,oddity,normal,rare,small,none,none,missing,,farm;cabin,bodypart,#267: label in a shaky hand
+PC-SH-845,Mannequin torso,Oddities and gags,shared,any,oddity,normal,uncommon,medium,none,none,missing,,farm;suburb;town,bodypart,#267
+PC-SH-846,Wig on a stand,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,none,missing,,farm;suburb,bodypart,#267
+PC-SH-847,Tangled cables drawer,Oddities and gags,shared,any,oddity,normal,common,small,none,none,missing,,suburb;town,comic,#267
+PC-SH-848,Hand-lettered sign,Signs and flags,shared,any,decor,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_HandLetteredSign_01.fbx,farm;town;cabin,,story dressing
+PC-SH-849,Alarm clock that rings at a set time,Oddities and gags,shared,any,oddity,normal,uncommon,small,none,noise;distraction,missing,,farm;trailer-park;suburb;cabin,,a trap and a gag
+PC-SH-850,Kid's drawing of a UFO,Oddities and gags,shared,any,oddity,normal,rare,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_KidDrawing_02.fbx,farm;trailer-park;suburb;cabin,,
+PC-SH-851,Hidden floorboard stash,Oddities and gags,shared,any,oddity,normal,rare,small,none,objective candidate,missing,,farm;trailer-park;suburb;cabin,secret,#267: a loose board
+PC-SH-852,Squeaky floorboard,Hazards and traps,shared,any,hazard,normal,common,small,none,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,#156: a noise per step on a hallway
+PC-SH-853,Creaky door,Hazards and traps,shared,any,hazard,normal,common,medium,none,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,#156: a quiet one versus a creaky one
+PC-SH-854,Loose gate or shutter,Hazards and traps,shared,any,hazard,normal,common,medium,none,noise,missing,,farm;cabin,,swings and creaks
+PC-SH-855,Dog on a chain,Hazards and traps,shared,any,hazard,normal,common,medium,none,noise,partial,Assets/Art/Global/Animals/GN_DogStray_faceted_01.fbx,farm;trailer-park,,bark radius; the dog exists; the chain and stake do not (Dog chain and stake)
+PC-SH-857,Tripwire alarm / can on a string,Hazards and traps,shared,any,hazard,normal,uncommon,small,none,noise,missing,,farm;military-base;cabin,,a farmer's trick
+PC-SH-858,Spilled marbles or tacks,Hazards and traps,shared,any,hazard,normal,rare,small,none,noise,missing,,farm;trailer-park;suburb;cabin,,a comic trap
+PC-SH-859,Hot stove or boiling pot,Hazards and traps,shared,any,hazard,normal,common,small,none,none,missing,,farm;trailer-park;suburb;cabin,,an NPC at the stove
+PC-SH-860,Broken glass,Hazards and traps,shared,any,hazard,normal,common,small,none,noise,missing,,farm;trailer-park;campground;suburb;laboratory;military-base;town;industrial;cabin;leisure,,a decal and a crunch
+PC-SH-861,Barbed wire,Hazards and traps,shared,any,hazard,normal,common,medium,none,none,missing,,farm;military-base,,a snag
+PC-SH-862,Open well or manhole,Hazards and traps,shared,any,hazard,normal,uncommon,small,none,none,missing,,farm;military-base;town,,a fall
+PC-SH-863,Pit trap / mud patch,Hazards and traps,shared,any,hazard,normal,common,medium,none,noise,partial,Assets/Art/Global/Ground/Tex_Mud.png,farm;campground,,"a slow, noisy patch; texture only; the pit is not modelled"
+PC-SH-864,Wasp nest,Hazards and traps,shared,any,hazard,normal,uncommon,small,none,noise,missing,,farm;suburb;cabin,,a hum
+PC-SH-865,Nettles and thorns,Hazards and traps,shared,any,hazard,normal,common,small,none,none,missing,,farm;campground,,
+PC-SH-866,Slippery wet floor,Hazards and traps,shared,any,hazard,normal,common,small,none,noise,missing,,laboratory;town;industrial,,a wet floor sign
+PC-SH-867,Wet paint,Hazards and traps,shared,any,hazard,normal,rare,small,none,none,missing,,suburb;industrial,,a comic trap
+PC-SH-868,Squeaking stair tread,Hazards and traps,shared,any,hazard,normal,common,small,none,noise,missing,,farm;trailer-park;suburb;town;cabin,,a noise per step
+PC-SH-869,Floor safe or trapdoor,Hazards and traps,shared,any,hazard,normal,rare,small,openable,none,missing,,farm;cabin,,a hidden hatch
+PC-SH-870,Rotting food,Hazards and traps,shared,any,hazard,normal,common,small,none,none,partial,Assets/Art/Global/Food/Produce/FD_Apple_Rotten_01.fbx,farm;trailer-park;suburb;cabin,,the Rotten variants exist for the trailer park
+PC-SH-871,Piled trash and bags,Clutter and small items,shared,any,clutter,normal,common,medium,none,none,missing,,trailer-park;town;industrial,,raccoons
+PC-SH-872,Beware-of-dog sign,Signs and flags,shared,yard,decor,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_HandLetteredSign_01.fbx,farm;trailer-park;suburb,,the AI's tell; the hand-lettered sign board stands in
+PC-SH-873,No-trespassing sign,Signs and flags,shared,yard,decor,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_HandLetteredSign_01.fbx,farm;campground;cabin,,a deterrent; the hand-lettered sign board stands in
+PC-SH-874,Hunting blind,Buildings and structures,shared,field,structure,normal,uncommon,medium,none,hiding spot,missing,,farm;campground;cabin,,a place to hide
+PC-SH-875,Deer stand / tree stand,Buildings and structures,shared,field,structure,normal,uncommon,medium,none,hiding spot,missing,,farm;campground;cabin,,a high perch
+PC-SH-876,Work gloves,Clothing and personal items,shared,farmhouse,clothing,normal,common,small,none,none,missing,,farm;industrial,,
+PC-SH-877,Window air-conditioning unit,"Heating, cooling, water and power",shared,mobile home,appliance,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_AirConditioner_01.fbx,trailer-park;town,,a hum that masks noise; a drip
+PC-SH-878,RV pad (4.5 x 14 m) with hookups,Buildings and structures,shared,RV pad,structure,normal,common,large,none,none,missing,,trailer-park;campground,,a slab with a pedestal
+PC-SH-879,Power pedestal (30/50 amp),"Heating, cooling, water and power",shared,RV pad,structure,normal,common,small,switch,light;noise;objective candidate,missing,,trailer-park;campground,,a sabotage point
+PC-SH-880,Water spigot and sewer cap,Buildings and structures,shared,RV pad,structure,normal,common,small,none,noise,missing,,trailer-park;campground,,a drip
+PC-SH-881,Fifth wheel with slide-out,Cars and trucks,shared,RV pad,vehicle,normal,uncommon,large,none,cover,missing,,trailer-park;campground,,slide-outs make it wider
+PC-SH-882,Leveling blocks and wheel chocks,Clutter and small items,shared,RV pad,clutter,normal,common,small,none,none,missing,,trailer-park;campground,,wood and plastic
+PC-SH-883,"Awning (RV, retractable)","Doors, windows and building parts",shared,RV pad,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Kit/GK_Awning_01.fbx,trailer-park;campground,,rolled out at night; stand-in: the building awning kit piece stands in; no retractable RV awning
+PC-SH-884,Outdoor rug and patio mat,Soft furnishings,shared,RV pad,decor,normal,common,medium,none,none,missing,,trailer-park;campground,,
+PC-SH-885,RV generator,"Heating, cooling, water and power",shared,RV pad,tool,normal,uncommon,medium,none,noise;objective candidate,partial,Assets/Art/Farm/Props/FM_Generator_01.fbx,trailer-park;campground,,masks sound within 15 m; a trace if it starts or stops
+PC-SH-886,Fire ring at the pad,Lighting and fire,shared,RV pad,structure,normal,common,medium,none,light,missing,,trailer-park;campground,,"Vic's drunk fire ring at (28, 52)"
+PC-SH-887,Folding camp table,"Tables, desks and counters",shared,RV pad,furniture,normal,common,medium,none,none,missing,,trailer-park;campground,,at a tent site as well as an RV pad; merged here: PC-CG-008 (Camp table (folding))
+PC-SH-888,String lights on the awning,Lighting and fire,shared,RV pad,decor,normal,common,medium,none,light,missing,,trailer-park;campground,,
+PC-SH-889,Cooler with ice,"Boxes, crates and cases",shared,RV pad,container,normal,common,small,none,none,have,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,trailer-park;campground,,
+PC-SH-890,Coffee urn,Kitchen and appliances,shared,clubhouse,appliance,normal,common,small,none,noise,missing,,trailer-park;town,,
+PC-SH-891,Trophy case,Furniture,shared,clubhouse,furniture,normal,uncommon,medium,none,none,missing,,trailer-park;town,,
+PC-SH-892,Ice machine,Kitchen and appliances,shared,clubhouse,appliance,normal,common,medium,none,noise,missing,,trailer-park;laboratory;town,,a thump of ice
+PC-SH-893,Laundry cart,"Containers, drums and tanks",shared,laundry,container,normal,common,medium,movable,noise,missing,,trailer-park;town,,a rattle
+PC-SH-894,Shower stalls (bathhouse),Bathroom fixtures,shared,laundry,appliance,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_Shower_01.fbx,trailer-park;campground,,hot water hiss; merged here: PC-CG-052 (Shower stalls)
+PC-SH-895,Hand dryer,Laundry,shared,laundry,appliance,normal,uncommon,small,none,noise,missing,,trailer-park;campground;town,,a loud roar
+PC-SH-896,Gravel and sand piles,Clutter and small items,shared,maintenance yard,clutter,normal,common,large,none,cover,missing,,trailer-park;industrial,,
+PC-SH-897,Pallets of pavers,"Boxes, crates and cases",shared,maintenance yard,container,normal,common,medium,none,cover,missing,,trailer-park;industrial,,
+PC-SH-899,Dog waste station,Buildings and structures,shared,street,structure,normal,common,small,none,none,missing,,trailer-park;campground;suburb,,
+PC-SH-900,Irrigation gate,"Fences, gates and barriers",shared,street,structure,normal,common,medium,openable,none,missing,,farm;trailer-park,,at the north
+PC-SH-901,Hatchet / axe,Hand and power tools,shared,tent site,tool,normal,common,small,carryable,none,missing,,campground;cabin,,a chop is a noise
+PC-SH-902,Camp guitar,Wall and surface decor,shared,tent site,decor,normal,uncommon,medium,none,noise,missing,,campground;cabin,,
+PC-SH-904,Weather station,Electronics,shared,lookout,tech,normal,uncommon,small,none,none,missing,,campground;cabin,,
+PC-SH-905,Speed camera / radar sign,"Security, sensors and smart devices",shared,street,tech,high,rare,small,none,light,missing,,suburb;town,,
+PC-SH-906,IV pole,Hand and power tools,shared,lab floor,tool,normal,common,small,none,none,missing,,laboratory;town,,
+PC-SH-907,Observation window / two-way mirror,"Doors, windows and building parts",shared,containment,structure,normal,common,large,none,none,missing,,laboratory;military-base,,a window the player can't hide behind
+PC-SH-908,Radiation hazard sign,Signs and flags,shared,containment,decor,normal,common,small,none,none,missing,,laboratory;military-base,,story dressing
+PC-SH-909,Blast door,"Doors, windows and building parts",shared,containment,structure,high,uncommon,large,openable,noise,missing,,laboratory;military-base,,a siren
+PC-SH-910,Emergency stop button,"Security, sensors and smart devices",shared,containment,tech,normal,common,small,switch,noise,missing,,laboratory;industrial,,a loud alarm
+PC-SH-911,Rotating beacon light,"Security, sensors and smart devices",shared,containment,tech,normal,common,small,none,light,missing,,laboratory;military-base;industrial,,alarm state
+PC-SH-912,Alarm panel,"Security, sensors and smart devices",shared,containment,tech,normal,common,small,none,light;noise,missing,,laboratory;military-base,,a timer
+PC-SH-913,Card reader / badge scanner,"Security, sensors and smart devices",shared,security,tech,high,common,small,possessable,light,missing,,laboratory;military-base,,a door lock; a jam target
+PC-SH-914,Keypad door lock,"Security, sensors and smart devices",shared,security,tech,normal,common,small,none,light;noise,missing,,laboratory;military-base;town,,
+PC-SH-915,Biometric scanner,"Security, sensors and smart devices",shared,security,tech,high,rare,small,none,light,missing,,laboratory;military-base,,
+PC-SH-916,Security door (steel),"Doors, windows and building parts",shared,security,structure,normal,common,large,openable,noise,missing,,laboratory;military-base,,a heavy clunk
+PC-SH-917,Turnstile,"Fences, gates and barriers",shared,security,structure,normal,uncommon,medium,none,noise,missing,,laboratory;military-base;town,,
+PC-SH-918,CCTV dome camera,"Security, sensors and smart devices",shared,security,tech,normal,common,small,possessable,light,have,Assets/Art/Global/Decor/GD_SecurityCamera_01.fbx,laboratory;military-base;town,,a node
+PC-SH-920,Security desk with monitor wall,"Tables, desks and counters",shared,security,furniture,high,uncommon,large,possessable,light;objective candidate,partial,Assets/Art/Global/Household/GH_Desk_Office_01.fbx;Assets/Art/Global/Decor/GD_Monitor_01.fbx,laboratory;military-base,,camera feeds
+PC-SH-921,Guard's chair and thermos,Seating,shared,security,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Chair_Office_01.fbx;Assets/Art/Global/Decor/GD_Thermos_01.fbx,laboratory;military-base,,a night guard
+PC-SH-922,Visitor badge and lanyard,Field gear and disguises,shared,security,tool,normal,common,small,carryable,none,missing,,laboratory;military-base,,a disguise key
+PC-SH-923,Key card on a lanyard,Field gear and disguises,shared,security,tool,normal,common,small,carryable,objective candidate,missing,,laboratory;military-base,,
+PC-SH-924,Metal detector arch,Buildings and structures,shared,security,structure,normal,rare,large,none,noise,missing,,laboratory;military-base,,
+PC-SH-925,X-ray bag scanner,"Security, sensors and smart devices",shared,security,tech,high,rare,large,none,noise,missing,,laboratory;military-base,,
+PC-SH-926,Fire door (push bar),"Doors, windows and building parts",shared,security,structure,normal,common,medium,openable,noise,missing,,laboratory;military-base;town;industrial,,a bar clank
+PC-SH-927,Flammable-liquids cabinet (yellow),Storage furniture,shared,chemical storage,furniture,normal,common,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Cabinet_01.fbx,laboratory;industrial,,a safety cabinet
+PC-SH-928,Drum rack and drums,"Containers, drums and tanks",shared,chemical storage,container,normal,common,medium,none,none,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,laboratory;industrial,,stand-in: the barrel; no rack
+PC-SH-929,Spill kit,"Boxes, crates and cases",shared,chemical storage,container,normal,common,small,none,none,missing,,laboratory;industrial,,
+PC-SH-930,Ventilated storage cage,"Doors, windows and building parts",shared,chemical storage,structure,normal,common,medium,none,none,missing,,laboratory;industrial,,
+PC-SH-931,Loading dock door,"Doors, windows and building parts",shared,support,structure,normal,common,large,openable,noise,missing,,laboratory;industrial,,a dock leveller
+PC-SH-932,Freight elevator,Buildings and structures,shared,support,structure,normal,uncommon,large,none,noise,missing,,laboratory;military-base;industrial,,a bell
+PC-SH-933,Backup generator,"Heating, cooling, water and power",shared,support,tool,normal,uncommon,large,none,noise;objective candidate,have,Assets/Art/Farm/Props/FM_Generator_01.fbx,laboratory;military-base,,sabotage
+PC-SH-934,Concrete Jersey barrier,"Fences, gates and barriers",shared,perimeter,structure,normal,common,medium,none,cover,missing,,military-base;town,,cover
+PC-SH-935,Windsock,Wall and surface decor,shared,perimeter,decor,normal,common,medium,none,none,missing,,military-base;industrial,,"the helipad; on a mast at the helipad, the airfield and the hangar; merged here: PC-IN-042 (Windsock), PC-MB-080 (Windsock mast)"
+PC-SH-936,Aircraft hangar (large),Buildings and structures,shared,hangar,structure,normal,rare,large,none,hiding spot;cover,missing,,military-base;industrial,,the Area 51 hangar; sliding doors
+PC-SH-937,Hangar sliding doors (huge),"Doors, windows and building parts",shared,hangar,structure,normal,uncommon,large,openable,noise,partial,Assets/Art/Global/Kit/GK_Door_BarnSliding_01.fbx,military-base;industrial,,the barn door model scaled; stand-in: the barn sliding door stands in; a hangar door is far larger
+PC-SH-938,Overhead gantry crane,Buildings and structures,shared,hangar,structure,normal,rare,large,none,none,missing,,military-base;industrial,,climb routes
+PC-SH-939,Aircraft tug / tow tractor,Farm and work machines,shared,hangar,vehicle,normal,uncommon,medium,none,noise,missing,,military-base;industrial,,a beeping tug
+PC-SH-940,Scaffold and work platforms,Buildings and structures,shared,hangar,structure,normal,common,large,none,cover,missing,,military-base;industrial,,
+PC-SH-941,Rolling steps / maintenance stairs,"Doors, windows and building parts",shared,hangar,structure,normal,common,medium,none,noise,missing,,laboratory;military-base;industrial,,
+PC-SH-942,Hangar bay lights (high-bay),Lighting and fire,shared,hangar,decor,normal,common,large,none,light,missing,,military-base;industrial,,
+PC-SH-943,Parts cages and bins,"Bins, buckets and mailboxes",shared,hangar,container,normal,common,medium,none,none,missing,,military-base;industrial,,
+PC-SH-944,Fire suppression foam cannon,Electronics,shared,hangar,tech,normal,rare,large,none,noise,missing,,military-base;industrial,,a foam gag
+PC-SH-945,Hangar floor markings,Wall and surface decor,shared,hangar,decor,normal,common,medium,none,none,partial,Assets/Art/Global/Ground/Decal_ParkingLines.png,military-base;industrial,,the decal
+PC-SH-946,Briefing projector,Screens and audio,shared,command,tech,high,uncommon,small,possessable,light;noise,missing,,laboratory;military-base,,
+PC-SH-947,Radar dish (large),"Phones, radio and communications",shared,command,tech,high,uncommon,large,possessable,noise;light;objective candidate,partial,Assets/Art/Global/Vehicles/GV_ShipRadarPost_01.fbx,laboratory;military-base,,spinning; sabotage
+PC-SH-948,Fuel truck,Cars and trucks,shared,motor pool,vehicle,normal,rare,large,none,cover;objective candidate,missing,,military-base;industrial,,"an AVGAS truck at the hangar, one on the apron; merged here: PC-MB-077 (Fuel truck on the apron), PC-IN-041 (Fuel truck (AVGAS))"
+PC-SH-949,Tyre rack,Clutter and small items,shared,motor pool,clutter,normal,common,medium,none,cover,missing,,military-base;industrial,,
+PC-SH-950,Jack stands and creepers,Hand and power tools,shared,motor pool,tool,normal,common,small,none,noise,missing,,military-base;industrial,,
+PC-SH-951,Chocks and tie-downs,Clutter and small items,shared,helipad and airfield,clutter,normal,common,small,none,none,missing,,military-base;industrial,,
+PC-SH-953,Pallets of supplies,"Boxes, crates and cases",shared,bunker,container,normal,common,medium,none,cover,missing,,military-base;industrial,,
+PC-SH-954,Hazard stripe markings,Wall and surface decor,shared,bunker,decor,normal,common,medium,none,none,missing,,laboratory;military-base;industrial,,
+PC-SH-955,Shopping cart,Hand and power tools,shared,main street,tool,normal,common,medium,movable,noise,missing,,town;industrial,,a rattle across the lot
+PC-SH-956,Church bell and rope,Buildings and structures,shared,main street,structure,normal,common,medium,none,noise;distraction,missing,,town;leisure,,a loud trap
+PC-SH-957,Steeple,Buildings and structures,shared,main street,structure,normal,uncommon,large,none,none,missing,,town;leisure,,
+PC-SH-958,Church candles and votive rack,Lighting and fire,shared,main street,decor,normal,common,small,none,light,partial,Assets/Art/Global/Decor/GD_Candle_01.fbx,town;leisure,,stand-in: a single candle stands in; no votive rack
+PC-SH-959,Rail crossing signal,Electronics,shared,main street,tech,normal,uncommon,medium,none,light;noise,missing,,town;industrial,,red lights and a bell
+PC-SH-960,Railway tracks,"Roads, street furniture and utilities",shared,main street,structure,normal,common,large,none,noise,missing,,town;industrial,,a train horn
+PC-SH-961,Freight car (boxcar),Cars and trucks,shared,main street,vehicle,normal,rare,large,none,cover,missing,,town;industrial,,cover
+PC-SH-962,Jukebox,Kitchen and appliances,shared,diner,appliance,normal,common,medium,possessable,light;noise,have,Assets/Art/Global/Household/GH_Jukebox_01.fbx,trailer-park;town,,
+PC-SH-964,Gun rack (non-lethal: tranq and net rifles),Shelving and racks,shared,sheriff's office,furniture,normal,uncommon,medium,openable,none,missing,,military-base;town,,decor only
+PC-SH-965,IV stand with bag,Hand and power tools,shared,hospital,tool,normal,common,small,none,noise,missing,,laboratory;town,,a clink
+PC-SH-966,Vital-signs monitor,Screens and audio,shared,hospital,tech,high,common,small,possessable,light;noise,missing,,laboratory;town,,beeps
+PC-SH-967,Biohazard bin,"Bins, buckets and mailboxes",shared,hospital,container,normal,common,medium,none,none,missing,,laboratory;town,,
+PC-SH-968,Hymn board and Bible rack,Shelving and racks,shared,church,furniture,normal,common,small,none,none,missing,,town;leisure,,
+PC-SH-969,Altar,Furniture,shared,church,furniture,normal,common,medium,none,none,missing,,town;leisure,,
+PC-SH-970,Vestry cupboard,Furniture,shared,church,furniture,normal,common,medium,openable,hiding spot,partial,Assets/Art/Global/Interactive/Classic/GI_Wardrobe_01.fbx,town;leisure,,a robe
+PC-SH-971,Church doors (double),"Doors, windows and building parts",shared,church,structure,normal,common,large,openable,noise,have,Assets/Art/Global/Kit/GK_Door_Double_01.fbx,town;leisure,,
+PC-SH-972,Pallet jack,Hand and power tools,shared,warehouse,tool,normal,common,medium,movable,noise,missing,,military-base;industrial,,a whine of wheels
+PC-SH-973,Shrink-wrapped pallets,"Boxes, crates and cases",shared,warehouse,container,normal,common,large,none,cover,missing,,military-base;industrial,,cover
+PC-SH-974,Metal drums (55 gal),"Containers, drums and tanks",shared,warehouse,container,normal,common,medium,movable,noise,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,military-base;industrial,,stand-in: the barrel stands in for a steel drum
+PC-SH-976,Shipping container (20 ft),"Boxes, crates and cases",shared,warehouse,container,normal,common,large,none,cover;hiding spot,missing,,military-base;industrial,,"a stack; stacked cover; a hiding place; stacked as cover, or one open and empty as a hiding place; merged here: PC-SH-952 (Shipping containers), PC-IN-029 (Shipping container (open, empty))"
+PC-SH-977,Tyre piles,Clutter and small items,shared,scrapyard,clutter,normal,common,large,none,cover,missing,,trailer-park;industrial,,
+PC-SH-978,Old appliance graveyard,Clutter and small items,shared,scrapyard,clutter,normal,common,large,none,cover,partial,Assets/Art/Global/Interactive/Damaged/GI_Fridge_Damaged_01.fbx,trailer-park;industrial,,Damaged style fridges exist
+PC-SH-979,Very personal item (purple or pink novelty),Oddities and gags,shared,bedroom,oddity,normal,rare,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,mature,"#267 owner decision: stylised and abstract (a simple capsule shape, faceted, shared palette; no anatomy, nothing realistic, never shown in use); the prompt and results line use a euphemism (""a very personal item. You decide not to ask.""), never a description; hidden in a bedside drawer or a shoebox under the bed; only in the pools when the host's Mature humour setting is on; last slice, after the Steam content survey and rating check"
+PC-SH-980,Gag ball (novelty),Oddities and gags,shared,bedroom,oddity,normal,rare,small,carryable,none,missing,,farm;trailer-park;suburb;town;cabin,mature,"#267 owner decision: stylised and abstract (a ball on a strap, faceted, shared palette; no anatomy, nothing realistic, never shown in use); the prompt and results line use a euphemism (""a very personal item. You decide not to ask.""), never a description; hidden in a bedside drawer or a shoebox under the bed; only in the pools when the host's Mature humour setting is on; last slice, after the Steam content survey and rating check"

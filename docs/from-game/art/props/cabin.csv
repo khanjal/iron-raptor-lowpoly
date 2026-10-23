@@ -1,0 +1,34 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-CB-001,Log cabin (single room and loft),"Doors, windows and building parts",cabin,cabin,structure,normal,common,large,none,hiding spot,partial,Assets/Art/Farm/Buildings/Farmhouse/,cabin,,the log skin of the farmhouse stands in; a cabin shell is missing
+PC-CB-002,Cabin porch with a swing,"Toys, play and fairground",cabin,cabin,structure,normal,common,medium,none,noise,missing,,cabin,,creaks
+PC-CB-003,Cabin stone chimney,"Doors, windows and building parts",cabin,cabin,structure,normal,common,large,none,none,partial,Assets/Art/Global/Kit/GK_Chimney_Barn_01.fbx,cabin,,stand-in: the barn-skin chimney kit piece stands in; no stone chimney
+PC-CB-004,Loft with a ladder,"Doors, windows and building parts",cabin,cabin,structure,normal,common,medium,none,noise,partial,Assets/Art/Global/Kit/GK_Ladder_01.fbx,cabin,,stand-in: the ladder only; the loft is a floor kit piece
+PC-CB-005,Wood stove with a pipe,Kitchen and appliances,cabin,cabin,appliance,low,common,medium,none,light;noise,have,Assets/Art/Global/Household/GH_WoodStove_01.fbx,cabin,,embers glow
+PC-CB-006,Hand pump at the sink,Buildings and structures,cabin,cabin,structure,low,uncommon,small,none,noise,missing,,cabin,,a squeal
+PC-CB-007,Enamelware pots and cups,Hand and power tools,cabin,cabin,tool,low,common,small,none,noise,partial,Assets/Art/Global/Household/GH_Pot_01.fbx;Assets/Art/Global/Household/GH_Mug_01.fbx,cabin,,a tin clatter
+PC-CB-008,Cast-iron skillet on a hook,Cookware and tableware,cabin,cabin,tool,low,common,small,none,noise,missing,,cabin,,a clang
+PC-CB-009,Quilt on the bunk,Soft furnishings,cabin,cabin,decor,low,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Blanket_01.fbx,cabin,,stand-in: the blanket; no quilt pattern
+PC-CB-010,Bunk beds,Beds and bedding,cabin,cabin,furniture,low,common,large,none,hiding spot,have,Assets/Art/Global/Household/GH_Bed_Bunk_01.fbx,cabin,,
+PC-CB-011,Bearskin rug (faux),Soft furnishings,cabin,cabin,decor,low,uncommon,medium,none,none,missing,,cabin,,the comic stare
+PC-CB-012,Antler chandelier,Lighting and fire,cabin,cabin,decor,low,uncommon,medium,none,light,missing,,cabin,,a lamp
+PC-CB-013,Animal pelts on a wall,Wall and surface decor,cabin,cabin,decor,low,rare,medium,none,none,missing,,cabin,,decor; non-gory
+PC-CB-014,"Gun rack (empty, decor)",Wall and surface decor,cabin,cabin,decor,low,uncommon,medium,none,none,missing,,cabin,,decor only: no weapons in the game
+PC-CB-015,Fishing rods and a net,Hand and power tools,cabin,cabin,tool,low,common,medium,none,none,missing,,cabin,,
+PC-CB-016,Snowshoes and skis on the wall,Wall and surface decor,cabin,cabin,decor,low,uncommon,medium,none,none,missing,,cabin,,
+PC-CB-017,Barometer and wall thermometer,Wall and surface decor,cabin,cabin,decor,low,uncommon,small,none,none,missing,,cabin,,an old dial
+PC-CB-018,Kerosene lamp on the table,Lighting and fire,cabin,cabin,decor,low,common,small,none,light,have,Assets/Art/Global/Decor/GD_KeroseneLamp_01.fbx,cabin,,
+PC-CB-019,Trail map on the wall,Wall and surface decor,cabin,cabin,decor,low,common,medium,none,objective candidate,missing,,cabin,,a story clue
+PC-CB-020,Guestbook on a stand,Clutter and small items,cabin,cabin,clutter,low,uncommon,small,none,objective candidate,missing,,cabin,,who has been here
+PC-CB-021,Woodpile under a lean-to,Buildings and structures,cabin,cabin,structure,normal,common,medium,none,cover,partial,Assets/Art/Global/Props/GT_FirewoodStack_01.fbx,cabin,,cover
+PC-CB-022,Axe and splitting block,Buildings and structures,cabin,cabin,structure,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_ChoppingBlock_01.fbx,cabin,,
+PC-CB-023,Outhouse (cabin),Buildings and structures,cabin,cabin,structure,low,common,medium,none,hiding spot,have,Assets/Art/Farm/Buildings/Outhouse/,cabin,,
+PC-CB-024,Root cellar,Buildings and structures,cabin,cabin,structure,low,uncommon,medium,none,hiding spot,missing,,cabin,,
+PC-CB-025,Solar panel and battery shed,Electronics,cabin,cabin,tech,high,uncommon,medium,none,none,missing,,cabin,,modern bit
+PC-CB-026,Generator shed,"Heating, cooling, water and power",cabin,cabin,structure,normal,common,medium,none,noise,partial,Assets/Art/Farm/Props/FM_Generator_01.fbx,cabin,,stand-in: the generator only; no shed
+PC-CB-028,Bird feeder on a post,Wall and surface decor,cabin,cabin,decor,normal,common,small,none,none,missing,,cabin,,
+PC-CB-029,Bear-resistant food box,"Boxes, crates and cases",cabin,cabin,container,normal,common,medium,openable,noise,missing,,cabin,,a bear
+PC-CB-030,Creaky floorboards,"Doors, windows and building parts",cabin,cabin,structure,normal,common,small,none,noise,missing,,cabin,,a noise per step
+PC-CB-031,Taxidermy fish on a plaque,Oddities and gags,cabin,cabin,oddity,normal,rare,small,none,noise,missing,,cabin,,the singing fish gag
+PC-CB-032,Rope hammock on the porch,Seating,cabin,cabin,furniture,normal,uncommon,large,none,noise,missing,,cabin,,
+PC-CB-033,Wood-burning sauna,Buildings and structures,cabin,cabin,structure,normal,rare,large,none,light,missing,,cabin,,a comic hideout
+PC-CB-034,Cabin dog (retriever),Animals and pets,cabin,cabin,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_DogRetriever_faceted_01.fbx,cabin,,
