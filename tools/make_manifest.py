@@ -1,6 +1,7 @@
 """Write site/manifest.json from the facts the Blender build left in out/meta/, the descriptions in tools/catalog.py and art/data/interactions.json.
 
     python tools/make_manifest.py
+    python tools/make_manifest.py --catalog-only    # no Blender: refresh names, tags, folded colour variants (paints) in the existing manifest
 
 Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Blender first (see README.md).
 
@@ -110,22 +111,44 @@ def variant_groups(assets):
     return groups
 
 
-def apply_paints(assets, paints, pal):
-    """Put the colour variants of art/data/paints.json on their base model: entry["paints"] = [{name, hex (for the chip), swap {swatch index: hex}}], the base's own
-    paint first with an empty swap. The models those paints used to be have no entry of their own, so they come out of every `variants` list."""
+def apply_paints(assets, paint_specs, entries):
+    """Put the colour variants of catalog.PAINTS on their base model: entry["paintable"] (its parts) and entry["paints"] (the presets, the model's own paint first),
+    and make the preset names searchable tags. The models those presets used to be have no entry of their own, so they come out of every `variants` list."""
     ids = {a["id"] for a in assets}
     for a in assets:
         a["variants"] = [v for v in a["variants"] if v in ids]
-        spec = paints.get(a["id"])
+        spec = paint_specs.get(a["id"])
         if not spec:
             continue
-        swatches = sorted({k for sw in spec["paints"].values() for k in sw}, key=int)
-        a["paints"] = [dict(name=spec["base"], hex=pal[int(swatches[0])], swap={})]
-        for name, sw in spec["paints"].items():
-            a["paints"].append(dict(name=name, hex=sw[swatches[0]] if swatches[0] in sw else pal[int(swatches[0])], swap=sw))
+        a["paintable"], a["paints"] = paints_tool.resolve(spec, entries)
+        a["tags"] = sorted(set(a["tags"]) | {re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-") for p in a["paints"]})
+
+
+def catalog_only():
+    """Bring site/manifest.json in line with tools/catalog.py (names, tags, which models exist, variants, paints) without the Blender facts: for a change of
+    description or of what is folded into a paint. Facts about a model (size, triangles, parts, clips) are kept as they are."""
+    path = ROOT / "site" / "manifest.json"
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    groups = variant_groups(catalog.ASSETS)
+    assets = []
+    for a in doc["assets"]:
+        row = catalog.ASSETS.get(a["id"])
+        if row is None:
+            continue
+        a.pop("paintable", None)
+        a.pop("paints", None)
+        a.update(name=row["name"], type=row["type"], tags=sorted(set(row["tags"])), variants=[v for v in groups.get(row["group"], []) if v != a["id"]] if row["group"] else [])
+        assets.append(a)
+    assets.sort(key=lambda x: (x["type"], x["id"]))
+    apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
+    doc["assets"] = assets
+    path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+    print("updated site/manifest.json from the catalog:", len(assets), "assets")
 
 
 def main():
+    if "--catalog-only" in sys.argv:
+        return catalog_only()
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
     groups = variant_groups(catalog.ASSETS)
@@ -139,7 +162,7 @@ def main():
         except ValueError as e:
             raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
-    apply_paints(assets, json.loads((ROOT / "art" / "data" / "paints.json").read_text(encoding="utf-8")), paints_tool.palette())
+    apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")

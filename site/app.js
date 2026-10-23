@@ -23,7 +23,7 @@ const TAG_GROUPS = [
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
-  assets: [], byId: new Map(), glow: [],
+  assets: [], byId: new Map(), was: new Map(), wantPaint: null, glow: [],
   q: '', category: '', tags: new Set(), features: new Set(),
   current: null, viewer: null, expanded: new Set(),
 };
@@ -44,6 +44,7 @@ async function init() {
   for (const a of state.assets) {
     a.haystack = [a.name, a.id, a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
     state.byId.set(a.id, a);
+    for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour keeps its old link
   }
   readUrlState();
   buildTree();
@@ -241,7 +242,8 @@ function open(id) {
 
 function syncFromHash() {
   const id = decodeURIComponent(location.hash.slice(1));
-  const a = state.byId.get(id);
+  let a = state.byId.get(id);
+  if (!a && state.was.has(id)) { const w = state.was.get(id); a = w.asset; state.wantPaint = w.paint; history.replaceState(null, '', location.pathname + location.search + '#' + a.id); }
   if (!a) { closeViewer(false); return; }
   showAsset(a);
 }
@@ -305,14 +307,34 @@ function fillDetails(a) {
   $('v-variants').hidden = vs.length === 0;
   $('v-variant-list').replaceChildren(...[a, ...vs].sort((x, y) => x.id.localeCompare(y.id)).map((v) =>
     el('button', { class: 'pill', type: 'button', 'aria-current': v.id === a.id ? 'true' : 'false', onclick: () => open(v.id) }, v.name)));
-  const paints = a.paints || [];
-  $('v-paints').hidden = paints.length === 0;
-  $('v-paint-list').replaceChildren(...paints.map((p, i) => el('button', { class: 'pill paint', type: 'button', 'aria-pressed': i === 0 ? 'true' : 'false', onclick: (e) => {
-    state.viewer.setPaint(p.swap);
-    for (const b of $('v-paint-list').children) b.setAttribute('aria-pressed', b === e.currentTarget ? 'true' : 'false');
-  } }, el('i', { style: 'background:' + p.hex }), p.name)));
   $('hint').hidden = false;
   $('hint').textContent = defaultHint();
+}
+
+// Colour: the model's presets as chips, and a colour box for every paintable part, so any part can be any colour. The viewer repaints a copy of the palette
+// image ({swatch index: '#RRGGBB'}); nothing about the mesh changes.
+function setupPaints(a) {
+  const paints = a.paints || [], parts = a.paintable || [];
+  $('v-paints').hidden = paints.length === 0;
+  if (!paints.length) return;
+  let current = {};
+  const chips = new Map(), inputs = new Map();
+  const press = (name) => { for (const [n, b] of chips) b.setAttribute('aria-pressed', n === name ? 'true' : 'false'); };
+  const apply = () => state.viewer.setPaint(current);
+  const choose = (p) => {
+    current = { ...p.swap };
+    for (const part of parts) inputs.get(part.swatch).value = (current[part.swatch] || part.hex).toLowerCase();
+    apply();
+    press(p.name);
+  };
+  for (const p of paints) chips.set(p.name, el('button', { class: 'pill paint', type: 'button', onclick: () => choose(p) }, el('i', { style: 'background:' + p.hex }), p.name));
+  for (const part of parts) {
+    inputs.set(part.swatch, el('input', { type: 'color', value: part.hex.toLowerCase(), 'aria-label': part.part + ' colour', oninput: (e) => { current[part.swatch] = e.target.value.toUpperCase(); apply(); press(null); } }));
+  }
+  $('v-paint-list').replaceChildren(...chips.values());
+  $('v-paint-parts').replaceChildren(...parts.map((part) => el('label', { class: 'paint-part' }, el('span', { text: parts.length > 1 ? part.part : 'Any colour' }), inputs.get(part.swatch))));
+  choose(paints.find((p) => p.name === state.wantPaint) || paints[0]);
+  state.wantPaint = null;
 }
 
 function fmt(n) { return n >= 10 ? n.toFixed(1) : n >= 1 ? n.toFixed(2) : n.toFixed(3); }
@@ -320,6 +342,7 @@ function fmt(n) { return n >= 10 ? n.toFixed(1) : n >= 1 ? n.toFixed(2) : n.toFi
 function setupControls(a, info) {
   const v = state.viewer;
   // moving parts
+  setupPaints(a); // the viewer has the model by now
   const roles = info.parts;
   $('v-parts').hidden = roles.length === 0;
   $('v-part-list').replaceChildren(...roles.map((r) => el('button', { class: 'pill', type: 'button', 'data-role': r, 'aria-pressed': 'false', onclick: () => v.togglePart(r) }, r)));

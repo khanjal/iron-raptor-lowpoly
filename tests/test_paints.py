@@ -1,53 +1,82 @@
-"""Colour variants as a palette swap: the swap works out right, a different shape is refused, and the manifest and checker accept the result."""
+"""Colour variants as a palette swap: the declared paints resolve, a different shape is refused, and the manifest and checker accept the result."""
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+import catalog  # noqa: E402
 import check_site  # noqa: E402
 import make_manifest as mm  # noqa: E402
 import paints  # noqa: E402
 
 MODELS = ROOT / "site" / "models"
+ENTRIES = paints.palette_entries()
 
 
 class Paints(unittest.TestCase):
-    def test_palette_has_the_swatches_the_record_uses(self):
-        pal = paints.palette()
-        self.assertGreater(len(pal), 100)
-        for base, spec in json.loads((ROOT / "art" / "data" / "paints.json").read_text()).items():
-            for sw in spec["paints"].values():
-                for k, v in sw.items():
-                    self.assertLess(int(k), len(pal))
-                    self.assertRegex(v, r"^#[0-9A-F]{6}$")
+    def test_every_declared_paint_resolves(self):
+        for base, spec in catalog.PAINTS.items():
+            self.assertIn(base, catalog.ASSETS)
+            parts, ps = paints.resolve(spec, ENTRIES)
+            self.assertGreaterEqual(len(ps), 2, base)
+            self.assertEqual(ps[0]["swap"], {})
+            self.assertEqual(len({p["name"] for p in ps}), len(ps), base)
+
+    def test_folded_models_are_not_models_any_more(self):
+        for base, spec in catalog.PAINTS.items():
+            for name, p in spec["presets"].items():
+                if p.get("was"):
+                    self.assertNotIn(p["was"], catalog.ASSETS, f"{base} {name}")
+                    self.assertFalse((MODELS / f"{p['was']}.glb").exists(), p["was"])
+
+    def test_declared_swaps_equal_what_the_glbs_say_while_they_exist(self):
+        self.assertEqual(paints.check(), 0)
 
     def test_a_model_differs_from_a_wreck_by_shape_not_paint(self):
         with self.assertRaises(ValueError):
             paints.derive(MODELS / "GV_Sedan_Blue_01.glb", MODELS / "GV_Sedan_Red_Damaged_01.glb", paints.palette())
 
-    def test_a_model_against_itself_needs_no_swap(self):
-        self.assertEqual(paints.derive(MODELS / "GV_Sedan_Blue_01.glb", MODELS / "GV_Sedan_Blue_01.glb", paints.palette()), {})
+    def test_unknown_swatch_part_or_colour_is_an_error(self):
+        with self.assertRaises(ValueError):
+            paints.resolve(dict(base="A", parts={"Body": "no_such_swatch"}, presets={}), ENTRIES)
+        with self.assertRaises(ValueError):
+            paints.resolve(dict(base="A", parts={"Body": "cloth_red"}, presets={"B": dict(set={"Roof": "#000000"})}), ENTRIES)
+        with self.assertRaises(ValueError):
+            paints.resolve(dict(base="A", parts={"Body": "cloth_red"}, presets={"B": dict(set={"Body": "purple-ish"})}), ENTRIES)
 
-    def test_manifest_lists_each_paint_once_on_the_base(self):
+    def test_a_part_swatch_is_not_shared_with_another_part(self):
+        for base, spec in catalog.PAINTS.items():
+            sw = list(spec["parts"].values())
+            self.assertEqual(len(set(sw)), len(sw), base)
+
+    def test_manifest_lists_the_paints_on_the_base(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text())
-        sedan = next(a for a in doc["assets"] if a["id"] == "GV_Sedan_Blue_01")
-        self.assertEqual([p["name"] for p in sedan["paints"]], ["Blue", "Red"])
-        self.assertEqual(sedan["paints"][0]["swap"], {})
-        self.assertFalse(any(a["id"] == "GV_Sedan_Red_01" for a in doc["assets"]))
+        apple = next(a for a in doc["assets"] if a["id"] == "FD_Apple_01")
+        self.assertEqual([p["name"] for p in apple["paints"]], ["Red", "Green", "Yellow", "Rotten"])
+        self.assertEqual([p["part"] for p in apple["paintable"]], ["Skin", "Leaf"])
+        self.assertIn("rotten", apple["tags"])
+        self.assertFalse(any(a["id"] == "FD_Apple_Green_01" for a in doc["assets"]))
 
-    def test_apply_paints_drops_variant_links_to_folded_models(self):
-        assets = [dict(id="A", variants=["B", "GONE"]), dict(id="B", variants=["A"])]
-        mm.apply_paints(assets, {"A": dict(base="One", paints={"Two": {"3": "#112233"}})}, ["#000000"] * 5)
+    def test_apply_paints_drops_variant_links_to_folded_models_and_adds_tags(self):
+        assets = [dict(id="A", variants=["B", "GONE"], tags=["x"]), dict(id="B", variants=["A"], tags=[])]
+        spec = dict(base="One", parts={"Body": "cloth_red"}, presets={"Two Tone": dict(set={"Body": "#112233"})})
+        mm.apply_paints(assets, {"A": spec}, ENTRIES)
         self.assertEqual(assets[0]["variants"], ["B"])
-        self.assertEqual([p["name"] for p in assets[0]["paints"]], ["One", "Two"])
+        self.assertEqual([p["name"] for p in assets[0]["paints"]], ["One", "Two Tone"])
+        self.assertEqual(assets[0]["tags"], ["one", "two-tone", "x"])
         self.assertNotIn("paints", assets[1])
 
     def test_checker_rejects_bad_paints(self):
         errs = []
-        check_site.check_paints(dict(paints=[dict(name="A", hex="#000000", swap={}), dict(name="A", hex="#000000", swap={"1": "#FFFFFF"})]), errs.append)
-        self.assertTrue(errs)
+        part = dict(part="Body", swatch=3, hex="#000000")
+        check_site.check_paints(dict(paintable=[part], paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"9": "#FFFFFF"})]), errs.append)
+        self.assertTrue(errs)          # swatch 9 is not a paintable part
+        errs.clear()
+        check_site.check_paints(dict(paintable=[part], paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"3": "#FFFFFF"})]), errs.append)
+        self.assertEqual(errs, [])
 
 
 if __name__ == "__main__":

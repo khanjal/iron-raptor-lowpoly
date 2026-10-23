@@ -30,21 +30,21 @@ BUILD = {
                       ids=["GD_TV_Flat_Modern_01", "GD_TableLamp_Retro_01", "GD_Clock_Wall_Retro_01"]),
     "decor": dict(script="decor.py", globals={"DECOR_LIST": ["PottedPlant", "NeonSign"]}, ids=["GD_PottedPlant_01", "GD_NeonSign_01"]),
     "food": dict(script="contents.py", globals={"CONTENT_LIST": ["Apple", "BreadLoaf", "Pie", "Hamburger"]},
-                 ids=["FD_Apple_01", "FD_Apple_Rotten_01", "FD_BreadLoaf_01", "FD_Pie_01", "FD_Hamburger_01"]),
+                 ids=["FD_Apple_01", "FD_BreadLoaf_01", "FD_Pie_01", "FD_Hamburger_01"]),
     "food_produce": dict(script="contents.py", globals={"CONTENT_LIST": ["Apple_Green", "Apple_Yellow", "BananaBunch", "Lemon", "Pear", "Grapes_Purple", "Grapes_Green", "Strawberry"]},
-                         ids=["FD_Apple_Green_01", "FD_Apple_Yellow_01", "FD_BananaBunch_01", "FD_BananaBunch_Rotten_01", "FD_Lemon_01", "FD_Pear_01",
-                              "FD_Grapes_Purple_01", "FD_Grapes_Green_01", "FD_Strawberry_01"]),
+                         ids=["FD_BananaBunch_01", "FD_Lemon_01", "FD_Pear_01",
+                              "FD_Grapes_Green_01", "FD_Strawberry_01"]),
     "farm": dict(script="props_farm.py", globals={"PROP_LIST": ["barrel", "wheelbarrow", "scarecrow", "hay_round", "doghouse"]},
                  ids=["GT_Barrel_01", "GT_Wheelbarrow_01", "FM_Scarecrow_01", "GT_HayBale_Round_01", "FM_DogHouse_01"]),
     "kit": dict(script="kit.py", globals={"KIT_LIST": ["Wall_Window"], "SKIN_LIST": ["Brick", "Clapboard", "Barn"]},
-                ids=["GK_Wall_Window_Brick_01", "GK_Wall_Window_Clapboard_01", "GK_Wall_Window_Barn_01"]),
+                ids=["GK_Wall_Window_Brick_01", "GK_Wall_Window_Barn_01"]),
     "kit_door": dict(script="kit.py", globals={"KIT_LIST": ["Door_Exterior"]}, ids=["GK_Door_Exterior_01"]),
     "veg": dict(script="vegetation.py", globals={"VEG_LIST": ["oak", "pine"]}, ids=["FM_TreeOak_01", "FM_TreePine_01"]),
-    "insects": dict(script="insects.py", globals={}, ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Monarch_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
+    "insects": dict(script="insects.py", globals={}, ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
     "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
     "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
-    "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Wood_01', 'GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
-    "office_furniture": dict(script="office.py", globals={"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, ids=['GO_Desk_Wood_01', 'GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']),
+    "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
+    "office_furniture": dict(script="office.py", globals={"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, ids=['GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']),
     "office_cubicle": dict(script="office.py", globals={"OFFICE_LIST": ["cubicle"]}, ids=['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']),
     "office_equipment": dict(script="office.py", globals={"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, ids=['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']),
     "people": dict(kind="people", clips=["Idle", "Walk", "Run", "Sit"],
@@ -61,12 +61,28 @@ BUILD = {
 # group (models in one group are variants of each other: the same model in another skin, style or colour).
 ASSETS = {}
 
-# Colour variants that are not models of their own: base id -> the base's colour name, and {paint name: the id of the GLB that was that colour}.
-# Only the base GLB is kept. The swap that turns it into each other paint is worked out once from the two GLBs (python tools/paints.py --write) and
-# lives in art/data/paints.json; the manifest lists the paints on the base and the viewer recolours the palette image (see tools/paints.py).
+# Colour variants that are not models of their own, per base model: `parts` are its paintable parts (a part = a palette swatch the model uses only for
+# that part), `presets` the named paints. A preset's `set` gives a swatch name or a #RRGGBB per part; `was` is the id of the GLB that used to be built for
+# it (tools/paints.py check compares the two while that GLB is around, and the viewer keeps old links to it working). Only the base is built and shipped:
+# the viewer recolours a copy of the palette image, and a person can paint any part any colour. See tools/paints.py.
 PAINTS = {
-    "GV_Sedan_Blue_01": dict(name="Blue", others={"Red": "GV_Sedan_Red_01"}),
-    "GV_Tractor_Green_01": dict(name="Green", others={"Red": "GV_Tractor_Red_01"}),
+    "GV_Sedan_Blue_01": dict(base="Blue", parts={"Body": "truck_blue"}, presets={
+        "Red": dict(was="GV_Sedan_Red_01", set={"Body": "cloth_red"}), "White": dict(set={"Body": "paint_white"}), "Tan": dict(set={"Body": "tan"}),
+        "Grey": dict(set={"Body": "fabric_grey"}), "Green": dict(set={"Body": "tractor_green"}), "Black": dict(set={"Body": "black"})}),
+    "GV_Tractor_Green_01": dict(base="Green", parts={"Body": "tractor_green"}, presets={
+        "Red": dict(was="GV_Tractor_Red_01", set={"Body": "cloth_red"}), "Orange": dict(set={"Body": "orange_cat"}),
+        "Blue": dict(set={"Body": "truck_blue"}), "Yellow": dict(set={"Body": "paint_yellow"})}),
+    "FD_Apple_01": dict(base="Red", parts={"Skin": "cloth_red", "Leaf": "plant_green"}, presets={
+        "Green": dict(was="FD_Apple_Green_01", set={"Skin": "#8FBF3A"}), "Yellow": dict(was="FD_Apple_Yellow_01", set={"Skin": "#E8D25A"}),
+        "Rotten": dict(was="FD_Apple_Rotten_01", set={"Skin": "#6F7F4A", "Leaf": "#6F7F4A"})}),
+    "FD_BananaBunch_01": dict(base="Fresh", parts={"Skin": "paint_yellow", "Stem": "banana_green"}, presets={
+        "Rotten": dict(was="FD_BananaBunch_Rotten_01", set={"Skin": "#7A5A44", "Stem": "#6F7F4A"})}),
+    "FD_Grapes_Green_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
+    "GN_Butterfly_Blue_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
+    "GO_Desk_Steel_01": dict(base="Steel", parts={"Body": "fabric_grey"}, presets={"Wood": dict(was="GO_Desk_Wood_01", set={"Body": "#6B4A2E"})}),
+    "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
+    "GS_BaseballBat_Metal_01": dict(base="Metal", parts={"Barrel": "truck_blue", "Grip": "rubber"}, presets={
+        "Wood": dict(was="GS_BaseballBat_Wood_01", set={"Barrel": "#C9A06A", "Grip": "#1B1B1E"})}),
 }
 
 
@@ -98,8 +114,7 @@ _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
 _a("GN_Firefly_01", "Firefly", "animals/insect/firefly", "wild night insect bug glow lightning-bug tiny")
 _a("GN_Honeybee_01", "Honeybee", "animals/insect/bee", "wild garden farm insect bug bee yellow flying tiny")
-_a("GN_Butterfly_Monarch_01", "Butterfly, monarch", "animals/insect/butterfly", "wild garden insect orange flying wings", "butterfly")
-_a("GN_Butterfly_Blue_01", "Butterfly, blue", "animals/insect/butterfly", "wild garden insect blue flying wings", "butterfly")
+_a("GN_Butterfly_Blue_01", "Butterfly", "animals/insect/butterfly", "wild garden insect blue flying wings")
 _a("GN_Moth_01", "Moth", "animals/insect/moth", "wild night insect grey flying wings")
 _a("GN_Dragonfly_01", "Dragonfly", "animals/insect/dragonfly", "wild pond insect teal flying wings")
 _a("GN_Ant_01", "Ant", "animals/insect/ant", "wild garden insect bug black tiny")
@@ -121,8 +136,7 @@ _a("GS_SoccerGoal_01", "Soccer goal", "sports/net/soccer-goal", "soccer football
 _a("GS_HockeyGoal_01", "Hockey goal", "sports/net/hockey-goal", "hockey goal net red new rink")
 _a("GS_TennisNet_01", "Tennis net", "sports/net/tennis-net", "tennis net posts new court")
 _a("GS_VolleyballNet_01", "Volleyball net", "sports/net/volleyball-net", "volleyball net posts new court beach")
-_a("GS_BaseballBat_Wood_01", "Baseball bat, wood", "sports/equipment/baseball-bat", "baseball bat wood new field", "baseball-bat")
-_a("GS_BaseballBat_Metal_01", "Baseball bat, metal", "sports/equipment/baseball-bat", "baseball bat metal blue new field", "baseball-bat")
+_a("GS_BaseballBat_Metal_01", "Baseball bat", "sports/equipment/baseball-bat", "baseball bat metal blue new field")
 _a("GS_BaseballGlove_01", "Baseball glove", "sports/equipment/baseball-glove", "baseball glove leather brown new field")
 _a("GS_HomePlate_01", "Home plate", "sports/equipment/home-plate", "baseball plate white new field diamond")
 _a("GS_BaseballBase_01", "Base", "sports/equipment/base", "baseball base white new field diamond")
@@ -135,8 +149,7 @@ _a("GS_Dumbbell_01", "Dumbbell", "sports/equipment/dumbbell", "gym weights dumbb
 _a("GS_TrainingCone_01", "Training cone", "sports/equipment/cone", "cone orange training new field")
 _a("GS_Frisbee_01", "Frisbee", "sports/equipment/frisbee", "frisbee disc blue new park")
 # office: desks, a chair, the cubicle kit (1.5 m module), equipment
-_a("GO_Desk_Wood_01", "Desk, wood", "furniture/office/desk", "office wood laminate new drawers pedestal", "office-desk")
-_a("GO_Desk_Steel_01", "Desk, steel", "furniture/office/desk", "office steel grey black new drawers pedestal retro", "office-desk")
+_a("GO_Desk_Steel_01", "Desk", "furniture/office/desk", "office steel grey black new drawers pedestal retro")
 _a("GO_Desk_L_01", "Desk, corner", "furniture/office/corner-desk", "office modern white steel new")
 _a("GO_ConferenceTable_01", "Conference table", "furniture/office/conference-table", "office meeting large laminate new")
 _a("GO_Chair_Office_01", "Office chair", "furniture/office/chair", "office swivel casters seat new")
@@ -187,16 +200,11 @@ _a("GD_NeonSign_01", "Neon sign", "decor/lighting/neon-sign", "retro diner glow 
 _a("GD_Clock_Wall_Retro_01", "Wall clock, retro", "decor/wall/clock", "retro wall time new")
 _a("GD_PottedPlant_01", "Potted plant", "decor/plants/potted-plant", "plant green terracotta new")
 # food
-_a("FD_Apple_01", "Apple, red", "food/produce/apple", "fruit red fresh", "apple")
-_a("FD_Apple_Green_01", "Apple, green", "food/produce/apple", "fruit green fresh", "apple")
-_a("FD_Apple_Yellow_01", "Apple, golden", "food/produce/apple", "fruit yellow golden fresh", "apple")
-_a("FD_Apple_Rotten_01", "Apple, rotten", "food/produce/apple", "fruit rotten mould spoiled", "apple")
-_a("FD_BananaBunch_01", "Bananas, bunch", "food/produce/banana", "fruit yellow bunch hand fresh", "banana-bunch")
-_a("FD_BananaBunch_Rotten_01", "Bananas, rotten bunch", "food/produce/banana", "fruit brown bunch hand rotten spoiled", "banana-bunch")
+_a("FD_Apple_01", "Apple", "food/produce/apple", "fruit red fresh")
+_a("FD_BananaBunch_01", "Bananas, bunch", "food/produce/banana", "fruit yellow bunch hand fresh")
 _a("FD_Lemon_01", "Lemon", "food/produce/lemon", "fruit yellow citrus fresh")
 _a("FD_Pear_01", "Pear", "food/produce/pear", "fruit green fresh")
-_a("FD_Grapes_Purple_01", "Grapes, purple", "food/produce/grapes", "fruit purple bunch fresh", "grapes")
-_a("FD_Grapes_Green_01", "Grapes, green", "food/produce/grapes", "fruit green bunch fresh", "grapes")
+_a("FD_Grapes_Green_01", "Grapes", "food/produce/grapes", "fruit green bunch fresh")
 _a("FD_Strawberry_01", "Strawberry", "food/produce/strawberry", "fruit red berry fresh")
 _a("FD_BreadLoaf_01", "Loaf of bread", "food/bakery/bread", "baked fresh brown")
 _a("FD_Pie_01", "Pie", "food/bakery/pie", "baked dessert fresh")
@@ -208,9 +216,8 @@ _a("GT_HayBale_Round_01", "Round hay bale", "farm/props/hay-bale", "rural hay ye
 _a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw weathered")
 _a("FM_DogHouse_01", "Doghouse", "farm/structures/doghouse", "rural wood new")
 # building kit and nature
-_a("GK_Wall_Window_Clapboard_01", "Window wall, clapboard", "building/kit/wall-window", "rural white siding new modular", "wall-window")
 _a("GK_Wall_Window_Brick_01", "Window wall, brick", "building/kit/wall-window", "urban brick red new modular", "wall-window")
-_a("GK_Wall_Window_Barn_01", "Window wall, barn", "building/kit/wall-window", "rural barn red new modular", "wall-window")
+_a("GK_Wall_Window_Barn_01", "Window wall, siding", "building/kit/wall-window", "rural barn red new modular", "wall-window")
 _a("GK_Door_Exterior_01", "Exterior door", "building/kit/door", "classic wood new modular")
 _a("FM_TreeOak_01", "Oak tree", "nature/trees/oak", "rural tree green plant big")
 _a("FM_TreePine_01", "Pine tree", "nature/trees/pine", "rural tree green plant conifer")

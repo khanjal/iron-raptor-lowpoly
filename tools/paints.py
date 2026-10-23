@@ -1,15 +1,22 @@
 """Colour variants as a recolour instead of a second model (standard library only).
 
 Every model's colours are swatches of one 16 x 16 palette image (swatch i = column i % 16, row i // 16, every UV points at a swatch's middle), so two
-GLBs that are the same shape in another paint differ only in which swatch some vertices point at. This works out that difference as a swap
-{swatch index: new colour} that the viewer (or the game) applies to a copy of the palette image, with no second mesh.
+GLBs that are the same shape in another paint differ only in which swatch some vertices point at. A paint is therefore a swap {swatch index: '#RRGGBB'}
+that the viewer (or the game) applies to a copy of the palette image: no second mesh, no second file, and any colour at all (a purple apple) is just
+another swap.
 
-    python tools/paints.py GV_Sedan_Blue_01 GV_Sedan_Red_01     # print the swap that turns the first into the second, or say why it is not a pure recolour
-    python tools/paints.py --write                              # work out every paint in tools/catalog.PAINTS from the GLBs and write art/data/paints.json
+tools/catalog.PAINTS declares, per model, its paintable parts (a part = a palette swatch the model uses only for that part) and its presets:
 
-art/data/paints.json is the record the manifest is built from: it is what lets the second GLB be left out.
+    "FD_Apple_01": dict(base="Red", parts={"Skin": "cloth_red"},
+                        presets={"Green": dict(was="FD_Apple_Green_01", set={"Skin": "#8FBF3A"})})
+
+`was` is the id of the model that used to be built for the preset (old links keep working); `set` gives a swatch name or a hex per part.
+
+    python tools/paints.py check      # every preset with a `was` whose GLB is still around must equal the swap worked out from the two GLBs
+    python tools/paints.py A B        # print the swap that turns GLB A into GLB B, or say why it is not a pure recolour
 """
 import json
+import re
 import struct
 import sys
 from array import array
@@ -20,12 +27,56 @@ sys.path.insert(0, str(ROOT / "tools"))
 GRID = 16
 
 
-def palette():
-    """swatch index -> '#RRGGBB', read from art/scripts/common.py without importing Blender."""
-    import re
+def palette_entries():
+    """[(name, '#RRGGBB')] by swatch index, read from art/scripts/common.py without importing Blender."""
     text = (ROOT / "art" / "scripts" / "common.py").read_text(encoding="utf-8")
     body = text[text.index("PALETTE = ["):text.index("GRID = 16")]
-    return ["#" + m.group(2).upper() for m in re.finditer(r'\("([a-z0-9_]+)",\s*"([0-9A-Fa-f]{6})"\)', body)]
+    return [(m.group(1), "#" + m.group(2).upper()) for m in re.finditer(r'\("([a-z0-9_]+)",\s*"([0-9A-Fa-f]{6})"\)', body)]
+
+
+def palette():
+    """swatch index -> '#RRGGBB'."""
+    return [h for _, h in palette_entries()]
+
+
+HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
+
+
+def colour(value, entries):
+    """'#rrggbb' or a swatch name -> '#RRGGBB'."""
+    if HEX.match(value):
+        return value.upper()
+    for name, h in entries:
+        if name == value:
+            return h
+    raise ValueError(f"{value!r} is neither a swatch name nor a #RRGGBB colour")
+
+
+def resolve(spec, entries):
+    """One catalog.PAINTS entry -> (paintable, paints) as the manifest stores them.
+    paintable: [{part, swatch, hex}]; paints: [{name, hex (the chip), swap {swatch index: hex}, was?}], the model's own paint first with an empty swap."""
+    names = [n for n, _ in entries]
+    parts = []
+    for part, swatch in spec["parts"].items():
+        if swatch not in names:
+            raise ValueError(f"part {part}: no swatch named {swatch}")
+        parts.append(dict(part=part, swatch=names.index(swatch), hex=entries[names.index(swatch)][1]))
+    out = [dict(name=spec["base"], hex=parts[0]["hex"], swap={})]
+    for name, p in spec["presets"].items():
+        swap = {}
+        for part, value in p["set"].items():
+            row = next((x for x in parts if x["part"] == part), None)
+            if row is None:
+                raise ValueError(f"preset {name}: {part} is not a part of the model")
+            swap[str(row["swatch"])] = colour(value, entries)
+        if not swap:
+            raise ValueError(f"preset {name} sets nothing")
+        chip = swap.get(str(parts[0]["swatch"]), parts[0]["hex"])
+        entry = dict(name=name, hex=chip, swap=swap)
+        if p.get("was"):
+            entry["was"] = p["was"]
+        out.append(entry)
+    return parts, out
 
 
 def read_vertices(path):
@@ -78,26 +129,36 @@ def derive(path_a, path_b, pal):
     return {str(a): pal[b] for a, b in sorted(swap.items())}
 
 
-def main(argv):
-    pal = palette()
+def check():
+    """Compare every declared preset that still has its old GLB with the swap worked out from the GLBs. Returns the number of mismatches."""
+    import catalog
+    entries = palette_entries()
+    pal = [h for _, h in entries]
     models = ROOT / "site" / "models"
-    if argv and argv[0] == "--write":
-        import catalog
-        out = {}
-        for base, spec in catalog.PAINTS.items():
-            entry = dict(base=spec["name"], paints={})
-            for name, other in spec["others"].items():
-                swap = derive(models / f"{base}.glb", models / f"{other}.glb", pal)
-                entry["paints"][name] = swap
-            out[base] = entry
-            print(base, {n: s for n, s in entry["paints"].items()})
-        (ROOT / "art" / "data" / "paints.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")
-        return 0
+    bad = checked = 0
+    for base, spec in catalog.PAINTS.items():
+        _, paints = resolve(spec, entries)
+        for p in paints[1:]:
+            if not p.get("was") or not (models / f"{p['was']}.glb").exists() or not (models / f"{base}.glb").exists():
+                continue
+            checked += 1
+            got = derive(models / f"{base}.glb", models / f"{p['was']}.glb", pal)
+            if got != p["swap"]:
+                bad += 1
+                print(f"{base} {p['name']}: declared {p['swap']}, GLBs say {got}")
+    print(f"{checked} presets checked against their GLBs, {bad} differ")
+    return bad
+
+
+def main(argv):
+    models = ROOT / "site" / "models"
+    if argv == ["check"]:
+        return 1 if check() else 0
     if len(argv) != 2:
         print(__doc__)
         return 2
     try:
-        print(json.dumps(derive(models / f"{argv[0]}.glb", models / f"{argv[1]}.glb", pal)))
+        print(json.dumps(derive(models / f"{argv[0]}.glb", models / f"{argv[1]}.glb", palette())))
     except ValueError as e:
         print("no:", e)
         return 1
