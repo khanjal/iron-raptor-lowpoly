@@ -1,0 +1,95 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Microwave_01",
+ "space": "blender",
+ "parts": {
+  "Door": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.25,
+    -0.2025,
+    0.15
+   ],
+   "limit": -105,
+   "rest": -0.0
+  }
+ },
+ "slots": {
+  "Inside": {
+   "position": [
+    -0.05,
+    0,
+    0.04
+   ],
+   "size": [
+    0.3,
+    0.28,
+    0.2
+   ],
+   "part": null
+  }
+ },
+ "emitters": {
+  "Light_Inside": {
+   "kind": "light",
+   "position": [
+    -0.05,
+    -0.0506,
+    0.15
+   ],
+   "colour": "warm",
+   "range": 1.0,
+   "intensity": 1.0,
+   "flicker": false,
+   "when": "on",
+   "shape": "point"
+  },
+  "Sound_Hum": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.0105,
+    0.15
+   ],
+   "event": "microwave",
+   "loop": true,
+   "loudness": 0.3,
+   "when": "on"
+  },
+  "Sound_Ding": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.0105,
+    0.15
+   ],
+   "event": "ding",
+   "loop": false,
+   "loudness": 0.35,
+   "when": "trigger"
+  },
+  "Switch_Start": {
+   "kind": "switch",
+   "position": [
+    0.175,
+    -0.211,
+    0.15
+   ],
+   "controls": [
+    "Inside",
+    "Hum",
+    "Ding"
+   ],
+   "action": "press",
+   "by": [
+    "human",
+    "alien"
+   ]
+  }
+ },
+ "traits": [
+  "noisy",
+  "power"
+ ]
+}

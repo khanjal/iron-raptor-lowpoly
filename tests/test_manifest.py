@@ -96,6 +96,34 @@ class Entries(unittest.TestCase):
         self.assertEqual(g, {"g": ["a", "b"]})
 
 
+class Interactions(unittest.TestCase):
+    cat = dict(name="X", type="furniture/x", tags=["x"], group=None)
+    meta = dict(rigged=False, triangles=10, bbox_min=[0, 0, 0], bbox_max=[1, 1, 1], part_nodes={}, clips=[])
+    lamp = dict(emitters={"Light_Bulb": dict(kind="light", position=[0, 0, 1]), "Light_Dead": dict(kind="light", working=False),
+                          "Sound_Buzz": dict(kind="sound")})
+
+    def test_a_model_with_an_entry_points_at_its_file_and_counts_working_lights(self):
+        e = mm.build_entry("X", self.cat, self.meta, self.lamp, {})
+        self.assertEqual((e["interactions"], e["lights"]), ("models/X.interactions.json", 1))
+
+    def test_a_model_without_an_entry_has_neither_field(self):
+        e = mm.build_entry("X", self.cat, self.meta, None, {})
+        self.assertNotIn("interactions", e)
+        self.assertNotIn("lights", e)
+
+    def test_sidecars_are_written_and_stale_ones_removed(self):
+        import json, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "GONE.interactions.json").write_text("{}")
+            have = mm.write_sidecars(["X", "Y"], {"X": self.lamp}, d)
+            self.assertEqual(have, {"X"})
+            self.assertEqual([p.name for p in d.iterdir()], ["X.interactions.json"])
+            doc = json.loads((d / "X.interactions.json").read_text(encoding="utf-8"))
+            self.assertEqual((doc["id"], doc["space"]), ("X", "blender"))
+            self.assertIn("Light_Bulb", doc["emitters"])
+
+
 class Palette(unittest.TestCase):
     def test_glow_swatches_come_from_the_palette(self):
         glow = {g["name"]: g for g in mm.glow_swatches()}

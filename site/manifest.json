@@ -584,7 +584,9 @@
     "GI_Fridge_Modern_01",
     "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GI_Fridge_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GI_Fridge_Damaged_01",
@@ -644,7 +646,8 @@
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
     "GI_Fridge_Retro_01"
-   ]
+   ],
+   "interactions": "models/GI_Fridge_Damaged_01.interactions.json"
   },
   {
    "id": "GI_Fridge_Modern_01",
@@ -704,7 +707,9 @@
     "GI_Fridge_01",
     "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GI_Fridge_Modern_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GI_Fridge_Retro_01",
@@ -765,7 +770,9 @@
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
     "GI_Fridge_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GI_Fridge_Retro_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GI_Microwave_01",
@@ -804,7 +811,9 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Microwave_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GO_Copier_01",
@@ -892,7 +901,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_Copier_01.interactions.json"
   },
   {
    "id": "GO_Printer_Desktop_01",
@@ -949,7 +959,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_Printer_Desktop_01.interactions.json"
   },
   {
    "id": "GO_Shredder_01",
@@ -990,7 +1001,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_Shredder_01.interactions.json"
   },
   {
    "id": "GO_WaterCooler_01",
@@ -1032,7 +1044,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_WaterCooler_01.interactions.json"
   },
   {
    "id": "GK_Door_Exterior_01",
@@ -1217,7 +1230,9 @@
    "thumb": "thumbs/GD_TV_Flat_Modern_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GD_TV_Flat_Modern_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GD_TableLamp_Retro_01",
@@ -1241,7 +1256,9 @@
    "thumb": "thumbs/GD_TableLamp_Retro_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GD_TableLamp_Retro_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GD_NeonSign_01",
@@ -1268,7 +1285,9 @@
    "thumb": "thumbs/GD_NeonSign_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GD_NeonSign_01.interactions.json",
+   "lights": 1
   },
   {
    "id": "GD_PottedPlant_01",
@@ -1467,7 +1486,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Mailbox_01.interactions.json"
   },
   {
    "id": "GI_Toolbox_01",
@@ -1509,7 +1529,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Toolbox_01.interactions.json"
   },
   {
    "id": "GT_Wheelbarrow_01",
@@ -1954,7 +1975,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_Cubicle_OverheadBin_01.interactions.json"
   },
   {
    "id": "GO_Cubicle_Panel_Glass_01",
@@ -2244,7 +2266,8 @@
    "clips": [],
    "variants": [
     "GO_Desk_Wood_01"
-   ]
+   ],
+   "interactions": "models/GO_Desk_Steel_01.interactions.json"
   },
   {
    "id": "GO_Desk_Wood_01",
@@ -2318,7 +2341,8 @@
    "clips": [],
    "variants": [
     "GO_Desk_Steel_01"
-   ]
+   ],
+   "interactions": "models/GO_Desk_Wood_01.interactions.json"
   },
   {
    "id": "GO_FilingCabinet_01",
@@ -2405,7 +2429,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GO_FilingCabinet_01.interactions.json"
   },
   {
    "id": "GO_Wastebasket_01",
@@ -2624,7 +2649,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Chest_01.interactions.json"
   },
   {
    "id": "GI_Dresser_01",
@@ -2695,7 +2721,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Dresser_01.interactions.json"
   },
   {
    "id": "GI_Locker_01",
@@ -2736,7 +2763,8 @@
     }
    },
    "clips": [],
-   "variants": []
+   "variants": [],
+   "interactions": "models/GI_Locker_01.interactions.json"
   },
   {
    "id": "GI_Wardrobe_01",
@@ -2793,7 +2821,8 @@
    "clips": [],
    "variants": [
     "GI_Wardrobe_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GI_Wardrobe_01.interactions.json"
   },
   {
    "id": "GI_Wardrobe_Damaged_01",
@@ -2850,7 +2879,8 @@
    "clips": [],
    "variants": [
     "GI_Wardrobe_01"
-   ]
+   ],
+   "interactions": "models/GI_Wardrobe_Damaged_01.interactions.json"
   },
   {
    "id": "FM_TreeOak_01",

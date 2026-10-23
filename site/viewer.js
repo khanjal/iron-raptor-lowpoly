@@ -6,6 +6,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const GRID = 16; // the palette is a 16 x 16 grid of flat swatches (art/scripts/common.py)
 const loader = new GLTFLoader();
+// emitter colour names (art/scripts/emitters.py) -> light colours
+const LIGHT_COLOURS = { warm: 0xffc97a, cool: 0xcfe4ff, flame: 0xff9a3c, red: 0xff3b30, green: 0x4cff7a, pink: 0xff6fb5 };
 
 export class Viewer {
   constructor(canvas, { glow = [], transparent = true } = {}) {
@@ -20,12 +22,17 @@ export class Viewer {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(35, 1, 0.01, 2000);
     // soft light: a sky/ground hemisphere does most of the work, so flat faces read as their palette colour; a key and a fill give the facets an edge
-    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8478, 1.55));
+    const sky = new THREE.HemisphereLight(0xffffff, 0x8a8478, 1.55);
+    this.scene.add(sky);
     const key = new THREE.DirectionalLight(0xfff4e6, 1.35);
     key.position.set(3, 5, 4);
     const fill = new THREE.DirectionalLight(0xdce8ff, 0.55);
     fill.position.set(-4, 2, -3);
     this.scene.add(key, fill);
+    this.ambient = [[sky, 1.55], [key, 1.35], [fill, 0.55]]; // [light, normal intensity]: dimmed while the model's own lights are on
+
+    this.lights = []; // {light, base, flicker, when, phase}: the model's own lights (its interactions file)
+    this.lightsOn = true;
 
     this.controls = new OrbitControls(this.camera, canvas);
     this.controls.enableDamping = true;
@@ -73,10 +80,13 @@ export class Viewer {
     this.scene.add(root);
     this._materials(root, asset);
     this._parts(root, asset);
+    await this._lights(root, asset, token);
+    if (token !== this._token) return null;
+    this._applyLights(); // (also puts the room light back after a model that dimmed it)
     this._clips(gltf, asset);
     this._frameModel(asset);
     this._groundShadow(asset);
-    return { clips: Object.keys(this.actions), parts: Object.keys(this.parts) };
+    return { clips: Object.keys(this.actions), parts: Object.keys(this.parts), lights: this.lights.length };
   }
 
   _clear() {
@@ -84,6 +94,7 @@ export class Viewer {
     this.actions = {};
     this.clip = null;
     this.parts = {};
+    this.lights = [];
     this.hover = null;
     if (this.shadow) { this.scene.remove(this.shadow); this.shadow.material.map.dispose(); this.shadow.material.dispose(); this.shadow.geometry.dispose(); this.shadow = null; }
     if (this.root) {
@@ -152,6 +163,39 @@ export class Viewer {
     return tex;
   }
 
+  // ---- lights ----------------------------------------------------------------------------------------------------------------------------
+  // The model's own lights come from its interactions file (models/<id>.interactions.json, positions in Blender space: glTF is (x, z, -y)). A light that is
+  // `when: "on"` or "always" shines, a "door_open" one (the fridge) when a part is open, a one-off ("trigger") and a broken one (working: false) never.
+  async _lights(root, asset, token) {
+    if (!asset.interactions) return;
+    let doc;
+    try { doc = await (await fetch(asset.interactions)).json(); } catch (e) { console.warn('no interactions file', e); return; }
+    if (token !== this._token) return;
+    const size = Math.max(0.15, ...asset.size);
+    for (const e of Object.values(doc.emitters || {})) {
+      if (e.kind !== 'light' || e.working === false || e.when === 'trigger') continue;
+      const colour = LIGHT_COLOURS[e.colour] || LIGHT_COLOURS.warm;
+      const spot = e.shape === 'spot';
+      const base = 3.2 * size * size * (e.intensity || 1);
+      const light = spot ? new THREE.SpotLight(colour, base * 2, e.range, 0.9, 0.55, 2) : new THREE.PointLight(colour, base, e.range, 2);
+      const [x, y, z] = e.position;
+      light.position.set(x, z, -y);
+      if (spot) { light.target.position.set(x, z - 1, -y); root.add(light.target); }
+      root.add(light);
+      this.lights.push({ light, base: light.intensity, flicker: !!e.flicker, when: e.when || 'on', phase: Math.random() * 10 });
+    }
+  }
+
+  setLights(on) { this.lightsOn = on; this._applyLights(); }
+
+  // Lights on: the room gets dim enough for them to show. Lights off: back to the even light the palette colours are judged in.
+  _applyLights() {
+    const dim = this.lightsOn && this.lights.length ? 0.28 : 1;
+    for (const [l, v] of this.ambient) l.intensity = v * dim;
+    const open = Object.values(this.parts).some((p) => p.target > 0.5);
+    for (const l of this.lights) l.light.visible = this.lightsOn && (l.when !== 'door_open' || open);
+  }
+
   // ---- moving parts ----------------------------------------------------------------------------------------------------------------------
   _parts(root, asset) {
     const defs = asset.parts || {};
@@ -192,11 +236,13 @@ export class Viewer {
     if (!st) return;
     st.target = st.target > 0.5 ? 0 : 1;
     this.onPartsChanged(this.partStates());
+    this._applyLights();
   }
 
   setAllParts(open) {
     for (const st of Object.values(this.parts)) st.target = open ? 1 : 0;
     this.onPartsChanged(this.partStates());
+    this._applyLights();
   }
 
   partStates() {
@@ -332,6 +378,10 @@ export class Viewer {
         st.s = st.s < st.target ? Math.min(st.target, st.s + step) : Math.max(st.target, st.s - step);
         this._applyPart(st);
       }
+    }
+    if (this.lights.length) {
+      const t = performance.now() / 1000;
+      for (const l of this.lights) if (l.flicker) l.light.intensity = l.base * (0.8 + 0.2 * Math.sin(t * 23 + l.phase) * Math.sin(t * 7.3 + l.phase * 2));
     }
     if (this._hoverPending) { this._setHover(this._partAt(this._hoverPending)); this._hoverPending = null; }
     this.controls.update();

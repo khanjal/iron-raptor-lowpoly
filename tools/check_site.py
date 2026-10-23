@@ -8,6 +8,7 @@ What it checks:
   against the GLB   the credit line is in asset.copyright (tools/stamp_glb.py); the triangle count equals the manifest's; `rigged` matches the GLB having a skin; the clip names equal the GLB's animation names;
              every `parts` entry names a node that exists in the GLB, and the node sits at the part's pivot (the axis conversion
              Blender -> glTF) plus `rest` along the axis for a slide
+  interactions  an entry's `interactions` file exists, is the model's own and agrees with `parts` and `lights`
   variants   name existing ids, and are symmetric
   page       index.html: every script, stylesheet and import-map target exists; every id app.js looks up exists in index.html; app.js imports a file that exists
 """
@@ -103,6 +104,8 @@ def check_entry(a, site, errors):
         if "rest" not in p:
             err(f"part {role}: rest missing")
 
+    if "interactions" in a:
+        check_interactions(a, site, err)
     glb, thumb = site / a["glb"], site / a["thumb"]
     if not glb.is_file():
         err(f"{a['glb']} does not exist")
@@ -116,6 +119,26 @@ def check_entry(a, site, errors):
         err(f"{a['thumb']} does not exist")
     elif png_size(thumb) != (256, 256):
         err(f"{a['thumb']} is not a 256 x 256 PNG (got {png_size(thumb)})")
+
+
+def check_interactions(a, site, err):
+    """The model's own interactions file: it exists, parses, is this model's, and lists the moving parts the manifest lists."""
+    rel = a["interactions"]
+    if not isinstance(rel, str) or not (site / rel).is_file():
+        err(f"{rel} does not exist")
+        return
+    try:
+        doc = json.loads((site / rel).read_text(encoding="utf-8"))
+    except ValueError as e:
+        err(f"{rel}: bad JSON ({e})")
+        return
+    if doc.get("id") != a["id"]:
+        err(f"{rel}: id is {doc.get('id')!r}")
+    if sorted((doc.get("parts") or {})) != sorted(a["parts"]):
+        err(f"{rel}: parts {sorted(doc.get('parts') or {})} differ from the manifest's {sorted(a['parts'])}")
+    lights = sum(1 for e in (doc.get("emitters") or {}).values() if e.get("kind") == "light" and e.get("working", True))
+    if lights != a.get("lights", 0):
+        err(f"{rel} has {lights} working lights, the manifest says {a.get('lights', 0)}")
 
 
 def check_against_glb(a, doc, err):

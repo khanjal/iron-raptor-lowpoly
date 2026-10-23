@@ -3,7 +3,7 @@
     python tools/make_release_zips.py            # writes dist/lowpoly-assets-glb-all.zip, dist/lowpoly-assets-glb-<category>.zip ...
     python tools/make_release_zips.py OUTDIR
 
-Each zip holds `<id>.glb` files at its top level, plus CREDIT.txt (how to credit under CC BY 4.0) and LICENSE-MODELS. Which models go into which zip
+Each zip holds `<id>.glb` files at its top level (and `<id>.interactions.json` next to the ones that have moving parts, lights, sounds or switches), plus CREDIT.txt (how to credit under CC BY 4.0) and LICENSE-MODELS. Which models go into which zip
 comes from site/manifest.json (the first part of `type`). Only GLB: the FBX files are not committed, so they cannot be zipped without Blender.
 """
 
@@ -36,6 +36,8 @@ def write_zip(path, assets, site, root):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         for a in sorted(assets, key=lambda a: a["id"]):
             z.write(site / a["glb"], f"{a['id']}.glb")
+            if a.get("interactions"):
+                z.write(site / a["interactions"], Path(a["interactions"]).name)
         z.writestr("CREDIT.txt", CREDIT)
         z.write(root / "LICENSE-MODELS", "LICENSE-MODELS")
 

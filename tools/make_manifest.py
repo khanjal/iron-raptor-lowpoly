@@ -50,6 +50,32 @@ def size_of(meta):
     return [round(hi[0] - lo[0], 3), round(hi[2] - lo[2], 3), round(hi[1] - lo[1], 3)]
 
 
+SIDECAR_ABOUT = ("What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. "
+                 "Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). "
+                 "Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.")
+
+
+def sidecar_name(aid):
+    return f"{aid}.interactions.json"
+
+
+def write_sidecars(assets, inter, models):
+    """Write models/<id>.interactions.json for every model that has an entry in interactions.json, and remove the ones no model has any more.
+    Returns the set of ids that got one."""
+    have = set()
+    for aid in assets:
+        entry = inter.get(aid)
+        if not entry:
+            continue
+        doc = dict(about=SIDECAR_ABOUT, id=aid, space="blender", **entry)
+        (models / sidecar_name(aid)).write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+        have.add(aid)
+    for old in models.glob("*.interactions.json"):
+        if old.name[:-len(".interactions.json")] not in have:
+            old.unlink()
+    return have
+
+
 def build_entry(aid, a, meta, inter, groups):
     """The manifest entry of one model: a = its catalog row, meta = out/meta/<id>.json, inter = its entry in interactions.json, groups = group -> ids."""
     parts = {}
@@ -60,13 +86,19 @@ def build_entry(aid, a, meta, inter, groups):
     for role in meta["part_nodes"]:
         if role not in parts:
             raise ValueError(f"{aid}: node {role} is a child mesh but interactions.json has no part for it")
-    return dict(
+    entry = dict(
         id=aid, name=a["name"], type=a["type"], tags=sorted(set(a["tags"])),
         rigged=meta["rigged"], interactive=bool(parts), triangles=meta["triangles"], size=size_of(meta),
         glb=f"models/{aid}.glb", thumb=f"thumbs/{aid}.png",
         parts=parts, clips=list(meta["clips"]),
         variants=[v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
     )
+    if inter:
+        entry["interactions"] = f"models/{sidecar_name(aid)}"   # the model's own file: parts, slots, emitters, traits
+        lights = sum(1 for e in (inter.get("emitters") or {}).values() if e.get("kind") == "light" and e.get("working", True))
+        if lights:
+            entry["lights"] = lights
+    return entry
 
 
 def variant_groups(assets):
@@ -91,6 +123,7 @@ def main():
         except ValueError as e:
             raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
+    write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
