@@ -140,4 +140,4 @@ Besides the mesh, an FBX can carry **empties** that mark places, and `art/data/i
 
 ## Licence
 
-Not chosen yet (see NOTES.md). Until a licence file is added, nothing here is licensed for reuse. The scripts are meant to carry a code licence (MIT is the candidate) and the models a content licence (CC0 or CC-BY); the humanoid skeleton data in `art/data/ual_skeleton.json` is from Quaternius's Universal Animation Library, CC0. The vendored three.js under `site/vendor/three` is MIT (its licence file is next to it).
+**Code:** MIT ([LICENSE](LICENSE)). **Models and data:** CC BY 4.0 ([LICENSE-MODELS](LICENSE-MODELS)): free to use in any project, commercial or not, with credit. [LICENSES.md](LICENSES.md) says what applies where and gives a one-line credit to copy; third-party material is in [CREDITS.md](CREDITS.md). The repository is private until the steps in [docs/PUBLISHING.md](docs/PUBLISHING.md) are done.
