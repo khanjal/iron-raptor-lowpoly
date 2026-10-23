@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "note": "Body builds of the people (issue #269, docs/design/content/body-builds-and-mass.md). A person's build is one number, the mass factor mf = BMI / bmiPerMassFactor. art/scripts/builds.py reads this file for gp_builder.py and gp_cast.py; dev/builds_check.py checks it. 'regions' says what each anchor mf looks like: the factors the builder multiplies its ring tables by (1.0 = the neutral body, mf 1.0), interpolated between anchors.",
+  "bmiPerMassFactor": 23.5,
+  "rigHeight": 1.84,
+  "limits": { "min": 0.8, "max": 1.6 },
+  "childLimits": { "min": 0.55, "max": 0.95 },
+  "childRegionOffset": 0.30,
+  "roles": {
+    "Farmer":      { "model": "GP_Farmer_01",       "cast": "farmer",        "scale": 1.01, "mf": 1.20, "vary": [-0.25, 0.30] },
+    "Spouse":      { "model": "GP_FarmerSpouse_01", "cast": "farmer_spouse", "scale": 0.90, "mf": 0.95, "vary": [-0.15, 0.30] },
+    "Grandparent": { "model": "GP_Grandparent_01",  "cast": "grandparent",   "scale": 0.92, "mf": 0.85, "vary": [-0.05, 0.20] },
+    "Kid":         { "model": "GP_FarmerKid_01",    "cast": "farmer_kid",    "scale": 0.71, "mf": 0.70, "vary": [-0.10, 0.25], "child": true },
+    "Sheriff":     { "model": "GP_Sheriff_01",      "cast": "sheriff",       "scale": 1.04, "mf": 1.15, "vary": [0, 0] },
+    "Deputy":      { "model": "GP_Deputy_01",       "cast": "deputy",        "scale": 0.98, "mf": 1.05, "vary": [-0.05, 0.10] },
+    "FbiAgent":    { "model": "GP_FbiAgent_01",     "cast": "fbi_agent",     "scale": 1.00, "mf": 1.00, "vary": [0, 0] },
+    "FbiAgentF":   { "model": "GP_FbiAgentF_01",    "cast": "fbi_agent_f",   "scale": 0.93, "mf": 0.92, "vary": [0, 0] },
+    "Mib":         { "model": "GP_Mib_01",          "cast": "mib",           "scale": 1.00, "mf": 1.00, "vary": [0, 0] },
+    "Worker":      { "model": "GP_Worker_01",       "cast": "worker",        "scale": 0.98, "mf": 1.30, "vary": [-0.10, 0.20] },
+    "Waitress":    { "model": "GP_Waitress_01",     "cast": "waitress",      "scale": 0.92, "mf": 1.00, "vary": [-0.10, 0.20] }
+  },
+  "shapeKeys": { "Heavy": { "deltaMf": 0.40 }, "Slim": { "deltaMf": -0.25 } },
+  "regions": {
+    "anchors": [0.8, 1.0, 1.2, 1.45, 1.6],
+    "rings": ["hips", "waist", "ribs", "chest", "shoulders", "neckBase"],
+    "torsoWidth": [
+      [0.92, 0.86, 0.88, 0.92, 0.96, 0.92],
+      [1.00, 1.00, 1.00, 1.00, 1.00, 1.00],
+      [1.08, 1.10, 1.07, 1.04, 1.03, 1.10],
+      [1.16, 1.18, 1.12, 1.06, 1.05, 1.22],
+      [1.20, 1.24, 1.16, 1.07, 1.06, 1.30]
+    ],
+    "torsoDepth": [
+      [0.90, 0.82, 0.84, 0.88, 0.92, 0.90],
+      [1.00, 1.00, 1.00, 1.00, 1.00, 1.00],
+      [1.08, 1.22, 1.20, 1.12, 1.04, 1.10],
+      [1.18, 1.50, 1.42, 1.20, 1.04, 1.20],
+      [1.24, 1.66, 1.56, 1.24, 1.04, 1.26]
+    ],
+    "belly": [
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      [0.0, -0.010, -0.008, 0.0, 0.0, 0.0],
+      [0.0, -0.035, -0.030, 0.0, 0.0, 0.0],
+      [0.0, -0.050, -0.042, 0.0, 0.0, 0.0]
+    ],
+    "thigh":    [0.88, 1.00, 1.10, 1.28, 1.34],
+    "calf":     [0.90, 1.00, 1.05, 1.12, 1.16],
+    "upperArm": [0.88, 1.00, 1.08, 1.22, 1.28],
+    "forearm":  [0.92, 1.00, 1.04, 1.10, 1.14],
+    "neck":     [0.92, 1.00, 1.10, 1.22, 1.30],
+    "face":     [0.96, 1.00, 1.02, 1.05, 1.07],
+    "foot":     [0.95, 1.00, 1.04, 1.10, 1.14],
+    "hipSpread":[0.95, 1.00, 1.06, 1.14, 1.18]
+  },
+  "derived": {
+    "radius":   { "perMf": 0.10, "max": 0.45 },
+    "nudge":    { "refKg": 80, "min": 0.5, "max": 1.4 },
+    "runScale": { "perMf": -0.10, "min": 0.9, "max": 1.08 },
+    "seatSink": { "perMf": 0.06, "max": 0.05 },
+    "creak":    { "thresholdKg": 70, "perKg": 0.04, "maxMetres": 14 }
+  }
+}

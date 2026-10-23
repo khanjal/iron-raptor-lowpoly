@@ -1,0 +1,200 @@
+{
+ "size_px": 256,
+ "surfaces": [
+  {
+   "name": "Grass_Short",
+   "file": "Tex_Grass_Short.png",
+   "tile_metres": 4.0,
+   "footstep": "grass",
+   "note": "lawns, yards, pasture"
+  },
+  {
+   "name": "Grass_Long",
+   "file": "Tex_Grass_Long.png",
+   "tile_metres": 4.0,
+   "footstep": "grass_long",
+   "note": "unmown verges, the field edge; quieter to hide in than it looks"
+  },
+  {
+   "name": "Grass_Dry",
+   "file": "Tex_Grass_Dry.png",
+   "tile_metres": 4.0,
+   "footstep": "grass",
+   "note": "desert scrub, late summer"
+  },
+  {
+   "name": "Dirt",
+   "file": "Tex_Dirt.png",
+   "tile_metres": 3.0,
+   "footstep": "dirt",
+   "note": "fields, trails"
+  },
+  {
+   "name": "Dirt_Packed",
+   "file": "Tex_Dirt_Packed.png",
+   "tile_metres": 3.0,
+   "footstep": "dirt",
+   "note": "the yard, worn paths, driveways"
+  },
+  {
+   "name": "Gravel",
+   "file": "Tex_Gravel.png",
+   "tile_metres": 3.0,
+   "footstep": "gravel",
+   "note": "driveways, shoulders; loud underfoot"
+  },
+  {
+   "name": "Mud",
+   "file": "Tex_Mud.png",
+   "tile_metres": 3.0,
+   "footstep": "mud",
+   "note": "the pig wallow, ruts; slows and leaves tracks"
+  },
+  {
+   "name": "Sand",
+   "file": "Tex_Sand.png",
+   "tile_metres": 4.0,
+   "footstep": "sand",
+   "note": "desert, lakeside"
+  },
+  {
+   "name": "Snow",
+   "file": "Tex_Snow.png",
+   "tile_metres": 4.0,
+   "footstep": "snow",
+   "note": "winter maps; leaves tracks"
+  },
+  {
+   "name": "Tilled_Soil",
+   "file": "Tex_Tilled_Soil.png",
+   "tile_metres": 3.0,
+   "footstep": "dirt",
+   "note": "garden beds and ploughed fields"
+  },
+  {
+   "name": "Crop_Green",
+   "file": "Tex_Crop_Green.png",
+   "tile_metres": 6.0,
+   "footstep": "grass_long",
+   "note": "a green crop in rows (the far fields)"
+  },
+  {
+   "name": "Crop_Gold",
+   "file": "Tex_Crop_Gold.png",
+   "tile_metres": 6.0,
+   "footstep": "grass_long",
+   "note": "a ripe crop in rows (the far fields)"
+  },
+  {
+   "name": "Asphalt",
+   "file": "Tex_Asphalt.png",
+   "tile_metres": 4.0,
+   "footstep": "asphalt",
+   "note": "county roads, car parks"
+  },
+  {
+   "name": "Asphalt_Cracked",
+   "file": "Tex_Asphalt_Cracked.png",
+   "tile_metres": 4.0,
+   "footstep": "asphalt",
+   "note": "old roads, the trailer park"
+  },
+  {
+   "name": "Concrete",
+   "file": "Tex_Concrete.png",
+   "tile_metres": 3.0,
+   "footstep": "concrete",
+   "note": "slabs, sidewalks, the base"
+  },
+  {
+   "name": "Concrete_Cracked",
+   "file": "Tex_Concrete_Cracked.png",
+   "tile_metres": 3.0,
+   "footstep": "concrete",
+   "note": "old slabs, abandoned lots"
+  },
+  {
+   "name": "Wood_Planks",
+   "file": "Tex_Wood_Planks.png",
+   "tile_metres": 2.0,
+   "footstep": "wood",
+   "note": "porches, barn floors, house floors"
+  },
+  {
+   "name": "Linoleum",
+   "file": "Tex_Linoleum.png",
+   "tile_metres": 2.0,
+   "footstep": "linoleum",
+   "note": "kitchens, diners, clinics"
+  },
+  {
+   "name": "Carpet",
+   "file": "Tex_Carpet.png",
+   "tile_metres": 2.0,
+   "footstep": "carpet",
+   "note": "living rooms, bedrooms; the quietest surface"
+  },
+  {
+   "name": "Carpet_Neutral",
+   "file": "Tex_Carpet_Neutral.png",
+   "tile_metres": 2.0,
+   "footstep": "carpet",
+   "note": "a carpet in any colour: tint the material (the farmhouse's rooms)"
+  },
+  {
+   "name": "Straw",
+   "file": "Tex_Straw.png",
+   "tile_metres": 2.0,
+   "footstep": "hay",
+   "note": "barn floors, loft, pens; quiet"
+  },
+  {
+   "name": "Cobble",
+   "file": "Tex_Cobble.png",
+   "tile_metres": 3.0,
+   "footstep": "stone",
+   "note": "town squares, old yards"
+  },
+  {
+   "name": "Leaves",
+   "file": "Tex_Leaves.png",
+   "tile_metres": 3.0,
+   "footstep": "leaves",
+   "note": "under trees; loud, rustling"
+  },
+  {
+   "name": "Scorched",
+   "file": "Tex_Scorched.png",
+   "tile_metres": 3.0,
+   "footstep": "dirt",
+   "note": "the crash furrow and where an alien ability burned"
+  },
+  {
+   "name": "Water",
+   "file": "Tex_Water.png",
+   "tile_metres": 6.0,
+   "footstep": "water",
+   "note": "ponds and creeks; splashes; shorts out Energy Beings"
+  },
+  {
+   "name": "Moss",
+   "file": "Tex_Moss.png",
+   "tile_metres": 3.0,
+   "footstep": "moss",
+   "note": "damp corners, north walls, the well"
+  }
+ ],
+ "decals": [
+  "Decal_RoadCenterLine.png",
+  "Decal_RoadEdgeLine.png",
+  "Decal_Crosswalk.png",
+  "Decal_ParkingLines.png",
+  "Decal_Puddle.png",
+  "Decal_OilStain.png",
+  "Decal_Scorch.png",
+  "Decal_CropCircle.png",
+  "Decal_TyreTracks.png",
+  "Decal_Leaves.png",
+  "Decal_AlienFootprint.png"
+ ]
+}

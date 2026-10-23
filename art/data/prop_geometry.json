@@ -1,0 +1,2400 @@
+{
+"about": "Written by art/scripts/audit_props.py (WRITE=True): the size of every prop and the lowest point (zmin) and the heights above the origin of its exposed horizontal tops (a lamp stands on a table top, not on the top of its bounding box). Blender coordinates, metres. audit_layout.py reads it.",
+"props": {
+"FM_DogHouse_01": {
+"size": [
+0.96,
+1.16,
+1.0
+],
+"surfaces": [
+0.04
+],
+"zmin": 0.0
+},
+"FM_Generator_01": {
+"size": [
+0.9,
+0.8,
+1.2
+],
+"surfaces": [
+0.92
+],
+"zmin": 0.0
+},
+"FM_Scarecrow_01": {
+"size": [
+1.3,
+0.457,
+2.04
+],
+"surfaces": [
+1.86,
+2.04
+],
+"zmin": 0.0
+},
+"FM_WaterTrough_01": {
+"size": [
+1.6,
+0.56,
+0.6
+],
+"surfaces": [
+0.6
+],
+"zmin": 0.0
+},
+"GD_Backpack_01": {
+"size": [
+0.3,
+0.225,
+0.4
+],
+"surfaces": [
+0.4
+],
+"zmin": 0.0
+},
+"GD_BookStack_01": {
+"size": [
+0.268,
+0.23,
+0.14
+],
+"surfaces": [
+0.14
+],
+"zmin": 0.0
+},
+"GD_BootsPair_01": {
+"size": [
+0.265,
+0.3,
+0.2
+],
+"surfaces": [
+0.08,
+0.2
+],
+"zmin": 0.0
+},
+"GD_Broom_01": {
+"size": [
+0.32,
+0.06,
+1.35
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_BulletinBoard_01": {
+"size": [
+0.9,
+0.042,
+0.6
+],
+"surfaces": [
+0.3
+],
+"zmin": -0.3
+},
+"GD_Cactus_01": {
+"size": [
+0.215,
+0.16,
+0.41
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_Calendar_01": {
+"size": [
+0.3,
+0.013,
+0.42
+],
+"surfaces": [],
+"zmin": -0.21
+},
+"GD_Candle_01": {
+"size": [
+0.1,
+0.1,
+0.22
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_CeilingShade_01": {
+"size": [
+0.4,
+0.4,
+0.59
+],
+"surfaces": [],
+"zmin": -0.59
+},
+"GD_Chandelier_01": {
+"size": [
+0.63,
+0.55,
+0.6
+],
+"surfaces": [
+-0.57
+],
+"zmin": -0.6
+},
+"GD_Clock_Wall_01": {
+"size": [
+0.34,
+0.052,
+0.34
+],
+"surfaces": [],
+"zmin": -0.17
+},
+"GD_CoatHooks_01": {
+"size": [
+1.07,
+0.13,
+0.95
+],
+"surfaces": [
+0.0,
+0.05
+],
+"zmin": -0.9
+},
+"GD_ComputerTower_01": {
+"size": [
+0.2,
+0.459,
+0.44
+],
+"surfaces": [
+0.44
+],
+"zmin": 0.0
+},
+"GD_DeerTrophy_01": {
+"size": [
+0.384,
+0.215,
+0.495
+],
+"surfaces": [],
+"zmin": -0.175
+},
+"GD_DeskLamp_01": {
+"size": [
+0.18,
+0.305,
+0.407
+],
+"surfaces": [
+0.03
+],
+"zmin": 0.0
+},
+"GD_Doll_01": {
+"size": [
+0.18,
+0.104,
+0.345
+],
+"surfaces": [],
+"zmin": -0.02
+},
+"GD_Doormat_01": {
+"size": [
+0.7,
+0.45,
+0.024
+],
+"surfaces": [
+0.024
+],
+"zmin": 0.0
+},
+"GD_FireExtinguisher_01": {
+"size": [
+0.216,
+0.14,
+0.51
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_FirstAidKit_01": {
+"size": [
+0.26,
+0.094,
+0.2
+],
+"surfaces": [
+0.1
+],
+"zmin": -0.1
+},
+"GD_Flashlight_01": {
+"size": [
+0.06,
+0.245,
+0.053
+],
+"surfaces": [],
+"zmin": 0.073
+},
+"GD_FloorLamp_01": {
+"size": [
+0.44,
+0.44,
+1.74
+],
+"surfaces": [
+0.04,
+1.74
+],
+"zmin": 0.0
+},
+"GD_Fluorescent_01": {
+"size": [
+1.25,
+0.14,
+0.09
+],
+"surfaces": [
+-0.01
+],
+"zmin": -0.1
+},
+"GD_Football_01": {
+"size": [
+0.22,
+0.22,
+0.22
+],
+"surfaces": [
+0.22
+],
+"zmin": 0.0
+},
+"GD_Frame_Landscape_01": {
+"size": [
+0.6,
+0.036,
+0.45
+],
+"surfaces": [],
+"zmin": -0.225
+},
+"GD_Frame_Landscape_02": {
+"size": [
+0.6,
+0.036,
+0.45
+],
+"surfaces": [],
+"zmin": -0.225
+},
+"GD_Frame_Landscape_03": {
+"size": [
+0.5,
+0.036,
+0.4
+],
+"surfaces": [],
+"zmin": -0.2
+},
+"GD_Frame_Portrait_01": {
+"size": [
+0.36,
+0.036,
+0.5
+],
+"surfaces": [],
+"zmin": -0.25
+},
+"GD_Frame_Portrait_02": {
+"size": [
+0.36,
+0.038,
+0.5
+],
+"surfaces": [],
+"zmin": -0.25
+},
+"GD_HandLetteredSign_01": {
+"size": [
+0.6,
+0.034,
+0.3
+],
+"surfaces": [],
+"zmin": -0.15
+},
+"GD_HangingPlant_01": {
+"size": [
+0.26,
+0.26,
+0.851
+],
+"surfaces": [],
+"zmin": -0.851
+},
+"GD_Intercom_01": {
+"size": [
+0.12,
+0.045,
+0.2
+],
+"surfaces": [],
+"zmin": -0.1
+},
+"GD_IroningBoard_01": {
+"size": [
+1.2,
+0.396,
+0.863
+],
+"surfaces": [
+0.865
+],
+"zmin": 0.002
+},
+"GD_KeroseneLamp_01": {
+"size": [
+0.12,
+0.12,
+0.325
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_Keyboard_01": {
+"size": [
+0.44,
+0.161,
+0.033
+],
+"surfaces": [
+0.02,
+0.029
+],
+"zmin": -0.004
+},
+"GD_KidDrawing_01": {
+"size": [
+0.321,
+0.009,
+0.415
+],
+"surfaces": [],
+"zmin": -0.208
+},
+"GD_KidDrawing_02": {
+"size": [
+0.321,
+0.008,
+0.415
+],
+"surfaces": [],
+"zmin": -0.208
+},
+"GD_Laptop_01": {
+"size": [
+0.34,
+0.271,
+0.244
+],
+"surfaces": [
+0.02
+],
+"zmin": 0.0
+},
+"GD_LaundryBasket_01": {
+"size": [
+0.55,
+0.385,
+0.606
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_LightSwitch_01": {
+"size": [
+0.08,
+0.03,
+0.12
+],
+"surfaces": [],
+"zmin": -0.06
+},
+"GD_Lunchbox_01": {
+"size": [
+0.25,
+0.1,
+0.24
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_MailPile_01": {
+"size": [
+0.289,
+0.192,
+0.023
+],
+"surfaces": [
+0.024
+],
+"zmin": 0.002
+},
+"GD_Mirror_Wall_01": {
+"size": [
+0.6,
+0.034,
+0.9
+],
+"surfaces": [],
+"zmin": -0.45
+},
+"GD_MobilePhone_01": {
+"size": [
+0.07,
+0.14,
+0.009
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_Monitor_01": {
+"size": [
+0.46,
+0.22,
+0.46
+],
+"surfaces": [
+0.09,
+0.51
+],
+"zmin": 0.05
+},
+"GD_MopBucket_01": {
+"size": [
+0.391,
+0.391,
+1.346
+],
+"surfaces": [
+0.34
+],
+"zmin": 0.0
+},
+"GD_NeonSign_01": {
+"size": [
+1.0,
+0.065,
+0.35
+],
+"surfaces": [
+0.125,
+0.175
+],
+"zmin": -0.175
+},
+"GD_NewspaperClippings_01": {
+"size": [
+0.765,
+0.007,
+0.554
+],
+"surfaces": [],
+"zmin": -0.344
+},
+"GD_Newspaper_01": {
+"size": [
+0.4,
+0.3,
+0.022
+],
+"surfaces": [
+0.022
+],
+"zmin": 0.0
+},
+"GD_OpenBook_01": {
+"size": [
+0.42,
+0.28,
+0.026
+],
+"surfaces": [
+0.008,
+0.011,
+0.025
+],
+"zmin": -0.001
+},
+"GD_PhotoFrame_01": {
+"size": [
+0.2,
+0.107,
+0.186
+],
+"surfaces": [],
+"zmin": -0.006
+},
+"GD_PicnicBasket_01": {
+"size": [
+0.495,
+0.33,
+0.37
+],
+"surfaces": [
+0.24,
+0.275,
+0.37
+],
+"zmin": 0.0
+},
+"GD_Poster_01": {
+"size": [
+0.5,
+0.009,
+0.7
+],
+"surfaces": [],
+"zmin": -0.35
+},
+"GD_PottedPlant_01": {
+"size": [
+0.346,
+0.353,
+0.736
+],
+"surfaces": [
+0.245
+],
+"zmin": 0.0
+},
+"GD_Radio_CB_01": {
+"size": [
+0.2,
+0.147,
+0.07
+],
+"surfaces": [
+0.075
+],
+"zmin": 0.005
+},
+"GD_Radio_Handheld_01": {
+"size": [
+0.06,
+0.038,
+0.34
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_Radio_Retro_01": {
+"size": [
+0.4,
+0.185,
+0.519
+],
+"surfaces": [
+0.28
+],
+"zmin": 0.0
+},
+"GD_RotaryPhone_01": {
+"size": [
+0.27,
+0.24,
+0.205
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_SecurityCamera_01": {
+"size": [
+0.08,
+0.29,
+0.095
+],
+"surfaces": [],
+"zmin": -0.06
+},
+"GD_Suitcase_01": {
+"size": [
+0.6,
+0.235,
+0.565
+],
+"surfaces": [
+0.5
+],
+"zmin": 0.0
+},
+"GD_TV_CRT_01": {
+"size": [
+0.6,
+0.63,
+0.84
+],
+"surfaces": [
+0.84
+],
+"zmin": 0.0
+},
+"GD_TV_Flat_01": {
+"size": [
+0.95,
+0.18,
+0.775
+],
+"surfaces": [
+0.785
+],
+"zmin": 0.01
+},
+"GD_TableLamp_01": {
+"size": [
+0.28,
+0.28,
+0.44
+],
+"surfaces": [
+0.44
+],
+"zmin": 0.0
+},
+"GD_TeddyBear_01": {
+"size": [
+0.27,
+0.13,
+0.37
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_Thermos_01": {
+"size": [
+0.09,
+0.09,
+0.31
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_TinfoilPane_01": {
+"size": [
+0.9,
+0.016,
+1.1
+],
+"surfaces": [],
+"zmin": -0.55
+},
+"GD_Toolbox_01": {
+"size": [
+0.5,
+0.22,
+0.32
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_ToyBlocks_01": {
+"size": [
+0.2,
+0.11,
+0.12
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_ToyTruck_01": {
+"size": [
+0.13,
+0.24,
+0.147
+],
+"surfaces": [],
+"zmin": 0.003
+},
+"GD_TrashCan_01": {
+"size": [
+0.4,
+0.4,
+0.42
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GD_UmbrellaStand_01": {
+"size": [
+0.24,
+0.24,
+0.94
+],
+"surfaces": [
+0.5
+],
+"zmin": 0.0
+},
+"GD_VaseFlowers_01": {
+"size": [
+0.14,
+0.14,
+0.46
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GE_LandlinePhone_01": {
+"size": [
+0.25,
+0.24,
+0.155
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_AirConditioner_01": {
+"size": [
+0.6,
+0.457,
+0.4
+],
+"surfaces": [
+0.2
+],
+"zmin": -0.2
+},
+"GH_Armchair_01": {
+"size": [
+0.94,
+0.875,
+0.96
+],
+"surfaces": [
+0.51,
+0.7,
+0.96
+],
+"zmin": 0.0
+},
+"GH_BarStool_01": {
+"size": [
+0.44,
+0.44,
+0.78
+],
+"surfaces": [
+0.78
+],
+"zmin": 0.0
+},
+"GH_Bed_Bunk_01": {
+"size": [
+1.165,
+2.0,
+1.8
+],
+"surfaces": [
+0.58,
+1.68,
+1.79
+],
+"zmin": 0.0
+},
+"GH_Bed_Child_01": {
+"size": [
+0.84,
+1.645,
+0.66
+],
+"surfaces": [
+0.42,
+0.51,
+0.75
+],
+"zmin": 0.09
+},
+"GH_Bed_Double_01": {
+"size": [
+1.66,
+2.13,
+0.99
+],
+"surfaces": [
+0.54,
+0.57,
+0.63,
+1.07
+],
+"zmin": 0.08
+},
+"GH_Bed_Single_01": {
+"size": [
+0.98,
+2.07,
+0.76
+],
+"surfaces": [
+0.525,
+0.59,
+0.85
+],
+"zmin": 0.09
+},
+"GH_Bench_01": {
+"size": [
+1.5,
+0.4,
+0.475
+],
+"surfaces": [
+0.475
+],
+"zmin": 0.0
+},
+"GH_Blanket_01": {
+"size": [
+0.7,
+0.5,
+0.09
+],
+"surfaces": [
+0.09
+],
+"zmin": 0.0
+},
+"GH_Boiler_01": {
+"size": [
+0.72,
+0.78,
+1.927
+],
+"surfaces": [
+1.44
+],
+"zmin": 0.0
+},
+"GH_Bookcase_01": {
+"size": [
+0.84,
+0.3,
+1.8
+],
+"surfaces": [
+0.04,
+0.14,
+0.62,
+0.92,
+1.07,
+1.57,
+1.723,
+1.8
+],
+"zmin": 0.0
+},
+"GH_Bookcase_02": {
+"size": [
+0.84,
+0.3,
+1.8
+],
+"surfaces": [
+1.8
+],
+"zmin": 0.0
+},
+"GH_Bookcase_03": {
+"size": [
+0.84,
+0.3,
+1.8
+],
+"surfaces": [
+0.47,
+0.92,
+1.65,
+1.8
+],
+"zmin": 0.0
+},
+"GH_Bookcase_04": {
+"size": [
+0.84,
+0.3,
+1.8
+],
+"surfaces": [
+0.16,
+0.55,
+0.751,
+1.04,
+1.49,
+1.8
+],
+"zmin": 0.0
+},
+"GH_Bookcase_05": {
+"size": [
+0.84,
+0.3,
+1.8
+],
+"surfaces": [
+0.04,
+0.47,
+0.693,
+0.718,
+1.8
+],
+"zmin": 0.0
+},
+"GH_BreadBox_01": {
+"size": [
+0.4,
+0.256,
+0.274
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_Cabinet_01": {
+"size": [
+0.8,
+0.4,
+1.2
+],
+"surfaces": [
+1.2
+],
+"zmin": 0.0
+},
+"GH_Chair_Dining_01": {
+"size": [
+0.44,
+0.44,
+1.04
+],
+"surfaces": [
+0.515
+],
+"zmin": 0.0
+},
+"GH_Chair_Kitchen_01": {
+"size": [
+0.44,
+0.44,
+0.9
+],
+"surfaces": [
+0.49
+],
+"zmin": 0.0
+},
+"GH_Chair_Office_01": {
+"size": [
+0.58,
+0.51,
+0.98
+],
+"surfaces": [
+0.1,
+0.54,
+0.68,
+1.04
+],
+"zmin": 0.06
+},
+"GH_Chest_01": {
+"size": [
+0.9,
+0.54,
+0.56
+],
+"surfaces": [
+0.56
+],
+"zmin": 0.0
+},
+"GH_CoatRack_01": {
+"size": [
+0.669,
+0.669,
+1.86
+],
+"surfaces": [
+1.86
+],
+"zmin": 0.0
+},
+"GH_CoffeeMachine_01": {
+"size": [
+0.3,
+0.345,
+0.43
+],
+"surfaces": [
+0.36,
+0.43
+],
+"zmin": 0.0
+},
+"GH_Cooler_01": {
+"size": [
+0.8,
+0.42,
+0.45
+],
+"surfaces": [
+0.45
+],
+"zmin": 0.0
+},
+"GH_Cot_01": {
+"size": [
+0.68,
+1.28,
+0.7
+],
+"surfaces": [
+0.395,
+0.78,
+0.97
+],
+"zmin": 0.27
+},
+"GH_Counter_Bar_01": {
+"size": [
+2.7,
+0.75,
+1.145
+],
+"surfaces": [
+0.22,
+1.145
+],
+"zmin": 0.0
+},
+"GH_Counter_Kitchen_01": {
+"size": [
+2.04,
+0.64,
+0.885
+],
+"surfaces": [
+0.77,
+0.82,
+0.905
+],
+"zmin": 0.02
+},
+"GH_Curtains_Closed_01": {
+"size": [
+1.7,
+0.09,
+2.015
+],
+"surfaces": [
+2.0
+],
+"zmin": 0.0
+},
+"GH_Curtains_Open_01": {
+"size": [
+1.7,
+0.08,
+2.015
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_Cushion_01": {
+"size": [
+0.4,
+0.4,
+0.14
+],
+"surfaces": [
+0.16
+],
+"zmin": 0.02
+},
+"GH_Desk_Office_01": {
+"size": [
+1.6,
+0.8,
+0.76
+],
+"surfaces": [
+0.7,
+0.76
+],
+"zmin": 0.0
+},
+"GH_Desk_Wood_01": {
+"size": [
+1.4,
+0.7,
+0.76
+],
+"surfaces": [
+0.71,
+0.76
+],
+"zmin": 0.0
+},
+"GH_Dresser_01": {
+"size": [
+1.24,
+0.555,
+0.93
+],
+"surfaces": [
+0.3,
+0.55,
+0.8,
+0.93
+],
+"zmin": 0.0
+},
+"GH_FilingCabinet_01": {
+"size": [
+0.45,
+0.635,
+1.3
+],
+"surfaces": [
+1.3
+],
+"zmin": 0.0
+},
+"GH_Fireplace_01": {
+"size": [
+2.0,
+1.15,
+3.2
+],
+"surfaces": [
+0.08,
+0.9,
+1.15,
+3.2
+],
+"zmin": 0.0
+},
+"GH_Fridge_01": {
+"size": [
+0.7,
+0.74,
+1.8
+],
+"surfaces": [
+1.8
+],
+"zmin": 0.0
+},
+"GH_FuseBox_01": {
+"size": [
+0.4,
+0.122,
+0.5
+],
+"surfaces": [
+0.25
+],
+"zmin": -0.25
+},
+"GH_Gurney_01": {
+"size": [
+0.7,
+1.9,
+0.895
+],
+"surfaces": [
+0.895
+],
+"zmin": 0.0
+},
+"GH_JarShelf_01": {
+"size": [
+0.905,
+0.16,
+0.878
+],
+"surfaces": [
+-0.288,
+0.013,
+0.312
+],
+"zmin": -0.35
+},
+"GH_Jukebox_01": {
+"size": [
+0.9,
+0.565,
+1.45
+],
+"surfaces": [
+1.45
+],
+"zmin": 0.0
+},
+"GH_Kettle_01": {
+"size": [
+0.302,
+0.2,
+0.233
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_LabBench_01": {
+"size": [
+2.04,
+0.84,
+1.3
+],
+"surfaces": [
+0.85,
+0.945
+],
+"zmin": 0.0
+},
+"GH_Locker_01": {
+"size": [
+0.4,
+0.525,
+1.8
+],
+"surfaces": [
+1.8
+],
+"zmin": 0.0
+},
+"GH_Microscope_01": {
+"size": [
+0.18,
+0.24,
+0.383
+],
+"surfaces": [
+0.04
+],
+"zmin": 0.0
+},
+"GH_Microwave_01": {
+"size": [
+0.5,
+0.39,
+0.3
+],
+"surfaces": [
+0.3
+],
+"zmin": 0.0
+},
+"GH_Mirror_01": {
+"size": [
+0.5,
+0.036,
+0.7
+],
+"surfaces": [],
+"zmin": -0.35
+},
+"GH_Mug_01": {
+"size": [
+0.11,
+0.08,
+0.1
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_Nightstand_01": {
+"size": [
+0.45,
+0.435,
+0.56
+],
+"surfaces": [
+0.56
+],
+"zmin": 0.0
+},
+"GH_Pillow_01": {
+"size": [
+0.5,
+0.3,
+0.14
+],
+"surfaces": [
+0.14
+],
+"zmin": 0.0
+},
+"GH_Plates_01": {
+"size": [
+0.22,
+0.209,
+0.078
+],
+"surfaces": [
+0.019,
+0.035,
+0.051,
+0.083
+],
+"zmin": 0.005
+},
+"GH_Pot_01": {
+"size": [
+0.335,
+0.25,
+0.211
+],
+"surfaces": [
+0.211
+],
+"zmin": 0.0
+},
+"GH_Radiator_01": {
+"size": [
+1.0,
+0.1,
+0.63
+],
+"surfaces": [
+0.12,
+0.68
+],
+"zmin": 0.05
+},
+"GH_RockingChair_01": {
+"size": [
+0.58,
+0.95,
+1.104
+],
+"surfaces": [
+0.065,
+0.47,
+0.64
+],
+"zmin": 0.015
+},
+"GH_Rug_01": {
+"size": [
+2.0,
+1.4,
+0.022
+],
+"surfaces": [
+0.022
+],
+"zmin": 0.0
+},
+"GH_Rug_02": {
+"size": [
+0.8,
+2.4,
+0.024
+],
+"surfaces": [
+0.024
+],
+"zmin": 0.0
+},
+"GH_Rug_03": {
+"size": [
+1.6,
+1.56,
+0.024
+],
+"surfaces": [
+0.022,
+0.024
+],
+"zmin": 0.0
+},
+"GH_Rug_04": {
+"size": [
+2.8,
+1.9,
+0.024
+],
+"surfaces": [
+0.024
+],
+"zmin": 0.0
+},
+"GH_Safe_01": {
+"size": [
+0.5,
+0.545,
+0.6
+],
+"surfaces": [
+0.6
+],
+"zmin": 0.0
+},
+"GH_ServerRack_01": {
+"size": [
+0.6,
+0.825,
+2.0
+],
+"surfaces": [
+2.0
+],
+"zmin": 0.0
+},
+"GH_Shelf_Wall_01": {
+"size": [
+1.0,
+0.22,
+0.165
+],
+"surfaces": [
+0.015
+],
+"zmin": -0.15
+},
+"GH_Shelf_Wall_02": {
+"size": [
+1.0,
+0.22,
+0.157
+],
+"surfaces": [
+0.018
+],
+"zmin": -0.14
+},
+"GH_Shelf_Wall_03": {
+"size": [
+1.0,
+0.22,
+0.11
+],
+"surfaces": [
+0.015
+],
+"zmin": -0.095
+},
+"GH_Shelf_Wall_04": {
+"size": [
+1.0,
+0.221,
+0.18
+],
+"surfaces": [
+0.015
+],
+"zmin": -0.14
+},
+"GH_Shelf_Wall_05": {
+"size": [
+1.0,
+0.218,
+0.168
+],
+"surfaces": [
+0.013
+],
+"zmin": -0.155
+},
+"GH_Shower_01": {
+"size": [
+0.91,
+1.03,
+2.0
+],
+"surfaces": [
+0.08,
+1.95,
+2.0
+],
+"zmin": 0.0
+},
+"GH_Sink_Bath_01": {
+"size": [
+0.55,
+0.42,
+1.045
+],
+"surfaces": [
+0.93
+],
+"zmin": 0.0
+},
+"GH_Sink_Kitchen_01": {
+"size": [
+1.24,
+0.64,
+1.12
+],
+"surfaces": [
+0.89
+],
+"zmin": 0.02
+},
+"GH_Sofa_01": {
+"size": [
+2.1,
+0.91,
+0.98
+],
+"surfaces": [
+0.39,
+0.6,
+0.75,
+0.98
+],
+"zmin": 0.0
+},
+"GH_Stove_01": {
+"size": [
+0.6,
+0.7,
+1.1
+],
+"surfaces": [
+0.9,
+0.92,
+1.1
+],
+"zmin": 0.0
+},
+"GH_Table_Coffee_01": {
+"size": [
+1.0,
+0.55,
+0.44
+],
+"surfaces": [
+0.17,
+0.44
+],
+"zmin": 0.0
+},
+"GH_Table_Dining_01": {
+"size": [
+1.6,
+0.9,
+0.765
+],
+"surfaces": [
+0.765
+],
+"zmin": 0.0
+},
+"GH_Table_Side_01": {
+"size": [
+0.5,
+0.5,
+0.57
+],
+"surfaces": [
+0.57
+],
+"zmin": 0.0
+},
+"GH_Toaster_01": {
+"size": [
+0.34,
+0.17,
+0.21
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GH_Toilet_01": {
+"size": [
+0.42,
+0.56,
+0.65
+],
+"surfaces": [
+0.42
+],
+"zmin": 0.0
+},
+"GH_TowelRail_01": {
+"size": [
+0.7,
+0.12,
+0.375
+],
+"surfaces": [
+0.015
+],
+"zmin": -0.36
+},
+"GH_ToyBox_01": {
+"size": [
+0.82,
+0.47,
+0.58
+],
+"surfaces": [
+0.44,
+0.58
+],
+"zmin": 0.0
+},
+"GH_Tub_01": {
+"size": [
+1.7,
+0.75,
+0.75
+],
+"surfaces": [
+0.56
+],
+"zmin": 0.0
+},
+"GH_VendingMachine_01": {
+"size": [
+0.85,
+0.812,
+1.9
+],
+"surfaces": [
+1.9
+],
+"zmin": 0.0
+},
+"GH_Wardrobe_01": {
+"size": [
+1.04,
+0.605,
+1.94
+],
+"surfaces": [
+1.94
+],
+"zmin": 0.0
+},
+"GH_WaterHeater_01": {
+"size": [
+0.52,
+0.605,
+1.555
+],
+"surfaces": [
+1.2
+],
+"zmin": 0.0
+},
+"GH_Whiteboard_01": {
+"size": [
+1.5,
+0.68,
+1.9
+],
+"surfaces": [
+0.9,
+0.915,
+1.9
+],
+"zmin": 0.0
+},
+"GH_WoodStove_01": {
+"size": [
+0.55,
+0.465,
+1.8
+],
+"surfaces": [
+0.75
+],
+"zmin": 0.0
+},
+"GH_Workbench_01": {
+"size": [
+2.0,
+0.7,
+1.4
+],
+"surfaces": [
+0.27,
+0.93,
+1.04,
+1.4
+],
+"zmin": 0.0
+},
+"GI_BreadBox_01": {
+"size": [
+0.4,
+0.285,
+0.255
+],
+"surfaces": [
+0.015,
+0.23
+],
+"zmin": 0.0
+},
+"GI_Cabinet_01": {
+"size": [
+0.8,
+0.442,
+1.2
+],
+"surfaces": [
+0.03,
+0.58,
+0.61,
+1.17,
+1.2
+],
+"zmin": 0.0
+},
+"GI_Chest_01": {
+"size": [
+0.9,
+0.536,
+0.565
+],
+"surfaces": [
+0.04,
+0.56
+],
+"zmin": 0.0
+},
+"GI_Cooler_01": {
+"size": [
+0.78,
+0.42,
+0.46
+],
+"surfaces": [
+0.04,
+0.46
+],
+"zmin": 0.0
+},
+"GI_Counter_Kitchen_01": {
+"size": [
+1.24,
+0.688,
+0.91
+],
+"surfaces": [
+0.03,
+0.12,
+0.283,
+0.36,
+0.43,
+0.552,
+0.66,
+0.823,
+0.91
+],
+"zmin": 0.0
+},
+"GI_Dresser_01": {
+"size": [
+1.24,
+0.569,
+0.92
+],
+"surfaces": [
+0.03,
+0.08,
+0.257,
+0.3,
+0.32,
+0.36,
+0.537,
+0.58,
+0.6,
+0.64,
+0.817,
+0.86,
+0.92
+],
+"zmin": 0.0
+},
+"GI_Dryer_01": {
+"size": [
+0.6,
+0.725,
+0.9
+],
+"surfaces": [
+0.03,
+0.9
+],
+"zmin": 0.0
+},
+"GI_Dumpster_01": {
+"size": [
+1.8,
+0.94,
+1.08
+],
+"surfaces": [
+0.19,
+1.02,
+1.04,
+1.08
+],
+"zmin": 0.0
+},
+"GI_FenceSection_01": {
+"size": [
+2.52,
+0.12,
+1.2
+],
+"surfaces": [
+0.41,
+0.76,
+1.11,
+1.2
+],
+"zmin": 0.0
+},
+"GI_FilingCabinet_01": {
+"size": [
+0.47,
+0.66,
+1.335
+],
+"surfaces": [
+0.03,
+0.06,
+0.338,
+0.44,
+0.49,
+0.768,
+0.87,
+0.92,
+1.198,
+1.3,
+1.335
+],
+"zmin": 0.0
+},
+"GI_Fridge_01": {
+"size": [
+0.7,
+0.778,
+1.8
+],
+"surfaces": [
+0.13,
+0.457,
+0.757,
+1.008,
+1.19,
+1.215,
+1.508,
+1.8
+],
+"zmin": 0.0
+},
+"GI_FuseBox_01": {
+"size": [
+0.4,
+0.153,
+0.5
+],
+"surfaces": [
+-0.235,
+0.25
+],
+"zmin": -0.25
+},
+"GI_Gate_01": {
+"size": [
+2.92,
+0.14,
+1.447
+],
+"surfaces": [
+1.35
+],
+"zmin": 0.0
+},
+"GI_Locker_01": {
+"size": [
+0.4,
+0.562,
+1.8
+],
+"surfaces": [
+0.03,
+1.41,
+1.8
+],
+"zmin": 0.0
+},
+"GI_Mailbox_01": {
+"size": [
+0.216,
+0.412,
+1.34
+],
+"surfaces": [
+1.062,
+1.25
+],
+"zmin": 0.0
+},
+"GI_MedicineCabinet_01": {
+"size": [
+0.4,
+0.197,
+0.55
+],
+"surfaces": [
+-0.26,
+-0.065,
+0.105,
+0.275
+],
+"zmin": -0.275
+},
+"GI_Microwave_01": {
+"size": [
+0.5,
+0.442,
+0.3
+],
+"surfaces": [
+0.02,
+0.3
+],
+"zmin": 0.0
+},
+"GI_Nightstand_01": {
+"size": [
+0.48,
+0.472,
+0.595
+],
+"surfaces": [
+0.03,
+0.31,
+0.39,
+0.56,
+0.595
+],
+"zmin": 0.0
+},
+"GI_Safe_01": {
+"size": [
+0.5,
+0.585,
+0.6
+],
+"surfaces": [
+0.06,
+0.56,
+0.6
+],
+"zmin": 0.0
+},
+"GI_Stove_01": {
+"size": [
+0.6,
+0.728,
+1.1
+],
+"surfaces": [
+0.03,
+0.308,
+0.72,
+0.911,
+0.921,
+1.1
+],
+"zmin": 0.0
+},
+"GI_Suitcase_01": {
+"size": [
+0.6,
+0.435,
+0.22
+],
+"surfaces": [
+0.02,
+0.22
+],
+"zmin": 0.0
+},
+"GI_Toaster_01": {
+"size": [
+0.3,
+0.16,
+0.185
+],
+"surfaces": [
+0.18
+],
+"zmin": 0.0
+},
+"GI_Toolbox_01": {
+"size": [
+0.5,
+0.22,
+0.23
+],
+"surfaces": [
+0.015,
+0.19
+],
+"zmin": 0.0
+},
+"GI_TrashCan_01": {
+"size": [
+0.54,
+0.54,
+0.655
+],
+"surfaces": [
+0.03,
+0.465,
+0.58,
+0.63
+],
+"zmin": 0.0
+},
+"GI_VendingMachine_01": {
+"size": [
+0.85,
+0.868,
+1.9
+],
+"surfaces": [
+0.03,
+0.558,
+0.858,
+1.158,
+1.458,
+1.7,
+1.9
+],
+"zmin": 0.0
+},
+"GI_Wardrobe_01": {
+"size": [
+1.0,
+0.613,
+1.9
+],
+"surfaces": [
+0.03,
+0.51,
+1.88,
+1.9
+],
+"zmin": 0.0
+},
+"GI_Washer_01": {
+"size": [
+0.6,
+0.725,
+0.9
+],
+"surfaces": [
+0.03,
+0.9
+],
+"zmin": 0.0
+},
+"GL_BareBulb_01": {
+"size": [
+0.07,
+0.07,
+1.28
+],
+"surfaces": [],
+"zmin": -0.08
+},
+"GL_PoleLamp_01": {
+"size": [
+0.36,
+1.07,
+6.0
+],
+"surfaces": [
+5.885
+],
+"zmin": 0.0
+},
+"GL_ServiceEntry_01": {
+"size": [
+0.32,
+0.185,
+4.215
+],
+"surfaces": [
+0.22
+],
+"zmin": -0.56
+},
+"GL_UtilityPoleCorner_01": {
+"size": [
+2.0,
+2.0,
+8.215
+],
+"surfaces": [
+7.515
+],
+"zmin": 0.0
+},
+"GL_UtilityPoleTransformer_01": {
+"size": [
+2.0,
+0.432,
+8.215
+],
+"surfaces": [
+6.83,
+6.885,
+7.515
+],
+"zmin": 0.0
+},
+"GL_UtilityPole_01": {
+"size": [
+2.0,
+0.417,
+8.215
+],
+"surfaces": [
+7.515
+],
+"zmin": 0.0
+},
+"GT_Barrel_01": {
+"size": [
+0.61,
+0.58,
+0.906
+],
+"surfaces": [
+0.906
+],
+"zmin": 0.0
+},
+"GT_ChoppingBlock_01": {
+"size": [
+1.089,
+1.07,
+0.925
+],
+"surfaces": [
+0.132
+],
+"zmin": 0.0
+},
+"GT_Crate_01": {
+"size": [
+0.52,
+0.52,
+0.5
+],
+"surfaces": [
+0.095,
+0.285,
+0.475,
+0.5
+],
+"zmin": 0.0
+},
+"GT_FeedSack_01": {
+"size": [
+0.42,
+0.224,
+0.65
+],
+"surfaces": [
+0.65
+],
+"zmin": 0.0
+},
+"GT_FirewoodPile_Loose_01": {
+"size": [
+0.711,
+0.761,
+0.431
+],
+"surfaces": [
+0.136,
+0.235,
+0.259,
+0.332,
+0.419
+],
+"zmin": -0.012
+},
+"GT_FirewoodStack_01": {
+"size": [
+1.6,
+0.5,
+0.925
+],
+"surfaces": [
+0.17,
+0.326,
+0.482,
+0.637,
+0.793,
+0.925
+],
+"zmin": 0.0
+},
+"GT_FirewoodStack_Small_01": {
+"size": [
+0.85,
+0.45,
+0.592
+],
+"surfaces": [
+0.16,
+0.308,
+0.455,
+0.602
+],
+"zmin": 0.01
+},
+"GT_FirewoodStack_Triangle_01": {
+"size": [
+1.13,
+0.5,
+0.896
+],
+"surfaces": [
+0.16,
+0.308,
+0.455,
+0.602,
+0.749,
+0.896
+],
+"zmin": 0.0
+},
+"GT_HayBale_Round_01": {
+"size": [
+1.21,
+1.205,
+1.21
+],
+"surfaces": [],
+"zmin": -0.005
+},
+"GT_HayBale_Square_01": {
+"size": [
+0.9,
+0.47,
+0.47
+],
+"surfaces": [
+0.45
+],
+"zmin": -0.01
+},
+"GT_Jerrycan_01": {
+"size": [
+0.34,
+0.16,
+0.51
+],
+"surfaces": [
+0.45
+],
+"zmin": 0.0
+},
+"GT_MailboxPost_01": {
+"size": [
+0.267,
+0.42,
+1.26
+],
+"surfaces": [
+1.25
+],
+"zmin": 0.0
+},
+"GT_MilkCan_01": {
+"size": [
+0.37,
+0.34,
+0.645
+],
+"surfaces": [
+0.59
+],
+"zmin": 0.0
+},
+"GT_Pitchfork_01": {
+"size": [
+0.2,
+0.035,
+1.73
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GT_Rake_01": {
+"size": [
+0.42,
+0.036,
+1.555
+],
+"surfaces": [],
+"zmin": -0.035
+},
+"GT_Shovel_01": {
+"size": [
+0.22,
+0.056,
+1.295
+],
+"surfaces": [],
+"zmin": 0.0
+},
+"GT_Stool_01": {
+"size": [
+0.34,
+0.34,
+0.485
+],
+"surfaces": [
+0.485
+],
+"zmin": 0.0
+},
+"GT_Wheelbarrow_01": {
+"size": [
+0.62,
+1.538,
+0.641
+],
+"surfaces": [
+0.445
+],
+"zmin": 0.0
+}
+}
+}

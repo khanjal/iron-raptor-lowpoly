@@ -1,0 +1,16 @@
+# Blender and Python
+*.blend1
+*.blend@
+__pycache__/
+*.pyc
+
+# Build output: models are published as release assets or on the site, not committed
+/out/
+/site/dist/
+*.fbx
+*.glb
+*.gltf
+
+# Editor
+.vscode/
+.idea/
