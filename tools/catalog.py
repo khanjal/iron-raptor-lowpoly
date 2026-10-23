@@ -118,7 +118,7 @@ _a("FD_Hamburger_01", "Hamburger", "food/prepared/hamburger", "fast-food diner f
 _a("GT_Barrel_01", "Barrel", "farm/props/barrel", "rural wood container new")
 _a("GT_Wheelbarrow_01", "Wheelbarrow", "farm/tools/wheelbarrow", "rural tool new")
 _a("GT_HayBale_Round_01", "Round hay bale", "farm/props/hay-bale", "rural hay yellow new")
-_a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw")
+_a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw weathered")
 _a("FM_DogHouse_01", "Doghouse", "farm/structures/doghouse", "rural wood new")
 # building kit and nature
 _a("GK_Wall_Window_Clapboard_01", "Window wall, clapboard", "building/kit/wall-window", "rural white siding new modular", "wall-window")

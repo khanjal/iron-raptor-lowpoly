@@ -17,7 +17,7 @@ const el = (tag, attrs = {}, ...kids) => {
 // Which tags are shown under which heading; anything else goes under "More tags".
 const TAG_GROUPS = [
   ['Setting', ['modern', 'retro', 'classic', 'rural', 'urban', 'suburban', 'sci-fi', 'diner']],
-  ['Condition', ['new', 'damaged', 'rotten', 'abandoned', 'fresh']],
+  ['Condition', ['new', 'damaged', 'rotten', 'abandoned', 'fresh', 'weathered']],
   ['Colour', ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'grey', 'cream', 'violet']],
 ];
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive]];

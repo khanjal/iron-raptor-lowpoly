@@ -1,14 +1,15 @@
 # Publishes site/ with GitHub Pages. Prepared, not switched on: Pages is not available for a private repository on the Free plan
 # (docs: "If the account that owns the repository uses GitHub Free ... the repository must be public."). When the repository is public
-# (or the plan allows it), turn it on under Settings > Pages > Build and deployment > Source: GitHub Actions; the next push to main publishes.
+# (or the plan allows it), turn it on under Settings > Pages > Build and deployment > Source: GitHub Actions, then run this workflow (or add the push trigger below).
+#
+# MANUAL ONLY for now (workflow_dispatch): the repository is private on the Free plan, which has limited Actions minutes and no Pages. When the repo is
+# public, add `push: branches: [main]` under `on:` so a merge publishes.
 #
 # The models (site/models/*.glb), thumbnails and manifest.json are committed for now, so there is no build step: the site is static.
 # Action versions are pinned to commit SHAs of releases at least two weeks old (comments name the release).
 name: Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

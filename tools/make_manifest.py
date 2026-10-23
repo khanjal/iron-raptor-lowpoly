@@ -39,37 +39,57 @@ def glow_swatches():
     return out
 
 
+def convert_part(p):
+    """One part of art/data/interactions.json (Blender space) as the manifest stores it (glTF space)."""
+    return dict(kind=p["kind"], axis=AXES[p["axis"]], pivot=to_gltf(p["pivot"]), limit=p["limit"], rest=p["rest"])
+
+
+def size_of(meta):
+    """[width, height, depth] in metres from the Blender bounding box (x, z, y)."""
+    lo, hi = meta["bbox_min"], meta["bbox_max"]
+    return [round(hi[0] - lo[0], 3), round(hi[2] - lo[2], 3), round(hi[1] - lo[1], 3)]
+
+
+def build_entry(aid, a, meta, inter, groups):
+    """The manifest entry of one model: a = its catalog row, meta = out/meta/<id>.json, inter = its entry in interactions.json, groups = group -> ids."""
+    parts = {}
+    for role, p in ((inter or {}).get("parts") or {}).items():
+        if role not in meta["part_nodes"]:
+            raise ValueError(f"{aid}: part {role} is in interactions.json but not in the GLB")
+        parts[role] = convert_part(p)
+    for role in meta["part_nodes"]:
+        if role not in parts:
+            raise ValueError(f"{aid}: node {role} is a child mesh but interactions.json has no part for it")
+    return dict(
+        id=aid, name=a["name"], type=a["type"], tags=sorted(set(a["tags"])),
+        rigged=meta["rigged"], interactive=bool(parts), triangles=meta["triangles"], size=size_of(meta),
+        glb=f"models/{aid}.glb", thumb=f"thumbs/{aid}.png",
+        parts=parts, clips=list(meta["clips"]),
+        variants=[v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
+    )
+
+
+def variant_groups(assets):
+    groups = {}
+    for aid, a in assets.items():
+        if a["group"]:
+            groups.setdefault(a["group"], []).append(aid)
+    return groups
+
+
 def main():
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
-    groups = {}
-    for aid, a in catalog.ASSETS.items():
-        if a["group"]:
-            groups.setdefault(a["group"], []).append(aid)
+    groups = variant_groups(catalog.ASSETS)
     assets = []
     for aid, a in catalog.ASSETS.items():
-        m = json.loads((meta_dir / f"{aid}.json").read_text(encoding="utf-8"))
-        glb = ROOT / "site" / "models" / f"{aid}.glb"
-        if not glb.exists():
-            raise SystemExit(f"missing {glb}")
-        lo, hi = m["bbox_min"], m["bbox_max"]
-        size = [round(hi[0] - lo[0], 3), round(hi[2] - lo[2], 3), round(hi[1] - lo[1], 3)]
-        parts = {}
-        for role, p in (inter.get(aid, {}).get("parts") or {}).items():
-            if role not in m["part_nodes"]:
-                raise SystemExit(f"{aid}: part {role} is in interactions.json but not in the GLB")
-            parts[role] = dict(kind=p["kind"], axis=AXES[p["axis"]], pivot=to_gltf(p["pivot"]), limit=p["limit"], rest=p["rest"])
-        for role in m["part_nodes"]:
-            if role not in parts:
-                raise SystemExit(f"{aid}: node {role} is a child mesh but interactions.json has no part for it")
-        tags = sorted(set(a["tags"]))
-        assets.append(dict(
-            id=aid, name=a["name"], type=a["type"], tags=tags,
-            rigged=m["rigged"], interactive=bool(parts), triangles=m["triangles"], size=size,
-            glb=f"models/{aid}.glb", thumb=f"thumbs/{aid}.png",
-            parts=parts, clips=m["clips"],
-            variants=[v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
-        ))
+        if not (ROOT / "site" / "models" / f"{aid}.glb").exists():
+            raise SystemExit(f"missing site/models/{aid}.glb")
+        meta = json.loads((meta_dir / f"{aid}.json").read_text(encoding="utf-8"))
+        try:
+            assets.append(build_entry(aid, a, meta, inter.get(aid), groups))
+        except ValueError as e:
+            raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")

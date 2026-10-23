@@ -18,6 +18,8 @@ Not done in the slice:
 - Cars, ships and the food scripts here are the versions from the game repo's `main`; the open PRs #357-#359 (lofted vehicle and ship bodies) are not in.
 - Not checked: a real phone, Safari / Firefox, touch dragging, iOS WebGL limits, a keyboard-only pass over the viewer.
 
+Tests and CI (added after the first push): `tests/` (39 unit tests: the Blender-to-glTF axis conversion, the manifest builder, catalog rules, the site checks including a pivot check against the real GLBs), `tools/check_site.py`, `.github/workflows/tests.yml` (manual, and on pushes to branches other than main; not on PRs or main, to save Free-plan minutes) and `pages.yml` (manual only). `docs/ci.md` has the proposals for a browser smoke test and a Blender job (`bpy` 5.2.3 is on PyPI, Python 3.13 only, a 403 MB Linux wheel; not tried). The README now has a section on using the models in Unity, Godot and Unreal, with what is documented and what is untested.
+
 ### GitHub Pages and a private repository
 Pages is not available for a private repository on the Free plan. The docs (docs.github.com, "Creating a GitHub Pages site"): "If the account that owns the repository uses GitHub Free or GitHub Free for organizations, the repository must be public." ("GitHub's plans": GitHub Pro and Team list Pages for private repositories, and "To publish a GitHub Pages site privately, you need to have an organization account" on GitHub Enterprise Cloud.) So: test locally now; publish when the repo is made public (which needs the licence and third-party decisions below) or the plan is upgraded; then enable Settings > Pages > Source: GitHub Actions and merge `.github/workflows/pages.yml`.
 
