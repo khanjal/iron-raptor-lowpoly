@@ -1,0 +1,4 @@
+# vendored three.js stays byte for byte as downloaded
+site/vendor/** -text
+*.glb binary
+*.png binary

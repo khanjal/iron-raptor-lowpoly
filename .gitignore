@@ -11,6 +11,12 @@ __pycache__/
 *.glb
 *.gltf
 
+# ... except the first slice of the asset browser (a few MB; later the CI builds these instead of committing them)
+!site/models/
+!site/models/*.glb
+!site/thumbs/
+!site/thumbs/*.png
+
 # Editor
 .vscode/
 .idea/
