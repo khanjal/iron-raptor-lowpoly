@@ -585,6 +585,13 @@ def clear_clips(rig_obj):
 def describe(coll):
     """Facts about a built collection, in Blender's axes (x right, y back, z up, front is -y), metres: triangles, the bounding box of the meshes in their exported pose,
     the moving-part objects (child meshes of the body: their name and origin, which is the pivot) and the clips on a rig."""
+    rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
+    muted = []
+    for r in rigs:                                                   # measure the rest pose, not whichever clip happens to be on top at this frame
+        for t in (r.animation_data.nla_tracks if r.animation_data else []):
+            if not t.mute:
+                t.mute = True
+                muted.append(t)
     bpy.context.view_layer.update()
     meshes = [o for o in coll.all_objects if o.type == "MESH"]
     import mathutils
@@ -595,7 +602,8 @@ def describe(coll):
         pts += [o.matrix_world @ mathutils.Vector(c) for c in o.bound_box]
     lo = [min(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
     hi = [max(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
-    rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
+    for t in muted:
+        t.mute = False
     clips = []
     for r in rigs:
         if r.animation_data:

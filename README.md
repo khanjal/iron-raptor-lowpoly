@@ -8,5 +8,31 @@ What it can make today (see `art/README.md` for the file list): quadruped animal
 
 Each model can carry moving parts, sound / light / switch markers and sockets, described in `art/data/interactions.json`.
 
+## The asset browser (first slice)
+
+`site/` is a static page (no build step, no framework; three.js is vendored under `site/vendor/three`, MIT) that browses 63 of the models: search as you type, a category tree, tag chips that filter together, a thumbnail grid and a 3D viewer with orbit / zoom / pan, a variant switcher, doors / drawers / lids you click to open (and an "Open all" button) and, for animals and people, a clip dropdown (Idle, Walk, Trot, Run, Sit) with a speed slider. `#GV_Sedan_Blue_01` in the URL opens a model; the filters are in the query string. It works at phone width.
+
+Run it:
+
+```bash
+cd site
+python -m http.server 8000      # then open http://localhost:8000
+```
+
+It has to be served over http (a `file://` page cannot load the models). Publishing: `.github/workflows/pages.yml` deploys `site/` with GitHub Pages on a push to `main`, but it is **not enabled**: GitHub Pages is not available for a private repository on the Free plan (see NOTES.md).
+
+What is in it, and how to rebuild it:
+
+| Path | What |
+|---|---|
+| `site/models/*.glb`, `site/thumbs/*.png`, `site/manifest.json` | The built slice, committed for now (4.4 MB of models, 1.1 MB of thumbnails). Later CI should build them instead |
+| `tools/catalog.py` | What the slice contains: `BUILD` (which art script makes which models) and `ASSETS` (name, category path, tags, variant group of each) |
+| `tools/build_site_assets.py` | Runs in Blender through the Blender MCP: `runpy.run_path(r"<repo>	oolsuild_site_assets.py", init_globals={"GROUPS": ["cars_sedan"]}, run_name="__main__")`. One group per call (people and animals take a few seconds each, so run `people`, `animals`, `birds` separately). Writes GLBs to `site/models/` and facts about each (triangles, bounds, part nodes, clips) to `out/meta/` |
+| `tools/make_manifest.py` | Plain Python: `python tools/make_manifest.py` writes `site/manifest.json` from `out/meta/`, the catalog and `art/data/interactions.json` (converting the moving parts to glTF axes) |
+| `tools/thumb_server.py` + `tools/thumbs.html` | `python tools/thumb_server.py`, open `http://localhost:8766/tools/thumbs.html` in a browser: renders every model with the site's own viewer (256 px, transparent) and saves `site/thumbs/<id>.png` (`?only=ID,ID` for some) |
+| `tools/glbinfo.py` | Prints the nodes and animations in a GLB |
+
+The art scripts write under an **output folder** now: `out/` by default, set with `common.configure(out=...)` (or the `LOWPOLY_OUT` environment variable); a path such as `Assets/Art/Global/Props/GT_Bucket_01.fbx` is relative to it, so setting it to a Unity project's root gives the old behaviour. `common.export_glb(coll, name)` writes a GLB (a rig's clips, stashed with `common.stash_clip`, become named animations; moving parts stay separate nodes with their origin on the pivot), and `common.configure(formats="fbx,glb")` makes `export_fbx` write both. See the docstrings in `art/scripts/common.py`.
+
 ## Licence
 Not chosen yet (see NOTES.md). Until a licence file is added, nothing here is licensed for reuse.
