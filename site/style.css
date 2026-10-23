@@ -215,3 +215,6 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
   .grid { grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: .6rem; }
 }
 @media (prefers-reduced-motion: reduce) { #filters { transition: none; } }
+
+.paint { display: inline-flex; align-items: center; gap: .4rem; }
+.paint i { width: .9rem; height: .9rem; border-radius: 50%; border: 1px solid var(--line, rgba(128, 128, 128, .6)); display: inline-block; }

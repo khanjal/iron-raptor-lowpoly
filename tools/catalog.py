@@ -8,14 +8,14 @@ Plain data, no Blender: tools/build_site_assets.py (in Blender) reads BUILD, too
 # kind "people" / "animals": one model at a time, then its clips; the dict maps the art script's key to the model id.
 BUILD = {
     "cars_sedan": dict(script="cars.py", globals={"CAR_LIST": ["Sedan"], "VARIANT_LIST": ["Blue", "Red"]},
-                       ids=["GV_Sedan_Blue_01", "GV_Sedan_Red_01", "GV_Sedan_Red_Damaged_01"]),
+                       ids=["GV_Sedan_Blue_01", "GV_Sedan_Red_Damaged_01"]),
     "cars_taxi": dict(script="cars.py", globals={"CAR_LIST": ["Taxi"], "VARIANT_LIST": ["Yellow"], "CONDITIONS": ["New"]}, ids=["GV_Taxi_Yellow_01"]),
     "cars_van": dict(script="cars.py", globals={"CAR_LIST": ["Van"], "VARIANT_LIST": ["Brown"], "CONDITIONS": ["New"]}, ids=["GV_Van_Brown_01"]),
     "cars_police": dict(script="cars.py", globals={"CAR_LIST": ["Police"], "VARIANT_LIST": ["Sheriff"], "CONDITIONS": ["New"]}, ids=["GV_Police_Sheriff_01"]),
     "cars_ambulance": dict(script="cars.py", globals={"CAR_LIST": ["Ambulance"], "CONDITIONS": ["New"]}, ids=["GV_Ambulance_White_01"]),
     "cars_moto": dict(script="cars.py", globals={"CAR_LIST": ["Motorcycle"], "VARIANT_LIST": ["Red"], "CONDITIONS": ["New"]}, ids=["GV_Motorcycle_Red_01"]),
     "cars_tractor": dict(script="cars.py", globals={"CAR_LIST": ["Tractor"], "VARIANT_LIST": ["Green", "Red"], "CONDITIONS": ["New"]},
-                         ids=["GV_Tractor_Green_01", "GV_Tractor_Red_01"]),
+                         ids=["GV_Tractor_Green_01"]),
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
@@ -61,22 +61,28 @@ BUILD = {
 # group (models in one group are variants of each other: the same model in another skin, style or colour).
 ASSETS = {}
 
+# Colour variants that are not models of their own: base id -> the base's colour name, and {paint name: the id of the GLB that was that colour}.
+# Only the base GLB is kept. The swap that turns it into each other paint is worked out once from the two GLBs (python tools/paints.py --write) and
+# lives in art/data/paints.json; the manifest lists the paints on the base and the viewer recolours the palette image (see tools/paints.py).
+PAINTS = {
+    "GV_Sedan_Blue_01": dict(name="Blue", others={"Red": "GV_Sedan_Red_01"}),
+    "GV_Tractor_Green_01": dict(name="Green", others={"Red": "GV_Tractor_Red_01"}),
+}
+
 
 def _a(id, name, type, tags, group=None):
     ASSETS[id] = dict(name=name, type=type, tags=tags.split(), group=group)
 
 
 # vehicles
-_a("GV_Sedan_Blue_01", "Sedan, blue", "vehicles/road/sedan", "modern urban suburban car blue new civilian", "sedan")
-_a("GV_Sedan_Red_01", "Sedan, red", "vehicles/road/sedan", "modern urban suburban car red new civilian", "sedan")
+_a("GV_Sedan_Blue_01", "Sedan", "vehicles/road/sedan", "modern urban suburban car blue red new civilian", "sedan")
 _a("GV_Sedan_Red_Damaged_01", "Sedan, red, wrecked", "vehicles/road/sedan", "modern urban suburban car red damaged wreck rusty abandoned", "sedan")
 _a("GV_Taxi_Yellow_01", "Taxi", "vehicles/road/taxi", "modern urban car yellow new cab service")
 _a("GV_Van_Brown_01", "Delivery van", "vehicles/road/van", "modern urban brown new delivery service")
 _a("GV_Police_Sheriff_01", "Sheriff's cruiser", "vehicles/road/police", "rural law enforcement car white new emergency sheriff")
 _a("GV_Ambulance_White_01", "Ambulance", "vehicles/road/ambulance", "modern urban white new emergency medical van")
 _a("GV_Motorcycle_Red_01", "Motorcycle", "vehicles/road/motorcycle", "modern red new bike two-wheeler")
-_a("GV_Tractor_Green_01", "Tractor, green", "vehicles/farm/tractor", "rural farm green new machine", "tractor")
-_a("GV_Tractor_Red_01", "Tractor, red", "vehicles/farm/tractor", "rural farm red new machine", "tractor")
+_a("GV_Tractor_Green_01", "Tractor", "vehicles/farm/tractor", "rural farm green red new machine")
 _a("GV_Pickup_Blue_01", "Farm pickup, blue", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")

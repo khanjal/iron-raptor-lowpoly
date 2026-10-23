@@ -3808,13 +3808,14 @@
   },
   {
    "id": "GV_Tractor_Green_01",
-   "name": "Tractor, green",
+   "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
     "farm",
     "green",
     "machine",
     "new",
+    "red",
     "rural"
    ],
    "rigged": false,
@@ -3829,35 +3830,20 @@
    "thumb": "thumbs/GV_Tractor_Green_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GV_Tractor_Red_01"
-   ]
-  },
-  {
-   "id": "GV_Tractor_Red_01",
-   "name": "Tractor, red",
-   "type": "vehicles/farm/tractor",
-   "tags": [
-    "farm",
-    "machine",
-    "new",
-    "red",
-    "rural"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 552,
-   "size": [
-    2.81,
-    2.93,
-    3.865
-   ],
-   "glb": "models/GV_Tractor_Red_01.glb",
-   "thumb": "thumbs/GV_Tractor_Red_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [
-    "GV_Tractor_Green_01"
+   "variants": [],
+   "paints": [
+    {
+     "name": "Green",
+     "hex": "#3F7D3A",
+     "swap": {}
+    },
+    {
+     "name": "Red",
+     "hex": "#B8443B",
+     "swap": {
+      "39": "#B8443B"
+     }
+    }
    ]
   },
   {
@@ -3942,39 +3928,10 @@
   },
   {
    "id": "GV_Sedan_Blue_01",
-   "name": "Sedan, blue",
+   "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
     "blue",
-    "car",
-    "civilian",
-    "modern",
-    "new",
-    "suburban",
-    "urban"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 624,
-   "size": [
-    2.1,
-    1.334,
-    4.9
-   ],
-   "glb": "models/GV_Sedan_Blue_01.glb",
-   "thumb": "thumbs/GV_Sedan_Blue_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [
-    "GV_Sedan_Red_01",
-    "GV_Sedan_Red_Damaged_01"
-   ]
-  },
-  {
-   "id": "GV_Sedan_Red_01",
-   "name": "Sedan, red",
-   "type": "vehicles/road/sedan",
-   "tags": [
     "car",
     "civilian",
     "modern",
@@ -3991,13 +3948,26 @@
     1.334,
     4.9
    ],
-   "glb": "models/GV_Sedan_Red_01.glb",
-   "thumb": "thumbs/GV_Sedan_Red_01.png",
+   "glb": "models/GV_Sedan_Blue_01.glb",
+   "thumb": "thumbs/GV_Sedan_Blue_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Blue_01",
     "GV_Sedan_Red_Damaged_01"
+   ],
+   "paints": [
+    {
+     "name": "Blue",
+     "hex": "#2F5F8F",
+     "swap": {}
+    },
+    {
+     "name": "Red",
+     "hex": "#B8443B",
+     "swap": {
+      "40": "#B8443B"
+     }
+    }
    ]
   },
   {
@@ -4028,8 +3998,7 @@
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Blue_01",
-    "GV_Sedan_Red_01"
+    "GV_Sedan_Blue_01"
    ]
   },
   {

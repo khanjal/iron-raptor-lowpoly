@@ -305,6 +305,12 @@ function fillDetails(a) {
   $('v-variants').hidden = vs.length === 0;
   $('v-variant-list').replaceChildren(...[a, ...vs].sort((x, y) => x.id.localeCompare(y.id)).map((v) =>
     el('button', { class: 'pill', type: 'button', 'aria-current': v.id === a.id ? 'true' : 'false', onclick: () => open(v.id) }, v.name)));
+  const paints = a.paints || [];
+  $('v-paints').hidden = paints.length === 0;
+  $('v-paint-list').replaceChildren(...paints.map((p, i) => el('button', { class: 'pill paint', type: 'button', 'aria-pressed': i === 0 ? 'true' : 'false', onclick: (e) => {
+    state.viewer.setPaint(p.swap);
+    for (const b of $('v-paint-list').children) b.setAttribute('aria-pressed', b === e.currentTarget ? 'true' : 'false');
+  } }, el('i', { style: 'background:' + p.hex }), p.name)));
   $('hint').hidden = false;
   $('hint').textContent = defaultHint();
 }

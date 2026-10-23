@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import catalog
+import paints as paints_tool
 
 AXES = {"x": [1, 0, 0], "y": [0, 0, -1], "z": [0, 1, 0]}
 
@@ -109,6 +110,21 @@ def variant_groups(assets):
     return groups
 
 
+def apply_paints(assets, paints, pal):
+    """Put the colour variants of art/data/paints.json on their base model: entry["paints"] = [{name, hex (for the chip), swap {swatch index: hex}}], the base's own
+    paint first with an empty swap. The models those paints used to be have no entry of their own, so they come out of every `variants` list."""
+    ids = {a["id"] for a in assets}
+    for a in assets:
+        a["variants"] = [v for v in a["variants"] if v in ids]
+        spec = paints.get(a["id"])
+        if not spec:
+            continue
+        swatches = sorted({k for sw in spec["paints"].values() for k in sw}, key=int)
+        a["paints"] = [dict(name=spec["base"], hex=pal[int(swatches[0])], swap={})]
+        for name, sw in spec["paints"].items():
+            a["paints"].append(dict(name=name, hex=sw[swatches[0]] if swatches[0] in sw else pal[int(swatches[0])], swap=sw))
+
+
 def main():
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
@@ -123,6 +139,7 @@ def main():
         except ValueError as e:
             raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
+    apply_paints(assets, json.loads((ROOT / "art" / "data" / "paints.json").read_text(encoding="utf-8")), paints_tool.palette())
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")

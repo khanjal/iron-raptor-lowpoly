@@ -144,6 +144,32 @@ export class Viewer {
     });
   }
 
+  // A colour variant of the model: every swatch in `swap` ({index: '#rrggbb'}) is painted over on a copy of the palette image, so the same mesh shows
+  // another paint. An empty swap puts the original palette back. The glow map made from the original stays valid (it only looks at the glow swatches).
+  setPaint(swap) {
+    if (!this.root) return;
+    const entries = Object.entries(swap || {});
+    this.root.traverse((o) => {
+      if (!o.isMesh || !o.material || !o.material.map) return;
+      const m = o.material;
+      if (!m.userData.basePalette) m.userData.basePalette = m.map;
+      const base = m.userData.basePalette;
+      if (m.map !== base) { m.map.dispose(); m.map = base; }
+      if (entries.length) {
+        const img = base.image, w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const g = c.getContext('2d');
+        g.drawImage(img, 0, 0);
+        for (const [i, hex] of entries) { g.fillStyle = hex; g.fillRect((i % GRID) * cell, Math.floor(i / GRID) * cell, cell, cell); }
+        const t = new THREE.CanvasTexture(c);
+        t.flipY = base.flipY; t.colorSpace = base.colorSpace; t.magFilter = base.magFilter; t.minFilter = base.minFilter; t.generateMipmaps = base.generateMipmaps;
+        m.map = t;
+      }
+      m.needsUpdate = true;
+    });
+  }
+
   _glowMap(map) {
     const img = map.image;
     const w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));

@@ -67,6 +67,26 @@ def png_size(path):
     return struct.unpack(">II", raw[16:24])
 
 
+def check_paints(a, err):
+    """paints: [{name, hex, swap {swatch index: hex}}], the first one the model as exported (empty swap), the names and the chip colours all different."""
+    ps = a["paints"]
+    if not (isinstance(ps, list) and len(ps) >= 2):
+        err("paints should list the model's own paint and at least one more")
+        return
+    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    for i, p in enumerate(ps):
+        if not (isinstance(p, dict) and isinstance(p.get("name"), str) and p["name"].strip() and isinstance(p.get("hex"), str) and hexre.match(p["hex"]) and isinstance(p.get("swap"), dict)):
+            err(f"paints[{i}] should be {{name, hex '#RRGGBB', swap}}")
+            return
+        if bool(p["swap"]) == (i == 0):
+            err(f"paints[{i}]: only the first paint (the model as exported) has an empty swap")
+        for k, v in p["swap"].items():
+            if not (k.isdigit() and int(k) < 256 and hexre.match(str(v))):
+                err(f"paints[{i}]: swap entry {k!r}: {v!r} should be a swatch index and '#RRGGBB'")
+    if len({p["name"] for p in ps}) != len(ps) or len({p["hex"] for p in ps}) != len(ps):
+        err("paints: names and colours should all differ")
+
+
 def check_entry(a, site, errors):
     where = a.get("id", "?")
     err = lambda m: errors.append(f"{where}: {m}")
@@ -106,6 +126,8 @@ def check_entry(a, site, errors):
         if "rest" not in p:
             err(f"part {role}: rest missing")
 
+    if "paints" in a:
+        check_paints(a, err)
     if "interactions" in a:
         check_interactions(a, site, err)
     glb, thumb = site / a["glb"], site / a["thumb"]
