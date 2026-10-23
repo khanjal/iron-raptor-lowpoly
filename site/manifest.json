@@ -1,0 +1,2038 @@
+{
+ "version": 1,
+ "generated_from": "tools/make_manifest.py",
+ "palette": {
+  "glow": [
+   {
+    "name": "glow_cyan",
+    "index": 14,
+    "hex": "#6FE8E0"
+   },
+   {
+    "name": "glow_green",
+    "index": 105,
+    "hex": "#5DF28A"
+   },
+   {
+    "name": "glow_red",
+    "index": 106,
+    "hex": "#FF4B3E"
+   },
+   {
+    "name": "glow_amber",
+    "index": 107,
+    "hex": "#FFB938"
+   }
+  ]
+ },
+ "assets": [
+  {
+   "id": "GN_Cow_faceted_01",
+   "name": "Cow",
+   "type": "animals/farm/cow",
+   "tags": [
+    "animal",
+    "black",
+    "farm",
+    "livestock",
+    "quadruped",
+    "rural",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 924,
+   "size": [
+    0.7,
+    1.417,
+    2.666
+   ],
+   "glb": "models/GN_Cow_faceted_01.glb",
+   "thumb": "thumbs/GN_Cow_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GN_ChickenHen_faceted_01",
+   "name": "Hen",
+   "type": "animals/farm/hen",
+   "tags": [
+    "animal",
+    "bird",
+    "chicken",
+    "farm",
+    "poultry",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 658,
+   "size": [
+    0.245,
+    0.436,
+    0.474
+   ],
+   "glb": "models/GN_ChickenHen_faceted_01.glb",
+   "thumb": "thumbs/GN_ChickenHen_faceted_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Horse_faceted_01",
+   "name": "Horse",
+   "type": "animals/farm/horse",
+   "tags": [
+    "animal",
+    "brown",
+    "farm",
+    "livestock",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 796,
+   "size": [
+    0.54,
+    2.161,
+    2.646
+   ],
+   "glb": "models/GN_Horse_faceted_01.glb",
+   "thumb": "thumbs/GN_Horse_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GN_CatTabby_faceted_01",
+   "name": "Cat, tabby",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "cat",
+    "pet",
+    "quadruped",
+    "tabby"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 660,
+   "size": [
+    0.161,
+    0.46,
+    0.656
+   ],
+   "glb": "models/GN_CatTabby_faceted_01.glb",
+   "thumb": "thumbs/GN_CatTabby_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GN_DogCollie_faceted_01",
+   "name": "Dog, collie",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "collie",
+    "dog",
+    "farm",
+    "pet",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1048,
+   "size": [
+    0.266,
+    0.729,
+    1.126
+   ],
+   "glb": "models/GN_DogCollie_faceted_01.glb",
+   "thumb": "thumbs/GN_DogCollie_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GN_DogHusky_faceted_01",
+   "name": "Dog, husky",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "dog",
+    "grey",
+    "husky",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 660,
+   "size": [
+    0.315,
+    0.65,
+    0.985
+   ],
+   "glb": "models/GN_DogHusky_faceted_01.glb",
+   "thumb": "thumbs/GN_DogHusky_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GI_Fridge_01",
+   "name": "Fridge, classic",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "classic",
+    "cold",
+    "kitchen",
+    "new",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.7,
+    1.8,
+    0.777
+   ],
+   "glb": "models/GI_Fridge_01.glb",
+   "thumb": "thumbs/GI_Fridge_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01",
+    "GI_Fridge_Damaged_01"
+   ]
+  },
+  {
+   "id": "GI_Fridge_Damaged_01",
+   "name": "Fridge, rusty",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "abandoned",
+    "cold",
+    "damaged",
+    "kitchen",
+    "rusty"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 204,
+   "size": [
+    0.757,
+    1.804,
+    1.419
+   ],
+   "glb": "models/GI_Fridge_Damaged_01.glb",
+   "thumb": "thumbs/GI_Fridge_Damaged_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 35.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 80.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01"
+   ]
+  },
+  {
+   "id": "GI_Fridge_Modern_01",
+   "name": "Fridge, modern",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "cold",
+    "kitchen",
+    "modern",
+    "new",
+    "steel"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.7,
+    1.8,
+    0.777
+   ],
+   "glb": "models/GI_Fridge_Modern_01.glb",
+   "thumb": "thumbs/GI_Fridge_Modern_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Retro_01",
+    "GI_Fridge_Damaged_01"
+   ]
+  },
+  {
+   "id": "GI_Fridge_Retro_01",
+   "name": "Fridge, retro",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "cold",
+    "cream",
+    "kitchen",
+    "new",
+    "retro",
+    "rounded"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.7,
+    1.8,
+    0.777
+   ],
+   "glb": "models/GI_Fridge_Retro_01.glb",
+   "thumb": "thumbs/GI_Fridge_Retro_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      0.645,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DoorFreezer": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.35,
+      1.505,
+      0.37
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Damaged_01"
+   ]
+  },
+  {
+   "id": "GI_Microwave_01",
+   "name": "Microwave",
+   "type": "appliances/kitchen/microwave",
+   "tags": [
+    "classic",
+    "kitchen",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 132,
+   "size": [
+    0.5,
+    0.3,
+    0.443
+   ],
+   "glb": "models/GI_Microwave_01.glb",
+   "thumb": "thumbs/GI_Microwave_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.25,
+      0.15,
+      0.2025
+     ],
+     "limit": -105,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GK_Door_Exterior_01",
+   "name": "Exterior door",
+   "type": "building/kit/door",
+   "tags": [
+    "classic",
+    "modular",
+    "new",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.1,
+    2.1,
+    0.1
+   ],
+   "glb": "models/GK_Door_Exterior_01.glb",
+   "thumb": "thumbs/GK_Door_Exterior_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GK_Wall_Window_Barn_01",
+   "name": "Window wall, barn",
+   "type": "building/kit/wall-window",
+   "tags": [
+    "barn",
+    "modular",
+    "new",
+    "red",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    3.0,
+    2.7,
+    0.35
+   ],
+   "glb": "models/GK_Wall_Window_Barn_01.glb",
+   "thumb": "thumbs/GK_Wall_Window_Barn_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GK_Wall_Window_Clapboard_01",
+    "GK_Wall_Window_Brick_01"
+   ]
+  },
+  {
+   "id": "GK_Wall_Window_Brick_01",
+   "name": "Window wall, brick",
+   "type": "building/kit/wall-window",
+   "tags": [
+    "brick",
+    "modular",
+    "new",
+    "red",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    3.0,
+    2.7,
+    0.4
+   ],
+   "glb": "models/GK_Wall_Window_Brick_01.glb",
+   "thumb": "thumbs/GK_Wall_Window_Brick_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GK_Wall_Window_Clapboard_01",
+    "GK_Wall_Window_Barn_01"
+   ]
+  },
+  {
+   "id": "GK_Wall_Window_Clapboard_01",
+   "name": "Window wall, clapboard",
+   "type": "building/kit/wall-window",
+   "tags": [
+    "modular",
+    "new",
+    "rural",
+    "siding",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    3.0,
+    2.7,
+    0.35
+   ],
+   "glb": "models/GK_Wall_Window_Clapboard_01.glb",
+   "thumb": "thumbs/GK_Wall_Window_Clapboard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GK_Wall_Window_Brick_01",
+    "GK_Wall_Window_Barn_01"
+   ]
+  },
+  {
+   "id": "GD_TV_Flat_Modern_01",
+   "name": "Flat-screen TV",
+   "type": "decor/electronics/tv",
+   "tags": [
+    "electronics",
+    "living-room",
+    "modern",
+    "new",
+    "screen"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.6,
+    0.995,
+    0.405
+   ],
+   "glb": "models/GD_TV_Flat_Modern_01.glb",
+   "thumb": "thumbs/GD_TV_Flat_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GD_TableLamp_Retro_01",
+   "name": "Table lamp, retro",
+   "type": "decor/lighting/lamp",
+   "tags": [
+    "lamp",
+    "light",
+    "new",
+    "retro"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.34,
+    0.45,
+    0.34
+   ],
+   "glb": "models/GD_TableLamp_Retro_01.glb",
+   "thumb": "thumbs/GD_TableLamp_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GD_NeonSign_01",
+   "name": "Neon sign",
+   "type": "decor/lighting/neon-sign",
+   "tags": [
+    "cyan",
+    "diner",
+    "glow",
+    "light",
+    "new",
+    "red",
+    "retro"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.0,
+    0.35,
+    0.065
+   ],
+   "glb": "models/GD_NeonSign_01.glb",
+   "thumb": "thumbs/GD_NeonSign_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GD_PottedPlant_01",
+   "name": "Potted plant",
+   "type": "decor/plants/potted-plant",
+   "tags": [
+    "green",
+    "new",
+    "plant",
+    "terracotta"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 140,
+   "size": [
+    0.346,
+    0.736,
+    0.353
+   ],
+   "glb": "models/GD_PottedPlant_01.glb",
+   "thumb": "thumbs/GD_PottedPlant_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GD_Clock_Wall_Retro_01",
+   "name": "Wall clock, retro",
+   "type": "decor/wall/clock",
+   "tags": [
+    "new",
+    "retro",
+    "time",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 256,
+   "size": [
+    0.56,
+    0.56,
+    0.042
+   ],
+   "glb": "models/GD_Clock_Wall_Retro_01.glb",
+   "thumb": "thumbs/GD_Clock_Wall_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GT_Barrel_01",
+   "name": "Barrel",
+   "type": "farm/props/barrel",
+   "tags": [
+    "container",
+    "new",
+    "rural",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 180,
+   "size": [
+    0.61,
+    0.906,
+    0.58
+   ],
+   "glb": "models/GT_Barrel_01.glb",
+   "thumb": "thumbs/GT_Barrel_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GT_HayBale_Round_01",
+   "name": "Round hay bale",
+   "type": "farm/props/hay-bale",
+   "tags": [
+    "hay",
+    "new",
+    "rural",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    1.21,
+    1.21,
+    1.205
+   ],
+   "glb": "models/GT_HayBale_Round_01.glb",
+   "thumb": "thumbs/GT_HayBale_Round_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FM_Scarecrow_01",
+   "name": "Scarecrow",
+   "type": "farm/props/scarecrow",
+   "tags": [
+    "field",
+    "rural",
+    "straw"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 192,
+   "size": [
+    1.3,
+    2.04,
+    0.457
+   ],
+   "glb": "models/FM_Scarecrow_01.glb",
+   "thumb": "thumbs/FM_Scarecrow_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FM_DogHouse_01",
+   "name": "Doghouse",
+   "type": "farm/structures/doghouse",
+   "tags": [
+    "new",
+    "rural",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    0.96,
+    1.0,
+    1.16
+   ],
+   "glb": "models/FM_DogHouse_01.glb",
+   "thumb": "thumbs/FM_DogHouse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Mailbox_01",
+   "name": "Mailbox",
+   "type": "farm/structures/mailbox",
+   "tags": [
+    "flap",
+    "new",
+    "outdoor",
+    "post",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 96,
+   "size": [
+    0.216,
+    1.34,
+    0.412
+   ],
+   "glb": "models/GI_Mailbox_01.glb",
+   "thumb": "thumbs/GI_Mailbox_01.png",
+   "parts": {
+    "Flap": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      1.05,
+      0.206
+     ],
+     "limit": 90,
+     "rest": 0.0
+    },
+    "Flag": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.11,
+      1.2,
+      -0.0
+     ],
+     "limit": 90,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Toolbox_01",
+   "name": "Toolbox",
+   "type": "farm/tools/toolbox",
+   "tags": [
+    "lid",
+    "metal",
+    "new",
+    "red",
+    "rural",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 84,
+   "size": [
+    0.5,
+    0.23,
+    0.22
+   ],
+   "glb": "models/GI_Toolbox_01.glb",
+   "thumb": "thumbs/GI_Toolbox_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.14,
+      -0.11
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GT_Wheelbarrow_01",
+   "name": "Wheelbarrow",
+   "type": "farm/tools/wheelbarrow",
+   "tags": [
+    "new",
+    "rural",
+    "tool"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 248,
+   "size": [
+    0.62,
+    0.641,
+    1.538
+   ],
+   "glb": "models/GT_Wheelbarrow_01.glb",
+   "thumb": "thumbs/GT_Wheelbarrow_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_BreadLoaf_01",
+   "name": "Loaf of bread",
+   "type": "food/bakery/bread",
+   "tags": [
+    "baked",
+    "brown",
+    "fresh"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 128,
+   "size": [
+    0.24,
+    0.135,
+    0.12
+   ],
+   "glb": "models/FD_BreadLoaf_01.glb",
+   "thumb": "thumbs/FD_BreadLoaf_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_Pie_01",
+   "name": "Pie",
+   "type": "food/bakery/pie",
+   "tags": [
+    "baked",
+    "dessert",
+    "fresh"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 140,
+   "size": [
+    0.24,
+    0.065,
+    0.228
+   ],
+   "glb": "models/FD_Pie_01.glb",
+   "thumb": "thumbs/FD_Pie_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_Hamburger_01",
+   "name": "Hamburger",
+   "type": "food/prepared/hamburger",
+   "tags": [
+    "diner",
+    "fast-food",
+    "fresh"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 188,
+   "size": [
+    0.108,
+    0.08,
+    0.108
+   ],
+   "glb": "models/FD_Hamburger_01.glb",
+   "thumb": "thumbs/FD_Hamburger_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_Apple_01",
+   "name": "Apple",
+   "type": "food/produce/apple",
+   "tags": [
+    "fresh",
+    "fruit",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 106,
+   "size": [
+    0.076,
+    0.094,
+    0.078
+   ],
+   "glb": "models/FD_Apple_01.glb",
+   "thumb": "thumbs/FD_Apple_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Apple_Rotten_01"
+   ]
+  },
+  {
+   "id": "FD_Apple_Rotten_01",
+   "name": "Apple, rotten",
+   "type": "food/produce/apple",
+   "tags": [
+    "fruit",
+    "mould",
+    "rotten",
+    "spoiled"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 106,
+   "size": [
+    0.076,
+    0.094,
+    0.078
+   ],
+   "glb": "models/FD_Apple_Rotten_01.glb",
+   "thumb": "thumbs/FD_Apple_Rotten_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Apple_01"
+   ]
+  },
+  {
+   "id": "GH_Bed_Double_Modern_01",
+   "name": "Double bed, modern",
+   "type": "furniture/bedroom/bed",
+   "tags": [
+    "bedroom",
+    "modern",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    1.76,
+    1.15,
+    2.17
+   ],
+   "glb": "models/GH_Bed_Double_Modern_01.glb",
+   "thumb": "thumbs/GH_Bed_Double_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GH_Armchair_Retro_01",
+   "name": "Armchair, retro",
+   "type": "furniture/seating/armchair",
+   "tags": [
+    "living-room",
+    "new",
+    "retro"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    1.18,
+    1.262,
+    0.856
+   ],
+   "glb": "models/GH_Armchair_Retro_01.glb",
+   "thumb": "thumbs/GH_Armchair_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GH_Sofa_Damaged_01",
+   "name": "Sofa, slashed",
+   "type": "furniture/seating/sofa",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "living-room"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 168,
+   "size": [
+    2.186,
+    0.982,
+    1.2
+   ],
+   "glb": "models/GH_Sofa_Damaged_01.glb",
+   "thumb": "thumbs/GH_Sofa_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Sofa_Modern_01",
+    "GH_Sofa_Retro_01"
+   ]
+  },
+  {
+   "id": "GH_Sofa_Modern_01",
+   "name": "Sofa, modern",
+   "type": "furniture/seating/sofa",
+   "tags": [
+    "grey",
+    "living-room",
+    "modern",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    2.36,
+    0.838,
+    0.95
+   ],
+   "glb": "models/GH_Sofa_Modern_01.glb",
+   "thumb": "thumbs/GH_Sofa_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Sofa_Retro_01",
+    "GH_Sofa_Damaged_01"
+   ]
+  },
+  {
+   "id": "GH_Sofa_Retro_01",
+   "name": "Sofa, retro",
+   "type": "furniture/seating/sofa",
+   "tags": [
+    "living-room",
+    "new",
+    "retro",
+    "tufted"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    2.16,
+    1.064,
+    0.92
+   ],
+   "glb": "models/GH_Sofa_Retro_01.glb",
+   "thumb": "thumbs/GH_Sofa_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Sofa_Modern_01",
+    "GH_Sofa_Damaged_01"
+   ]
+  },
+  {
+   "id": "GH_Bookcase_Modern_01",
+   "name": "Bookcase, modern",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "books",
+    "living-room",
+    "modern",
+    "new",
+    "shelves"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 324,
+   "size": [
+    1.23,
+    1.53,
+    0.35
+   ],
+   "glb": "models/GH_Bookcase_Modern_01.glb",
+   "thumb": "thumbs/GH_Bookcase_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Chest_01",
+   "name": "Chest",
+   "type": "furniture/storage/chest",
+   "tags": [
+    "classic",
+    "lid",
+    "new",
+    "trunk",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 144,
+   "size": [
+    0.9,
+    0.565,
+    0.536
+   ],
+   "glb": "models/GI_Chest_01.glb",
+   "thumb": "thumbs/GI_Chest_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.44,
+      -0.25
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Dresser_01",
+   "name": "Dresser",
+   "type": "furniture/storage/dresser",
+   "tags": [
+    "bedroom",
+    "classic",
+    "drawers",
+    "new",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 336,
+   "size": [
+    1.24,
+    0.92,
+    0.57
+   ],
+   "glb": "models/GI_Dresser_01.glb",
+   "thumb": "thumbs/GI_Dresser_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.17,
+      0.25
+     ],
+     "limit": -0.38,
+     "rest": -0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.45,
+      0.25
+     ],
+     "limit": -0.38,
+     "rest": -0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.73,
+      0.25
+     ],
+     "limit": -0.38,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Locker_01",
+   "name": "Locker",
+   "type": "furniture/storage/locker",
+   "tags": [
+    "classic",
+    "gym",
+    "metal",
+    "new",
+    "school"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 136,
+   "size": [
+    0.4,
+    1.8,
+    0.562
+   ],
+   "glb": "models/GI_Locker_01.glb",
+   "thumb": "thumbs/GI_Locker_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.2,
+      0.9,
+      0.2625
+     ],
+     "limit": 110,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GI_Wardrobe_01",
+   "name": "Wardrobe",
+   "type": "furniture/storage/wardrobe",
+   "tags": [
+    "bedroom",
+    "classic",
+    "new",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 136,
+   "size": [
+    1.0,
+    1.9,
+    0.613
+   ],
+   "glb": "models/GI_Wardrobe_01.glb",
+   "thumb": "thumbs/GI_Wardrobe_01.png",
+   "parts": {
+    "DoorL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.5,
+      0.955,
+      0.2875
+     ],
+     "limit": -110,
+     "rest": -0.0
+    },
+    "DoorR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.5,
+      0.955,
+      0.2875
+     ],
+     "limit": 110,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Wardrobe_Damaged_01"
+   ]
+  },
+  {
+   "id": "GI_Wardrobe_Damaged_01",
+   "name": "Wardrobe, ruined",
+   "type": "furniture/storage/wardrobe",
+   "tags": [
+    "abandoned",
+    "bedroom",
+    "damaged",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 160,
+   "size": [
+    1.079,
+    1.904,
+    1.052
+   ],
+   "glb": "models/GI_Wardrobe_Damaged_01.glb",
+   "thumb": "thumbs/GI_Wardrobe_Damaged_01.png",
+   "parts": {
+    "DoorL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.5,
+      0.955,
+      0.2875
+     ],
+     "limit": -110,
+     "rest": -38.5
+    },
+    "DoorR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.5,
+      0.955,
+      0.2875
+     ],
+     "limit": 110,
+     "rest": 71.49999999999999
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Wardrobe_01"
+   ]
+  },
+  {
+   "id": "FM_TreeOak_01",
+   "name": "Oak tree",
+   "type": "nature/trees/oak",
+   "tags": [
+    "big",
+    "green",
+    "plant",
+    "rural",
+    "tree"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 388,
+   "size": [
+    6.762,
+    7.54,
+    5.051
+   ],
+   "glb": "models/FM_TreeOak_01.glb",
+   "thumb": "thumbs/FM_TreeOak_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FM_TreePine_01",
+   "name": "Pine tree",
+   "type": "nature/trees/pine",
+   "tags": [
+    "conifer",
+    "green",
+    "plant",
+    "rural",
+    "tree"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 116,
+   "size": [
+    3.612,
+    7.3,
+    3.705
+   ],
+   "glb": "models/FM_TreePine_01.glb",
+   "thumb": "thumbs/FM_TreePine_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GP_Grey_01",
+   "name": "Grey alien",
+   "type": "people/alien/grey",
+   "tags": [
+    "alien",
+    "grey",
+    "humanoid",
+    "sci-fi"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 978,
+   "size": [
+    1.331,
+    1.402,
+    0.306
+   ],
+   "glb": "models/GP_Grey_01.glb",
+   "thumb": "thumbs/GP_Grey_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GP_Farmer_01",
+   "name": "Farmer",
+   "type": "people/civilian/farmer",
+   "tags": [
+    "adult",
+    "beard",
+    "cap",
+    "farm",
+    "flannel",
+    "human",
+    "man",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 896,
+   "size": [
+    1.705,
+    1.931,
+    0.363
+   ],
+   "glb": "models/GP_Farmer_01.glb",
+   "thumb": "thumbs/GP_Farmer_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GP_FarmerKid_01",
+   "name": "Farmer's kid",
+   "type": "people/civilian/kid",
+   "tags": [
+    "child",
+    "farm",
+    "human",
+    "kid",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 792,
+   "size": [
+    1.198,
+    1.382,
+    0.256
+   ],
+   "glb": "models/GP_FarmerKid_01.glb",
+   "thumb": "thumbs/GP_FarmerKid_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GP_Waitress_01",
+   "name": "Waitress",
+   "type": "people/civilian/waitress",
+   "tags": [
+    "adult",
+    "diner",
+    "human",
+    "red",
+    "retro",
+    "woman"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 884,
+   "size": [
+    1.553,
+    1.728,
+    0.356
+   ],
+   "glb": "models/GP_Waitress_01.glb",
+   "thumb": "thumbs/GP_Waitress_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GP_Sheriff_01",
+   "name": "Sheriff",
+   "type": "people/law/sheriff",
+   "tags": [
+    "adult",
+    "enforcement",
+    "hat",
+    "human",
+    "law",
+    "rural",
+    "tan",
+    "uniform"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 908,
+   "size": [
+    1.755,
+    2.064,
+    0.419
+   ],
+   "glb": "models/GP_Sheriff_01.glb",
+   "thumb": "thumbs/GP_Sheriff_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": []
+  },
+  {
+   "id": "GV_Pickup_Blue_01",
+   "name": "Farm pickup, blue",
+   "type": "vehicles/farm/pickup",
+   "tags": [
+    "blue",
+    "farm",
+    "new",
+    "rural",
+    "truck"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 636,
+   "size": [
+    2.1,
+    1.661,
+    5.65
+   ],
+   "glb": "models/GV_Pickup_Blue_01.glb",
+   "thumb": "thumbs/GV_Pickup_Blue_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GV_Tractor_Green_01",
+   "name": "Tractor, green",
+   "type": "vehicles/farm/tractor",
+   "tags": [
+    "farm",
+    "green",
+    "machine",
+    "new",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 552,
+   "size": [
+    2.81,
+    2.93,
+    3.865
+   ],
+   "glb": "models/GV_Tractor_Green_01.glb",
+   "thumb": "thumbs/GV_Tractor_Green_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GV_Tractor_Red_01"
+   ]
+  },
+  {
+   "id": "GV_Tractor_Red_01",
+   "name": "Tractor, red",
+   "type": "vehicles/farm/tractor",
+   "tags": [
+    "farm",
+    "machine",
+    "new",
+    "red",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 552,
+   "size": [
+    2.81,
+    2.93,
+    3.865
+   ],
+   "glb": "models/GV_Tractor_Red_01.glb",
+   "thumb": "thumbs/GV_Tractor_Red_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GV_Tractor_Green_01"
+   ]
+  },
+  {
+   "id": "GV_Ambulance_White_01",
+   "name": "Ambulance",
+   "type": "vehicles/road/ambulance",
+   "tags": [
+    "emergency",
+    "medical",
+    "modern",
+    "new",
+    "urban",
+    "van",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 672,
+   "size": [
+    2.3,
+    2.512,
+    5.7
+   ],
+   "glb": "models/GV_Ambulance_White_01.glb",
+   "thumb": "thumbs/GV_Ambulance_White_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GV_Motorcycle_Red_01",
+   "name": "Motorcycle",
+   "type": "vehicles/road/motorcycle",
+   "tags": [
+    "bike",
+    "modern",
+    "new",
+    "red",
+    "two-wheeler"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 164,
+   "size": [
+    0.7,
+    0.994,
+    2.04
+   ],
+   "glb": "models/GV_Motorcycle_Red_01.glb",
+   "thumb": "thumbs/GV_Motorcycle_Red_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GV_Police_Sheriff_01",
+   "name": "Sheriff's cruiser",
+   "type": "vehicles/road/police",
+   "tags": [
+    "car",
+    "emergency",
+    "enforcement",
+    "law",
+    "new",
+    "rural",
+    "sheriff",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 660,
+   "size": [
+    2.1,
+    1.464,
+    4.9
+   ],
+   "glb": "models/GV_Police_Sheriff_01.glb",
+   "thumb": "thumbs/GV_Police_Sheriff_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GV_Sedan_Blue_01",
+   "name": "Sedan, blue",
+   "type": "vehicles/road/sedan",
+   "tags": [
+    "blue",
+    "car",
+    "civilian",
+    "modern",
+    "new",
+    "suburban",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 624,
+   "size": [
+    2.1,
+    1.334,
+    4.9
+   ],
+   "glb": "models/GV_Sedan_Blue_01.glb",
+   "thumb": "thumbs/GV_Sedan_Blue_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GV_Sedan_Red_01",
+    "GV_Sedan_Red_Damaged_01"
+   ]
+  },
+  {
+   "id": "GV_Sedan_Red_01",
+   "name": "Sedan, red",
+   "type": "vehicles/road/sedan",
+   "tags": [
+    "car",
+    "civilian",
+    "modern",
+    "new",
+    "red",
+    "suburban",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 624,
+   "size": [
+    2.1,
+    1.334,
+    4.9
+   ],
+   "glb": "models/GV_Sedan_Red_01.glb",
+   "thumb": "thumbs/GV_Sedan_Red_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GV_Sedan_Blue_01",
+    "GV_Sedan_Red_Damaged_01"
+   ]
+  },
+  {
+   "id": "GV_Sedan_Red_Damaged_01",
+   "name": "Sedan, red, wrecked",
+   "type": "vehicles/road/sedan",
+   "tags": [
+    "abandoned",
+    "car",
+    "damaged",
+    "modern",
+    "red",
+    "rusty",
+    "suburban",
+    "urban",
+    "wreck"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 516,
+   "size": [
+    1.905,
+    1.392,
+    4.932
+   ],
+   "glb": "models/GV_Sedan_Red_Damaged_01.glb",
+   "thumb": "thumbs/GV_Sedan_Red_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GV_Sedan_Blue_01",
+    "GV_Sedan_Red_01"
+   ]
+  },
+  {
+   "id": "GV_Taxi_Yellow_01",
+   "name": "Taxi",
+   "type": "vehicles/road/taxi",
+   "tags": [
+    "cab",
+    "car",
+    "modern",
+    "new",
+    "service",
+    "urban",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 648,
+   "size": [
+    2.1,
+    1.514,
+    4.9
+   ],
+   "glb": "models/GV_Taxi_Yellow_01.glb",
+   "thumb": "thumbs/GV_Taxi_Yellow_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GV_Van_Brown_01",
+   "name": "Delivery van",
+   "type": "vehicles/road/van",
+   "tags": [
+    "brown",
+    "delivery",
+    "modern",
+    "new",
+    "service",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 624,
+   "size": [
+    2.3,
+    2.382,
+    5.7
+   ],
+   "glb": "models/GV_Van_Brown_01.glb",
+   "thumb": "thumbs/GV_Van_Brown_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "SH_Dart_01",
+   "name": "Dart ship",
+   "type": "vehicles/ship/dart",
+   "tags": [
+    "alien",
+    "fast",
+    "flyer",
+    "glow",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 100,
+   "size": [
+    5.611,
+    0.92,
+    5.65
+   ],
+   "glb": "models/SH_Dart_01.glb",
+   "thumb": "thumbs/SH_Dart_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "SH_Scout_01",
+   "name": "Scout ship",
+   "type": "vehicles/ship/scout",
+   "tags": [
+    "alien",
+    "flying",
+    "glow",
+    "new",
+    "saucer",
+    "sci-fi",
+    "ship",
+    "ufo",
+    "violet"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 416,
+   "size": [
+    9.2,
+    3.8,
+    9.2
+   ],
+   "glb": "models/SH_Scout_01.glb",
+   "thumb": "thumbs/SH_Scout_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  }
+ ]
+}

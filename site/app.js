@@ -268,6 +268,7 @@ async function showAsset(a) {
   if (!state.viewer) {
     try { state.viewer = new Viewer($('canvas'), { glow: state.glow }); }
     catch (e) { $('status').textContent = 'WebGL is not available here: ' + e.message; return; }
+    window.lowpolyViewer = state.viewer; // handy in the browser console
     state.viewer.onPartsChanged = updatePartButtons;
     state.viewer.onHover = (role) => { $('hint').textContent = role ? `Click to open or close: ${role}` : defaultHint(); };
   }
