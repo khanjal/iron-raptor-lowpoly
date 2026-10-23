@@ -136,7 +136,7 @@ Besides the mesh, an FBX can carry **empties** that mark places, and `art/data/i
 
 ## Tests and CI
 
-`python -m unittest discover -s tests -t .` runs the unit tests (axis conversion of the moving parts, the manifest builder, the catalog's type and tag rules) and the site checks; `python tools/check_site.py` checks that every manifest entry has its GLB and thumbnail, that fields are valid and ids unique, and that every moving part names a node that exists in its GLB at the right pivot. `.github/workflows/tests.yml` runs both on a push to a branch other than `main` and by hand (the repository is private on the Free plan, where Actions minutes are limited). A proposal for a Blender job (rebuild a few generators, fail on floating parts or a triangle regression) and for a browser smoke test is in [docs/ci.md](docs/ci.md).
+`python -m unittest discover -s tests -t .` runs the unit tests (axis conversion of the moving parts, the manifest builder, the catalog's type and tag rules) and the site checks; `python tools/check_site.py` checks that every manifest entry has its GLB and thumbnail, that fields are valid and ids unique, and that every moving part names a node that exists in its GLB at the right pivot. `.github/workflows/tests.yml` runs both by hand only for now (the repository is private on the Free plan, where Actions minutes are limited, and GitHub refused to start the job on 2026-10-23 because of the account's billing state, so it has not run on GitHub yet). A proposal for a Blender job (rebuild a few generators, fail on floating parts or a triangle regression) and for a browser smoke test is in [docs/ci.md](docs/ci.md).
 
 ## Licence
 
