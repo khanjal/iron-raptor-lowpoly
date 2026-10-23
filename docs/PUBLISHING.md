@@ -1,6 +1,6 @@
 # Before this repository goes public
 
-Status: **private**. Nothing here is a reason to hurry; each step is cheap before publishing and awkward or impossible after.
+Status: **public since 2026-10-23** (the owner chose to publish this repository directly, to start using GitHub Pages; the commit email below is therefore already in the public history). Kept for reference: the steps that were not done, and what remains (name, third-party audit).
 
 ## 1. The commit email (do this first)
 Every commit so far has `khanjal@gmail.com` as author and committer (10 commits on 2026-10-23, plus the ones on the open branches). In a public repository that address is visible in the commit data and cannot be taken back. Use GitHub's no-reply address instead: `1860742+khanjal@users.noreply.github.com` (the id comes from `gh api user --jq .id`; confirm it under GitHub Settings, Emails).

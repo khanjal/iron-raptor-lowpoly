@@ -44,3 +44,6 @@ Pages is not available for a private repository on the Free plan. The docs (docs
 ## Licence and publishing (2026-10-23)
 - Chosen on the `licence` branch: MIT for the code, CC BY 4.0 for the models and data, with a credits file. The copyright line uses the GitHub handle; confirm it.
 - The plan for replacing the commit email and publishing safely (publish from a NEW repository, because pull-request refs keep old commits) is in `docs/PUBLISHING.md`. The repository stays private until then.
+
+## Public since 2026-10-23
+- The repository was made public (owner's decision) on 2026-10-23, with the commit email still in the history (`docs/PUBLISHING.md` describes the safer route that was not taken). GitHub Pages is set to deploy from Actions; the Tests and Pages workflows now run automatically.

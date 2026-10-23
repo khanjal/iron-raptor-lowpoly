@@ -40,7 +40,7 @@ cd site
 python -m http.server 8000      # then open http://localhost:8000
 ```
 
-It has to be served over http (a `file://` page cannot load the models). Publishing: `.github/workflows/pages.yml` deploys `site/` with GitHub Pages, but it is **not enabled and manual only**: GitHub Pages is not available for a private repository on the Free plan (see NOTES.md).
+It has to be served over http (a `file://` page cannot load the models). Publishing: `.github/workflows/pages.yml` deploys `site/` with GitHub Pages to https://khanjal.github.io/lowpoly-assets/ when a change to `site/` reaches `main` (the repository is public, which Pages needs on the Free plan).
 
 `site/manifest.json` describes every model, one entry each:
 
@@ -140,4 +140,4 @@ Besides the mesh, an FBX can carry **empties** that mark places, and `art/data/i
 
 ## Licence
 
-**Code:** MIT ([LICENSE](LICENSE)). **Models and data:** CC BY 4.0 ([LICENSE-MODELS](LICENSE-MODELS)): free to use in any project, commercial or not, with credit. [LICENSES.md](LICENSES.md) says what applies where and gives a one-line credit to copy; third-party material is in [CREDITS.md](CREDITS.md). The repository is private until the steps in [docs/PUBLISHING.md](docs/PUBLISHING.md) are done.
+**Code:** MIT ([LICENSE](LICENSE)). **Models and data:** CC BY 4.0 ([LICENSE-MODELS](LICENSE-MODELS)): free to use in any project, commercial or not, with credit. [LICENSES.md](LICENSES.md) says what applies where and gives a one-line credit to copy; third-party material is in [CREDITS.md](CREDITS.md). Publishing notes (including the commit-email caveat) are in [docs/PUBLISHING.md](docs/PUBLISHING.md).
