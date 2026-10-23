@@ -10,7 +10,7 @@ Tracked in the game repo: khanjal/alien-investigation issue #355 (the plan and t
 Done: an output-folder setting and GLB export in `art/scripts/common.py`; 63 models (13 vehicles, 6 animals, 5 people, 11 furniture, 5 appliances, 5 decor, 5 food, 7 farm, 4 building kit, 2 trees) built through the Blender MCP; thumbnails; `site/manifest.json`; the static site in `site/`; a Pages workflow (not enabled). How to run and rebuild it: README.md.
 
 Not done in the slice:
-- Not all assets (the catalog in `tools/catalog.py` lists 63 of roughly 1,000); no Blender CI (the GLBs, thumbnails and manifest are committed for now); the generic / game-specific split; the licence; renaming the repo.
+- Not all assets (the catalog in `tools/catalog.py` lists 63 of the many hundreds the scripts can make); no Blender CI (the GLBs, thumbnails and manifest are committed for now); the generic / game-specific split; the licence; renaming the repo.
 - Animals and people play their clips, but nothing else in the browser is data-driven from the art scripts yet: the category path and tags are written by hand in `tools/catalog.py`.
 - Clip lists: dogs have Idle, Walk, Trot, Run; other animals Idle, Walk; people Idle, Walk, Run, Sit; the hen has no clips (the art scripts have none for birds). Carry / CarryOne and the turkey's Display clip are not exported.
 - Lights, sounds, switches and item slots (`interactions.json` emitters and slots) are not shown.
