@@ -1,0 +1,30 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GO_Printer_Desktop_01",
+ "space": "blender",
+ "parts": {
+  "Tray": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.19,
+    0.045
+   ],
+   "limit": -0.14,
+   "rest": 0.0
+  },
+  "Cover": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    0.19,
+    0.22
+   ],
+   "limit": -70,
+   "rest": 0.0
+  }
+ },
+ "slots": {}
+}

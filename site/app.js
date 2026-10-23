@@ -20,7 +20,7 @@ const TAG_GROUPS = [
   ['Condition', ['new', 'damaged', 'rotten', 'abandoned', 'fresh', 'weathered']],
   ['Colour', ['red', 'blue', 'green', 'yellow', 'white', 'black', 'brown', 'grey', 'cream', 'violet']],
 ];
-const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive]];
+const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
   assets: [], byId: new Map(), glow: [],
@@ -296,7 +296,7 @@ function fillDetails(a) {
   $('v-tris').textContent = a.triangles.toLocaleString();
   $('v-size').textContent = `${fmt(a.size[0])} × ${fmt(a.size[2])} × ${fmt(a.size[1])} m (width × depth × height)`;
   $('v-id').textContent = a.id;
-  $('v-traits').textContent = [a.rigged ? 'rigged' : 'static', a.interactive ? 'moving parts: ' + Object.keys(a.parts).join(', ') : null, a.clips.length ? 'clips: ' + a.clips.join(', ') : null].filter(Boolean).join('; ');
+  $('v-traits').textContent = [a.rigged ? 'rigged' : 'static', a.interactive ? 'moving parts: ' + Object.keys(a.parts).join(', ') : null, a.lights ? (a.lights === 1 ? '1 light' : a.lights + ' lights') : null, a.clips.length ? 'clips: ' + a.clips.join(', ') : null].filter(Boolean).join('; ');
   $('v-download').href = a.glb;
   $('v-download').setAttribute('download', a.id + '.glb');
   const tags = $('v-tags');
@@ -318,6 +318,9 @@ function setupControls(a, info) {
   $('v-parts').hidden = roles.length === 0;
   $('v-part-list').replaceChildren(...roles.map((r) => el('button', { class: 'pill', type: 'button', 'data-role': r, 'aria-pressed': 'false', onclick: () => v.togglePart(r) }, r)));
   updatePartButtons(v.partStates());
+  // lights
+  $('v-lights').hidden = !info.lights;
+  setLightsButton(v.lightsOn);
   // clips
   const clips = info.clips;
   $('v-clips').hidden = clips.length === 0;
@@ -327,6 +330,11 @@ function setupControls(a, info) {
   $('speed').value = v.speed;
   $('speed-out').textContent = v.speed.toFixed(1) + '×';
   $('play').textContent = v.playing ? 'Pause' : 'Play';
+}
+
+function setLightsButton(on) {
+  $('lights-toggle').setAttribute('aria-pressed', on);
+  $('lights-toggle').textContent = on ? 'Lights on' : 'Lights off';
 }
 
 function updatePartButtons(states) {
@@ -339,6 +347,7 @@ function updatePartButtons(states) {
 }
 
 // ---- wiring -----------------------------------------------------------------------------------------------------------------------------
+$('lights-toggle').addEventListener('click', () => { const on = !state.viewer.lightsOn; state.viewer.setLights(on); setLightsButton(on); });
 $('search').addEventListener('input', (e) => { state.q = e.target.value.trim(); writeUrlState(); render(); });
 $('clear').addEventListener('click', () => { state.q = ''; state.category = ''; state.tags.clear(); state.features.clear(); $('search').value = ''; writeUrlState(); render(); });
 $('home').addEventListener('click', (e) => { e.preventDefault(); $('clear').click(); closeViewer(); });

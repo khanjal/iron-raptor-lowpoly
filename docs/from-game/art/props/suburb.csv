@@ -1,0 +1,106 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-SB-001,Under-sink water filter,Kitchen and appliances,suburb,kitchen,appliance,normal,rare,small,none,none,missing,,suburb,,clutter under the sink
+PC-SB-002,Kitchen island,"Tables, desks and counters",suburb,kitchen,furniture,normal,uncommon,large,none,cover,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx,suburb,,the bar counter stands in
+PC-SB-003,Bar cart and decanters,"Tables, desks and counters",suburb,dining room,furniture,normal,rare,medium,none,none,missing,,suburb,,comedy
+PC-SB-004,Soundbar and speakers,Screens and audio,suburb,living room,tech,high,uncommon,small,switch;possessable,noise,partial,Assets/Art/Global/Decor/Modern/GD_Radio_Modern_01.fbx,suburb,,loud; jam target
+PC-SB-005,Smart speaker,Screens and audio,suburb,living room,tech,high,uncommon,small,switch;possessable,light;noise,partial,Assets/Art/Global/Decor/Modern/GD_Radio_Modern_01.fbx,suburb,,listens (a high-tech risk); LED ring
+PC-SB-006,Carbon monoxide detector,"Security, sensors and smart devices",suburb,living room,tech,high,uncommon,small,none,light,missing,,suburb,,
+PC-SB-007,Dehumidifier,"Heating, cooling, water and power",suburb,living room,appliance,normal,uncommon,medium,switch,noise,missing,,suburb,,cellar hum
+PC-SB-008,Humidifier,"Heating, cooling, water and power",suburb,living room,appliance,normal,rare,small,switch,light,missing,,suburb,,
+PC-SB-009,Bar and bar stools (basement),Seating,suburb,living room,furniture,normal,rare,large,none,none,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx;Assets/Art/Global/Household/GH_BarStool_01.fbx,suburb,,the basement wet bar
+PC-SB-010,Handheld hair dryer,Electronics,suburb,bedroom,tech,normal,uncommon,small,switch,noise,missing,,suburb,,
+PC-SB-011,White-noise machine,Electronics,suburb,bedroom,tech,normal,rare,small,switch,noise,missing,,suburb,,masks your noise; a light sleeper's friend
+PC-SB-012,CPAP machine,Electronics,suburb,bedroom,tech,high,rare,small,none,noise,missing,,suburb,,a hum
+PC-SB-013,Garment bag,"Containers, drums and tanks",suburb,bedroom,container,normal,uncommon,small,none,none,partial,Assets/Art/Global/Clothes/FD_Jacket_Hanger_01.fbx,suburb,,stand-in: the jacket on a hanger; no bag
+PC-SB-014,Toy kitchen and play food,"Toys, play and fairground",suburb,kids room,toy,normal,uncommon,medium,none,none,missing,,suburb,,a pretend stove
+PC-SB-015,Kid's bike helmet,Clothing and personal items,suburb,kids room,clothing,normal,common,small,none,none,missing,,suburb,,by the door
+PC-SB-016,Toy chest of dress-up clothes,"Boxes, crates and cases",suburb,kids room,container,normal,uncommon,medium,openable,none,missing,,suburb,,
+PC-SB-017,Play tent,"Toys, play and fairground",suburb,kids room,structure,normal,uncommon,medium,none,hiding spot,missing,,suburb,,
+PC-SB-018,Bunk bed with a slide,Beds and bedding,suburb,kids room,furniture,normal,rare,large,none,hiding spot,partial,Assets/Art/Global/Household/GH_Bed_Bunk_01.fbx,suburb,,a playhouse bunk
+PC-SB-019,E-reader,Computing and office tech,suburb,office,tech,high,uncommon,small,none,light,missing,,suburb,,a dim reading light
+PC-SB-020,Wireless charger and cables,Computing and office tech,suburb,office,tech,high,common,small,none,light,missing,,suburb,,a charger glow
+PC-SB-021,Stair gate,"Fences, gates and barriers",suburb,hall,structure,normal,uncommon,small,openable,none,missing,,suburb,,baby gates
+PC-SB-022,Exercise bike or treadmill,Furniture,suburb,cellar,furniture,normal,uncommon,large,none,noise,missing,,suburb,,a hiding place for the gym-averse
+PC-SB-023,Weight bench and dumbbells,Seating,suburb,cellar,furniture,normal,uncommon,medium,none,noise,missing,,suburb,,a clang
+PC-SB-024,Attic fan,"Heating, cooling, water and power",suburb,attic,appliance,normal,uncommon,medium,none,noise,missing,,suburb,,a drone
+PC-SB-025,Garage door opener and wall button,Electronics,suburb,garage,tech,normal,common,small,switch;possessable,noise,missing,,suburb,,possess target; a clunk and a light
+PC-SB-026,Car (parked in the garage),Cars and trucks,suburb,garage,vehicle,normal,common,large,none,cover;hiding spot,partial,Assets/Art/Global/Vehicles/Sedan/,suburb,,see vehicles
+PC-SB-027,Leaf blower and string trimmer,Hand and power tools,suburb,garage,tool,normal,common,medium,none,noise,missing,,suburb,,noise tools
+PC-SB-028,"Sports gear bin (balls, bats, rackets)","Bins, buckets and mailboxes",suburb,garage,container,normal,common,medium,openable,none,missing,,suburb,,the bin with the baseball bat
+PC-SB-029,Hot tub,Furniture,suburb,porch,furniture,normal,rare,large,none,noise;light;cover,missing,,suburb,,a glow and hum
+PC-SB-030,Driveway basketball hoop (portable),"Toys, play and fairground",suburb,yard,toy,normal,common,large,none,none,missing,,suburb,,tipped over
+PC-SB-031,Lawn sprinkler system heads,Buildings and structures,suburb,yard,structure,normal,uncommon,small,none,noise,missing,,suburb,,they pop up at night
+PC-SB-032,Smart plug and bulb,"Security, sensors and smart devices",suburb,any,tech,high,common,small,switch;possessable,light,missing,,suburb,,a jam target
+PC-SB-033,Smart lock,"Security, sensors and smart devices",suburb,any,tech,high,uncommon,small,possessable,none,missing,,suburb,,the lock to possess
+PC-SB-034,VR headset,Electronics,suburb,any,tech,high,rare,small,none,none,missing,,suburb,,a human who cannot see you
+PC-SB-035,Fitness tracker,Electronics,suburb,any,tech,high,common,small,none,none,missing,,suburb,,on a table
+PC-SB-036,E-bike,Bikes and small vehicles,suburb,any,vehicle,high,rare,medium,none,none,missing,,suburb,,
+PC-SB-037,Doorbell camera (indoor chime),"Phones, radio and communications",suburb,any,tech,high,uncommon,small,none,light,missing,,suburb,,a node
+PC-SB-038,Plaster foot cast,Oddities and gags,suburb,any,oddity,normal,rare,small,none,none,missing,,suburb,bodypart,#267
+PC-SB-039,Two-storey suburban house,Buildings and structures,suburb,house exterior,structure,normal,common,large,none,hiding spot;cover,partial,Assets/Art/Global/Buildings/TownHouse/,suburb,,"GB_TownHouse in six colours and Damaged; stand-in: GB_TownHouse is one storey (2.8 m walls, `buildings.py` town_house); no two-storey suburban house"
+PC-SB-040,Attached garage (single or double),Buildings and structures,suburb,house exterior,structure,normal,common,large,none,hiding spot,have,Assets/Art/Global/Buildings/Garage/,suburb,,GB_Garage skins; roll-up door in the kit
+PC-SB-041,Front lawn (mown),"Plants, trees and crops",suburb,house exterior,plant,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Grass_Short.png,suburb,,open and bright: no cover
+PC-SB-042,Foundation planting and shrubs,"Plants, trees and crops",suburb,house exterior,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,suburb,,stand-in: the farm bush; no planting bed
+PC-SB-043,Front walk and stoop,Buildings and structures,suburb,house exterior,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Ground/Road/GI_Sidewalk_01.fbx,suburb,,stand-in: the sidewalk piece stands in; no stoop
+PC-SB-044,Driveway (concrete),"Roads, street furniture and utilities",suburb,house exterior,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Road/GI_Driveway_Gravel_01.fbx,suburb,,the gravel one exists
+PC-SB-045,Garage door with keypad,"Doors, windows and building parts",suburb,house exterior,structure,normal,common,large,openable;possessable,noise,partial,Assets/Art/Global/Kit/GK_Door_Garage_01.fbx,suburb,,the opener hum; stand-in: GK_Door_Garage_01 is the panelled door only; no keypad
+PC-SB-046,Coach lights beside the garage,Lighting and fire,suburb,house exterior,decor,normal,common,small,none,light,missing,,suburb,,a pair of lamps
+PC-SB-047,House numbers and mailbox,Signs and flags,suburb,house exterior,decor,normal,common,small,none,none,partial,Assets/Art/Global/Props/GT_MailboxPost_01.fbx,suburb,,stand-in: the mailbox only; no house numbers
+PC-SB-048,Seasonal lights and inflatables,Lighting and fire,suburb,house exterior,decor,normal,uncommon,medium,none,light;noise,missing,,suburb,,holiday glow and a fan hum
+PC-SB-049,Flag bracket and house flag,Signs and flags,suburb,house exterior,decor,normal,common,small,none,noise,missing,,suburb,,
+PC-SB-050,Lawn sign (for sale or security company),Signs and flags,suburb,house exterior,decor,normal,common,small,none,none,missing,,suburb,,a tell for tech level
+PC-SB-051,Neighbourhood watch sign,Signs and flags,suburb,house exterior,decor,normal,common,medium,none,none,missing,,suburb,,the AI's tell
+PC-SB-052,Slow children sign,Signs and flags,suburb,house exterior,decor,normal,common,small,none,none,missing,,suburb,,
+PC-SB-053,Hose bib and sprinkler timer,Electronics,suburb,house exterior,tech,normal,uncommon,small,switch,noise,missing,,suburb,,the 3 a.m. sprinkler is a comic hazard
+PC-SB-054,Air-conditioner condenser,"Heating, cooling, water and power",suburb,house exterior,appliance,normal,common,medium,none,noise,missing,,suburb,,a hum that masks noise
+PC-SB-055,Gas and water meter boxes,"Roads, street furniture and utilities",suburb,house exterior,structure,normal,common,small,none,none,missing,,suburb,,
+PC-SB-056,Electric meter and service entry,"Heating, cooling, water and power",suburb,house exterior,structure,normal,common,small,none,none,have,Assets/Art/Global/Props/GL_ServiceEntry_01.fbx,suburb,,
+PC-SB-057,Roof vents and solar panels,"Doors, windows and building parts",suburb,house exterior,structure,high,uncommon,medium,none,none,partial,Assets/Art/Global/Kit/GK_Vent_Clapboard_01.fbx,suburb,,the vent kit piece; stand-in: the roof vent only; no solar panels (Solar panels is missing)
+PC-SB-058,Side-yard gate,"Fences, gates and barriers",suburb,house exterior,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Props/GI_Gate_01.fbx,suburb,,a latch
+PC-SB-059,Backyard deck with railing,"Doors, windows and building parts",suburb,house exterior,structure,normal,common,large,none,noise,missing,,suburb,,creaks
+PC-SB-060,Patio with an umbrella,Furniture,suburb,house exterior,furniture,normal,common,large,none,cover,missing,,suburb,,
+PC-SB-061,Backyard shed (resin),Buildings and structures,suburb,house exterior,structure,normal,common,medium,none,hiding spot,partial,Assets/Art/Farm/Buildings/Shed/,suburb,,stand-in: the farm shed stands in for a resin shed (as Garden shed)
+PC-SB-062,Tree (front-yard maple),"Plants, trees and crops",suburb,house exterior,plant,normal,common,large,none,cover,missing,,suburb,,#266
+PC-SB-063,Yard sprinkler system,Hand and power tools,suburb,house exterior,tool,normal,uncommon,small,none,noise,missing,,suburb,,
+PC-SB-064,Pool (inground) with fence,"Toys, play and fairground",suburb,house exterior,structure,normal,uncommon,large,none,light;noise,missing,,suburb,,a blue underwater light
+PC-SB-065,Pool equipment pad (pump and filter),Electronics,suburb,house exterior,tech,normal,uncommon,small,none,noise,missing,,suburb,,a hum
+PC-SB-066,Dog door,"Doors, windows and building parts",suburb,house exterior,structure,normal,common,small,openable,noise,missing,,suburb,,
+PC-SB-067,Cat on the fence,Animals and pets,suburb,house exterior,wildlife,normal,common,small,none,none,have,Assets/Art/Global/Animals/GN_CatBlack_faceted_01.fbx,suburb,,
+PC-SB-068,"Dog (pet, retriever)",Animals and pets,suburb,house exterior,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_DogRetriever_faceted_01.fbx,suburb,,barks at the fence
+PC-SB-069,Chalk drawings on the sidewalk,Wall and surface decor,suburb,house exterior,decor,normal,common,small,none,none,missing,,suburb,,hopscotch
+PC-SB-070,"Home theatre room (recliners, screen)",Seating,suburb,interior extras,furniture,normal,uncommon,large,none,light;noise,partial,Assets/Art/Global/Household/GH_Armchair_01.fbx;Assets/Art/Global/Decor/GD_TV_Flat_01.fbx,suburb,,a basement dark room; stand-in: the armchair and the flat TV; no recliners or projection screen
+PC-SB-071,Home gym,Furniture,suburb,interior extras,furniture,normal,uncommon,large,none,noise,missing,,suburb,,
+PC-SB-072,Man cave bar and neon,"Tables, desks and counters",suburb,interior extras,furniture,normal,uncommon,large,none,light,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx;Assets/Art/Global/Decor/GD_NeonSign_01.fbx,suburb,,stand-in: the bar counter and the neon sign; the room is a kit build
+PC-SB-073,Pantry (walk-in),Buildings and structures,suburb,interior extras,structure,normal,common,medium,none,hiding spot,partial,Assets/Art/Global/Household/GH_JarShelf_01.fbx,suburb,,stand-in: the jar shelf; the walk-in room is a kit build
+PC-SB-074,Walk-in closet,"Doors, windows and building parts",suburb,interior extras,structure,normal,common,medium,none,hiding spot,missing,,suburb,,
+PC-SB-075,Mudroom lockers,Storage furniture,suburb,interior extras,furniture,normal,common,medium,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,suburb,,
+PC-SB-076,Home office with two monitors,Furniture,suburb,interior extras,furniture,high,common,large,none,light,partial,Assets/Art/Global/Household/GH_Desk_Office_01.fbx,suburb,,stand-in: the office desk; the monitor is GD_Monitor_01 (placement); the room is a kit build
+PC-SB-077,"Nursery (crib, mobile, monitor)",Beds and bedding,suburb,interior extras,furniture,normal,uncommon,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,suburb,,a baby monitor listens
+PC-SB-078,Guest bedroom,Furniture,suburb,interior extras,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Bed_Double_01.fbx,suburb,,stand-in: the double bed; the room is a kit build
+PC-SB-079,Staircase with a landing window,"Doors, windows and building parts",suburb,interior extras,structure,normal,common,large,none,noise,partial,Assets/Art/Global/Kit/GK_Stairs_Run_01.fbx,suburb,,stand-in: the stairs run kit piece; no landing or window
+PC-SB-080,"Basement finished (carpet, bar)",Buildings and structures,suburb,interior extras,structure,normal,common,large,none,none,missing,,suburb,,
+PC-SB-081,Utility room (water heater and furnace),Buildings and structures,suburb,interior extras,structure,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_WaterHeater_01.fbx,suburb,,stand-in: the water heater only; no furnace
+PC-SB-082,"Laundry room (washer and dryer, upstairs)","Doors, windows and building parts",suburb,interior extras,structure,normal,common,medium,none,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Washer_01.fbx;Assets/Art/Global/Interactive/Classic/GI_Dryer_01.fbx,suburb,,upstairs laundry
+PC-SB-083,Attic with exposed rafters,"Doors, windows and building parts",suburb,interior extras,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Kit/GK_Beam_Clapboard_01.fbx,suburb,,stand-in: the clapboard beam kit piece as a rafter; the attic is a kit build
+PC-SB-084,Smart home hub,"Security, sensors and smart devices",suburb,interior extras,tech,high,uncommon,small,possessable,light,missing,,suburb,,a jam target
+PC-SB-085,Alarm keypad by the door,"Security, sensors and smart devices",suburb,interior extras,tech,high,common,small,none,noise;light,missing,,suburb,,a beeping countdown
+PC-SB-086,Cul-de-sac bulb,"Roads, street furniture and utilities",suburb,street,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Road/GI_Road_Curve_01.fbx,suburb,,road curve pieces
+PC-SB-087,Suburban street with parked cars,"Roads, street furniture and utilities",suburb,street,structure,normal,common,large,none,cover,partial,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,suburb,,stand-in: the straight road piece; the parked cars are placement
+PC-SB-088,Curb ramp and driveway apron,"Roads, street furniture and utilities",suburb,street,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Ground/Road/GI_Curb_01.fbx,suburb,,stand-in: the curb only; no ramp or apron
+PC-SB-089,Street sign (name and stop),"Roads, street furniture and utilities",suburb,street,structure,normal,common,medium,none,none,missing,,suburb,,
+PC-SB-090,Storm drain and manhole,"Roads, street furniture and utilities",suburb,street,structure,normal,common,small,none,noise,missing,,suburb,,a clank
+PC-SB-091,Community mailbox cluster,"Bins, buckets and mailboxes",suburb,street,container,normal,common,medium,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Mailbox_01.fbx,suburb,,stand-in: the rural post mailbox; no cluster box unit
+PC-SB-092,Garbage and recycling bins at the curb,"Bins, buckets and mailboxes",suburb,street,container,normal,common,medium,openable,noise;hiding spot,partial,Assets/Art/Global/Interactive/Classic/GI_TrashCan_01.fbx,suburb,,pick-up night
+PC-SB-093,Bus stop with a bench,"Roads, street furniture and utilities",suburb,street,structure,normal,common,medium,none,cover,partial,Assets/Art/Global/Household/GH_Bench_01.fbx,suburb,,stand-in: the bench only; no shelter (Bus stop shelter is missing)
+PC-SB-094,Delivery van,Cars and trucks,suburb,street,vehicle,normal,uncommon,large,none,none,have,Assets/Art/Global/Vehicles/Van/,suburb,,
+PC-SB-095,Parked minivan,Cars and trucks,suburb,street,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/Minivan/,suburb,,
+PC-SB-096,Parked pickup,Cars and trucks,suburb,street,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/GV_Pickup_01.fbx,suburb,,
+PC-SB-097,Electric car in a driveway,Cars and trucks,suburb,street,vehicle,high,uncommon,large,none,cover,missing,,suburb,,#266
+PC-SB-098,Power line pole,"Roads, street furniture and utilities",suburb,street,structure,normal,common,large,none,none,have,Assets/Art/Global/Props/GL_UtilityPole_01.fbx,suburb,,
+PC-SB-099,Streetscape trees,"Plants, trees and crops",suburb,street,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreeOak_01.fbx,suburb,,a young oak every 8 m
+PC-SB-100,Neighbourhood park,Buildings and structures,suburb,street,structure,normal,common,large,none,none,missing,,suburb,,a swing set and bench
+PC-SB-101,Basketball court (half),"Toys, play and fairground",suburb,street,structure,normal,common,large,none,noise,missing,,suburb,,a bouncing ball
+PC-SB-102,Dog park / waste bag station,Buildings and structures,suburb,street,structure,normal,uncommon,medium,none,none,missing,,suburb,,
+PC-SB-103,Community pool house,"Toys, play and fairground",suburb,street,structure,normal,uncommon,large,none,light,missing,,suburb,,
+PC-SB-104,Tennis court with net,"Toys, play and fairground",suburb,street,structure,normal,uncommon,large,none,none,missing,,suburb,,a chain-link fence
+PC-SB-105,HOA entrance sign and lights,Lighting and fire,suburb,street,decor,normal,common,large,none,light,missing,,suburb,,

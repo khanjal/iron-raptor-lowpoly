@@ -1,0 +1,116 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-TN-001,Taxi,Cars and trucks,town,road,vehicle,normal,rare,large,none,none,have,Assets/Art/Global/Vehicles/Taxi/,town,,yellow and checker
+PC-TN-002,Fire truck,Cars and trucks,town,road,vehicle,normal,rare,large,none,light,missing,,town,,rare response
+PC-TN-005,Road spike strip,Field gear and disguises,town,any,tool,normal,rare,small,none,none,missing,,town,,a roadblock comic
+PC-TN-006,Pager,"Phones, radio and communications",town,any,tech,low,rare,small,none,noise,missing,,town,,
+PC-TN-007,Brick shopfront (7 x 15 m),Buildings and structures,town,main street,structure,normal,common,large,none,hiding spot,partial,Assets/Art/Global/Buildings/TownHouse/,town,,the townhouse shells stand in for storefronts
+PC-TN-008,Awning over a shop window,"Doors, windows and building parts",town,main street,structure,normal,common,medium,none,none,have,Assets/Art/Global/Kit/GK_Awning_01.fbx,town,,
+PC-TN-009,Shop sign (hanging or neon),Lighting and fire,town,main street,decor,normal,common,medium,none,light,have,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,town,,the neon sign exists
+PC-TN-010,Display window with lights on,"Toys, play and fairground",town,main street,structure,normal,common,medium,none,light,have,Assets/Art/Global/Kit/GK_Window_Double_01.fbx,town,,a lit window at night
+PC-TN-011,Hardware store counter and shelves,Buildings and structures,town,main street,structure,normal,common,medium,none,none,missing,,town,,"nails, paint, keys"
+PC-TN-012,Hardware store paint mixer,Hand and power tools,town,main street,tool,normal,common,small,none,noise,missing,,town,,a shaker noise
+PC-TN-013,Hardware store tool displays,Furniture,town,main street,furniture,normal,common,medium,none,none,missing,,town,,
+PC-TN-014,Key-cutting machine,Electronics,town,main street,tech,normal,rare,small,none,noise,missing,,town,,
+PC-TN-015,Grocery shelves and carts,Shelving and racks,town,main street,furniture,normal,common,medium,none,none,missing,,town,,
+PC-TN-016,Barber pole,Wall and surface decor,town,main street,decor,normal,uncommon,small,none,light,missing,,town,,a spinning light
+PC-TN-017,Bank (facade and ATM),Buildings and structures,town,main street,structure,normal,uncommon,large,possessable,light,missing,,town,,an ATM glow
+PC-TN-018,ATM,Computing and office tech,town,main street,tech,high,uncommon,medium,possessable,light,missing,,town,,a lit screen
+PC-TN-019,Post office (counter and mail boxes),Buildings and structures,town,main street,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Interactive/Classic/GI_Mailbox_01.fbx,town,,stand-in: the rural post mailbox only; no counter or PO boxes
+PC-TN-020,Town hall clock tower,"Doors, windows and building parts",town,main street,structure,normal,uncommon,large,none,noise,missing,,town,,chimes
+PC-TN-021,"Church (nave, pews, altar)",Buildings and structures,town,main street,structure,normal,uncommon,large,none,hiding spot,missing,,town,,a quiet map
+PC-TN-022,Church pews,Seating,town,main street,furniture,normal,common,medium,none,cover;hiding spot,missing,,town,,a wooden row
+PC-TN-023,Bar counter and taps,"Tables, desks and counters",town,main street,furniture,normal,common,large,none,light,have,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx,town,,last call
+PC-TN-024,Bar stools,Seating,town,main street,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_BarStool_01.fbx,town,,
+PC-TN-025,Bar jukebox,Kitchen and appliances,town,main street,appliance,normal,uncommon,medium,possessable,light;noise;distraction,have,Assets/Art/Global/Household/GH_Jukebox_01.fbx,town,,a lure
+PC-TN-026,Beer taps and bottle shelf,Shelving and racks,town,main street,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Food/Drinks/FD_BeerBottle_01.fbx,town,,stand-in: a beer bottle only; no taps or shelf
+PC-TN-027,Grain elevator,Buildings and structures,town,main street,structure,normal,common,large,none,none,partial,Assets/Art/Farm/Buildings/Silo/,town,,a tall silo; a control panel (sabotage)
+PC-TN-028,Grain elevator control panel,Screens and audio,town,main street,tech,normal,uncommon,medium,possessable,objective candidate,missing,,town,,an objective
+PC-TN-029,Main street road with parking,"Roads, street furniture and utilities",town,main street,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,town,,14 m wide; stand-in: the straight road piece; no parking bays
+PC-TN-030,Parking meters,"Roads, street furniture and utilities",town,main street,structure,normal,common,small,none,none,missing,,town,,merged here: PC-TN-003 (Parking meter)
+PC-TN-031,Street lamps along main,Lighting and fire,town,main street,decor,normal,common,large,none,light,partial,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,town,,stand-in: the yard pole lamp; no street lamp head
+PC-TN-032,"Mailbox (blue, street)","Bins, buckets and mailboxes",town,main street,container,normal,common,small,openable,none,partial,Assets/Art/Global/Interactive/Classic/GI_Mailbox_01.fbx,town,,"an original design; stand-in: GI_Mailbox_01 is a rural mailbox on a post, not a street box"
+PC-TN-033,Phone booth,Buildings and structures,town,main street,structure,low,rare,large,none,hiding spot,missing,,town,,a hiding spot
+PC-TN-034,Public bench,Seating,town,main street,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,town,,
+PC-TN-035,Planter boxes and trees,"Plants, trees and crops",town,main street,plant,normal,common,medium,none,cover,missing,,town,,
+PC-TN-036,Town welcome sign,Signs and flags,town,main street,decor,normal,common,medium,none,none,missing,,town,,
+PC-TN-037,Bulletin board on the street,Wall and surface decor,town,main street,decor,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,town,,missing-cat posters
+PC-TN-038,Diner building (chrome and neon),Buildings and structures,town,diner,structure,normal,common,large,none,light,have,Assets/Art/Global/Buildings/Diner/,town,,GB_Diner in three skins
+PC-TN-039,Diner counter with stools,Seating,town,diner,furniture,normal,common,large,none,none,have,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx;Assets/Art/Global/Household/GH_BarStool_01.fbx,town,,
+PC-TN-040,Diner booth (vinyl),Seating,town,diner,furniture,normal,common,medium,none,hiding spot,missing,,town,,a double booth
+PC-TN-041,"Neon ""OPEN"" sign",Lighting and fire,town,diner,decor,normal,common,small,none,light,have,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,town,,a window glow
+PC-TN-042,Pie display case,Furniture,town,diner,furniture,normal,common,medium,none,light,missing,,town,,a lit case
+PC-TN-043,Coffee pots and warmers,Kitchen and appliances,town,diner,appliance,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx,town,,
+PC-TN-044,Milkshake mixer,Kitchen and appliances,town,diner,appliance,normal,uncommon,small,none,noise,missing,,town,,a whirr
+PC-TN-045,Napkin dispensers and condiments,Clutter and small items,town,diner,clutter,normal,common,small,carryable,none,partial,Assets/Art/Global/Food/Canned/FD_Ketchup_01.fbx;Assets/Art/Global/Food/Canned/FD_Mustard_01.fbx,town,,throwable
+PC-TN-046,Menus and table cards,Clutter and small items,town,diner,clutter,normal,common,small,none,none,missing,,town,,
+PC-TN-047,Order bell and ticket wheel,Hand and power tools,town,diner,tool,normal,common,small,none,noise;distraction,missing,,town,,a ding
+PC-TN-048,Flat-top grill and fryer,Lighting and fire,town,diner,appliance,normal,common,large,none,noise;light,missing,,town,,a sizzle
+PC-TN-049,Walk-in cooler,Kitchen and appliances,town,diner,appliance,normal,common,large,openable,noise,missing,,town,,
+PC-TN-050,Sneeze guard and order window,"Doors, windows and building parts",town,diner,structure,normal,common,medium,none,none,missing,,town,,
+PC-TN-051,Diner dishes and trays,Cookware and tableware,town,diner,clutter,normal,common,small,none,noise,partial,Assets/Art/Global/Household/GH_Plates_01.fbx,town,,a clatter
+PC-TN-052,Soda fountain,Kitchen and appliances,town,diner,appliance,normal,common,small,none,noise,missing,,town,,
+PC-TN-053,Wall clock (diner),Wall and surface decor,town,diner,decor,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_Clock_Wall_01.fbx,town,,
+PC-TN-054,Security recording box (DVR),Electronics,town,diner,tech,normal,uncommon,small,possessable,light;objective candidate,missing,,town,,an objective: wipe the tape
+PC-TN-055,Gas station canopy (18 x 8 m),"Roads, street furniture and utilities",town,gas station and truck stop,structure,normal,common,large,none,light;cover,missing,,town,,"bright, floodlit"
+PC-TN-056,Fuel pump (island),"Roads, street furniture and utilities",town,gas station and truck stop,structure,normal,common,medium,none,light;noise,missing,,town,,a pump handle clank; the truck stop's pumps; merged here: PC-TN-004 (Gas pump (island))
+PC-TN-057,"Convenience store (shelves, coolers)",Buildings and structures,town,gas station and truck stop,structure,normal,common,large,none,light,missing,,town,,a lit store
+PC-TN-058,Drink cooler (glass doors),Kitchen and appliances,town,gas station and truck stop,appliance,normal,common,medium,openable,light;noise,partial,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx,town,,a hum and a light; stand-in: the refrigerator (openable); no glass-door drink cooler
+PC-TN-059,Ice chest (outdoor),Kitchen and appliances,town,gas station and truck stop,appliance,normal,common,medium,openable,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,town,,stand-in: the picnic cooler stands in for an ice chest
+PC-TN-060,Newspaper rack,Shelving and racks,town,gas station and truck stop,furniture,normal,common,small,none,none,missing,,town,,
+PC-TN-061,Air machine (tyre),Electronics,town,gas station and truck stop,tech,normal,common,small,none,noise,missing,,town,,a hiss
+PC-TN-062,Car wash vacuum,Electronics,town,gas station and truck stop,tech,normal,uncommon,medium,none,noise,missing,,town,,loud
+PC-TN-063,Propane exchange cage,Buildings and structures,town,gas station and truck stop,structure,normal,common,medium,none,none,missing,,town,,
+PC-TN-064,Oil and washer fluid rack,Shelving and racks,town,gas station and truck stop,furniture,normal,common,small,none,none,missing,,town,,
+PC-TN-065,Windshield squeegee bucket,Hand and power tools,town,gas station and truck stop,tool,normal,common,small,none,none,partial,Assets/Art/Global/Props/GT_Bucket_01.fbx,town,,stand-in: the bucket only; no squeegee
+PC-TN-066,Lottery sign and price sign,Signs and flags,town,gas station and truck stop,decor,normal,common,medium,none,light,missing,,town,,a lit pole
+PC-TN-067,Payphone and satellite uplink,"Phones, radio and communications",town,gas station and truck stop,tech,low,rare,medium,possessable,objective candidate,missing,,town,,the truck stop's
+PC-TN-068,Truck bays (10),Buildings and structures,town,gas station and truck stop,structure,normal,common,large,none,none,missing,,town,,cover
+PC-TN-069,Trucker's cab (sleeper),Cars and trucks,town,gas station and truck stop,vehicle,normal,uncommon,large,none,none,missing,,town,,a part to fetch
+PC-TN-070,Truck wash and shower building,Buildings and structures,town,gas station and truck stop,structure,normal,common,large,none,noise,missing,,town,,
+PC-TN-071,Radio mast (truck stop),"Phones, radio and communications",town,gas station and truck stop,tech,normal,rare,large,possessable,objective candidate,missing,,town,,sabotage
+PC-TN-072,Drainage ditch and highway embankment,Buildings and structures,town,gas station and truck stop,structure,normal,common,large,none,none,missing,,town,,the border
+PC-TN-073,Motel row (rooms and numbers),Buildings and structures,town,motel,structure,normal,common,large,none,light,missing,,town,,a one-storey L
+PC-TN-074,Motel room door with a number,"Doors, windows and building parts",town,motel,structure,normal,common,medium,openable,noise,partial,Assets/Art/Global/Kit/GK_Door_Exterior_01.fbx,town,,a creaky door; stand-in: the exterior door only; no room number
+PC-TN-075,Motel bed,Beds and bedding,town,motel,furniture,normal,common,large,none,hiding spot,have,Assets/Art/Global/Household/GH_Bed_Double_01.fbx,town,,
+PC-TN-076,Motel room lamp and bedside phone,"Phones, radio and communications",town,motel,tech,normal,common,small,possessable,light;noise,partial,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,town,,a rotary phone
+PC-TN-077,Motel TV on a dresser,Screens and audio,town,motel,tech,low,common,medium,possessable,light;noise,partial,Assets/Art/Global/Decor/GD_TV_CRT_01.fbx,town,,stand-in: the CRT TV; the dresser is GI_Dresser_01 (placement)
+PC-TN-078,Motel desk and chair,Seating,town,motel,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Desk_Wood_01.fbx,town,,stand-in: the wooden desk; the chair is placement
+PC-TN-079,Motel curtains,Soft furnishings,town,motel,decor,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Curtains_Closed_01.fbx,town,,a thin curtain
+PC-TN-080,"Motel bathroom (tub, tiny sink)",Buildings and structures,town,motel,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Tub_01.fbx,town,,stand-in: the tub; the bath sink is GH_Sink_Bath_01 (full size); the room is a kit build
+PC-TN-081,Motel ice machine and vending alcove,Kitchen and appliances,town,motel,appliance,normal,common,medium,none,light;noise,partial,Assets/Art/Global/Interactive/Classic/GI_VendingMachine_01.fbx,town,,a hum and a thump
+PC-TN-082,Key board and office bell,Furniture,town,motel,furniture,normal,common,small,none,noise,missing,,town,,
+PC-TN-083,Vacancy sign (tall neon),Lighting and fire,town,motel,decor,normal,common,large,none,light,have,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,town,,a bright beacon
+PC-TN-084,Motel pool (kidney-shaped),"Toys, play and fairground",town,motel,structure,normal,uncommon,large,none,light,missing,,town,,
+PC-TN-085,Ice bucket and glasses,Clutter and small items,town,motel,clutter,normal,common,small,none,noise,missing,,town,,
+PC-TN-086,Motel bedside book,Clutter and small items,town,motel,clutter,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_OpenBook_01.fbx,town,,an original title
+PC-TN-087,Sheriff's office building,Buildings and structures,town,sheriff's office,structure,normal,uncommon,large,none,light,partial,Assets/Art/Global/Buildings/TownHouse/,town,,Tier 1 starts here
+PC-TN-088,Front counter and bell,"Tables, desks and counters",town,sheriff's office,furniture,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx,town,,stand-in: the bar counter; no bell
+PC-TN-089,Dispatcher console and radio,"Phones, radio and communications",town,sheriff's office,tech,normal,uncommon,medium,possessable,noise;objective candidate,partial,Assets/Art/Global/Decor/GD_Radio_CB_01.fbx,town,,the call goes out here
+PC-TN-090,Holding cell (bars and bench),Buildings and structures,town,sheriff's office,structure,normal,uncommon,large,none,none,missing,,town,,cell bars as thin rods
+PC-TN-091,Cell cot and toilet,Beds and bedding,town,sheriff's office,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,town,,"stand-in: GH_Cot_01 is a crib, not a cell cot"
+PC-TN-092,Evidence locker room,Buildings and structures,town,sheriff's office,structure,normal,uncommon,medium,openable,objective candidate,partial,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,town,,wipe objective; stand-in: the lockers only; the room is not built
+PC-TN-093,Wanted posters and bulletin board,Wall and surface decor,town,sheriff's office,decor,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,town,,story dressing
+PC-TN-094,Key hooks and cell keys,Hand and power tools,town,sheriff's office,tool,normal,common,small,carryable,objective candidate,missing,,town,,
+PC-TN-095,Sheriff's desk and chair,Seating,town,sheriff's office,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Desk_Wood_01.fbx;Assets/Art/Global/Household/GH_Chair_Office_01.fbx,town,,
+PC-TN-096,Coffee machine and donut box,Kitchen and appliances,town,sheriff's office,appliance,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx;Assets/Art/Global/Food/Bakery/FD_Donut_01.fbx,town,,
+PC-TN-098,Cruiser (Deputy SUV),Cars and trucks,town,sheriff's office,vehicle,normal,uncommon,large,none,light,have,Assets/Art/Global/Vehicles/Police/,town,,
+PC-TN-099,Computer terminal and printer,Computing and office tech,town,sheriff's office,tech,high,common,medium,possessable,light,partial,Assets/Art/Global/Decor/GD_ComputerTower_01.fbx,town,,stand-in: the computer tower only; no printer
+PC-TN-100,Fingerprint and photo station,Electronics,town,sheriff's office,tech,normal,rare,medium,none,light,missing,,town,,
+PC-TN-101,Flag and framed photographs,Signs and flags,town,sheriff's office,decor,normal,common,medium,none,none,partial,Assets/Art/Global/Decor/GD_Frame_Landscape_01.fbx,town,,stand-in: the landscape frame only; no flag
+PC-TN-102,Hospital building (small clinic),Buildings and structures,town,hospital,structure,normal,uncommon,large,none,light,partial,Assets/Art/Global/Buildings/TownHouse/,town,,glass and a lit sign
+PC-TN-103,Reception desk and waiting chairs,Seating,town,hospital,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx;Assets/Art/Global/Household/GH_Bench_01.fbx,town,,stand-in: the bar counter and the bench; no waiting chairs
+PC-TN-104,Hospital bed (adjustable),Beds and bedding,town,hospital,furniture,normal,common,large,none,hiding spot,partial,Assets/Art/Global/Household/GH_Bed_Single_01.fbx,town,,a rail and a control
+PC-TN-105,Gurney / stretcher,Beds and bedding,town,hospital,furniture,normal,common,large,movable,noise,have,Assets/Art/Global/Household/GH_Gurney_01.fbx,town,,a squeak
+PC-TN-106,Wheelchair,Furniture,town,hospital,furniture,normal,common,medium,movable,noise,missing,,town,,a squeak
+PC-TN-107,Crash cart,Storage furniture,town,hospital,furniture,high,uncommon,medium,openable,noise,missing,,town,,a rattle
+PC-TN-108,Privacy curtain on a track,Soft furnishings,town,hospital,decor,normal,common,large,none,cover;noise,missing,,town,,a rustle
+PC-TN-109,Medical cabinet (wall),Storage furniture,town,hospital,furniture,normal,common,small,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_MedicineCabinet_01.fbx,town,,pills
+PC-TN-110,Hand sanitiser dispenser,Hand and power tools,town,hospital,tool,normal,common,small,none,none,missing,,town,,
+PC-TN-111,Exam table and stool,Seating,town,hospital,furniture,normal,common,medium,none,none,missing,,town,,
+PC-TN-112,Nurse station,"Tables, desks and counters",town,hospital,furniture,normal,common,large,none,light,partial,Assets/Art/Global/Household/GH_Desk_Office_01.fbx,town,,stand-in: the office desk; no station counter
+PC-TN-113,X-ray light box,"Security, sensors and smart devices",town,hospital,tech,normal,rare,small,none,light,missing,,town,,
+PC-TN-114,Defibrillator on the wall,Electronics,town,hospital,tech,high,uncommon,small,none,light,missing,,town,,
+PC-TN-115,Oxygen tank on a wall,"Containers, drums and tanks",town,hospital,container,normal,uncommon,small,none,none,missing,,town,,
+PC-TN-116,Hospital vending and coffee,Kitchen and appliances,town,hospital,appliance,normal,common,medium,none,light,have,Assets/Art/Global/Interactive/Classic/GI_VendingMachine_01.fbx;Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx,town,,the vending machine and the coffee machine
+PC-TN-117,Ambulance bay,Buildings and structures,town,hospital,structure,normal,common,large,none,light,missing,,town,,ambulance lights
+PC-TN-118,Hospital room call button,Electronics,town,hospital,tech,high,common,small,none,noise,missing,,town,,

@@ -1,6 +1,6 @@
 # Notes: turning the art pipeline into its own project
 
-Tracked in the game repo: khanjal/alien-investigation issue #355 (the plan and the asset browser) and #344 (the quality pass).
+Tracked in the game repo: issue #355 (the plan and the asset browser) and #344 (the quality pass).
 
 ## Done
 - This folder, with `art/` copied from the game repo's `main` (commit 9a3d59ce).
@@ -22,6 +22,9 @@ Tests and CI (added after the first push): `tests/` (39 unit tests: the Blender-
 
 ### GitHub Pages and a private repository
 Pages is not available for a private repository on the Free plan. The docs (docs.github.com, "Creating a GitHub Pages site"): "If the account that owns the repository uses GitHub Free or GitHub Free for organizations, the repository must be public." ("GitHub's plans": GitHub Pro and Team list Pages for private repositories, and "To publish a GitHub Pages site privately, you need to have an organization account" on GitHub Enterprise Cloud.) So: test locally now; publish when the repo is made public (which needs the licence and third-party decisions below) or the plan is upgraded; then enable Settings > Pages > Source: GitHub Actions and merge `.github/workflows/pages.yml`.
+
+## From now on this repo makes the models (2026-10-23)
+The game repo no longer makes its own art; it consumes what is built here. The planned assets, the open issues and PRs about models, and what the game expects to stay stable are in [`docs/from-game/README.md`](docs/from-game/README.md) (with copies of the asset list, the prop catalogue and the art notes). Syncing the `art/` changes merged in the game repo since 9a3d59ce is the first job there.
 
 ## Not copied yet (open PRs in the game repo, merge first or copy by hand)
 - #358: road vehicles rebuilt (`vehicles.py`, `cars.py`).
@@ -47,3 +50,19 @@ Pages is not available for a private repository on the Free plan. The docs (docs
 
 ## Public since 2026-10-23
 - The repository was made public (owner's decision) on 2026-10-23, with the commit email still in the history (`docs/PUBLISHING.md` describes the safer route that was not taken). GitHub Pages is set to deploy from Actions; the Tests and Pages workflows now run automatically.
+
+## Downloads and credit (2026-10-23, branch `licence`)
+- Release zips: `tools/make_release_zips.py` (one zip of every GLB, one per category, each with `CREDIT.txt` and `LICENSE-MODELS`) and `.github/workflows/release.yml` (on a `v*` tag, or by hand; runs the tests first, uses only the `gh` CLI). GLB only: FBX is not committed. **Not run on GitHub yet**: push a tag to try it.
+- Credit travels with the files: `asset.copyright` in every GLB (`tools/stamp_glb.py` for the existing 131, `GLB_COPYRIGHT` in `common.py` for new Blender builds; `check_site.py` and a test keep the two in step), a note under the viewer's Download button and in the page footer.
+- The game's name is gone from the docs (README, NOTES, `art/README.md`, `docs/from-game/`); "the game" / "the game repo" instead. Issue numbers (#355, #364...) are the game repo's. Unity menu paths read `Tools > <game name> > ...`. The repo's earlier commits still have the name.
+
+## More families (2026-10-23, branch `licence`)
+Added on request: produce variety, insects, sports gear, office gear. 68 new models, so the browser now has 131.
+- **Produce** (`contents.py`): the apple is one dimpled shape in `cloth_red`, `apple_green` and `apple_yellow` (the old FD_Apple_01 changed shape too); a banana bunch (+ Rotten), lemon, pear, purple and green grapes, strawberry.
+- **Insects** (`insects.py`, new): 12 models, real size in millimetres, resting poses, no rig. The viewer's camera floor and ground shadow were lowered (`site/viewer.js`: 0.05 to 0.004 m, 0.1 to 0.01 m) so a 1 cm model fills the frame.
+- **Sports** (`sports.py`, new, `GS_`): 27 models, a new top-level category `sports`. The tennis net is 12.8 m wide and the soccer goal 3.7 m, real size.
+- **Office** (`office.py`, new, `GO_`): 20 models, including a cubicle kit on a 1.5 m module and 8 with moving parts (drawers, trays, lids, doors, a flap). `art/data/interactions.json` grew by 281 lines.
+- **Palette**: 17 swatches appended (indices 108 to 124): apple, banana, lemon, pear, grape, berry, basketball orange, tennis yellow, leather, wing blue, beetle green, office grey and dark, laminate, water blue. Existing models are unchanged (append-only).
+- Checks: `tools/check_site.py` and the 40 unit tests pass. The new models have been looked at as thumbnails and the copier's parts opened in the viewer; the prop audit (`audit_props.py`, which covers only the older scripts) has not been run on them, and none was checked in Unity, Godot or Unreal.
+- Rough spots: the baseball glove is blocky, the baseball and tennis ball seams are chunky strands on a faceted ball, the golf ball has no dimples, the dragonfly's abdomen floats (no perch). The game repo's `GD_Football_01` (a tapered box in `decor.py`) is not in the browser; `GS_Football_01` is the proper one.
+- Not done: the Rotten twins other than the banana bunch are built by `contents.py` but not in the browser; no `build_all.py` entries for the three new scripts (it is the game's list; add them when that file is split).

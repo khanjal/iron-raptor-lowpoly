@@ -1,0 +1,94 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Dresser_01",
+ "space": "blender",
+ "parts": {
+  "Drawer1": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.25,
+    0.17
+   ],
+   "limit": -0.38,
+   "rest": -0.0
+  },
+  "Drawer2": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.25,
+    0.45
+   ],
+   "limit": -0.38,
+   "rest": -0.0
+  },
+  "Drawer3": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.25,
+    0.73
+   ],
+   "limit": -0.38,
+   "rest": -0.0
+  }
+ },
+ "slots": {
+  "Drawer1": {
+   "position": [
+    0,
+    -0.03,
+    0.08
+   ],
+   "size": [
+    1.0,
+    0.4,
+    0.1872
+   ],
+   "part": "Drawer1"
+  },
+  "Drawer2": {
+   "position": [
+    0,
+    -0.03,
+    0.36
+   ],
+   "size": [
+    1.0,
+    0.4,
+    0.1872
+   ],
+   "part": "Drawer2"
+  },
+  "Drawer3": {
+   "position": [
+    0,
+    -0.03,
+    0.64
+   ],
+   "size": [
+    1.0,
+    0.4,
+    0.1872
+   ],
+   "part": "Drawer3"
+  },
+  "Top": {
+   "position": [
+    0,
+    0,
+    0.92
+   ],
+   "size": [
+    1.1,
+    0.4,
+    0.4
+   ],
+   "part": null
+  }
+ }
+}

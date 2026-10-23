@@ -1,0 +1,97 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-TP-001,Electric fan heater,"Heating, cooling, water and power",trailer-park,living room,appliance,normal,uncommon,small,switch,light;noise,missing,,trailer-park,,a click
+PC-TP-002,Mattress on the floor,Beds and bedding,trailer-park,bedroom,furniture,normal,uncommon,large,none,none,partial,Assets/Art/Global/Household/GH_Bed_Single_01.fbx,trailer-park,,the Damaged variants add this
+PC-TP-003,Single-wide mobile home (4.3 x 16.5 m),Buildings and structures,trailer-park,mobile home,structure,normal,common,large,none,hiding spot;cover,have,Assets/Art/Global/Buildings/Trailer/,trailer-park,,GB_Trailer shells in several skins; interiors need a 1.2 m hall
+PC-TP-004,Double-wide mobile home (7.3 x 16.5 m),Buildings and structures,trailer-park,mobile home,structure,normal,common,large,none,hiding spot;cover,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park,,the shell family covers it; a wider variant is missing
+PC-TP-005,Vacant overgrown lot (pad),Buildings and structures,trailer-park,mobile home,structure,normal,common,large,none,cover,missing,,trailer-park,,cover and a dumping ground for props
+PC-TP-006,Skirting panels with a crawl-space hatch,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,none,hiding spot,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park,,"0.6 m crawl space for Insectoids and Burrow; stand-in: the trailer model's own 0.5 m skirt (part of GB_Trailer, `buildings.py` trailer()); no panels or hatch. GK_Skirting_* is a 0.12 m interior baseboard, not mobile-home skirting"
+PC-TP-007,Tie-down straps and ground anchors,Buildings and structures,trailer-park,mobile home,structure,normal,common,small,none,none,missing,,trailer-park,,a trip hazard
+PC-TP-008,Hitch and tongue jack,Buildings and structures,trailer-park,mobile home,structure,normal,common,small,none,none,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park,,"at the front of the home; stand-in: the hitch tongue is part of the trailer model; no tongue jack, not standalone"
+PC-TP-009,Concrete-block steps / wooden deck,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,none,noise,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park,,creaks; stand-in: the trailer model's own steps and landing; no concrete blocks or wooden deck
+PC-TP-010,Aluminium storm door,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,openable,noise,missing,,trailer-park,,a rattling screen
+PC-TP-011,Metal awning over the door,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,none,none,have,Assets/Art/Global/Kit/GK_Awning_01.fbx,trailer-park,,the awning kit piece
+PC-TP-012,Carport (aluminium),"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,large,none,cover,missing,,trailer-park,,shade for a car on blocks
+PC-TP-013,Roof vents and rooftop AC,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,none,noise,partial,Assets/Art/Global/Kit/GK_Vent_Corrugated_01.fbx;Assets/Art/Global/Buildings/Trailer/,trailer-park,,"a drone; stand-in: the roof vent kit piece; the rooftop AC unit is part of the trailer model, not standalone"
+PC-TP-014,Lap siding in faded colour,Wall and surface decor,trailer-park,mobile home,decor,normal,common,large,none,none,partial,Assets/Art/Global/Kit/GK_Wall_Solid_Clapboard_01.fbx,trailer-park,,wall skins exist
+PC-TP-015,Wood-panel walls,Wall and surface decor,trailer-park,mobile home,decor,normal,common,large,none,none,missing,,trailer-park,,1970s interior
+PC-TP-016,Laminate kitchenette,Furniture,trailer-park,mobile home,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Interactive/Classic/GI_Counter_Kitchen_01.fbx,trailer-park,,the counter model
+PC-TP-017,Fold-down dinette table,"Tables, desks and counters",trailer-park,mobile home,furniture,normal,common,medium,none,none,missing,,trailer-park,,built-in
+PC-TP-018,Narrow hall (1.2 m) with doors,"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,large,none,noise,missing,,trailer-park,,a creaking hallway floor
+PC-TP-019,Small bedroom with built-in bunk,Beds and bedding,trailer-park,mobile home,furniture,normal,common,medium,none,hiding spot,partial,Assets/Art/Global/Household/GH_Bed_Single_01.fbx,trailer-park,,stand-in: the single bed; no built-in bunk
+PC-TP-020,Hall bath (2.4 x 1.8 m),"Doors, windows and building parts",trailer-park,mobile home,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Toilet_01.fbx,trailer-park,,fixtures exist
+PC-TP-021,Water heater closet,"Heating, cooling, water and power",trailer-park,mobile home,appliance,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_WaterHeater_01.fbx,trailer-park,,stand-in: the water heater only; the closet is a kit build
+PC-TP-022,Living room recliner and TV on,Seating,trailer-park,mobile home,furniture,normal,common,medium,none,light;noise,partial,Assets/Art/Global/Household/GH_Armchair_01.fbx;Assets/Art/Global/Decor/GD_TV_CRT_01.fbx,trailer-park,,Dale in lot 22
+PC-TP-023,Wall-mounted furnace / floor heater,Kitchen and appliances,trailer-park,mobile home,appliance,low,common,medium,none,noise,missing,,trailer-park,,
+PC-TP-024,Cluttered kitchen table,Clutter and small items,trailer-park,mobile home,clutter,normal,common,medium,none,none,missing,,trailer-park,,"ashtray, mail, a half-finished beer"
+PC-TP-025,Wagon-wheel or ceramic wall decor,Wall and surface decor,trailer-park,mobile home,decor,normal,uncommon,small,none,none,missing,,trailer-park,,kitsch
+PC-TP-026,Plastic window blinds,Soft furnishings,trailer-park,mobile home,decor,normal,common,medium,none,noise,missing,,trailer-park,,clatter
+PC-TP-027,Door chime,Electronics,trailer-park,mobile home,tech,normal,uncommon,small,none,noise,missing,,trailer-park,,a ding that wakes
+PC-TP-028,Cat on the window sill,Animals and pets,trailer-park,mobile home,wildlife,normal,common,small,none,none,have,Assets/Art/Global/Animals/GN_CatTabby_faceted_01.fbx,trailer-park,,
+PC-TP-029,Lawn chairs (webbed) in front,Seating,trailer-park,yard,furniture,normal,common,medium,none,noise,missing,,trailer-park,,Karen's night-watch chair on lot 14
+PC-TP-030,Charcoal grill and propane tank,Lighting and fire,trailer-park,yard,appliance,normal,common,medium,none,light,missing,,trailer-park,,a glow and a hiss
+PC-TP-031,Plastic kiddie pool,"Toys, play and fairground",trailer-park,yard,toy,normal,common,medium,none,none,missing,,trailer-park,,
+PC-TP-032,Gnome-filled garden,Wall and surface decor,trailer-park,yard,decor,normal,common,medium,none,none,missing,,trailer-park,,a gnome army
+PC-TP-033,Pink flamingos and yard ornaments,Wall and surface decor,trailer-park,yard,decor,normal,uncommon,small,none,none,missing,,trailer-park,,kitsch
+PC-TP-034,Wind spinners and wind chimes,Wall and surface decor,trailer-park,yard,decor,normal,common,small,none,noise,missing,,trailer-park,,
+PC-TP-035,Car on cinder blocks,Cars and trucks,trailer-park,yard,vehicle,low,common,large,none,cover,partial,Assets/Art/Global/Vehicles/Sedan/GV_Sedan_Black_Damaged_01.fbx,trailer-park,,engine out; cover
+PC-TP-036,Boat on a trailer,Boats and water,trailer-park,yard,vehicle,low,uncommon,large,none,cover,missing,,trailer-park,,
+PC-TP-037,Lawn tractor with trailer,Bikes and small vehicles,trailer-park,yard,vehicle,normal,uncommon,large,none,none,missing,,trailer-park,,
+PC-TP-038,Dog run with chain,Buildings and structures,trailer-park,yard,structure,normal,common,medium,none,noise,missing,,trailer-park,,the chained dog at lot 6
+PC-TP-039,Pig pen,Animal housing and farm fittings,trailer-park,yard,structure,normal,uncommon,medium,none,noise,missing,,trailer-park,,"Bacon the pig, behind lot 27"
+PC-TP-040,Chicken run,Buildings and structures,trailer-park,yard,structure,normal,uncommon,medium,none,noise,missing,,trailer-park,,
+PC-TP-041,Backyard shed (metal),Buildings and structures,trailer-park,yard,structure,normal,common,medium,none,hiding spot,have,Assets/Art/Farm/Buildings/Shed/FM_Shed_Metal_01.fbx,trailer-park,,the shed model
+PC-TP-042,Fence (chain-link) between lots,"Fences, gates and barriers",trailer-park,yard,structure,normal,common,medium,none,none,missing,,trailer-park,,the 2.3 m strip along the fence
+PC-TP-044,Satellite dish on a pole,"Phones, radio and communications",trailer-park,yard,tech,normal,common,medium,possessable,none,missing,,trailer-park,,jam target
+PC-TP-045,Propane tank (100 lb),"Containers, drums and tanks",trailer-park,yard,container,normal,common,medium,none,none,partial,Assets/Art/Global/Buildings/Trailer/,trailer-park,,on a stand at the corner
+PC-TP-046,Trash cans in a row,"Containers, drums and tanks",trailer-park,yard,container,normal,common,medium,openable,noise,have,Assets/Art/Global/Interactive/Classic/GI_TrashCan_01.fbx,trailer-park,,raccoon bait
+PC-TP-047,Doormat and porch light,Lighting and fire,trailer-park,yard,decor,normal,common,small,none,light,partial,Assets/Art/Global/Decor/GD_Doormat_01.fbx,trailer-park,,the motion-sensor lights
+PC-TP-048,Travel trailer (park model),Cars and trucks,trailer-park,RV pad,vehicle,normal,common,large,none,cover,missing,,trailer-park,,the pad rig
+PC-TP-049,RV diesel tank (400 L),"Containers, drums and tanks",trailer-park,RV pad,container,normal,rare,large,none,objective candidate,missing,,trailer-park,,Bud's tank: objective 2
+PC-TP-050,Bud and Linda's fridge on the porch,Kitchen and appliances,trailer-park,RV pad,appliance,normal,common,medium,none,noise,have,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx,trailer-park,,the fridge hum that stops
+PC-TP-051,Park office and manager's home,Buildings and structures,trailer-park,office,structure,normal,common,large,none,none,missing,,trailer-park,,14 x 9 m
+PC-TP-052,Office counter and bell,"Tables, desks and counters",trailer-park,office,furniture,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_Counter_Bar_01.fbx,trailer-park,,a desk bell
+PC-TP-053,Park phone,"Phones, radio and communications",trailer-park,office,tech,normal,common,small,possessable,noise;objective candidate,have,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,trailer-park,,the office phone is the call
+PC-TP-054,Security camera monitors,Screens and audio,trailer-park,office,tech,normal,uncommon,medium,possessable,light,partial,Assets/Art/Global/Decor/GD_Monitor_01.fbx,trailer-park,,the park's camera feed
+PC-TP-055,Rules sign board,Signs and flags,trailer-park,office,decor,normal,common,medium,none,none,missing,,trailer-park,,quiet hours
+PC-TP-056,Open sign (neon),Lighting and fire,trailer-park,office,decor,normal,common,small,none,light,have,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,trailer-park,,the office light
+PC-TP-057,Brochure rack,Shelving and racks,trailer-park,office,furniture,normal,uncommon,small,none,none,missing,,trailer-park,,
+PC-TP-058,Gate arm and keypad,"Fences, gates and barriers",trailer-park,office,structure,normal,common,medium,openable,noise,missing,,trailer-park,,the boom arm at the entrance
+PC-TP-059,Entrance sign,Signs and flags,trailer-park,office,decor,normal,common,medium,none,none,missing,,trailer-park,,Cedar Flats
+PC-TP-060,Speed-limit signs,Buildings and structures,trailer-park,office,structure,normal,common,small,none,none,missing,,trailer-park,,
+PC-TP-061,Spine-road lamps,Lighting and fire,trailer-park,office,decor,normal,common,large,none,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,trailer-park,,"8 m radius, 18 lamps"
+PC-TP-062,Lot number signs,Buildings and structures,trailer-park,office,structure,normal,common,small,none,none,missing,,trailer-park,,on posts
+PC-TP-063,Clubhouse (14 x 10 m),Buildings and structures,trailer-park,clubhouse,structure,normal,common,large,none,none,missing,,trailer-park,,dark and locked
+PC-TP-064,Folding tables and stacking chairs,Seating,trailer-park,clubhouse,furniture,normal,common,medium,none,none,missing,,trailer-park,,bingo night
+PC-TP-065,Bingo cage and cards,Oddities and gags,trailer-park,clubhouse,oddity,normal,uncommon,small,none,none,missing,,trailer-park,,a comic prop
+PC-TP-066,Community kitchenette,Kitchen and appliances,trailer-park,clubhouse,appliance,normal,common,medium,none,none,partial,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx;Assets/Art/Global/Interactive/Classic/GI_Stove_01.fbx,trailer-park,,stand-in: the fridge and the stove; no kitchenette counter
+PC-TP-067,Vending machine,Kitchen and appliances,trailer-park,clubhouse,appliance,normal,common,medium,none,light;noise,have,Assets/Art/Global/Interactive/Classic/GI_VendingMachine_01.fbx,trailer-park,,a lit island
+PC-TP-068,Piano (upright),"Tables, desks and counters",trailer-park,clubhouse,furniture,normal,rare,large,none,noise,missing,,trailer-park,,
+PC-TP-069,Swimming pool (6 x 12 m) with underwater light,"Toys, play and fairground",trailer-park,pool,structure,normal,common,large,none,light;noise,missing,,trailer-park,,blue light; the teens
+PC-TP-070,Pool ladder and rails,"Toys, play and fairground",trailer-park,pool,structure,normal,common,medium,none,noise,missing,,trailer-park,,a splash
+PC-TP-071,Lounge chairs,Seating,trailer-park,pool,furniture,normal,common,medium,none,none,missing,,trailer-park,,at the pool deck
+PC-TP-072,Life ring and pole,Hand and power tools,trailer-park,pool,tool,normal,common,small,none,none,missing,,trailer-park,,
+PC-TP-073,Pool fence and gate with a latch,"Toys, play and fairground",trailer-park,pool,structure,normal,common,medium,openable,noise,missing,,trailer-park,,a clack
+PC-TP-074,Depth signs and no-diving signs,Signs and flags,trailer-park,pool,decor,normal,common,small,none,none,missing,,trailer-park,,
+PC-TP-075,Pool towel rack,Shelving and racks,trailer-park,pool,furniture,normal,common,small,none,none,missing,,trailer-park,,
+PC-TP-076,Teens' phones and speakers,"Phones, radio and communications",trailer-park,pool,tech,high,common,small,possessable,light;noise,missing,,trailer-park,,loud and unreliable
+PC-TP-077,Laundry and bathhouse (12 x 10 m),Buildings and structures,trailer-park,laundry,structure,normal,common,large,none,light,missing,,trailer-park,,"fluorescent, always on"
+PC-TP-078,Folding tables,"Tables, desks and counters",trailer-park,laundry,furniture,normal,common,medium,none,none,missing,,trailer-park,,
+PC-TP-079,Detergent vending,Kitchen and appliances,trailer-park,laundry,appliance,normal,uncommon,small,none,none,missing,,trailer-park,,
+PC-TP-080,Bulletin board with flyers,Wall and surface decor,trailer-park,laundry,decor,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,trailer-park,,
+PC-TP-082,Slide and climbing frame,"Toys, play and fairground",trailer-park,playground,toy,normal,common,large,none,noise,missing,,trailer-park,,
+PC-TP-083,Spring riders,"Toys, play and fairground",trailer-park,playground,toy,normal,uncommon,small,none,noise,missing,,trailer-park,,
+PC-TP-084,Bench and bin,Seating,trailer-park,playground,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx;Assets/Art/Global/Decor/GD_TrashCan_01.fbx,trailer-park,,the bench and the street trash can
+PC-TP-085,Playground lamp,Lighting and fire,trailer-park,playground,decor,normal,common,large,none,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,trailer-park,,7 m
+PC-TP-086,Maintenance shed,Buildings and structures,trailer-park,maintenance yard,structure,normal,common,large,none,hiding spot,have,Assets/Art/Farm/Buildings/Shed/,trailer-park,,tools and the utility
+PC-TP-087,Bulk propane tank,"Containers, drums and tanks",trailer-park,maintenance yard,container,normal,common,large,none,none,missing,,trailer-park,,a comic hazard
+PC-TP-088,Dumpsters (bank),"Bins, buckets and mailboxes",trailer-park,maintenance yard,container,normal,common,large,none,hiding spot;noise,have,Assets/Art/Global/Interactive/Classic/GI_Dumpster_01.fbx,trailer-park,,
+PC-TP-089,Park transformer (pad-mount),"Heating, cooling, water and power",trailer-park,maintenance yard,structure,normal,uncommon,large,none,noise;objective candidate,missing,,trailer-park,,objective 4: the park goes dark
+PC-TP-090,Utility trailer and mower,Farm and work machines,trailer-park,maintenance yard,vehicle,normal,common,medium,none,none,partial,Assets/Art/Global/Vehicles/Trailer/GV_Trailer_Flatbed_01.fbx,trailer-park,,stand-in: the flatbed trailer only; no mower
+PC-TP-091,"Park street (6.5 m, one way)","Roads, street furniture and utilities",trailer-park,street,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,trailer-park,,with parked cars
+PC-TP-092,Spine road,"Roads, street furniture and utilities",trailer-park,street,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,trailer-park,,stand-in: the straight road piece; the loop is placement
+PC-TP-093,Parked cars (sedans and pickups),Cars and trucks,trailer-park,street,vehicle,normal,common,large,none,cover,have,Assets/Art/Global/Vehicles/Sedan/,trailer-park,,cover along the street
+PC-TP-094,Parked car with alarm,Cars and trucks,trailer-park,street,vehicle,normal,common,large,possessable,noise;distraction,partial,Assets/Art/Global/Vehicles/GV_Pickup_01.fbx,trailer-park,,Dale's pickup alarm
+PC-TP-095,Boats and campers parked on lots,Boats and water,trailer-park,street,vehicle,normal,uncommon,large,none,cover,missing,,trailer-park,,
+PC-TP-097,Canal bank (concrete),Buildings and structures,trailer-park,street,structure,normal,common,large,none,none,missing,,trailer-park,,a dark route
+PC-TP-098,Hedge along the fence,"Plants, trees and crops",trailer-park,street,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,trailer-park,,stand-in: the farm bush in a row; no hedge model
+PC-TP-099,Tree strip (north),"Plants, trees and crops",trailer-park,street,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreePine_01.fbx,trailer-park,,

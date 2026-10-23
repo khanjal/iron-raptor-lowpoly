@@ -1,6 +1,38 @@
 {
  "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves along `axis`, `limit` metres to open; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
  "props": {
+  "FD_EggCarton_01": {
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.0575,
+      0.034
+     ],
+     "limit": -105.0,
+     "rest": -105.0
+    }
+   },
+   "slots": {}
+  },
+  "FD_EggCarton_Rotten_01": {
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.0575,
+      0.034
+     ],
+     "limit": -105.0,
+     "rest": -105.0
+    }
+   },
+   "slots": {}
+  },
   "FM_Generator_01": {
    "parts": {},
    "slots": {},
@@ -12642,6 +12674,255 @@
     "blackout",
     "power"
    ]
+  },
+  "GO_Copier_01": {
+   "parts": {
+    "Tray1": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.35,
+      0.14
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Tray2": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.35,
+      0.36
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Tray3": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.35,
+      0.58
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Lid": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.35,
+      0.92
+     ],
+     "limit": -80,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_Cubicle_OverheadBin_01": {
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.37,
+      0.16
+     ],
+     "limit": -100,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_Desk_Steel_01": {
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.12
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.34
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.56
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_Desk_Wood_01": {
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.12
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.34
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.57,
+      -0.33,
+      0.56
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_FilingCabinet_01": {
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.31,
+      0.165
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.31,
+      0.495
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.31,
+      0.825
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer4": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.31,
+      1.155
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_Printer_Desktop_01": {
+   "parts": {
+    "Tray": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.19,
+      0.045
+     ],
+     "limit": -0.14,
+     "rest": 0.0
+    },
+    "Cover": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.19,
+      0.22
+     ],
+     "limit": -70,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_Shredder_01": {
+   "parts": {
+    "Bin": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.13,
+      0.22
+     ],
+     "limit": -0.2,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GO_WaterCooler_01": {
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.14,
+      -0.18,
+      0.315
+     ],
+     "limit": 105,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
   },
   "GV_CrashedShip_01": {
    "parts": {

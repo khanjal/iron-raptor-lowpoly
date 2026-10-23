@@ -1,0 +1,70 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Wardrobe_Damaged_01",
+ "space": "blender",
+ "parts": {
+  "DoorL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.5,
+    -0.2875,
+    0.955
+   ],
+   "limit": -110,
+   "rest": -38.5
+  },
+  "DoorR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.5,
+    -0.2875,
+    0.955
+   ],
+   "limit": 110,
+   "rest": 71.49999999999999
+  }
+ },
+ "slots": {
+  "Rail": {
+   "position": [
+    0,
+    0,
+    0.98
+   ],
+   "size": [
+    0.9,
+    0.4,
+    0.74
+   ],
+   "part": null
+  },
+  "Shelf": {
+   "position": [
+    0,
+    0,
+    0.51
+   ],
+   "size": [
+    0.9,
+    0.45,
+    0.45
+   ],
+   "part": null
+  },
+  "Floor": {
+   "position": [
+    0,
+    0,
+    0.06
+   ],
+   "size": [
+    0.9,
+    0.45,
+    0.42
+   ],
+   "part": null
+  }
+ }
+}

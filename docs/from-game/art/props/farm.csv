@@ -1,0 +1,185 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-FA-001,Wall phone nook,"Fences, gates and barriers",farm,hall,structure,normal,uncommon,small,none,none,missing,,farm,,a rotary
+PC-FA-002,Storm cellar doors,"Doors, windows and building parts",farm,cellar,structure,low,common,large,openable,noise,have,Assets/Art/Global/Kit/GK_Door_StormCellar_01.fbx,farm,,the west storm doors
+PC-FA-003,Canning table and jars,"Tables, desks and counters",farm,cellar,furniture,low,uncommon,medium,none,none,missing,,farm,,summer preserves
+PC-FA-004,Hay bale (square),"Containers, drums and tanks",farm,workshop,container,normal,common,medium,movable,cover;hiding spot,have,Assets/Art/Global/Props/GT_HayBale_Square_01.fbx,farm,,cover; a loft staple
+PC-FA-005,Hay bale (round),"Containers, drums and tanks",farm,workshop,container,normal,common,large,none,cover,have,Assets/Art/Global/Props/GT_HayBale_Round_01.fbx,farm,,big cover
+PC-FA-006,Feed sack,"Containers, drums and tanks",farm,workshop,container,normal,common,medium,carryable,none,have,Assets/Art/Global/Props/GT_FeedSack_01.fbx,farm,,25 kg
+PC-FA-007,Milk can,"Containers, drums and tanks",farm,workshop,container,normal,common,medium,carryable,noise,have,Assets/Art/Global/Props/GT_MilkCan_01.fbx,farm,,a clang
+PC-FA-008,Bean poles,"Plants, trees and crops",farm,garden,plant,low,common,medium,none,none,missing,,farm,,a tepee
+PC-FA-009,Pumpkin patch,"Plants, trees and crops",farm,garden,plant,normal,common,medium,none,none,partial,Assets/Art/Global/Food/Produce/FD_Pumpkin_01.fbx,farm,,#262: the pumpkin exists; vines do not
+PC-FA-010,Compost heap,Clutter and small items,farm,garden,clutter,normal,common,medium,none,none,missing,,farm,,smell
+PC-FA-011,Straw mulch,Clutter and small items,farm,garden,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Food/Pet/FD_HayFlake_01.fbx,farm,,stand-in: the hay flake (pet food); no mulch spread
+PC-FA-012,Orchard ladder,Hand and power tools,farm,garden,tool,low,uncommon,medium,movable,none,partial,Assets/Art/Global/Kit/GK_Ladder_01.fbx,farm,,a pickers' ladder
+PC-FA-013,Fruit crate,"Boxes, crates and cases",farm,garden,container,low,common,medium,none,none,partial,Assets/Art/Global/Props/GT_Crate_01.fbx,farm,,apples
+PC-FA-014,Picking bin,"Bins, buckets and mailboxes",farm,garden,container,low,uncommon,medium,none,none,missing,,farm,,a bushel
+PC-FA-015,Fallen apples,Food and drink,farm,garden,food,normal,common,small,none,noise;distraction,have,Assets/Art/Global/Food/Produce/FD_Apple_01.fbx,farm,,squish underfoot (#262)
+PC-FA-016,Tractor,Farm and work machines,farm,road,vehicle,low,common,large,none,cover;noise,have,Assets/Art/Global/Vehicles/GV_Tractor_01.fbx,farm,,five paint jobs
+PC-FA-017,Poplar row (windbreak),"Plants, trees and crops",farm,wild,plant,normal,uncommon,large,none,cover,missing,,farm,,#266
+PC-FA-018,Cow,Animals and pets,farm,wild,wildlife,normal,common,large,none,noise,have,Assets/Art/Global/Animals/GN_Cow_faceted_01.fbx,farm,,the abduct objective
+PC-FA-019,Horse,Animals and pets,farm,wild,wildlife,normal,uncommon,large,none,noise,have,Assets/Art/Global/Animals/GN_Horse_faceted_01.fbx,farm,,whinny
+PC-FA-020,Sheep,Animals and pets,farm,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_Sheep_faceted_01.fbx,farm,,bleat
+PC-FA-021,Goat,Animals and pets,farm,wild,wildlife,normal,common,medium,none,noise,have,Assets/Art/Global/Animals/GN_Goat_faceted_01.fbx,farm,,bleat
+PC-FA-022,Rooster,Animals and pets,farm,wild,wildlife,normal,common,small,none,noise,missing,,farm,,a dawn crow
+PC-FA-023,Donkey / llama,Animals and pets,farm,wild,wildlife,normal,rare,large,none,noise,missing,,farm,,spit
+PC-FA-024,Electric fence wire,Hazards and traps,farm,any,hazard,low,uncommon,medium,none,none,missing,,farm,,a zap
+PC-FA-025,"Barn building (ten stalls, aisle, loft)",Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,hiding spot;cover,have,Assets/Art/Farm/Buildings/Barn/,farm,,exterior shell with openings; the interior is built from the kit by BuildingGenerator
+PC-FA-026,Barn sliding double doors (8 m),"Doors, windows and building parts",farm,barn,structure,normal,common,large,openable,noise;light,have,Assets/Art/Global/Kit/GK_Door_BarnSliding_01.fbx,farm,,"lit, facing the yard"
+PC-FA-027,Barn rear door,"Doors, windows and building parts",farm,barn,structure,normal,common,medium,openable,none,have,Assets/Art/Global/Kit/GK_Door_Exterior_01.fbx,farm,,the dark route in
+PC-FA-028,"Cow stall (half-door, kick board, feed slot)",Animal housing and farm fittings,farm,barn,structure,normal,common,medium,openable,hiding spot,missing,,farm,,ten stalls; stall 1 holds the objective cow
+PC-FA-029,Stall gate and latch,Animal housing and farm fittings,farm,barn,structure,normal,common,medium,openable,noise,missing,,farm,,a latch clack
+PC-FA-030,Stanchion (cow head lock),Buildings and structures,farm,barn,structure,low,uncommon,medium,none,noise,missing,,farm,,clanks
+PC-FA-031,Feed trough / manger,Animal housing and farm fittings,farm,barn,structure,normal,common,medium,none,none,partial,Assets/Art/Farm/Props/FM_WaterTrough_01.fbx,farm,,the water trough stands in
+PC-FA-032,Hay rack,Animal housing and farm fittings,farm,barn,structure,normal,common,medium,none,none,missing,,farm,,wall-mounted
+PC-FA-033,Round-bale feeder,Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,none,missing,,farm,,pasture
+PC-FA-034,Salt lick block,Clutter and small items,farm,barn,clutter,normal,common,small,none,none,missing,,farm,,cows and deer
+PC-FA-035,Milking stand and stool,Seating,farm,barn,furniture,low,uncommon,medium,none,none,partial,Assets/Art/Global/Props/GT_Stool_01.fbx,farm,,the stool exists
+PC-FA-036,Milk bucket rack and pails,"Bins, buckets and mailboxes",farm,barn,container,low,uncommon,medium,none,noise,partial,Assets/Art/Global/Props/GT_Bucket_01.fbx;Assets/Art/Global/Props/GT_MilkCan_01.fbx,farm,,the bucket and can exist
+PC-FA-037,Feed bin (wooden or metal),"Bins, buckets and mailboxes",farm,barn,container,normal,common,medium,openable,hiding spot,missing,,farm,,a hiding spot and a hidden bottle (#267)
+PC-FA-038,Grain scoop,Hand and power tools,farm,barn,tool,normal,common,small,carryable,none,missing,,farm,,
+PC-FA-039,Feed buckets and scoops,"Bins, buckets and mailboxes",farm,barn,container,normal,common,small,carryable,noise,partial,Assets/Art/Global/Props/GT_Bucket_01.fbx,farm,,stand-in: the bucket only; no scoop
+PC-FA-040,Hay loft (floor at 5 m),"Doors, windows and building parts",farm,barn,structure,normal,common,large,none,cover;hiding spot,have,Assets/Art/Global/Kit/GK_Loft_Floor_Barn_01.fbx,farm,,bales to hide in; an open drop
+PC-FA-041,Loft ladder (fixed),"Doors, windows and building parts",farm,barn,structure,normal,common,medium,none,noise,have,Assets/Art/Global/Kit/GK_Ladder_01.fbx,farm,,#41
+PC-FA-042,Loft door and hay pulley,"Doors, windows and building parts",farm,barn,structure,low,common,medium,openable,noise,partial,Assets/Art/Global/Kit/GK_Door_Loft_01.fbx,farm,,the obvious place to beam the cow out; pulley itself is missing
+PC-FA-043,"Hay pulley, rope and hook",Hand and power tools,farm,barn,tool,low,uncommon,medium,none,noise,missing,,farm,,a creaking rope
+PC-FA-044,Hay fork track / trolley,Buildings and structures,farm,barn,structure,low,rare,medium,none,none,missing,,farm,,carries a hay load
+PC-FA-045,Loose hay (drift),Clutter and small items,farm,barn,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Food/Pet/FD_HayFlake_01.fbx,farm,,"silent underfoot; stand-in: the hay flake (pet food) stands in, as for Straw bedding"
+PC-FA-046,Rafters and trusses,"Doors, windows and building parts",farm,barn,structure,normal,common,large,none,none,have,Assets/Art/Global/Kit/GK_Beam_Barn_01.fbx,farm,,Insectoid climb routes
+PC-FA-047,Tack room (door and hooks),"Doors, windows and building parts",farm,barn,structure,normal,common,medium,openable,none,missing,,farm,,saddles and harness
+PC-FA-048,Saddle on a rack,Hand and power tools,farm,barn,tool,low,uncommon,medium,none,none,missing,,farm,,the tack room
+PC-FA-049,Bridle and halter on a hook,Hand and power tools,farm,barn,tool,low,uncommon,small,none,none,missing,,farm,,
+PC-FA-050,Harness and collar (draft),Hand and power tools,farm,barn,tool,low,rare,medium,none,none,missing,,farm,,decor
+PC-FA-051,Horse blanket,Clothing and personal items,farm,barn,clothing,low,uncommon,medium,none,none,missing,,farm,,
+PC-FA-052,Grooming brush and hoof pick,Hand and power tools,farm,barn,tool,low,uncommon,small,none,none,missing,,farm,,
+PC-FA-053,Saddle soap and tack tin,"Containers, drums and tanks",farm,barn,container,low,rare,small,none,none,missing,,farm,,
+PC-FA-054,Barn lantern (hung),Lighting and fire,farm,barn,decor,low,common,small,carryable,light,partial,Assets/Art/Global/Decor/GD_KeroseneLamp_01.fbx,farm,,a barn lantern at the aisle
+PC-FA-055,Barn bare bulb on a cord,Lighting and fire,farm,barn,decor,normal,common,small,none,light,have,Assets/Art/Global/Props/GL_BareBulb_01.fbx,farm,,a swing; the workshop bulb
+PC-FA-056,Barn floodlight above the big doors,Lighting and fire,farm,barn,decor,normal,common,medium,none,light,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,farm,,wall-mounted 12 m reach; the tripod model stands in
+PC-FA-057,Barn cat bed,Beds and bedding,farm,barn,furniture,normal,common,small,none,none,missing,,farm,,"haymow, a hiss from the dark"
+PC-FA-058,Milk cooler tank,Kitchen and appliances,farm,barn,appliance,low,rare,large,none,noise;light,missing,,farm,,a hum
+PC-FA-059,Barn radio,"Phones, radio and communications",farm,barn,tech,low,common,small,switch;possessable,noise;distraction,have,Assets/Art/Global/Decor/GD_Radio_Retro_01.fbx,farm,,classic barn radio on the shelf
+PC-FA-060,Barn fan,"Heating, cooling, water and power",farm,barn,appliance,normal,uncommon,medium,none,noise,missing,,farm,,a noise mask
+PC-FA-061,Water tap with a hose bib,Buildings and structures,farm,barn,structure,normal,common,small,none,noise,missing,,farm,,a drip
+PC-FA-062,Manure fork and wheelbarrow,Hand and power tools,farm,barn,tool,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_Pitchfork_01.fbx;Assets/Art/Global/Props/GT_Wheelbarrow_01.fbx,farm,,
+PC-FA-063,Manure pile and muck,Clutter and small items,farm,barn,clutter,normal,common,medium,none,none,missing,,farm,,smell; a decal
+PC-FA-064,Mouse holes and nests,Clutter and small items,farm,barn,clutter,normal,common,small,none,none,missing,,farm,,scurry
+PC-FA-065,Swallow nests in the eaves,Clutter and small items,farm,barn,clutter,normal,common,small,none,none,missing,,farm,,a flit
+PC-FA-066,Barn owl perch on the ridge,Clutter and small items,farm,barn,clutter,normal,common,small,none,none,missing,,farm,,#156
+PC-FA-067,"Veterinary kit (syringes, ear tags)","Boxes, crates and cases",farm,barn,container,low,rare,small,openable,none,missing,,farm,,decor
+PC-FA-068,Calf pen with nipple bucket,Animal housing and farm fittings,farm,barn,structure,low,rare,medium,none,none,missing,,farm,,a baby cow
+PC-FA-069,Cattle gate swing,"Toys, play and fairground",farm,barn,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Props/GI_Gate_01.fbx,farm,,
+PC-FA-070,Cattle guard (grid),"Fences, gates and barriers",farm,barn,structure,normal,common,medium,none,noise,missing,,farm,,a rattle on the drive
+PC-FA-071,Electric fence charger,Computing and office tech,farm,barn,tech,low,uncommon,small,none,noise;light,missing,,farm,,a tick and a spark (comic)
+PC-FA-072,Electric fence tape and posts,"Fences, gates and barriers",farm,barn,structure,low,common,medium,none,none,missing,,farm,,the pasture's
+PC-FA-073,Pasture fence (wire and post),"Fences, gates and barriers",farm,barn,structure,normal,common,large,none,none,partial,Assets/Art/Global/Props/GI_FenceSection_01.fbx,farm,,stand-in: the rail fence section stands in; no wire fence
+PC-FA-074,Wooden corral,Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,cover,partial,Assets/Art/Global/Props/GI_FenceSection_01.fbx,farm,,cow corral
+PC-FA-075,Paddock for horses,Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,none,partial,Assets/Art/Global/Props/GI_FenceSection_01.fbx,farm,,stand-in: the rail fence section; the paddock is placement
+PC-FA-076,Cow brush (rotating),Hand and power tools,farm,barn,tool,low,rare,medium,none,noise,missing,,farm,,a hum
+PC-FA-077,Calf hutch (plastic igloo),Animal housing and farm fittings,farm,barn,structure,normal,uncommon,medium,none,hiding spot,missing,,farm,,a pen item
+PC-FA-078,Sheep shelter and pen,Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,hiding spot,missing,,farm,,FM-B14
+PC-FA-079,Pig sty with mud wallow,Animal housing and farm fittings,farm,barn,structure,normal,common,large,none,hiding spot;noise,missing,,farm,,FM-B13
+PC-FA-080,Goat pen and shed,Animal housing and farm fittings,farm,barn,structure,normal,uncommon,large,none,none,missing,,farm,,FM-B15
+PC-FA-081,Duck / goose house and pond,Buildings and structures,farm,barn,structure,normal,uncommon,medium,none,none,missing,,farm,,FM-B16
+PC-FA-082,Stable (horse stalls),Animal housing and farm fittings,farm,barn,structure,normal,uncommon,large,none,none,missing,,farm,,FM-B12
+PC-FA-083,Chicken coop with run,Animal housing and farm fittings,farm,coop,structure,normal,common,medium,none,hiding spot;noise,have,Assets/Art/Farm/Buildings/Coop/,farm,,"legs, pop hole, ramp, nesting-box hatch; a noise trap"
+PC-FA-084,Nesting boxes,Animal housing and farm fittings,farm,coop,structure,normal,common,small,none,none,partial,Assets/Art/Farm/Buildings/Coop/,farm,,part of the coop model
+PC-FA-085,Roosts,Animal housing and farm fittings,farm,coop,structure,normal,common,small,none,none,partial,Assets/Art/Farm/Buildings/Coop/,farm,,part of the coop model
+PC-FA-086,Chicken feeder (hanging),"Containers, drums and tanks",farm,coop,container,normal,common,small,none,noise,missing,,farm,,rattles
+PC-FA-087,Chicken waterer (founts),"Containers, drums and tanks",farm,coop,container,normal,common,small,none,none,missing,,farm,,
+PC-FA-088,Egg basket,"Boxes, crates and cases",farm,coop,container,normal,common,small,carryable,none,missing,,farm,,an egg collection
+PC-FA-089,Egg crates / cartons,"Boxes, crates and cases",farm,coop,container,normal,common,small,none,none,have,Assets/Art/Global/Food/Dairy/FD_EggCarton_01.fbx,farm,,
+PC-FA-090,Heat lamp,Lighting and fire,farm,coop,decor,normal,uncommon,small,none,light,missing,,farm,,a red glow in the coop
+PC-FA-091,Straw bedding,Clutter and small items,farm,coop,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Food/Pet/FD_HayFlake_01.fbx,farm,,stand-in: the hay flake (pet food); no bedding spread
+PC-FA-092,Chicken wire panel,Buildings and structures,farm,coop,structure,normal,common,medium,none,none,partial,Assets/Art/Farm/Buildings/Coop/,farm,,"thin bars, not a panel"
+PC-FA-093,Coop door latch,Animal housing and farm fittings,farm,coop,structure,normal,common,small,openable,noise,missing,,farm,,a human latches it at dusk
+PC-FA-094,Rooster weathervane,Wall and surface decor,farm,coop,decor,normal,common,small,none,none,missing,,farm,,
+PC-FA-095,Brooder box with chicks,"Boxes, crates and cases",farm,coop,container,normal,uncommon,small,none,none,missing,,farm,,peeping
+PC-FA-096,Feed bin for chickens,"Bins, buckets and mailboxes",farm,coop,container,normal,common,small,openable,none,missing,,farm,,
+PC-FA-097,Coop ladder,Animal housing and farm fittings,farm,coop,structure,normal,common,small,none,none,missing,,farm,,
+PC-FA-098,"Farmhouse (two storeys, cellar)",Buildings and structures,farm,yard,structure,normal,common,large,none,hiding spot;cover,have,Assets/Art/Farm/Buildings/Farmhouse/,farm,,exterior shell; 11 skins and conditions
+PC-FA-099,Workshop building,Buildings and structures,farm,yard,structure,normal,common,large,none,hiding spot,have,Assets/Art/Farm/Buildings/Workshop/,farm,,"one door, one window, one bulb"
+PC-FA-100,Shed,Buildings and structures,farm,yard,structure,normal,common,large,none,hiding spot,have,Assets/Art/Farm/Buildings/Shed/,farm,,
+PC-FA-101,Silo,Buildings and structures,farm,yard,structure,normal,common,large,none,none,have,Assets/Art/Farm/Buildings/Silo/,farm,,a landmark
+PC-FA-102,Windmill with turning blades,Buildings and structures,farm,yard,structure,normal,common,large,none,noise,have,Assets/Art/Farm/Buildings/Windmill/,farm,,a landmark; an owl perch; creaks
+PC-FA-103,Water well with a roof,Buildings and structures,farm,yard,structure,normal,common,medium,none,none,have,Assets/Art/Farm/Buildings/Well/,farm,,cover; a bucket and windlass
+PC-FA-104,Hand pump,Buildings and structures,farm,yard,structure,low,uncommon,medium,none,noise,missing,,farm,,a squeal
+PC-FA-105,Water trough,Animal housing and farm fittings,farm,yard,structure,normal,common,medium,none,noise,have,Assets/Art/Farm/Props/FM_WaterTrough_01.fbx,farm,,reflective water
+PC-FA-106,Outhouse,Buildings and structures,farm,yard,structure,low,common,medium,openable,hiding spot,have,Assets/Art/Farm/Buildings/Outhouse/,farm,,a hiding place; a networked door
+PC-FA-107,Grain bin,Buildings and structures,farm,yard,structure,normal,common,large,none,none,missing,,farm,,FM-B17
+PC-FA-108,Feed shed,Animal housing and farm fittings,farm,yard,structure,normal,common,large,none,none,missing,,farm,,
+PC-FA-109,Equipment lean-to / carport,"Doors, windows and building parts",farm,yard,structure,normal,common,large,none,cover,missing,,farm,,FM-B11
+PC-FA-110,Fuel tank on stand with pump,Buildings and structures,farm,yard,structure,normal,uncommon,medium,none,none,missing,,farm,,FM-M4
+PC-FA-111,"Water tank (stock tank, poly)","Containers, drums and tanks",farm,yard,container,normal,common,medium,none,none,missing,,farm,,FM-M6
+PC-FA-112,Irrigation pipe and sprinkler,Hand and power tools,farm,yard,tool,normal,uncommon,large,none,noise,missing,,farm,,FM-M5
+PC-FA-113,Burn barrel,Lighting and fire,farm,yard,container,low,common,medium,none,light;noise,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,farm,,a flame glow; trash
+PC-FA-114,Manure spreader,Farm and work machines,farm,yard,vehicle,low,uncommon,large,none,none,missing,,farm,,decor
+PC-FA-115,Old machinery rusting,Clutter and small items,farm,yard,clutter,low,common,large,none,cover,missing,,farm,,a junk pile
+PC-FA-116,Tire pile,Clutter and small items,farm,yard,clutter,normal,common,medium,none,cover,missing,,farm,,
+PC-FA-117,Corn crib,Buildings and structures,farm,yard,structure,low,rare,large,none,none,missing,,farm,,
+PC-FA-118,Farm sign and mailbox,Signs and flags,farm,yard,decor,normal,common,small,none,none,partial,Assets/Art/Global/Props/GT_MailboxPost_01.fbx,farm,,the county road end; stand-in: the mailbox only; no farm sign
+PC-FA-119,Gate lamp,Lighting and fire,farm,yard,decor,normal,common,medium,none,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,farm,,"at the gate (-2, -91)"
+PC-FA-120,Yard pole lamp,Lighting and fire,farm,yard,decor,normal,common,large,none,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,farm,,the yard's 14 m light
+PC-FA-121,Driveway culvert,"Roads, street furniture and utilities",farm,yard,structure,normal,common,medium,none,none,missing,,farm,,the drive's drainage
+PC-FA-122,Hitching rail,Buildings and structures,farm,yard,structure,low,uncommon,medium,none,none,missing,,farm,,
+PC-FA-123,Barnyard mud and puddles,Wall and surface decor,farm,yard,decor,normal,common,medium,none,noise,partial,Assets/Art/Global/Ground/Tex_Mud.png;Assets/Art/Global/Ground/Decal_Puddle.png,farm,,a decal and a squelch; texture and decal only
+PC-FA-124,Worn path (house to barn),Wall and surface decor,farm,yard,decor,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Dirt_Packed.png,farm,,#156; texture only (packed dirt is the worn-path texture)
+PC-FA-125,Chopping block with axe,Buildings and structures,farm,yard,structure,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_ChoppingBlock_01.fbx,farm,,tool marks
+PC-FA-126,Woodshed,Buildings and structures,farm,yard,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Props/GT_FirewoodStack_01.fbx,farm,,a roofed stack
+PC-FA-127,Duck pond,Buildings and structures,farm,yard,structure,normal,common,large,none,noise,missing,,farm,,#86
+PC-FA-128,Hay wagon / flatbed trailer,Farm and work machines,farm,yard,vehicle,low,common,large,none,cover,have,Assets/Art/Global/Vehicles/Trailer/GV_Trailer_Flatbed_01.fbx,farm,,FM-M2
+PC-FA-129,Livestock (stock) trailer,Cars and trucks,farm,yard,vehicle,low,uncommon,large,none,none,missing,,farm,,
+PC-FA-130,Hay bale stack (field),"Containers, drums and tanks",farm,yard,container,normal,common,large,none,cover,have,Assets/Art/Global/Props/GT_HayBale_Round_01.fbx,farm,,big cover
+PC-FA-131,Corn strips (4 m crossed cards),"Plants, trees and crops",farm,field,plant,normal,common,large,none,cover;noise,have,Assets/Art/Farm/Vegetation/FM_CornStrip_01.fbx,farm,,"1,800 strips; full cover, loud rustle"
+PC-FA-132,Corn stalk,"Plants, trees and crops",farm,field,plant,normal,common,medium,none,cover,have,Assets/Art/Farm/Vegetation/FM_CornStalk_01.fbx,farm,,
+PC-FA-133,Trampled corn and broken stalks,Wall and surface decor,farm,field,decor,normal,common,medium,none,none,missing,,farm,,a trace and a crater edge
+PC-FA-134,Tractor paths through the corn,Buildings and structures,farm,field,structure,normal,common,large,none,none,missing,,farm,,routes
+PC-FA-135,Wheat / hay field,"Plants, trees and crops",farm,field,plant,normal,uncommon,large,none,cover;noise,partial,Assets/Art/Global/Ground/Tex_Crop_Gold.png,farm,,#262: golden waist-high; partial cover; texture only: Tex_Crop_Gold is a ripe crop in rows for the far fields; no near-field wheat model
+PC-FA-136,Soybean and potato rows,"Plants, trees and crops",farm,field,plant,normal,common,large,none,cover,partial,Assets/Art/Global/Ground/Tex_Crop_Green.png,farm,,#262: low crouch cover; texture only: Tex_Crop_Green is a green crop in rows
+PC-FA-137,Sunflower field,"Plants, trees and crops",farm,field,plant,normal,uncommon,large,none,cover,missing,,farm,,#262: the heads track the moon
+PC-FA-138,Pumpkin patch with vines,"Plants, trees and crops",farm,field,plant,normal,uncommon,medium,none,none,partial,Assets/Art/Global/Food/Produce/FD_Pumpkin_01.fbx,farm,,#262
+PC-FA-139,Orchard rows (apple trees),"Plants, trees and crops",farm,field,plant,normal,uncommon,large,none,cover;noise,missing,,farm,,#262: trunks block sight; NavMesh obstacles
+PC-FA-140,Vineyard or hops on trellis,"Plants, trees and crops",farm,field,plant,normal,rare,large,none,cover,missing,,farm,,#262
+PC-FA-141,Hay meadow / pasture grass,"Plants, trees and crops",farm,field,plant,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Grass_Long.png,farm,,open and bright: a risk
+PC-FA-142,Round bales in the field,"Containers, drums and tanks",farm,field,container,normal,common,large,none,cover,have,Assets/Art/Global/Props/GT_HayBale_Round_01.fbx,farm,,bale cover
+PC-FA-143,Field edge hedgerow,"Plants, trees and crops",farm,field,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,farm,,stand-in: the farm bush in a row; no hedgerow model
+PC-FA-144,Stone wall (field),"Fences, gates and barriers",farm,field,structure,normal,uncommon,medium,none,cover,missing,,farm,,a low wall
+PC-FA-145,Crop circle (trace),Wall and surface decor,farm,field,decor,normal,rare,large,none,objective candidate,have,Assets/Art/Global/Ground/Decal_CropCircle.png,farm,,the decal exists
+PC-FA-146,Crater (impact),Wall and surface decor,farm,field,decor,normal,rare,large,none,objective candidate,missing,,farm,,FarmsteadImpactCraters in game
+PC-FA-147,Scarecrow (field),Oddities and gags,farm,field,oddity,low,common,medium,none,cover,have,Assets/Art/Farm/Props/FM_Scarecrow_01.fbx,farm,,a landmark and a joke
+PC-FA-148,Tractor-drawn plough,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,FM-M3
+PC-FA-149,Disc harrow,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,FM-M3
+PC-FA-150,Square baler,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,noise,missing,,farm,,FM-M3
+PC-FA-151,Round baler,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,noise,missing,,farm,,
+PC-FA-152,Seed drill / planter,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,
+PC-FA-153,Boom sprayer,Farm and work machines,farm,field,vehicle,normal,uncommon,large,none,none,missing,,farm,,
+PC-FA-154,Combine harvester,Farm and work machines,farm,field,vehicle,normal,rare,large,none,cover;noise,missing,,farm,,GV-21: big cover
+PC-FA-155,Hay mower / conditioner,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,
+PC-FA-156,Hay rake / tedder,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,
+PC-FA-157,Grain cart and auger,Farm and work machines,farm,field,vehicle,low,rare,large,none,noise,missing,,farm,,
+PC-FA-158,Front-end loader attachment,Farm and work machines,farm,field,vehicle,normal,uncommon,large,none,none,missing,,farm,,on the tractor
+PC-FA-159,Field cultivator,Farm and work machines,farm,field,vehicle,low,uncommon,large,none,none,missing,,farm,,
+PC-FA-160,Post-hole digger,Hand and power tools,farm,field,tool,low,uncommon,medium,none,none,missing,,farm,,PTO
+PC-FA-161,Irrigation pivot,Buildings and structures,farm,field,structure,normal,rare,large,none,noise,missing,,farm,,a drone of wheels
+PC-FA-162,Fence line with posts,"Fences, gates and barriers",farm,field,structure,normal,common,large,none,none,have,Assets/Art/Global/Props/GI_FenceSection_01.fbx,farm,,
+PC-FA-163,Field gate,"Fences, gates and barriers",farm,field,structure,normal,common,medium,openable,noise,have,Assets/Art/Global/Props/GI_Gate_01.fbx,farm,,a chain and a latch
+PC-FA-164,Pump house,Buildings and structures,farm,field,structure,normal,rare,medium,none,noise,missing,,farm,,a thrum
+PC-FA-165,Farm road gravel,"Roads, street furniture and utilities",farm,field,structure,normal,common,large,none,noise,partial,Assets/Art/Global/Ground/Tex_Gravel.png,farm,,crunch
+PC-FA-166,Rabbit hole and burrow,Clutter and small items,farm,field,clutter,normal,common,small,none,none,missing,,farm,,#156
+PC-FA-167,Farmer's overalls on a hook,Clothing and personal items,farm,farmhouse,clothing,normal,common,small,none,none,missing,,farm,,the farmer's uniform
+PC-FA-168,Wellington boots,Clothing and personal items,farm,farmhouse,clothing,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_BootsPair_01.fbx,farm,,by the back door
+PC-FA-169,Straw hat,Clothing and personal items,farm,farmhouse,clothing,normal,common,small,none,none,missing,,farm,,
+PC-FA-170,Farmer's flannel shirt,Clothing and personal items,farm,farmhouse,clothing,normal,common,small,none,none,partial,Assets/Art/Global/Clothes/FD_Shirt_Hanger_01.fbx,farm,,stand-in: the shirt on a hanger; no flannel pattern
+PC-FA-171,Farm almanac,Clutter and small items,farm,farmhouse,clutter,low,uncommon,small,none,none,missing,,farm,,a calendar of the seasons
+PC-FA-172,Dinner bell on the porch,Wall and surface decor,farm,farmhouse,decor,low,uncommon,small,none,noise;distraction,missing,,farm,,a ring that calls the family
+PC-FA-173,Preserved vegetables jars,"Containers, drums and tanks",farm,farmhouse,container,low,common,small,none,none,have,Assets/Art/Global/Food/Canned/FD_Jar_Pickles_01.fbx,farm,,cellar pantry
+PC-FA-174,Hanging cured ham,Food and drink,farm,farmhouse,food,low,rare,medium,none,none,missing,,farm,,a larder; a lure
+PC-FA-175,Butter churn,Hand and power tools,farm,farmhouse,tool,low,rare,medium,none,none,missing,,farm,,decor
+PC-FA-176,Cream separator,Hand and power tools,farm,farmhouse,tool,low,rare,medium,none,none,missing,,farm,,decor
+PC-FA-177,Old rotary phone on the wall,"Phones, radio and communications",farm,farmhouse,tech,low,uncommon,small,possessable,noise,have,Assets/Art/Global/Decor/GD_RotaryPhone_01.fbx,farm,,the PhoneLine objective in the design uses a landline
+PC-FA-178,Dog bed in the mudroom,Beds and bedding,farm,farmhouse,furniture,normal,common,medium,none,none,missing,,farm,,the dog's spot
+PC-FA-179,Quilt on a rack,Soft furnishings,farm,farmhouse,decor,low,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Blanket_01.fbx,farm,,the grandparent's
+PC-FA-180,Photograph on the desk,Wall and surface decor,farm,farmhouse,decor,normal,common,small,none,objective candidate,have,Assets/Art/Global/Decor/GD_PhotoFrame_01.fbx,farm,,objective 4
+PC-FA-181,Landline phone on the desk,"Phones, radio and communications",farm,farmhouse,tech,low,common,small,switch;possessable,noise;objective candidate,have,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,farm,,objective 5
+PC-FA-182,Porch lamp with moths,Lighting and fire,farm,farmhouse,decor,normal,common,small,none,light,partial,Assets/Art/Global/Props/GL_BareBulb_01.fbx,farm,,#156
+PC-FA-183,Tinfoil-covered window,Oddities and gags,farm,farmhouse,oddity,normal,rare,small,none,none,have,Assets/Art/Global/Decor/GD_TinfoilPane_01.fbx,farm,,the farmer's paranoia
+PC-FA-184,Farm boots and umbrella in the stand,"Containers, drums and tanks",farm,farmhouse,container,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_UmbrellaStand_01.fbx,farm,,

@@ -59,6 +59,7 @@ h2 { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: 
   border: 1px solid var(--line); border-radius: 999px;
   background: var(--bg);
 }
+.gh { margin-left: auto; }
 #search:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 .btn {
@@ -186,6 +187,7 @@ input[type=range] { flex: 1; min-width: 7rem; accent-color: var(--accent); }
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: .2rem 1rem; margin: 1rem 0; }
 .facts dt { color: var(--muted); }
 .facts dd { margin: 0; word-break: break-word; }
+.credit { margin: .25rem 0 0; color: var(--muted); font-size: .8rem; }
 footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
 
 .only-narrow { display: none; }
@@ -207,6 +209,7 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
   }
   .stage { aspect-ratio: auto; height: min(62vh, 30rem); }
   .top { gap: .5rem; padding: .5rem .7rem; }
+  .gh { display: none; }   /* no room next to the search box; the footer links to GitHub */
   h1 { font-size: 1.05rem; }
   main { padding: .7rem; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: .6rem; }

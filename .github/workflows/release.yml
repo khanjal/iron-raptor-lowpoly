@@ -1,0 +1,37 @@
+# Publishes the models as GitHub release assets: one zip with every GLB and one per category (tools/make_release_zips.py), each with CREDIT.txt and LICENSE-MODELS.
+# Runs when a tag `v*` is pushed (git tag v0.1.0 && git push origin v0.1.0) and by hand (Actions > Release > Run workflow, give the tag; it is created on main if it does not exist).
+# GLB only: the FBX files are not committed, so they are not in the release (they need Blender; see NOTES.md).
+# No third-party actions: only the `gh` CLI that the runner has.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (for example v0.1.0)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1 (2026-07-20)
+      - name: Checks
+        run: |
+          python3 -m unittest discover -s tests -t .
+          python3 tools/check_site.py
+      - name: Zips
+        run: python3 tools/make_release_zips.py dist
+      - name: Release
+        run: |
+          gh release create "$TAG" dist/*.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$TAG" \
+            --notes "GLB models (CC BY 4.0, credit khanjal / lowpoly-assets: see CREDIT.txt in each zip). lowpoly-assets-glb-all.zip has every model; the other zips are one category each. Browse them at https://khanjal.github.io/lowpoly-assets/"

@@ -1,0 +1,93 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-CG-001,Dome tent,Buildings and structures,campground,tent site,structure,normal,common,medium,none,hiding spot;cover;noise,missing,,campground,,zipper noise; a lit tent is a lantern glow
+PC-CG-002,"Cabin tent (family, 6 person)",Buildings and structures,campground,tent site,structure,normal,common,large,none,hiding spot;cover,missing,,campground,,the family at site 6
+PC-CG-003,Pup / tunnel tent,Buildings and structures,campground,tent site,structure,normal,common,medium,none,hiding spot,missing,,campground,,
+PC-CG-004,Rain fly and guy-lines,Buildings and structures,campground,tent site,structure,normal,common,small,none,noise,missing,,campground,,trip lines
+PC-CG-005,Tent stakes and mallet,Hand and power tools,campground,tent site,tool,normal,common,small,carryable,none,missing,,campground,,
+PC-CG-006,Sleeping pad / air mattress,Beds and bedding,campground,tent site,furniture,normal,common,medium,none,none,missing,,campground,,
+PC-CG-007,Camp chair (folding),Seating,campground,tent site,furniture,normal,common,medium,movable,noise,missing,,campground,,a creak
+PC-CG-009,Camp stove (two burner),Kitchen and appliances,campground,tent site,appliance,normal,common,small,none,light;noise,missing,,campground,,a blue flame
+PC-CG-010,Camp lantern (propane or LED),Lighting and fire,campground,tent site,decor,normal,common,small,carryable,light,partial,Assets/Art/Global/Decor/GD_KeroseneLamp_01.fbx,campground,,site 8's lantern; a 4 m light
+PC-CG-011,Headlamp,Hand and power tools,campground,tent site,tool,normal,common,small,carryable,light,missing,,campground,,a moving cone at night
+PC-CG-012,"Camp kitchen set (pots, kettle, enamel mugs)",Cookware and tableware,campground,tent site,tool,low,common,small,carryable,noise,partial,Assets/Art/Global/Household/GH_Pot_01.fbx;Assets/Art/Global/Household/GH_Kettle_01.fbx;Assets/Art/Global/Household/GH_Mug_01.fbx,campground,,tin clatter
+PC-CG-013,Dutch oven on coals,Hand and power tools,campground,tent site,tool,low,uncommon,small,none,none,missing,,campground,,a smell
+PC-CG-014,Cooler,"Boxes, crates and cases",campground,tent site,container,normal,common,medium,openable,noise,have,Assets/Art/Global/Interactive/Classic/GI_Cooler_01.fbx,campground,,beer and food
+PC-CG-015,Food hang bag and rope,"Containers, drums and tanks",campground,tent site,container,normal,common,small,none,none,missing,,campground,,hung from a branch
+PC-CG-016,Bear-proof food locker (bear box),"Boxes, crates and cases",campground,tent site,container,normal,common,medium,openable,noise,missing,,campground,,1.2 x 0.6 m
+PC-CG-017,Bear-proof dumpster,"Bins, buckets and mailboxes",campground,tent site,container,normal,common,large,openable,noise;hiding spot,partial,Assets/Art/Global/Interactive/Classic/GI_Dumpster_01.fbx,campground,,"at (19, -67); the bear comes"
+PC-CG-018,Fire ring with grate,Lighting and fire,campground,tent site,structure,normal,common,medium,none,light,missing,,campground,,embers glow; site cores
+PC-CG-019,Campfire (burning),Lighting and fire,campground,tent site,decor,normal,common,medium,none,light;noise,missing,,campground,,"warm flicker, 6 to 8 m"
+PC-CG-020,Firewood bundle and kindling,Clutter and small items,campground,tent site,clutter,normal,common,small,none,none,partial,Assets/Art/Global/Props/GT_FirewoodStack_Small_01.fbx,campground,,stacked beside the ring
+PC-CG-021,Marshmallow sticks and s'mores kit,Clutter and small items,campground,tent site,clutter,normal,common,small,carryable,none,missing,,campground,,
+PC-CG-022,Beer cans around the fire,Clutter and small items,campground,tent site,clutter,normal,common,small,none,distraction,have,Assets/Art/Global/Food/Drinks/FD_BeerCan_01.fbx,campground,,the college guys
+PC-CG-023,Water jug (5 gallon),"Containers, drums and tanks",campground,tent site,container,normal,common,small,carryable,none,missing,,campground,,
+PC-CG-024,Dish tub and soap,Cookware and tableware,campground,tent site,container,normal,common,small,none,none,missing,,campground,,
+PC-CG-027,Tarp shelter,Buildings and structures,campground,tent site,structure,normal,common,medium,none,cover,missing,,campground,,
+PC-CG-028,Tent with a laptop and drone,Computing and office tech,campground,tent site,tech,high,uncommon,medium,none,light,partial,Assets/Art/Global/Decor/GD_Laptop_01.fbx,campground,,SQUATCH WATCH at site 12
+PC-CG-029,Footprint casts and plaster kit,Oddities and gags,campground,tent site,oddity,normal,rare,small,none,objective candidate,missing,,campground,,the Bigfoot crew
+PC-CG-030,Camera tripod with a thermal scope,"Security, sensors and smart devices",campground,tent site,tech,high,rare,small,none,light,missing,,campground,,the hunter at site 10
+PC-CG-031,Audio recorder / parabolic mic,Electronics,campground,tent site,tech,high,rare,small,none,none,missing,,campground,,hears you at 30 m
+PC-CG-032,Site number post,Buildings and structures,campground,tent site,structure,normal,common,small,none,none,missing,,campground,,
+PC-CG-033,Fire pit chairs (stump seats),Lighting and fire,campground,tent site,furniture,normal,common,medium,none,none,have,Assets/Art/Farm/Vegetation/FM_Stump_01.fbx,campground,,
+PC-CG-034,Playing cards and board games,"Toys, play and fairground",campground,tent site,toy,normal,common,small,none,none,missing,,campground,,
+PC-CG-035,Camping radio,"Phones, radio and communications",campground,tent site,tech,normal,common,small,possessable,noise,have,Assets/Art/Global/Decor/GD_Radio_Handheld_01.fbx,campground,,static can be a lure
+PC-CG-036,Bag of chips,Food and drink,campground,tent site,food,normal,common,small,none,none,have,Assets/Art/Global/Food/Boxed/FD_ChipsBag_01.fbx,campground,,smells draw a bear
+PC-CG-037,Ranger cabin (9 x 9 m),Buildings and structures,campground,ranger station,structure,normal,common,large,none,none,missing,,campground,,the radio and the phone
+PC-CG-038,Ranger truck (with spotlight),Cars and trucks,campground,ranger station,vehicle,normal,common,large,none,light,partial,Assets/Art/Global/Vehicles/GV_Pickup_01.fbx,campground,,headlights and a spotlight
+PC-CG-039,Ranger desk and radio,"Tables, desks and counters",campground,ranger station,furniture,normal,common,medium,possessable,noise;objective candidate,partial,Assets/Art/Global/Household/GH_Desk_Wood_01.fbx;Assets/Art/Global/Decor/GD_Radio_Handheld_01.fbx,campground,,the call goes out here
+PC-CG-040,Park map and bulletin board,Wall and surface decor,campground,ranger station,decor,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,campground,,
+PC-CG-041,Ranger station floodlight,Lighting and fire,campground,ranger station,decor,normal,common,large,none,light,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,campground,,12 m: the biggest light
+PC-CG-042,Camp host RV,Cars and trucks,campground,ranger station,vehicle,normal,uncommon,large,none,cover,missing,,campground,,the host's phone
+PC-CG-043,Entry gate barrier,"Fences, gates and barriers",campground,ranger station,structure,normal,common,medium,openable,none,missing,,campground,,"the forest-road gate; at (91, -89); merged here: PC-CG-089 (Gate barrier)"
+PC-CG-044,Registration kiosk,Buildings and structures,campground,ranger station,structure,normal,common,medium,none,none,missing,,campground,,fee envelopes
+PC-CG-045,Firewood sales rack,Buildings and structures,campground,ranger station,structure,normal,common,medium,none,none,missing,,campground,,sold by the bundle
+PC-CG-046,"Camp store (counter, shelves, ice chest)",Buildings and structures,campground,ranger station,structure,normal,uncommon,large,none,light,missing,,campground,,the camp store
+PC-CG-047,Park brochure rack,Shelving and racks,campground,ranger station,furniture,normal,common,small,none,none,missing,,campground,,
+PC-CG-048,Wildlife warning signs,Signs and flags,campground,ranger station,decor,normal,common,small,none,none,missing,,campground,,bears and snakes
+PC-CG-049,First-aid box on the wall,Hand and power tools,campground,ranger station,tool,normal,common,small,none,none,have,Assets/Art/Global/Decor/GD_FirstAidKit_01.fbx,campground,,
+PC-CG-050,Bathhouse (6 x 10 m),Buildings and structures,campground,bathhouse,structure,normal,common,large,none,light,missing,,campground,,one lit bulb
+PC-CG-051,Vault toilet,Buildings and structures,campground,bathhouse,structure,normal,common,medium,none,hiding spot,partial,Assets/Art/Farm/Buildings/Outhouse/,campground,,a hiding place
+PC-CG-053,Sinks and mirrors,Kitchen and appliances,campground,bathhouse,appliance,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_Sink_Bath_01.fbx;Assets/Art/Global/Household/GH_Mirror_01.fbx,campground,,the bath sink and the mirror
+PC-CG-054,Changing bench,Seating,campground,bathhouse,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,campground,,
+PC-CG-055,Water spigot / hand pump,Buildings and structures,campground,bathhouse,structure,normal,common,small,none,noise,missing,,campground,,a squeal
+PC-CG-056,Lantern post,Lighting and fire,campground,bathhouse,decor,normal,common,medium,none,light,partial,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,campground,,stand-in: the yard pole lamp; no lantern head
+PC-CG-057,Trash and recycling station,"Bins, buckets and mailboxes",campground,bathhouse,container,normal,common,medium,none,none,have,Assets/Art/Global/Decor/GD_TrashCan_01.fbx,campground,,raccoon bait
+PC-CG-058,Lake with shallows (wadeable 1.2 m),"Doors, windows and building parts",campground,lake,structure,normal,common,large,none,noise,missing,,campground,,wading splashes; Energy Beings short out
+PC-CG-059,Beach (sand),Buildings and structures,campground,lake,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Sand.png,campground,,moonlit and open
+PC-CG-061,Boat ramp (6 x 15 m),"Doors, windows and building parts",campground,lake,structure,normal,common,large,none,none,missing,,campground,,the ship part lands at the head
+PC-CG-062,Swim line with buoys,Buildings and structures,campground,lake,structure,normal,common,medium,none,none,missing,,campground,,the water border
+PC-CG-064,Kayaks and paddles,Boats and water,campground,lake,vehicle,normal,uncommon,medium,none,none,missing,,campground,,on a rack
+PC-CG-065,Rowboat with oars,Boats and water,campground,lake,vehicle,low,uncommon,large,none,none,missing,,campground,,
+PC-CG-066,Life jackets,Clothing and personal items,campground,lake,clothing,normal,common,small,none,none,missing,,campground,,on a hook
+PC-CG-067,Fishing rods and tackle box,Hand and power tools,campground,lake,tool,normal,common,small,carryable,none,missing,,campground,,a hook
+PC-CG-068,Fishing net,Hand and power tools,campground,lake,tool,low,uncommon,medium,none,none,missing,,campground,,
+PC-CG-069,Lake fog,Wall and surface decor,campground,lake,decor,normal,common,large,none,none,missing,,campground,,thickest at the shore
+PC-CG-070,Reeds and lily pads,"Plants, trees and crops",campground,lake,plant,normal,common,medium,none,none,missing,,campground,,the lake edge
+PC-CG-071,Floating dock / swim platform,"Doors, windows and building parts",campground,lake,structure,normal,uncommon,large,none,noise,missing,,campground,,
+PC-CG-072,Campfire amphitheater (60 seats),Lighting and fire,campground,amphitheater,structure,normal,common,large,none,light,missing,,campground,,a circle of log benches
+PC-CG-073,Log benches,Seating,campground,amphitheater,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Bench_01.fbx,campground,,stand-in: the bench (GH_Bench_01); no split-log seats
+PC-CG-074,Stage / speaker's podium,Buildings and structures,campground,amphitheater,structure,normal,common,medium,none,none,missing,,campground,,
+PC-CG-075,Embers in the fire pit,Lighting and fire,campground,amphitheater,decor,normal,common,medium,none,light,missing,,campground,,the middle of the map
+PC-CG-076,Pavilion (group shelter),Buildings and structures,campground,amphitheater,structure,normal,common,large,none,cover,missing,,campground,,picnic tables
+PC-CG-077,Interpretive signs,Signs and flags,campground,amphitheater,decor,normal,common,small,none,none,missing,,campground,,a wildlife story
+PC-CG-078,Trailhead sign and map,Signs and flags,campground,amphitheater,decor,normal,common,medium,none,none,missing,,campground,,the trail north
+PC-CG-079,Trail markers and blazes,Wall and surface decor,campground,amphitheater,decor,normal,common,small,none,none,missing,,campground,,
+PC-CG-080,Split-rail fence,"Fences, gates and barriers",campground,amphitheater,structure,normal,common,medium,none,none,have,Assets/Art/Global/Props/GI_FenceSection_01.fbx,campground,,the road border
+PC-CG-081,Log rails at trail edges,"Roads, street furniture and utilities",campground,amphitheater,structure,normal,common,medium,none,none,missing,,campground,,
+PC-CG-082,"Fire lookout tower (15 m, cab 4 x 4 m)",Buildings and structures,campground,lookout,structure,normal,common,large,none,none,missing,,campground,,optional objective 4
+PC-CG-083,Tower ladder and landings,Buildings and structures,campground,lookout,structure,normal,common,large,none,noise,partial,Assets/Art/Global/Kit/GK_Ladder_01.fbx,campground,,a clang; stand-in: the ladder only; no landings
+PC-CG-084,"Lookout cab (windows, alidade table)","Doors, windows and building parts",campground,lookout,structure,normal,common,medium,none,none,missing,,campground,,
+PC-CG-085,Repeater antenna and radio,"Phones, radio and communications",campground,lookout,tech,normal,uncommon,medium,possessable,objective candidate,missing,,campground,,sabotage: Tier 1 slows
+PC-CG-086,Binoculars on a hook,Field gear and disguises,campground,lookout,tool,normal,common,small,none,none,missing,,campground,,
+PC-CG-087,Lookout stove and cot,Beds and bedding,campground,lookout,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,campground,,"stand-in: GH_Cot_01 is a crib, not a camp cot; no lookout stove"
+PC-CG-088,Forest road bridge over the creek,"Roads, street furniture and utilities",campground,road,structure,normal,common,large,none,noise,missing,,campground,,the single chokepoint
+PC-CG-090,"Loop road (gravel, 4 m)","Roads, street furniture and utilities",campground,road,structure,normal,common,large,none,noise,have,Assets/Art/Global/Ground/Road/GI_Road_Dirt_01.fbx,campground,,the ranger's loop
+PC-CG-091,Creek ravine,Buildings and structures,campground,road,structure,normal,common,large,none,noise,missing,,campground,,steep banks
+PC-CG-092,Trail cameras on game trails,"Security, sensors and smart devices",campground,road,tech,normal,uncommon,small,none,light,missing,,campground,,a detection node
+PC-CG-093,Hunter's tree stand,Buildings and structures,campground,road,structure,normal,uncommon,medium,none,hiding spot,missing,,campground,,
+PC-CG-094,Owl in a pine,Animals and pets,campground,road,wildlife,normal,uncommon,small,none,noise,missing,,campground,,a free alarm
+PC-CG-095,Coyote pack,Animals and pets,campground,road,wildlife,normal,uncommon,medium,none,noise,missing,,campground,,howl
+PC-CG-096,Black bear at the dumpster,Animals and pets,campground,road,wildlife,normal,uncommon,large,none,noise,have,Assets/Art/Global/Animals/GN_Bear_faceted_01.fbx,campground,,a distraction either way
+PC-CG-097,Pine forest (700 trees),"Plants, trees and crops",campground,road,plant,normal,common,large,none,cover,have,Assets/Art/Farm/Vegetation/FM_TreePine_01.fbx,campground,,instanced
+PC-CG-098,Rocky ridge with cliff band,Buildings and structures,campground,road,structure,normal,common,large,none,none,partial,Assets/Art/Farm/Vegetation/FM_Boulder_01.fbx,campground,,the border
+PC-CG-099,Fern and leaf litter,"Plants, trees and crops",campground,road,plant,normal,common,small,none,noise,partial,Assets/Art/Global/Ground/Tex_Leaves.png,campground,,crunch

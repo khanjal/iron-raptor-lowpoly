@@ -1,0 +1,60 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-IN-001,Drill press,Hand and power tools,industrial,workshop,tool,normal,uncommon,medium,none,noise,missing,,industrial,,
+PC-IN-002,Blowtorch and propane,Hand and power tools,industrial,workshop,tool,normal,rare,small,carryable,none,missing,,industrial,,comic hazard
+PC-IN-003,Warehouse building (corrugated),"Fences, gates and barriers",industrial,warehouse,structure,normal,common,large,none,hiding spot;cover,partial,Assets/Art/Farm/Buildings/Workshop/,industrial,,the workshop corrugated shell stands in
+PC-IN-004,"Pallet racking (steel, 4 tiers)",Shelving and racks,industrial,warehouse,furniture,normal,common,large,none,cover;hiding spot,missing,,industrial,,the big rack; items on slots (#270)
+PC-IN-005,Wire shelving units,Shelving and racks,industrial,warehouse,furniture,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-006,Conveyor belt,Electronics,industrial,warehouse,tech,normal,uncommon,large,switch,noise,missing,,industrial,,a roll noise; a switch
+PC-IN-007,Stacked cardboard boxes,"Boxes, crates and cases",industrial,warehouse,container,normal,common,large,none,cover;hiding spot,missing,,industrial,,a Mimic disguise
+PC-IN-008,Roll-up dock doors,"Doors, windows and building parts",industrial,warehouse,structure,normal,common,large,openable,noise,partial,Assets/Art/Global/Kit/GK_Door_Garage_01.fbx,industrial,,a clatter; stand-in: the garage door stands in for a dock door
+PC-IN-009,Dock bumpers and levellers,"Toys, play and fairground",industrial,warehouse,structure,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-010,Loading dock with a truck,"Doors, windows and building parts",industrial,warehouse,structure,normal,common,large,none,cover,missing,,industrial,,
+PC-IN-011,IBC tote (liquid),"Containers, drums and tanks",industrial,warehouse,container,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-012,Safety railings and floor markings,"Doors, windows and building parts",industrial,warehouse,structure,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-013,Forklift charging station,Electronics,industrial,warehouse,tech,normal,uncommon,medium,none,light,missing,,industrial,,
+PC-IN-014,Time clock and punch cards,Computing and office tech,industrial,warehouse,tech,low,uncommon,small,none,noise,missing,,industrial,,a clunk
+PC-IN-015,Caged tool crib,Buildings and structures,industrial,warehouse,structure,normal,common,medium,openable,none,missing,,industrial,,
+PC-IN-016,Mezzanine and metal stairs,"Doors, windows and building parts",industrial,warehouse,structure,normal,common,large,none,noise,missing,,industrial,,a clang
+PC-IN-017,Scissor lift,Farm and work machines,industrial,warehouse,vehicle,normal,rare,large,none,noise,missing,,industrial,,beeps
+PC-IN-018,Packing table and tape guns,"Tables, desks and counters",industrial,warehouse,furniture,normal,common,medium,none,noise,missing,,industrial,,a screech
+PC-IN-019,Label printer,Computing and office tech,industrial,warehouse,tech,normal,common,small,none,light,missing,,industrial,,
+PC-IN-020,"Warehouse fan (big, ceiling)","Heating, cooling, water and power",industrial,warehouse,appliance,normal,uncommon,large,none,noise,missing,,industrial,,a hum mask
+PC-IN-021,High-bay light,Lighting and fire,industrial,warehouse,decor,normal,common,medium,none,light,missing,,industrial,,
+PC-IN-022,Warehouse office,Buildings and structures,industrial,warehouse,structure,normal,common,medium,none,light,partial,Assets/Art/Global/Household/GH_Desk_Office_01.fbx,industrial,,a glass office
+PC-IN-023,Break room with vending,Buildings and structures,industrial,warehouse,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Interactive/Classic/GI_VendingMachine_01.fbx,industrial,,stand-in: the vending machine only; the room is a kit build
+PC-IN-024,Lockers (bank),Storage furniture,industrial,warehouse,furniture,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,industrial,,a bank of lockers
+PC-IN-025,Fire extinguisher and sprinkler riser,Field gear and disguises,industrial,warehouse,tool,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_FireExtinguisher_01.fbx,industrial,,stand-in: the extinguisher only; no sprinkler riser
+PC-IN-026,Emergency exit door and sign,"Doors, windows and building parts",industrial,warehouse,structure,normal,common,medium,openable,noise;light,missing,,industrial,,a loud alarm bar
+PC-IN-027,Pallets (stacked),"Boxes, crates and cases",industrial,warehouse,container,normal,common,medium,none,cover,partial,Assets/Art/Global/Vehicles/GV_ShipCrates_01.fbx,industrial,,wooden pallets
+PC-IN-028,Warehouse cat,Animals and pets,industrial,warehouse,wildlife,normal,common,small,none,noise,have,Assets/Art/Global/Animals/GN_CatGrey_faceted_01.fbx,industrial,,a mouser
+PC-IN-030,Small-aircraft hangar (T-hangar),Buildings and structures,industrial,hangar,structure,normal,common,large,none,hiding spot,missing,,industrial,,an airport hangar
+PC-IN-031,Single-engine airplane (original design),Aircraft,industrial,hangar,vehicle,normal,uncommon,large,none,cover,missing,,industrial,,cover
+PC-IN-032,Light helicopter,Aircraft,industrial,hangar,vehicle,normal,rare,large,none,cover,missing,,industrial,,
+PC-IN-033,Aircraft tow bar,Hand and power tools,industrial,hangar,tool,normal,common,small,none,none,missing,,industrial,,
+PC-IN-034,Wheel chocks,Clutter and small items,industrial,hangar,clutter,normal,common,small,none,none,missing,,industrial,,
+PC-IN-035,Engine hoist,Hand and power tools,industrial,hangar,tool,normal,common,medium,none,noise,missing,,industrial,,a rattle
+PC-IN-036,Propeller stand,Hand and power tools,industrial,hangar,tool,normal,uncommon,medium,none,none,missing,,industrial,,
+PC-IN-037,Parts bins and wall racks,Shelving and racks,industrial,hangar,furniture,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-038,Rolling tool chest,"Boxes, crates and cases",industrial,hangar,container,normal,common,medium,openable,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Toolbox_01.fbx,industrial,,"stand-in: the toolbox stands in, as for Tool chest (rolling)"
+PC-IN-039,Hydraulic jack and wing jack,Hand and power tools,industrial,hangar,tool,normal,common,small,none,none,missing,,industrial,,
+PC-IN-040,Creeper (mechanic's),Hand and power tools,industrial,hangar,tool,normal,common,small,movable,noise,missing,,industrial,,rolls
+PC-IN-043,Hangar door (bifold),"Doors, windows and building parts",industrial,hangar,structure,normal,common,large,openable,noise,missing,,industrial,,
+PC-IN-044,Aviation maps and charts,Wall and surface decor,industrial,hangar,decor,normal,common,small,none,none,missing,,industrial,,
+PC-IN-045,"Pilot lounge (sofa, coffee)",Seating,industrial,hangar,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Sofa_01.fbx,industrial,,stand-in: the sofa; the room is a kit build
+PC-IN-046,Airport beacon (rotating),Lighting and fire,industrial,hangar,decor,normal,uncommon,large,none,light,missing,,industrial,,a sweep
+PC-IN-047,"Scrapyard compound (chain-link, gate)","Fences, gates and barriers",industrial,scrapyard,structure,normal,common,large,none,none,missing,,industrial,,the border
+PC-IN-048,Stacked wrecked cars (three high),Cars and trucks,industrial,scrapyard,vehicle,normal,common,large,none,cover,partial,Assets/Art/Global/Vehicles/Sedan/GV_Sedan_Black_Damaged_01.fbx,industrial,,Damaged models stand in; stacks are missing
+PC-IN-049,Car crusher / baler,Buildings and structures,industrial,scrapyard,structure,normal,rare,large,none,noise,missing,,industrial,,loud
+PC-IN-050,Magnet crane (25 m),Farm and work machines,industrial,scrapyard,vehicle,normal,rare,large,none,noise;objective candidate,missing,,industrial,,a Grey's best friend
+PC-IN-051,Weigh station and scale,Buildings and structures,industrial,scrapyard,structure,normal,common,large,none,none,missing,,industrial,,
+PC-IN-052,Scrap metal piles,Clutter and small items,industrial,scrapyard,clutter,normal,common,large,none,cover,missing,,industrial,,clanking
+PC-IN-053,Engine blocks and car parts,Clutter and small items,industrial,scrapyard,clutter,normal,common,medium,none,none,missing,,industrial,,
+PC-IN-054,Oil drums (rusty),"Containers, drums and tanks",industrial,scrapyard,container,normal,common,medium,none,noise,partial,Assets/Art/Global/Props/GT_Barrel_01.fbx,industrial,,stand-in: the barrel; no rust variant
+PC-IN-055,Watchman trailer (with a light),"Roads, street furniture and utilities",industrial,scrapyard,structure,normal,common,medium,none,light,have,Assets/Art/Global/Buildings/Trailer/,industrial,,a guard
+PC-IN-056,Guard dog on a chain,Animals and pets,industrial,scrapyard,wildlife,normal,common,medium,none,noise,partial,Assets/Art/Global/Animals/GN_DogShepherd_faceted_01.fbx,industrial,,a bone distraction; stand-in: the dog exists; the chain does not
+PC-IN-057,"Haul truck (quarry, large)",Farm and work machines,industrial,scrapyard,vehicle,normal,rare,large,none,cover,missing,,industrial,,
+PC-IN-058,Gravel quarry pit (40 m deep),Buildings and structures,industrial,scrapyard,structure,normal,common,large,none,none,missing,,industrial,,the border
+PC-IN-059,Crusher and conveyor (quarry),Buildings and structures,industrial,scrapyard,structure,normal,uncommon,large,none,noise,missing,,industrial,,
+PC-IN-060,Gravel and sand heaps,Clutter and small items,industrial,scrapyard,clutter,normal,common,large,none,cover,missing,,industrial,,
+PC-IN-061,"Bathtubs, doors and junk",Clutter and small items,industrial,scrapyard,clutter,normal,common,medium,none,cover,missing,,industrial,,
+PC-IN-062,Floodlight on a pole,Lighting and fire,industrial,scrapyard,decor,normal,common,large,none,light,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,industrial,,stand-in: the tripod floodlight stand; no pole-mounted floodlight

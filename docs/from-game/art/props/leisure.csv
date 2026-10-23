@@ -1,0 +1,53 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-LE-001,Movie screen (30 x 16 m),Buildings and structures,leisure,drive-in,structure,normal,common,large,none,light,missing,,leisure,,"the biggest, flickering light"
+PC-LE-002,Projection booth (on a rise),Buildings and structures,leisure,drive-in,structure,normal,common,large,none,light;hiding spot,missing,,leisure,,the projector: a possess target
+PC-LE-003,Film projector,Screens and audio,leisure,drive-in,tech,low,uncommon,small,possessable,light;noise;objective candidate,missing,,leisure,,the projectionist's tape
+PC-LE-004,Snack bar (12 x 8 m),Buildings and structures,leisure,drive-in,structure,normal,common,large,none,light,missing,,leisure,,
+PC-LE-005,Popcorn machine,Kitchen and appliances,leisure,drive-in,appliance,normal,common,small,none,light;noise,missing,,leisure,,a pop and a smell
+PC-LE-006,Concession counter and candy,"Tables, desks and counters",leisure,drive-in,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Food/Boxed/FD_CandyBar_01.fbx,leisure,,stand-in: a candy bar only; no counter
+PC-LE-007,Speaker post and speaker (car window),"Doors, windows and building parts",leisure,drive-in,structure,low,common,small,possessable,noise;distraction,missing,,leisure,,a Mimic disguise
+PC-LE-008,Parked cars in fan-shaped rows,Cars and trucks,leisure,drive-in,vehicle,normal,common,large,none,cover,partial,Assets/Art/Global/Vehicles/Sedan/,leisure,,4.5 x 1.8 m
+PC-LE-009,Ticket booth and gate,"Fences, gates and barriers",leisure,drive-in,structure,normal,common,medium,none,none,missing,,leisure,,
+PC-LE-010,Marquee sign with letters,Signs and flags,leisure,drive-in,decor,normal,common,large,none,light,partial,Assets/Art/Global/Decor/GD_NeonSign_01.fbx,leisure,,the film title
+PC-LE-011,Lot lighting poles,Lighting and fire,leisure,drive-in,decor,normal,common,large,none,light,have,Assets/Art/Global/Props/GL_PoleLamp_01.fbx,leisure,,
+PC-LE-012,Drive-in playground,"Toys, play and fairground",leisure,drive-in,toy,normal,common,medium,none,noise,missing,,leisure,,
+PC-LE-013,Cash box and the box office safe,"Boxes, crates and cases",leisure,drive-in,container,normal,common,small,none,objective candidate,partial,Assets/Art/Global/Interactive/Classic/GI_Safe_01.fbx,leisure,,a trace; stand-in: the safe only; no cash box
+PC-LE-014,Ferris wheel (25 m),"Toys, play and fairground",leisure,fairground,structure,normal,common,large,none,light;noise,missing,,leisure,,lit rides can be turned off
+PC-LE-015,Carousel,"Toys, play and fairground",leisure,fairground,structure,normal,common,large,none,light;noise,missing,,leisure,,a calliope
+PC-LE-016,Bumper cars,"Toys, play and fairground",leisure,fairground,structure,normal,common,large,none,noise;light,missing,,leisure,,a crackle
+PC-LE-017,Spinning teacup ride,"Toys, play and fairground",leisure,fairground,structure,normal,common,large,none,noise,missing,,leisure,,
+PC-LE-018,Midway game booth (ring toss),"Toys, play and fairground",leisure,fairground,structure,normal,common,medium,none,light,missing,,leisure,,
+PC-LE-019,Duck shoot and can-knockdown booth,Buildings and structures,leisure,fairground,structure,normal,common,medium,none,noise,missing,,leisure,,
+PC-LE-020,Prize plushies (giant),"Toys, play and fairground",leisure,fairground,toy,normal,common,medium,none,cover,partial,Assets/Art/Global/Decor/GD_TeddyBear_01.fbx,leisure,,stacked cover
+PC-LE-021,Funhouse and hall of mirrors,"Toys, play and fairground",leisure,fairground,structure,normal,uncommon,large,none,light;hiding spot,missing,,leisure,,a mirror that fools a Mimic
+PC-LE-022,Funhouse mirror,Oddities and gags,leisure,fairground,oddity,normal,uncommon,medium,none,objective candidate,partial,Assets/Art/Global/Household/GH_Mirror_01.fbx,leisure,,a fetch with a twist
+PC-LE-023,Cotton-candy and popcorn carts,Buildings and structures,leisure,fairground,structure,normal,common,medium,none,light,missing,,leisure,,
+PC-LE-024,Funnel-cake stall,Animal housing and farm fittings,leisure,fairground,structure,normal,common,medium,none,light,missing,,leisure,,
+PC-LE-025,Livestock barn (stalls and show rings),Animal housing and farm fittings,leisure,fairground,structure,normal,common,large,none,hiding spot,partial,Assets/Art/Farm/Buildings/Barn/,leisure,,stand-in: the farm barn; no stalls or show rings
+PC-LE-026,Prize ribbons and show boards,Wall and surface decor,leisure,fairground,decor,normal,common,small,none,none,missing,,leisure,,
+PC-LE-027,Grandstand (60 x 12 m),Buildings and structures,leisure,fairground,structure,normal,common,large,none,cover,missing,,leisure,,
+PC-LE-028,Sound board and speakers,Screens and audio,leisure,fairground,tech,normal,uncommon,medium,possessable,noise;objective candidate,missing,,leisure,,sabotage
+PC-LE-029,Generator trucks,"Heating, cooling, water and power",leisure,fairground,vehicle,normal,uncommon,large,none,noise,partial,Assets/Art/Farm/Props/FM_Generator_01.fbx,leisure,,a hum; stand-in: the generator only; no truck
+PC-LE-030,Carnie trailer,"Roads, street furniture and utilities",leisure,fairground,structure,normal,common,medium,none,hiding spot,have,Assets/Art/Global/Buildings/Trailer/,leisure,,
+PC-LE-031,Ticket office with a safe,Buildings and structures,leisure,fairground,structure,normal,common,medium,none,objective candidate,partial,Assets/Art/Global/Interactive/Classic/GI_Safe_01.fbx,leisure,,stand-in: the safe only; no ticket office
+PC-LE-032,String lights across the midway,Lighting and fire,leisure,fairground,decor,normal,common,medium,none,light,missing,,leisure,,
+PC-LE-033,Port-a-potties,Buildings and structures,leisure,fairground,structure,normal,common,medium,none,hiding spot,partial,Assets/Art/Farm/Buildings/Outhouse/,leisure,,a hiding row
+PC-LE-034,Hay bales as seats,"Containers, drums and tanks",leisure,fairground,container,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_HayBale_Square_01.fbx,leisure,,
+PC-LE-035,Giant inflatables,Wall and surface decor,leisure,fairground,decor,normal,uncommon,large,none,light;noise,missing,,leisure,,a fan hum
+PC-LE-036,Fence and gate (perimeter),"Fences, gates and barriers",leisure,fairground,structure,normal,common,large,none,none,have,Assets/Art/Global/Props/GI_Gate_01.fbx;Assets/Art/Global/Props/GI_FenceSection_01.fbx,leisure,,the rail fence section and the gate
+PC-LE-037,"Headstones (rows, 0.5 x 0.2 x 0.9 m)",Buildings and structures,leisure,cemetery,structure,normal,common,medium,none,cover,missing,,leisure,,cover in rows
+PC-LE-038,"Crosses (stone, iron, wood)",Buildings and structures,leisure,cemetery,structure,normal,common,small,none,none,missing,,leisure,,
+PC-LE-039,Angel statue,Buildings and structures,leisure,cemetery,structure,normal,uncommon,large,none,cover,missing,,leisure,,a weeping angel as comic
+PC-LE-040,Mausoleum / crypt,Buildings and structures,leisure,cemetery,structure,normal,uncommon,large,none,hiding spot;objective candidate,missing,,leisure,,a relic
+PC-LE-041,"Chapel (8 x 14 m, steeple 16 m)",Buildings and structures,leisure,cemetery,structure,normal,uncommon,large,none,hiding spot,missing,,leisure,,the bell
+PC-LE-042,Bell rope,Hand and power tools,leisure,cemetery,tool,normal,common,small,none,noise;distraction,missing,,leisure,,a loud trap
+PC-LE-043,Wrought-iron fence and gate,"Fences, gates and barriers",leisure,cemetery,structure,normal,common,large,none,noise,missing,,leisure,,"thin bars, not a panel"
+PC-LE-044,Grave lanterns and vigil candles,Lighting and fire,leisure,cemetery,decor,normal,common,small,none,light,partial,Assets/Art/Global/Decor/GD_Candle_01.fbx,leisure,,candles as a Shadow Entity weakness; stand-in: a candle stands in; no grave lantern
+PC-LE-045,Wreaths and flowers,Wall and surface decor,leisure,cemetery,decor,normal,common,small,none,none,partial,Assets/Art/Global/Decor/GD_VaseFlowers_01.fbx,leisure,,stand-in: the vase of flowers stands in; no wreath
+PC-LE-046,Fresh grave mound with tent,Buildings and structures,leisure,cemetery,structure,normal,uncommon,medium,none,none,missing,,leisure,,a vigil
+PC-LE-047,Groundskeeper's shed,Buildings and structures,leisure,cemetery,structure,normal,common,medium,none,hiding spot,have,Assets/Art/Farm/Buildings/Shed/,leisure,,
+PC-LE-048,Cemetery bench,Seating,leisure,cemetery,furniture,normal,common,medium,none,none,have,Assets/Art/Global/Household/GH_Bench_01.fbx,leisure,,
+PC-LE-049,Yew hedge,"Plants, trees and crops",leisure,cemetery,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx,leisure,,the border
+PC-LE-050,Stone wall,"Fences, gates and barriers",leisure,cemetery,structure,normal,common,large,none,none,missing,,leisure,,the border
+PC-LE-051,Vigil photograph on a stand,Wall and surface decor,leisure,cemetery,decor,normal,common,small,none,objective candidate,partial,Assets/Art/Global/Decor/GD_PhotoFrame_01.fbx,leisure,,wipe objective
+PC-LE-052,Shovel and wheelbarrow,Hand and power tools,leisure,cemetery,tool,normal,common,medium,none,none,have,Assets/Art/Global/Props/GT_Shovel_01.fbx;Assets/Art/Global/Props/GT_Wheelbarrow_01.fbx,leisure,,

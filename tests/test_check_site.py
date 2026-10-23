@@ -44,7 +44,9 @@ class Damage(unittest.TestCase):
         self.doc["assets"] = [use[i] for i in KEEP]
         for a in self.doc["assets"]:
             a["variants"] = [v for v in a["variants"] if v in KEEP]
-            for rel in (a["glb"], a["thumb"]):
+            for rel in (a["glb"], a["thumb"], a.get("interactions")):
+                if not rel:
+                    continue
                 (self.tmp / rel).parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy(SITE / rel, self.tmp / rel)
         self.write()
@@ -65,6 +67,30 @@ class Damage(unittest.TestCase):
     def test_duplicate_id(self):
         self.doc["assets"].append(dict(self.entry("GI_Dresser_01")))
         self.assertTrue(any("duplicate id" in p for p in self.problems()))
+
+    def test_a_blended_material_must_be_the_glass_one(self):
+        a = self.entry("GI_Dresser_01")
+        doc, _ = check_site.read_glb(self.tmp / a["glb"])
+        for name, mode, bad in (("GlobalPaletteGlass", "BLEND", False), ("GlobalPalette", "BLEND", True), ("GlobalPaletteGlass", "OPAQUE", True)):
+            doc["materials"] = [dict(name=name, alphaMode=mode)]
+            errs = []
+            check_site.check_against_glb(a, doc, errs.append)
+            self.assertEqual(any("blended" in e or "opaque" in e for e in errs), bad, (name, mode))
+
+    def test_missing_interactions_file(self):
+        (self.tmp / self.entry("GI_Fridge_01")["interactions"]).unlink()
+        self.assertTrue(any("GI_Fridge_01.interactions.json does not exist" in p for p in self.problems()))
+
+    def test_interactions_file_of_another_model(self):
+        path = self.tmp / self.entry("GI_Fridge_01")["interactions"]
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        doc["id"] = "GI_Dresser_01"
+        path.write_text(json.dumps(doc), encoding="utf-8")
+        self.assertTrue(any("id is 'GI_Dresser_01'" in p for p in self.problems()))
+
+    def test_light_count_that_disagrees(self):
+        self.entry("GI_Fridge_01")["lights"] = 3
+        self.assertTrue(any("working lights" in p for p in self.problems()))
 
     def test_missing_glb(self):
         (self.tmp / self.entry("GI_Dresser_01")["glb"]).unlink()

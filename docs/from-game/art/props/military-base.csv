@@ -1,0 +1,90 @@
+id,name,category,location,room_or_area,kind,tech_tag,rarity,size_class,interactive,stealth_role,status,existing_asset,locations,content,notes
+PC-MB-001,Palm / desert tree (Joshua),"Plants, trees and crops",military-base,wild,plant,normal,rare,large,none,none,missing,,military-base,,Area 51 desert
+PC-MB-002,Tumbleweed,"Plants, trees and crops",military-base,wild,plant,normal,uncommon,medium,none,none,missing,,military-base,,desert
+PC-MB-003,Cactus (field),"Plants, trees and crops",military-base,wild,plant,normal,uncommon,medium,none,none,partial,Assets/Art/Global/Decor/GD_Cactus_01.fbx,military-base,,the potted one exists
+PC-MB-004,Dart ship,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_Dart_01.fbx,military-base,,
+PC-MB-005,Cigar ship,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_Cigar_01.fbx,military-base,,
+PC-MB-006,Black triangle craft,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_Triangle_01.fbx,military-base,,Area 51
+PC-MB-007,Dropship,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_DropShip_01.fbx,military-base,,
+PC-MB-008,Man-in-Black craft,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_MIBCraft_01.fbx,military-base,,Tier 3
+PC-MB-009,Mothership,Alien ship and alien tech,military-base,ship,vehicle,high,rare,large,none,none,have,Assets/Art/Global/Ships/SH_Mothership_01.fbx,military-base,,the endgame
+PC-MB-010,Memory-wipe device (original design),Electronics,military-base,any,tech,high,rare,small,carryable,none,missing,,military-base,,the MIB tool; no film props
+PC-MB-011,Double chain-link fence with razor wire,"Fences, gates and barriers",military-base,perimeter,structure,normal,common,large,none,none,missing,,military-base,,the border; a climbable look; an invisible wall behind
+PC-MB-012,Main gate and guard booth,"Fences, gates and barriers",military-base,perimeter,structure,normal,common,large,openable,light,missing,,military-base,,the chokepoint
+PC-MB-013,Vehicle barrier arm,"Fences, gates and barriers",military-base,perimeter,structure,normal,common,medium,openable,noise,missing,,military-base,,a boom arm
+PC-MB-014,Pop-up bollard / tire shredder,"Fences, gates and barriers",military-base,perimeter,structure,high,rare,medium,none,none,missing,,military-base,,comic hazard
+PC-MB-015,Tank traps (hedgehogs),"Fences, gates and barriers",military-base,perimeter,structure,normal,uncommon,medium,none,cover,missing,,military-base,,cover
+PC-MB-016,Sandbag wall,"Fences, gates and barriers",military-base,perimeter,structure,normal,common,medium,none,cover,missing,,military-base,,cover
+PC-MB-017,Gabion barrier (earth-filled),"Fences, gates and barriers",military-base,perimeter,structure,normal,uncommon,large,none,cover,missing,,military-base,,
+PC-MB-018,Guard tower with searchlight,Buildings and structures,military-base,perimeter,structure,normal,common,large,none,light,missing,,military-base,,a moving cone
+PC-MB-019,Perimeter floodlight pole,Lighting and fire,military-base,perimeter,decor,normal,common,large,none,light,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,military-base,,floodlights and patrol paths; stand-in: the tripod floodlight stand; no pole-mounted floodlight
+PC-MB-020,Restricted-area signs,Signs and flags,military-base,perimeter,decor,normal,common,small,none,none,missing,,military-base,,red and white
+PC-MB-021,Warning lights (red beacon),"Security, sensors and smart devices",military-base,perimeter,tech,normal,common,small,none,light,missing,,military-base,,
+PC-MB-022,Perimeter motion sensors and cameras,"Security, sensors and smart devices",military-base,perimeter,tech,high,common,small,possessable,light,partial,Assets/Art/Global/Decor/GD_SecurityCamera_01.fbx,military-base,,stand-in: the security camera only; no motion sensor
+PC-MB-023,Guard dog kennel,Animal housing and farm fittings,military-base,perimeter,structure,normal,uncommon,medium,none,noise,have,Assets/Art/Farm/Props/FM_DogHouse_01.fbx,military-base,,K9s
+PC-MB-024,Dog (K9 shepherd),Animals and pets,military-base,perimeter,wildlife,normal,uncommon,large,none,noise,have,Assets/Art/Global/Animals/GN_DogShepherd_faceted_01.fbx,military-base,,tracks by scent
+PC-MB-025,Flagpole,Signs and flags,military-base,perimeter,decor,normal,common,medium,none,noise,missing,,military-base,,a clanging halyard
+PC-MB-026,Patrol road,"Roads, street furniture and utilities",military-base,perimeter,structure,normal,common,large,none,none,have,Assets/Art/Global/Ground/Road/GI_Road_Straight_01.fbx,military-base,,
+PC-MB-027,Mock alien ship under a tarp,Alien ship and alien tech,military-base,hangar,oddity,high,rare,large,none,cover;objective candidate,partial,Assets/Art/Global/Ships/SH_Scout_01.fbx,military-base,,the debrief
+PC-MB-028,Real alien ship (recovered),Alien ship and alien tech,military-base,hangar,vehicle,high,rare,large,none,objective candidate;light,partial,Assets/Art/Global/Ships/SH_Dart_01.fbx,military-base,,Area 51
+PC-MB-029,Crates (stencilled),"Boxes, crates and cases",military-base,hangar,container,normal,common,medium,movable,cover,partial,Assets/Art/Global/Props/GT_Crate_01.fbx,military-base,,stencilled labels; stand-in: the plain crate; no stencils
+PC-MB-030,Black helicopter,Aircraft,military-base,hangar,vehicle,high,rare,large,none,noise;light,missing,,military-base,,MIB
+PC-MB-031,Military transport truck,Cars and trucks,military-base,hangar,vehicle,normal,uncommon,large,none,cover,missing,,military-base,,a canvas cover
+PC-MB-032,APC (original design),Cars and trucks,military-base,hangar,vehicle,normal,rare,large,none,cover,missing,,military-base,,no marks of a real model
+PC-MB-033,Barracks building,Buildings and structures,military-base,barracks,structure,normal,common,large,none,none,missing,,military-base,,missing shell
+PC-MB-034,Bunk bed with a footlocker,Beds and bedding,military-base,barracks,furniture,normal,common,large,none,hiding spot,partial,Assets/Art/Global/Household/GH_Bed_Bunk_01.fbx,military-base,,bunk beds exist; stand-in: the bunk bed only; no footlocker (Footlocker is partial)
+PC-MB-035,Wall locker,Storage furniture,military-base,barracks,furniture,normal,common,medium,openable,hiding spot,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,military-base,,
+PC-MB-036,Field cot,Beds and bedding,military-base,barracks,furniture,normal,common,medium,none,none,partial,Assets/Art/Global/Household/GH_Cot_01.fbx,military-base,,"stand-in: GH_Cot_01 is a crib, not a field cot"
+PC-MB-037,"Mess hall (long tables, steam trays)",Cookware and tableware,military-base,barracks,structure,normal,common,large,none,none,missing,,military-base,,trays rattle
+PC-MB-038,Mess trays and stacks,Cookware and tableware,military-base,barracks,clutter,normal,common,small,none,noise,partial,Assets/Art/Global/Household/GH_Plates_01.fbx,military-base,,stand-in: the stack of plates; no mess trays
+PC-MB-039,Meal-ready-to-eat boxes,"Boxes, crates and cases",military-base,barracks,container,normal,common,small,carryable,none,partial,Assets/Art/Global/Food/Boxed/FD_CrackerBox_01.fbx,military-base,,rations
+PC-MB-040,"Kitchen (commercial range, fridge)",Kitchen and appliances,military-base,barracks,appliance,normal,common,large,none,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Fridge_01.fbx;Assets/Art/Global/Interactive/Classic/GI_Stove_01.fbx,military-base,,stand-in: the household fridge and stove; no commercial range
+PC-MB-041,Laundry (commercial),Laundry,military-base,barracks,appliance,normal,uncommon,large,none,noise,partial,Assets/Art/Global/Interactive/Classic/GI_Washer_01.fbx;Assets/Art/Global/Interactive/Classic/GI_Dryer_01.fbx,military-base,,stand-in: the household washer and dryer; no commercial machines
+PC-MB-042,Shower block,Buildings and structures,military-base,barracks,structure,normal,common,large,none,noise,partial,Assets/Art/Global/Household/GH_Shower_01.fbx,military-base,,stand-in: the single shower stall; the block is placement
+PC-MB-043,"Rec room (TV, table tennis)","Tables, desks and counters",military-base,barracks,furniture,normal,common,medium,none,light,partial,Assets/Art/Global/Decor/GD_TV_Flat_01.fbx,military-base,,stand-in: the flat TV only; no table tennis table
+PC-MB-044,Field tent (large),Buildings and structures,military-base,barracks,structure,normal,common,large,none,hiding spot,missing,,military-base,,canvas
+PC-MB-045,Latrine,Buildings and structures,military-base,barracks,structure,normal,common,medium,none,hiding spot,missing,,military-base,,
+PC-MB-046,Duty roster board,Wall and surface decor,military-base,barracks,decor,normal,common,medium,none,objective candidate,have,Assets/Art/Global/Decor/GD_BulletinBoard_01.fbx,military-base,,
+PC-MB-047,"Briefing room (tables, projector, map board)",Buildings and structures,military-base,command,structure,normal,uncommon,large,none,light;objective candidate,partial,Assets/Art/Global/Household/GH_Whiteboard_01.fbx,military-base,,a big map
+PC-MB-048,Wall map with pins,Wall and surface decor,military-base,command,decor,normal,common,medium,none,objective candidate,missing,,military-base,,story dressing
+PC-MB-049,Command centre consoles,Screens and audio,military-base,command,tech,high,uncommon,large,possessable,light;objective candidate,partial,Assets/Art/Global/Vehicles/GV_ShipConsole_01.fbx,military-base,,rows of screens
+PC-MB-050,Radio room (rack and operator),"Phones, radio and communications",military-base,command,tech,normal,uncommon,medium,possessable,noise;objective candidate,partial,Assets/Art/Global/Decor/GD_Radio_CB_01.fbx,military-base,,the comms
+PC-MB-051,Radio mast and antenna array,"Phones, radio and communications",military-base,command,tech,normal,common,large,possessable,objective candidate,partial,Assets/Art/Global/Ships/SH_CommsArray_01.fbx,military-base,,the repeater
+PC-MB-052,"Debrief room (table, mirror, recorders)",Buildings and structures,military-base,command,structure,normal,rare,medium,none,light,missing,,military-base,,an interrogation look
+PC-MB-053,"Interrogation room (table, two chairs, lamp)","Roads, street furniture and utilities",military-base,command,structure,normal,rare,medium,none,light,partial,Assets/Art/Global/Household/GH_Table_Dining_01.fbx,military-base,,stand-in: the dining table only; the room is a kit build
+PC-MB-054,Evidence lockers,Storage furniture,military-base,command,furniture,normal,uncommon,medium,openable,objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_Locker_01.fbx,military-base,,
+PC-MB-055,Classified safe,Storage furniture,military-base,command,furniture,normal,rare,small,openable,objective candidate,have,Assets/Art/Global/Interactive/Classic/GI_Safe_01.fbx,military-base,,
+PC-MB-056,Filing cabinets (classified),Storage furniture,military-base,command,furniture,normal,common,medium,openable,none,have,Assets/Art/Global/Interactive/Classic/GI_FilingCabinet_01.fbx,military-base,,
+PC-MB-057,Shredder and burn bags,Hand and power tools,military-base,command,tool,normal,uncommon,small,none,noise,missing,,military-base,,
+PC-MB-058,"Paper stamps and rubber stamp ""TOP SECRET""",Wall and surface decor,military-base,command,decor,normal,common,small,none,objective candidate,missing,,military-base,,story dressing
+PC-MB-059,Briefing chairs (rows),Seating,military-base,command,furniture,normal,common,medium,none,noise,have,Assets/Art/Global/Household/GH_Chair_Office_01.fbx,military-base,,
+PC-MB-060,Wall clocks (several time zones),Wall and surface decor,military-base,command,decor,normal,common,small,none,noise,have,Assets/Art/Global/Decor/GD_Clock_Wall_01.fbx,military-base,,
+PC-MB-061,Secure phone,"Phones, radio and communications",military-base,command,tech,normal,uncommon,small,possessable,noise;objective candidate,partial,Assets/Art/Global/Props/GE_LandlinePhone_01.fbx,military-base,,stand-in: the landline phone; no secure handset
+PC-MB-062,Coffee maker and mugs,Cookware and tableware,military-base,command,appliance,normal,common,small,none,none,have,Assets/Art/Global/Household/GH_CoffeeMachine_01.fbx;Assets/Art/Global/Household/GH_Mug_01.fbx,military-base,,
+PC-MB-063,Intercom and PA speakers,"Phones, radio and communications",military-base,command,tech,normal,common,small,possessable,noise;distraction,partial,Assets/Art/Global/Decor/GD_Intercom_01.fbx,military-base,,a PA call; stand-in: the intercom only; no PA speakers
+PC-MB-064,Motor pool lot,"Toys, play and fairground",military-base,motor pool,structure,normal,common,large,none,none,missing,,military-base,,trucks in rows
+PC-MB-066,Utility truck (canvas),Cars and trucks,military-base,motor pool,vehicle,normal,uncommon,large,none,cover,missing,,military-base,,
+PC-MB-067,"Fuel depot (bladders, pumps)",Buildings and structures,military-base,motor pool,structure,normal,uncommon,large,none,none,missing,,military-base,,decor
+PC-MB-068,Tool trolleys and benches,Seating,military-base,motor pool,furniture,normal,common,medium,none,noise,partial,Assets/Art/Global/Household/GH_Workbench_01.fbx,military-base,,stand-in: the workbench only; no tool trolley (Tool chest (rolling) is partial)
+PC-MB-069,Water buffalo (trailer tank),Cars and trucks,military-base,motor pool,vehicle,normal,rare,medium,none,none,missing,,military-base,,a tank
+PC-MB-070,Generator trailer,"Heating, cooling, water and power",military-base,motor pool,vehicle,normal,uncommon,medium,none,noise,partial,Assets/Art/Farm/Props/FM_Generator_01.fbx,military-base,,a mask for sound; stand-in: the generator only; no trailer (as Generator trucks)
+PC-MB-071,Light tower (mobile),Lighting and fire,military-base,motor pool,decor,normal,uncommon,large,none,light;noise,partial,Assets/Art/Global/Props/GL_FloodlightStand_01.fbx,military-base,,FBI and military
+PC-MB-072,Trailer (flatbed),Farm and work machines,military-base,motor pool,vehicle,normal,uncommon,large,none,none,have,Assets/Art/Global/Vehicles/Trailer/GV_Trailer_Flatbed_01.fbx,military-base,,
+PC-MB-073,Helipad with lights,"Roads, street furniture and utilities",military-base,helipad and airfield,structure,normal,uncommon,large,none,light,missing,,military-base,,H marking
+PC-MB-074,Runway edge lights,Lighting and fire,military-base,helipad and airfield,decor,normal,common,small,none,light,missing,,military-base,,rows of blue lights
+PC-MB-075,Airfield apron,"Roads, street furniture and utilities",military-base,helipad and airfield,structure,normal,common,large,none,none,partial,Assets/Art/Global/Ground/Tex_Concrete.png,military-base,,stand-in: texture only (Tex_Concrete); no apron markings
+PC-MB-076,Control tower,Buildings and structures,military-base,helipad and airfield,structure,normal,uncommon,large,none,light,missing,,military-base,,a lit cab
+PC-MB-078,Parked aircraft (static jet),Aircraft,military-base,helipad and airfield,vehicle,normal,rare,large,none,cover,missing,,military-base,,original design
+PC-MB-079,Helicopter (transport),Aircraft,military-base,helipad and airfield,vehicle,normal,rare,large,none,cover;noise,missing,,military-base,,
+PC-MB-081,Concrete bunker (door and vents),"Doors, windows and building parts",military-base,bunker,structure,normal,rare,large,none,hiding spot,missing,,military-base,,a hiding place; a big door
+PC-MB-082,"Tunnel (concrete, pipes, cables)",Buildings and structures,military-base,bunker,structure,normal,uncommon,large,none,noise,missing,,military-base,,the underground of Area 51
+PC-MB-083,Cold-storage vault (heavy door),"Doors, windows and building parts",military-base,bunker,structure,high,rare,large,openable,objective candidate,missing,,military-base,,the cold room
+PC-MB-084,Vault door (round),"Doors, windows and building parts",military-base,bunker,structure,high,rare,large,openable,noise,missing,,military-base,,a deep clank
+PC-MB-085,Elevator to the underground,Buildings and structures,military-base,bunker,structure,high,uncommon,large,none,noise,missing,,military-base,,a bell
+PC-MB-086,Supply crates (stacked),"Boxes, crates and cases",military-base,bunker,container,normal,common,large,none,cover,have,Assets/Art/Global/Props/GT_Crate_01.fbx,military-base,,
+PC-MB-087,"Ammo cans (empty, decor)","Containers, drums and tanks",military-base,bunker,container,normal,uncommon,small,none,noise,missing,,military-base,,decor only: the game is non-lethal
+PC-MB-088,Cable runs and conduit,Buildings and structures,military-base,bunker,structure,normal,common,medium,none,none,partial,Assets/Art/Global/Vehicles/GV_ShipConduit_01.fbx,military-base,,stand-in: the alien ship's conduit stands in
+PC-MB-089,Floor drains and grates,"Doors, windows and building parts",military-base,bunker,structure,normal,common,small,none,noise,have,Assets/Art/Global/Kit/GK_FloorGrate_01.fbx,military-base,,a grate clank
+PC-MB-090,Fluorescent tunnel lights,Lighting and fire,military-base,bunker,decor,normal,common,medium,none,light,have,Assets/Art/Global/Decor/GD_Fluorescent_01.fbx,military-base,,flicker
+PC-MB-091,Desert shrubs and yucca,"Plants, trees and crops",military-base,bunker,plant,normal,common,medium,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Bush_01.fbx;Assets/Art/Global/Decor/GD_Cactus_01.fbx,military-base,,the Area 51 desert; stand-in: the farm bush and the potted cactus; no yucca or desert shrub
+PC-MB-092,Rocks and dry wash,Buildings and structures,military-base,bunker,structure,normal,common,large,none,cover,partial,Assets/Art/Farm/Vegetation/FM_Boulder_01.fbx,military-base,,stand-in: the farm boulder; no dry-wash ground

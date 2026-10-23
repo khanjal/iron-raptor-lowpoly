@@ -1,0 +1,46 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Locker_01",
+ "space": "blender",
+ "parts": {
+  "Door": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.2,
+    -0.2625,
+    0.9
+   ],
+   "limit": 110,
+   "rest": 0.0
+  }
+ },
+ "slots": {
+  "Shelf": {
+   "position": [
+    0,
+    0,
+    1.41
+   ],
+   "size": [
+    0.32,
+    0.4,
+    0.35
+   ],
+   "part": null
+  },
+  "Floor": {
+   "position": [
+    0,
+    0,
+    0.03
+   ],
+   "size": [
+    0.32,
+    0.4,
+    1.25
+   ],
+   "part": null
+  }
+ }
+}

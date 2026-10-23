@@ -1,0 +1,52 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GO_FilingCabinet_01",
+ "space": "blender",
+ "parts": {
+  "Drawer1": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.31,
+    0.165
+   ],
+   "limit": -0.5,
+   "rest": 0.0
+  },
+  "Drawer2": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.31,
+    0.495
+   ],
+   "limit": -0.5,
+   "rest": 0.0
+  },
+  "Drawer3": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.31,
+    0.825
+   ],
+   "limit": -0.5,
+   "rest": 0.0
+  },
+  "Drawer4": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    0.0,
+    -0.31,
+    1.155
+   ],
+   "limit": -0.5,
+   "rest": 0.0
+  }
+ },
+ "slots": {}
+}
