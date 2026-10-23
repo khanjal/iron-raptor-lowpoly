@@ -16,9 +16,9 @@ Issues come from the forms in `.github/ISSUE_TEMPLATE/` (the contributor-facing 
 3. **Site problem**: reproduce in the same browser if you can; the report names the browser, device and URL. Test at phone width too. A WebGL or device-specific failure may not be reproducible: say so and ask for the console message.
 4. **Model request**: the questions in the `blender-assets` "Brief before build" list. Is it in scope (a generic low-poly object, palette only, plausible triangle budget)? Is there an existing model that is nearly it (a variant is cheaper than a new model)? Anything copyrighted (a brand, a character, a named product) is out. Say yes / later / no with a reason; a yes becomes `enhancement` + `help wanted` if someone else could do it.
 5. **Licence or credit question**: answer from `LICENSES.md`, `CREDITS.md` and `LICENSE-MODELS` quoting what they say; do not give legal advice. Anything about changing the licence is the owner's.
-6. Label, then draft a reply: what you found, what happens next, and a thank-you. Say "I could not reproduce this" plainly rather than guessing.
+6. Propose labels (applying them is a public write: ask first) and draft a reply: what you found, what happens next, and a thank-you. Say "I could not reproduce this" plainly rather than guessing.
 7. To fix one: branch `issue-<n>-<slug>`, follow `ship-it`, and put `Closes #<n>` in the PR. Close an issue only by merging its PR or on the owner's say.
 
 ## Duplicates and noise
 
-Link the original and label `duplicate`; don't close without a comment. A report without a model id gets one friendly question, not a rejection. Reports that contain someone's personal data: ask the reporter to edit it out and tell the owner.
+Link the original and propose the `duplicate` label; never close it yourself, propose closing it to the owner. A report without a model id gets one friendly question, not a rejection. Reports that contain someone's personal data: ask the reporter to edit it out and tell the owner.

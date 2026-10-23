@@ -20,4 +20,4 @@ Use them; they hold the project's standard procedures, adapted from the owner's 
 - Commits end with the `Co-Authored-By` trailer the session specifies.
 
 ## Issues
-People report problems and suggestions through `.github/ISSUE_TEMPLATE/` (problem with a model, problem with the asset browser, model request); `CONTRIBUTING.md` is the public description. Labels in use: `bug`, `enhancement`, `question`, `needs-decision`, `area:generators`, `area:site`, `area:ci`, `area:docs`. Keep the templates, `CONTRIBUTING.md` and `triage-issues` consistent if one changes.
+People report problems and suggestions through `.github/ISSUE_TEMPLATE/` (problem with a model, problem with the asset browser, model request); `CONTRIBUTING.md` is the public description. Labels in use: `bug`, `enhancement`, `question`, `needs-decision`, `duplicate`, `help wanted`, `area:generators`, `area:site`, `area:ci`, `area:docs`. Keep the templates, `CONTRIBUTING.md` and `triage-issues` consistent if one changes.

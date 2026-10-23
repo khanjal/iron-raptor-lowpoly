@@ -24,7 +24,7 @@ Always. The model that wrote the code shares its own wrong assumptions. Run it a
 | Fable | Sonnet | Opus |
 | Haiku, or anything else | Sonnet | Fable |
 
-Brief the reviewer with: the repo path; the diff range as `origin/main...<commit>` after a `git fetch`, never a bare `main...`; that it is read-only (no edits, commits or GitHub posts); what the change is meant to do; and to hunt for bugs with a concrete failure scenario each, including in unchanged code whose assumptions the change broke. Ask for at most 15 findings with file:line and a confidence, and for it to say plainly if it finds nothing.
+Brief the reviewer with: the repo path; the diff range as `origin/<base>...<commit>` after a `git fetch` (`<base>` is the PR's base branch: `main`, or the parent branch of a stacked PR), never a bare `main...`; that it is read-only (no edits, commits or GitHub posts); what the change is meant to do; and to hunt for bugs with a concrete failure scenario each, including in unchanged code whose assumptions the change broke. Ask for at most 15 findings with file:line and a confidence, and for it to say plainly if it finds nothing.
 
 Point it at what matters most in this project:
 
@@ -34,7 +34,7 @@ Point it at what matters most in this project:
 - **Manifest and catalog**: ids unique and unchanged for existing models; `tools/catalog.py` type is three levels; variants point at models that exist; thumbnails and GLBs present; counts in README/NOTES match the manifest
 - **Site code** (`site/`): no new network calls or third-party scripts (three.js is vendored on purpose); works at phone width and from the URL hash; no `innerHTML` with manifest text; any change to the vendored three.js needs a CREDITS entry
 - **Workflows**: pinned action SHAs kept, `permissions:` as narrow as possible, no secrets exposed to pull-request code from forks, nothing that publishes on a PR
-- **Generator scripts**: they must be runnable under `run_name="__main__"` through the Blender MCP; no absolute paths from one machine; a shared-helper change needs everything rebuilt
+- **Generator scripts**: they must be runnable under `run_name="__main__"` through the Blender MCP; no absolute paths from one machine; a shared-helper or palette change needs every site group rebuilt with `tools/build_site_assets.py` (not only `build_all.py`)
 
 Run it in the background. When it returns: check each finding against the code before acting on it; fix the real ones on the branch; write down the ones not fixed, with why, in the PR description; say in the description which model reviewed it and what became of each finding. If the code then changes well beyond fixes to those findings, run this step again.
 

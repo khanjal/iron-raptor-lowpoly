@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for looking. There are three easy ways to help, and none needs Blender.
+Thank you for looking. There are three ways to help; reporting a problem and suggesting a model need no Blender.
 
 ## Report a problem or make a suggestion
 

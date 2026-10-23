@@ -69,6 +69,5 @@ body:
       options:
         - label: I searched the asset browser and did not find it.
           required: true
-        - label: I understand any model made from this becomes part of the project under its licences (code MIT, models CC BY 4.0).
-          required: true
+        - label: If this leads to a model or a change, it becomes part of the project under its licences (code MIT, models and data CC BY 4.0).
         - label: I would like to try making it myself (see CONTRIBUTING.md).
