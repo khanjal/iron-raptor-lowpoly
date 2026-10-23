@@ -3,7 +3,8 @@
 Tracked in the game repo: khanjal/alien-investigation issue #355 (the plan and the asset browser) and #344 (the quality pass).
 
 ## Done
-- This folder, with `art/` copied from the game repo's `main` (commit 9a3d59ce). Nothing is on GitHub yet.
+- This folder, with `art/` copied from the game repo's `main` (commit 9a3d59ce).
+- Pushed to a **private** GitHub repo, https://github.com/khanjal/lowpoly-assets (2026-10-23), under the working name; renaming it later is cheap.
 
 ## Not copied yet (open PRs in the game repo, merge first or copy by hand)
 - #358: road vehicles rebuilt (`vehicles.py`, `cars.py`).
