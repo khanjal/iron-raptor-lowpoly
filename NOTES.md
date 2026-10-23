@@ -26,10 +26,8 @@ Pages is not available for a private repository on the Free plan. The docs (docs
 ## From now on this repo makes the models (2026-10-23)
 The game repo no longer makes its own art; it consumes what is built here. The planned assets, the open issues and PRs about models, and what the game expects to stay stable are in [`docs/from-game/README.md`](docs/from-game/README.md) (with copies of the asset list, the prop catalogue and the art notes). Syncing the `art/` changes merged in the game repo since 9a3d59ce is the first job there.
 
-## Not copied yet (open PRs in the game repo, merge first or copy by hand)
-- #358: road vehicles rebuilt (`vehicles.py`, `cars.py`).
-- #359: the nine flying ships (`ships.py`).
-- the other-vehicles batch (#357: `other_vehicles.py`, semi, bus, fire truck...).
+## Synced from the game repo (2026-10-23, later)
+Pulled in game PRs #358 (road vehicles: `vehicles.py`, `cars.py`), #359 (flying ships: `ships.py`) and the open #357 (`other_vehicles.py`, `cars.py`), merged over our local edits (GLB export, `clear_*` glass). `other_vehicles` is a new `build_all.py` group. None of it is built or exported yet.
 
 ## To decide before a GitHub repo exists
 - Repo name and owner account (the folder name here is a placeholder).

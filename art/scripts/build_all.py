@@ -5,7 +5,7 @@ Optional globals: GROUPS (a list of group names, default all) and WITH_CLIPS (Tr
 which do not depend on the palette and are slow).
 
 Needed whenever common.py's palette changes shape (a new grid size moves every swatch in the texture), and a handy way to check
-that nothing has rotted. Groups: bucket, base, animals, birds, people, props, vehicles, buildings, kit, vegetation, aliens, household, decor, homestyles (about a minute), ships, cars, ground, contents, interactive (about a minute), terminals, ship_props, ship_hulls.
+that nothing has rotted. Groups: bucket, base, animals, birds, people, props, vehicles, buildings, kit, vegetation, aliens, household, decor, homestyles (about a minute), ships, cars, other_vehicles, ground, contents, interactive (about a minute), terminals, ship_props, ship_hulls.
 Not in any group (run each directly, they export their own FBX): insectoid.py (the Insectoid with its clips) and gp_clips.py (the people's Idle, Sit, Walk and Run).
 """
 
@@ -23,7 +23,7 @@ SCRIPTS = {
     "bucket": "gt_bucket.py", "base": "gp_humanoid.py", "animals": "gn_animals.py", "birds": "gn_birds.py", "people": "gp_cast.py",
     "props": "props_farm.py", "vehicles": "vehicles.py", "buildings": "buildings.py", "kit": "kit.py", "vegetation": "vegetation.py",
     "aliens": "aliens.py", "insectoid": "insectoid.py", "household": "household.py", "decor": "decor.py", "homestyles": "home_styles.py", "ships": "ships.py",
-    "cars": "cars.py", "ground": "ground.py", "contents": "contents.py", "interactive": "interactive.py", "terminals": "terminals.py",
+    "cars": "cars.py", "other_vehicles": "other_vehicles.py", "ground": "ground.py", "contents": "contents.py", "interactive": "interactive.py", "terminals": "terminals.py",
     "ship_props": "ship_props.py", "ship_hulls": "ship_hulls.py",
 }
 groups = globals().get("GROUPS") or list(SCRIPTS)
