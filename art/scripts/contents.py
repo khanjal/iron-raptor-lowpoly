@@ -1,12 +1,12 @@
 """Things that go inside things (asset list GH-, GT-, GN-82): food, drinks, groceries, clothes and pet treats. Flat faceted models.
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/contents.py", run_name="__main__")
-Optional global CONTENT_LIST (item or group names). Exports Assets/Art/Global/<Food|Clothes>/<Group>/FD_<Name>_01.fbx, and for the fresh
+Optional global CONTENT_LIST (item or group names); EXPORT = False builds them in the scene without writing files (for audit.py). Exports Assets/Art/Global/<Food|Clothes>/<Group>/FD_<Name>_01.fbx, and for the fresh
 food groups a Rotten version (FD_<Name>_Rotten_01.fbx) for abandoned houses and the trailer park.
 
 All real size (an apple is 8 cm, a milk carton 0.2 m tall, a shirt on a hanger 0.7 m), origin on the base so an item sits on whatever
 surface its slot is on. The slots in the interactive appliances (interactive.py) say where items can sit; game code decides which kind goes where and spawns the prefabs there.
-Groups: produce, bakery, dairy, drinks, canned, boxed, prepared, pet, clothes.
+Groups: produce (apples in three colours, a banana bunch, lemon, pear, grapes, strawberry...), bakery, dairy, drinks, canned, boxed, prepared, pet, clothes.
 """
 
 import importlib
@@ -14,10 +14,13 @@ import math
 import sys
 from pathlib import Path
 
+from mathutils import Vector
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common
 import props_lib
-for _m in (common, props_lib):
+import food_shapes
+for _m in (common, props_lib, food_shapes):
     importlib.reload(_m)
 Prop = props_lib.Prop
 lathe, ball = props_lib.lathe, props_lib.ball
@@ -35,88 +38,166 @@ def item(group, name):
 # ===== Produce =================================================================================================
 @item("produce", "Apple")
 def apple():
-    p = Prop("FD_Apple_01"); ball(p, "cloth_red", (0, 0, 0.04), 0.04, n=7, squash=0.9); p.box("bark", (0, 0, 0.088), (0.006, 0.006, 0.02)); return p
+    p = Prop("FD_Apple_01"); food_shapes.apple(p); return p
+
+
+@item("produce", "Apple_Green")
+def apple_green():
+    p = Prop("FD_Apple_Green_01"); food_shapes.apple(p, "apple_green"); return p
+
+
+@item("produce", "Apple_Yellow")
+def apple_yellow():
+    p = Prop("FD_Apple_Yellow_01"); food_shapes.apple(p, "apple_yellow"); return p
 
 
 @item("produce", "Orange")
 def orange():
-    p = Prop("FD_Orange_01"); ball(p, "food_orange", (0, 0, 0.04), 0.04, n=7); p.box("plant_green", (0, 0, 0.082), (0.015, 0.015, 0.004)); return p
+    p = Prop("FD_Orange_01"); food_shapes.orange(p); return p
 
 
 @item("produce", "Banana")
 def banana():
-    p = Prop("FD_Banana_01")
-    for k, (x, z, r) in enumerate(((-0.07, 0.02, 20), (-0.025, 0.012, 8), (0.025, 0.012, -8), (0.07, 0.02, -20))):
-        p.box("paint_yellow", (x, 0, z), (0.05, 0.03, 0.028), rot=(0, r, 0))
-    p.box("bark", (-0.095, 0, 0.035), (0.012, 0.012, 0.02))
+    p = Prop("FD_Banana_01"); food_shapes.banana(p); return p
+
+
+def _finger(p, x0, y0, z0, length=0.17, bend=0.1, r=0.019):
+    """One banana: five-sided cross-sections along a gently curved path (green neck, yellow body, dark tip)."""
+    ts = [0.0, 0.1, 0.2, 0.5, 0.8, 0.94, 1.0]
+    rs = [0.005, 0.007, 0.015, 0.019, 0.017, 0.010, 0.005]
+    rings = []
+    for t, rr in zip(ts, rs):
+        def at(u):
+            return Vector((x0 + length * u, y0 * (0.35 + 0.65 * min(1.0, u * 3)) + bend * (u - 0.3) ** 2, z0 + 0.04 * u * u))
+        tan = (at(min(1.0, t + 0.02)) - at(max(0.0, t - 0.02))).normalized()
+        side = Vector((0, 0, 1)).cross(tan).normalized()
+        up = tan.cross(side)
+        centre = at(t)
+        rr *= r / 0.019
+        rings.append([centre + side * math.cos(a) * rr + up * math.sin(a) * rr for a in (math.tau * (k + 0.5) / 5 for k in range(5))])
+    p.loft_rings("banana_green", rings[0:3])
+    p.loft_rings("paint_yellow", rings[2:6])
+    p.loft_rings("bark", rings[5:7])
+
+
+@item("produce", "BananaBunch")
+def banana_bunch():
+    """A hand of five bananas lying on its side: three on the table, two nested on top, joined at a crown."""
+    p = Prop("FD_BananaBunch_01")
+    for y0 in (-0.044, 0.0, 0.044):
+        _finger(p, -0.09, y0, 0.019, r=0.021)
+    for y0 in (-0.022, 0.022):
+        _finger(p, -0.09, y0, 0.052, r=0.021)
+    p.box("banana_green", (-0.098, 0.0, 0.034), (0.03, 0.07, 0.06))
+    p.box("dead_wood", (-0.115, 0.0, 0.034), (0.006, 0.07, 0.06))
     return p
 
 
 @item("produce", "Carrot")
 def carrot():
-    p = Prop("FD_Carrot_01"); lathe(p, "food_orange", [(0.0, 0.0001), (0.01, 0.006), (0.14, 0.02), (0.15, 0.02)], n=6)
-    p.box("plant_green", (0, 0, 0.17), (0.03, 0.03, 0.06), taper=0.5); return p
+    p = Prop("FD_Carrot_01"); food_shapes.carrot(p); return p
 
 
 @item("produce", "Tomato")
 def tomato():
-    p = Prop("FD_Tomato_01"); ball(p, "cloth_red", (0, 0, 0.035), 0.04, n=7, squash=0.8); p.box("plant_green", (0, 0, 0.066), (0.025, 0.025, 0.006)); return p
+    p = Prop("FD_Tomato_01"); food_shapes.tomato(p); return p
+
+
+@item("produce", "Lemon")
+def lemon():
+    p = Prop("FD_Lemon_01")
+    prof = [(0.0, 0.004), (0.1, 0.014), (0.3, 0.026), (0.5, 0.03), (0.7, 0.026), (0.9, 0.014), (1.0, 0.004)]
+    p.loft_rings("lemon", [common.ring_x(-0.037 + 0.075 * t, 0, 0.03, r, r, n=7) for t, r in prof])
+    return p
+
+
+@item("produce", "Pear")
+def pear():
+    p = Prop("FD_Pear_01")
+    lathe(p, "pear_green", [(0.0, 0.012), (0.008, 0.028), (0.025, 0.037), (0.045, 0.032), (0.062, 0.02), (0.08, 0.014), (0.098, 0.011)], n=8)
+    p.box("bark", (0, 0, 0.11), (0.005, 0.005, 0.026))
+    p.box("plant_green", (0.013, 0, 0.1), (0.026, 0.012, 0.002), rot=(0, -20, 0))
+    return p
+
+
+def _grapes(name, colour):
+    """A bunch lying on the table: rings of grapes that shrink towards the tail, each ring resting on the table."""
+    p = Prop(name)
+    g = 0.014
+    for row, (x, ring, count) in enumerate(((-0.06, 0.026, 6), (-0.032, 0.021, 5), (-0.006, 0.016, 4), (0.02, 0.011, 3))):
+        cz = ring + g
+        for k in range(count):
+            a = math.tau * (k + 0.5 * row) / count
+            ball(p, colour, (x, ring * math.cos(a), cz + ring * math.sin(a)), g, n=6, rings=1)
+    ball(p, colour, (0.044, 0.0, 0.008 + g), g, n=6, rings=1)
+    p.cyl("bark", (-0.09, 0, 0.04), 0.004, 0.04, n=4, axis="x")
+    return p
+
+
+@item("produce", "Grapes_Purple")
+def grapes_purple():
+    return _grapes("FD_Grapes_Purple_01", "grape_purple")
+
+
+@item("produce", "Grapes_Green")
+def grapes_green():
+    return _grapes("FD_Grapes_Green_01", "grape_green")
+
+
+@item("produce", "Strawberry")
+def strawberry():
+    p = Prop("FD_Strawberry_01")
+    lathe(p, "berry_red", [(0.0, 0.004), (0.008, 0.016), (0.022, 0.024), (0.034, 0.025), (0.044, 0.018), (0.05, 0.008)], n=7)
+    for a in range(0, 360, 72):
+        p.box("plant_green", (0.011 * math.cos(math.radians(a)), 0.011 * math.sin(math.radians(a)), 0.051), (0.022, 0.008, 0.003), rot=(0, 0, a))
+    p.box("plant_green", (0, 0, 0.058), (0.004, 0.004, 0.016))
+    return p
 
 
 @item("produce", "Potato")
 def potato():
-    p = Prop("FD_Potato_01"); ball(p, "tan", (0, 0, 0.03), 0.045, n=6, squash=0.65); return p
+    p = Prop("FD_Potato_01"); food_shapes.potato(p); return p
 
 
 @item("produce", "Onion")
 def onion():
-    p = Prop("FD_Onion_01"); ball(p, "golden", (0, 0, 0.04), 0.04, n=6, squash=0.9); p.box("dead_wood", (0, 0, 0.095), (0.008, 0.008, 0.025), taper=0.4); return p
+    p = Prop("FD_Onion_01"); food_shapes.onion(p); return p
 
 
 @item("produce", "Corn")
 def corn():
-    p = Prop("FD_Corn_01")
-    lathe(p, "corn_cob", [(0.0, 0.0001), (0.02, 0.025), (0.18, 0.028), (0.21, 0.012)], n=8)
-    for a in (0, 120, 240):
-        p.box("corn_leaf", (0.02 * math.cos(math.radians(a)), 0.02 * math.sin(math.radians(a)), 0.1), (0.01, 0.04, 0.2), rot=(0, 0, a), taper=0.7)
-    return p
+    p = Prop("FD_Corn_01"); food_shapes.corn(p); return p
 
 
 @item("produce", "Lettuce")
 def lettuce():
-    p = Prop("FD_Lettuce_01"); ball(p, "corn_leaf", (0, 0, 0.07), 0.09, n=8, squash=0.85); ball(p, "plant_green", (0, 0, 0.09), 0.05, n=6); return p
+    p = Prop("FD_Lettuce_01"); food_shapes.lettuce(p); return p
 
 
 @item("produce", "Cabbage")
 def cabbage():
-    p = Prop("FD_Cabbage_01"); ball(p, "siding_green", (0, 0, 0.1), 0.11, n=8, squash=0.9); return p
+    p = Prop("FD_Cabbage_01"); food_shapes.cabbage(p); return p
 
 
 @item("produce", "Pumpkin")
 def pumpkin():
-    p = Prop("FD_Pumpkin_01"); ball(p, "food_orange", (0, 0, 0.13), 0.16, n=8, squash=0.8); p.box("plant_green", (0, 0, 0.27), (0.04, 0.04, 0.07), taper=0.6); return p
+    p = Prop("FD_Pumpkin_01"); food_shapes.pumpkin(p); return p
 
 
 @item("produce", "Watermelon")
 def watermelon():
-    p = Prop("FD_Watermelon_01"); ball(p, "plant_green", (0, 0, 0.12), 0.17, n=8, squash=0.7)
-    for a in range(0, 360, 60):
-        p.box("leaf_dark", (0.12 * math.cos(math.radians(a)), 0.12 * math.sin(math.radians(a)), 0.12), (0.02, 0.1, 0.22), rot=(0, 0, a))
-    return p
+    p = Prop("FD_Watermelon_01"); food_shapes.watermelon(p); return p
 
 
 # ===== Bakery ==================================================================================================
 @item("bakery", "BreadLoaf")
 def bread_loaf():
-    p = Prop("FD_BreadLoaf_01"); p.box("crust", (0, 0, 0.06), (0.24, 0.12, 0.1)); ball(p, "crust", (0, 0, 0.1), 0.065, n=6, squash=0.6)
-    for x in (-0.05, 0.0, 0.05):
-        p.box("dough", (x, -0.0, 0.14), (0.01, 0.1, 0.01))
-    return p
+    p = Prop("FD_BreadLoaf_01"); food_shapes.bread_loaf(p); return p
 
 
 @item("bakery", "Baguette")
 def baguette():
-    p = Prop("FD_Baguette_01"); p.cyl("crust", (0, 0, 0.04), 0.04, 0.7, n=6, axis="y"); p.box("dough", (0, -0.0, 0.082), (0.01, 0.5, 0.004)); return p
+    p = Prop("FD_Baguette_01"); food_shapes.baguette(p); return p
 
 
 @item("bakery", "Pie")
@@ -164,19 +245,12 @@ def milk_bottle():
 
 @item("dairy", "EggCarton")
 def egg_carton():
-    p = Prop("FD_EggCarton_01"); p.box("paper", (0, 0, 0.025), (0.26, 0.1, 0.05))
-    for r in range(2):
-        for c in range(6):
-            ball(p, "label_white", (-0.108 + c * 0.0432, -0.025 + r * 0.05, 0.062), 0.019, n=6, squash=1.25, rings=3)
-    return p
+    p = Prop("FD_EggCarton_01"); food_shapes.egg_carton(p); return p
 
 
 @item("dairy", "CheeseWedge")
 def cheese():
-    p = Prop("FD_CheeseWedge_01"); p.box("paint_yellow", (0, 0, 0.04), (0.12, 0.08, 0.08), taper=0.7)
-    for x, z in ((-0.03, 0.03), (0.02, 0.05)):
-        p.box("golden", (x, -0.042, z), (0.015, 0.004, 0.015))
-    return p
+    p = Prop("FD_CheeseWedge_01"); food_shapes.cheese(p); return p
 
 
 @item("dairy", "Butter")
@@ -256,7 +330,7 @@ def can_beans():
 
 @item("canned", "Jar_Pickles")
 def jar_pickles():
-    p = Prop("FD_Jar_Pickles_01"); p.cyl("glass", (0, 0, 0.09), 0.05, 0.18, n=8); p.cyl("plant_green", (0, 0, 0.08), 0.04, 0.13, n=6); p.cyl("metal_galv", (0, 0, 0.19), 0.052, 0.025, n=8); return p
+    p = Prop("FD_Jar_Pickles_01"); food_shapes.jar_pickles(p); return p
 
 
 @item("canned", "Jar_Jam")
@@ -296,18 +370,17 @@ def cracker_box():
 
 @item("boxed", "FlourSack")
 def flour_sack():
-    p = Prop("FD_FlourSack_01"); p.box("label_white", (0, 0, 0.15), (0.26, 0.12, 0.3), taper=0.9); p.box("label_white", (0, 0, 0.31), (0.2, 0.1, 0.04), taper=0.6)
-    p.box("label_blue", (0, -0.062, 0.16), (0.16, 0.004, 0.12)); return p
+    p = Prop("FD_FlourSack_01"); food_shapes.flour_sack(p); return p
 
 
 @item("boxed", "SugarBag")
 def sugar_bag():
-    p = Prop("FD_SugarBag_01"); p.box("paint_white", (0, 0, 0.12), (0.12, 0.06, 0.24), taper=0.95); p.box("label_blue", (0, -0.031, 0.12), (0.08, 0.004, 0.1)); return p
+    p = Prop("FD_SugarBag_01"); food_shapes.sugar_bag(p); return p
 
 
 @item("boxed", "ChipsBag")
 def chips_bag():
-    p = Prop("FD_ChipsBag_01"); p.box("paint_yellow", (0, 0, 0.13), (0.2, 0.05, 0.26), taper=0.95); p.box("cloth_red", (0, -0.026, 0.13), (0.14, 0.004, 0.12)); p.box("paint_yellow", (0, 0, 0.27), (0.2, 0.03, 0.02)); return p
+    p = Prop("FD_ChipsBag_01"); food_shapes.chips_bag(p); return p
 
 
 @item("boxed", "CandyBar")
@@ -323,15 +396,12 @@ def steak():
 
 @item("prepared", "Sausages")
 def sausages():
-    p = Prop("FD_Sausages_01")
-    for k in range(4):
-        p.cyl("meat_red", (0, -0.03 + k * 0.02, 0.02), 0.012, 0.16, n=6, axis="x")
-    p.box("paint_white", (0, 0, 0.004), (0.2, 0.1, 0.008)); return p
+    p = Prop("FD_Sausages_01"); food_shapes.sausages(p); return p
 
 
 @item("prepared", "Drumstick")
 def drumstick():
-    p = Prop("FD_Drumstick_01"); ball(p, "crust", (0, 0, 0.04), 0.04, n=6, squash=0.9); p.cyl("paint_white", (0.07, 0, 0.045), 0.009, 0.08, n=4, axis="x"); return p
+    p = Prop("FD_Drumstick_01"); food_shapes.drumstick(p); return p
 
 
 @item("prepared", "TurkeyRoast")
@@ -344,7 +414,7 @@ def turkey_roast():
 
 @item("prepared", "Fish")
 def fish():
-    p = Prop("FD_Fish_01"); p.box("fabric_grey", (0, 0, 0.04), (0.34, 0.08, 0.08), taper=0.8); p.box("paint_white", (0, 0, 0.012), (0.34, 0.06, 0.02)); p.box("fabric_grey", (0.2, 0, 0.04), (0.08, 0.01, 0.12), rot=(0, 25, 0)); p.box("black", (-0.13, -0.041, 0.055), (0.012, 0.004, 0.012)); return p
+    p = Prop("FD_Fish_01"); food_shapes.fish(p); return p
 
 
 @item("prepared", "Hamburger")
@@ -460,13 +530,18 @@ def scarf():
     p = Prop("FD_Scarf_01"); p.box("cloth_red", (0, 0, 0.02), (0.6, 0.1, 0.03)); p.box("paint_yellow", (0.1, 0, 0.037), (0.04, 0.1, 0.004)); p.box("paint_yellow", (-0.1, 0, 0.037), (0.04, 0.1, 0.004)); return p
 
 
-ROTTEN = {"cloth_red": "mould", "paint_yellow": "fabric_brown", "plant_green": "mould", "food_orange": "mould", "corn_leaf": "dead_wood", "corn_cob": "fabric_brown",
+ROTTEN = {"banana_yellow": "fabric_brown", "corn_green": "mould", "lettuce_heart": "dead_wood", "grass": "mould",
+          "egg_white": "wood_grey", "egg_brown": "fabric_brown", "egg_blue": "dead_wood", "cheese_cut": "mould", "cheese_rind": "dead_wood", "cheese_hole": "fabric_brown",
+          "cloth_red": "mould", "rust": "mould", "paint_yellow": "fabric_brown", "plant_green": "mould", "food_orange": "mould", "corn_leaf": "dead_wood", "corn_cob": "fabric_brown",
           "crust": "dead_wood", "dough": "fabric_brown", "meat_red": "mould", "paint_white": "dead_wood", "label_white": "wood_grey", "tan": "dead_wood",
-          "golden": "dead_wood", "siding_green": "mould", "fabric_pink": "dead_wood", "leaf_dark": "mould", "hay": "dead_wood", "fabric_grey": "mould"}
+          "golden": "dead_wood", "siding_green": "mould", "fabric_pink": "dead_wood", "leaf_dark": "mould", "hay": "dead_wood", "fabric_grey": "mould",
+          "apple_green": "mould", "apple_yellow": "fabric_brown", "banana_green": "mould", "lemon": "fabric_brown", "pear_green": "mould",
+          "grape_purple": "dark_brown", "grape_green": "mould", "berry_red": "mould"}
 FRESH_GROUPS = ("produce", "bakery", "dairy", "prepared")
 
 
 def run():
+    props_lib.INTERACTIONS.clear()
     names = globals().get("CONTENT_LIST")
     count, x, y, row = 0, 0.0, 0.0, None
     for key, (fn, group) in ITEMS.items():
@@ -485,10 +560,13 @@ def run():
                 prop.name = prop.name[:-3] + "_Rotten_01"
             obj, coll = prop.finish()
             sub = "" if group == "clothes" else f"{group.title()}/"
-            common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
+            if globals().get("EXPORT", True):
+                common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
             obj.location = (x, y + (0.6 if rotten else 0.0), 0)
             count += 1
         x += max(0.3, obj.dimensions.x + 0.1)
+    if props_lib.INTERACTIONS and globals().get("EXPORT", True):
+        props_lib.write_interactions()                       # the egg carton's lid
     print("contents done", count)
 
 

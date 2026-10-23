@@ -48,17 +48,29 @@ def _ajar(role):
     return 0.35 + 0.15 * (sum(ord(c) for c in role) % 4)
 
 
-def shell(p, col, w, d, h, t=0.03, z0=0.0, inner=None, top=True, bottom=True):
-    """An open-fronted box: two sides, back, top and bottom, w x d x h with its base at z0. The front (-Y) is left open for doors."""
-    p.box(col, (-(w - t) / 2, 0, z0 + h / 2), (t, d, h))
-    p.box(col, ((w - t) / 2, 0, z0 + h / 2), (t, d, h))
+def shell(p, col, w, d, h, t=0.03, z0=0.0, inner=None, top=True, bottom=True, front=False):
+    """An open-fronted box: two sides, back, top and bottom, w x d x h with its base at z0. The front (-Y) is left open for doors.
+
+    front=True closes it with a wall of thickness t (col outside, a thin skin of `inner` inside), up to the rim when the top is open.
+    Use it for a lidded container with no front door; damage() then never drops any of its walls, so a Damaged container is still closed."""
+    walls = [(col, (-(w - t) / 2, 0, z0 + h / 2), (t, d, h)), (col, ((w - t) / 2, 0, z0 + h / 2), (t, d, h))]
     if top:
-        p.box(col, (0, 0, z0 + h - t / 2), (w - 2 * t, d, t))
+        walls.append((col, (0, 0, z0 + h - t / 2), (w - 2 * t, d, t)))
     if bottom:
-        p.box(inner or col, (0, 0, z0 + t / 2), (w - 2 * t, d, t))
+        walls.append((inner or col, (0, 0, z0 + t / 2), (w - 2 * t, d, t)))
     lo = t if bottom else 0.0
     hi = t if top else 0.0
-    p.box(inner or col, (0, d / 2 - t / 2, z0 + lo + (h - lo - hi) / 2), (w - 2 * t, t, h - lo - hi))   # back wall, up to the rim when open
+    walls.append((inner or col, (0, d / 2 - t / 2, z0 + lo + (h - lo - hi) / 2), (w - 2 * t, t, h - lo - hi)))   # back wall, up to the rim when open
+    for colour, centre, size in walls:
+        p.box(colour, centre, size)
+        if front:
+            p.keep_solid(centre, size)                              # a closed container keeps all its walls when damaged
+    if front:
+        skin = min(0.006, t * 0.4)                                  # the inside face is the inner colour, the rest is the outer colour
+        zc, fh = z0 + lo + (h - lo - hi) / 2, h - lo - hi
+        for colour, y, th in ((col, -d / 2 + (t - skin) / 2, t - skin), (inner or col, -d / 2 + t - skin / 2, skin)):
+            p.box(colour, (0, y, zc), (w - 2 * t, th, fh))
+            p.keep_solid((0, y, zc), (w - 2 * t, th, fh), new=True)
 
 
 def shelf(p, col, w, d, z, t=0.02, inset=0.03):
@@ -217,9 +229,9 @@ def counter_kitchen(a=0.0):
 @item("kitchen", "BreadBox")
 def bread_box(a=0.0):
     p = Prop("GI_BreadBox_01")
-    shell(p, "enamel_cream", 0.4, 0.25, 0.2, t=0.015, top=False, inner="paint_white")
+    shell(p, "enamel_cream", 0.4, 0.25, 0.2, t=0.015, top=False, inner="paint_white", front=True)
     lid_back(p, "Lid", "enamel_cream", 0, 0.125, 0.2, 0.4, 0.25, 0.03, a, limit=-100,
-             extra=lambda: p.box("metal_galv", (0, -0.15, 0.245), (0.06, 0.02, 0.02)))
+             extra=lambda: p.box("metal_galv", (0, -0.12, 0.24), (0.06, 0.02, 0.02)))
     p.slot("Inside", (0, 0, 0.015), (0.35, 0.2, 0.17))
     return p
 
@@ -383,11 +395,11 @@ def safe(a=0.0):
 def chest(a=0.0):
     p = Prop("GI_Chest_01")
     w, d, h = 0.9, 0.5, 0.44
-    shell(p, "wood_dark", w, d, h, t=0.04, top=False, inner="wood_light")
+    shell(p, "wood_dark", w, d, h, t=0.04, top=False, inner="wood_light", front=True)
     for x in (-0.3, 0.3):
         for sy in (-1, 1):
             p.box("metal_dark", (x, sy * (d / 2 + 0.005), 0.22), (0.06, 0.012, h))              # straps on the outside only
-    p.box("metal_galv", (0, -d / 2 - 0.015, h - 0.1), (0.08, 0.02, 0.1))                          # the latch stays on the body
+    p.box("metal_galv", (0, -d / 2 - 0.005, h - 0.1), (0.08, 0.02, 0.1))                          # the latch stays on the body
     lid_back(p, "Lid", "wood_light", 0, d / 2, h, w, d, 0.12, a, limit=-110, taper=0.85,
              extra=lambda: (p.box("metal_dark", (-0.3, -d / 2, 0.06 + h), (0.06, 0.02, 0.13)),
                             p.box("metal_dark", (0.3, -d / 2, 0.06 + h), (0.06, 0.02, 0.13))))
@@ -399,10 +411,10 @@ def chest(a=0.0):
 def suitcase(a=0.0):
     p = Prop("GI_Suitcase_01")
     w, d, h = 0.6, 0.4, 0.14
-    shell(p, "fabric_brown", w, d, h, t=0.02, top=False, inner="fabric_mustard")
+    shell(p, "fabric_brown", w, d, h, t=0.02, top=False, inner="fabric_mustard", front=True)
     lid_back(p, "Lid", "fabric_brown", 0, d / 2, h, w, d, 0.08, a, limit=-115,
-             extra=lambda: [p.box("metal_galv", (x, -d / 2 - 0.01, h + 0.03), (0.04, 0.015, 0.05)) for x in (-0.2, 0.2)])
-    p.box("black", (0, -d / 2 - 0.02, h - 0.02), (0.14, 0.03, 0.03))
+             extra=lambda: [p.box("metal_galv", (x, -d / 2 - 0.005, h + 0.03), (0.04, 0.015, 0.05)) for x in (-0.2, 0.2)])
+    p.box("black", (0, -d / 2 - 0.01, h - 0.02), (0.14, 0.03, 0.03))
     p.slot("Inside", (0, 0, 0.02), (0.52, 0.32, 0.12))
     return p
 
@@ -410,7 +422,7 @@ def suitcase(a=0.0):
 @item("storage", "Toolbox")
 def toolbox(a=0.0):
     p = Prop("GI_Toolbox_01")
-    shell(p, "cloth_red", 0.5, 0.22, 0.14, t=0.015, top=False, inner="metal_dark")
+    shell(p, "cloth_red", 0.5, 0.22, 0.14, t=0.015, top=False, inner="metal_dark", front=True)
     p.box("metal_dark", (0, 0.0, 0.1), (0.015, 0.2, 0.08))
     lid_back(p, "Lid", "cloth_red", 0, 0.11, 0.14, 0.5, 0.22, 0.05, a, limit=-110,
              extra=lambda: p.box("metal_dark", (0, 0.0, 0.215), (0.24, 0.03, 0.03)))
@@ -474,7 +486,7 @@ def vending_machine(a=0.0):
 def cooler(a=0.0):
     p = Prop("GI_Cooler_01")
     w, d, h = 0.7, 0.4, 0.4
-    shell(p, "truck_blue", w, d, h, t=0.04, top=False, inner="paint_white")
+    shell(p, "truck_blue", w, d, h, t=0.04, top=False, inner="paint_white", front=True)
     for sx in (-1, 1):
         p.box("metal_dark", (sx * 0.37, 0, 0.3), (0.04, 0.14, 0.04))
     lid_back(p, "Lid", "paint_white", 0, d / 2, h, w + 0.02, d + 0.02, 0.06, a, limit=-110)
@@ -487,7 +499,7 @@ def dumpster(a=0.0):
     p = Prop("GI_Dumpster_01")
     w, d, h = 1.8, 0.9, 0.9
     z0 = 0.14
-    shell(p, "tractor_green", w, d, h, t=0.05, z0=z0, top=False, inner="metal_dark")
+    shell(p, "tractor_green", w, d, h, t=0.05, z0=z0, top=False, inner="metal_dark", front=True)
     p.box("metal_dark", (0, -d / 2 - 0.005, z0 + h - 0.05), (w, 0.03, 0.06))
     p.box("metal_dark", (0, d / 2 + 0.005, z0 + h - 0.05), (w, 0.03, 0.06))
     for sx in (-1, 1):

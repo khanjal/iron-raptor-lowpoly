@@ -195,6 +195,31 @@ PALETTE = [
     ("glow_green",   "5DF28A"),   # 105 lit green: the bank terminal's screen, "ready" lamps
     ("glow_red",     "FF4B3E"),   # 106 lit red: the launch terminal's screen, "locked" lamps
     ("glow_amber",   "FFB938"),   # 107 lit amber: "working" lamps, hazard marks
+    ("egg_white",    "F2EBDD"),   # 108 eggs
+    ("egg_brown",    "B97C4B"),   # 109
+    ("egg_blue",     "B5D3CE"),   # 110 pale blue-green shells
+    ("banana_yellow","F0CE3C"),   # 111 a ripe banana
+    ("lettuce_heart","E2EDA0"),   # 112 the pale heart of a lettuce
+    ("cheese_cut",   "F5D26A"),   # 113 the cut face of a cheese
+    ("cheese_rind",  "C8841F"),   # 114 its rind: the curved side, top and bottom
+    ("cheese_hole",  "E2A12C"),   # 115 the holes (dents) in the cut face
+    ("apple_green",  "8FBF3A"),   # 116 green apples
+    ("apple_yellow", "E8D25A"),   # 117 golden apples
+    ("banana_green", "A3B24A"),   # 118 banana necks, green bananas
+    ("lemon",        "F2DC3C"),   # 119
+    ("pear_green",   "B5C24A"),   # 120
+    ("grape_purple", "5A2E6B"),   # 121
+    ("grape_green",  "A8C86A"),   # 122
+    ("berry_red",    "C8243A"),   # 123 strawberries
+    ("basket_orange","D9702A"),   # 124 basketballs, training cones
+    ("tennis_yellow","C8E040"),   # 125 tennis balls
+    ("leather_brown","9A5530"),   # 126 footballs, gloves
+    ("wing_blue",    "4A90E2"),   # 127 butterfly wings
+    ("beetle_green", "2F8F5A"),   # 128 beetle shells
+    ("office_grey",  "B8BBBE"),   # 129 copiers, cubicle fabric
+    ("office_dark",  "5C6066"),   # 130 cubicle trim, chair fabric
+    ("laminate",     "D6C6A5"),   # 131 desk tops
+    ("water_blue",   "8CC8E8"),   # 132 cooler jugs
 ]
 GRID = 16
 SWATCH_PX = 4

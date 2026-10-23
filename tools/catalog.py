@@ -31,12 +31,22 @@ BUILD = {
     "decor": dict(script="decor.py", globals={"DECOR_LIST": ["PottedPlant", "NeonSign"]}, ids=["GD_PottedPlant_01", "GD_NeonSign_01"]),
     "food": dict(script="contents.py", globals={"CONTENT_LIST": ["Apple", "BreadLoaf", "Pie", "Hamburger"]},
                  ids=["FD_Apple_01", "FD_Apple_Rotten_01", "FD_BreadLoaf_01", "FD_Pie_01", "FD_Hamburger_01"]),
+    "food_produce": dict(script="contents.py", globals={"CONTENT_LIST": ["Apple_Green", "Apple_Yellow", "BananaBunch", "Lemon", "Pear", "Grapes_Purple", "Grapes_Green", "Strawberry"]},
+                         ids=["FD_Apple_Green_01", "FD_Apple_Yellow_01", "FD_BananaBunch_01", "FD_BananaBunch_Rotten_01", "FD_Lemon_01", "FD_Pear_01",
+                              "FD_Grapes_Purple_01", "FD_Grapes_Green_01", "FD_Strawberry_01"]),
     "farm": dict(script="props_farm.py", globals={"PROP_LIST": ["barrel", "wheelbarrow", "scarecrow", "hay_round", "doghouse"]},
                  ids=["GT_Barrel_01", "GT_Wheelbarrow_01", "FM_Scarecrow_01", "GT_HayBale_Round_01", "FM_DogHouse_01"]),
     "kit": dict(script="kit.py", globals={"KIT_LIST": ["Wall_Window"], "SKIN_LIST": ["Brick", "Clapboard", "Barn"]},
                 ids=["GK_Wall_Window_Brick_01", "GK_Wall_Window_Clapboard_01", "GK_Wall_Window_Barn_01"]),
     "kit_door": dict(script="kit.py", globals={"KIT_LIST": ["Door_Exterior"]}, ids=["GK_Door_Exterior_01"]),
     "veg": dict(script="vegetation.py", globals={"VEG_LIST": ["oak", "pine"]}, ids=["FM_TreeOak_01", "FM_TreePine_01"]),
+    "insects": dict(script="insects.py", globals={}, ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Monarch_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
+    "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
+    "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
+    "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Wood_01', 'GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
+    "office_furniture": dict(script="office.py", globals={"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, ids=['GO_Desk_Wood_01', 'GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']),
+    "office_cubicle": dict(script="office.py", globals={"OFFICE_LIST": ["cubicle"]}, ids=['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']),
+    "office_equipment": dict(script="office.py", globals={"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, ids=['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']),
     "people": dict(kind="people", clips=["Idle", "Walk", "Run", "Sit"],
                    people={"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01"}),
     "animals": dict(kind="animals", clips=["Idle", "Walk"], dog_clips=["Trot", "Run"],
@@ -77,6 +87,68 @@ _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bi
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
 _a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby")
+# insects (not rigged: resting poses, real size in millimetres)
+_a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
+_a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
+_a("GN_Firefly_01", "Firefly", "animals/insect/firefly", "wild night insect bug glow lightning-bug tiny")
+_a("GN_Honeybee_01", "Honeybee", "animals/insect/bee", "wild garden farm insect bug bee yellow flying tiny")
+_a("GN_Butterfly_Monarch_01", "Butterfly, monarch", "animals/insect/butterfly", "wild garden insect orange flying wings", "butterfly")
+_a("GN_Butterfly_Blue_01", "Butterfly, blue", "animals/insect/butterfly", "wild garden insect blue flying wings", "butterfly")
+_a("GN_Moth_01", "Moth", "animals/insect/moth", "wild night insect grey flying wings")
+_a("GN_Dragonfly_01", "Dragonfly", "animals/insect/dragonfly", "wild pond insect teal flying wings")
+_a("GN_Ant_01", "Ant", "animals/insect/ant", "wild garden insect bug black tiny")
+_a("GN_Grasshopper_01", "Grasshopper", "animals/insect/grasshopper", "wild field rural insect bug green hopper")
+_a("GN_Caterpillar_01", "Caterpillar", "animals/insect/caterpillar", "wild garden insect bug green larva")
+_a("GN_Spider_01", "Spider", "animals/arachnid/spider", "wild cellar barn bug arachnid brown eight-legs")
+# sports: balls, nets and goals, equipment
+_a("GS_Basketball_01", "Basketball", "sports/ball/basketball", "basketball orange new gym court playground")
+_a("GS_Soccerball_01", "Soccer ball", "sports/ball/soccer-ball", "soccer football white black new field")
+_a("GS_Baseball_01", "Baseball", "sports/ball/baseball", "baseball white red new field diamond")
+_a("GS_TennisBall_01", "Tennis ball", "sports/ball/tennis-ball", "tennis yellow new court")
+_a("GS_Football_01", "American football", "sports/ball/american-football", "football brown leather new field")
+_a("GS_Volleyball_01", "Volleyball", "sports/ball/volleyball", "volleyball yellow blue new court beach")
+_a("GS_GolfBall_01", "Golf ball", "sports/ball/golf-ball", "golf white new course tiny")
+_a("GS_BowlingBall_01", "Bowling ball", "sports/ball/bowling-ball", "bowling purple new alley holes")
+_a("GS_HockeyPuck_01", "Hockey puck", "sports/ball/hockey-puck", "hockey black new ice rink")
+_a("GS_BasketballHoop_01", "Basketball hoop", "sports/net/basketball-hoop", "basketball hoop backboard rim new driveway court")
+_a("GS_SoccerGoal_01", "Soccer goal", "sports/net/soccer-goal", "soccer football goal net new field")
+_a("GS_HockeyGoal_01", "Hockey goal", "sports/net/hockey-goal", "hockey goal net red new rink")
+_a("GS_TennisNet_01", "Tennis net", "sports/net/tennis-net", "tennis net posts new court")
+_a("GS_VolleyballNet_01", "Volleyball net", "sports/net/volleyball-net", "volleyball net posts new court beach")
+_a("GS_BaseballBat_Wood_01", "Baseball bat, wood", "sports/equipment/baseball-bat", "baseball bat wood new field", "baseball-bat")
+_a("GS_BaseballBat_Metal_01", "Baseball bat, metal", "sports/equipment/baseball-bat", "baseball bat metal blue new field", "baseball-bat")
+_a("GS_BaseballGlove_01", "Baseball glove", "sports/equipment/baseball-glove", "baseball glove leather brown new field")
+_a("GS_HomePlate_01", "Home plate", "sports/equipment/home-plate", "baseball plate white new field diamond")
+_a("GS_BaseballBase_01", "Base", "sports/equipment/base", "baseball base white new field diamond")
+_a("GS_TennisRacket_01", "Tennis racket", "sports/equipment/tennis-racket", "tennis racket strings new court")
+_a("GS_HockeyStick_01", "Hockey stick", "sports/equipment/hockey-stick", "hockey stick black new rink")
+_a("GS_GolfClub_01", "Golf club", "sports/equipment/golf-club", "golf club driver new course")
+_a("GS_FootballHelmet_01", "Football helmet", "sports/equipment/helmet", "football helmet blue new field protective")
+_a("GS_Skateboard_01", "Skateboard", "sports/equipment/skateboard", "skateboard red wheels new street")
+_a("GS_Dumbbell_01", "Dumbbell", "sports/equipment/dumbbell", "gym weights dumbbell black new fitness")
+_a("GS_TrainingCone_01", "Training cone", "sports/equipment/cone", "cone orange training new field")
+_a("GS_Frisbee_01", "Frisbee", "sports/equipment/frisbee", "frisbee disc blue new park")
+# office: desks, a chair, the cubicle kit (1.5 m module), equipment
+_a("GO_Desk_Wood_01", "Desk, wood", "furniture/office/desk", "office wood laminate new drawers pedestal", "office-desk")
+_a("GO_Desk_Steel_01", "Desk, steel", "furniture/office/desk", "office steel grey black new drawers pedestal retro", "office-desk")
+_a("GO_Desk_L_01", "Desk, corner", "furniture/office/corner-desk", "office modern white steel new")
+_a("GO_ConferenceTable_01", "Conference table", "furniture/office/conference-table", "office meeting large laminate new")
+_a("GO_Chair_Office_01", "Office chair", "furniture/office/chair", "office swivel casters seat new")
+_a("GO_FilingCabinet_01", "Filing cabinet", "furniture/office/filing-cabinet", "office steel grey drawers storage new")
+_a("GO_Whiteboard_Stand_01", "Whiteboard on stand", "furniture/office/whiteboard", "office meeting board wheels new")
+_a("GO_Cubicle_Panel_Low_01", "Cubicle panel, low", "furniture/cubicle/panel", "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_High_01", "Cubicle panel, high", "furniture/cubicle/panel", "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_Glass_01", "Cubicle panel, glass top", "furniture/cubicle/panel", "office cubicle partition modular glass new", "cubicle-panel")
+_a("GO_Cubicle_Worksurface_01", "Cubicle worksurface", "furniture/cubicle/worksurface", "office cubicle desk modular corner new")
+_a("GO_Cubicle_OverheadBin_01", "Cubicle overhead bin", "furniture/cubicle/overhead-bin", "office cubicle storage modular flap new")
+_a("GO_Cubicle_Pod_01", "Cubicle, assembled", "furniture/cubicle/pod", "office cubicle desk partition drawers new")
+_a("GO_Copier_01", "Copier", "appliances/office/copier", "office copier printer scanner trays lid new")
+_a("GO_Printer_Desktop_01", "Desktop printer", "appliances/office/printer", "office printer laser tray cover new")
+_a("GO_WaterCooler_01", "Water cooler", "appliances/office/water-cooler", "office water jug taps cabinet new")
+_a("GO_Shredder_01", "Paper shredder", "appliances/office/shredder", "office paper bin black new")
+_a("GO_Wastebasket_01", "Wastebasket", "furniture/office/wastebasket", "office bin trash paper new")
+_a("GO_Workstation_01", "Monitor and keyboard", "decor/electronics/computer", "office computer monitor keyboard mouse screen new")
+_a("GO_Phone_01", "Desk phone", "decor/electronics/phone", "office telephone handset keypad new")
 # people
 _a("GP_Farmer_01", "Farmer", "people/civilian/farmer", "rural farm adult man cap beard flannel human")
 _a("GP_FarmerKid_01", "Farmer's kid", "people/civilian/kid", "rural farm child kid human")
@@ -109,8 +181,17 @@ _a("GD_NeonSign_01", "Neon sign", "decor/lighting/neon-sign", "retro diner glow 
 _a("GD_Clock_Wall_Retro_01", "Wall clock, retro", "decor/wall/clock", "retro wall time new")
 _a("GD_PottedPlant_01", "Potted plant", "decor/plants/potted-plant", "plant green terracotta new")
 # food
-_a("FD_Apple_01", "Apple", "food/produce/apple", "fruit red fresh", "apple")
+_a("FD_Apple_01", "Apple, red", "food/produce/apple", "fruit red fresh", "apple")
+_a("FD_Apple_Green_01", "Apple, green", "food/produce/apple", "fruit green fresh", "apple")
+_a("FD_Apple_Yellow_01", "Apple, golden", "food/produce/apple", "fruit yellow golden fresh", "apple")
 _a("FD_Apple_Rotten_01", "Apple, rotten", "food/produce/apple", "fruit rotten mould spoiled", "apple")
+_a("FD_BananaBunch_01", "Bananas, bunch", "food/produce/banana", "fruit yellow bunch hand fresh", "banana-bunch")
+_a("FD_BananaBunch_Rotten_01", "Bananas, rotten bunch", "food/produce/banana", "fruit brown bunch hand rotten spoiled", "banana-bunch")
+_a("FD_Lemon_01", "Lemon", "food/produce/lemon", "fruit yellow citrus fresh")
+_a("FD_Pear_01", "Pear", "food/produce/pear", "fruit green fresh")
+_a("FD_Grapes_Purple_01", "Grapes, purple", "food/produce/grapes", "fruit purple bunch fresh", "grapes")
+_a("FD_Grapes_Green_01", "Grapes, green", "food/produce/grapes", "fruit green bunch fresh", "grapes")
+_a("FD_Strawberry_01", "Strawberry", "food/produce/strawberry", "fruit red berry fresh")
 _a("FD_BreadLoaf_01", "Loaf of bread", "food/bakery/bread", "baked fresh brown")
 _a("FD_Pie_01", "Pie", "food/bakery/pie", "baked dessert fresh")
 _a("FD_Hamburger_01", "Hamburger", "food/prepared/hamburger", "fast-food diner fresh")

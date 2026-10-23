@@ -269,7 +269,7 @@ export class Viewer {
   // ---- camera and floor ------------------------------------------------------------------------------------------------------------------
   _frameModel(asset) {
     const [w, h, d] = asset.size; // metres: width, height, depth
-    const radius = Math.max(0.05, 0.5 * Math.hypot(w, h, d));
+    const radius = Math.max(0.004, 0.5 * Math.hypot(w, h, d));
     // A static model is framed on its real bounds. A skinned one is posed by its rig, so three.js's box for it is not the model's: use the manifest's size,
     // with the rig's origin (the middle of the feet) on the floor.
     const box = new THREE.Box3().setFromObject(this.root);
@@ -279,7 +279,7 @@ export class Viewer {
     const fitW = radius / Math.sin(Math.atan(Math.tan(fov / 2) * Math.min(1, this.camera.aspect)));
     const dist = Math.max(fitH, fitW) * 1.05;
     const dir = new THREE.Vector3(0.7, 0.42, 1).normalize(); // the front faces +Z: look at it from the front, a little to the right and above
-    this.camera.near = Math.max(0.005, dist / 200);
+    this.camera.near = Math.max(0.0005, dist / 200);
     this.camera.far = dist * 40;
     this.camera.updateProjectionMatrix();
     this.camera.position.copy(centre).addScaledVector(dir, dist);
@@ -312,7 +312,7 @@ export class Viewer {
     const box = new THREE.Box3().setFromObject(this.root);
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
     mesh.rotation.x = -Math.PI / 2;
-    const span = Math.max(w, d, 0.1) * 1.5;
+    const span = Math.max(w, d, 0.01) * 1.5;
     mesh.scale.set(span, span, 1);
     const c3 = asset.rigged || box.isEmpty() ? new THREE.Vector3() : box.getCenter(new THREE.Vector3());
     mesh.position.set(c3.x, (asset.rigged || box.isEmpty() ? 0 : Math.min(0, box.min.y)) + 0.002, c3.z);

@@ -27,6 +27,33 @@
  },
  "assets": [
   {
+   "id": "GN_Spider_01",
+   "name": "Spider",
+   "type": "animals/arachnid/spider",
+   "tags": [
+    "arachnid",
+    "barn",
+    "brown",
+    "bug",
+    "cellar",
+    "eight-legs",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 364,
+   "size": [
+    0.027,
+    0.008,
+    0.016
+   ],
+   "glb": "models/GN_Spider_01.glb",
+   "thumb": "thumbs/GN_Spider_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
    "id": "GN_Cow_faceted_01",
    "name": "Cow",
    "type": "animals/farm/cow",
@@ -109,6 +136,302 @@
     "Idle",
     "Walk"
    ],
+   "variants": []
+  },
+  {
+   "id": "GN_Ant_01",
+   "name": "Ant",
+   "type": "animals/insect/ant",
+   "tags": [
+    "black",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 300,
+   "size": [
+    0.006,
+    0.004,
+    0.011
+   ],
+   "glb": "models/GN_Ant_01.glb",
+   "thumb": "thumbs/GN_Ant_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Honeybee_01",
+   "name": "Honeybee",
+   "type": "animals/insect/bee",
+   "tags": [
+    "bee",
+    "bug",
+    "farm",
+    "flying",
+    "garden",
+    "insect",
+    "tiny",
+    "wild",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 428,
+   "size": [
+    0.015,
+    0.012,
+    0.016
+   ],
+   "glb": "models/GN_Honeybee_01.glb",
+   "thumb": "thumbs/GN_Honeybee_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Beetle_01",
+   "name": "Beetle",
+   "type": "animals/insect/beetle",
+   "tags": [
+    "bug",
+    "garden",
+    "green",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 372,
+   "size": [
+    0.023,
+    0.01,
+    0.03
+   ],
+   "glb": "models/GN_Beetle_01.glb",
+   "thumb": "thumbs/GN_Beetle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Butterfly_Blue_01",
+   "name": "Butterfly, blue",
+   "type": "animals/insect/butterfly",
+   "tags": [
+    "blue",
+    "flying",
+    "garden",
+    "insect",
+    "wild",
+    "wings"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 468,
+   "size": [
+    0.081,
+    0.025,
+    0.053
+   ],
+   "glb": "models/GN_Butterfly_Blue_01.glb",
+   "thumb": "thumbs/GN_Butterfly_Blue_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GN_Butterfly_Monarch_01"
+   ]
+  },
+  {
+   "id": "GN_Butterfly_Monarch_01",
+   "name": "Butterfly, monarch",
+   "type": "animals/insect/butterfly",
+   "tags": [
+    "flying",
+    "garden",
+    "insect",
+    "orange",
+    "wild",
+    "wings"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 468,
+   "size": [
+    0.081,
+    0.025,
+    0.053
+   ],
+   "glb": "models/GN_Butterfly_Monarch_01.glb",
+   "thumb": "thumbs/GN_Butterfly_Monarch_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GN_Butterfly_Blue_01"
+   ]
+  },
+  {
+   "id": "GN_Caterpillar_01",
+   "name": "Caterpillar",
+   "type": "animals/insect/caterpillar",
+   "tags": [
+    "bug",
+    "garden",
+    "green",
+    "insect",
+    "larva",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 508,
+   "size": [
+    0.006,
+    0.008,
+    0.033
+   ],
+   "glb": "models/GN_Caterpillar_01.glb",
+   "thumb": "thumbs/GN_Caterpillar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Dragonfly_01",
+   "name": "Dragonfly",
+   "type": "animals/insect/dragonfly",
+   "tags": [
+    "flying",
+    "insect",
+    "pond",
+    "teal",
+    "wild",
+    "wings"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 564,
+   "size": [
+    0.044,
+    0.012,
+    0.061
+   ],
+   "glb": "models/GN_Dragonfly_01.glb",
+   "thumb": "thumbs/GN_Dragonfly_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Firefly_01",
+   "name": "Firefly",
+   "type": "animals/insect/firefly",
+   "tags": [
+    "bug",
+    "glow",
+    "insect",
+    "lightning-bug",
+    "night",
+    "tiny",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 332,
+   "size": [
+    0.006,
+    0.004,
+    0.013
+   ],
+   "glb": "models/GN_Firefly_01.glb",
+   "thumb": "thumbs/GN_Firefly_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Grasshopper_01",
+   "name": "Grasshopper",
+   "type": "animals/insect/grasshopper",
+   "tags": [
+    "bug",
+    "field",
+    "green",
+    "hopper",
+    "insect",
+    "rural",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 408,
+   "size": [
+    0.017,
+    0.017,
+    0.052
+   ],
+   "glb": "models/GN_Grasshopper_01.glb",
+   "thumb": "thumbs/GN_Grasshopper_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Ladybug_01",
+   "name": "Ladybug",
+   "type": "animals/insect/ladybug",
+   "tags": [
+    "beetle",
+    "bug",
+    "garden",
+    "insect",
+    "red",
+    "tiny",
+    "wild"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 464,
+   "size": [
+    0.009,
+    0.004,
+    0.012
+   ],
+   "glb": "models/GN_Ladybug_01.glb",
+   "thumb": "thumbs/GN_Ladybug_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GN_Moth_01",
+   "name": "Moth",
+   "type": "animals/insect/moth",
+   "tags": [
+    "flying",
+    "grey",
+    "insect",
+    "night",
+    "wild",
+    "wings"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 336,
+   "size": [
+    0.048,
+    0.006,
+    0.028
+   ],
+   "glb": "models/GN_Moth_01.glb",
+   "thumb": "thumbs/GN_Moth_01.png",
+   "parts": {},
+   "clips": [],
    "variants": []
   },
   {
@@ -484,6 +807,234 @@
    "variants": []
   },
   {
+   "id": "GO_Copier_01",
+   "name": "Copier",
+   "type": "appliances/office/copier",
+   "tags": [
+    "copier",
+    "lid",
+    "new",
+    "office",
+    "printer",
+    "scanner",
+    "trays"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 536,
+   "size": [
+    0.866,
+    0.984,
+    0.744
+   ],
+   "glb": "models/GO_Copier_01.glb",
+   "thumb": "thumbs/GO_Copier_01.png",
+   "parts": {
+    "Tray1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.14,
+      0.35
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Tray2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.36,
+      0.35
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Tray3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.58,
+      0.35
+     ],
+     "limit": -0.35,
+     "rest": 0.0
+    },
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.92,
+      -0.35
+     ],
+     "limit": -80,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Printer_Desktop_01",
+   "name": "Desktop printer",
+   "type": "appliances/office/printer",
+   "tags": [
+    "cover",
+    "laser",
+    "new",
+    "office",
+    "printer",
+    "tray"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 216,
+   "size": [
+    0.42,
+    0.271,
+    0.447
+   ],
+   "glb": "models/GO_Printer_Desktop_01.glb",
+   "thumb": "thumbs/GO_Printer_Desktop_01.png",
+   "parts": {
+    "Tray": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.045,
+      0.19
+     ],
+     "limit": -0.14,
+     "rest": 0.0
+    },
+    "Cover": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.22,
+      -0.19
+     ],
+     "limit": -70,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Shredder_01",
+   "name": "Paper shredder",
+   "type": "appliances/office/shredder",
+   "tags": [
+    "bin",
+    "black",
+    "new",
+    "office",
+    "paper"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.4,
+    0.604,
+    0.315
+   ],
+   "glb": "models/GO_Shredder_01.glb",
+   "thumb": "thumbs/GO_Shredder_01.png",
+   "parts": {
+    "Bin": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.22,
+      0.13
+     ],
+     "limit": -0.2,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_WaterCooler_01",
+   "name": "Water cooler",
+   "type": "appliances/office/water-cooler",
+   "tags": [
+    "cabinet",
+    "jug",
+    "new",
+    "office",
+    "taps",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 328,
+   "size": [
+    0.33,
+    1.49,
+    0.445
+   ],
+   "glb": "models/GO_WaterCooler_01.glb",
+   "thumb": "thumbs/GO_WaterCooler_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.14,
+      0.315,
+      0.18
+     ],
+     "limit": 105,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
    "id": "GK_Door_Exterior_01",
    "name": "Exterior door",
    "type": "building/kit/door",
@@ -590,6 +1141,58 @@
     "GK_Wall_Window_Brick_01",
     "GK_Wall_Window_Barn_01"
    ]
+  },
+  {
+   "id": "GO_Workstation_01",
+   "name": "Monitor and keyboard",
+   "type": "decor/electronics/computer",
+   "tags": [
+    "computer",
+    "keyboard",
+    "monitor",
+    "mouse",
+    "new",
+    "office",
+    "screen"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 136,
+   "size": [
+    0.63,
+    0.51,
+    0.47
+   ],
+   "glb": "models/GO_Workstation_01.glb",
+   "thumb": "thumbs/GO_Workstation_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Phone_01",
+   "name": "Desk phone",
+   "type": "decor/electronics/phone",
+   "tags": [
+    "handset",
+    "keypad",
+    "new",
+    "office",
+    "telephone"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    0.24,
+    0.16,
+    0.22
+   ],
+   "glb": "models/GO_Phone_01.glb",
+   "thumb": "thumbs/GO_Phone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
   },
   {
    "id": "GD_TV_Flat_Modern_01",
@@ -880,7 +1483,7 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 84,
+   "triangles": 108,
    "size": [
     0.5,
     0.23,
@@ -942,11 +1545,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 128,
+   "triangles": 176,
    "size": [
-    0.24,
-    0.135,
-    0.12
+    0.25,
+    0.082,
+    0.1
    ],
    "glb": "models/FD_BreadLoaf_01.glb",
    "thumb": "thumbs/FD_BreadLoaf_01.png",
@@ -1002,7 +1605,7 @@
   },
   {
    "id": "FD_Apple_01",
-   "name": "Apple",
+   "name": "Apple, red",
    "type": "food/produce/apple",
    "tags": [
     "fresh",
@@ -1011,17 +1614,46 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 106,
+   "triangles": 132,
    "size": [
-    0.076,
-    0.094,
-    0.078
+    0.082,
+    0.09,
+    0.082
    ],
    "glb": "models/FD_Apple_01.glb",
    "thumb": "thumbs/FD_Apple_01.png",
    "parts": {},
    "clips": [],
    "variants": [
+    "FD_Apple_Green_01",
+    "FD_Apple_Yellow_01",
+    "FD_Apple_Rotten_01"
+   ]
+  },
+  {
+   "id": "FD_Apple_Green_01",
+   "name": "Apple, green",
+   "type": "food/produce/apple",
+   "tags": [
+    "fresh",
+    "fruit",
+    "green"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    0.082,
+    0.09,
+    0.082
+   ],
+   "glb": "models/FD_Apple_Green_01.glb",
+   "thumb": "thumbs/FD_Apple_Green_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Apple_01",
+    "FD_Apple_Yellow_01",
     "FD_Apple_Rotten_01"
    ]
   },
@@ -1037,19 +1669,227 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 106,
+   "triangles": 132,
    "size": [
-    0.076,
-    0.094,
-    0.078
+    0.082,
+    0.09,
+    0.082
    ],
    "glb": "models/FD_Apple_Rotten_01.glb",
    "thumb": "thumbs/FD_Apple_Rotten_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "FD_Apple_01"
+    "FD_Apple_01",
+    "FD_Apple_Green_01",
+    "FD_Apple_Yellow_01"
    ]
+  },
+  {
+   "id": "FD_Apple_Yellow_01",
+   "name": "Apple, golden",
+   "type": "food/produce/apple",
+   "tags": [
+    "fresh",
+    "fruit",
+    "golden",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    0.082,
+    0.09,
+    0.082
+   ],
+   "glb": "models/FD_Apple_Yellow_01.glb",
+   "thumb": "thumbs/FD_Apple_Yellow_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Apple_01",
+    "FD_Apple_Green_01",
+    "FD_Apple_Rotten_01"
+   ]
+  },
+  {
+   "id": "FD_BananaBunch_01",
+   "name": "Bananas, bunch",
+   "type": "food/produce/banana",
+   "tags": [
+    "bunch",
+    "fresh",
+    "fruit",
+    "hand",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 414,
+   "size": [
+    0.202,
+    0.093,
+    0.158
+   ],
+   "glb": "models/FD_BananaBunch_01.glb",
+   "thumb": "thumbs/FD_BananaBunch_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_BananaBunch_Rotten_01"
+   ]
+  },
+  {
+   "id": "FD_BananaBunch_Rotten_01",
+   "name": "Bananas, rotten bunch",
+   "type": "food/produce/banana",
+   "tags": [
+    "brown",
+    "bunch",
+    "fruit",
+    "hand",
+    "rotten",
+    "spoiled"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 414,
+   "size": [
+    0.202,
+    0.093,
+    0.158
+   ],
+   "glb": "models/FD_BananaBunch_Rotten_01.glb",
+   "thumb": "thumbs/FD_BananaBunch_Rotten_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_BananaBunch_01"
+   ]
+  },
+  {
+   "id": "FD_Grapes_Green_01",
+   "name": "Grapes, green",
+   "type": "food/produce/grapes",
+   "tags": [
+    "bunch",
+    "fresh",
+    "fruit",
+    "green"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 620,
+   "size": [
+    0.168,
+    0.076,
+    0.076
+   ],
+   "glb": "models/FD_Grapes_Green_01.glb",
+   "thumb": "thumbs/FD_Grapes_Green_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Grapes_Purple_01"
+   ]
+  },
+  {
+   "id": "FD_Grapes_Purple_01",
+   "name": "Grapes, purple",
+   "type": "food/produce/grapes",
+   "tags": [
+    "bunch",
+    "fresh",
+    "fruit",
+    "purple"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 620,
+   "size": [
+    0.168,
+    0.076,
+    0.076
+   ],
+   "glb": "models/FD_Grapes_Purple_01.glb",
+   "thumb": "thumbs/FD_Grapes_Purple_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FD_Grapes_Green_01"
+   ]
+  },
+  {
+   "id": "FD_Lemon_01",
+   "name": "Lemon",
+   "type": "food/produce/lemon",
+   "tags": [
+    "citrus",
+    "fresh",
+    "fruit",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 94,
+   "size": [
+    0.075,
+    0.058,
+    0.057
+   ],
+   "glb": "models/FD_Lemon_01.glb",
+   "thumb": "thumbs/FD_Lemon_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_Pear_01",
+   "name": "Pear",
+   "type": "food/produce/pear",
+   "tags": [
+    "fresh",
+    "fruit",
+    "green"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    0.074,
+    0.123,
+    0.074
+   ],
+   "glb": "models/FD_Pear_01.glb",
+   "thumb": "thumbs/FD_Pear_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "FD_Strawberry_01",
+   "name": "Strawberry",
+   "type": "food/produce/strawberry",
+   "tags": [
+    "berry",
+    "fresh",
+    "fruit",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 152,
+   "size": [
+    0.048,
+    0.066,
+    0.049
+   ],
+   "glb": "models/FD_Strawberry_01.glb",
+   "thumb": "thumbs/FD_Strawberry_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
   },
   {
    "id": "GH_Bed_Double_Modern_01",
@@ -1070,6 +1910,549 @@
    ],
    "glb": "models/GH_Bed_Double_Modern_01.glb",
    "thumb": "thumbs/GH_Bed_Double_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Cubicle_OverheadBin_01",
+   "name": "Cubicle overhead bin",
+   "type": "furniture/cubicle/overhead-bin",
+   "tags": [
+    "cubicle",
+    "flap",
+    "modular",
+    "new",
+    "office",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 84,
+   "size": [
+    1.5,
+    0.4,
+    0.405
+   ],
+   "glb": "models/GO_Cubicle_OverheadBin_01.glb",
+   "thumb": "thumbs/GO_Cubicle_OverheadBin_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.16,
+      0.37
+     ],
+     "limit": -100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Cubicle_Panel_Glass_01",
+   "name": "Cubicle panel, glass top",
+   "type": "furniture/cubicle/panel",
+   "tags": [
+    "cubicle",
+    "glass",
+    "modular",
+    "new",
+    "office",
+    "partition"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    1.5,
+    1.6,
+    0.34
+   ],
+   "glb": "models/GO_Cubicle_Panel_Glass_01.glb",
+   "thumb": "thumbs/GO_Cubicle_Panel_Glass_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GO_Cubicle_Panel_Low_01",
+    "GO_Cubicle_Panel_High_01"
+   ]
+  },
+  {
+   "id": "GO_Cubicle_Panel_High_01",
+   "name": "Cubicle panel, high",
+   "type": "furniture/cubicle/panel",
+   "tags": [
+    "cubicle",
+    "fabric",
+    "modular",
+    "new",
+    "office",
+    "partition"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    1.5,
+    1.6,
+    0.34
+   ],
+   "glb": "models/GO_Cubicle_Panel_High_01.glb",
+   "thumb": "thumbs/GO_Cubicle_Panel_High_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GO_Cubicle_Panel_Low_01",
+    "GO_Cubicle_Panel_Glass_01"
+   ]
+  },
+  {
+   "id": "GO_Cubicle_Panel_Low_01",
+   "name": "Cubicle panel, low",
+   "type": "furniture/cubicle/panel",
+   "tags": [
+    "cubicle",
+    "fabric",
+    "modular",
+    "new",
+    "office",
+    "partition"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    1.5,
+    1.2,
+    0.34
+   ],
+   "glb": "models/GO_Cubicle_Panel_Low_01.glb",
+   "thumb": "thumbs/GO_Cubicle_Panel_Low_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GO_Cubicle_Panel_High_01",
+    "GO_Cubicle_Panel_Glass_01"
+   ]
+  },
+  {
+   "id": "GO_Cubicle_Pod_01",
+   "name": "Cubicle, assembled",
+   "type": "furniture/cubicle/pod",
+   "tags": [
+    "cubicle",
+    "desk",
+    "drawers",
+    "new",
+    "office",
+    "partition"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 512,
+   "size": [
+    3.34,
+    1.6,
+    1.75
+   ],
+   "glb": "models/GO_Cubicle_Pod_01.glb",
+   "thumb": "thumbs/GO_Cubicle_Pod_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Cubicle_Worksurface_01",
+   "name": "Cubicle worksurface",
+   "type": "furniture/cubicle/worksurface",
+   "tags": [
+    "corner",
+    "cubicle",
+    "desk",
+    "modular",
+    "new",
+    "office"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    1.5,
+    0.106,
+    1.55
+   ],
+   "glb": "models/GO_Cubicle_Worksurface_01.glb",
+   "thumb": "thumbs/GO_Cubicle_Worksurface_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Chair_Office_01",
+   "name": "Office chair",
+   "type": "furniture/office/chair",
+   "tags": [
+    "casters",
+    "new",
+    "office",
+    "seat",
+    "swivel"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 296,
+   "size": [
+    0.669,
+    1.072,
+    0.631
+   ],
+   "glb": "models/GO_Chair_Office_01.glb",
+   "thumb": "thumbs/GO_Chair_Office_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_ConferenceTable_01",
+   "name": "Conference table",
+   "type": "furniture/office/conference-table",
+   "tags": [
+    "laminate",
+    "large",
+    "meeting",
+    "new",
+    "office"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    3.0,
+    0.748,
+    1.2
+   ],
+   "glb": "models/GO_ConferenceTable_01.glb",
+   "thumb": "thumbs/GO_ConferenceTable_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Desk_L_01",
+   "name": "Desk, corner",
+   "type": "furniture/office/corner-desk",
+   "tags": [
+    "modern",
+    "new",
+    "office",
+    "steel",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 132,
+   "size": [
+    1.6,
+    0.74,
+    1.3
+   ],
+   "glb": "models/GO_Desk_L_01.glb",
+   "thumb": "thumbs/GO_Desk_L_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Desk_Steel_01",
+   "name": "Desk, steel",
+   "type": "furniture/office/desk",
+   "tags": [
+    "black",
+    "drawers",
+    "grey",
+    "new",
+    "office",
+    "pedestal",
+    "retro",
+    "steel"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 324,
+   "size": [
+    1.6,
+    0.741,
+    0.75
+   ],
+   "glb": "models/GO_Desk_Steel_01.glb",
+   "thumb": "thumbs/GO_Desk_Steel_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.12,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.34,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.56,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GO_Desk_Wood_01"
+   ]
+  },
+  {
+   "id": "GO_Desk_Wood_01",
+   "name": "Desk, wood",
+   "type": "furniture/office/desk",
+   "tags": [
+    "drawers",
+    "laminate",
+    "new",
+    "office",
+    "pedestal",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 324,
+   "size": [
+    1.6,
+    0.741,
+    0.75
+   ],
+   "glb": "models/GO_Desk_Wood_01.glb",
+   "thumb": "thumbs/GO_Desk_Wood_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.12,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.34,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.57,
+      0.56,
+      0.33
+     ],
+     "limit": -0.4,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GO_Desk_Steel_01"
+   ]
+  },
+  {
+   "id": "GO_FilingCabinet_01",
+   "name": "Filing cabinet",
+   "type": "furniture/office/filing-cabinet",
+   "tags": [
+    "drawers",
+    "grey",
+    "new",
+    "office",
+    "steel",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 384,
+   "size": [
+    0.46,
+    1.32,
+    0.664
+   ],
+   "glb": "models/GO_FilingCabinet_01.glb",
+   "thumb": "thumbs/GO_FilingCabinet_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.165,
+      0.31
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.495,
+      0.31
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.825,
+      0.31
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    },
+    "Drawer4": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      1.155,
+      0.31
+     ],
+     "limit": -0.5,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Wastebasket_01",
+   "name": "Wastebasket",
+   "type": "furniture/office/wastebasket",
+   "tags": [
+    "bin",
+    "new",
+    "office",
+    "paper",
+    "trash"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.316,
+    0.38,
+    0.316
+   ],
+   "glb": "models/GO_Wastebasket_01.glb",
+   "thumb": "thumbs/GO_Wastebasket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GO_Whiteboard_Stand_01",
+   "name": "Whiteboard on stand",
+   "type": "furniture/office/whiteboard",
+   "tags": [
+    "board",
+    "meeting",
+    "new",
+    "office",
+    "wheels"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 284,
+   "size": [
+    1.24,
+    1.9,
+    0.641
+   ],
+   "glb": "models/GO_Whiteboard_Stand_01.glb",
+   "thumb": "thumbs/GO_Whiteboard_Stand_01.png",
    "parts": {},
    "clips": [],
    "variants": []
@@ -1215,11 +2598,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 144,
+   "triangles": 168,
    "size": [
     0.9,
     0.565,
-    0.536
+    0.526
    ],
    "glb": "models/GI_Chest_01.glb",
    "thumb": "thumbs/GI_Chest_01.png",
@@ -1673,6 +3056,699 @@
     "Run",
     "Sit"
    ],
+   "variants": []
+  },
+  {
+   "id": "GS_Football_01",
+   "name": "American football",
+   "type": "sports/ball/american-football",
+   "tags": [
+    "brown",
+    "field",
+    "football",
+    "leather",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 232,
+   "size": [
+    0.28,
+    0.177,
+    0.17
+   ],
+   "glb": "models/GS_Football_01.glb",
+   "thumb": "thumbs/GS_Football_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Baseball_01",
+   "name": "Baseball",
+   "type": "sports/ball/baseball",
+   "tags": [
+    "baseball",
+    "diamond",
+    "field",
+    "new",
+    "red",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 360,
+   "size": [
+    0.074,
+    0.074,
+    0.072
+   ],
+   "glb": "models/GS_Baseball_01.glb",
+   "thumb": "thumbs/GS_Baseball_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Basketball_01",
+   "name": "Basketball",
+   "type": "sports/ball/basketball",
+   "tags": [
+    "basketball",
+    "court",
+    "gym",
+    "new",
+    "orange",
+    "playground"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 236,
+   "size": [
+    0.245,
+    0.245,
+    0.245
+   ],
+   "glb": "models/GS_Basketball_01.glb",
+   "thumb": "thumbs/GS_Basketball_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_BowlingBall_01",
+   "name": "Bowling ball",
+   "type": "sports/ball/bowling-ball",
+   "tags": [
+    "alley",
+    "bowling",
+    "holes",
+    "new",
+    "purple"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 224,
+   "size": [
+    0.216,
+    0.216,
+    0.216
+   ],
+   "glb": "models/GS_BowlingBall_01.glb",
+   "thumb": "thumbs/GS_BowlingBall_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_GolfBall_01",
+   "name": "Golf ball",
+   "type": "sports/ball/golf-ball",
+   "tags": [
+    "course",
+    "golf",
+    "new",
+    "tiny",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.043,
+    0.043,
+    0.043
+   ],
+   "glb": "models/GS_GolfBall_01.glb",
+   "thumb": "thumbs/GS_GolfBall_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_HockeyPuck_01",
+   "name": "Hockey puck",
+   "type": "sports/ball/hockey-puck",
+   "tags": [
+    "black",
+    "hockey",
+    "ice",
+    "new",
+    "rink"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.076,
+    0.025,
+    0.076
+   ],
+   "glb": "models/GS_HockeyPuck_01.glb",
+   "thumb": "thumbs/GS_HockeyPuck_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Soccerball_01",
+   "name": "Soccer ball",
+   "type": "sports/ball/soccer-ball",
+   "tags": [
+    "black",
+    "field",
+    "football",
+    "new",
+    "soccer",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 328,
+   "size": [
+    0.22,
+    0.22,
+    0.222
+   ],
+   "glb": "models/GS_Soccerball_01.glb",
+   "thumb": "thumbs/GS_Soccerball_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_TennisBall_01",
+   "name": "Tennis ball",
+   "type": "sports/ball/tennis-ball",
+   "tags": [
+    "court",
+    "new",
+    "tennis",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 328,
+   "size": [
+    0.066,
+    0.066,
+    0.066
+   ],
+   "glb": "models/GS_TennisBall_01.glb",
+   "thumb": "thumbs/GS_TennisBall_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Volleyball_01",
+   "name": "Volleyball",
+   "type": "sports/ball/volleyball",
+   "tags": [
+    "beach",
+    "blue",
+    "court",
+    "new",
+    "volleyball",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 236,
+   "size": [
+    0.213,
+    0.213,
+    0.213
+   ],
+   "glb": "models/GS_Volleyball_01.glb",
+   "thumb": "thumbs/GS_Volleyball_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_BaseballBase_01",
+   "name": "Base",
+   "type": "sports/equipment/base",
+   "tags": [
+    "base",
+    "baseball",
+    "diamond",
+    "field",
+    "new",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 12,
+   "size": [
+    0.38,
+    0.08,
+    0.38
+   ],
+   "glb": "models/GS_BaseballBase_01.glb",
+   "thumb": "thumbs/GS_BaseballBase_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_BaseballBat_Metal_01",
+   "name": "Baseball bat, metal",
+   "type": "sports/equipment/baseball-bat",
+   "tags": [
+    "baseball",
+    "bat",
+    "blue",
+    "field",
+    "metal",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.86,
+    0.066,
+    0.066
+   ],
+   "glb": "models/GS_BaseballBat_Metal_01.glb",
+   "thumb": "thumbs/GS_BaseballBat_Metal_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GS_BaseballBat_Wood_01"
+   ]
+  },
+  {
+   "id": "GS_BaseballBat_Wood_01",
+   "name": "Baseball bat, wood",
+   "type": "sports/equipment/baseball-bat",
+   "tags": [
+    "baseball",
+    "bat",
+    "field",
+    "new",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.86,
+    0.066,
+    0.066
+   ],
+   "glb": "models/GS_BaseballBat_Wood_01.glb",
+   "thumb": "thumbs/GS_BaseballBat_Wood_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GS_BaseballBat_Metal_01"
+   ]
+  },
+  {
+   "id": "GS_BaseballGlove_01",
+   "name": "Baseball glove",
+   "type": "sports/equipment/baseball-glove",
+   "tags": [
+    "baseball",
+    "brown",
+    "field",
+    "glove",
+    "leather",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 120,
+   "size": [
+    0.321,
+    0.07,
+    0.496
+   ],
+   "glb": "models/GS_BaseballGlove_01.glb",
+   "thumb": "thumbs/GS_BaseballGlove_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_TrainingCone_01",
+   "name": "Training cone",
+   "type": "sports/equipment/cone",
+   "tags": [
+    "cone",
+    "field",
+    "new",
+    "orange",
+    "training"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 68,
+   "size": [
+    0.24,
+    0.3,
+    0.24
+   ],
+   "glb": "models/GS_TrainingCone_01.glb",
+   "thumb": "thumbs/GS_TrainingCone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Dumbbell_01",
+   "name": "Dumbbell",
+   "type": "sports/equipment/dumbbell",
+   "tags": [
+    "black",
+    "dumbbell",
+    "fitness",
+    "gym",
+    "new",
+    "weights"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.26,
+    0.104,
+    0.12
+   ],
+   "glb": "models/GS_Dumbbell_01.glb",
+   "thumb": "thumbs/GS_Dumbbell_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Frisbee_01",
+   "name": "Frisbee",
+   "type": "sports/equipment/frisbee",
+   "tags": [
+    "blue",
+    "disc",
+    "frisbee",
+    "new",
+    "park"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 116,
+   "size": [
+    0.26,
+    0.03,
+    0.26
+   ],
+   "glb": "models/GS_Frisbee_01.glb",
+   "thumb": "thumbs/GS_Frisbee_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_GolfClub_01",
+   "name": "Golf club",
+   "type": "sports/equipment/golf-club",
+   "tags": [
+    "club",
+    "course",
+    "driver",
+    "golf",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 128,
+   "size": [
+    1.135,
+    0.06,
+    0.1
+   ],
+   "glb": "models/GS_GolfClub_01.glb",
+   "thumb": "thumbs/GS_GolfClub_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_FootballHelmet_01",
+   "name": "Football helmet",
+   "type": "sports/equipment/helmet",
+   "tags": [
+    "blue",
+    "field",
+    "football",
+    "helmet",
+    "new",
+    "protective"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 296,
+   "size": [
+    0.312,
+    0.249,
+    0.324
+   ],
+   "glb": "models/GS_FootballHelmet_01.glb",
+   "thumb": "thumbs/GS_FootballHelmet_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_HockeyStick_01",
+   "name": "Hockey stick",
+   "type": "sports/equipment/hockey-stick",
+   "tags": [
+    "black",
+    "hockey",
+    "new",
+    "rink",
+    "stick"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    1.634,
+    0.029,
+    0.128
+   ],
+   "glb": "models/GS_HockeyStick_01.glb",
+   "thumb": "thumbs/GS_HockeyStick_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_HomePlate_01",
+   "name": "Home plate",
+   "type": "sports/equipment/home-plate",
+   "tags": [
+    "baseball",
+    "diamond",
+    "field",
+    "new",
+    "plate",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 16,
+   "size": [
+    0.432,
+    0.025,
+    0.432
+   ],
+   "glb": "models/GS_HomePlate_01.glb",
+   "thumb": "thumbs/GS_HomePlate_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_Skateboard_01",
+   "name": "Skateboard",
+   "type": "sports/equipment/skateboard",
+   "tags": [
+    "new",
+    "red",
+    "skateboard",
+    "street",
+    "wheels"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 184,
+   "size": [
+    0.226,
+    0.122,
+    0.752
+   ],
+   "glb": "models/GS_Skateboard_01.glb",
+   "thumb": "thumbs/GS_Skateboard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_TennisRacket_01",
+   "name": "Tennis racket",
+   "type": "sports/equipment/tennis-racket",
+   "tags": [
+    "court",
+    "new",
+    "racket",
+    "strings",
+    "tennis"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 300,
+   "size": [
+    0.274,
+    0.022,
+    0.747
+   ],
+   "glb": "models/GS_TennisRacket_01.glb",
+   "thumb": "thumbs/GS_TennisRacket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_BasketballHoop_01",
+   "name": "Basketball hoop",
+   "type": "sports/net/basketball-hoop",
+   "tags": [
+    "backboard",
+    "basketball",
+    "court",
+    "driveway",
+    "hoop",
+    "new",
+    "rim"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 616,
+   "size": [
+    1.84,
+    3.97,
+    1.89
+   ],
+   "glb": "models/GS_BasketballHoop_01.glb",
+   "thumb": "thumbs/GS_BasketballHoop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_HockeyGoal_01",
+   "name": "Hockey goal",
+   "type": "sports/net/hockey-goal",
+   "tags": [
+    "goal",
+    "hockey",
+    "net",
+    "new",
+    "red",
+    "rink"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 540,
+   "size": [
+    1.9,
+    1.255,
+    1.07
+   ],
+   "glb": "models/GS_HockeyGoal_01.glb",
+   "thumb": "thumbs/GS_HockeyGoal_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_SoccerGoal_01",
+   "name": "Soccer goal",
+   "type": "sports/net/soccer-goal",
+   "tags": [
+    "field",
+    "football",
+    "goal",
+    "net",
+    "new",
+    "soccer"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 604,
+   "size": [
+    3.76,
+    1.88,
+    1.3
+   ],
+   "glb": "models/GS_SoccerGoal_01.glb",
+   "thumb": "thumbs/GS_SoccerGoal_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_TennisNet_01",
+   "name": "Tennis net",
+   "type": "sports/net/tennis-net",
+   "tags": [
+    "court",
+    "net",
+    "new",
+    "posts",
+    "tennis"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 324,
+   "size": [
+    12.88,
+    1.075,
+    0.08
+   ],
+   "glb": "models/GS_TennisNet_01.glb",
+   "thumb": "thumbs/GS_TennisNet_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": []
+  },
+  {
+   "id": "GS_VolleyballNet_01",
+   "name": "Volleyball net",
+   "type": "sports/net/volleyball-net",
+   "tags": [
+    "beach",
+    "court",
+    "net",
+    "new",
+    "posts",
+    "volleyball"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 320,
+   "size": [
+    10.8,
+    2.575,
+    0.5
+   ],
+   "glb": "models/GS_VolleyballNet_01.glb",
+   "thumb": "thumbs/GS_VolleyballNet_01.png",
+   "parts": {},
+   "clips": [],
    "variants": []
   },
   {

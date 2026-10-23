@@ -35,6 +35,7 @@ class Prop:
         self.slots = {}                       # name -> (position, size): where loose items can sit inside or on the prop
         self.emitters = []                    # (kind, name, position or None, frac or None, info): lights, sounds and switches (emitters.py)
         self.traits = set()                   # power, possess, jam, blackout, noisy: what the alien abilities can do with it
+        self.keep = []                        # (centre, size) of boxes damage() must never drop: walls that close a container (interactive.shell)
         self._cur = None
 
     def _bm(self, colour):
@@ -106,6 +107,67 @@ class Prop:
     def loft_rings(self, colour, rings, cap=True):
         common.loft(self._bm(colour), rings, cap=cap)
 
+    def keep_solid(self, center, size, new=False):
+        """Mark the box at `center` (size `size`) as structural: damage() never drops it, however small it is.
+
+        new=True is for a box that did not exist before it was marked: damage() then skips it without drawing a random number, so the parts
+        built after it are dropped exactly as they were. A box that existed (the walls of a shell) still draws, and the draw is ignored."""
+        self.keep.append((tuple(center), tuple(size), new))
+
+    def _kept(self, xs, ys, zs):
+        """None for an island that is not marked with keep_solid(), else "new" or "old" (see keep_solid)."""
+        c = ((min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2, (min(zs) + max(zs)) / 2)
+        for k in self.keep:
+            if all(abs(c[i] - k[0][i]) < 1e-4 for i in range(3)):
+                return "new" if k[2] else "old"
+        return None
+
+    def _orient(self, faces, facing=None, away_from=None, toward=None):
+        """Flip all of `faces` together so they face a direction (`facing`), away from a point or toward one, judged over the whole set."""
+        score = 0.0
+        for f in faces:
+            c = f.calc_center_median()
+            ref = Vector(facing) if facing is not None else (c - Vector(away_from) if away_from is not None else Vector(toward) - c)
+            score += f.normal.dot(ref)
+        if score < 0:
+            for f in faces:
+                f.normal_flip()
+
+    def quads(self, colour, grid, thick=0.0, walls=True, wrap=False, facing=None, away_from=None, toward=None):
+        """A curved sheet from a grid of points (rows of equal length), for leaves, husks and shells that a box or lathe cannot make.
+
+        wrap       the last column joins the first (a tube); otherwise the sheet is open
+        facing / away_from / toward   which way the front faces (a direction, away from a point, toward a point); the whole sheet is flipped to suit
+        thick      a back surface this far behind the front (a leaf seen from both sides), with walls on the open edges unless walls=False
+        A sheet without thick is one-sided: it is invisible from behind (Unity culls back faces)."""
+        bm = self._bm(colour)
+        rows = [[bm.verts.new(Vector(pt)) for pt in row] for row in grid]
+        nr, nc = len(rows), len(rows[0])
+        ncols = nc if wrap else nc - 1
+        front = [bm.faces.new((rows[i][j], rows[i][(j + 1) % nc], rows[i + 1][(j + 1) % nc], rows[i + 1][j])) for i in range(nr - 1) for j in range(ncols)]
+        bm.normal_update()
+        self._orient(front, facing, away_from, toward)
+        if not thick:
+            return
+        bm.normal_update()
+        back = {v: bm.verts.new(v.co - v.normal * thick) for row in rows for v in row}
+        faces = list(front)
+        for f in front:                                    # the back is the oriented front reversed (the front may have been flipped above)
+            faces.append(bm.faces.new([back[v] for v in reversed(list(f.verts))]))
+        if walls:
+            edges = [(rows[0][j], rows[0][(j + 1) % nc]) for j in range(ncols)] + [(rows[-1][j], rows[-1][(j + 1) % nc]) for j in range(ncols)]
+            if not wrap:
+                edges += [(rows[i][0], rows[i + 1][0]) for i in range(nr - 1)] + [(rows[i][-1], rows[i + 1][-1]) for i in range(nr - 1)]
+            faces += [bm.faces.new((a, b, back[b], back[a])) for a, b in edges]
+            bmesh.ops.recalc_face_normals(bm, faces=faces)
+
+    def poly(self, colour, points, facing=None, away_from=None, toward=None):
+        """One flat or slightly bent face from 3 or more points, turned to face a direction, away from a point or toward one."""
+        bm = self._bm(colour)
+        f = bm.faces.new([bm.verts.new(Vector(pt)) for pt in points])
+        bm.normal_update()
+        self._orient([f], facing, away_from, toward)
+
     def damage(self, seed=0, drop=0.2, tilt=5.0, grime=2, max_part=0.0015, grime_scale=1.0):
         """Make the prop look broken and neglected: drop some small parts, tilt and sag the whole thing, and splash dark grime on it.
 
@@ -136,8 +198,12 @@ class Prop:
             for verts in islands.values():
                 xs = [v.co.x for v in verts]; ys = [v.co.y for v in verts]; zs = [v.co.z for v in verts]
                 vol = (max(xs) - min(xs)) * (max(ys) - min(ys)) * (max(zs) - min(zs))
-                if vol < max_part and rng.random() < drop:
-                    kill.extend(verts)
+                if vol < max_part:
+                    kept = self._kept(xs, ys, zs)
+                    if kept == "new":
+                        continue                                  # no draw: the random sequence of every other part stays what it was
+                    if rng.random() < drop and kept is None:
+                        kill.extend(verts)
             if kill:
                 bmesh.ops.delete(bm, geom=kill, context="VERTS")
         # grime: dark flat patches lying on flat upward-facing surfaces that nothing covers (never floating, buried or hidden)
