@@ -304,7 +304,7 @@ def build_all():
 
 
 def export(coll, rig):
-    out = common.REPO / "Assets" / "Art" / "Global" / "Aliens" / f"{NAME}.fbx"
+    out = common.out_dir() / "Assets" / "Art" / "Global" / "Aliens" / f"{NAME}.fbx"
     bpy.ops.object.select_all(action="DESELECT")
     bpy.ops.export_scene.fbx(
         filepath=str(out), collection=coll.name, object_types={"MESH", "ARMATURE"},

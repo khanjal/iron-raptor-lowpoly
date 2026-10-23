@@ -43,7 +43,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common
 
 REPO = common.REPO
-GLOBAL = REPO / "Assets" / "Art" / "Global"
+GLOBAL = common.out_dir() / "Assets" / "Art" / "Global"
 
 # ratios to the figure's height (sole to the top of the skull); an adult. A child (GP_FarmerKid) has the CHILD overrides.
 HUMAN = {

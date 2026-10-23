@@ -12,6 +12,8 @@ Typical use from a build script in this folder:
     common.export_fbx(coll, "Assets/Art/Global/Props/GT_Bucket_01.fbx")
 """
 
+import json
+import os
 from pathlib import Path
 
 import bpy
@@ -19,7 +21,66 @@ import bmesh
 
 REPO = Path(__file__).resolve().parents[2]
 
-PALETTE_PATH = REPO / "Assets" / "Art" / "Global" / "Palette" / "GlobalPalette.png"
+
+# ===== Where things are written =================================================================================
+# Every script writes through export_fbx / export_anim_fbx / export_glb with a path such as "Assets/Art/Global/Props/GT_Bucket_01.fbx".
+# That path is relative to the OUTPUT FOLDER, `out/` in this repo by default, so the scripts build standalone. To build straight into a
+# Unity project (the old behaviour) set the output folder to that project's root. The settings can be given three ways, first one wins:
+#     common.configure(out=..., glb=..., formats=..., only=...)    (kept in bpy.app.driver_namespace: it survives the scripts' importlib.reload)
+#     the environment variables LOWPOLY_OUT, LOWPOLY_GLB, LOWPOLY_FORMATS     (set before Blender starts)
+#     the defaults: out/, out/glb/, FBX only
+_NS_KEYS = {"out": "lowpoly_out", "glb": "lowpoly_glb", "formats": "lowpoly_formats", "only": "lowpoly_only", "prefix": "lowpoly_prefix"}
+
+
+def configure(out=None, glb=None, formats=None, only=None, prefix=None, reset=False):
+    """Set the output folder (out), the folder for GLB files (glb), the formats to write ("fbx", "glb" or "fbx,glb") and, with only, a
+    collection of asset names: everything else is skipped by the exporters (the scripts still build it). prefix is put in front of the name of every
+    collection, object and mesh that fresh_collection, new_mesh_object and join make, so a build in a Blender file that other work shares cannot
+    replace that work's collections of the same name (fresh_collection deletes the one it finds); the exported GLB nodes do not carry it.
+    reset=True clears every setting first."""
+    ns = bpy.app.driver_namespace
+    if reset:
+        for k in _NS_KEYS.values():
+            ns.pop(k, None)
+    for arg, val in (("out", out), ("glb", glb), ("formats", formats), ("only", only), ("prefix", prefix)):
+        if val is not None:
+            ns[_NS_KEYS[arg]] = val
+
+
+def out_dir():
+    """The output folder every relative export path is under (default out/ in the repo root)."""
+    v = bpy.app.driver_namespace.get("lowpoly_out") or os.environ.get("LOWPOLY_OUT")
+    return Path(v) if v else REPO / "out"
+
+
+def glb_dir():
+    v = bpy.app.driver_namespace.get("lowpoly_glb") or os.environ.get("LOWPOLY_GLB")
+    return Path(v) if v else out_dir() / "glb"
+
+
+def formats():
+    v = bpy.app.driver_namespace.get("lowpoly_formats") or os.environ.get("LOWPOLY_FORMATS") or "fbx"
+    return {f.strip().lower() for f in str(v).replace(";", ",").split(",") if f.strip()}
+
+
+def name_prefix():
+    return bpy.app.driver_namespace.get("lowpoly_prefix") or ""
+
+
+def plain(name):
+    """A name without the configured prefix (what the exported files and the manifest call it)."""
+    p = name_prefix()
+    return name[len(p):] if p and name.startswith(p) else name
+
+
+def wanted(name):
+    """False when configure(only=...) is set and this asset is not in it."""
+    only = bpy.app.driver_namespace.get("lowpoly_only")
+    return only is None or name in only
+
+
+def palette_path():
+    return out_dir() / "Assets" / "Art" / "Global" / "Palette" / "GlobalPalette.png"
 
 # The global palette: a 16 x 16 grid of flat swatches (256 slots). Index = row * 16 + column, row 0 at the top.
 # Append only; indices are baked into the UVs of every exported model. Unused slots are magenta so a wrong
@@ -157,7 +218,7 @@ def _hex_rgb(h):
 
 
 def palette_image():
-    """The palette as a Blender image, regenerated from PALETTE and saved to PALETTE_PATH."""
+    """The palette as a Blender image, regenerated from PALETTE and saved to palette_path()."""
     size = GRID * SWATCH_PX
     img = bpy.data.images.get("GlobalPalette.png")      # reused in place so existing materials keep it
     if img is None:
@@ -174,13 +235,14 @@ def palette_image():
                 o = (y * size + x) * 4
                 pixels[o:o + 4] = (r, g, b, 1.0)
     img.pixels.foreach_set(pixels)
-    PALETTE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    img.filepath_raw = str(PALETTE_PATH)
+    path = palette_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.filepath_raw = str(path)
     img.file_format = "PNG"
     try:
         img.save()
     except RuntimeError:
-        if not PALETTE_PATH.exists():                      # an existing file may be locked by the Unity editor while it imports it
+        if not path.exists():                      # an existing file may be locked by the Unity editor while it imports it
             raise
     return img
 
@@ -316,6 +378,7 @@ def setup_scene():
 
 def fresh_collection(name):
     """An empty collection called name under the scene collection, replacing any earlier build."""
+    name = name_prefix() + name
     old = bpy.data.collections.get(name)
     if old is not None:
         for o in list(old.objects):
@@ -328,6 +391,7 @@ def fresh_collection(name):
 
 def new_mesh_object(name, bm, coll, swatch, flat=True):
     """Turn a bmesh into an object in coll, flat-shaded and coloured from the palette."""
+    name = name_prefix() + name
     me = bpy.data.meshes.new(name)
     bm.to_mesh(me)
     bm.free()
@@ -349,6 +413,7 @@ def join(objects, name):
     bpy.context.view_layer.objects.active = objects[0]
     bpy.ops.object.join()
     obj = bpy.context.view_layer.objects.active
+    name = name_prefix() + name
     obj.name = name
     old = bpy.data.meshes.get(name)
     if old is not None and old is not obj.data and old.users == 0:
@@ -372,7 +437,9 @@ def export_anim_fbx(rig_obj, rel_path, only_active=False):
     the clips you mean to ship. With only_active=True only the rig's current action is written, whatever else
     the (shared) Blender file holds.
     """
-    out = REPO / rel_path
+    if "fbx" not in formats():
+        return None
+    out = out_dir() / rel_path
     out.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.object.select_all(action="DESELECT")
     rig_obj.select_set(True)
@@ -435,13 +502,22 @@ def add_sockets(coll):
 
 
 def export_fbx(coll, rel_path, rigged=False, sockets=True):
-    """Export one collection as FBX for Unity: -Z forward, Y up, scale 1.
+    """Export one collection as FBX for Unity: -Z forward, Y up, scale 1. rel_path is under the output folder (out_dir()).
 
-    Static meshes get their transforms baked in. Rigged ones keep bake_space_transform off, because baking
-    rotates armature bones; Unity applies the axis conversion on import (check Bake Axis Conversion there).
+    Static meshes get their transforms baked in. Rigged ones keep bake_space_transform off, because baking rotates armature bones; Unity applies the axis conversion on import (check Bake Axis Conversion there).
     Socket_Front and Socket_Back empties (add_sockets) travel with the model unless sockets=False.
+
+    Also the single place every build script calls when a model is finished, so the other formats hang off it: with "glb" in formats() a static model is also
+    written as GLB (export_glb), and configure(only=...) skips the models that are not wanted. A rigged model's GLB is written by the caller, after its clips exist.
     """
-    out = REPO / rel_path
+    name = Path(rel_path).stem
+    if not wanted(name):
+        return None
+    if "glb" in formats() and not rigged:
+        export_glb(coll, name)
+    if "fbx" not in formats():
+        return None
+    out = out_dir() / rel_path
     out.parent.mkdir(parents=True, exist_ok=True)
     made = add_sockets(coll) if sockets else []
     bpy.ops.object.select_all(action="DESELECT")
@@ -472,4 +548,135 @@ def export_fbx(coll, rel_path, rigged=False, sockets=True):
     finally:
         for e in made:
             bpy.data.objects.remove(e, do_unlink=True)
+    return out
+
+
+# ===== glTF (GLB) for the web viewer ============================================================================
+GLB_FPS = 60                                                         # the frame rate the GLB's animations are sampled at (export_glb sets the scene to it)
+
+
+def stash_clip(rig_obj, action, clip_name, fps=24):
+    """Park an action on the rig as an NLA track called clip_name, so export_glb writes it as an animation of that name, and clear the rig's active action.
+    fps is the rate the action was keyed for (the clips differ: 24 or 60); the strip is scaled so every clip plays at its own speed in the GLB.
+    Any number of clips can be stashed on one rig."""
+    ad = rig_obj.animation_data_create()
+    action.name = f"{rig_obj.name}:{clip_name}"                      # the clip scripts replace any action of their own name, so keep this one's out of their way
+    track = ad.nla_tracks.new()
+    track.name = clip_name
+    strip = track.strips.new(clip_name, int(action.frame_range[0]), action)
+    strip.scale = GLB_FPS / float(fps)
+    ad.action = None
+    return track
+
+
+def clear_clips(rig_obj):
+    """Remove the NLA tracks stash_clip made and the actions they used (only those: other actions in a shared file are left alone)."""
+    ad = rig_obj.animation_data
+    if ad is None:
+        return
+    used = [st.action for tr in ad.nla_tracks for st in tr.strips if st.action is not None]
+    for tr in list(ad.nla_tracks):
+        ad.nla_tracks.remove(tr)
+    for a in used:
+        if a.users == 0:
+            bpy.data.actions.remove(a)
+
+
+def describe(coll):
+    """Facts about a built collection, in Blender's axes (x right, y back, z up, front is -y), metres: triangles, the bounding box of the meshes in their exported pose,
+    the moving-part objects (child meshes of the body: their name and origin, which is the pivot) and the clips on a rig."""
+    rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
+    muted = []
+    for r in rigs:                                                   # measure the rest pose, not whichever clip happens to be on top at this frame
+        for t in (r.animation_data.nla_tracks if r.animation_data else []):
+            if not t.mute:
+                t.mute = True
+                muted.append(t)
+    bpy.context.view_layer.update()
+    meshes = [o for o in coll.all_objects if o.type == "MESH"]
+    import mathutils
+    pts, tris = [], 0
+    for o in meshes:
+        o.data.calc_loop_triangles()
+        tris += len(o.data.loop_triangles)
+        pts += [o.matrix_world @ mathutils.Vector(c) for c in o.bound_box]
+    lo = [min(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
+    hi = [max(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
+    for t in muted:
+        t.mute = False
+    clips = []
+    for r in rigs:
+        if r.animation_data:
+            clips += [t.name for t in r.animation_data.nla_tracks]
+    parts = {}
+    for o in meshes:
+        if o.parent is not None and o.parent.type == "MESH":
+            parts[plain(o.name)] = [round(v, 4) for v in o.location]
+    return dict(triangles=tris, bbox_min=[round(v, 4) for v in lo], bbox_max=[round(v, 4) for v in hi], rigged=bool(rigs), clips=clips, part_nodes=parts)
+
+
+def _strip_prefix(path):
+    """Take the build prefix off the node, mesh and material names in a GLB's JSON chunk (the binary chunk is untouched)."""
+    import struct
+    raw = Path(path).read_bytes()
+    jlen, jtype = struct.unpack_from("<II", raw, 12)
+    doc = json.loads(raw[20:20 + jlen].decode("utf-8"))
+    for key in ("nodes", "meshes", "materials", "skins", "animations", "scenes"):
+        for item in doc.get(key, []):
+            if "name" in item:
+                item["name"] = plain(item["name"])
+    body = json.dumps(doc, separators=(",", ":")).encode("utf-8")
+    body += b" " * (-len(body) % 4)
+    rest = raw[20 + jlen:]
+    out = struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(body) + len(rest)) + struct.pack("<II", len(body), jtype) + body + rest
+    Path(path).write_bytes(out)
+
+
+def export_glb(coll, name, rigged=None, meta=True):
+    """Export one collection as a binary glTF (GLB) for the web viewer: out_dir()/glb/<name>.glb (or glb_dir() when it was set).
+
+    Y up (Blender's x, y, z become glTF's x, z, -y), metres. Meshes are exported with the palette material (a 64 px texture with nearest
+    filtering). A moving part (a child mesh of the body, origin on its pivot) stays a separate node named for its role, with its origin as the node's
+    origin, so the viewer can turn it. A rig is exported with the clips that stash_clip put on it, each as an animation named for its clip.
+    Writes out_dir()/meta/<name>.json (meta=True) with describe(coll), for tools/make_manifest.py. Returns the path."""
+    if not wanted(name):
+        return None
+    d = glb_dir()
+    d.mkdir(parents=True, exist_ok=True)
+    out = d / f"{name}.glb"
+    info = describe(coll)
+    rigged = info["rigged"] if rigged is None else rigged
+    objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
+    top = [o for o in objs if o.parent is None]
+    saved_loc = [(o, o.location.copy()) for o in top]
+    saved_sel = [o for o in bpy.context.view_layer.objects if o.select_get()]
+    for o in top:
+        o.location = (0.0, 0.0, 0.0) if rigged else o.location        # a rig is laid out beside the others for looking at; the file wants it at the origin
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in objs:
+        o.hide_set(False)
+        o.select_set(True)
+    sc = bpy.context.scene
+    saved_fps = sc.render.fps
+    sc.render.fps, sc.render.fps_base = GLB_FPS, 1.0
+    props = bpy.ops.export_scene.gltf.get_rna_type().properties
+    want = dict(filepath=str(out), export_format="GLB", use_selection=True, export_apply=not rigged, export_yup=True,
+                export_cameras=False, export_lights=False, export_extras=False, export_animations=bool(info["clips"]),
+                export_animation_mode="NLA_TRACKS", export_force_sampling=True, export_optimize_animation_size=True,
+                export_morph=False, export_skins=rigged, export_texcoords=True, export_normals=True)
+    try:
+        bpy.ops.export_scene.gltf(**{k: v for k, v in want.items() if k in props})
+    finally:
+        sc.render.fps = saved_fps
+        for o, loc in saved_loc:
+            o.location = loc
+        bpy.ops.object.select_all(action="DESELECT")
+        for o in saved_sel:
+            o.select_set(True)
+    if name_prefix():
+        _strip_prefix(out)
+    if meta:
+        md = out_dir() / "meta"
+        md.mkdir(parents=True, exist_ok=True)
+        (md / f"{name}.json").write_text(json.dumps(dict(id=name, **info), indent=1), encoding="utf-8")
     return out

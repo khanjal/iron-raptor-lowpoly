@@ -13,6 +13,8 @@ import runpy
 runpy.run_path(r"<repo>\art\scripts\gt_bucket.py", run_name="__main__")
 ```
 
+**Where files go.** Exports are written under an output folder: `out/` in this repo by default (`common.configure(out=r"<folder>")` or the `LOWPOLY_OUT` environment variable change it; set it to a Unity project's root to build into `Assets/Art/...` as before). `common.configure(formats="fbx,glb")` also writes GLB files for the web viewer (`export_glb`); `only={...}` limits the exporters to some model names and `prefix=` keeps a build from replacing same-named collections in a Blender file that other work shares.
+
 Scripts take optional settings through `init_globals`, for example
 `runpy.run_path(path, init_globals={"SPECIES_LIST": ["goat"], "STYLES_LIST": ["faceted"]}, run_name="__main__")`.
 Always pass `run_name="__main__"`: most scripts build only under `if __name__ == "__main__"`, so without it they import and do nothing.

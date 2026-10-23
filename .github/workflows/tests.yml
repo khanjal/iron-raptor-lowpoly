@@ -1,0 +1,31 @@
+# The cheap checks: Python unit tests (manifest builder, axis conversion of the moving parts, catalog rules), the site consistency check (every manifest entry
+# has its GLB and thumbnail, valid fields, unique ids, every part names a node in the GLB at the right pivot, the page's files exist) and a syntax check of the
+# site's JavaScript. Standard library only, no Blender and no browser: about half a minute.
+#
+# MANUAL ONLY for now (Actions > Tests > Run workflow). The repository is private on the Free plan, which has a limited monthly allowance of Actions
+# minutes, so nothing runs on its own. A push trigger was tried and removed: on 2026-10-23 GitHub refused to start the job ("recent account payments have
+# failed or your spending limit needs to be increased"), so every push showed a red cross. This workflow has therefore NEVER run on GitHub; the same commands
+# were run locally. Once Actions work for the account, a cheap automatic trigger is:
+#     push: { branches-ignore: [main], paths: ["site/**", "tools/**", "tests/**", "art/scripts/common.py", "art/data/**"] }
+name: Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1 (2026-07-20)
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -t . -v
+      - name: Site consistency
+        run: python3 tools/check_site.py

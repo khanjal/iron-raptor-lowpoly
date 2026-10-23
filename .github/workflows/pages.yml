@@ -1,0 +1,37 @@
+# Publishes site/ with GitHub Pages. Prepared, not switched on: Pages is not available for a private repository on the Free plan
+# (docs: "If the account that owns the repository uses GitHub Free ... the repository must be public."). When the repository is public
+# (or the plan allows it), turn it on under Settings > Pages > Build and deployment > Source: GitHub Actions, then run this workflow (or add the push trigger below).
+#
+# MANUAL ONLY for now (workflow_dispatch): the repository is private on the Free plan, which has limited Actions minutes and no Pages. When the repo is
+# public, add `push: branches: [main]` under `on:` so a merge publishes.
+#
+# The models (site/models/*.glb), thumbnails and manifest.json are committed for now, so there is no build step: the site is static.
+# Action versions are pinned to commit SHAs of releases at least two weeks old (comments name the release).
+name: Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1 (2026-07-20)
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0 (2026-03-25)
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0 (2026-04-10)
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1 (2026-09-01)

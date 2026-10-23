@@ -140,15 +140,18 @@ def rest_pose(rig_obj):
 
 
 def fresh_action(rig_obj, name):
-    """Give the rig one new empty action called name and delete every other action.
+    """Give the rig one new empty action called name and delete the rig's old action and any unused ones.
 
     The clip exporter writes every action in the file, one FBX per clip is what Unity's Model@Clip naming
-    wants, so each clip script starts from a clean slate and exports just its own action.
+    wants, so each clip script starts from a clean slate and exports just its own action. Actions that something else
+    uses (another object's animation in a shared Blender file) are left alone.
     """
     rig_obj.animation_data_create()
+    old = rig_obj.animation_data.action
     rig_obj.animation_data.action = None
     for a in list(bpy.data.actions):
-        bpy.data.actions.remove(a)
+        if a is old or a.users == 0:
+            bpy.data.actions.remove(a)
     action = bpy.data.actions.new(name)
     rig_obj.animation_data.action = action
     return action
