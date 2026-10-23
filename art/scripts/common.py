@@ -220,11 +220,33 @@ PALETTE = [
     ("office_dark",  "5C6066"),   # 130 cubicle trim, chair fabric
     ("laminate",     "D6C6A5"),   # 131 desk tops
     ("water_blue",   "8CC8E8"),   # 132 cooler jugs
+    ("clear_glass",  "BFE0EC"),   # 133 see-through: window panes, jars, bottles, wings (the others named glass* are solid; see GLASS_PREFIXES)
+    ("clear_brown",  "7A4F2A"),   # 134 see-through beer bottles
+    ("clear_green",  "3E8F55"),   # 135 see-through wine bottles
 ]
 GRID = 16
 SWATCH_PX = 4
 UNUSED = "FF00FF"
 MATERIAL_NAME = "GlobalPalette"
+# Transparent swatches: every swatch whose name starts with one of these prefixes is see-through (clear_*; the older glass* swatches stay solid, so the
+# car windows and the like do not turn hollow). A face painted with one is put on a second material
+# (GLASS_MATERIAL_NAME: the same palette texture, GLASS_ALPHA opaque, blended), so a model with a window or a bottle has two materials and a model
+# without has one, as before. (Like the glow_ swatches, which the web viewer lights up: the name is the switch.)
+GLASS_PREFIXES = ("clear_",)
+GLASS_MATERIAL_NAME = "GlobalPaletteGlass"
+GLASS_ALPHA = 0.4
+
+
+def is_glass(idx):
+    """True when palette swatch idx (a number) is a transparent one."""
+    return idx < len(PALETTE) and PALETTE[idx][0].startswith(GLASS_PREFIXES)
+
+
+def swatch_of_uv(u, v):
+    """The palette swatch index a UV lands in (the inverse of set_swatch)."""
+    col = min(GRID - 1, max(0, int(u * GRID)))
+    row = min(GRID - 1, max(0, int((1.0 - v) * GRID)))
+    return row * GRID + col
 
 
 def swatch_index(name):
@@ -288,6 +310,45 @@ def palette_material():
     bsdf.inputs["Roughness"].default_value = 0.85
     bsdf.inputs["Metallic"].default_value = 0.0
     return mat
+
+
+def glass_material():
+    """The transparent twin of palette_material(): the same texture, GLASS_ALPHA opaque, blended (glTF alphaMode BLEND on export)."""
+    mat = bpy.data.materials.get(GLASS_MATERIAL_NAME)
+    if mat is not None:
+        return mat
+    base = palette_material()
+    mat = base.copy()
+    mat.name = GLASS_MATERIAL_NAME
+    bsdf = next(n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+    bsdf.inputs["Alpha"].default_value = GLASS_ALPHA
+    if hasattr(mat, "surface_render_method"):              # Blender 4.2 and later
+        mat.surface_render_method = "BLENDED"
+    if hasattr(mat, "blend_method"):                       # earlier ones, and what the glTF exporter still reads there
+        try:
+            mat.blend_method = "BLEND"
+        except (TypeError, AttributeError):
+            pass
+    mat.use_backface_culling = True
+    return mat
+
+
+def sync_materials(objs):
+    """Give each mesh the palette material, plus the glass one when a face is painted with a transparent swatch, and point every face at the
+    right one (read from its UV, so it does not matter how the face was painted). Called when a model is exported; safe to call again."""
+    for o in objs:
+        if o.type != "MESH" or not o.data.uv_layers:
+            continue
+        me = o.data
+        uv = me.uv_layers.active.data
+        glass = [is_glass(swatch_of_uv(*uv[p.loop_start].uv)) for p in me.polygons]
+        want = [palette_material()] + ([glass_material()] if any(glass) else [])
+        if list(me.materials) != want:
+            me.materials.clear()
+            for m in want:
+                me.materials.append(m)
+        for p, g in zip(me.polygons, glass):
+            p.material_index = 1 if g else 0
 
 
 def set_swatch(obj, name_or_index):
@@ -538,6 +599,7 @@ def export_fbx(coll, rel_path, rigged=False, sockets=True):
     name = Path(rel_path).stem
     if not wanted(name):
         return None
+    sync_materials(coll.all_objects)
     if "glb" in formats() and not rigged:
         export_glb(coll, name)
     if "fbx" not in formats():
@@ -662,7 +724,7 @@ def export_glb(coll, name, rigged=None, meta=True):
     """Export one collection as a binary glTF (GLB) for the web viewer: out_dir()/glb/<name>.glb (or glb_dir() when it was set).
 
     Y up (Blender's x, y, z become glTF's x, z, -y), metres. Meshes are exported with the palette material (a 64 px texture with nearest
-    filtering). A moving part (a child mesh of the body, origin on its pivot) stays a separate node named for its role, with its origin as the node's
+    filtering), and a model with transparent (glass) faces also with the blended glass material. A moving part (a child mesh of the body, origin on its pivot) stays a separate node named for its role, with its origin as the node's
     origin, so the viewer can turn it. A rig is exported with the clips that stash_clip put on it, each as an animation named for its clip.
     Writes out_dir()/meta/<name>.json (meta=True) with describe(coll), for tools/make_manifest.py. Returns the path."""
     if not wanted(name):
@@ -672,6 +734,7 @@ def export_glb(coll, name, rigged=None, meta=True):
     out = d / f"{name}.glb"
     info = describe(coll)
     rigged = info["rigged"] if rigged is None else rigged
+    sync_materials(coll.all_objects)                                 # (a rigged model reaches here without export_fbx having run first)
     objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
     top = [o for o in objs if o.parent is None]
     saved_loc = [(o, o.location.copy()) for o in top]

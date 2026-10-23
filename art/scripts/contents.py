@@ -224,7 +224,7 @@ def donut():
 
 @item("bakery", "CookieJar")
 def cookie_jar():
-    p = Prop("FD_CookieJar_01"); p.cyl("glass", (0, 0, 0.1), 0.09, 0.2, n=8); p.cyl("terracotta", (0, 0, 0.21), 0.08, 0.04, n=8)
+    p = Prop("FD_CookieJar_01"); p.cyl("clear_glass", (0, 0, 0.1), 0.09, 0.2, n=8); p.cyl("terracotta", (0, 0, 0.21), 0.08, 0.04, n=8)
     for k, (x, z) in enumerate(((0.02, 0.04), (-0.03, 0.07), (0.0, 0.1), (0.03, 0.13))):
         p.cyl("crust", (x, 0, z), 0.035, 0.012, n=6)
     return p
@@ -239,7 +239,7 @@ def milk_carton():
 
 @item("dairy", "MilkBottle")
 def milk_bottle():
-    p = Prop("FD_MilkBottle_01"); lathe(p, "glass", [(0.0, 0.04), (0.14, 0.04), (0.18, 0.02), (0.22, 0.02)], n=8); lathe(p, "label_white", [(0.0, 0.037), (0.13, 0.037)], n=8)
+    p = Prop("FD_MilkBottle_01"); lathe(p, "clear_glass", [(0.0, 0.04), (0.14, 0.04), (0.18, 0.02), (0.22, 0.02)], n=8); lathe(p, "label_white", [(0.0, 0.037), (0.13, 0.037)], n=8)
     p.cyl("metal_galv", (0, 0, 0.225), 0.022, 0.01, n=6); return p
 
 
@@ -290,19 +290,19 @@ def beer_can():
 
 @item("drinks", "BeerBottle")
 def beer_bottle():
-    p = Prop("FD_BeerBottle_01"); lathe(p, "glass_brown", [(0.0, 0.032), (0.14, 0.032), (0.19, 0.016), (0.25, 0.014)], n=8)
+    p = Prop("FD_BeerBottle_01"); lathe(p, "clear_brown", [(0.0, 0.032), (0.14, 0.032), (0.19, 0.016), (0.25, 0.014)], n=8)
     lathe(p, "label_white", [(0.04, 0.0335), (0.11, 0.0335)], n=8); p.cyl("metal_galv", (0, 0, 0.253), 0.017, 0.008, n=6); return p
 
 
 @item("drinks", "WaterBottle")
 def water_bottle():
-    p = Prop("FD_WaterBottle_01"); lathe(p, "glass", [(0.0, 0.034), (0.16, 0.034), (0.2, 0.016), (0.22, 0.015)], n=8)
+    p = Prop("FD_WaterBottle_01"); lathe(p, "clear_glass", [(0.0, 0.034), (0.16, 0.034), (0.2, 0.016), (0.22, 0.015)], n=8)
     lathe(p, "label_blue", [(0.08, 0.0355), (0.14, 0.0355)], n=8); p.cyl("label_blue", (0, 0, 0.226), 0.017, 0.012, n=6); return p
 
 
 @item("drinks", "WineBottle")
 def wine_bottle():
-    p = Prop("FD_WineBottle_01"); lathe(p, "glass_green", [(0.0, 0.04), (0.2, 0.04), (0.27, 0.014), (0.33, 0.013)], n=8)
+    p = Prop("FD_WineBottle_01"); lathe(p, "clear_green", [(0.0, 0.04), (0.2, 0.04), (0.27, 0.014), (0.33, 0.013)], n=8)
     lathe(p, "paper", [(0.04, 0.0415), (0.16, 0.0415)], n=8); p.cyl("cloth_red", (0, 0, 0.332), 0.016, 0.03, n=6); return p
 
 
@@ -335,7 +335,7 @@ def jar_pickles():
 
 @item("canned", "Jar_Jam")
 def jar_jam():
-    p = Prop("FD_Jar_Jam_01"); p.cyl("glass", (0, 0, 0.055), 0.04, 0.11, n=8); p.cyl("roof_red", (0, 0, 0.05), 0.037, 0.08, n=8); p.cyl("cloth_red", (0, 0, 0.115), 0.042, 0.02, n=8); return p
+    p = Prop("FD_Jar_Jam_01"); p.cyl("clear_glass", (0, 0, 0.055), 0.04, 0.11, n=8); p.cyl("roof_red", (0, 0, 0.05), 0.037, 0.08, n=8); p.cyl("cloth_red", (0, 0, 0.115), 0.042, 0.02, n=8); return p
 
 
 @item("canned", "Ketchup")

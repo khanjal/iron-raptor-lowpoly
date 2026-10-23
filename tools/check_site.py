@@ -9,6 +9,7 @@ What it checks:
              every `parts` entry names a node that exists in the GLB, and the node sits at the part's pivot (the axis conversion
              Blender -> glTF) plus `rest` along the axis for a slide
   interactions  an entry's `interactions` file exists, is the model's own and agrees with `parts` and `lights`
+  materials  only GlobalPaletteGlass is blended (see-through), and anything blended is called that
   variants   name existing ids, and are symmetric
   page       index.html: every script, stylesheet and import-map target exists; every id app.js looks up exists in index.html; app.js imports a file that exists
 """
@@ -26,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TYPE_RE = re.compile(r"^[a-z0-9-]+(/[a-z0-9-]+)+$")
 TAG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 FIELDS = dict(id=str, name=str, type=str, tags=list, rigged=bool, interactive=bool, triangles=int, size=list, glb=str, thumb=str, parts=dict, clips=list, variants=list)
+GLASS_MATERIAL = "GlobalPaletteGlass"   # art/scripts/common.py GLASS_MATERIAL_NAME
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
 
@@ -144,6 +146,10 @@ def check_interactions(a, site, err):
 def check_against_glb(a, doc, err):
     if doc.get("asset", {}).get("copyright") != stamp_glb.COPYRIGHT:
         err("the GLB has no credit line in asset.copyright (run tools/stamp_glb.py)")
+    for m in doc.get("materials", []):                                  # only the glass twin of the palette is see-through
+        blended = m.get("alphaMode") == "BLEND"
+        if blended != (m.get("name") == GLASS_MATERIAL):
+            err(f"material {m.get('name')!r} is {'blended' if blended else 'opaque'}; only {GLASS_MATERIAL} should be blended")
     t = triangles(doc)
     if t != a["triangles"]:
         err(f"manifest says {a['triangles']} triangles, the GLB has {t}")

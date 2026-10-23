@@ -68,6 +68,15 @@ class Damage(unittest.TestCase):
         self.doc["assets"].append(dict(self.entry("GI_Dresser_01")))
         self.assertTrue(any("duplicate id" in p for p in self.problems()))
 
+    def test_a_blended_material_must_be_the_glass_one(self):
+        a = self.entry("GI_Dresser_01")
+        doc, _ = check_site.read_glb(self.tmp / a["glb"])
+        for name, mode, bad in (("GlobalPaletteGlass", "BLEND", False), ("GlobalPalette", "BLEND", True), ("GlobalPaletteGlass", "OPAQUE", True)):
+            doc["materials"] = [dict(name=name, alphaMode=mode)]
+            errs = []
+            check_site.check_against_glb(a, doc, errs.append)
+            self.assertEqual(any("blended" in e or "opaque" in e for e in errs), bad, (name, mode))
+
     def test_missing_interactions_file(self):
         (self.tmp / self.entry("GI_Fridge_01")["interactions"]).unlink()
         self.assertTrue(any("GI_Fridge_01.interactions.json does not exist" in p for p in self.problems()))

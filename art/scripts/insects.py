@@ -160,8 +160,8 @@ def honeybee():
     blob(p, "golden", (0, -2.2, 4.4), (2.7, 2.4, 2.5), n=6)
     blob(p, "black", (0, -5.2, 4.0), (1.8, 1.3, 1.7), n=6, rings=1)
     for s in (-1, 1):
-        wing(p, "glass", None, ellipse_pts(4.5, -1.5, 4.5, 2.0), 6.5, tilt=35, side=s, thick=0.2)
-        wing(p, "glass", None, ellipse_pts(3.2, 1.2, 3.2, 1.5), 6.0, tilt=35, side=s, thick=0.2)
+        wing(p, "clear_glass", None, ellipse_pts(4.5, -1.5, 4.5, 2.0), 6.5, tilt=35, side=s, thick=0.2)
+        wing(p, "clear_glass", None, ellipse_pts(3.2, 1.2, 3.2, 1.5), 6.0, tilt=35, side=s, thick=0.2)
     legs(p, "black", 1.6, (-3.0, -1.6, -0.2), 3.0, 2.0, 0.8, 0.4, dy=0.8)
     antennae(p, "black", (0.6, -6.2, 4.6), (1.6, -8.5, 6.0), 0.3)
     return p
@@ -218,8 +218,8 @@ def dragonfly():
     blob(p, "black", (0, -12, 6.8), (3.0, 2.2, 2.8), n=6, rings=1)
     for s in (-1, 1):
         ball_at(p, "tile_blue", (s * 2.6, -12.5, 7.8), 2.3, n=6)
-        wing(p, "glass", None, ellipse_pts(11, -6, 11, 2.8, n=10), 9.6, tilt=6, side=s, thick=0.3)
-        wing(p, "glass", None, ellipse_pts(11, -1, 11, 3.5, n=10), 9.0, tilt=6, side=s, thick=0.3)
+        wing(p, "clear_glass", None, ellipse_pts(11, -6, 11, 2.8, n=10), 9.6, tilt=6, side=s, thick=0.3)
+        wing(p, "clear_glass", None, ellipse_pts(11, -1, 11, 3.5, n=10), 9.0, tilt=6, side=s, thick=0.3)
     legs(p, "black", 1.5, (-9.0, -6.0, -3.0), 4.5, 3.0, 1.5, 0.5)
     return p
 

@@ -167,6 +167,7 @@ scale, so the round trip works):
 - **One shared material.** Every FBX references a material called `GlobalPalette` with that texture. Remap it to a single URP Lit material
   (smoothness low) rather than letting Unity create one per file. Run `Tools > <game name> > Set Up Art Materials` once (it
   creates `M_GlobalPalette.mat` and re-imports every model); the importer then applies the remap to each FBX on import.
+- **Transparent parts use a second material.** A face painted with a `clear_*` swatch (`clear_glass`, `clear_brown`, `clear_green`; `GLASS_PREFIXES` in `common.py`) is put on `GlobalPaletteGlass`, the same texture at 0.4 alpha and blended, when the model is exported (`sync_materials`), so a model with a window, jar or wing has two materials and any other has one. In Unity, remap it to a second URP Lit material set to Transparent. The older `glass*` swatches stay solid (the car windows); pick a `clear_*` one to make a part see-through. The web viewer draws it without depth writes and clicks through it to a door behind.
 - **Axes.** Static meshes are exported with the axis conversion baked in; rigged ones are not (baking rotates bones). Check that both come in
   upright with scale 1 and that rigged ones have no stray -90 degree rotation (turn on Bake Axis Conversion if they do).
 - Humanoid rigs: everything under `People/` imports as Humanoid and the avatars map cleanly; animal and bird rigs use Generic.

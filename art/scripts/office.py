@@ -163,7 +163,7 @@ def _panel(p, cx, cy, length, h, along="x", glass_from=None, t=0.06):
     top = glass_from if glass_from else h - 0.04
     B("office_grey", 0, 0, 0.03 + (top - 0.03) / 2, length - 0.06, t - 0.01, top - 0.03)
     if glass_from:
-        B("glass", 0, 0, (glass_from + h - 0.04) / 2, length - 0.06, t - 0.03, h - 0.04 - glass_from)
+        B("clear_glass", 0, 0, (glass_from + h - 0.04) / 2, length - 0.06, t - 0.03, h - 0.04 - glass_from)
         B("office_dark", 0, 0, glass_from, length - 0.06, t, 0.03)
     B("office_dark", 0, 0, h - 0.02, length, t, 0.04)
     for s in (-1, 1):

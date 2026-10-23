@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+const GLASS = 'GlobalPaletteGlass'; // the blended twin of the palette material (art/scripts/common.py): windows, bottles, domes
 const GRID = 16; // the palette is a 16 x 16 grid of flat swatches (art/scripts/common.py)
 const loader = new GLTFLoader();
 // emitter colour names (art/scripts/emitters.py) -> light colours
@@ -125,6 +126,13 @@ export class Viewer {
       m.roughness = 1;
       m.metalness = 0;
       m.side = THREE.FrontSide;
+      if (m.name === GLASS) {
+        // see-through: it blends over what is behind it and does not hide it, and it is drawn after the solid parts
+        m.transparent = true;
+        m.depthWrite = false;
+        o.renderOrder = 1;
+        o.userData.glass = true;
+      }
       if (m.map && this.glow.length) {
         let tex = emissive.get(m.map.image);
         if (!tex) { tex = this._glowMap(m.map); emissive.set(m.map.image, tex); }
@@ -257,6 +265,7 @@ export class Viewer {
     const hits = this.ray.intersectObject(this.root, true);
     for (const h of hits) {
       for (let o = h.object; o; o = o.parent) if (o.userData.part) return o.userData.part;
+      if (h.object.userData.glass) continue; // a window on the body: look through it to the door or drawer behind
       return null; // the first thing hit was the body: a part behind it is not clickable
     }
     return null;
