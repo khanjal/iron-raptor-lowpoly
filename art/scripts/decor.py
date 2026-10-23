@@ -95,7 +95,7 @@ def chandelier():
 def kerosene_lamp():
     p = Prop("GD_KeroseneLamp_01")
     p.cyl("copper", (0, 0, 0.05), 0.06, 0.1, n=8)
-    p.cyl("glass", (0, 0, 0.18), 0.045, 0.16, n=8)
+    p.cyl("clear_glass", (0, 0, 0.18), 0.045, 0.16, n=8)
     p.cyl("glow_cyan", (0, 0, 0.16), 0.02, 0.08, n=6)
     p.cyl("copper", (0, 0, 0.27), 0.03, 0.03, n=6)
     p.box("copper", (0, 0, 0.32), (0.01, 0.1, 0.06), rot=(0, 90, 0))
@@ -440,7 +440,7 @@ def cactus():
 @piece("plants", "VaseFlowers")
 def vase_flowers():
     p = Prop("GD_VaseFlowers_01")
-    p.cyl("glass", (0, 0, 0.1), 0.06, 0.2, n=8, top_radius=0.045)
+    p.cyl("clear_glass", (0, 0, 0.1), 0.06, 0.2, n=8, top_radius=0.045)
     for k, (x, y, c) in enumerate(((0, 0, "cloth_red"), (0.04, 0.02, "paint_yellow"), (-0.04, 0.02, "fabric_pink"), (0.0, -0.05, "paint_white"))):
         p.cyl("plant_green", (x, y, 0.3), 0.004, 0.2, n=3)
         p.box(c, (x, y, 0.41 + (k % 2) * 0.03), (0.06, 0.06, 0.04))

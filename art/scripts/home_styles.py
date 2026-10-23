@@ -134,7 +134,7 @@ def table_dining_modern():
 @variant("Table_Coffee", "Modern")
 def table_coffee_modern():
     p = Prop("GH_Table_Coffee_Modern_01")
-    p.box("glass", (0, 0, 0.42), (1.1, 0.6, 0.03))
+    p.box("clear_glass", (0, 0, 0.42), (1.1, 0.6, 0.03))
     p.box("black", (0, 0, 0.2), (1.0, 0.5, 0.03))
     for sx in (-1, 1):
         for sy in (-1, 1):

@@ -192,7 +192,7 @@ def beacon():
 @piece("parts", "SpecimenJar")
 def specimen_jar():
     p = Prop("SH_SpecimenJar_01")
-    p.cyl("glass", (0, 0, 0.15), 0.12, 0.3, n=8)
+    p.cyl("clear_glass", (0, 0, 0.15), 0.12, 0.3, n=8)
     p.cyl("metal_dark", (0, 0, 0.01), 0.125, 0.02, n=8)
     p.cyl("metal_dark", (0, 0, 0.31), 0.125, 0.03, n=8)
     p.cyl("alien_green", (0, 0, 0.12), 0.06, 0.16, n=6, top_radius=0.03)
@@ -205,7 +205,7 @@ def containment_pod():
     p = Prop("SH_ContainmentPod_01")
     lathe(p, "alien_grey", [(0.0, 0.01), (0.06, 0.2), (0.3, 0.32), (0.9, 0.32), (1.14, 0.2), (1.2, 0.01)], n=8, z0=0.1)
     p.box("glow_cyan", (0, -0.3, 0.72), (0.3, 0.03, 0.5))
-    p.box("glass", (0, -0.31, 0.72), (0.26, 0.01, 0.46))
+    p.box("clear_glass", (0, -0.31, 0.72), (0.26, 0.01, 0.46))
     p.box("metal_dark", (0, 0, 0.1), (0.5, 0.5, 0.06))
     for z in (0.35, 1.0):
         p.cyl("metal_dark", (0, 0, z + 0.1), 0.325, 0.03, n=8)
