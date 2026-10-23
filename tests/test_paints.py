@@ -52,6 +52,32 @@ class Paints(unittest.TestCase):
             sw = list(spec["parts"].values())
             self.assertEqual(len(set(sw)), len(sw), base)
 
+    def test_themes_come_from_home_styles_and_only_name_real_swatches(self):
+        th = paints.themes(ENTRIES)
+        self.assertEqual(set(th), {"Modern", "Retro", "Damaged"})
+        for theme, swap in th.items():
+            self.assertTrue(swap, theme)
+            for k, v in swap.items():
+                self.assertLess(int(k), len(ENTRIES))
+                self.assertRegex(v, r"^#[0-9A-F]{6}$")
+
+    def test_a_themed_model_and_its_folded_styles(self):
+        for base, styles in catalog.THEMED.items():
+            self.assertIn(base, catalog.ASSETS)
+            self.assertNotIn("Damaged", styles, "Damaged also drops parts and tilts: it stays a model")
+            for theme, was in styles.items():
+                self.assertIn(theme, paints.themes(ENTRIES))
+                self.assertNotIn(was, catalog.ASSETS)
+                self.assertFalse((MODELS / f"{was}.glb").exists(), was)
+
+    def test_manifest_carries_the_themes_once_and_lists_them_on_the_model(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text())
+        fridge = next(a for a in doc["assets"] if a["id"] == "GI_Fridge_01")
+        self.assertEqual([t["name"] for t in fridge["themes"]], ["Modern", "Retro"])
+        self.assertEqual(set(doc["themes"]), {"Modern", "Retro"})
+        self.assertIn("retro", fridge["tags"])
+        self.assertNotIn("GI_Fridge_Retro_01", fridge["variants"])
+
     def test_manifest_lists_the_paints_on_the_base(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text())
         apple = next(a for a in doc["assets"] if a["id"] == "FD_Apple_01")

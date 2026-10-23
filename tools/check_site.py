@@ -95,6 +95,15 @@ def check_paints(a, err):
         err("paints: names should all differ")
 
 
+def check_themes(a, err):
+    """themes: [{name, was?}], names of themes the manifest defines at the top level (check_manifest looks them up)."""
+    ts = a["themes"]
+    if not (isinstance(ts, list) and ts and all(isinstance(t, dict) and isinstance(t.get("name"), str) and t["name"].strip() for t in ts)):
+        err("themes should be a list of {name, was?}")
+    elif len({t["name"] for t in ts}) != len(ts):
+        err("themes: names should all differ")
+
+
 def check_entry(a, site, errors):
     where = a.get("id", "?")
     err = lambda m: errors.append(f"{where}: {m}")
@@ -136,6 +145,8 @@ def check_entry(a, site, errors):
 
     if "paints" in a or "paintable" in a:
         check_paints(a, err)
+    if "themes" in a:
+        check_themes(a, err)
     if "interactions" in a:
         check_interactions(a, site, err)
     glb, thumb = site / a["glb"], site / a["thumb"]
@@ -251,6 +262,15 @@ def check(site=None):
                 errors.append(f"{a.get('id')}: variant {v} is not in the manifest")
             elif a.get("id") not in byid[v].get("variants", []):
                 errors.append(f"{a.get('id')}: variant {v} does not list it back")
+    themes = doc.get("themes", {})
+    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    if not isinstance(themes, dict) or not all(isinstance(t, dict) and t and all(k.isdigit() and int(k) < 256 and hexre.match(str(v)) for k, v in t.items()) for t in themes.values()):
+        errors.append("themes should be {name: {swatch index: '#RRGGBB'}}")
+        themes = {}
+    for a in assets:
+        for t in a.get("themes", []) if isinstance(a.get("themes"), list) else []:
+            if isinstance(t, dict) and t.get("name") not in themes:
+                errors.append(f"{a.get('id')}: theme {t.get('name')!r} is not defined in the manifest's themes")
     for g in doc.get("palette", {}).get("glow", []):
         if not re.match(r"^#[0-9A-F]{6}$", g.get("hex", "")):
             errors.append(f"palette glow {g.get('name')}: bad hex")

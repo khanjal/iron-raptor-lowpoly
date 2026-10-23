@@ -124,6 +124,20 @@ def apply_paints(assets, paint_specs, entries):
         a["tags"] = sorted(set(a["tags"]) | {re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-") for p in a["paints"]})
 
 
+def apply_themes(doc, assets, entries):
+    """doc["themes"] = {theme: {swatch index: hex}} once, and entry["themes"] = [{name, was?}] on the models catalog.THEMED lists (their style variants are not models of
+    their own). The style names become tags so a search for "retro" still finds the model."""
+    wanted = {t for styles in catalog.THEMED.values() for t in styles}
+    doc["themes"] = {t: swap for t, swap in paints_tool.themes(entries).items() if t in wanted}
+    for a in assets:
+        styles = catalog.THEMED.get(a["id"])
+        if not styles:
+            continue
+        a["themes"] = [dict(name=t, was=was) for t, was in styles.items()]
+        a["tags"] = sorted(set(a["tags"]) | {t.lower() for t in styles})
+        a["variants"] = [v for v in a["variants"] if v not in styles.values()]
+
+
 def catalog_only():
     """Bring site/manifest.json in line with tools/catalog.py (names, tags, which models exist, variants, paints) without the Blender facts: for a change of
     description or of what is folded into a paint. Facts about a model (size, triangles, parts, clips) are kept as they are."""
@@ -137,10 +151,13 @@ def catalog_only():
             continue
         a.pop("paintable", None)
         a.pop("paints", None)
+        a.pop("themes", None)
         a.update(name=row["name"], type=row["type"], tags=sorted(set(row["tags"])), variants=[v for v in groups.get(row["group"], []) if v != a["id"]] if row["group"] else [])
         assets.append(a)
     assets.sort(key=lambda x: (x["type"], x["id"]))
-    apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
+    entries = paints_tool.palette_entries()
+    apply_paints(assets, catalog.PAINTS, entries)
+    apply_themes(doc, assets, entries)
     doc["assets"] = assets
     path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     print("updated site/manifest.json from the catalog:", len(assets), "assets")
@@ -165,6 +182,7 @@ def main():
     apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
+    apply_themes(doc, assets, paints_tool.palette_entries())
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
     for x in assets:

@@ -19,7 +19,7 @@ BUILD = {
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
-                       ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
+                       ids=["GI_Fridge_01", "GI_Fridge_Damaged_01"]),
     "int_wardrobe": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Wardrobe"], "STYLE_LIST": ["Classic", "Damaged"]},
                          ids=["GI_Wardrobe_01", "GI_Wardrobe_Damaged_01"]),
     "int_dresser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Dresser", "Toolbox", "Microwave", "Chest", "Mailbox", "Locker"], "STYLE_LIST": ["Classic"]},
@@ -44,7 +44,7 @@ BUILD = {
     "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
     "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
     "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
-    "office_furniture": dict(script="office.py", globals={"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, ids=['GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']),
+    "office_furniture": dict(script="office.py", globals={"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, ids=['GO_Desk_Wood_01', 'GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']),
     "office_cubicle": dict(script="office.py", globals={"OFFICE_LIST": ["cubicle"]}, ids=['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']),
     "office_equipment": dict(script="office.py", globals={"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, ids=['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']),
     "people": dict(kind="people", clips=["Idle", "Walk", "Run", "Sit"],
@@ -79,7 +79,6 @@ PAINTS = {
         "Rotten": dict(was="FD_BananaBunch_Rotten_01", set={"Skin": "#7A5A44", "Stem": "#6F7F4A"})}),
     "FD_Grapes_Green_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
     "GN_Butterfly_Blue_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
-    "GO_Desk_Steel_01": dict(base="Steel", parts={"Body": "fabric_grey"}, presets={"Wood": dict(was="GO_Desk_Wood_01", set={"Body": "#6B4A2E"})}),
     "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
     "GS_BaseballBat_Metal_01": dict(base="Metal", parts={"Barrel": "truck_blue", "Grip": "rubber"}, presets={
         "Wood": dict(was="GS_BaseballBat_Wood_01", set={"Barrel": "#C9A06A", "Grip": "#1B1B1E"})}),
@@ -91,6 +90,13 @@ def _a(id, name, type, tags, group=None):
 
 
 # vehicles
+
+# Style variants that are only a colour theme of art/scripts/home_styles.py THEMES: base id -> {theme: id of the GLB that used to be built for it}. The viewer
+# applies the theme to the palette image (the manifest carries the themes once); Damaged is never listed: it also drops parts and tilts (see docs/style-audit.md).
+THEMED = {
+    "GI_Fridge_01": {"Modern": "GI_Fridge_Modern_01", "Retro": "GI_Fridge_Retro_01"},
+}
+
 _a("GV_Sedan_Blue_01", "Sedan", "vehicles/road/sedan", "modern urban suburban car blue red new civilian", "sedan")
 _a("GV_Sedan_Red_Damaged_01", "Sedan, red, wrecked", "vehicles/road/sedan", "modern urban suburban car red damaged wreck rusty abandoned", "sedan")
 _a("GV_Taxi_Yellow_01", "Taxi", "vehicles/road/taxi", "modern urban car yellow new cab service")
@@ -149,7 +155,8 @@ _a("GS_Dumbbell_01", "Dumbbell", "sports/equipment/dumbbell", "gym weights dumbb
 _a("GS_TrainingCone_01", "Training cone", "sports/equipment/cone", "cone orange training new field")
 _a("GS_Frisbee_01", "Frisbee", "sports/equipment/frisbee", "frisbee disc blue new park")
 # office: desks, a chair, the cubicle kit (1.5 m module), equipment
-_a("GO_Desk_Steel_01", "Desk", "furniture/office/desk", "office steel grey black new drawers pedestal retro")
+_a("GO_Desk_Wood_01", "Desk, wood", "furniture/office/desk", "office wood laminate new drawers pedestal", "office-desk")
+_a("GO_Desk_Steel_01", "Desk, steel", "furniture/office/desk", "office steel grey black new drawers pedestal retro", "office-desk")
 _a("GO_Desk_L_01", "Desk, corner", "furniture/office/corner-desk", "office modern white steel new")
 _a("GO_ConferenceTable_01", "Conference table", "furniture/office/conference-table", "office meeting large laminate new")
 _a("GO_Chair_Office_01", "Office chair", "furniture/office/chair", "office swivel casters seat new")
@@ -175,9 +182,7 @@ _a("GP_Waitress_01", "Waitress", "people/civilian/waitress", "diner retro adult 
 _a("GP_Sheriff_01", "Sheriff", "people/law/sheriff", "rural law enforcement adult uniform tan hat human")
 _a("GP_Grey_01", "Grey alien", "people/alien/grey", "sci-fi alien grey humanoid")
 # appliances and storage that open
-_a("GI_Fridge_01", "Fridge, classic", "appliances/kitchen/fridge", "classic kitchen white new cold", "fridge")
-_a("GI_Fridge_Modern_01", "Fridge, modern", "appliances/kitchen/fridge", "modern kitchen steel new cold", "fridge")
-_a("GI_Fridge_Retro_01", "Fridge, retro", "appliances/kitchen/fridge", "retro kitchen cream rounded new cold", "fridge")
+_a("GI_Fridge_01", "Fridge", "appliances/kitchen/fridge", "classic kitchen white new cold", "fridge")
 _a("GI_Fridge_Damaged_01", "Fridge, rusty", "appliances/kitchen/fridge", "kitchen rusty damaged abandoned cold", "fridge")
 _a("GI_Microwave_01", "Microwave", "appliances/kitchen/microwave", "classic kitchen new")
 _a("GI_Wardrobe_01", "Wardrobe", "furniture/storage/wardrobe", "classic bedroom wood new", "wardrobe")

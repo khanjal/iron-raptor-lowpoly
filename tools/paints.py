@@ -12,7 +12,7 @@ tools/catalog.PAINTS declares, per model, its paintable parts (a part = a palett
 
 `was` is the id of the model that used to be built for the preset (old links keep working); `set` gives a swatch name or a hex per part.
 
-    python tools/paints.py check      # every preset with a `was` whose GLB is still around must equal the swap worked out from the two GLBs
+    python tools/paints.py check [DIR]  # (DIR = a folder of GLBs instead of site/models) every preset with a `was` whose GLB is still around must equal the swap worked out from the two GLBs
     python tools/paints.py A B        # print the swap that turns GLB A into GLB B, or say why it is not a pure recolour
 """
 import json
@@ -79,9 +79,35 @@ def resolve(spec, entries):
     return parts, out
 
 
+def themes(entries):
+    """The colour themes of art/scripts/home_styles.py (THEMES: Modern, Retro, Damaged) as {theme: {swatch index: '#RRGGBB'}}, read without importing Blender.
+    A theme maps a swatch to another one wherever a piece uses it; swatches a model does not use are simply not in its mesh. Identity entries are dropped."""
+    import ast
+    text = (ROOT / "art" / "scripts" / "home_styles.py").read_text(encoding="utf-8")
+    start = text.index("THEMES = {")
+    table = ast.literal_eval(text[start + len("THEMES = "):text.index("\n}\n", start) + 2])
+    names = [n for n, _ in entries]
+    out = {}
+    for theme, remap in table.items():
+        out[theme] = {}
+        for a, b in remap.items():
+            if a not in names or b not in names:
+                raise ValueError(f"theme {theme}: {a} -> {b}: not a swatch")
+            if a != b:
+                out[theme][str(names.index(a))] = entries[names.index(b)][1]
+    return out
+
+
+def used_swatches(path):
+    """The swatch indices a GLB's vertices point at."""
+    return {sw for _, _, _, sw in read_vertices(path)}
+
+
 def read_vertices(path):
-    """[(position, normal, swatch)] of the first mesh primitive of a GLB, positions and normals rounded so two exports compare equal."""
-    raw = Path(path).read_bytes()
+    """[(where, position, normal, swatch)] of every mesh of a GLB. `where` is the node (its name, or ROOT for the model's own node) with its transform, so a part
+    that sits in a different place or pose (a door left open) is a different shape. Positions and normals are rounded so two exports compare equal."""
+    path = Path(path)
+    raw = path.read_bytes()
     jlen = struct.unpack_from("<I", raw, 12)[0]
     doc = json.loads(raw[20:20 + jlen])
     blob = raw[20 + jlen + 8:]
@@ -94,23 +120,28 @@ def read_vertices(path):
         vals.frombytes(blob[start:start + a["count"] * n * 4])
         return [tuple(vals[k * n:(k + 1) * n]) for k in range(a["count"])]
 
-    prim = doc["meshes"][0]["primitives"][0]["attributes"]
-    pos, nor, uv = column(prim["POSITION"], 3), column(prim["NORMAL"], 3), column(prim["TEXCOORD_0"], 2)
     out = []
-    for p, n, t in zip(pos, nor, uv):
-        out.append((tuple(round(x, 3) for x in p), tuple(round(x, 2) for x in n), int(t[0] * GRID) + GRID * int(t[1] * GRID)))
+    for node in doc.get("nodes", []):
+        if "mesh" not in node:
+            continue
+        name = node.get("name", "")
+        where = ("ROOT" if name == path.stem else name,) + tuple(tuple(round(x, 3) for x in node.get(k, ())) for k in ("translation", "rotation", "scale"))
+        for prim in doc["meshes"][node["mesh"]]["primitives"]:
+            at = prim["attributes"]
+            for pos, nor, uv in zip(column(at["POSITION"], 3), column(at["NORMAL"], 3), column(at["TEXCOORD_0"], 2)):
+                out.append((where, tuple(round(x, 3) for x in pos), tuple(round(x, 2) for x in nor), int(uv[0] * GRID) + GRID * int(uv[1] * GRID)))
     return out
 
 
 def derive(path_a, path_b, pal):
     """The swap {swatch of A: hex colour in B} that turns A into B, checked vertex by vertex. Raises ValueError when B is not A in other paint."""
     groups_a, groups_b = {}, {}
-    for key_pos, key_nor, sw in read_vertices(path_a):
-        groups_a.setdefault((key_pos, key_nor), []).append(sw)
-    for key_pos, key_nor, sw in read_vertices(path_b):
-        groups_b.setdefault((key_pos, key_nor), []).append(sw)
+    for where, key_pos, key_nor, sw in read_vertices(path_a):
+        groups_a.setdefault((where, key_pos, key_nor), []).append(sw)
+    for where, key_pos, key_nor, sw in read_vertices(path_b):
+        groups_b.setdefault((where, key_pos, key_nor), []).append(sw)
     if groups_a.keys() != groups_b.keys() or any(len(groups_a[k]) != len(groups_b[k]) for k in groups_a):
-        raise ValueError("different shape (positions or normals do not match)")
+        raise ValueError("different shape (a mesh, a position or a part\'s pose does not match)")
     votes = {}   # swatch in A -> {swatch in B: how many vertices}
     for k, sa in groups_a.items():
         sb = groups_b[k]
@@ -129,12 +160,12 @@ def derive(path_a, path_b, pal):
     return {str(a): pal[b] for a, b in sorted(swap.items())}
 
 
-def check():
+def check(models=None):
     """Compare every declared preset that still has its old GLB with the swap worked out from the GLBs. Returns the number of mismatches."""
     import catalog
     entries = palette_entries()
     pal = [h for _, h in entries]
-    models = ROOT / "site" / "models"
+    models = Path(models) if models else ROOT / "site" / "models"
     bad = checked = 0
     for base, spec in catalog.PAINTS.items():
         _, paints = resolve(spec, entries)
@@ -142,18 +173,42 @@ def check():
             if not p.get("was") or not (models / f"{p['was']}.glb").exists() or not (models / f"{base}.glb").exists():
                 continue
             checked += 1
-            got = derive(models / f"{base}.glb", models / f"{p['was']}.glb", pal)
+            try:
+                got = derive(models / f"{base}.glb", models / f"{p['was']}.glb", pal)
+            except ValueError as e:
+                bad += 1
+                print(f"{base} {p['name']}: {e}")
+                continue
             if got != p["swap"]:
                 bad += 1
                 print(f"{base} {p['name']}: declared {p['swap']}, GLBs say {got}")
-    print(f"{checked} presets checked against their GLBs, {bad} differ")
+    th = themes(entries)
+    for base, styles in catalog.THEMED.items():
+        if not (models / f"{base}.glb").exists():
+            continue
+        used = {str(i) for i in used_swatches(models / f"{base}.glb")}
+        for style, was in styles.items():
+            if not (models / f"{was}.glb").exists():
+                continue
+            checked += 1
+            want = {k: v for k, v in th[style].items() if k in used}
+            try:
+                got = derive(models / f"{base}.glb", models / f"{was}.glb", pal)
+            except ValueError as e:
+                bad += 1
+                print(f"{base} {style}: {e}")
+                continue
+            if got != want:
+                bad += 1
+                print(f"{base} {style}: the theme gives {want}, the GLBs say {got}")
+    print(f"{checked} presets and themes checked against their GLBs, {bad} differ")
     return bad
 
 
 def main(argv):
     models = ROOT / "site" / "models"
-    if argv == ["check"]:
-        return 1 if check() else 0
+    if argv and argv[0] == "check":
+        return 1 if check(argv[1] if len(argv) > 1 else None) else 0
     if len(argv) != 2:
         print(__doc__)
         return 2

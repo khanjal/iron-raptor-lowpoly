@@ -23,7 +23,7 @@ const TAG_GROUPS = [
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
-  assets: [], byId: new Map(), was: new Map(), wantPaint: null, glow: [],
+  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [],
   q: '', category: '', tags: new Set(), features: new Set(),
   current: null, viewer: null, expanded: new Set(),
 };
@@ -41,10 +41,12 @@ async function init() {
   }
   state.assets = doc.assets;
   state.glow = (doc.palette && doc.palette.glow) || [];
+  state.themes = doc.themes || {};
   for (const a of state.assets) {
     a.haystack = [a.name, a.id, a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
     state.byId.set(a.id, a);
-    for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour keeps its old link
+    for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour or a style keeps its old link
+    for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
   readUrlState();
   buildTree();
@@ -243,7 +245,7 @@ function open(id) {
 function syncFromHash() {
   const id = decodeURIComponent(location.hash.slice(1));
   let a = state.byId.get(id);
-  if (!a && state.was.has(id)) { const w = state.was.get(id); a = w.asset; state.wantPaint = w.paint; history.replaceState(null, '', location.pathname + location.search + '#' + a.id); }
+  if (!a && state.was.has(id)) { const w = state.was.get(id); a = w.asset; state.wantPaint = w.paint; state.wantTheme = w.theme; history.replaceState(null, '', location.pathname + location.search + '#' + a.id); }
   if (!a) { closeViewer(false); return; }
   showAsset(a);
 }
@@ -311,30 +313,32 @@ function fillDetails(a) {
   $('hint').textContent = defaultHint();
 }
 
-// Colour: the model's presets as chips, and a colour box for every paintable part, so any part can be any colour. The viewer repaints a copy of the palette
-// image ({swatch index: '#RRGGBB'}); nothing about the mesh changes.
-function setupPaints(a) {
-  const paints = a.paints || [], parts = a.paintable || [];
-  $('v-paints').hidden = paints.length === 0;
-  if (!paints.length) return;
-  let current = {};
-  const chips = new Map(), inputs = new Map();
-  const press = (name) => { for (const [n, b] of chips) b.setAttribute('aria-pressed', n === name ? 'true' : 'false'); };
-  const apply = () => state.viewer.setPaint(current);
-  const choose = (p) => {
-    current = { ...p.swap };
-    for (const part of parts) inputs.get(part.swatch).value = (current[part.swatch] || part.hex).toLowerCase();
-    apply();
-    press(p.name);
-  };
-  for (const p of paints) chips.set(p.name, el('button', { class: 'pill paint', type: 'button', onclick: () => choose(p) }, el('i', { style: 'background:' + p.hex }), p.name));
+// Look: a style (a theme from the manifest: one swap over the palette, the same for every model that lists it), the model's colour presets as chips, and a
+// colour box for every paintable part, so any part can be any colour. The viewer repaints a copy of the palette image ({swatch index: '#RRGGBB'}); nothing
+// about the mesh changes. What a person picks for a part wins over the style.
+function setupLook(a) {
+  const paints = a.paints || [], parts = a.paintable || [], themes = a.themes || [];
+  $('v-themes').hidden = themes.length === 0;
+  $('v-paints').hidden = paints.length === 0 && parts.length === 0;
+  if (!themes.length && !paints.length) return;
+  let themeSwap = {}, overrides = {};
+  const themeChips = new Map(), paintChips = new Map(), inputs = new Map();
+  const press = (chips, name) => { for (const [n, b] of chips) b.setAttribute('aria-pressed', n === name ? 'true' : 'false'); };
+  const apply = () => state.viewer.setPaint({ ...themeSwap, ...overrides });
+  const syncInputs = () => { for (const part of parts) inputs.get(part.swatch).value = (overrides[part.swatch] || themeSwap[part.swatch] || part.hex).toLowerCase(); };
+  const chooseTheme = (name) => { themeSwap = (name && state.themes[name]) || {}; syncInputs(); apply(); press(themeChips, name || ''); };
+  const choosePaint = (p) => { overrides = { ...p.swap }; syncInputs(); apply(); press(paintChips, p.name); };
+  for (const t of [{ name: '' }, ...themes]) themeChips.set(t.name, el('button', { class: 'pill', type: 'button', onclick: () => chooseTheme(t.name) }, t.name || 'Classic'));
+  for (const p of paints) paintChips.set(p.name, el('button', { class: 'pill paint', type: 'button', onclick: () => choosePaint(p) }, el('i', { style: 'background:' + p.hex }), p.name));
   for (const part of parts) {
-    inputs.set(part.swatch, el('input', { type: 'color', value: part.hex.toLowerCase(), 'aria-label': part.part + ' colour', oninput: (e) => { current[part.swatch] = e.target.value.toUpperCase(); apply(); press(null); } }));
+    inputs.set(part.swatch, el('input', { type: 'color', value: part.hex.toLowerCase(), 'aria-label': part.part + ' colour', oninput: (e) => { overrides[part.swatch] = e.target.value.toUpperCase(); apply(); press(paintChips, ''); } }));
   }
-  $('v-paint-list').replaceChildren(...chips.values());
+  $('v-theme-list').replaceChildren(...themeChips.values());
+  $('v-paint-list').replaceChildren(...paintChips.values());
   $('v-paint-parts').replaceChildren(...parts.map((part) => el('label', { class: 'paint-part' }, el('span', { text: parts.length > 1 ? part.part : 'Any colour' }), inputs.get(part.swatch))));
-  choose(paints.find((p) => p.name === state.wantPaint) || paints[0]);
-  state.wantPaint = null;
+  chooseTheme(themes.some((t) => t.name === state.wantTheme) ? state.wantTheme : '');
+  if (paints.length) choosePaint(paints.find((p) => p.name === state.wantPaint) || paints[0]);
+  state.wantPaint = state.wantTheme = null;
 }
 
 function fmt(n) { return n >= 10 ? n.toFixed(1) : n >= 1 ? n.toFixed(2) : n.toFixed(3); }
@@ -342,7 +346,7 @@ function fmt(n) { return n >= 10 ? n.toFixed(1) : n >= 1 ? n.toFixed(2) : n.toFi
 function setupControls(a, info) {
   const v = state.viewer;
   // moving parts
-  setupPaints(a); // the viewer has the model by now
+  setupLook(a); // the viewer has the model by now
   const roles = info.parts;
   $('v-parts').hidden = roles.length === 0;
   $('v-part-list').replaceChildren(...roles.map((r) => el('button', { class: 'pill', type: 'button', 'data-role': r, 'aria-pressed': 'false', onclick: () => v.togglePart(r) }, r)));
