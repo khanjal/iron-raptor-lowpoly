@@ -43,7 +43,7 @@ KINDS = {   # length, width, hood, cabin, body height, cabin height, wheel radiu
 }
 
 
-def box_car(name, kind, body, trim="metal_galv", glass="glass", stripe=None, extras=()):
+def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=None, extras=()):
     k = KINDS[kind]
     L, W, hood, cab, bh, ch, wr = k["L"], k["W"], k["hood"], k["cabin"], k["bh"], k["ch"], k["wr"]
     p = Prop(name)
@@ -58,12 +58,7 @@ def box_car(name, kind, body, trim="metal_galv", glass="glass", stripe=None, ext
     if y_c1 < y_rear - 0.35:                                                             # a sedan's boot lid
         p.box(body, (0, (y_c1 + y_rear) / 2 - 0.1, ytop + 0.04), (W - 0.1, y_rear - y_c1, 0.08))
     cab_mid = (y_c0 + y_c1) / 2
-    p.box(body, (0, cab_mid, ytop + ch / 2), (W - 0.2, y_c1 - y_c0, ch), taper=0.88)       # the cabin shell
-    p.box(glass, (0, cab_mid, ytop + ch / 2 + 0.02), (W - 0.12, y_c1 - y_c0 - 0.5, ch * 0.62), taper=0.9)   # side glass, one band
-    p.box(glass, (0, y_c0 - 0.05, ytop + ch * 0.5), (W - 0.45, 0.06, ch * 0.7), rot=(-28, 0, 0))             # windscreen
-    p.box(glass, (0, y_c1 + 0.03, ytop + ch * 0.5), (W - 0.5, 0.05, ch * 0.62), rot=(18, 0, 0))              # rear window
-    for sy in (cab_mid - (y_c1 - y_c0) * 0.17, cab_mid + (y_c1 - y_c0) * 0.17):
-        p.box(body, (0, sy, ytop + ch * 0.55), (W - 0.1, 0.06, ch * 0.64))                                   # door pillars
+    vehicles.open_cabin(p, body, glass, W, y_c0, y_c1, ytop, ch, cargo=(kind == "van"))                  # roof, posts, glass, seats
     for sx in (-1, 1):
         p.box("black", (sx * (W / 2 + 0.01), cab_mid - (y_c1 - y_c0) * 0.17, ytop - 0.25), (0.03, 0.04, 0.03))   # door handles
         p.box("black", (sx * (W / 2 + 0.01), cab_mid + (y_c1 - y_c0) * 0.17, ytop - 0.25), (0.03, 0.04, 0.03))
@@ -147,7 +142,7 @@ def jeep(body="tractor_green", name="GV_Jeep_01"):
     p.box("black", (0, 0, 0.5), (1.5, 3.4, 0.15))
     p.box(body, (0, 0, 0.9), (1.7, 3.5, 0.6))
     p.box(body, (0, -1.1, 1.28), (1.6, 1.0, 0.16)); p.box("black", (0, -1.7, 1.0), (1.2, 0.06, 0.3))   # hood, grille
-    p.box("glass", (0, -0.57, 1.5), (1.4, 0.05, 0.5), rot=(-10, 0, 0))
+    p.box("clear_glass", (0, -0.57, 1.5), (1.4, 0.05, 0.5), rot=(-10, 0, 0))
     for s in (-1, 1):
         p.box("black", (s * 0.8, 0.5, 1.6), (0.05, 1.6, 0.05)); p.box("fabric_brown", (s * 0.5, 0.9, 1.15), (0.5, 0.5, 0.2))
         for yy in (-0.3, 1.3):

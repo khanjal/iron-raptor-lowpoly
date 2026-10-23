@@ -34,6 +34,77 @@ Prop = props_lib.Prop
 wheel = props_lib.wheel
 
 
+def seat(p, colour, x, y, z, w, ch):
+    """One seat facing -Y standing on a floor at height z: a cushion and a back that leans a little. ch is the headroom the roof leaves."""
+    back = max(0.2, min(0.5, ch - 0.18))
+    p.box(colour, (x, y, z + 0.05), (w, 0.5, 0.1))
+    p.box(colour, (x, y + 0.24, z + 0.1 + back / 2), (w, 0.1, back), rot=(-8, 0, 0))
+
+
+def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="office_dark"):
+    """What you see through the glass of a cabin from y0 (the windscreen end) to y1 on a floor at height z, `width` wide and ch under the roof:
+    a floor mat, a dashboard, a steering wheel on the left (-X), and a row of seats for each y offset in rows (the first row is the front;
+    bench=True makes it one seat across, otherwise two seats; later rows are benches)."""
+    x = width / 2 - 0.42
+    p.box("black", (0, (y0 + y1) / 2, z + 0.01), (width - 0.1, y1 - y0 - 0.1, 0.02))                         # floor mat
+    p.box("black", (0, y0 + 0.22, z + 0.12), (width - 0.1, 0.36, 0.24))                                     # dashboard
+    p.cyl("black", (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.16, 0.03, n=8, axis="y")                      # steering wheel
+    p.cyl("black", (-x, y0 + 0.47, z + 0.3), 0.025, 0.3, n=4, axis="y")                                      # its column
+    for k, off in enumerate(rows):
+        if k == 0 and not bench:
+            for sx in (-1, 1):
+                seat(p, colour, sx * x, y0 + off, z, 0.5, ch)
+        else:
+            seat(p, colour, 0, y0 + off, z, width - 0.5, ch)
+
+
+def _pane(p, colour, x, thick, pts):
+    """A flat panel of the given thickness at x, with the outline pts, a list of (y, z): used for side glass that follows the rake of the screens."""
+    from mathutils import Vector
+    p.loft_rings(colour, [[Vector((x - thick / 2, y, z)) for y, z in pts], [Vector((x + thick / 2, y, z)) for y, z in pts]])
+
+
+def open_cabin(p, body, glass, W, y0, y1, ytop, ch, cargo=False, front_rake=28.0, rear_rake=18.0):
+    """A car's cabin you can see into, standing on a lower body whose top is at ytop. It runs from y0 (front, at the base of the windscreen) to y1
+    (the foot of the rear window) and is ch tall. The windscreen and the rear window lean back by front_rake and rear_rake degrees from the vertical,
+    and everything round them follows: the posts at the ends lean the same, the roof starts and ends where the screens meet it, and the side glass is cut
+    to the same slopes. cargo=True (a van) glasses only the first 1.9 m, the cab, and makes the rest a solid box with no rear window."""
+    from math import cos, radians, tan
+    tf, tr = tan(radians(front_rake)), tan(radians(rear_rake))
+    ys = y0 + 0.1 + 1.9 if cargo else y1                                  # where the glass ends at the bottom
+    y_roof0 = y0 + ch * tf                                                # the roof's front edge
+    y_roof1 = ys if cargo else y1 - ch * tr                               # and its rear edge (a van cab's rear is upright)
+    xs = (W - 0.12) / 2                                                   # the line of the posts and the side glass
+    zt = ytop + ch
+    # the roof, and the cargo box that goes under it on a van
+    p.box(body, (0, (y_roof0 + y_roof1) / 2, zt - 0.04), (W - 0.12, y_roof1 - y_roof0, 0.08))
+    # side glass between the posts: the front edge follows the windscreen, the rear edge the rear window (or stays upright), 0.07 in from each post
+    zb, zg = ytop + 0.03, zt - 0.08
+    def front(z): return y0 + (z - ytop) * tf + 0.07
+    def rear(z): return ys - (0 if cargo else (z - ytop) * tr) - 0.07
+    for sx in (-1, 1):
+        _pane(p, glass, sx * xs, 0.04, [(front(zb), zb), (rear(zb), zb), (rear(zg), zg), (front(zg), zg)])
+    # the leaning posts, as long as the screens: a post is a box turned about X by the rake angle
+    for sx in (-1, 1):
+        p.box(body, (sx * xs, (y0 + y_roof0) / 2, ytop + ch / 2), (0.07, 0.07, ch / cos(radians(front_rake))), rot=(-front_rake, 0, 0))   # A posts
+        if cargo:
+            p.box(body, (sx * xs, ys, ytop + ch / 2), (0.07, 0.07, ch))
+        else:
+            p.box(body, (sx * xs, (y1 + y_roof1) / 2, ytop + ch / 2), (0.07, 0.07, ch / cos(radians(rear_rake))), rot=(rear_rake, 0, 0))  # C posts
+            if y1 - y0 > 2.2:
+                p.box(body, (sx * xs, (y0 + y1) / 2, ytop + ch / 2), (0.07, 0.07, ch))                                                       # B posts
+    # the screens fill the slope between the posts: a panel as long as the slope, turned by the same angle
+    p.box(glass, (0, (y0 + y_roof0) / 2, ytop + ch / 2), (2 * xs - 0.07, 0.04, ch / cos(radians(front_rake)) - 0.04), rot=(-front_rake, 0, 0))
+    if cargo:
+        p.box("black", (0, ys, ytop + ch / 2), (W - 0.2, 0.06, ch))                                        # the bulkhead behind the seats
+        p.box(body, (0, (ys + y1) / 2 + 0.03, ytop + ch / 2), (W - 0.12, y1 - ys - 0.06, ch))             # the cargo box
+        cab_interior(p, y0, ys, ytop, W, ch)
+    else:
+        p.box(glass, (0, (y1 + y_roof1) / 2, ytop + ch / 2), (2 * xs - 0.07, 0.04, ch / cos(radians(rear_rake)) - 0.04), rot=(rear_rake, 0, 0))
+        rows = [0.9] + ([0.9 + 0.7] if y1 - y0 > 2.0 else []) + ([0.9 + 1.4] if y1 - y0 > 3.2 else [])
+        cab_interior(p, y0, y1, ytop, W, ch, rows=rows)
+
+
 def pickup(body="truck_blue", name="GV_Pickup_01"):
     """A farm pickup truck. Hood, cab with glass, open bed, bumpers, lights, four wheels."""
     p = Prop(name)
@@ -42,12 +113,7 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
     p.box(body, (0, -1.85, 0.82), (1.96, 1.5, 0.62))                                # hood and front wings
     p.box(body, (0, -1.85, 1.13), (1.8, 1.5, 0.1))                                  # hood top, flat, level with the base of the windscreen
     p.box(body, (0, -0.1, 0.92), (1.96, 1.9, 0.5))                                   # cab lower
-    p.box(body, (0, 0.05, 1.62), (1.82, 1.4, 0.12))                                  # roof
-    for s in (-1, 1):
-        p.box(body, (s * 0.88, 0.05, 1.37), (0.08, 1.2, 0.5), rot=(0, 0, 0))       # door pillars
-        p.box("glass", (s * 0.925, -0.12, 1.35), (0.02, 0.95, 0.4))                 # side windows
-    p.box("glass", (0, -0.78, 1.37), (1.6, 0.06, 0.42), rot=(-24, 0, 0))             # windscreen
-    p.box("glass", (0, 0.82, 1.37), (1.5, 0.05, 0.36), rot=(10, 0, 0))               # rear window
+    open_cabin(p, body, "clear_glass", 1.96, -0.98, 0.78, 1.17, 0.39, front_rake=37.0, rear_rake=10.0)   # roof, posts, glass, bench seat: leaning like the screens
     # bed
     p.box(body, (0, 1.75, 0.72), (1.9, 2.0, 0.1))                                    # bed floor
     for s in (-1, 1):
@@ -99,8 +165,7 @@ def cruiser(body="paint_white", stripe="navy", name="GV_SheriffCruiser_01"):
     p = Prop(name)
     p.box("black", (0, 0, 0.45), (1.7, 4.6, 0.2))
     p.box(body, (0, 0, 0.75), (1.84, 4.8, 0.5))                                      # body
-    p.box(body, (0, -0.1, 1.2), (1.6, 2.2, 0.45), taper=0.88)                        # cabin
-    p.box("glass", (0, -0.1, 1.2), (1.66, 2.0, 0.34), taper=0.9)
+    open_cabin(p, body, "clear_glass", 1.72, -1.2, 1.0, 1.0, 0.45)                    # cabin you can see into
     p.box(stripe, (0, 0, 0.75), (1.88, 4.0, 0.14))                                   # side stripe
     p.box("metal_galv", (0, -2.45, 0.55), (1.9, 0.14, 0.2))
     p.box("metal_galv", (0, 2.45, 0.55), (1.9, 0.14, 0.2))

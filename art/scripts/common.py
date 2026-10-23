@@ -223,6 +223,7 @@ PALETTE = [
     ("clear_glass",  "BFE0EC"),   # 133 see-through: window panes, jars, bottles, wings (the others named glass* are solid; see GLASS_PREFIXES)
     ("clear_brown",  "7A4F2A"),   # 134 see-through beer bottles
     ("clear_green",  "3E8F55"),   # 135 see-through wine bottles
+    ("clear_water",  "5DAEDC"),   # 136 see-through water: the level in a cooler jug
 ]
 GRID = 16
 SWATCH_PX = 4
