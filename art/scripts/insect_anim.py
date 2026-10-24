@@ -4,7 +4,7 @@ Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/insect_anim.p
 Optional global INSECT_LIST (names as in insects.CRITTERS). Builds each rigged model and prints its clips; the site build (tools/build_site_assets.py) calls
 build_rigged() itself and writes the GLB.
 
-The moving pieces are the ones insects.py marks with moving(): wings, legs, antennae, a grasshopper's hind legs, a caterpillar's segments. Each becomes
+The moving pieces are the ones insects.py marks with moving(): wings, legs, antennae, the ladybug's wing covers and hindwings, a grasshopper's hind legs, a caterpillar's segments. Each becomes
 a bone at its pivot, all children of a Body bone (Root > Body > piece); the mesh is one object skinned rigidly (a piece follows its bone, the faceted
 look hides it), like the Insectoid. The models are millimetres in size, so the rig is built in metres at that size and the shifts below are tiny.
 
