@@ -227,3 +227,7 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
 .paint i { width: .9rem; height: .9rem; border-radius: 50%; border: 1px solid var(--line, rgba(128, 128, 128, .6)); display: inline-block; }
 .paint-part { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; }
 .paint-part input[type="color"] { width: 2rem; height: 1.6rem; padding: 0; border: 1px solid var(--line, rgba(128, 128, 128, .6)); border-radius: .3rem; background: none; cursor: pointer; }
+
+/* the breadcrumbs above a model's details: each level is a link back to that category */
+#v-type .crumb { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; }
+#v-type .crumb:hover, #v-type .crumb:focus-visible { color: var(--ink); text-decoration-style: solid; }

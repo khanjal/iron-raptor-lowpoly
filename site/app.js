@@ -311,7 +311,11 @@ function defaultHint() {
 
 function fillDetails(a) {
   $('v-name').textContent = a.name;
-  $('v-type').textContent = a.type.split('/').map(label).join(' › ');
+  const segs = a.type.split('/');          // the breadcrumbs: each level jumps to that category (the grid, with the model's other filters kept)
+  $('v-type').replaceChildren(...segs.flatMap((s, i) => [
+    ...(i ? [el('span', { 'aria-hidden': 'true', text: ' › ' })] : []),
+    el('button', { class: 'crumb', type: 'button', title: 'Show all in ' + label(s), onclick: () => { state.category = segs.slice(0, i + 1).join('/'); writeUrlState(); render(); closeViewer(); } }, label(s)),
+  ]));
   $('v-tris').textContent = a.triangles.toLocaleString();
   $('v-size').textContent = `${fmt(a.size[0])} × ${fmt(a.size[2])} × ${fmt(a.size[1])} m (width × depth × height)`;
   $('v-id').textContent = a.id;
