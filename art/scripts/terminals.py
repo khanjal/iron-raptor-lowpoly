@@ -1,7 +1,7 @@
 """The ship's control panels (issue #118): the console, the bank terminal (green), the launch terminal (red).
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/terminals.py", run_name="__main__")
-Optional global TERMINAL_LIST, e.g. ["bank", "launch"] (keys of TERMINALS). Each exports to Assets/Art/Global/Vehicles/<name>.fbx.
+Optional global TERMINAL_LIST, e.g. ["bank", "launch"] (keys of TERMINALS), and STATE_LAMPS=False to leave out the three swappable lamps (the asset browser build). Each exports to Assets/Art/Global/Vehicles/<name>.fbx.
 
 What is here (design notes: docs/art/terminal-notes.md):
   GV_ShipConsole_01         the desk along the ship's back wall: a sloped control ledge with button groups, a holo-ring between the two
@@ -372,7 +372,7 @@ def run():
         built = fn()
         prop, lamps = built if isinstance(built, tuple) else (built, None)
         obj, coll = prop.finish()
-        if lamps is not None:
+        if lamps is not None and globals().get("STATE_LAMPS", True):      # the asset browser has no state to show: it builds without the three swappable lamps
             lamp_objects(prop.name, obj, coll, lamps["plane"], lamps["v"], lamps["h"], lamps["us"], lamps.get("size", 0.06))
         print(common.stats(obj))
         common.export_fbx(coll, f"Assets/Art/{area}/{prop.name}.fbx")

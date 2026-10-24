@@ -7893,6 +7893,1094 @@
    "interactions": "models/GV_Van_01.interactions.json"
   },
   {
+   "id": "GV_ShipBunk_01",
+   "name": "Ship bunk",
+   "type": "vehicles/ship-interior/bunk",
+   "tags": [
+    "alien",
+    "bed",
+    "bunk",
+    "interior",
+    "new",
+    "quarters",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    2.01,
+    1.9,
+    0.96
+   ],
+   "glb": "models/GV_ShipBunk_01.glb",
+   "thumb": "thumbs/GV_ShipBunk_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Fabric blue",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Fabric red",
+     "swatch": 64,
+     "hex": "#9A3A38"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipConduit_01",
+   "name": "Cable run",
+   "type": "vehicles/ship-interior/conduit",
+   "tags": [
+    "alien",
+    "cable",
+    "conduit",
+    "interior",
+    "new",
+    "sci-fi",
+    "ship",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 440,
+   "size": [
+    1.3,
+    2.806,
+    0.375
+   ],
+   "glb": "models/GV_ShipConduit_01.glb",
+   "thumb": "thumbs/GV_ShipConduit_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipConsole_01",
+   "name": "Ship console",
+   "type": "vehicles/ship-interior/console",
+   "tags": [
+    "alien",
+    "buttons",
+    "control",
+    "desk",
+    "glow",
+    "interior",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1754,
+   "size": [
+    4.438,
+    1.37,
+    0.982
+   ],
+   "glb": "models/GV_ShipConsole_01.glb",
+   "thumb": "thumbs/GV_ShipConsole_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipCouch_01",
+   "name": "Medical couch",
+   "type": "vehicles/ship-interior/couch",
+   "tags": [
+    "alien",
+    "bed",
+    "couch",
+    "interior",
+    "lab",
+    "medical",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 284,
+   "size": [
+    1.97,
+    1.8,
+    1.1
+   ],
+   "glb": "models/GV_ShipCouch_01.glb",
+   "thumb": "thumbs/GV_ShipCouch_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipCrates_01",
+   "name": "Cargo crates",
+   "type": "vehicles/ship-interior/crates",
+   "tags": [
+    "alien",
+    "cargo",
+    "crates",
+    "interior",
+    "new",
+    "pallet",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 192,
+   "size": [
+    2.3,
+    1.47,
+    0.9
+   ],
+   "glb": "models/GV_ShipCrates_01.glb",
+   "thumb": "thumbs/GV_ShipCrates_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Alien gold",
+     "swatch": 83,
+     "hex": "#C9A94A"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipDrums_01",
+   "name": "Cargo drums",
+   "type": "vehicles/ship-interior/drums",
+   "tags": [
+    "alien",
+    "barrels",
+    "cargo",
+    "drums",
+    "interior",
+    "new",
+    "pallet",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 408,
+   "size": [
+    1.5,
+    0.94,
+    0.865
+   ],
+   "glb": "models/GV_ShipDrums_01.glb",
+   "thumb": "thumbs/GV_ShipDrums_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Truck blue",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Alien gold",
+     "swatch": 83,
+     "hex": "#C9A94A"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipHelm_01",
+   "name": "Pilot's helm",
+   "type": "vehicles/ship-interior/helm",
+   "tags": [
+    "alien",
+    "bridge",
+    "chair",
+    "desk",
+    "interior",
+    "new",
+    "pilot",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 408,
+   "size": [
+    1.46,
+    1.63,
+    1.43
+   ],
+   "glb": "models/GV_ShipHelm_01.glb",
+   "thumb": "thumbs/GV_ShipHelm_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipHoloTable_01",
+   "name": "Holo-map table",
+   "type": "vehicles/ship-interior/holo-table",
+   "tags": [
+    "alien",
+    "glow",
+    "hologram",
+    "interior",
+    "map",
+    "new",
+    "sci-fi",
+    "ship",
+    "table"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 244,
+   "size": [
+    1.48,
+    1.86,
+    1.282
+   ],
+   "glb": "models/GV_ShipHoloTable_01.glb",
+   "thumb": "thumbs/GV_ShipHoloTable_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipJars_01",
+   "name": "Specimen jars",
+   "type": "vehicles/ship-interior/jars",
+   "tags": [
+    "alien",
+    "cow",
+    "glass",
+    "interior",
+    "jar",
+    "lab",
+    "new",
+    "plant",
+    "sci-fi",
+    "ship",
+    "specimen"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 866,
+   "size": [
+    2.04,
+    1.8,
+    0.671
+   ],
+   "glb": "models/GV_ShipJars_01.glb",
+   "thumb": "thumbs/GV_ShipJars_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipMess_01",
+   "name": "Mess table",
+   "type": "vehicles/ship-interior/mess-table",
+   "tags": [
+    "alien",
+    "interior",
+    "new",
+    "quarters",
+    "sci-fi",
+    "seats",
+    "ship",
+    "table"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 296,
+   "size": [
+    1.6,
+    1.35,
+    1.12
+   ],
+   "glb": "models/GV_ShipMess_01.glb",
+   "thumb": "thumbs/GV_ShipMess_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipNavScreen_01",
+   "name": "Nav screen",
+   "type": "vehicles/ship-interior/nav-screen",
+   "tags": [
+    "alien",
+    "bridge",
+    "chart",
+    "interior",
+    "new",
+    "sci-fi",
+    "screen",
+    "ship",
+    "star"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 204,
+   "size": [
+    1.94,
+    2.1,
+    0.49
+   ],
+   "glb": "models/GV_ShipNavScreen_01.glb",
+   "thumb": "thumbs/GV_ShipNavScreen_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipPod_01",
+   "name": "Stasis pod",
+   "type": "vehicles/ship-interior/pod",
+   "tags": [
+    "alien",
+    "capsule",
+    "glow",
+    "interior",
+    "new",
+    "sci-fi",
+    "ship",
+    "sleep",
+    "stasis"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 288,
+   "size": [
+    0.831,
+    2.23,
+    0.956
+   ],
+   "glb": "models/GV_ShipPod_01.glb",
+   "thumb": "thumbs/GV_ShipPod_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipRadarPost_01",
+   "name": "Radar post",
+   "type": "vehicles/ship-interior/radar-post",
+   "tags": [
+    "alien",
+    "bridge",
+    "interior",
+    "new",
+    "radar",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 268,
+   "size": [
+    0.776,
+    1.735,
+    0.776
+   ],
+   "glb": "models/GV_ShipRadarPost_01.glb",
+   "thumb": "thumbs/GV_ShipRadarPost_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipSampleRack_01",
+   "name": "Sample rack",
+   "type": "vehicles/ship-interior/sample-rack",
+   "tags": [
+    "alien",
+    "interior",
+    "lab",
+    "new",
+    "samples",
+    "sci-fi",
+    "ship",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 708,
+   "size": [
+    1.2,
+    1.6,
+    0.412
+   ],
+   "glb": "models/GV_ShipSampleRack_01.glb",
+   "thumb": "thumbs/GV_ShipSampleRack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipLockers_01",
+   "name": "Ship lockers",
+   "type": "vehicles/ship-interior/lockers",
+   "tags": [
+    "alien",
+    "interior",
+    "locker",
+    "new",
+    "sci-fi",
+    "ship",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 372,
+   "size": [
+    2.16,
+    2.1,
+    0.662
+   ],
+   "glb": "models/GV_ShipLockers_01.glb",
+   "thumb": "thumbs/GV_ShipLockers_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipTerminalBank_01",
+   "name": "Bank terminal",
+   "type": "vehicles/ship-interior/terminal-bank",
+   "tags": [
+    "alien",
+    "green",
+    "interior",
+    "ledger",
+    "new",
+    "sci-fi",
+    "screen",
+    "ship",
+    "terminal"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1596,
+   "size": [
+    1.31,
+    1.081,
+    0.706
+   ],
+   "glb": "models/GV_ShipTerminalBank_01.glb",
+   "thumb": "thumbs/GV_ShipTerminalBank_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien green",
+     "swatch": 82,
+     "hex": "#7FD36B"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipTerminalLaunch_01",
+   "name": "Launch terminal",
+   "type": "vehicles/ship-interior/terminal-launch",
+   "tags": [
+    "alien",
+    "interior",
+    "lever",
+    "new",
+    "red",
+    "sci-fi",
+    "screen",
+    "ship",
+    "terminal",
+    "warning"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1840,
+   "size": [
+    1.31,
+    1.081,
+    0.785
+   ],
+   "glb": "models/GV_ShipTerminalLaunch_01.glb",
+   "thumb": "thumbs/GV_ShipTerminalLaunch_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Label red",
+     "swatch": 102,
+     "hex": "#C0392B"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipToolRack_01",
+   "name": "Ship tool rack",
+   "type": "vehicles/ship-interior/tool-rack",
+   "tags": [
+    "alien",
+    "interior",
+    "lab",
+    "new",
+    "sci-fi",
+    "ship",
+    "tools",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 516,
+   "size": [
+    1.5,
+    2.0,
+    0.46
+   ],
+   "glb": "models/GV_ShipToolRack_01.glb",
+   "thumb": "thumbs/GV_ShipToolRack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Alien gold",
+     "swatch": 83,
+     "hex": "#C9A94A"
+    }
+   ]
+  },
+  {
+   "id": "SH_AbductionUfo_01",
+   "name": "Abduction UFO",
+   "type": "vehicles/ship/abduction-ufo",
+   "tags": [
+    "alien",
+    "beam",
+    "cyan",
+    "flying",
+    "new",
+    "saucer",
+    "sci-fi",
+    "ship",
+    "small",
+    "ufo"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 552,
+   "size": [
+    6.74,
+    3.64,
+    7.17
+   ],
+   "glb": "models/SH_AbductionUfo_01.glb",
+   "thumb": "thumbs/SH_AbductionUfo_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_MIBCraft_01",
+   "name": "Agency craft",
+   "type": "vehicles/ship/agency-craft",
+   "tags": [
+    "agency",
+    "black",
+    "craft",
+    "government",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 664,
+   "size": [
+    6.758,
+    2.119,
+    8.35
+   ],
+   "glb": "models/SH_MIBCraft_01.glb",
+   "thumb": "thumbs/SH_MIBCraft_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 44,
+     "hex": "#15131A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "SH_Cigar_01",
+   "name": "Cigar ship",
+   "type": "vehicles/ship/cigar",
+   "tags": [
+    "alien",
+    "craft",
+    "cylinder",
+    "glow",
+    "long",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1260,
+   "size": [
+    5.919,
+    4.48,
+    18.2
+   ],
+   "glb": "models/SH_Cigar_01.glb",
+   "thumb": "thumbs/SH_Cigar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GV_CrashedShip_01",
+   "name": "Crashed saucer",
+   "type": "vehicles/ship/crashed-saucer",
+   "tags": [
+    "alien",
+    "crashed",
+    "cyan",
+    "damaged",
+    "grey",
+    "interior",
+    "landed",
+    "ramp",
+    "saucer",
+    "sci-fi",
+    "ship",
+    "walkable"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 2614,
+   "size": [
+    12.521,
+    7.159,
+    17.068
+   ],
+   "glb": "models/GV_CrashedShip_01.glb",
+   "thumb": "thumbs/GV_CrashedShip_01.png",
+   "parts": {
+    "ShipRamp": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.44,
+      5.95
+     ],
+     "limit": 85.0,
+     "rest": 85.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GV_CrashedShip_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "SH_Dart_01",
    "name": "Dart ship",
    "type": "vehicles/ship/dart",
@@ -7937,6 +9025,442 @@
    ]
   },
   {
+   "id": "SH_DropShip_01",
+   "name": "Drop ship",
+   "type": "vehicles/ship/drop-ship",
+   "tags": [
+    "alien",
+    "craft",
+    "landing",
+    "new",
+    "sci-fi",
+    "ship",
+    "transport"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 772,
+   "size": [
+    8.484,
+    2.85,
+    8.09
+   ],
+   "glb": "models/SH_DropShip_01.glb",
+   "thumb": "thumbs/SH_DropShip_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipEgg_01",
+   "name": "Egg ship",
+   "type": "vehicles/ship/egg",
+   "tags": [
+    "alien",
+    "egg",
+    "gold",
+    "interior",
+    "landed",
+    "legs",
+    "new",
+    "ramp",
+    "sci-fi",
+    "ship",
+    "violet",
+    "walkable"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 2146,
+   "size": [
+    15.842,
+    13.119,
+    17.968
+   ],
+   "glb": "models/GV_ShipEgg_01.glb",
+   "thumb": "thumbs/GV_ShipEgg_01.png",
+   "parts": {
+    "ShipRamp": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.44,
+      5.95
+     ],
+     "limit": 85.0,
+     "rest": 85.0
+    },
+    "ShipLeg_1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      4.5,
+      0.0,
+      -4.5
+     ],
+     "limit": -1.2,
+     "rest": -1.2
+    },
+    "ShipLeg_2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -4.5,
+      0.0,
+      -4.5
+     ],
+     "limit": -1.2,
+     "rest": -1.2
+    },
+    "ShipLeg_3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -4.5,
+      0.0,
+      4.5
+     ],
+     "limit": -1.2,
+     "rest": -1.2
+    },
+    "ShipLeg_4": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      4.5,
+      0.0,
+      4.5
+     ],
+     "limit": -1.2,
+     "rest": -1.2
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GV_ShipEgg_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 83,
+     "hex": "#C9A94A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien violet",
+     "swatch": 81,
+     "hex": "#6E4FA0"
+    }
+   ]
+  },
+  {
+   "id": "SH_EscapePod_01",
+   "name": "Escape pod",
+   "type": "vehicles/ship/escape-pod",
+   "tags": [
+    "alien",
+    "capsule",
+    "landing",
+    "legs",
+    "new",
+    "pod",
+    "sci-fi",
+    "ship",
+    "small"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 804,
+   "size": [
+    2.325,
+    2.77,
+    2.408
+   ],
+   "glb": "models/SH_EscapePod_01.glb",
+   "thumb": "thumbs/SH_EscapePod_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    }
+   ]
+  },
+  {
+   "id": "GV_ShipFreighter_01",
+   "name": "Freighter ship",
+   "type": "vehicles/ship/freighter",
+   "tags": [
+    "alien",
+    "cargo",
+    "containers",
+    "freighter",
+    "interior",
+    "landed",
+    "legs",
+    "new",
+    "ramp",
+    "sci-fi",
+    "ship",
+    "walkable"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 1664,
+   "size": [
+    15.1,
+    8.479,
+    20.848
+   ],
+   "glb": "models/GV_ShipFreighter_01.glb",
+   "thumb": "thumbs/GV_ShipFreighter_01.png",
+   "parts": {
+    "ShipRamp": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.44,
+      5.95
+     ],
+     "limit": 85.0,
+     "rest": 85.0
+    },
+    "ShipLeg_1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      7.0,
+      0.0,
+      4.2
+     ],
+     "limit": -1.5,
+     "rest": -1.5
+    },
+    "ShipLeg_2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -7.0,
+      0.0,
+      4.2
+     ],
+     "limit": -1.5,
+     "rest": -1.5
+    },
+    "ShipLeg_3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      7.0,
+      0.0,
+      -6.0
+     ],
+     "limit": -1.5,
+     "rest": -1.5
+    },
+    "ShipLeg_4": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -7.0,
+      0.0,
+      -6.0
+     ],
+     "limit": -1.5,
+     "rest": -1.5
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GV_ShipFreighter_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Truck blue",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    }
+   ]
+  },
+  {
+   "id": "SH_Mothership_01",
+   "name": "Mothership",
+   "type": "vehicles/ship/mothership",
+   "tags": [
+    "alien",
+    "carrier",
+    "huge",
+    "new",
+    "orbiting",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 2728,
+   "size": [
+    81.0,
+    34.0,
+    81.0
+   ],
+   "glb": "models/SH_Mothership_01.glb",
+   "thumb": "thumbs/SH_Mothership_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "SH_ProbeDrone_01",
+   "name": "Probe drone",
+   "type": "vehicles/ship/probe-drone",
+   "tags": [
+    "alien",
+    "drone",
+    "floating",
+    "new",
+    "sci-fi",
+    "scout",
+    "ship",
+    "small"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 620,
+   "size": [
+    2.14,
+    1.6,
+    1.853
+   ],
+   "glb": "models/SH_ProbeDrone_01.glb",
+   "thumb": "thumbs/SH_ProbeDrone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
    "id": "SH_Scout_01",
    "name": "Scout ship",
    "type": "vehicles/ship/scout",
@@ -7974,6 +9498,46 @@
      "part": "Alien grey",
      "swatch": 43,
      "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "SH_Triangle_01",
+   "name": "Triangle ship",
+   "type": "vehicles/ship/triangle",
+   "tags": [
+    "alien",
+    "black",
+    "craft",
+    "lights",
+    "new",
+    "sci-fi",
+    "ship",
+    "triangle"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 564,
+   "size": [
+    10.446,
+    1.35,
+    10.11
+   ],
+   "glb": "models/SH_Triangle_01.glb",
+   "thumb": "thumbs/SH_Triangle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 44,
+     "hex": "#15131A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   }
