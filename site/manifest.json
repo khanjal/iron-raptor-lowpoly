@@ -8121,6 +8121,59 @@
    ]
   },
   {
+   "id": "FD_Baguette_01",
+   "name": "Baguette",
+   "type": "food/bakery/baguette",
+   "tags": [
+    "baked",
+    "bread",
+    "brown",
+    "fresh",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 200,
+   "size": [
+    0.064,
+    0.059,
+    0.7
+   ],
+   "glb": "models/FD_Baguette_01.glb",
+   "thumb": "thumbs/FD_Baguette_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Crust",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Cuts",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#C98A4B",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "95": "#7A7064",
+      "96": "#7A5A44"
+     },
+     "was": "FD_Baguette_Rotten_01"
+    }
+   ]
+  },
+  {
    "id": "FD_BreadLoaf_01",
    "name": "Loaf of bread",
    "type": "food/bakery/bread",
@@ -8152,6 +8205,169 @@
      "part": "Dough",
      "swatch": 96,
      "hex": "#E8C98A"
+    }
+   ]
+  },
+  {
+   "id": "FD_Cake_01",
+   "name": "Cake",
+   "type": "food/bakery/cake",
+   "tags": [
+    "baked",
+    "dessert",
+    "fresh",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 176,
+   "size": [
+    0.32,
+    0.25,
+    0.304
+   ],
+   "glb": "models/FD_Cake_01.glb",
+   "thumb": "thumbs/FD_Cake_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Top tier",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Base tier",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Plate",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Cherry",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Candles",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#D9A0A8",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "6": "#7A7064",
+      "13": "#6F7F4A",
+      "42": "#7A5A44",
+      "66": "#7A7064"
+     },
+     "was": "FD_Cake_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_CookieJar_01",
+   "name": "Cookie jar",
+   "type": "food/bakery/cookie-jar",
+   "tags": [
+    "baked",
+    "cookies",
+    "fresh",
+    "jar"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 136,
+   "size": [
+    0.18,
+    0.23,
+    0.18
+   ],
+   "glb": "models/FD_CookieJar_01.glb",
+   "thumb": "thumbs/FD_CookieJar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 79,
+     "hex": "#C0643A"
+    },
+    {
+     "part": "Cookies",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    }
+   ]
+  },
+  {
+   "id": "FD_Donut_01",
+   "name": "Donut",
+   "type": "food/bakery/donut",
+   "tags": [
+    "baked",
+    "dessert",
+    "diner",
+    "fresh",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.09,
+    0.045,
+    0.09
+   ],
+   "glb": "models/FD_Donut_01.glb",
+   "thumb": "thumbs/FD_Donut_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Dough",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Icing",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Hole",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#C98A4B",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "66": "#7A7064",
+      "95": "#7A7064"
+     },
+     "was": "FD_Donut_Rotten_01"
     }
    ]
   },
@@ -8192,6 +8408,392 @@
      "part": "Dough",
      "swatch": 96,
      "hex": "#E8C98A"
+    }
+   ]
+  },
+  {
+   "id": "FD_Butter_01",
+   "name": "Butter",
+   "type": "food/dairy/butter",
+   "tags": [
+    "dairy",
+    "fresh",
+    "rotten",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.1,
+    0.058,
+    0.05
+   ],
+   "glb": "models/FD_Butter_01.glb",
+   "thumb": "thumbs/FD_Butter_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Butter",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Wrapper",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E0B83A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A5A44",
+     "swap": {
+      "6": "#7A7064",
+      "42": "#7A5A44"
+     },
+     "was": "FD_Butter_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_CheeseWedge_01",
+   "name": "Cheese wedge",
+   "type": "food/dairy/cheese",
+   "tags": [
+    "cheese",
+    "dairy",
+    "fresh",
+    "rotten",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 160,
+   "size": [
+    0.095,
+    0.052,
+    0.09
+   ],
+   "glb": "models/FD_CheeseWedge_01.glb",
+   "thumb": "thumbs/FD_CheeseWedge_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Cut face",
+     "swatch": 113,
+     "hex": "#F5D26A"
+    },
+    {
+     "part": "Rind",
+     "swatch": 114,
+     "hex": "#C8841F"
+    },
+    {
+     "part": "Holes",
+     "swatch": 115,
+     "hex": "#E2A12C"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#F5D26A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "113": "#6F7F4A",
+      "114": "#7A7064",
+      "115": "#7A5A44"
+     },
+     "was": "FD_CheeseWedge_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_EggCarton_01",
+   "name": "Egg carton",
+   "type": "food/dairy/egg-carton",
+   "tags": [
+    "carton",
+    "dairy",
+    "eggs",
+    "fresh"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 1104,
+   "size": [
+    0.313,
+    0.145,
+    0.181
+   ],
+   "glb": "models/FD_EggCarton_01.glb",
+   "thumb": "thumbs/FD_EggCarton_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.034,
+      -0.0575
+     ],
+     "limit": -105.0,
+     "rest": -105.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/FD_EggCarton_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 93,
+     "hex": "#D9CDB5"
+    },
+    {
+     "part": "White eggs",
+     "swatch": 108,
+     "hex": "#F2EBDD"
+    },
+    {
+     "part": "Label",
+     "swatch": 102,
+     "hex": "#C0392B"
+    },
+    {
+     "part": "Brown eggs",
+     "swatch": 109,
+     "hex": "#B97C4B"
+    }
+   ]
+  },
+  {
+   "id": "FD_MilkBottle_01",
+   "name": "Milk bottle",
+   "type": "food/dairy/milk-bottle",
+   "tags": [
+    "dairy",
+    "fresh",
+    "glass",
+    "milk",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.08,
+    0.23,
+    0.08
+   ],
+   "glb": "models/FD_MilkBottle_01.glb",
+   "thumb": "thumbs/FD_MilkBottle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Cap",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "FD_MilkCarton_01",
+   "name": "Milk carton",
+   "type": "food/dairy/milk-carton",
+   "tags": [
+    "dairy",
+    "fresh",
+    "milk",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 34,
+   "size": [
+    0.07,
+    0.25,
+    0.073
+   ],
+   "glb": "models/FD_MilkCarton_01.glb",
+   "thumb": "thumbs/FD_MilkCarton_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Label",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
+  },
+  {
+   "id": "FD_JuiceBox_01",
+   "name": "Juice box",
+   "type": "food/drinks/juice-box",
+   "tags": [
+    "carton",
+    "drink",
+    "fresh",
+    "juice"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.06,
+    0.13,
+    0.042
+   ],
+   "glb": "models/FD_JuiceBox_01.glb",
+   "thumb": "thumbs/FD_JuiceBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
+  },
+  {
+   "id": "FD_Drumstick_01",
+   "name": "Drumstick",
+   "type": "food/prepared/drumstick",
+   "tags": [
+    "brown",
+    "chicken",
+    "fresh",
+    "meat",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 168,
+   "size": [
+    0.196,
+    0.072,
+    0.072
+   ],
+   "glb": "models/FD_Drumstick_01.glb",
+   "thumb": "thumbs/FD_Drumstick_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Meat",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Bone",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#C98A4B",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "95": "#7A7064"
+     },
+     "was": "FD_Drumstick_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Fish_01",
+   "name": "Fish",
+   "type": "food/prepared/fish",
+   "tags": [
+    "fish",
+    "fresh",
+    "grey",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 140,
+   "size": [
+    0.36,
+    0.056,
+    0.096
+   ],
+   "glb": "models/FD_Fish_01.glb",
+   "thumb": "thumbs/FD_Fish_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Body",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Tail fin",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#8A8D91",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "65": "#6F7F4A"
+     },
+     "was": "FD_Fish_Rotten_01"
     }
    ]
   },
@@ -8237,6 +8839,362 @@
      "part": "Paint yellow",
      "swatch": 42,
      "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "FD_HotDog_01",
+   "name": "Hot dog",
+   "type": "food/prepared/hot-dog",
+   "tags": [
+    "diner",
+    "fast-food",
+    "fresh",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.17,
+    0.048,
+    0.04
+   ],
+   "glb": "models/FD_HotDog_01.glb",
+   "thumb": "thumbs/FD_HotDog_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Bun",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    },
+    {
+     "part": "Sausage",
+     "swatch": 97,
+     "hex": "#B04848"
+    },
+    {
+     "part": "Mustard",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E8C98A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A5A44",
+     "swap": {
+      "42": "#7A5A44",
+      "96": "#7A5A44",
+      "97": "#6F7F4A"
+     },
+     "was": "FD_HotDog_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_PizzaBox_01",
+   "name": "Pizza box",
+   "type": "food/prepared/pizza-box",
+   "tags": [
+    "box",
+    "fast-food",
+    "fresh",
+    "takeout"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.36,
+    0.04,
+    0.363
+   ],
+   "glb": "models/FD_PizzaBox_01.glb",
+   "thumb": "thumbs/FD_PizzaBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Box",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "FD_Sandwich_01",
+   "name": "Sandwich",
+   "type": "food/prepared/sandwich",
+   "tags": [
+    "bread",
+    "fresh",
+    "lunch",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.12,
+    0.063,
+    0.1
+   ],
+   "glb": "models/FD_Sandwich_01.glb",
+   "thumb": "thumbs/FD_Sandwich_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Bread",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    },
+    {
+     "part": "Lettuce",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Filling",
+     "swatch": 97,
+     "hex": "#B04848"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E8C98A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A5A44",
+     "swap": {
+      "78": "#6F7F4A",
+      "96": "#7A5A44",
+      "97": "#6F7F4A"
+     },
+     "was": "FD_Sandwich_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Sausages_01",
+   "name": "Sausages",
+   "type": "food/prepared/sausages",
+   "tags": [
+    "brown",
+    "fresh",
+    "meat",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 288,
+   "size": [
+    0.2,
+    0.035,
+    0.1
+   ],
+   "glb": "models/FD_Sausages_01.glb",
+   "thumb": "thumbs/FD_Sausages_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Sausages",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Plate",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#9A5A3A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "4": "#6F7F4A",
+      "6": "#7A7064"
+     },
+     "was": "FD_Sausages_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Steak_01",
+   "name": "Steak",
+   "type": "food/prepared/steak",
+   "tags": [
+    "fresh",
+    "meat",
+    "red",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.18,
+    0.055,
+    0.12
+   ],
+   "glb": "models/FD_Steak_01.glb",
+   "thumb": "thumbs/FD_Steak_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Meat",
+     "swatch": 97,
+     "hex": "#B04848"
+    },
+    {
+     "part": "Plate and fat",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#B04848",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "6": "#7A7064",
+      "97": "#6F7F4A"
+     },
+     "was": "FD_Steak_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_TurkeyRoast_01",
+   "name": "Roast turkey",
+   "type": "food/prepared/turkey-roast",
+   "tags": [
+    "brown",
+    "fresh",
+    "meat",
+    "roast",
+    "rotten",
+    "turkey"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 208,
+   "size": [
+    0.44,
+    0.198,
+    0.418
+   ],
+   "glb": "models/FD_TurkeyRoast_01.glb",
+   "thumb": "thumbs/FD_TurkeyRoast_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Tray",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Leg bones",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#C98A4B",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "6": "#7A7064",
+      "95": "#7A7064"
+     },
+     "was": "FD_TurkeyRoast_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_TVDinner_01",
+   "name": "TV dinner",
+   "type": "food/prepared/tv-dinner",
+   "tags": [
+    "fresh",
+    "frozen",
+    "meal",
+    "tray"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.2,
+    0.037,
+    0.16
+   ],
+   "glb": "models/FD_TVDinner_01.glb",
+   "thumb": "thumbs/FD_TVDinner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    },
+    {
+     "part": "Foil",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Carrots",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Peas",
+     "swatch": 78,
+     "hex": "#3F7A3A"
     }
    ]
   },
@@ -8365,6 +9323,252 @@
    ]
   },
   {
+   "id": "FD_Banana_01",
+   "name": "Banana",
+   "type": "food/produce/banana",
+   "tags": [
+    "fresh",
+    "fruit",
+    "rotten",
+    "single",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 232,
+   "size": [
+    0.202,
+    0.052,
+    0.034
+   ],
+   "glb": "models/FD_Banana_01.glb",
+   "thumb": "thumbs/FD_Banana_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 111,
+     "hex": "#F0CE3C"
+    },
+    {
+     "part": "Neck",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    },
+    {
+     "part": "Stalk end",
+     "swatch": 51,
+     "hex": "#5A4630"
+    },
+    {
+     "part": "Tip",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#F0CE3C",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A5A44",
+     "swap": {
+      "48": "#6F7F4A",
+      "111": "#7A5A44"
+     },
+     "was": "FD_Banana_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Cabbage_01",
+   "name": "Cabbage",
+   "type": "food/produce/cabbage",
+   "tags": [
+    "fresh",
+    "green",
+    "rotten",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 560,
+   "size": [
+    0.181,
+    0.145,
+    0.176
+   ],
+   "glb": "models/FD_Cabbage_01.glb",
+   "thumb": "thumbs/FD_Cabbage_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Outer leaves",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Core, stem and ribs",
+     "swatch": 87,
+     "hex": "#A8BDA0"
+    },
+    {
+     "part": "Middle leaves",
+     "swatch": 8,
+     "hex": "#5E8C4A"
+    },
+    {
+     "part": "Second leaves",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    },
+    {
+     "part": "Innermost leaves",
+     "swatch": 49,
+     "hex": "#8DB752"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#4F7A32",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "8": "#6F7F4A",
+      "48": "#6F7F4A",
+      "49": "#7A7064",
+      "50": "#6F7F4A",
+      "87": "#6F7F4A"
+     },
+     "was": "FD_Cabbage_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Carrot_01",
+   "name": "Carrot",
+   "type": "food/produce/carrot",
+   "tags": [
+    "fresh",
+    "orange",
+    "root",
+    "rotten",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 140,
+   "size": [
+    0.039,
+    0.206,
+    0.04
+   ],
+   "glb": "models/FD_Carrot_01.glb",
+   "thumb": "thumbs/FD_Carrot_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Root",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Leaves",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E8922A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "78": "#6F7F4A",
+      "100": "#6F7F4A"
+     },
+     "was": "FD_Carrot_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Corn_01",
+   "name": "Corn on the cob",
+   "type": "food/produce/corn",
+   "tags": [
+    "cob",
+    "fresh",
+    "rotten",
+    "rural",
+    "vegetable",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 408,
+   "size": [
+    0.143,
+    0.207,
+    0.131
+   ],
+   "glb": "models/FD_Corn_01.glb",
+   "thumb": "thumbs/FD_Corn_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Stalk and outer husk",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    },
+    {
+     "part": "Inner husk",
+     "swatch": 49,
+     "hex": "#8DB752"
+    },
+    {
+     "part": "Kernels",
+     "swatch": 54,
+     "hex": "#E3C255"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#6E9A3E",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "48": "#6F7F4A",
+      "49": "#7A7064",
+      "54": "#7A5A44"
+     },
+     "was": "FD_Corn_Rotten_01"
+    }
+   ]
+  },
+  {
    "id": "FD_Grapes_01",
    "name": "Grapes",
    "type": "food/produce/grapes",
@@ -8446,6 +9650,169 @@
    ]
   },
   {
+   "id": "FD_Lettuce_01",
+   "name": "Lettuce",
+   "type": "food/produce/lettuce",
+   "tags": [
+    "fresh",
+    "green",
+    "rotten",
+    "salad",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 556,
+   "size": [
+    0.175,
+    0.126,
+    0.184
+   ],
+   "glb": "models/FD_Lettuce_01.glb",
+   "thumb": "thumbs/FD_Lettuce_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Leaves",
+     "swatch": 49,
+     "hex": "#8DB752"
+    },
+    {
+     "part": "Heart",
+     "swatch": 112,
+     "hex": "#E2EDA0"
+    },
+    {
+     "part": "Outer leaf edges",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#8DB752",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "48": "#6F7F4A",
+      "49": "#7A7064",
+      "112": "#7A7064"
+     },
+     "was": "FD_Lettuce_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Onion_01",
+   "name": "Onion",
+   "type": "food/produce/onion",
+   "tags": [
+    "fresh",
+    "root",
+    "rotten",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.08,
+    0.097,
+    0.08
+   ],
+   "glb": "models/FD_Onion_01.glb",
+   "thumb": "thumbs/FD_Onion_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 34,
+     "hex": "#D9A441"
+    },
+    {
+     "part": "Roots and tip",
+     "swatch": 55,
+     "hex": "#7A7064"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#D9A441",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "34": "#7A7064"
+     },
+     "was": "FD_Onion_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Orange_01",
+   "name": "Orange",
+   "type": "food/produce/orange",
+   "tags": [
+    "citrus",
+    "fresh",
+    "fruit",
+    "orange",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 142,
+   "size": [
+    0.077,
+    0.078,
+    0.078
+   ],
+   "glb": "models/FD_Orange_01.glb",
+   "thumb": "thumbs/FD_Orange_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Leaf",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E8922A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "78": "#6F7F4A",
+      "100": "#6F7F4A"
+     },
+     "was": "FD_Orange_Rotten_01"
+    }
+   ]
+  },
+  {
    "id": "FD_Pear_01",
    "name": "Pear",
    "type": "food/produce/pear",
@@ -8486,6 +9853,106 @@
    ]
   },
   {
+   "id": "FD_Potato_01",
+   "name": "Potato",
+   "type": "food/produce/potato",
+   "tags": [
+    "brown",
+    "fresh",
+    "root",
+    "rotten",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.093,
+    0.05,
+    0.064
+   ],
+   "glb": "models/FD_Potato_01.glb",
+   "thumb": "thumbs/FD_Potato_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#C49A5E",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#7A7064",
+     "swap": {
+      "35": "#7A7064"
+     },
+     "was": "FD_Potato_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Pumpkin_01",
+   "name": "Pumpkin",
+   "type": "food/produce/pumpkin",
+   "tags": [
+    "fresh",
+    "orange",
+    "rotten",
+    "rural",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 234,
+   "size": [
+    0.298,
+    0.237,
+    0.268
+   ],
+   "glb": "models/FD_Pumpkin_01.glb",
+   "thumb": "thumbs/FD_Pumpkin_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Rind",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Stem",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#E8922A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "78": "#6F7F4A",
+      "100": "#6F7F4A"
+     },
+     "was": "FD_Pumpkin_Rotten_01"
+    }
+   ]
+  },
+  {
    "id": "FD_Strawberry_01",
    "name": "Strawberry",
    "type": "food/produce/strawberry",
@@ -8518,6 +9985,112 @@
      "part": "Plant green",
      "swatch": 78,
      "hex": "#3F7A3A"
+    }
+   ]
+  },
+  {
+   "id": "FD_Tomato_01",
+   "name": "Tomato",
+   "type": "food/produce/tomato",
+   "tags": [
+    "fresh",
+    "fruit",
+    "red",
+    "rotten",
+    "vegetable"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 146,
+   "size": [
+    0.077,
+    0.062,
+    0.076
+   ],
+   "glb": "models/FD_Tomato_01.glb",
+   "thumb": "thumbs/FD_Tomato_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Skin",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Calyx",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#B8443B",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "13": "#6F7F4A",
+      "78": "#6F7F4A"
+     },
+     "was": "FD_Tomato_Rotten_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_Watermelon_01",
+   "name": "Watermelon",
+   "type": "food/produce/watermelon",
+   "tags": [
+    "fresh",
+    "fruit",
+    "green",
+    "large",
+    "rotten"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 131,
+   "size": [
+    0.36,
+    0.25,
+    0.26
+   ],
+   "glb": "models/FD_Watermelon_01.glb",
+   "thumb": "thumbs/FD_Watermelon_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Rind",
+     "swatch": 8,
+     "hex": "#5E8C4A"
+    },
+    {
+     "part": "Stripes",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#5E8C4A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "8": "#6F7F4A",
+      "50": "#6F7F4A"
+     },
+     "was": "FD_Watermelon_Rotten_01"
     }
    ]
   },

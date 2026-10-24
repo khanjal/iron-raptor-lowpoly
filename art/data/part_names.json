@@ -274,5 +274,30 @@
  "GT_WorkLight_01": {
   "black": "Clamp and arm",
   "paint_yellow": "Bulb"
+ },
+ "FD_CookieJar_01": {
+  "crust": "Cookies"
+ },
+ "FD_MilkCarton_01": {
+  "label_blue": "Label"
+ },
+ "FD_MilkBottle_01": {
+  "metal_galv": "Cap"
+ },
+ "FD_EggCarton_01": {
+  "egg_white": "White eggs",
+  "egg_brown": "Brown eggs",
+  "label_red": "Label"
+ },
+ "FD_JuiceBox_01": {
+  "label_white": "Label"
+ },
+ "FD_PizzaBox_01": {
+  "$main": "Box"
+ },
+ "FD_TVDinner_01": {
+  "metal_galv": "Foil",
+  "food_orange": "Carrots",
+  "plant_green": "Peas"
  }
 }
