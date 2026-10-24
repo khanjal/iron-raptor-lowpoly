@@ -75,22 +75,37 @@
   "wood_light": "Top beam"
  },
  "GV_Pickup_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "black": "Frame and trim",
+  "metal_galv": "Bumpers and hubs"
  },
  "GV_Motorcycle_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "metal_galv": "Forks, rims and exhaust",
+  "metal_dark": "Engine and mechanics",
+  "black": "Frame and seat"
  },
  "GV_Police_Sheriff_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "metal_galv": "Bumpers and chrome",
+  "paint_white": "Stripe",
+  "tan_uniform": "Body"
  },
  "GV_Taxi_Yellow_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "black": "Underbody and trim",
+  "metal_galv": "Bumpers and chrome"
  },
  "GV_Van_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "black": "Underbody and trim",
+  "metal_galv": "Bumpers and chrome",
+  "metal_dark": "Engine, cargo floor and exhaust"
  },
  "GV_Sedan_Damaged_01": {
-  "rubber": "Tyres"
+  "rubber": "Tyres",
+  "screen": "Windows",
+  "rust": "Bumpers and trim"
  },
  "GI_Microwave_01": {
   "glass": "Door window"
@@ -217,5 +232,11 @@
  },
  "GT_FirePoker_01": {
   "$main": "Poker"
+ },
+ "GV_Ambulance_White_01": {
+  "black": "Underbody and trim",
+  "metal_galv": "Bumpers and chrome",
+  "metal_dark": "Engine, cargo floor and exhaust",
+  "cloth_red": "Stripe and cross"
  }
 }
