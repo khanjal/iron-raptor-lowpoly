@@ -51,6 +51,7 @@ async function init() {
     for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
   readUrlState();
+  if ((new URLSearchParams(location.search).get('cat') || '') !== state.category) writeUrlState();   // an old ?cat=alien link is rewritten to sci-fi, as an old #id is
   buildTree();
   buildChips();
   render();
