@@ -405,5 +405,34 @@
  },
  "FD_Scarf_01": {
   "paint_yellow": "Stripes"
+ },
+ "GN_StinkBug_01": {
+  "dark_brown": "Head and legs",
+  "tan": "Pronotum"
+ },
+ "GN_Housefly_01": {
+  "black": "Head and legs",
+  "cloth_red": "Eyes"
+ },
+ "GN_Mosquito_01": {
+  "wood_grey": "Body"
+ },
+ "GN_Wasp_01": {
+  "black": "Thorax and bands"
+ },
+ "GN_Cockroach_01": {
+  "rust_dark": "Wings"
+ },
+ "GN_Cricket_01": {
+  "fabric_brown": "Wing covers and shins",
+  "black": "Pronotum and antennae"
+ },
+ "GN_Mantis_01": {
+  "leaf_dark": "Wing covers",
+  "corn_leaf": "Prothorax"
+ },
+ "GN_Earwig_01": {
+  "rust_dark": "Head and legs",
+  "black": "Pincers"
  }
 }

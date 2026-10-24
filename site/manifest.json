@@ -612,6 +612,93 @@
    ]
   },
   {
+   "id": "GN_Cockroach_01",
+   "name": "Cockroach",
+   "type": "animals/insect/cockroach",
+   "tags": [
+    "brown",
+    "bug",
+    "house",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 360,
+   "size": [
+    0.028,
+    0.007,
+    0.048
+   ],
+   "glb": "models/GN_Cockroach_01.glb",
+   "thumb": "thumbs/GN_Cockroach_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Wings",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
+  },
+  {
+   "id": "GN_Cricket_01",
+   "name": "Cricket",
+   "type": "animals/insect/cricket",
+   "tags": [
+    "brown",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 312,
+   "size": [
+    0.015,
+    0.013,
+    0.038
+   ],
+   "glb": "models/GN_Cricket_01.glb",
+   "thumb": "thumbs/GN_Cricket_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Hop"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Wing covers and shins",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Pronotum and antennae",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "GN_Dragonfly_01",
    "name": "Dragonfly",
    "type": "animals/insect/dragonfly",
@@ -663,6 +750,52 @@
    ]
   },
   {
+   "id": "GN_Earwig_01",
+   "name": "Earwig",
+   "type": "animals/insect/earwig",
+   "tags": [
+    "brown",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 336,
+   "size": [
+    0.012,
+    0.004,
+    0.028
+   ],
+   "glb": "models/GN_Earwig_01.glb",
+   "thumb": "thumbs/GN_Earwig_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Head and legs",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Pincers",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "GN_Firefly_01",
    "name": "Firefly",
    "type": "animals/insect/firefly",
@@ -704,6 +837,53 @@
     },
     {
      "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GN_Housefly_01",
+   "name": "Housefly",
+   "type": "animals/insect/fly",
+   "tags": [
+    "bug",
+    "fly",
+    "grey",
+    "house",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 392,
+   "size": [
+    0.011,
+    0.006,
+    0.009
+   ],
+   "glb": "models/GN_Housefly_01.glb",
+   "thumb": "thumbs/GN_Housefly_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Head and legs",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Eyes",
      "swatch": 13,
      "hex": "#B8443B"
     }
@@ -805,6 +985,92 @@
    ]
   },
   {
+   "id": "GN_Mantis_01",
+   "name": "Praying mantis",
+   "type": "animals/insect/mantis",
+   "tags": [
+    "bug",
+    "garden",
+    "green",
+    "insect",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 444,
+   "size": [
+    0.024,
+    0.018,
+    0.062
+   ],
+   "glb": "models/GN_Mantis_01.glb",
+   "thumb": "thumbs/GN_Mantis_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Wing covers",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Prothorax",
+     "swatch": 49,
+     "hex": "#8DB752"
+    }
+   ]
+  },
+  {
+   "id": "GN_Mosquito_01",
+   "name": "Mosquito",
+   "type": "animals/insect/mosquito",
+   "tags": [
+    "bug",
+    "grey",
+    "insect",
+    "mosquito",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 384,
+   "size": [
+    0.01,
+    0.006,
+    0.014
+   ],
+   "glb": "models/GN_Mosquito_01.glb",
+   "thumb": "thumbs/GN_Mosquito_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Body",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
+  },
+  {
    "id": "GN_Moth_01",
    "name": "Moth",
    "type": "animals/insect/moth",
@@ -847,6 +1113,94 @@
      "part": "Wood grey",
      "swatch": 38,
      "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "GN_StinkBug_01",
+   "name": "Stink bug",
+   "type": "animals/insect/stink-bug",
+   "tags": [
+    "brown",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 300,
+   "size": [
+    0.014,
+    0.006,
+    0.02
+   ],
+   "glb": "models/GN_StinkBug_01.glb",
+   "thumb": "thumbs/GN_StinkBug_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Head and legs",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Pronotum",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Wasp_01",
+   "name": "Wasp",
+   "type": "animals/insect/wasp",
+   "tags": [
+    "black",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild",
+    "yellow"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 532,
+   "size": [
+    0.022,
+    0.012,
+    0.021
+   ],
+   "glb": "models/GN_Wasp_01.glb",
+   "thumb": "thumbs/GN_Wasp_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Thorax and bands",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     }
    ]
   },

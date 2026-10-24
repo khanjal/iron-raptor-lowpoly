@@ -421,6 +421,143 @@ def spider():
     return p
 
 
+# ===== The wider cast (issue #80: the creature list of Grounded, as real species), batch 1 ==========================
+@critter("beetles", "StinkBug")
+def stink_bug():
+    """A brown marmorated stink bug (about 15 mm): a shield-shaped body with a broad pronotum, a small head, long antennae and six legs."""
+    p = new("GN_StinkBug_01")
+    p.motion = "walk"
+    blob(p, "fabric_brown", (0, 1.5, 3.2), (5.5, 6.5, 2.8), n=6, rings=3)                   # the shield: scutellum and wing covers
+    blob(p, "tan", (0, -3.3, 3.5), (5.0, 2.4, 2.2), n=6, rings=2)                           # the broad pronotum with its pale edge
+    blob(p, "dark_brown", (0, -6.4, 3.1), (2.4, 1.8, 1.6), n=6, rings=1)                    # the head
+    antennae(p, "dark_brown", (1.2, -7.6, 3.4), (3.4, -12.0, 5.0), 0.4)
+    legs(p, "dark_brown", 3.2, (-3.5, -0.5, 3.0), 2.4, 3.5, 2.0, 0.5, dy=0.5)
+    return p
+
+
+@critter("flyers", "Housefly")
+def housefly():
+    """A housefly (about 7 mm): a grey thorax and abdomen, big red eyes, two clear wings held over the back, bristly black legs."""
+    p = new("GN_Housefly_01")
+    p.motion = "buzz"
+    blob(p, "fabric_grey", (0, 2.4, 2.5), (1.7, 2.6, 1.5), n=6, rings=2)                    # abdomen
+    blob(p, "fabric_grey", (0, -0.8, 2.8), (1.8, 1.8, 1.6), n=6, rings=2)                   # thorax
+    blob(p, "black", (0, -3.0, 2.5), (1.3, 1.0, 1.2), n=6, rings=1)                         # head
+    for s in (-1, 1):
+        ball_at(p, "cloth_red", (s * 1.0, -3.2, 2.9), 0.85, n=5)                            # the compound eyes
+        with flap(p, "Wing", s, (s * 0.6, -0.4, 4.2)):
+            wing(p, "clear_glass", None, ellipse_pts(2.9, 0.9, 2.9, 1.2), 4.3, tilt=18, side=s, thick=0.12)
+    legs(p, "black", 1.0, (-1.6, -0.4, 1.2), 1.9, 1.1, 0.8, 0.25, dy=0.4, move=False)
+    return p
+
+
+@critter("flyers", "Mosquito")
+def mosquito():
+    """A mosquito (about 6 mm): a slim banded body, a long proboscis, narrow wings and very long thin legs."""
+    p = new("GN_Mosquito_01")
+    p.motion = "buzz"
+    banded(p, ("wood_grey", "black"), (0, 3.4, 3.6), (0.8, 3.8, 0.8), n=6, rings=5)         # the abdomen, with bands
+    blob(p, "wood_grey", (0, -1.0, 3.8), (1.0, 1.6, 1.0), n=6, rings=2)                     # thorax
+    blob(p, "black", (0, -3.0, 3.8), (0.7, 0.7, 0.7), n=6, rings=1)                         # head
+    rod(p, "black", (0, -3.5, 3.7), (0, -6.9, 3.1), 0.2)                                    # the proboscis
+    for s in (-1, 1):
+        with flap(p, "Wing", s, (s * 0.4, -1.0, 4.7)):
+            wing(p, "clear_glass", None, ellipse_pts(2.7, 0.6, 2.7, 0.8), 4.8, tilt=15, side=s, thick=0.1)
+    antennae(p, "black", (0.3, -3.3, 4.2), (1.0, -5.4, 5.0), 0.12)
+    legs(p, "black", 0.6, (-1.8, -0.3, 1.3), 3.4, 3.5, 3.0, 0.15, dy=1.0, move=False)
+    return p
+
+
+@critter("flyers", "Wasp")
+def wasp():
+    """A common wasp (about 16 mm): a yellow and black banded abdomen on a thin waist, a black thorax, a yellow face and four clear wings."""
+    p = new("GN_Wasp_01")
+    p.motion = "buzz"
+    banded(p, ("paint_yellow", "black"), (0, 5.2, 4.2), (2.6, 5.0, 2.5), n=6, rings=5)       # the abdomen
+    blob(p, "black", (0, 0.4, 4.2), (0.7, 0.9, 0.7), n=6, rings=1)                          # the waist
+    blob(p, "black", (0, -2.4, 4.4), (2.5, 2.4, 2.4), n=6, rings=2)                         # the thorax
+    blob(p, "paint_yellow", (0, -6.0, 4.3), (2.1, 1.6, 1.9), n=6, rings=1)                  # the face
+    for s in (-1, 1):
+        ball_at(p, "black", (s * 1.5, -6.3, 4.8), 0.8, n=5)                                 # the eyes
+        with flap(p, "Wing", s, (s * 0.4, -2.0, 6.7)):
+            wing(p, "clear_glass", None, ellipse_pts(6.0, -2.6, 6.0, 1.8), 6.9, tilt=25, side=s, thick=0.18)
+            wing(p, "clear_glass", None, ellipse_pts(4.2, 0.3, 4.2, 1.3), 6.5, tilt=25, side=s, thick=0.18)
+    legs(p, "paint_yellow", 1.4, (-3.8, -2.4, -1.0), 3.0, 3.0, 1.6, 0.4, dy=0.5, move=False)
+    antennae(p, "black", (0.6, -7.2, 5.0), (1.6, -11.0, 6.8), 0.3)
+    return p
+
+
+@critter("beetles", "Cockroach")
+def cockroach():
+    """An American cockroach (about 35 mm): a flat reddish-brown oval body with a shield-like pronotum, a small head, spiny legs and very long antennae."""
+    p = new("GN_Cockroach_01")
+    p.motion = "walk"
+    blob(p, "rust_dark", (0, 2.0, 3.2), (6.0, 12.0, 3.0), n=8, rings=3)                     # the wings, folded over the abdomen
+    blob(p, "dark_brown", (0, -8.5, 3.5), (6.0, 3.5, 2.2), n=8, rings=2)                    # the pronotum
+    blob(p, "dark_brown", (0, -12.6, 3.0), (2.6, 2.0, 2.0), n=6, rings=1)                   # the head
+    for s in (-1, 1):
+        p.box("dark_brown", (s * 1.3, 14.4, 2.4), (0.8, 2.4, 0.8))                         # the cerci at the tail
+    legs(p, "dark_brown", 4.5, (-6.0, -1.0, 5.0), 3.0, 9.0, 3.5, 0.9, dy=1.5)
+    antennae(p, "dark_brown", (1.5, -14.0, 3.5), (8.0, -32.0, 6.0), 0.4)
+    return p
+
+
+@critter("hoppers", "Cricket")
+def cricket():
+    """A house cricket (about 20 mm): a dark brown body with a big head, folded wings, two big hind legs that kick and very long thin antennae."""
+    p = new("GN_Cricket_01")
+    p.motion = "hop"
+    blob(p, "dark_brown", (0, 4.0, 5.0), (3.2, 8.0, 3.2), n=6, rings=3)
+    blob(p, "black", (0, -3.0, 5.6), (3.0, 2.2, 2.6), n=6, rings=1)                         # the pronotum
+    blob(p, "dark_brown", (0, -6.5, 5.2), (2.8, 2.6, 2.8), n=6, rings=1)                    # the head
+    for s in (-1, 1):
+        p.box("fabric_brown", (s * 1.8, 3.0, 7.6), (3.0, 12.0, 0.6), rot=(0, s * 12, 0))   # the wing covers
+        with moving(p, f"Hind_{'L' if s > 0 else 'R'}", (s * 2.6, 2.5, 5.0)):                # the jumping leg: thigh up and back, shin down to the ground
+            rod(p, "dark_brown", (s * 2.6, 2.5, 5.0), (s * 5.5, 9.0, 10.0), 2.2)
+            rod(p, "fabric_brown", (s * 5.5, 9.0, 10.0), (s * 6.5, 5.0, 0.0), 1.0)
+        rod(p, "dark_brown", (s * 2.2, -3.5, 4.5), (s * 5.5, -5.5, 2.5), 1.1)
+        rod(p, "dark_brown", (s * 5.5, -5.5, 2.5), (s * 6.0, -8.0, 0.0), 0.8)
+        rod(p, "dark_brown", (s * 2.4, -0.5, 4.5), (s * 6.0, 0.5, 2.5), 1.1)
+        rod(p, "dark_brown", (s * 6.0, 0.5, 2.5), (s * 7.0, -0.5, 0.0), 0.8)
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 0.8, -9.0, 6.5)):
+            rod(p, "black", (s * 0.8, -9.0, 6.5), (s * 3.0, -26.0, 12.0), 0.35)
+    return p
+
+
+@critter("hoppers", "Mantis")
+def mantis():
+    """A praying mantis (about 60 mm): a long green body, a triangular head with big eyes, folded raptorial forelegs and four walking legs."""
+    p = new("GN_Mantis_01")
+    p.motion = "walk"
+    blob(p, "plant_green", (0, 12.0, 9.0), (3.2, 18.0, 3.0), n=6, rings=3)                  # the abdomen with the folded wings on it
+    blob(p, "corn_leaf", (0, -12.0, 11.0), (2.2, 10.0, 2.2), n=6, rings=2)                  # the long prothorax
+    blob(p, "plant_green", (0, -25.0, 12.0), (4.0, 2.2, 3.2), n=6, rings=1)                 # the triangular head
+    for s in (-1, 1):
+        ball_at(p, "black", (s * 3.6, -25.5, 13.0), 1.5, n=5)                               # the big eyes
+        p.box("leaf_dark", (s * 1.6, 8.0, 12.2), (1.8, 30.0, 0.6), rot=(0, s * 8, 0))      # the wing covers
+        rod(p, "plant_green", (s * 2.0, -18.0, 10.0), (s * 4.0, -27.0, 13.5), 1.5)           # the raptorial foreleg: coxa and femur held forward,
+        rod(p, "plant_green", (s * 4.0, -27.0, 13.5), (s * 3.0, -31.0, 8.0), 1.1)            # the tibia folded back against it
+    legs(p, "plant_green", 2.2, (-6.0, 4.0, 12.0), 8.5, 9.0, 6.0, 1.0, dy=1.5)
+    antennae(p, "plant_green", (1.2, -26.5, 14.0), (3.0, -32.0, 18.0), 0.3)
+    return p
+
+
+@critter("beetles", "Earwig")
+def earwig():
+    """A common earwig (about 15 mm): a slim dark brown body, a reddish head and pronotum and a pair of curved pincers at the tail."""
+    p = new("GN_Earwig_01")
+    p.motion = "walk"
+    blob(p, "dark_brown", (0, 2.0, 2.2), (2.4, 7.0, 1.8), n=6, rings=3)
+    blob(p, "rust_dark", (0, -4.5, 2.4), (2.5, 1.8, 1.7), n=6, rings=1)                     # the pronotum
+    blob(p, "rust_dark", (0, -7.0, 2.3), (2.0, 1.6, 1.6), n=6, rings=1)                     # the head
+    for s in (-1, 1):
+        rod(p, "black", (s * 0.7, 8.6, 2.0), (s * 2.3, 12.6, 2.0), 0.7)                     # the pincers: out and then curving in
+        rod(p, "black", (s * 2.3, 12.6, 2.0), (s * 1.4, 15.2, 2.0), 0.55)
+    legs(p, "rust_dark", 2.2, (-4.0, -1.5, 1.5), 1.6, 3.5, 1.6, 0.35, dy=0.8)
+    antennae(p, "rust_dark", (0.8, -8.2, 2.8), (2.4, -12.5, 4.0), 0.3)
+    return p
+
+
 def run():
     names = globals().get("INSECT_LIST")
     chosen = [k for k, (fn, g) in CRITTERS.items() if not names or k in names or g in names]
