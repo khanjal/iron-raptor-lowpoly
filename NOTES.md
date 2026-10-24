@@ -64,13 +64,13 @@ A model with no entry in `catalog.PAINTS` still gets `paintable` in the manifest
 
 ## The rest of the cast and the farm animals (2026-10-23)
 Added to the browser: 10 people (farmer's spouse, grandparent, worker, deputy, two FBI agents, Man in Black, Nordic, Shadow entity, Reptilian) and sheep, pig and goat: 135 models. IDs are what the scripts name them (`GP_FbiAgentF_01`, `GN_Sheep_faceted_01`). They have the same clips as the others (people Idle, Walk, Run, Sit; animals Idle, Walk).
-- **A trap found on the way:** the shared Blender file's `GlobalPalette` material had lost its image (an empty Image Texture node), so the first build of these 13 came out as flat white GLBs. `common.palette_material()` now relinks an empty node. A GLB without an embedded image shows white in the viewer; `check_site.py` does not catch that yet.
+- **A trap found on the way:** the shared Blender file's `GlobalPalette` material had lost its image (an empty Image Texture node), so the first build of these 13 came out as flat white GLBs. `common.palette_material()` now relinks an empty node. A GLB without an embedded image shows white in the viewer and the colour pickers cannot repaint it; `export_glb` now refuses to write one and `tests/test_glb_palette.py` checks every committed GLB.
 - Not looked at in the viewer beyond the thumbnails and the goat; their clips were keyed by the same scripts as the old ones but not checked one by one.
 
 ## More families (2026-10-23, branch `licence`)
 Added on request: produce variety, insects, sports gear, office gear. 68 new models, so the browser now has 131.
 - **Produce** (`contents.py`): the apple is one dimpled shape in `cloth_red`, `apple_green` and `apple_yellow` (the old FD_Apple_01 changed shape too); a banana bunch (+ Rotten), lemon, pear, purple and green grapes, strawberry.
-- **Insects** (`insects.py`, new): 12 models, real size in millimetres, resting poses, no rig. The viewer's camera floor and ground shadow were lowered (`site/viewer.js`: 0.05 to 0.004 m, 0.1 to 0.01 m) so a 1 cm model fills the frame.
+- **Insects** (`insects.py`, new): 12 models, real size in millimetres, resting poses (the site's GLBs are rigged from the marked moving parts by `insect_anim.py`). The viewer's camera floor and ground shadow were lowered (`site/viewer.js`: 0.05 to 0.004 m, 0.1 to 0.01 m) so a 1 cm model fills the frame.
 - **Sports** (`sports.py`, new, `GS_`): 27 models, a new top-level category `sports`. The tennis net is 12.8 m wide and the soccer goal 3.7 m, real size.
 - **Office** (`office.py`, new, `GO_`): 20 models, including a cubicle kit on a 1.5 m module and 8 with moving parts (drawers, trays, lids, doors, a flap). `art/data/interactions.json` grew by 281 lines.
 - **Palette**: 17 swatches appended (indices 108 to 124): apple, banana, lemon, pear, grape, berry, basketball orange, tennis yellow, leather, wing blue, beetle green, office grey and dark, laminate, water blue. Existing models are unchanged (append-only).
@@ -119,3 +119,5 @@ The game's room kit had its generators here from the first sync (`household.py`,
 - **Fixed:** the football was a box (`decor.py`): now a barrel with two cones and laces.
 - The ids keep the game's names, including `GH_Bookcase_02` to `05`, `GH_Rug_02` to `04` and `GH_Shelf_Wall_02` to `05` (the catalog test now allows `_01` to `_09`).
 - **Not done:** the ~325 room props the game never modelled (`docs/assets/room-assets-missing.md`, from the prop catalogue), the `_Modern`/`_Retro`/`_Damaged` style sets of the pieces above, and `contents.py` (the game's food and kit: 70 more pieces).
+## Ant and caterpillar segments (2026-10-24, branch `fix/insect-segments`)
+- Ant rebuilt with a petiole waist, legs on the mesosoma, mandibles and elbowed antenna bones; caterpillar rebuilt with 11 overlapping segments (the real animal has 13, cut for the triangle budget), true legs on the thorax and prolegs on four abdominal segments. Not done: mandibles attach only at their back ends, the caterpillar's `paintable` order in the manifest was patched by hand, the other insects were read, not rendered.
