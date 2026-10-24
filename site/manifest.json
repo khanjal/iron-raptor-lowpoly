@@ -14248,6 +14248,94 @@
    ]
   },
   {
+   "id": "GT_HoseCoil_01",
+   "name": "Garden hose, coiled",
+   "type": "tools/garden/hose",
+   "tags": [
+    "brass",
+    "coiled",
+    "farm",
+    "garden",
+    "green",
+    "hose",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 300,
+   "size": [
+    0.65,
+    0.122,
+    0.439
+   ],
+   "glb": "models/GT_HoseCoil_01.glb",
+   "thumb": "thumbs/GT_HoseCoil_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    },
+    {
+     "part": "Leaf dark",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Shadow",
+     "swatch": 44,
+     "hex": "#15131A"
+    }
+   ]
+  },
+  {
+   "id": "GT_PruningShears_01",
+   "name": "Pruning shears",
+   "type": "tools/garden/pruning-shears",
+   "tags": [
+    "garden",
+    "new",
+    "pruning",
+    "red",
+    "secateurs",
+    "shears",
+    "steel"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 92,
+   "size": [
+    0.195,
+    0.015,
+    0.099
+   ],
+   "glb": "models/GT_PruningShears_01.glb",
+   "thumb": "thumbs/GT_PruningShears_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 102,
+     "hex": "#C0392B"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
    "id": "GT_Spade_01",
    "name": "Spade",
    "type": "tools/garden/spade",
@@ -14288,6 +14376,50 @@
      "part": "Metal dark",
      "swatch": 3,
      "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Sprinkler_01",
+   "name": "Lawn sprinkler",
+   "type": "tools/garden/sprinkler",
+   "tags": [
+    "garden",
+    "lawn",
+    "new",
+    "sprinkler",
+    "steel",
+    "suburban",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 224,
+   "size": [
+    0.38,
+    0.069,
+    0.16
+   ],
+   "glb": "models/GT_Sprinkler_01.glb",
+   "thumb": "thumbs/GT_Sprinkler_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
     }
    ]
   },
@@ -14639,6 +14771,293 @@
      "part": "Metal dark",
      "swatch": 3,
      "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_FirePoker_01",
+   "name": "Fire poker",
+   "type": "tools/household/fire-poker",
+   "tags": [
+    "cabin",
+    "fireplace",
+    "iron",
+    "new",
+    "poker"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.723,
+    0.012,
+    0.07
+   ],
+   "glb": "models/GT_FirePoker_01.glb",
+   "thumb": "thumbs/GT_FirePoker_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Plunger_01",
+   "name": "Plunger",
+   "type": "tools/household/plunger",
+   "tags": [
+    "bathroom",
+    "kitchen",
+    "new",
+    "plunger",
+    "rubber",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 92,
+   "size": [
+    0.15,
+    0.545,
+    0.143
+   ],
+   "glb": "models/GT_Plunger_01.glb",
+   "thumb": "thumbs/GT_Plunger_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_CordReel_01",
+   "name": "Extension cord reel",
+   "type": "tools/workshop/cord-reel",
+   "tags": [
+    "cord",
+    "extension",
+    "garage",
+    "new",
+    "orange",
+    "reel",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 180,
+   "size": [
+    0.28,
+    0.328,
+    0.16
+   ],
+   "glb": "models/GT_CordReel_01.glb",
+   "thumb": "thumbs/GT_CordReel_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Basket orange",
+     "swatch": 124,
+     "hex": "#D9702A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GT_HandTruck_01",
+   "name": "Hand truck",
+   "type": "tools/workshop/hand-truck",
+   "tags": [
+    "blue",
+    "dolly",
+    "hand",
+    "new",
+    "steel",
+    "truck",
+    "warehouse"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 192,
+   "size": [
+    0.32,
+    1.115,
+    0.435
+   ],
+   "glb": "models/GT_HandTruck_01.glb",
+   "thumb": "thumbs/GT_HandTruck_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_PaintCan_01",
+   "name": "Paint can",
+   "type": "tools/workshop/paint-can",
+   "tags": [
+    "can",
+    "garage",
+    "metal",
+    "new",
+    "paint",
+    "shed",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 212,
+   "size": [
+    0.168,
+    0.233,
+    0.169
+   ],
+   "glb": "models/GT_PaintCan_01.glb",
+   "thumb": "thumbs/GT_PaintCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Label red",
+     "swatch": 102,
+     "hex": "#C0392B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "GT_RopeCoil_01",
+   "name": "Rope coil",
+   "type": "tools/workshop/rope-coil",
+   "tags": [
+    "barn",
+    "coil",
+    "farm",
+    "new",
+    "rope",
+    "tan"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 188,
+   "size": [
+    0.42,
+    0.092,
+    0.3
+   ],
+   "glb": "models/GT_RopeCoil_01.glb",
+   "thumb": "thumbs/GT_RopeCoil_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Hay",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Dark brown",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
+   "id": "GT_Sawhorse_01",
+   "name": "Sawhorse",
+   "type": "tools/workshop/sawhorse",
+   "tags": [
+    "garage",
+    "new",
+    "sawhorse",
+    "wood",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.8,
+    0.6,
+    0.425
+   ],
+   "glb": "models/GT_Sawhorse_01.glb",
+   "thumb": "thumbs/GT_Sawhorse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
     }
    ]
   },

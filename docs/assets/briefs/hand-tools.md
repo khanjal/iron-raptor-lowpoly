@@ -22,4 +22,4 @@ All lie flat on the floor along X, working end at +X (the watering can stands), 
 - Handles are six-sided; no emitters, no moving parts.
 
 ## Still to do in the category
-Fireplace tools, plunger, toilet brush, iron, lawn mower, garden hose and reel, fishing rods, car jack, air compressor, shop vac, paint cans and brushes, mallet, cordless drill, bench vise, angle and bench grinders, welder, table saw, chainsaw, sawhorses, extension cord reel, work light, hand truck, come-along, rope coil, tarp, battery, scythe, pruning shears, sprinkler, boot scraper, garden stakes, IV pole, creeper, shopping cart, pallet jack.
+Batch 2 built the plunger, rope coil, sawhorse, paint can, pruning shears, fire poker, hose, sprinkler, cord reel and hand truck; what is left is listed in `hand-tools-2.md`.
