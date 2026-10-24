@@ -134,16 +134,18 @@ def apply_paints(assets, paint_specs, entries, models=None):
 
 def apply_part_names(assets, entries=None):
     """Name the paintable parts after the area they colour where art/data/part_names.json says so: a part whose swatch has an entry for its model gets that name
-    (the first part stays "Main"). Parts of models with their own authored names (catalog.PAINTS) are left alone. Raises if two parts of a model end up with the same name."""
+    (the first part, the model's main colour, stays "Main" unless the entry has a "$main" name for it). Parts of models with their own authored names (catalog.PAINTS) are left alone. Raises if two parts of a model end up with the same name."""
     entries = entries or paints_tool.palette_entries()
     names = paints_tool.part_names()
     for a in assets:
         mapping = names.get(a["id"])
         if not mapping or a["id"] in catalog.PAINTS:
             continue
-        for p in a.get("paintable") or []:
+        for i, p in enumerate(a.get("paintable") or []):
             sw = entries[p["swatch"]][0]
-            if p["part"] != "Main" and sw in mapping:
+            if i == 0 and "$main" in mapping:
+                p["part"] = mapping["$main"]
+            elif i > 0 and sw in mapping:
                 p["part"] = mapping[sw]
         labels = [p["part"] for p in a.get("paintable") or []]
         if len(labels) != len(set(labels)):
@@ -217,9 +219,8 @@ def part_names_only():
     names = paints_tool.part_names()
     for a in doc["assets"]:
         if a["id"] not in catalog.PAINTS:
-            for p in a.get("paintable") or []:
-                if p["part"] != "Main":
-                    p["part"] = paints_tool.part_label(entries[p["swatch"]][0])
+            for i, p in enumerate(a.get("paintable") or []):
+                p["part"] = "Main" if i == 0 else paints_tool.part_label(entries[p["swatch"]][0])
     apply_part_names(doc["assets"], entries)
     path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     print("applied art/data/part_names.json to site/manifest.json")
