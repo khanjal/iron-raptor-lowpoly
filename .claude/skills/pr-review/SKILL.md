@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: How a pull request in khanjal/lowpoly-assets gets reviewed before it merges — a model review before it opens and another of the finished PR before merge, never by the model that wrote the code — including what to point reviewers at in a Blender-script, GLB and static-site project. Use this whenever opening a PR here, about to merge one, or asked to check, triage or review open PRs (including one from an outside contributor), including from a cloud session that has no memory of any of this.
+description: How a pull request in khanjal/iron-raptor-lowpoly gets reviewed before it merges — a model review before it opens and another of the finished PR before merge, never by the model that wrote the code — including what to point reviewers at in a Blender-script, GLB and static-site project. Use this whenever opening a PR here, about to merge one, or asked to check, triage or review open PRs (including one from an outside contributor), including from a cloud session that has no memory of any of this.
 ---
 
 # Reviewing a pull request before it merges

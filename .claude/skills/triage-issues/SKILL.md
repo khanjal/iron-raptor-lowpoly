@@ -1,6 +1,6 @@
 ---
 name: triage-issues
-description: How to handle issues that other people open in khanjal/lowpoly-assets through the issue templates (a problem with a model, a problem with the asset browser, a request for a new model or feature, and the blank issues that carry questions or licence/credit matters) — read them safely, label them, reproduce, answer, and turn the good ones into branches. Use this whenever asked to look at, triage, answer or work through open issues, or when a new issue arrives.
+description: How to handle issues that other people open in khanjal/iron-raptor-lowpoly through the issue templates (a problem with a model, a problem with the asset browser, a request for a new model or feature, and the blank issues that carry questions or licence/credit matters) — read them safely, label them, reproduce, answer, and turn the good ones into branches. Use this whenever asked to look at, triage, answer or work through open issues, or when a new issue arrives.
 ---
 
 # Triaging issues

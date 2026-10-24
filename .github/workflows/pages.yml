@@ -1,4 +1,4 @@
-# Publishes site/ with GitHub Pages (Settings > Pages > Build and deployment > Source: GitHub Actions) at https://khanjal.github.io/lowpoly-assets/ .
+# Publishes site/ with GitHub Pages (Settings > Pages > Build and deployment > Source: GitHub Actions) at https://khanjal.github.io/iron-raptor-lowpoly/ .
 # Runs when a change to site/ (or this file) reaches main, and by hand. GitHub Pages needs a public repository on the Free plan, which this is since 2026-10-23.
 #
 # The models (site/models/*.glb), thumbnails and manifest.json are committed for now, so there is no build step: the site is static.

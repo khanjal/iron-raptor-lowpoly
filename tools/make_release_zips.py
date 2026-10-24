@@ -1,6 +1,6 @@
 """Zip the models for a GitHub release (standard library only): one zip of every GLB and one per top-level category.
 
-    python tools/make_release_zips.py            # writes dist/lowpoly-assets-glb-all.zip, dist/lowpoly-assets-glb-<category>.zip ...
+    python tools/make_release_zips.py            # writes dist/iron-raptor-lowpoly-glb-all.zip, dist/iron-raptor-lowpoly-glb-<category>.zip ...
     python tools/make_release_zips.py OUTDIR
 
 Each zip holds `<id>.glb` files at its top level (and `<id>.interactions.json` next to the ones that have moving parts, lights, sounds or switches), plus CREDIT.txt (how to credit under CC BY 4.0) and LICENSE-MODELS. Which models go into which zip
@@ -18,9 +18,9 @@ Full text: LICENSE-MODELS (in this zip), https://creativecommons.org/licenses/by
 
 A line like this is enough, in a credits screen, README, store page or video description:
 
-  3D models by khanjal, from lowpoly-assets (https://github.com/khanjal/lowpoly-assets), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+  3D models by khanjal, from Iron Raptor Lowpoly (https://github.com/khanjal/iron-raptor-lowpoly), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 
-If you changed a model, say so. More: https://github.com/khanjal/lowpoly-assets/blob/main/LICENSES.md
+If you changed a model, say so. More: https://github.com/khanjal/iron-raptor-lowpoly/blob/main/LICENSES.md
 """
 
 
@@ -51,7 +51,7 @@ def build(out_dir, site=None, root=None):
     out_dir.mkdir(parents=True, exist_ok=True)
     paths = []
     for key, members in sorted(groups(assets).items()):
-        p = out_dir / f"lowpoly-assets-glb-{key}.zip"
+        p = out_dir / f"iron-raptor-lowpoly-glb-{key}.zip"
         write_zip(p, members, site, root)
         paths.append(p)
     return paths
