@@ -1,5 +1,6 @@
 """Insects and a spider for the wild (ladybug, bee, butterflies, dragonfly, beetle, ant, grasshopper, firefly, moth, spider, caterpillar). Flat faceted
-models, not rigged: each one is a resting pose, so a game can scatter them, or move and flap them with its own code.
+models. The FBX is a resting pose (not rigged). For the web viewer, insect_anim.py rigs each one from the moving parts marked here (wings, legs,
+antennae, caterpillar segments: `moving()`), and gives it Idle plus Fly, Walk or Hop clips; see build_rigged().
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/insects.py", run_name="__main__")
 Optional global INSECT_LIST (names). Exports Assets/Art/Global/Animals/Insects/GN_<Name>_01.fbx.
@@ -12,6 +13,7 @@ tail uses the palette's glow_amber, which the asset browser lights up.
 import importlib
 import math
 import sys
+from contextlib import nullcontext
 from pathlib import Path
 
 from mathutils import Vector
@@ -25,6 +27,7 @@ Prop = props_lib.Prop
 rod = props_lib.rod
 
 CRITTERS = {}
+RIGGED = False                  # True while insect_anim.py builds the rigged models: moving() then makes separate pieces
 MM = 0.001
 
 
@@ -44,7 +47,17 @@ def new(name):
     """A Prop whose parts are given in millimetres (scaled to metres when it is finished)."""
     p = Prop(name)
     p.post = _to_metres
+    p.bones = {}                    # role -> pivot (mm): the pieces insect_anim.py turns into bones
+    p.motion = None                 # which clips insect_anim.py gives it
     return p
+
+
+def moving(p, role, pivot):
+    """Everything added inside becomes a piece that turns about `pivot` (mm) in the rigged build; in the FBX it is still part of the one mesh."""
+    if not RIGGED:
+        return nullcontext()
+    p.bones[role] = tuple(pivot)
+    return p.part(role, pivot=pivot)
 
 
 def _profile(c, r, n, rings):
@@ -74,20 +87,29 @@ def ball_at(p, colour, c, r, n=5):
     props_lib.ball(p, colour, c, r, n=n, rings=2)
 
 
-def legs(p, colour, x, ys, z_hip, out, knee_up, w, dy=0.0):
-    """Three-jointed legs on both sides: hip under the body at (±x, y, z_hip), knee out and up, foot on the ground."""
+def legs(p, colour, x, ys, z_hip, out, knee_up, w, dy=0.0, move=True):
+    """Three-jointed legs on both sides: hip under the body at (±x, y, z_hip), knee out and up, foot on the ground. Each is a moving piece
+    Leg_<L|R><n> (n counts from the head) pivoting at its hip, unless move is False (legs tucked up in flight)."""
     for s in (-1, 1):
-        for y in ys:
+        for i, y in enumerate(ys):
             hip = (s * x, y, z_hip)
             knee = (s * (x + out * 0.7), y + dy * 0.5, z_hip + knee_up)
             foot = (s * (x + out), y + dy, 0.0)
-            rod(p, colour, hip, knee, w)
-            rod(p, colour, knee, foot, w)
+            with _maybe(p, move, f"Leg_{'L' if s > 0 else 'R'}{i}", hip):
+                rod(p, colour, hip, knee, w)
+                rod(p, colour, knee, foot, w)
+
+
+def _maybe(p, move, role, pivot):
+    """moving() when move is true, else a context that adds to the body."""
+    return moving(p, role, pivot) if move else nullcontext()
 
 
 def antennae(p, colour, base, tip, w, spread=1.0):
     for s in (-1, 1):
-        rod(p, colour, (s * base[0], base[1], base[2]), (s * tip[0] * spread, tip[1], tip[2]), w)
+        b = (s * base[0], base[1], base[2])
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", b):
+            rod(p, colour, b, (s * tip[0] * spread, tip[1], tip[2]), w)
 
 
 def ellipse_pts(cx, cy, a, b, n=8):
@@ -111,10 +133,16 @@ def wing(p, edge, fill, pts, z0, tilt=25.0, side=1, thick=0.5, inset=0.8):
         p.loft_rings(fill, [ring(small, thick), ring(small, thick * 1.8)])
 
 
+def flap(p, role, side, pivot):
+    """The wings added inside are one moving piece (Wing_L / Wing_R, or `role` + _L / _R) that flaps about the body line through `pivot`."""
+    return moving(p, f"{role}_{'L' if side > 0 else 'R'}", pivot)
+
+
 # ===== Insects ===================================================================================================
 @critter("beetles", "Ladybug")
 def ladybug():
     p = new("GN_Ladybug_01")
+    p.motion = "walk"
     blob(p, "cloth_red", (0, 1, 2.1), (3.5, 4.0, 1.9), n=8, rings=3)
     blob(p, "black", (0, -3.2, 1.8), (2.2, 1.5, 1.4), n=6)
     blob(p, "black", (0, -4.7, 1.4), (1.3, 1.0, 1.0), n=6, rings=1)
@@ -131,6 +159,7 @@ def ladybug():
 @critter("beetles", "Beetle")
 def beetle():
     p = new("GN_Beetle_01")
+    p.motion = "walk"
     blob(p, "beetle_green", (0, 3, 5.5), (7, 10, 4.5), n=8, rings=3)
     blob(p, "leaf_dark", (0, -7.5, 5.0), (5.5, 3.5, 3.5), n=8)
     blob(p, "black", (0, -11.5, 4.2), (3.0, 2.2, 2.5), n=6)
@@ -144,6 +173,7 @@ def beetle():
 @critter("beetles", "Firefly")
 def firefly():
     p = new("GN_Firefly_01")
+    p.motion = "walk"
     blob(p, "dark_brown", (0, 0.5, 2.9), (1.8, 3.6, 1.3), n=6)
     blob(p, "glow_amber", (0, 4.2, 2.4), (1.5, 1.6, 1.1), n=6)
     blob(p, "cloth_red", (0, -2.8, 2.9), (1.8, 1.4, 1.1), n=6)
@@ -156,29 +186,34 @@ def firefly():
 @critter("flyers", "Honeybee")
 def honeybee():
     p = new("GN_Honeybee_01")
+    p.motion = "buzz"
     banded(p, ("golden", "black"), (0, 3.0, 4.2), (2.8, 4.8, 2.6), n=6, rings=5)
     blob(p, "golden", (0, -2.2, 4.4), (2.7, 2.4, 2.5), n=6)
     blob(p, "black", (0, -5.2, 4.0), (1.8, 1.3, 1.7), n=6, rings=1)
     for s in (-1, 1):
-        wing(p, "clear_glass", None, ellipse_pts(4.5, -1.5, 4.5, 2.0), 6.5, tilt=35, side=s, thick=0.2)
-        wing(p, "clear_glass", None, ellipse_pts(3.2, 1.2, 3.2, 1.5), 6.0, tilt=35, side=s, thick=0.2)
-    legs(p, "black", 1.6, (-3.0, -1.6, -0.2), 3.0, 2.0, 0.8, 0.4, dy=0.8)
+        with flap(p, "Wing", s, (s * 0.3, -0.5, 6.3)):
+            wing(p, "clear_glass", None, ellipse_pts(4.5, -1.5, 4.5, 2.0), 6.5, tilt=35, side=s, thick=0.2)
+            wing(p, "clear_glass", None, ellipse_pts(3.2, 1.2, 3.2, 1.5), 6.0, tilt=35, side=s, thick=0.2)
+    legs(p, "black", 1.6, (-3.0, -1.6, -0.2), 3.0, 2.0, 0.8, 0.4, dy=0.8, move=False)
     antennae(p, "black", (0.6, -6.2, 4.6), (1.6, -8.5, 6.0), 0.3)
     return p
 
 
 def _butterfly(name, fill, tilt=28.0):
     p = new(name)
+    p.motion = "butterfly"
     blob(p, "black", (0, 0, 3.0), (1.1, 10, 1.1), n=6, rings=3)
     blob(p, "black", (0, -6, 3.2), (2.0, 3.0, 2.0), n=6)
     blob(p, "black", (0, -10.5, 3.2), (1.6, 1.4, 1.6), n=6, rings=1)
     fore = [(1.5, -6), (12, -22), (30, -27), (44, -21), (46, -12), (38, -2), (22, 3), (4, 2)]
     hind = [(1.5, 0), (20, 2), (32, 10), (30, 22), (18, 26), (8, 18), (2, 8)]
     for s in (-1, 1):
-        wing(p, "black", fill, hind, 2.0, tilt=tilt, side=s, thick=0.6)
-        wing(p, "black", fill, fore, 3.2, tilt=tilt, side=s, thick=0.6)
-        rod(p, "black", (s * 0.5, -11.0, 3.5), (s * 5.0, -24.0, 9.0), 0.4)
-        ball_at(p, "black", (s * 5.0, -24.0, 9.0), 0.8, n=4)
+        with flap(p, "Wing", s, (s * 1.0, -4.0, 2.6)):
+            wing(p, "black", fill, hind, 2.0, tilt=tilt, side=s, thick=0.6)
+            wing(p, "black", fill, fore, 3.2, tilt=tilt, side=s, thick=0.6)
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 0.5, -11.0, 3.5)):
+            rod(p, "black", (s * 0.5, -11.0, 3.5), (s * 5.0, -24.0, 9.0), 0.4)
+            ball_at(p, "black", (s * 5.0, -24.0, 9.0), 0.8, n=4)
     for s in (-1, 1):
         for y in (-6.0, -3.0):
             rod(p, "black", (s * 0.8, y, 2.2), (s * 2.2, y - 1.0, 0.0), 0.5)
@@ -198,35 +233,42 @@ def butterfly_blue():
 @critter("flyers", "Moth")
 def moth():
     p = new("GN_Moth_01")
+    p.motion = "moth"
     blob(p, "wood_grey", (0, 0, 3.0), (2.4, 7.0, 2.4), n=6, rings=3)
     blob(p, "wood_grey", (0, -8.0, 3.0), (2.0, 1.5, 2.0), n=6, rings=1)
     fore = [(1.5, -6), (14, -9), (24, -3), (22, 5), (10, 10), (2, 6)]
     hind = [(1.5, 2), (14, 6), (14, 14), (2, 12)]
     for s in (-1, 1):
-        wing(p, "dead_wood", "wood_grey", hind, 2.2, tilt=6, side=s, thick=0.4)
-        wing(p, "dead_wood", "linen", fore, 3.2, tilt=6, side=s, thick=0.4, inset=0.75)
-        rod(p, "wood_grey", (s * 0.8, -9.0, 3.4), (s * 4.5, -14.0, 5.0), 0.5)
-    legs(p, "wood_grey", 1.6, (-5.0, -2.0), 1.8, 2.0, 0.8, 0.5)
+        with flap(p, "Wing", s, (s * 1.0, 0.0, 2.7)):
+            wing(p, "dead_wood", "wood_grey", hind, 2.2, tilt=6, side=s, thick=0.4)
+            wing(p, "dead_wood", "linen", fore, 3.2, tilt=6, side=s, thick=0.4, inset=0.75)
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 0.8, -9.0, 3.4)):
+            rod(p, "wood_grey", (s * 0.8, -9.0, 3.4), (s * 4.5, -14.0, 5.0), 0.5)
+    legs(p, "wood_grey", 1.6, (-5.0, -2.0), 1.8, 2.0, 0.8, 0.5, move=False)
     return p
 
 
 @critter("flyers", "Dragonfly")
 def dragonfly():
     p = new("GN_Dragonfly_01")
+    p.motion = "dragonfly"
     banded(p, ("trailer_teal", "black"), (0, 22, 6.0), (1.4, 25, 1.4), n=6, rings=7)
     blob(p, "tile_green", (0, -6, 6.5), (3.5, 5, 3.5), n=8)
     blob(p, "black", (0, -12, 6.8), (3.0, 2.2, 2.8), n=6, rings=1)
     for s in (-1, 1):
         ball_at(p, "tile_blue", (s * 2.6, -12.5, 7.8), 2.3, n=6)
-        wing(p, "clear_glass", None, ellipse_pts(11, -6, 11, 2.8, n=10), 9.6, tilt=6, side=s, thick=0.3)
-        wing(p, "clear_glass", None, ellipse_pts(11, -1, 11, 3.5, n=10), 9.0, tilt=6, side=s, thick=0.3)
-    legs(p, "black", 1.5, (-9.0, -6.0, -3.0), 4.5, 3.0, 1.5, 0.5)
+        with flap(p, "WingF", s, (s * 1.5, -6.0, 9.4)):
+            wing(p, "clear_glass", None, ellipse_pts(11, -6, 11, 2.8, n=10), 9.6, tilt=6, side=s, thick=0.3)
+        with flap(p, "WingH", s, (s * 1.5, -1.0, 8.8)):
+            wing(p, "clear_glass", None, ellipse_pts(11, -1, 11, 3.5, n=10), 9.0, tilt=6, side=s, thick=0.3)
+    legs(p, "black", 1.5, (-9.0, -6.0, -3.0), 4.5, 3.0, 1.5, 0.5, move=False)
     return p
 
 
 @critter("hoppers", "Ant")
 def ant():
     p = new("GN_Ant_01")
+    p.motion = "walk"
     blob(p, "black", (0, -3.2, 2.2), (1.0, 1.1, 0.9), n=6, rings=1)
     blob(p, "rust_dark", (0, -0.8, 2.4), (0.8, 1.3, 0.8), n=6, rings=1)
     blob(p, "black", (0, 2.4, 2.4), (1.3, 1.9, 1.2), n=6)
@@ -240,39 +282,46 @@ def ant():
 @critter("hoppers", "Grasshopper")
 def grasshopper():
     p = new("GN_Grasshopper_01")
+    p.motion = "hop"
     blob(p, "corn_leaf", (0, 8, 8.0), (3.5, 14, 3.5), n=6, rings=3)
     blob(p, "corn_leaf", (0, -6, 8.5), (4.0, 5, 4.0), n=6)
     blob(p, "corn_leaf", (0, -13, 8.0), (3.5, 4, 4.0), n=6)
     for s in (-1, 1):
         ball_at(p, "black", (s * 3.2, -13, 9.5), 1.2, n=5)
         p.box("leaf_dark", (s * 1.8, 9, 11.6), (3.2, 24, 0.8), rot=(0, s * 10, 0))
-        rod(p, "corn_leaf", (s * 3.0, 2, 8.0), (s * 6.0, 12, 14.0), 3.0)
-        rod(p, "fabric_brown", (s * 6.0, 12, 14.0), (s * 7.5, 6, 0.0), 1.4)
+        with moving(p, f"Hind_{'L' if s > 0 else 'R'}", (s * 3.0, 2, 8.0)):          # the big jumping leg: thigh up and back, shin down to the ground
+            rod(p, "corn_leaf", (s * 3.0, 2, 8.0), (s * 6.0, 12, 14.0), 3.0)
+            rod(p, "fabric_brown", (s * 6.0, 12, 14.0), (s * 7.5, 6, 0.0), 1.4)
         rod(p, "corn_leaf", (s * 2.5, -6, 6.0), (s * 6.0, -9, 3.0), 1.3)
         rod(p, "corn_leaf", (s * 6.0, -9, 3.0), (s * 6.5, -12, 0.0), 1.0)
         rod(p, "corn_leaf", (s * 2.5, -3, 6.0), (s * 6.5, -2, 3.0), 1.3)
         rod(p, "corn_leaf", (s * 6.5, -2, 3.0), (s * 7.5, -3, 0.0), 1.0)
-        rod(p, "black", (s * 1.0, -16, 10.0), (s * 4.0, -30, 16.0), 0.5)
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 1.0, -16, 10.0)):
+            rod(p, "black", (s * 1.0, -16, 10.0), (s * 4.0, -30, 16.0), 0.5)
     return p
 
 
 @critter("hoppers", "Caterpillar")
 def caterpillar():
     p = new("GN_Caterpillar_01")
+    p.motion = "caterpillar"
     for i in range(7):
         y = -11.0 + 4.0 * i
         z = 3.2 + 1.5 * math.sin(math.pi * i / 6)
-        blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (3.0, 2.4, 2.8), n=6, rings=1)
-        p.box("paint_yellow", (0, y, z + 2.7), (1.6, 1.0, 0.5))
-        for s in (-1, 1):
-            p.box("plant_green", (s * 1.8, y, 1.0), (1.0, 1.4, 2.0))
-    blob(p, "cloth_red", (0, -15.5, 3.4), (2.8, 2.2, 2.6), n=6, rings=1)
+        with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the rear segment is the body the others move against
+            blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (3.0, 2.4, 2.8), n=6, rings=1)
+            p.box("paint_yellow", (0, y, z + 2.7), (1.6, 1.0, 0.5))
+            for s in (-1, 1):
+                p.box("plant_green", (s * 1.8, y, 1.0), (1.0, 1.4, 2.0))
+    with moving(p, "Head", (0, -13.5, 2.0)):
+        blob(p, "cloth_red", (0, -15.5, 3.4), (2.8, 2.2, 2.6), n=6, rings=1)
     return p
 
 
 @critter("arachnids", "Spider")
 def spider():
     p = new("GN_Spider_01")
+    p.motion = "spider"
     blob(p, "dark_brown", (0, -2, 3.0), (2.6, 2.6, 1.8), n=8)
     blob(p, "dark_brown", (0, 3.2, 3.4), (3.2, 4.0, 3.0), n=8, rings=3)
     p.box("tan", (0, 3.0, 6.3), (1.4, 3.0, 0.4))
@@ -282,8 +331,9 @@ def spider():
             hip = (s * 1.6, y, 3.0)
             knee = (s * 8.0, y + dy * 0.8, 7.0)
             foot = (s * 13.0, y + dy * 1.6, 0.0)
-            rod(p, "black", hip, knee, 0.6)
-            rod(p, "black", knee, foot, 0.6)
+            with moving(p, f"Leg_{'L' if s > 0 else 'R'}{i}", hip):
+                rod(p, "black", hip, knee, 0.6)
+                rod(p, "black", knee, foot, 0.6)
     return p
 
 

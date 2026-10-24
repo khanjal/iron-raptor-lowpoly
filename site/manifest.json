@@ -23,6 +23,52 @@
     "index": 107,
     "hex": "#FFB938"
    }
+  ],
+  "common": [
+   {
+    "name": "Red",
+    "hex": "#B8443B"
+   },
+   {
+    "name": "Orange",
+    "hex": "#D9702A"
+   },
+   {
+    "name": "Yellow",
+    "hex": "#E0B83A"
+   },
+   {
+    "name": "Green",
+    "hex": "#3F7D3A"
+   },
+   {
+    "name": "Blue",
+    "hex": "#2F5F8F"
+   },
+   {
+    "name": "Purple",
+    "hex": "#6E4FA0"
+   },
+   {
+    "name": "Pink",
+    "hex": "#EFB3AC"
+   },
+   {
+    "name": "Brown",
+    "hex": "#7A5A44"
+   },
+   {
+    "name": "White",
+    "hex": "#E6E2D6"
+   },
+   {
+    "name": "Grey",
+    "hex": "#8A8D91"
+   },
+   {
+    "name": "Black",
+    "hex": "#1B1B1E"
+   }
   ]
  },
  "assets": [
@@ -39,7 +85,7 @@
     "eight-legs",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 364,
    "size": [
@@ -50,8 +96,23 @@
    "glb": "models/GN_Spider_01.glb",
    "thumb": "thumbs/GN_Spider_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_Cow_faceted_01",
@@ -81,7 +142,70 @@
     "Idle",
     "Walk"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Pink",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
+   "id": "GN_Goat_faceted_01",
+   "name": "Goat",
+   "type": "animals/farm/goat",
+   "tags": [
+    "animal",
+    "farm",
+    "horns",
+    "livestock",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 796,
+   "size": [
+    0.361,
+    1.156,
+    1.466
+   ],
+   "glb": "models/GN_Goat_faceted_01.glb",
+   "thumb": "thumbs/GN_Goat_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Horn cream",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    }
+   ]
   },
   {
    "id": "GN_ChickenHen_faceted_01",
@@ -107,7 +231,24 @@
    "thumb": "thumbs/GN_ChickenHen_faceted_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Straw",
+     "swatch": 10,
+     "hex": "#D9B957"
+    }
+   ]
   },
   {
    "id": "GN_Horse_faceted_01",
@@ -136,7 +277,102 @@
     "Idle",
     "Walk"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Pig_faceted_01",
+   "name": "Pig",
+   "type": "animals/farm/pig",
+   "tags": [
+    "animal",
+    "farm",
+    "livestock",
+    "pink",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 672,
+   "size": [
+    0.6,
+    0.87,
+    1.634
+   ],
+   "glb": "models/GN_Pig_faceted_01.glb",
+   "thumb": "thumbs/GN_Pig_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Sheep_faceted_01",
+   "name": "Sheep",
+   "type": "animals/farm/sheep",
+   "tags": [
+    "animal",
+    "farm",
+    "livestock",
+    "quadruped",
+    "rural",
+    "white",
+    "wool"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 672,
+   "size": [
+    0.56,
+    0.85,
+    1.311
+   ],
+   "glb": "models/GN_Sheep_faceted_01.glb",
+   "thumb": "thumbs/GN_Sheep_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_Ant_01",
@@ -150,7 +386,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 300,
    "size": [
@@ -161,8 +397,23 @@
    "glb": "models/GN_Ant_01.glb",
    "thumb": "thumbs/GN_Ant_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
   },
   {
    "id": "GN_Honeybee_01",
@@ -179,7 +430,7 @@
     "wild",
     "yellow"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 428,
    "size": [
@@ -190,8 +441,23 @@
    "glb": "models/GN_Honeybee_01.glb",
    "thumb": "thumbs/GN_Honeybee_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 34,
+     "hex": "#D9A441"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_Beetle_01",
@@ -205,7 +471,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 372,
    "size": [
@@ -216,11 +482,31 @@
    "glb": "models/GN_Beetle_01.glb",
    "thumb": "thumbs/GN_Beetle_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 128,
+     "hex": "#2F8F5A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Leaf dark",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    }
+   ]
   },
   {
-   "id": "GN_Butterfly_Blue_01",
+   "id": "GN_Butterfly_01",
    "name": "Butterfly",
    "type": "animals/insect/butterfly",
    "tags": [
@@ -232,7 +518,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 468,
    "size": [
@@ -240,10 +526,13 @@
     0.025,
     0.053
    ],
-   "glb": "models/GN_Butterfly_Blue_01.glb",
-   "thumb": "thumbs/GN_Butterfly_Blue_01.png",
+   "glb": "models/GN_Butterfly_01.glb",
+   "thumb": "thumbs/GN_Butterfly_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -266,6 +555,9 @@
      },
      "was": "GN_Butterfly_Monarch_01"
     }
+   ],
+   "aliases": [
+    "GN_Butterfly_Blue_01"
    ]
   },
   {
@@ -280,7 +572,7 @@
     "larva",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 508,
    "size": [
@@ -291,8 +583,33 @@
    "glb": "models/GN_Caterpillar_01.glb",
    "thumb": "thumbs/GN_Caterpillar_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Corn leaf",
+     "swatch": 49,
+     "hex": "#8DB752"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
   },
   {
    "id": "GN_Dragonfly_01",
@@ -306,7 +623,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 564,
    "size": [
@@ -317,8 +634,33 @@
    "glb": "models/GN_Dragonfly_01.glb",
    "thumb": "thumbs/GN_Dragonfly_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Tile green",
+     "swatch": 72,
+     "hex": "#7FA98A"
+    },
+    {
+     "part": "Trailer teal",
+     "swatch": 89,
+     "hex": "#5FA5A0"
+    },
+    {
+     "part": "Tile blue",
+     "swatch": 71,
+     "hex": "#7FB3C8"
+    }
+   ]
   },
   {
    "id": "GN_Firefly_01",
@@ -333,7 +675,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 332,
    "size": [
@@ -344,8 +686,28 @@
    "glb": "models/GN_Firefly_01.glb",
    "thumb": "thumbs/GN_Firefly_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
   },
   {
    "id": "GN_Grasshopper_01",
@@ -360,7 +722,7 @@
     "rural",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 408,
    "size": [
@@ -371,8 +733,33 @@
    "glb": "models/GN_Grasshopper_01.glb",
    "thumb": "thumbs/GN_Grasshopper_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Hop"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 49,
+     "hex": "#8DB752"
+    },
+    {
+     "part": "Leaf dark",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_Ladybug_01",
@@ -387,7 +774,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 464,
    "size": [
@@ -398,8 +785,23 @@
    "glb": "models/GN_Ladybug_01.glb",
    "thumb": "thumbs/GN_Ladybug_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_Moth_01",
@@ -413,7 +815,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 336,
    "size": [
@@ -424,8 +826,28 @@
    "glb": "models/GN_Moth_01.glb",
    "thumb": "thumbs/GN_Moth_01.png",
    "parts": {},
-   "clips": [],
-   "variants": []
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 55,
+     "hex": "#7A7064"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
   },
   {
    "id": "GN_CatTabby_faceted_01",
@@ -453,7 +875,19 @@
     "Idle",
     "Walk"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ]
   },
   {
    "id": "GN_DogCollie_faceted_01",
@@ -485,7 +919,19 @@
     "Trot",
     "Run"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GN_DogHusky_faceted_01",
@@ -517,7 +963,19 @@
     "Trot",
     "Run"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Grey cat",
+     "swatch": 37,
+     "hex": "#7C8088"
+    }
+   ]
   },
   {
    "id": "GI_Fridge_01",
@@ -582,7 +1040,24 @@
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
   },
   {
    "id": "GI_Fridge_Damaged_01",
@@ -644,7 +1119,24 @@
     "GI_Fridge_Dispenser_01",
     "GI_Fridge_Retro_01"
    ],
-   "interactions": "models/GI_Fridge_Damaged_01.interactions.json"
+   "interactions": "models/GI_Fridge_Damaged_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
   },
   {
    "id": "GI_Fridge_Dispenser_01",
@@ -727,7 +1219,24 @@
     "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
-   "interactions": "models/GI_Fridge_Dispenser_01.interactions.json"
+   "interactions": "models/GI_Fridge_Dispenser_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GI_Fridge_Modern_01",
@@ -808,7 +1317,24 @@
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_Modern_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GI_Fridge_Retro_01",
@@ -858,7 +1384,24 @@
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_Retro_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Cream",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
   },
   {
    "id": "GI_Microwave_01",
@@ -899,7 +1442,29 @@
    "clips": [],
    "variants": [],
    "interactions": "models/GI_Microwave_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
   },
   {
    "id": "GO_Copier_01",
@@ -988,7 +1553,29 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_Copier_01.interactions.json"
+   "interactions": "models/GO_Copier_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
   },
   {
    "id": "GO_Printer_Desktop_01",
@@ -1046,7 +1633,29 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_Printer_Desktop_01.interactions.json"
+   "interactions": "models/GO_Printer_Desktop_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    }
+   ]
   },
   {
    "id": "GO_Shredder_01",
@@ -1088,7 +1697,19 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_Shredder_01.interactions.json"
+   "interactions": "models/GO_Shredder_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GO_WaterCooler_01",
@@ -1131,7 +1752,29 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_WaterCooler_01.interactions.json"
+   "interactions": "models/GO_WaterCooler_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GK_Door_Exterior_01",
@@ -1155,7 +1798,24 @@
    "thumb": "thumbs/GK_Door_Exterior_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
   },
   {
    "id": "GK_Wall_Window_Barn_01",
@@ -1233,6 +1893,18 @@
    "clips": [],
    "variants": [
     "GK_Wall_Window_Barn_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 67,
+     "hex": "#A8553F"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
    ]
   },
   {
@@ -1260,7 +1932,29 @@
    "thumb": "thumbs/GO_Workstation_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    }
+   ]
   },
   {
    "id": "GO_Phone_01",
@@ -1285,7 +1979,24 @@
    "thumb": "thumbs/GO_Phone_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    }
+   ]
   },
   {
    "id": "GD_TV_Flat_Modern_01",
@@ -1312,7 +2023,24 @@
    "clips": [],
    "variants": [],
    "interactions": "models/GD_TV_Flat_Modern_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
   },
   {
    "id": "GD_TableLamp_Retro_01",
@@ -1338,7 +2066,24 @@
    "clips": [],
    "variants": [],
    "interactions": "models/GD_TableLamp_Retro_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Tractor green",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
   },
   {
    "id": "GD_NeonSign_01",
@@ -1367,7 +2112,19 @@
    "clips": [],
    "variants": [],
    "interactions": "models/GD_NeonSign_01.interactions.json",
-   "lights": 1
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
   },
   {
    "id": "GD_PottedPlant_01",
@@ -1391,7 +2148,24 @@
    "thumb": "thumbs/GD_PottedPlant_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Terracotta",
+     "swatch": 79,
+     "hex": "#C0643A"
+    },
+    {
+     "part": "Dirt",
+     "swatch": 9,
+     "hex": "#7A5C3E"
+    }
+   ]
   },
   {
    "id": "GD_Clock_Wall_Retro_01",
@@ -1415,7 +2189,24 @@
    "thumb": "thumbs/GD_Clock_Wall_Retro_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
   },
   {
    "id": "GT_Barrel_01",
@@ -1439,7 +2230,24 @@
    "thumb": "thumbs/GT_Barrel_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
   },
   {
    "id": "GT_HayBale_Round_01",
@@ -1463,7 +2271,19 @@
    "thumb": "thumbs/GT_HayBale_Round_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "FM_Scarecrow_01",
@@ -1487,7 +2307,29 @@
    "thumb": "thumbs/FM_Scarecrow_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Denim",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Hay",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    }
+   ]
   },
   {
    "id": "FM_DogHouse_01",
@@ -1510,7 +2352,19 @@
    "thumb": "thumbs/FM_DogHouse_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GI_Mailbox_01",
@@ -1567,7 +2421,24 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GI_Mailbox_01.interactions.json"
+   "interactions": "models/GI_Mailbox_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
   },
   {
    "id": "GI_Toolbox_01",
@@ -1610,7 +2481,19 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GI_Toolbox_01.interactions.json"
+   "interactions": "models/GI_Toolbox_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
   },
   {
    "id": "GT_Wheelbarrow_01",
@@ -1633,7 +2516,24 @@
    "thumb": "thumbs/GT_Wheelbarrow_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
    "id": "FD_BreadLoaf_01",
@@ -1656,7 +2556,19 @@
    "thumb": "thumbs/FD_BreadLoaf_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Dough",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    }
+   ]
   },
   {
    "id": "FD_Pie_01",
@@ -1679,7 +2591,24 @@
    "thumb": "thumbs/FD_Pie_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Dough",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    }
+   ]
   },
   {
    "id": "FD_Hamburger_01",
@@ -1702,7 +2631,29 @@
    "thumb": "thumbs/FD_Hamburger_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
   },
   {
    "id": "FD_Apple_01",
@@ -1829,7 +2780,7 @@
    ]
   },
   {
-   "id": "FD_Grapes_Green_01",
+   "id": "FD_Grapes_01",
    "name": "Grapes",
    "type": "food/produce/grapes",
    "tags": [
@@ -1847,8 +2798,8 @@
     0.076,
     0.076
    ],
-   "glb": "models/FD_Grapes_Green_01.glb",
-   "thumb": "thumbs/FD_Grapes_Green_01.png",
+   "glb": "models/FD_Grapes_01.glb",
+   "thumb": "thumbs/FD_Grapes_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -1873,6 +2824,9 @@
      },
      "was": "FD_Grapes_Purple_01"
     }
+   ],
+   "aliases": [
+    "FD_Grapes_Green_01"
    ]
   },
   {
@@ -1897,7 +2851,14 @@
    "thumb": "thumbs/FD_Lemon_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 119,
+     "hex": "#F2DC3C"
+    }
+   ]
   },
   {
    "id": "FD_Pear_01",
@@ -1920,7 +2881,24 @@
    "thumb": "thumbs/FD_Pear_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 120,
+     "hex": "#B5C24A"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Bark",
+     "swatch": 51,
+     "hex": "#5A4630"
+    }
+   ]
   },
   {
    "id": "FD_Strawberry_01",
@@ -1944,7 +2922,19 @@
    "thumb": "thumbs/FD_Strawberry_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 123,
+     "hex": "#C8243A"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ]
   },
   {
    "id": "GH_Bed_Double_Modern_01",
@@ -1967,7 +2957,24 @@
    "thumb": "thumbs/GH_Bed_Double_Modern_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
   },
   {
    "id": "GO_Cubicle_OverheadBin_01",
@@ -2010,7 +3017,19 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_Cubicle_OverheadBin_01.interactions.json"
+   "interactions": "models/GO_Cubicle_OverheadBin_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
+   ]
   },
   {
    "id": "GO_Cubicle_Panel_Glass_01",
@@ -2039,6 +3058,18 @@
    "variants": [
     "GO_Cubicle_Panel_Low_01",
     "GO_Cubicle_Panel_High_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
    ]
   },
   {
@@ -2068,6 +3099,18 @@
    "variants": [
     "GO_Cubicle_Panel_Low_01",
     "GO_Cubicle_Panel_Glass_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
    ]
   },
   {
@@ -2097,6 +3140,18 @@
    "variants": [
     "GO_Cubicle_Panel_High_01",
     "GO_Cubicle_Panel_Glass_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
    ]
   },
   {
@@ -2123,7 +3178,29 @@
    "thumb": "thumbs/GO_Cubicle_Pod_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Laminate",
+     "swatch": 131,
+     "hex": "#D6C6A5"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GO_Cubicle_Worksurface_01",
@@ -2149,7 +3226,24 @@
    "thumb": "thumbs/GO_Cubicle_Worksurface_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 131,
+     "hex": "#D6C6A5"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GO_Chair_Office_01",
@@ -2174,7 +3268,24 @@
    "thumb": "thumbs/GO_Chair_Office_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 130,
+     "hex": "#5C6066"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
    "id": "GO_ConferenceTable_01",
@@ -2199,7 +3310,24 @@
    "thumb": "thumbs/GO_ConferenceTable_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Laminate",
+     "swatch": 131,
+     "hex": "#D6C6A5"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
+   ]
   },
   {
    "id": "GO_Desk_L_01",
@@ -2224,7 +3352,19 @@
    "thumb": "thumbs/GO_Desk_L_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
   },
   {
    "id": "GO_Desk_Steel_01",
@@ -2301,7 +3441,24 @@
    "variants": [
     "GO_Desk_Wood_01"
    ],
-   "interactions": "models/GO_Desk_Steel_01.interactions.json"
+   "interactions": "models/GO_Desk_Steel_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GO_Desk_Wood_01",
@@ -2376,7 +3533,24 @@
    "variants": [
     "GO_Desk_Steel_01"
    ],
-   "interactions": "models/GO_Desk_Wood_01.interactions.json"
+   "interactions": "models/GO_Desk_Wood_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    },
+    {
+     "part": "Laminate",
+     "swatch": 131,
+     "hex": "#D6C6A5"
+    }
+   ]
   },
   {
    "id": "GO_FilingCabinet_01",
@@ -2464,7 +3638,19 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GO_FilingCabinet_01.interactions.json"
+   "interactions": "models/GO_FilingCabinet_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Office grey",
+     "swatch": 129,
+     "hex": "#B8BBBE"
+    }
+   ]
   },
   {
    "id": "GO_Wastebasket_01",
@@ -2489,7 +3675,29 @@
    "thumb": "thumbs/GO_Wastebasket_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    }
+   ]
   },
   {
    "id": "GO_Whiteboard_Stand_01",
@@ -2514,7 +3722,24 @@
    "thumb": "thumbs/GO_Whiteboard_Stand_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
   },
   {
    "id": "GH_Armchair_Retro_01",
@@ -2537,7 +3762,19 @@
    "thumb": "thumbs/GH_Armchair_Retro_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
   },
   {
    "id": "GH_Sofa_Damaged_01",
@@ -2563,6 +3800,13 @@
    "variants": [
     "GH_Sofa_Modern_01",
     "GH_Sofa_Retro_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
    ]
   },
   {
@@ -2590,6 +3834,18 @@
    "variants": [
     "GH_Sofa_Retro_01",
     "GH_Sofa_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
    ]
   },
   {
@@ -2617,6 +3873,18 @@
    "variants": [
     "GH_Sofa_Modern_01",
     "GH_Sofa_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
    ]
   },
   {
@@ -2642,7 +3910,29 @@
    "thumb": "thumbs/GH_Bookcase_Modern_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
   },
   {
    "id": "GI_Chest_01",
@@ -2684,7 +3974,24 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GI_Chest_01.interactions.json"
+   "interactions": "models/GI_Chest_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
   },
   {
    "id": "GI_Dresser_01",
@@ -2756,7 +4063,19 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GI_Dresser_01.interactions.json"
+   "interactions": "models/GI_Dresser_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
   },
   {
    "id": "GI_Locker_01",
@@ -2798,7 +4117,24 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GI_Locker_01.interactions.json"
+   "interactions": "models/GI_Locker_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
   },
   {
    "id": "GI_Wardrobe_01",
@@ -2856,7 +4192,19 @@
    "variants": [
     "GI_Wardrobe_Damaged_01"
    ],
-   "interactions": "models/GI_Wardrobe_01.interactions.json"
+   "interactions": "models/GI_Wardrobe_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GI_Wardrobe_Damaged_01",
@@ -2914,7 +4262,19 @@
    "variants": [
     "GI_Wardrobe_01"
    ],
-   "interactions": "models/GI_Wardrobe_Damaged_01.interactions.json"
+   "interactions": "models/GI_Wardrobe_Damaged_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
   },
   {
    "id": "FM_TreeOak_01",
@@ -2939,7 +4299,24 @@
    "thumb": "thumbs/FM_TreeOak_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Corn leaf",
+     "swatch": 49,
+     "hex": "#8DB752"
+    },
+    {
+     "part": "Bark",
+     "swatch": 51,
+     "hex": "#5A4630"
+    }
+   ]
   },
   {
    "id": "FM_TreePine_01",
@@ -2964,7 +4341,19 @@
    "thumb": "thumbs/FM_TreePine_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 52,
+     "hex": "#2F5A3A"
+    },
+    {
+     "part": "Bark",
+     "swatch": 51,
+     "hex": "#5A4630"
+    }
+   ]
   },
   {
    "id": "GP_Grey_01",
@@ -2993,7 +4382,147 @@
     "Run",
     "Sit"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GP_Nordic_01",
+   "name": "Nordic alien",
+   "type": "people/alien/nordic",
+   "tags": [
+    "alien",
+    "blond",
+    "glow",
+    "humanoid",
+    "pale",
+    "robe",
+    "sci-fi",
+    "tall"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1006,
+   "size": [
+    1.907,
+    2.108,
+    0.401
+   ],
+   "glb": "models/GP_Nordic_01.glb",
+   "thumb": "thumbs/GP_Nordic_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Reptilian_01",
+   "name": "Reptilian alien",
+   "type": "people/alien/reptilian",
+   "tags": [
+    "alien",
+    "crest",
+    "green",
+    "humanoid",
+    "scaled",
+    "sci-fi",
+    "tail"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1344,
+   "size": [
+    2.04,
+    2.012,
+    1.313
+   ],
+   "glb": "models/GP_Reptilian_01.glb",
+   "thumb": "thumbs/GP_Reptilian_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Mould",
+     "swatch": 101,
+     "hex": "#6F7F4A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Shadow_01",
+   "name": "Shadow entity",
+   "type": "people/alien/shadow",
+   "tags": [
+    "alien",
+    "dark",
+    "glow",
+    "horror",
+    "humanoid",
+    "sci-fi",
+    "tall"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 948,
+   "size": [
+    2.443,
+    2.071,
+    0.358
+   ],
+   "glb": "models/GP_Shadow_01.glb",
+   "thumb": "thumbs/GP_Shadow_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 44,
+     "hex": "#15131A"
+    }
+   ]
   },
   {
    "id": "GP_Farmer_01",
@@ -3026,7 +4555,93 @@
     "Run",
     "Sit"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 28,
+     "hex": "#A8453A"
+    },
+    {
+     "part": "Denim",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Skin tan",
+     "swatch": 24,
+     "hex": "#C58C65"
+    },
+    {
+     "part": "Hair grey",
+     "swatch": 31,
+     "hex": "#B9B6B0"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GP_Grandparent_01",
+   "name": "Grandparent",
+   "type": "people/civilian/grandparent",
+   "tags": [
+    "cardigan",
+    "elder",
+    "farm",
+    "fedora",
+    "grey",
+    "human",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 896,
+   "size": [
+    1.553,
+    1.8,
+    0.344
+   ],
+   "glb": "models/GP_Grandparent_01.glb",
+   "thumb": "thumbs/GP_Grandparent_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Grey suit",
+     "swatch": 26,
+     "hex": "#5A5F66"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GP_FarmerKid_01",
@@ -3056,7 +4671,88 @@
     "Run",
     "Sit"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Denim",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GP_FarmerSpouse_01",
+   "name": "Farmer's spouse",
+   "type": "people/civilian/spouse",
+   "tags": [
+    "adult",
+    "dress",
+    "farm",
+    "human",
+    "long-hair",
+    "rural",
+    "woman"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 884,
+   "size": [
+    1.519,
+    1.69,
+    0.344
+   ],
+   "glb": "models/GP_FarmerSpouse_01.glb",
+   "thumb": "thumbs/GP_FarmerSpouse_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
   },
   {
    "id": "GP_Waitress_01",
@@ -3087,7 +4783,316 @@
     "Run",
     "Sit"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Skin tan",
+     "swatch": 24,
+     "hex": "#C58C65"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GP_Worker_01",
+   "name": "Worker",
+   "type": "people/civilian/worker",
+   "tags": [
+    "adult",
+    "hard-hat",
+    "hi-vis",
+    "human",
+    "industrial",
+    "man",
+    "town",
+    "vest"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 956,
+   "size": [
+    1.654,
+    1.917,
+    0.344
+   ],
+   "glb": "models/GP_Worker_01.glb",
+   "thumb": "thumbs/GP_Worker_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Grey suit",
+     "swatch": 26,
+     "hex": "#5A5F66"
+    },
+    {
+     "part": "Hi vis",
+     "swatch": 22,
+     "hex": "#D6E04A"
+    },
+    {
+     "part": "Skin dark",
+     "swatch": 23,
+     "hex": "#8D5A3B"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GP_Deputy_01",
+   "name": "Deputy",
+   "type": "people/law/deputy",
+   "tags": [
+    "adult",
+    "badge",
+    "enforcement",
+    "human",
+    "law",
+    "man",
+    "rural",
+    "tan",
+    "uniform"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 804,
+   "size": [
+    1.654,
+    1.841,
+    0.335
+   ],
+   "glb": "models/GP_Deputy_01.glb",
+   "thumb": "thumbs/GP_Deputy_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Tan uniform",
+     "swatch": 21,
+     "hex": "#B79A6A"
+    },
+    {
+     "part": "Skin dark",
+     "swatch": 23,
+     "hex": "#8D5A3B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    }
+   ]
+  },
+  {
+   "id": "GP_FbiAgentF_01",
+   "name": "FBI agent, woman",
+   "type": "people/law/fbi-agent",
+   "tags": [
+    "adult",
+    "government",
+    "human",
+    "navy",
+    "suit",
+    "tie",
+    "urban",
+    "woman"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 908,
+   "size": [
+    1.57,
+    1.747,
+    0.339
+   ],
+   "glb": "models/GP_FbiAgentF_01.glb",
+   "thumb": "thumbs/GP_FbiAgentF_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [
+    "GP_FbiAgent_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Skin tan",
+     "swatch": 24,
+     "hex": "#C58C65"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GP_FbiAgent_01",
+   "name": "FBI agent, man",
+   "type": "people/law/fbi-agent",
+   "tags": [
+    "adult",
+    "government",
+    "human",
+    "man",
+    "navy",
+    "suit",
+    "tie",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 876,
+   "size": [
+    1.688,
+    1.878,
+    0.34
+   ],
+   "glb": "models/GP_FbiAgent_01.glb",
+   "thumb": "thumbs/GP_FbiAgent_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [
+    "GP_FbiAgentF_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Mib_01",
+   "name": "Man in Black",
+   "type": "people/law/mib",
+   "tags": [
+    "adult",
+    "black",
+    "conspiracy",
+    "government",
+    "human",
+    "man",
+    "suit",
+    "sunglasses",
+    "tie",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 888,
+   "size": [
+    1.688,
+    1.878,
+    0.34
+   ],
+   "glb": "models/GP_Mib_01.glb",
+   "thumb": "thumbs/GP_Mib_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    }
+   ]
   },
   {
    "id": "GP_Sheriff_01",
@@ -3120,7 +5125,34 @@
     "Run",
     "Sit"
    ],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Tan uniform",
+     "swatch": 21,
+     "hex": "#B79A6A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Skin",
+     "swatch": 11,
+     "hex": "#D9A98B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_Football_01",
@@ -3145,7 +5177,19 @@
    "thumb": "thumbs/GS_Football_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 126,
+     "hex": "#9A5530"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_Baseball_01",
@@ -3171,7 +5215,19 @@
    "thumb": "thumbs/GS_Baseball_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
   },
   {
    "id": "GS_Basketball_01",
@@ -3197,7 +5253,19 @@
    "thumb": "thumbs/GS_Basketball_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 124,
+     "hex": "#D9702A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_BowlingBall_01",
@@ -3222,7 +5290,19 @@
    "thumb": "thumbs/GS_BowlingBall_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 81,
+     "hex": "#6E4FA0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_GolfBall_01",
@@ -3247,7 +5327,14 @@
    "thumb": "thumbs/GS_GolfBall_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_HockeyPuck_01",
@@ -3272,7 +5359,14 @@
    "thumb": "thumbs/GS_HockeyPuck_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_Soccerball_01",
@@ -3298,7 +5392,19 @@
    "thumb": "thumbs/GS_Soccerball_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_TennisBall_01",
@@ -3322,7 +5428,19 @@
    "thumb": "thumbs/GS_TennisBall_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 125,
+     "hex": "#C8E040"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_Volleyball_01",
@@ -3348,7 +5466,19 @@
    "thumb": "thumbs/GS_Volleyball_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Label blue",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
   },
   {
    "id": "GS_BaseballBase_01",
@@ -3374,7 +5504,14 @@
    "thumb": "thumbs/GS_BaseballBase_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_BaseballBat_Metal_01",
@@ -3455,7 +5592,19 @@
    "thumb": "thumbs/GS_BaseballGlove_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 126,
+     "hex": "#9A5530"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
   },
   {
    "id": "GS_TrainingCone_01",
@@ -3480,7 +5629,19 @@
    "thumb": "thumbs/GS_TrainingCone_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 124,
+     "hex": "#D9702A"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_Dumbbell_01",
@@ -3506,7 +5667,24 @@
    "thumb": "thumbs/GS_Dumbbell_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
   },
   {
    "id": "GS_Frisbee_01",
@@ -3531,7 +5709,14 @@
    "thumb": "thumbs/GS_Frisbee_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    }
+   ]
   },
   {
    "id": "GS_GolfClub_01",
@@ -3556,7 +5741,24 @@
    "thumb": "thumbs/GS_GolfClub_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
    "id": "GS_FootballHelmet_01",
@@ -3582,7 +5784,29 @@
    "thumb": "thumbs/GS_FootballHelmet_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_HockeyStick_01",
@@ -3607,7 +5831,24 @@
    "thumb": "thumbs/GS_HockeyStick_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_HomePlate_01",
@@ -3633,7 +5874,14 @@
    "thumb": "thumbs/GS_HomePlate_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_Skateboard_01",
@@ -3658,7 +5906,29 @@
    "thumb": "thumbs/GS_Skateboard_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_TennisRacket_01",
@@ -3683,7 +5953,29 @@
    "thumb": "thumbs/GS_TennisRacket_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
    "id": "GS_BasketballHoop_01",
@@ -3710,7 +6002,29 @@
    "thumb": "thumbs/GS_BasketballHoop_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_HockeyGoal_01",
@@ -3736,7 +6050,19 @@
    "thumb": "thumbs/GS_HockeyGoal_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_SoccerGoal_01",
@@ -3762,7 +6088,19 @@
    "thumb": "thumbs/GS_SoccerGoal_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Label white",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
   },
   {
    "id": "GS_TennisNet_01",
@@ -3787,7 +6125,24 @@
    "thumb": "thumbs/GS_TennisNet_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
   },
   {
    "id": "GS_VolleyballNet_01",
@@ -3813,11 +6168,33 @@
    "thumb": "thumbs/GS_VolleyballNet_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
   },
   {
-   "id": "GV_Pickup_Blue_01",
-   "name": "Farm pickup, blue",
+   "id": "GV_Pickup_01",
+   "name": "Farm pickup",
    "type": "vehicles/farm/pickup",
    "tags": [
     "blue",
@@ -3834,14 +6211,44 @@
     1.68,
     5.88
    ],
-   "glb": "models/GV_Pickup_Blue_01.glb",
-   "thumb": "thumbs/GV_Pickup_Blue_01.png",
+   "glb": "models/GV_Pickup_01.glb",
+   "thumb": "thumbs/GV_Pickup_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Office dark",
+     "swatch": 130,
+     "hex": "#5C6066"
+    }
+   ],
+   "aliases": [
+    "GV_Pickup_Blue_01"
+   ]
   },
   {
-   "id": "GV_Tractor_Green_01",
+   "id": "GV_Tractor_01",
    "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
@@ -3863,8 +6270,8 @@
     2.93,
     3.92
    ],
-   "glb": "models/GV_Tractor_Green_01.glb",
-   "thumb": "thumbs/GV_Tractor_Green_01.png",
+   "glb": "models/GV_Tractor_01.glb",
+   "thumb": "thumbs/GV_Tractor_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -3910,6 +6317,9 @@
       "39": "#E0B83A"
      }
     }
+   ],
+   "aliases": [
+    "GV_Tractor_Green_01"
    ]
   },
   {
@@ -3937,10 +6347,37 @@
    "thumb": "thumbs/GV_Ambulance_White_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
-   "id": "GV_Motorcycle_Red_01",
+   "id": "GV_Motorcycle_01",
    "name": "Motorcycle",
    "type": "vehicles/road/motorcycle",
    "tags": [
@@ -3958,11 +6395,41 @@
     1.335,
     2.04
    ],
-   "glb": "models/GV_Motorcycle_Red_01.glb",
-   "thumb": "thumbs/GV_Motorcycle_Red_01.png",
+   "glb": "models/GV_Motorcycle_01.glb",
+   "thumb": "thumbs/GV_Motorcycle_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ],
+   "aliases": [
+    "GV_Motorcycle_Red_01"
+   ]
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -3990,10 +6457,37 @@
    "thumb": "thumbs/GV_Police_Sheriff_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 21,
+     "hex": "#B79A6A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
-   "id": "GV_Sedan_Blue_01",
+   "id": "GV_Sedan_01",
    "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
@@ -4019,12 +6513,12 @@
     1.38,
     4.93
    ],
-   "glb": "models/GV_Sedan_Blue_01.glb",
-   "thumb": "thumbs/GV_Sedan_Blue_01.png",
+   "glb": "models/GV_Sedan_01.glb",
+   "thumb": "thumbs/GV_Sedan_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Red_Damaged_01"
+    "GV_Sedan_Damaged_01"
    ],
    "paintable": [
     {
@@ -4082,18 +6576,20 @@
       "40": "#1B1B1E"
      }
     }
+   ],
+   "aliases": [
+    "GV_Sedan_Blue_01"
    ]
   },
   {
-   "id": "GV_Sedan_Red_Damaged_01",
-   "name": "Sedan, red, wrecked",
+   "id": "GV_Sedan_Damaged_01",
+   "name": "Sedan, wrecked",
    "type": "vehicles/road/sedan",
    "tags": [
     "abandoned",
     "car",
     "damaged",
     "modern",
-    "red",
     "rusty",
     "suburban",
     "urban",
@@ -4107,12 +6603,37 @@
     1.457,
     4.933
    ],
-   "glb": "models/GV_Sedan_Red_Damaged_01.glb",
-   "thumb": "thumbs/GV_Sedan_Red_Damaged_01.png",
+   "glb": "models/GV_Sedan_Damaged_01.glb",
+   "thumb": "thumbs/GV_Sedan_Damaged_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Blue_01"
+    "GV_Sedan_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ],
+   "aliases": [
+    "GV_Sedan_Red_Damaged_01"
    ]
   },
   {
@@ -4140,10 +6661,32 @@
    "thumb": "thumbs/GV_Taxi_Yellow_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
   },
   {
-   "id": "GV_Van_Brown_01",
+   "id": "GV_Van_01",
    "name": "Delivery van",
    "type": "vehicles/road/van",
    "tags": [
@@ -4162,11 +6705,41 @@
     2.43,
     5.73
    ],
-   "glb": "models/GV_Van_Brown_01.glb",
-   "thumb": "thumbs/GV_Van_Brown_01.png",
+   "glb": "models/GV_Van_01.glb",
+   "thumb": "thumbs/GV_Van_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ],
+   "aliases": [
+    "GV_Van_Brown_01"
+   ]
   },
   {
    "id": "SH_Dart_01",
@@ -4193,7 +6766,24 @@
    "thumb": "thumbs/SH_Dart_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
   },
   {
    "id": "SH_Scout_01",
@@ -4222,7 +6812,19 @@
    "thumb": "thumbs/SH_Scout_01.png",
    "parts": {},
    "clips": [],
-   "variants": []
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
   }
  ],
  "themes": {}

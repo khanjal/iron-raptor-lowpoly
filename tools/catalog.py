@@ -3,9 +3,25 @@
 Plain data, no Blender: tools/build_site_assets.py (in Blender) reads BUILD, tools/make_manifest.py reads ASSETS.
 """
 
+# ===== Ids ===========================================================================================================
+# The generators (art/scripts) name a model after its paint as built: GV_Tractor_Green_01. In the browser a colour is a paint, so a model whose colour is only
+# a paint has an id without it. SITE_IDS maps the generator's name to the browser's (BUILD keeps the generator's names; ASSETS, PAINTS and the files in site/
+# use the browser's, tools/rename_glb.py moves a build into place); the old ids stay as `aliases` in the manifest, so old links and downloads still resolve.
+SITE_IDS = {
+    "GV_Sedan_Blue_01": "GV_Sedan_01", "GV_Sedan_Red_Damaged_01": "GV_Sedan_Damaged_01", "GV_Van_Brown_01": "GV_Van_01", "GV_Motorcycle_Red_01": "GV_Motorcycle_01",
+    "GV_Tractor_Green_01": "GV_Tractor_01", "GV_Pickup_Blue_01": "GV_Pickup_01", "GN_Butterfly_Blue_01": "GN_Butterfly_01", "FD_Grapes_Green_01": "FD_Grapes_01",
+}
+ALIASES = {new: old for old, new in SITE_IDS.items()}        # browser id -> the id it had before
+
+
+def site_id(generator_id):
+    """The browser's id of a model the generator calls generator_id."""
+    return SITE_IDS.get(generator_id, generator_id)
+
+
 # ===== How to build ==============================================================================================
 # kind "static": run the art script `script` with `globals`, keep the models in `ids`.
-# kind "people" / "animals": one model at a time, then its clips; the dict maps the art script's key to the model id.
+# kind "people" / "animals" / "critters": one model at a time, then its clips; the dict maps the art script's key to the model id.
 BUILD = {
     "cars_sedan": dict(script="cars.py", globals={"CAR_LIST": ["Sedan"], "VARIANT_LIST": ["Blue", "Red"]},
                        ids=["GV_Sedan_Blue_01", "GV_Sedan_Red_Damaged_01"]),
@@ -41,7 +57,11 @@ BUILD = {
                 ids=["GK_Wall_Window_Brick_01", "GK_Wall_Window_Barn_01"]),
     "kit_door": dict(script="kit.py", globals={"KIT_LIST": ["Door_Exterior"]}, ids=["GK_Door_Exterior_01"]),
     "veg": dict(script="vegetation.py", globals={"VEG_LIST": ["oak", "pine"]}, ids=["FM_TreeOak_01", "FM_TreePine_01"]),
-    "insects": dict(script="insects.py", globals={}, ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
+    "insects": dict(kind="critters", clips=["Idle"],      # the clips come from art/scripts/insect_anim.py: Fly, Walk or Hop as well, by what the insect does
+                    critters={"Ladybug": "GN_Ladybug_01", "Beetle": "GN_Beetle_01", "Firefly": "GN_Firefly_01", "Honeybee": "GN_Honeybee_01", "Butterfly_Blue": "GN_Butterfly_Blue_01",
+                              "Moth": "GN_Moth_01", "Dragonfly": "GN_Dragonfly_01", "Ant": "GN_Ant_01", "Grasshopper": "GN_Grasshopper_01", "Caterpillar": "GN_Caterpillar_01",
+                              "Spider": "GN_Spider_01"},
+                    ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
     "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
     "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
     "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
@@ -49,10 +69,14 @@ BUILD = {
     "office_cubicle": dict(script="office.py", globals={"OFFICE_LIST": ["cubicle"]}, ids=['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']),
     "office_equipment": dict(script="office.py", globals={"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, ids=['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']),
     "people": dict(kind="people", clips=["Idle", "Walk", "Run", "Sit"],
-                   people={"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01"}),
+                   people={"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01",
+                           "farmer_spouse": "GP_FarmerSpouse_01", "grandparent": "GP_Grandparent_01", "worker": "GP_Worker_01", "deputy": "GP_Deputy_01",
+                           "fbi_agent": "GP_FbiAgent_01", "fbi_agent_f": "GP_FbiAgentF_01", "mib": "GP_Mib_01",
+                           "nordic": "GP_Nordic_01", "shadow": "GP_Shadow_01", "reptilian": "GP_Reptilian_01"}),
     "animals": dict(kind="animals", clips=["Idle", "Walk"], dog_clips=["Trot", "Run"],
                     animals={"cow": "GN_Cow_faceted_01", "horse": "GN_Horse_faceted_01", "dog_collie": "GN_DogCollie_faceted_01",
-                             "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01"}),
+                             "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01",
+                             "sheep": "GN_Sheep_faceted_01", "pig": "GN_Pig_faceted_01", "goat": "GN_Goat_faceted_01"}),
     "birds": dict(kind="animals", birds=True, clips=[], animals={"chicken_hen": "GN_ChickenHen_faceted_01"}),
 }
 
@@ -67,10 +91,10 @@ ASSETS = {}
 # it (tools/paints.py check compares the two while that GLB is around, and the viewer keeps old links to it working). Only the base is built and shipped:
 # the viewer recolours a copy of the palette image, and a person can paint any part any colour. See tools/paints.py.
 PAINTS = {
-    "GV_Sedan_Blue_01": dict(base="Blue", parts={"Body": "truck_blue"}, presets={
+    "GV_Sedan_01": dict(base="Blue", parts={"Body": "truck_blue"}, presets={
         "Red": dict(was="GV_Sedan_Red_01", set={"Body": "cloth_red"}), "White": dict(set={"Body": "paint_white"}), "Tan": dict(set={"Body": "tan"}),
         "Grey": dict(set={"Body": "fabric_grey"}), "Green": dict(set={"Body": "tractor_green"}), "Black": dict(set={"Body": "black"})}),
-    "GV_Tractor_Green_01": dict(base="Green", parts={"Body": "tractor_green"}, presets={
+    "GV_Tractor_01": dict(base="Green", parts={"Body": "tractor_green"}, presets={
         "Red": dict(was="GV_Tractor_Red_01", set={"Body": "cloth_red"}), "Orange": dict(set={"Body": "orange_cat"}),
         "Blue": dict(set={"Body": "truck_blue"}), "Yellow": dict(set={"Body": "paint_yellow"})}),
     "FD_Apple_01": dict(base="Red", parts={"Skin": "cloth_red", "Leaf": "plant_green"}, presets={
@@ -78,8 +102,8 @@ PAINTS = {
         "Rotten": dict(was="FD_Apple_Rotten_01", set={"Skin": "#6F7F4A", "Leaf": "#6F7F4A"})}),
     "FD_BananaBunch_01": dict(base="Fresh", parts={"Skin": "paint_yellow", "Stem": "banana_green"}, presets={
         "Rotten": dict(was="FD_BananaBunch_Rotten_01", set={"Skin": "#7A5A44", "Stem": "#6F7F4A"})}),
-    "FD_Grapes_Green_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
-    "GN_Butterfly_Blue_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
+    "FD_Grapes_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
+    "GN_Butterfly_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
     "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
     "GS_BaseballBat_Metal_01": dict(base="Metal", parts={"Barrel": "truck_blue", "Grip": "rubber"}, presets={
         "Wood": dict(was="GS_BaseballBat_Wood_01", set={"Barrel": "#C9A06A", "Grip": "#1B1B1E"})}),
@@ -96,30 +120,33 @@ def _a(id, name, type, tags, group=None):
 # applies the theme to the palette image (the manifest carries the themes once); Damaged is never listed: it also drops parts and tilts (see docs/style-audit.md).
 THEMED = {}
 
-_a("GV_Sedan_Blue_01", "Sedan", "vehicles/road/sedan", "modern urban suburban car blue red new civilian", "sedan")
-_a("GV_Sedan_Red_Damaged_01", "Sedan, red, wrecked", "vehicles/road/sedan", "modern urban suburban car red damaged wreck rusty abandoned", "sedan")
+_a("GV_Sedan_01", "Sedan", "vehicles/road/sedan", "modern urban suburban car blue red new civilian", "sedan")
+_a("GV_Sedan_Damaged_01", "Sedan, wrecked", "vehicles/road/sedan", "modern urban suburban car damaged wreck rusty abandoned", "sedan")
 _a("GV_Taxi_Yellow_01", "Taxi", "vehicles/road/taxi", "modern urban car yellow new cab service")
-_a("GV_Van_Brown_01", "Delivery van", "vehicles/road/van", "modern urban brown new delivery service")
+_a("GV_Van_01", "Delivery van", "vehicles/road/van", "modern urban brown new delivery service")
 _a("GV_Police_Sheriff_01", "Sheriff's cruiser", "vehicles/road/police", "rural law enforcement car white new emergency sheriff")
 _a("GV_Ambulance_White_01", "Ambulance", "vehicles/road/ambulance", "modern urban white new emergency medical van")
-_a("GV_Motorcycle_Red_01", "Motorcycle", "vehicles/road/motorcycle", "modern red new bike two-wheeler")
-_a("GV_Tractor_Green_01", "Tractor", "vehicles/farm/tractor", "rural farm green red new machine")
-_a("GV_Pickup_Blue_01", "Farm pickup, blue", "vehicles/farm/pickup", "rural farm truck blue new")
+_a("GV_Motorcycle_01", "Motorcycle", "vehicles/road/motorcycle", "modern red new bike two-wheeler")
+_a("GV_Tractor_01", "Tractor", "vehicles/farm/tractor", "rural farm green red new machine")
+_a("GV_Pickup_01", "Farm pickup", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")
 # animals
 _a("GN_Cow_faceted_01", "Cow", "animals/farm/cow", "rural farm livestock black white animal quadruped")
 _a("GN_Horse_faceted_01", "Horse", "animals/farm/horse", "rural farm livestock brown animal quadruped")
+_a("GN_Sheep_faceted_01", "Sheep", "animals/farm/sheep", "rural farm livestock white wool animal quadruped")
+_a("GN_Pig_faceted_01", "Pig", "animals/farm/pig", "rural farm livestock pink animal quadruped")
+_a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horns animal quadruped")
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
 _a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby")
-# insects (not rigged: resting poses, real size in millimetres)
+# insects (rigged for the browser: wings, legs and antennae move; real size in millimetres)
 _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
 _a("GN_Firefly_01", "Firefly", "animals/insect/firefly", "wild night insect bug glow lightning-bug tiny")
 _a("GN_Honeybee_01", "Honeybee", "animals/insect/bee", "wild garden farm insect bug bee yellow flying tiny")
-_a("GN_Butterfly_Blue_01", "Butterfly", "animals/insect/butterfly", "wild garden insect blue flying wings")
+_a("GN_Butterfly_01", "Butterfly", "animals/insect/butterfly", "wild garden insect blue flying wings")
 _a("GN_Moth_01", "Moth", "animals/insect/moth", "wild night insect grey flying wings")
 _a("GN_Dragonfly_01", "Dragonfly", "animals/insect/dragonfly", "wild pond insect teal flying wings")
 _a("GN_Ant_01", "Ant", "animals/insect/ant", "wild garden insect bug black tiny")
@@ -180,6 +207,16 @@ _a("GP_FarmerKid_01", "Farmer's kid", "people/civilian/kid", "rural farm child k
 _a("GP_Waitress_01", "Waitress", "people/civilian/waitress", "diner retro adult woman red human")
 _a("GP_Sheriff_01", "Sheriff", "people/law/sheriff", "rural law enforcement adult uniform tan hat human")
 _a("GP_Grey_01", "Grey alien", "people/alien/grey", "sci-fi alien grey humanoid")
+_a("GP_FarmerSpouse_01", "Farmer's spouse", "people/civilian/spouse", "rural farm adult woman dress long-hair human")
+_a("GP_Grandparent_01", "Grandparent", "people/civilian/grandparent", "rural farm elder fedora cardigan grey human")
+_a("GP_Worker_01", "Worker", "people/civilian/worker", "town industrial adult man hard-hat hi-vis vest human")
+_a("GP_Deputy_01", "Deputy", "people/law/deputy", "rural law enforcement adult man uniform tan badge human")
+_a("GP_FbiAgent_01", "FBI agent, man", "people/law/fbi-agent", "urban government adult man suit tie navy human", "fbi-agent")
+_a("GP_FbiAgentF_01", "FBI agent, woman", "people/law/fbi-agent", "urban government adult woman suit tie navy human", "fbi-agent")
+_a("GP_Mib_01", "Man in Black", "people/law/mib", "urban government adult man suit tie black sunglasses conspiracy human")
+_a("GP_Nordic_01", "Nordic alien", "people/alien/nordic", "sci-fi alien tall pale blond robe glow humanoid")
+_a("GP_Shadow_01", "Shadow entity", "people/alien/shadow", "sci-fi alien tall dark glow horror humanoid")
+_a("GP_Reptilian_01", "Reptilian alien", "people/alien/reptilian", "sci-fi alien green scaled tail crest humanoid")
 # appliances and storage that open
 _a("GI_Fridge_01", "Fridge, two-door", "appliances/kitchen/fridge", "classic kitchen white new cold two-door freezer-top", "fridge")
 _a("GI_Fridge_Modern_01", "Fridge, French door", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
@@ -211,7 +248,7 @@ _a("FD_Apple_01", "Apple", "food/produce/apple", "fruit red fresh")
 _a("FD_BananaBunch_01", "Bananas, bunch", "food/produce/banana", "fruit yellow bunch hand fresh")
 _a("FD_Lemon_01", "Lemon", "food/produce/lemon", "fruit yellow citrus fresh")
 _a("FD_Pear_01", "Pear", "food/produce/pear", "fruit green fresh")
-_a("FD_Grapes_Green_01", "Grapes", "food/produce/grapes", "fruit green bunch fresh")
+_a("FD_Grapes_01", "Grapes", "food/produce/grapes", "fruit green bunch fresh")
 _a("FD_Strawberry_01", "Strawberry", "food/produce/strawberry", "fruit red berry fresh")
 _a("FD_BreadLoaf_01", "Loaf of bread", "food/bakery/bread", "baked fresh brown")
 _a("FD_Pie_01", "Pie", "food/bakery/pie", "baked dessert fresh")

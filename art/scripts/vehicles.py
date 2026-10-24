@@ -210,14 +210,14 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
         p.cyl("metal_dark", (xo + s * 0.012, y, z), r * 0.3, 0.02, n=8, axis="x")
         p.cyl("metal_galv", (xo + s * 0.024, y, z), r * 0.1, 0.02, n=6, axis="x")
         # the curved mudguard over it, and the step below the cab
-        zc, rg = z, r + 0.05
+        zc, rg = z, r + 0.13                                                        # the chords sag inside the arc, so stand it well off the lugs
         pts = [(y + rg * math.cos(radians(a)), zc + rg * math.sin(radians(a))) for a in (15, 45, 75, 105, 135, 165)]
         for (y0, z0), (y1, z1) in zip(pts, pts[1:]):
             props_lib.rod(p, body, (x, y0, z0), (x, y1, z1), 0.68, 0.06)
         for a in (60, 120):                                                         # stays from the rear body to the guard
             props_lib.rod(p, "metal_dark", (s * 0.5, y + rg * math.cos(radians(a)), 1.3),
                           (s * 0.82, y + rg * math.cos(radians(a)), zc + rg * math.sin(radians(a))), 0.07)
-        p.box("metal_dark", (s * 0.75, 0.5, 1.15), (0.5, 1.5, 0.1))                  # footplate
+        p.box("metal_dark", (s * 0.68, 0.5, 1.15), (0.26, 1.5, 0.1))                 # footplate, between the body and the wheel
         # the front wheel: smaller, with its own lugs
         x, y, z, r, w = s * 0.85, -1.55, 0.5, 0.5, 0.28
         rt = r - 0.04

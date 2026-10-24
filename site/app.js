@@ -1,4 +1,4 @@
-// The asset browser: search, categories, tag chips, a grid of thumbnails and the viewer panel. Reads manifest.json; deep links use the URL hash (#GV_Sedan_Blue_01).
+// The asset browser: search, categories, tag chips, a grid of thumbnails and the viewer panel. Reads manifest.json; deep links use the URL hash (#GV_Sedan_01).
 import { Viewer } from './viewer.js';
 
 const $ = (id) => document.getElementById(id);
@@ -23,7 +23,7 @@ const TAG_GROUPS = [
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
-  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [],
+  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [], common: [], max: false,
   q: '', category: '', tags: new Set(), features: new Set(),
   current: null, viewer: null, expanded: new Set(),
 };
@@ -41,10 +41,12 @@ async function init() {
   }
   state.assets = doc.assets;
   state.glow = (doc.palette && doc.palette.glow) || [];
+  state.common = (doc.palette && doc.palette.common) || [];
   state.themes = doc.themes || {};
   for (const a of state.assets) {
-    a.haystack = [a.name, a.id, a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
+    a.haystack = [a.name, a.id, ...(a.aliases || []), a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
     state.byId.set(a.id, a);
+    for (const old of a.aliases || []) state.was.set(old, { asset: a }); // an id the model had before: old links and bookmarks still open it
     for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour or a style keeps its old link
     for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
@@ -217,7 +219,7 @@ function toggleTag(t) { state.tags.has(t) ? state.tags.delete(t) : state.tags.ad
 function toggleFeature(f) { state.features.has(f) ? state.features.delete(f) : state.features.add(f); writeUrlState(); render(); }
 
 // ---- url --------------------------------------------------------------------------------------------------------------------------------
-// The hash is the open model (#GV_Sedan_Blue_01). The filters live in the query string, so a link can carry both.
+// The hash is the open model (#GV_Sedan_01). The filters live in the query string, so a link can carry both.
 function readUrlState() {
   const p = new URLSearchParams(location.search);
   state.q = p.get('q') || '';
@@ -250,6 +252,16 @@ function syncFromHash() {
   showAsset(a);
 }
 
+// Maximised: the viewer covers the page and the stage fills it (css .viewer.max). The choice is remembered for the next model and visit.
+function setMax(on) {
+  state.max = on;
+  $('viewer').classList.toggle('max', on);
+  $('maximize').textContent = on ? 'Shrink' : 'Expand';
+  document.body.style.overflow = on || matchMedia('(max-width: 62rem)').matches ? 'hidden' : '';   // the page behind a maximised viewer does not scroll
+  try { localStorage.setItem('lowpoly-max', on ? '1' : ''); } catch (e) { /* private window: not remembered */ }
+  if (state.viewer) state.viewer.resize();
+}
+
 function closeViewer(updateHash = true) {
   if (updateHash && location.hash) history.pushState(null, '', location.pathname + location.search);
   state.current = null;
@@ -263,6 +275,7 @@ async function showAsset(a) {
   state.current = a.id;
   $('viewer').hidden = false;
   $('layout').classList.add('has-viewer');
+  setMax(state.max);
   if (matchMedia('(max-width: 62rem)').matches) document.body.style.overflow = 'hidden';
   $('filters').classList.remove('open');
   document.title = a.name + ' · Lowpoly Assets';
@@ -315,12 +328,15 @@ function fillDetails(a) {
 
 // Look: a style (a theme from the manifest: one swap over the palette, the same for every model that lists it), the model's colour presets as chips, and a
 // colour box for every paintable part, so any part can be any colour. The viewer repaints a copy of the palette image ({swatch index: '#RRGGBB'}); nothing
-// about the mesh changes. What a person picks for a part wins over the style.
+// about the mesh changes. What a person picks for a part wins over the style. A model with parts but no presets of its own gets Original plus the
+// manifest's common colours (palette.common) for its first part, the main colour.
 function setupLook(a) {
-  const paints = a.paints || [], parts = a.paintable || [], themes = a.themes || [];
+  const parts = a.paintable || [], themes = a.themes || [];
+  const common = a.paints || !parts.length ? null : [{ name: 'Original', hex: parts[0].hex, swap: {} }, ...state.common.map((c) => ({ name: c.name, hex: c.hex, swap: { [parts[0].swatch]: c.hex } }))];
+  const paints = a.paints || common || [];
   $('v-themes').hidden = themes.length === 0;
   $('v-paints').hidden = paints.length === 0 && parts.length === 0;
-  if (!themes.length && !paints.length) return;
+  if (!themes.length && !paints.length && !parts.length) return;
   let themeSwap = {}, overrides = {};
   const themeChips = new Map(), paintChips = new Map(), inputs = new Map();
   const press = (chips, name) => { for (const [n, b] of chips) b.setAttribute('aria-pressed', n === name ? 'true' : 'false'); };
@@ -389,6 +405,7 @@ $('filters-toggle').addEventListener('click', () => {
   $('filters-toggle').setAttribute('aria-expanded', on);
 });
 $('close').addEventListener('click', () => closeViewer());
+$('maximize').addEventListener('click', () => setMax(!state.max));
 $('reset-view').addEventListener('click', () => state.viewer && state.viewer.resetView());
 $('open-all').addEventListener('click', () => {
   if (!state.viewer) return;
@@ -402,6 +419,7 @@ $('play').addEventListener('click', () => {
   v.setPlaying(!v.playing);
   $('play').textContent = v.playing ? 'Pause' : 'Play';
 });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) closeViewer(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) { if (state.max) setMax(false); else closeViewer(); } });
 
+try { state.max = localStorage.getItem('lowpoly-max') === '1'; } catch (e) { /* no storage: not maximised */ }
 init();
