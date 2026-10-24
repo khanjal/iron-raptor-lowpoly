@@ -3105,7 +3105,7 @@
      "kind": "sound",
      "position": [
       0.0,
-      0.0,
+      -0.0025,
       0.0775
      ],
      "event": "bell_ring",

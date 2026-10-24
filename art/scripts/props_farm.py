@@ -154,7 +154,7 @@ def gate():
         p.box("wood_light", (0, 0, z), (2.8, 0.05, 0.1))
     for x in (-1.3, 0.0, 1.3):
         p.box("wood_light", (x, 0.0, 0.8), (0.08, 0.04, 1.1))
-    p.box("wood_light", (0, 0, 0.8), (2.6, 0.04, 0.08), rot=(0, 24, 0))
+    p.box("wood_light", (0, 0, 0.8), (2.3, 0.04, 0.08), rot=(0, 24, 0))
     p.box("metal_dark", (1.35, -0.03, 1.0), (0.1, 0.04, 0.04))
     return p
 
@@ -218,7 +218,7 @@ def water_trough():
         p.box("wood_grey", (0, sy * 0.22, 0.3), (1.6, 0.06, 0.6))                        # the long sides
     for sx in (-1, 1):
         p.box("wood_grey", (sx * 0.77, 0, 0.3), (0.06, 0.5, 0.6))                        # the ends
-    p.box("glass", (0, 0, 0.45), (1.48, 0.38, 0.03))                                     # the water, 15 cm below the rim
+    p.box("glass", (0, 0, 0.45), (1.48, 0.38, 0.03))                                     # the water, 13 cm below the rim
     for x in (-0.7, 0.7):
         p.box("wood_dark", (x, 0, 0.15), (0.08, 0.56, 0.3))
     return p
@@ -237,7 +237,7 @@ def _pile(p, rows, r=0.09, length=0.5):
     for row, count in enumerate(rows):
         for i in range(count):
             x = (i - (count - 1) / 2) * 2 * r
-            z = r * 0.866 + row * r * 1.732                       # the lowest log lies on a flat face
+            z = r * 0.887 + row * r * 1.732                       # the lowest log lies on a flat face
             p.cyl("wood_dark" if (i + row) % 2 else "wood_light", (x, 0, z), r, length, n=6, axis="y")
 
 
@@ -277,7 +277,7 @@ def firewood_loose():
     import random
     rng = random.Random(7)
     p = Prop("GT_FirewoodPile_Loose_01")
-    layers = ((7, 0.32, 0.065), (5, 0.24, 0.16), (3, 0.14, 0.25), (1, 0.0, 0.33))
+    layers = ((7, 0.32, 0.0665), (5, 0.24, 0.16), (3, 0.14, 0.25), (1, 0.0, 0.33))
     for count, spread, z in layers:
         for k in range(count):
             a = rng.uniform(0, 360)
@@ -296,7 +296,7 @@ def chopping_block():
     p.cyl("wood_dark", (0.116, 0.0, 0.67), 0.018, 0.55, n=5, rot=(0, 25, 0))                # the handle, up from the head
     p.box("metal_galv", (0.0, 0.0, 0.46), (0.04, 0.16, 0.1))                                 # the head, bitten into the top of the block
     for k, (x, y, yaw) in enumerate(((0.5, 0.3, 20), (0.62, -0.1, 80), (0.45, -0.35, 150))):
-        p.cyl("wood_grey", (x, y, 0.0606), 0.07, 0.4, n=6, axis="y", rot=(0, 0, yaw))
+        p.cyl("wood_grey", (x, y, 0.0621), 0.07, 0.4, n=6, axis="y", rot=(0, 0, yaw))
     return p
 
 
@@ -321,7 +321,7 @@ def landline_phone():
     p.box("black", (0, 0, 0.115), (0.24, 0.07, 0.04))
     p.box("black", (-0.1, 0, 0.13), (0.05, 0.09, 0.05))
     p.box("black", (0.1, 0, 0.13), (0.05, 0.09, 0.05))
-    p.cyl("metal_galv", (0, -0.04, 0.1), 0.05, 0.012, n=8)
+    p.cyl("metal_galv", (0, -0.075, 0.1), 0.05, 0.012, n=8)
     return p
 
 
@@ -353,20 +353,20 @@ def utility_pole_body(p):
 def crossarm(p, z, along="x", face=-0.185, reach=1.0, braces=True, middle=False):
     """A crossarm 2 m long with a pin insulator at each end (and in the middle if `middle`: only the lower arm, the top arm's middle wire sits on the pole top) and two angle braces. along x: on the front face, along y: on the +X face."""
     if along == "x":
-        p.box("wood_dark", (0, face, z), (2.0 * reach, 0.11, 0.13))
+        p.box("wood_dark", (0, face + 0.02, z), (2.0 * reach, 0.15, 0.13))      # 0.15 deep, its front face stays at face - 0.055 and its back goes into the pole
         for x in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
             pin_insulator(p, x, face, z + 0.065)
         if braces:
             for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.7, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
+                props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.54, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
     else:
         x0 = face                                                            # the Blender -X face: Unity +X, where the road wires are tied
-        p.box("wood_dark", (x0, 0, z), (0.11, 2.0 * reach, 0.13))
+        p.box("wood_dark", (x0 + 0.02, 0, z), (0.15, 2.0 * reach, 0.13))
         for y in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
             pin_insulator(p, x0, y, z + 0.065)
         if braces:
             for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (x0 * 0.7, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
+                props_lib.rod(p, "metal_galv", (x0 * 0.54, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
 
 
 def utility_pole():

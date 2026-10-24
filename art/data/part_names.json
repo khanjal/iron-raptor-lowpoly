@@ -516,7 +516,8 @@
   "wood_grey": "Gate posts"
  },
  "GT_MailboxPost_01": {
-  "wood_grey": "Post"
+  "wood_grey": "Post",
+  "cloth_red": "Flag"
  },
  "GL_BareBulb_01": {
   "metal_dark": "Socket"

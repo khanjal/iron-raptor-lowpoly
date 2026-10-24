@@ -5500,7 +5500,7 @@
    "size": [
     0.25,
     0.155,
-    0.24
+    0.245
    ],
    "glb": "models/GE_LandlinePhone_01.glb",
    "thumb": "thumbs/GE_LandlinePhone_01.png",
@@ -8189,7 +8189,7 @@
    "triangles": 144,
    "size": [
     1.089,
-    0.927,
+    0.925,
     1.07
    ],
    "glb": "models/GT_ChoppingBlock_01.glb",
@@ -8310,7 +8310,7 @@
    "triangles": 320,
    "size": [
     0.659,
-    0.398,
+    0.397,
     0.653
    ],
    "glb": "models/GT_FirewoodPile_Loose_01.glb",
@@ -8348,7 +8348,7 @@
    "triangles": 832,
    "size": [
     1.6,
-    0.927,
+    0.925,
     0.5
    ],
    "glb": "models/GT_FirewoodStack_01.glb",
@@ -8854,9 +8854,9 @@
     "farm",
     "fence",
     "gate",
-    "grey",
     "new",
     "rural",
+    "tan",
     "wood"
    ],
    "rigged": false,
@@ -8997,7 +8997,7 @@
      "hex": "#8B8578"
     },
     {
-     "part": "Cloth red",
+     "part": "Flag",
      "swatch": 13,
      "hex": "#B8443B"
     }

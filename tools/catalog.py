@@ -504,7 +504,7 @@ _a("GT_FirewoodStack_Small_01", "Firewood stack, small", "farm/props/firewood-st
 _a("GT_FirewoodPile_Loose_01", "Firewood, loose pile", "farm/props/firewood-pile", "firewood pile wood loose new farm cabin")
 _a("GT_ChoppingBlock_01", "Chopping block", "farm/props/chopping-block", "chopping block stump wood new farm cabin")
 _a("GI_FenceSection_01", "Fence section", "farm/structures/fence-section", "fence section wood grey new farm rural")
-_a("GI_Gate_01", "Gate", "farm/structures/gate", "gate fence wood grey new farm rural")
+_a("GI_Gate_01", "Gate", "farm/structures/gate", "gate fence wood tan new farm rural")
 _a("GT_MailboxPost_01", "Mailbox on a post", "farm/structures/mailbox-post", "mailbox post metal new farm rural suburban")
 _a("GL_BareBulb_01", "Bare bulb", "fixtures/outdoor/bare-bulb", "bulb light lamp barn shed new farm")
 _a("GL_PoleLamp_01", "Pole lamp", "fixtures/outdoor/pole-lamp", "lamp pole light street yard new rural")
