@@ -14226,7 +14226,7 @@
    "triangles": 44,
    "size": [
     1.5,
-    0.032,
+    0.022,
     0.15
    ],
    "glb": "models/GT_Hoe_01.glb",
@@ -14264,9 +14264,9 @@
    "interactive": false,
    "triangles": 92,
    "size": [
-    1.165,
+    1.235,
     0.025,
-    0.225
+    0.2
    ],
    "glb": "models/GT_Spade_01.glb",
    "thumb": "thumbs/GT_Spade_01.png",
@@ -14307,8 +14307,8 @@
    "interactive": false,
    "triangles": 148,
    "size": [
-    0.625,
-    0.368,
+    0.605,
+    0.35,
     0.19
    ],
    "glb": "models/GT_WateringCan_01.glb",
@@ -14344,11 +14344,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 68,
+   "triangles": 80,
    "size": [
-    0.93,
-    0.04,
-    0.2
+    0.865,
+    0.045,
+    0.167
    ],
    "glb": "models/GT_Axe_01.glb",
    "thumb": "thumbs/GT_Axe_01.png",
@@ -14388,11 +14388,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 116,
+   "triangles": 104,
    "size": [
-    0.355,
-    0.06,
-    0.038
+    0.308,
+    0.036,
+    0.157
    ],
    "glb": "models/GT_Hammer_01.glb",
    "thumb": "thumbs/GT_Hammer_01.png",
@@ -14439,7 +14439,7 @@
    "triangles": 156,
    "size": [
     0.62,
-    0.026,
+    0.025,
     0.125
    ],
    "glb": "models/GT_HandSaw_01.glb",
@@ -14524,7 +14524,7 @@
    "triangles": 72,
    "size": [
     0.274,
-    0.032,
+    0.031,
     0.036
    ],
    "glb": "models/GT_Screwdriver_01.glb",
@@ -14570,11 +14570,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 100,
+   "triangles": 76,
    "size": [
-    0.917,
-    0.105,
-    0.26
+    0.9,
+    0.06,
+    0.182
    ],
    "glb": "models/GT_Sledgehammer_01.glb",
    "thumb": "thumbs/GT_Sledgehammer_01.png",
@@ -14588,11 +14588,6 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal galv",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
      "part": "Metal dark",
      "swatch": 3,
      "hex": "#4A525A"
@@ -14601,6 +14596,11 @@
      "part": "Rubber",
      "swatch": 15,
      "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
     }
    ]
   },
