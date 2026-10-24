@@ -62,6 +62,11 @@ A model with no entry in `catalog.PAINTS` still gets `paintable` in the manifest
 - **The generators and the FBX files keep the old names** (`art/scripts/cars.py` still builds `GV_Tractor_Green_01.fbx`, `GV_Tractor_Red_01.fbx`...): the game looks FBX files up by name and the scripts build every colour for it. Only the browser's GLBs, thumbnails, `interactions` files and manifest use the new id. `catalog.SITE_IDS` maps old to new; `tools/rename_glb.py` moves a build into place (`build_site_assets.py` calls it) and renames the node and mesh inside the GLB too; the manifest lists the old id in `aliases`, the site opens `#GV_Tractor_Green_01` as the tractor and search finds it.
 - When the game imports GLBs from here, it should use the new ids (or the aliases to map its old lookups). The old and new names of every renamed model are in `catalog.SITE_IDS`.
 
+## The rest of the cast and the farm animals (2026-10-23)
+Added to the browser: 10 people (farmer's spouse, grandparent, worker, deputy, two FBI agents, Man in Black, Nordic, Shadow entity, Reptilian) and sheep, pig and goat: 135 models. IDs are what the scripts name them (`GP_FbiAgentF_01`, `GN_Sheep_faceted_01`). They have the same clips as the others (people Idle, Walk, Run, Sit; animals Idle, Walk).
+- **A trap found on the way:** the shared Blender file's `GlobalPalette` material had lost its image (an empty Image Texture node), so the first build of these 13 came out as flat white GLBs. `common.palette_material()` now relinks an empty node. A GLB without an embedded image shows white in the viewer; `check_site.py` does not catch that yet.
+- Not looked at in the viewer beyond the thumbnails and the goat; their clips were keyed by the same scripts as the old ones but not checked one by one.
+
 ## More families (2026-10-23, branch `licence`)
 Added on request: produce variety, insects, sports gear, office gear. 68 new models, so the browser now has 131.
 - **Produce** (`contents.py`): the apple is one dimpled shape in `cloth_red`, `apple_green` and `apple_yellow` (the old FD_Apple_01 changed shape too); a banana bunch (+ Rotten), lemon, pear, purple and green grapes, strawberry.

@@ -299,6 +299,9 @@ def palette_material():
     img = palette_image()
     mat = bpy.data.materials.get(MATERIAL_NAME)
     if mat is not None:
+        for node in (mat.node_tree.nodes if mat.node_tree else []):    # a Blender file that other work shares can lose the image: an empty node exports flat white
+            if node.type == "TEX_IMAGE" and node.image is None:
+                node.image = img
         return mat
     mat = bpy.data.materials.new(MATERIAL_NAME)
     mat.use_nodes = True

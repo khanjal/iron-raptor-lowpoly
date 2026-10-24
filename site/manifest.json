@@ -162,6 +162,52 @@
    ]
   },
   {
+   "id": "GN_Goat_faceted_01",
+   "name": "Goat",
+   "type": "animals/farm/goat",
+   "tags": [
+    "animal",
+    "farm",
+    "horns",
+    "livestock",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 796,
+   "size": [
+    0.361,
+    1.156,
+    1.466
+   ],
+   "glb": "models/GN_Goat_faceted_01.glb",
+   "thumb": "thumbs/GN_Goat_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Horn cream",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    }
+   ]
+  },
+  {
    "id": "GN_ChickenHen_faceted_01",
    "name": "Hen",
    "type": "animals/farm/hen",
@@ -237,6 +283,89 @@
      "part": "Main",
      "swatch": 18,
      "hex": "#7A4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Pig_faceted_01",
+   "name": "Pig",
+   "type": "animals/farm/pig",
+   "tags": [
+    "animal",
+    "farm",
+    "livestock",
+    "pink",
+    "quadruped",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 672,
+   "size": [
+    0.6,
+    0.87,
+    1.634
+   ],
+   "glb": "models/GN_Pig_faceted_01.glb",
+   "thumb": "thumbs/GN_Pig_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Sheep_faceted_01",
+   "name": "Sheep",
+   "type": "animals/farm/sheep",
+   "tags": [
+    "animal",
+    "farm",
+    "livestock",
+    "quadruped",
+    "rural",
+    "white",
+    "wool"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 672,
+   "size": [
+    0.56,
+    0.85,
+    1.311
+   ],
+   "glb": "models/GN_Sheep_faceted_01.glb",
+   "thumb": "thumbs/GN_Sheep_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     },
     {
      "part": "Black",
@@ -4263,6 +4392,139 @@
    ]
   },
   {
+   "id": "GP_Nordic_01",
+   "name": "Nordic alien",
+   "type": "people/alien/nordic",
+   "tags": [
+    "alien",
+    "blond",
+    "glow",
+    "humanoid",
+    "pale",
+    "robe",
+    "sci-fi",
+    "tall"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1006,
+   "size": [
+    1.907,
+    2.108,
+    0.401
+   ],
+   "glb": "models/GP_Nordic_01.glb",
+   "thumb": "thumbs/GP_Nordic_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Reptilian_01",
+   "name": "Reptilian alien",
+   "type": "people/alien/reptilian",
+   "tags": [
+    "alien",
+    "crest",
+    "green",
+    "humanoid",
+    "scaled",
+    "sci-fi",
+    "tail"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1344,
+   "size": [
+    2.04,
+    2.012,
+    1.313
+   ],
+   "glb": "models/GP_Reptilian_01.glb",
+   "thumb": "thumbs/GP_Reptilian_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Mould",
+     "swatch": 101,
+     "hex": "#6F7F4A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Shadow_01",
+   "name": "Shadow entity",
+   "type": "people/alien/shadow",
+   "tags": [
+    "alien",
+    "dark",
+    "glow",
+    "horror",
+    "humanoid",
+    "sci-fi",
+    "tall"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 948,
+   "size": [
+    2.443,
+    2.071,
+    0.358
+   ],
+   "glb": "models/GP_Shadow_01.glb",
+   "thumb": "thumbs/GP_Shadow_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 44,
+     "hex": "#15131A"
+    }
+   ]
+  },
+  {
    "id": "GP_Farmer_01",
    "name": "Farmer",
    "type": "people/civilian/farmer",
@@ -4314,6 +4576,65 @@
      "part": "Hair grey",
      "swatch": 31,
      "hex": "#B9B6B0"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GP_Grandparent_01",
+   "name": "Grandparent",
+   "type": "people/civilian/grandparent",
+   "tags": [
+    "cardigan",
+    "elder",
+    "farm",
+    "fedora",
+    "grey",
+    "human",
+    "rural"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 896,
+   "size": [
+    1.553,
+    1.8,
+    0.344
+   ],
+   "glb": "models/GP_Grandparent_01.glb",
+   "thumb": "thumbs/GP_Grandparent_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Grey suit",
+     "swatch": 26,
+     "hex": "#5A5F66"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
     },
     {
      "part": "Wood dark",
@@ -4380,6 +4701,60 @@
    ]
   },
   {
+   "id": "GP_FarmerSpouse_01",
+   "name": "Farmer's spouse",
+   "type": "people/civilian/spouse",
+   "tags": [
+    "adult",
+    "dress",
+    "farm",
+    "human",
+    "long-hair",
+    "rural",
+    "woman"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 884,
+   "size": [
+    1.519,
+    1.69,
+    0.344
+   ],
+   "glb": "models/GP_FarmerSpouse_01.glb",
+   "thumb": "thumbs/GP_FarmerSpouse_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
    "id": "GP_Waitress_01",
    "name": "Waitress",
    "type": "people/civilian/waitress",
@@ -4429,6 +4804,293 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GP_Worker_01",
+   "name": "Worker",
+   "type": "people/civilian/worker",
+   "tags": [
+    "adult",
+    "hard-hat",
+    "hi-vis",
+    "human",
+    "industrial",
+    "man",
+    "town",
+    "vest"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 956,
+   "size": [
+    1.654,
+    1.917,
+    0.344
+   ],
+   "glb": "models/GP_Worker_01.glb",
+   "thumb": "thumbs/GP_Worker_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Grey suit",
+     "swatch": 26,
+     "hex": "#5A5F66"
+    },
+    {
+     "part": "Hi vis",
+     "swatch": 22,
+     "hex": "#D6E04A"
+    },
+    {
+     "part": "Skin dark",
+     "swatch": 23,
+     "hex": "#8D5A3B"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GP_Deputy_01",
+   "name": "Deputy",
+   "type": "people/law/deputy",
+   "tags": [
+    "adult",
+    "badge",
+    "enforcement",
+    "human",
+    "law",
+    "man",
+    "rural",
+    "tan",
+    "uniform"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 804,
+   "size": [
+    1.654,
+    1.841,
+    0.335
+   ],
+   "glb": "models/GP_Deputy_01.glb",
+   "thumb": "thumbs/GP_Deputy_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Tan uniform",
+     "swatch": 21,
+     "hex": "#B79A6A"
+    },
+    {
+     "part": "Skin dark",
+     "swatch": 23,
+     "hex": "#8D5A3B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    }
+   ]
+  },
+  {
+   "id": "GP_FbiAgentF_01",
+   "name": "FBI agent, woman",
+   "type": "people/law/fbi-agent",
+   "tags": [
+    "adult",
+    "government",
+    "human",
+    "navy",
+    "suit",
+    "tie",
+    "urban",
+    "woman"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 908,
+   "size": [
+    1.57,
+    1.747,
+    0.339
+   ],
+   "glb": "models/GP_FbiAgentF_01.glb",
+   "thumb": "thumbs/GP_FbiAgentF_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [
+    "GP_FbiAgent_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Skin tan",
+     "swatch": 24,
+     "hex": "#C58C65"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GP_FbiAgent_01",
+   "name": "FBI agent, man",
+   "type": "people/law/fbi-agent",
+   "tags": [
+    "adult",
+    "government",
+    "human",
+    "man",
+    "navy",
+    "suit",
+    "tie",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 876,
+   "size": [
+    1.688,
+    1.878,
+    0.34
+   ],
+   "glb": "models/GP_FbiAgent_01.glb",
+   "thumb": "thumbs/GP_FbiAgent_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [
+    "GP_FbiAgentF_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Hair blond",
+     "swatch": 30,
+     "hex": "#C9A25A"
+    }
+   ]
+  },
+  {
+   "id": "GP_Mib_01",
+   "name": "Man in Black",
+   "type": "people/law/mib",
+   "tags": [
+    "adult",
+    "black",
+    "conspiracy",
+    "government",
+    "human",
+    "man",
+    "suit",
+    "sunglasses",
+    "tie",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 888,
+   "size": [
+    1.688,
+    1.878,
+    0.34
+   ],
+   "glb": "models/GP_Mib_01.glb",
+   "thumb": "thumbs/GP_Mib_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Sit"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Skin pale",
+     "swatch": 25,
+     "hex": "#F0C9B0"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
     }
    ]
   },

@@ -69,10 +69,14 @@ BUILD = {
     "office_cubicle": dict(script="office.py", globals={"OFFICE_LIST": ["cubicle"]}, ids=['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']),
     "office_equipment": dict(script="office.py", globals={"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, ids=['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']),
     "people": dict(kind="people", clips=["Idle", "Walk", "Run", "Sit"],
-                   people={"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01"}),
+                   people={"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01",
+                           "farmer_spouse": "GP_FarmerSpouse_01", "grandparent": "GP_Grandparent_01", "worker": "GP_Worker_01", "deputy": "GP_Deputy_01",
+                           "fbi_agent": "GP_FbiAgent_01", "fbi_agent_f": "GP_FbiAgentF_01", "mib": "GP_Mib_01",
+                           "nordic": "GP_Nordic_01", "shadow": "GP_Shadow_01", "reptilian": "GP_Reptilian_01"}),
     "animals": dict(kind="animals", clips=["Idle", "Walk"], dog_clips=["Trot", "Run"],
                     animals={"cow": "GN_Cow_faceted_01", "horse": "GN_Horse_faceted_01", "dog_collie": "GN_DogCollie_faceted_01",
-                             "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01"}),
+                             "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01",
+                             "sheep": "GN_Sheep_faceted_01", "pig": "GN_Pig_faceted_01", "goat": "GN_Goat_faceted_01"}),
     "birds": dict(kind="animals", birds=True, clips=[], animals={"chicken_hen": "GN_ChickenHen_faceted_01"}),
 }
 
@@ -130,6 +134,9 @@ _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fas
 # animals
 _a("GN_Cow_faceted_01", "Cow", "animals/farm/cow", "rural farm livestock black white animal quadruped")
 _a("GN_Horse_faceted_01", "Horse", "animals/farm/horse", "rural farm livestock brown animal quadruped")
+_a("GN_Sheep_faceted_01", "Sheep", "animals/farm/sheep", "rural farm livestock white wool animal quadruped")
+_a("GN_Pig_faceted_01", "Pig", "animals/farm/pig", "rural farm livestock pink animal quadruped")
+_a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horns animal quadruped")
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
@@ -200,6 +207,16 @@ _a("GP_FarmerKid_01", "Farmer's kid", "people/civilian/kid", "rural farm child k
 _a("GP_Waitress_01", "Waitress", "people/civilian/waitress", "diner retro adult woman red human")
 _a("GP_Sheriff_01", "Sheriff", "people/law/sheriff", "rural law enforcement adult uniform tan hat human")
 _a("GP_Grey_01", "Grey alien", "people/alien/grey", "sci-fi alien grey humanoid")
+_a("GP_FarmerSpouse_01", "Farmer's spouse", "people/civilian/spouse", "rural farm adult woman dress long-hair human")
+_a("GP_Grandparent_01", "Grandparent", "people/civilian/grandparent", "rural farm elder fedora cardigan grey human")
+_a("GP_Worker_01", "Worker", "people/civilian/worker", "town industrial adult man hard-hat hi-vis vest human")
+_a("GP_Deputy_01", "Deputy", "people/law/deputy", "rural law enforcement adult man uniform tan badge human")
+_a("GP_FbiAgent_01", "FBI agent, man", "people/law/fbi-agent", "urban government adult man suit tie navy human", "fbi-agent")
+_a("GP_FbiAgentF_01", "FBI agent, woman", "people/law/fbi-agent", "urban government adult woman suit tie navy human", "fbi-agent")
+_a("GP_Mib_01", "Man in Black", "people/law/mib", "urban government adult man suit tie black sunglasses conspiracy human")
+_a("GP_Nordic_01", "Nordic alien", "people/alien/nordic", "sci-fi alien tall pale blond robe glow humanoid")
+_a("GP_Shadow_01", "Shadow entity", "people/alien/shadow", "sci-fi alien tall dark glow horror humanoid")
+_a("GP_Reptilian_01", "Reptilian alien", "people/alien/reptilian", "sci-fi alien green scaled tail crest humanoid")
 # appliances and storage that open
 _a("GI_Fridge_01", "Fridge, two-door", "appliances/kitchen/fridge", "classic kitchen white new cold two-door freezer-top", "fridge")
 _a("GI_Fridge_Modern_01", "Fridge, French door", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
