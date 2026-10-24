@@ -577,6 +577,7 @@
    "clips": [],
    "variants": [
     "GI_Fridge_Modern_01",
+    "GI_Fridge_Dispenser_01",
     "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
@@ -640,9 +641,93 @@
    "variants": [
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
+    "GI_Fridge_Dispenser_01",
     "GI_Fridge_Retro_01"
    ],
    "interactions": "models/GI_Fridge_Damaged_01.interactions.json"
+  },
+  {
+   "id": "GI_Fridge_Dispenser_01",
+   "name": "Fridge, ice and water dispenser",
+   "type": "appliances/kitchen/fridge",
+   "tags": [
+    "bottom-freezer",
+    "cold",
+    "dispenser",
+    "drawer",
+    "french-door",
+    "ice",
+    "kitchen",
+    "modern",
+    "new",
+    "steel",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 324,
+   "size": [
+    0.9,
+    1.85,
+    0.83
+   ],
+   "glb": "models/GI_Fridge_Dispenser_01.glb",
+   "thumb": "thumbs/GI_Fridge_Dispenser_01.png",
+   "parts": {
+    "DoorL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.45,
+      1.255,
+      0.38
+     ],
+     "limit": -100,
+     "rest": -0.0
+    },
+    "DoorR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.45,
+      1.255,
+      0.38
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DrawerFreezer": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.38,
+      0.36
+     ],
+     "limit": -0.4,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [
+    "GI_Fridge_01",
+    "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01",
+    "GI_Fridge_Damaged_01"
+   ],
+   "interactions": "models/GI_Fridge_Dispenser_01.interactions.json"
   },
   {
    "id": "GI_Fridge_Modern_01",
@@ -718,6 +803,7 @@
    "clips": [],
    "variants": [
     "GI_Fridge_01",
+    "GI_Fridge_Dispenser_01",
     "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
@@ -768,6 +854,7 @@
    "variants": [
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
+    "GI_Fridge_Dispenser_01",
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_Retro_01.interactions.json",

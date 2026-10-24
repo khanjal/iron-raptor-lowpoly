@@ -20,6 +20,7 @@ BUILD = {
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
                        ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
+    "int_fridge_dispenser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, ids=["GI_Fridge_Dispenser_01"]),
     "int_wardrobe": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Wardrobe"], "STYLE_LIST": ["Classic", "Damaged"]},
                          ids=["GI_Wardrobe_01", "GI_Wardrobe_Damaged_01"]),
     "int_dresser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Dresser", "Toolbox", "Microwave", "Chest", "Mailbox", "Locker"], "STYLE_LIST": ["Classic"]},
@@ -182,6 +183,7 @@ _a("GP_Grey_01", "Grey alien", "people/alien/grey", "sci-fi alien grey humanoid"
 # appliances and storage that open
 _a("GI_Fridge_01", "Fridge, two-door", "appliances/kitchen/fridge", "classic kitchen white new cold two-door freezer-top", "fridge")
 _a("GI_Fridge_Modern_01", "Fridge, French door", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
+_a("GI_Fridge_Dispenser_01", "Fridge, ice and water dispenser", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer ice water dispenser", "fridge")
 _a("GI_Fridge_Retro_01", "Fridge, retro", "appliances/kitchen/fridge", "retro kitchen cream rounded new cold single-door", "fridge")
 _a("GI_Fridge_Damaged_01", "Fridge, rusty", "appliances/kitchen/fridge", "kitchen rusty damaged abandoned cold", "fridge")
 _a("GI_Microwave_01", "Microwave", "appliances/kitchen/microwave", "classic kitchen new")

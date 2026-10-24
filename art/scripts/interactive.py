@@ -207,10 +207,8 @@ def fridge_retro(a=0.0):
     return p
 
 
-@variant("Fridge", "Modern")
-def fridge_modern(a=0.0):
-    """Two French doors on top and a pull-out freezer drawer below, in steel with black pulls."""
-    p = Prop("GI_Fridge_01")
+def _french_door_fridge(name, a, dispenser=False):
+    p = Prop(name)
     w, d, h = 0.9, 0.72, 1.85
     yf = -d / 2
     p.box("black", (0, 0, 0.05), (w - 0.06, d - 0.06, 0.1))
@@ -218,7 +216,19 @@ def fridge_modern(a=0.0):
     p.box("paint_white", (0, 0, 0.64), (w - 0.06, d - 0.06, 0.03))                                                    # the floor of the fresh-food side
     for z in (0.92, 1.22, 1.52):
         shelf(p, "clear_glass", w, d, z, t=0.015)
-    door(p, "DoorL", "left", "metal_galv", -w / 2, 0.0, 0.66, h, yf, a, thick=0.04, limit=100, handle="black")
+
+    def dispenser_parts():
+        """An ice and water dispenser in the left door: a dark recess, a paddle for the glass, a drip grille, a lit ice/water selector."""
+        yd = yf - 0.04                                                                                                # the door's front face
+        p.box("black", (-0.22, yd - 0.004, 1.3), (0.22, 0.008, 0.4))                                                  # the recess
+        p.box("metal_dark", (-0.22, yd - 0.016, 1.34), (0.1, 0.016, 0.16))                                            # the chute housing
+        p.box("metal_galv", (-0.22, yd - 0.03, 1.27), (0.07, 0.012, 0.09))                                            # the paddle the glass pushes
+        p.box("metal_galv", (-0.22, yd - 0.035, 1.12), (0.2, 0.07, 0.014))                                            # the drip tray
+        p.box("black", (-0.22, yd - 0.035, 1.123), (0.17, 0.05, 0.004))                                               # its grille
+        p.box("glow_cyan", (-0.22, yd - 0.01, 1.46), (0.1, 0.006, 0.035))                                             # the selector display
+
+    door(p, "DoorL", "left", "metal_galv", -w / 2, 0.0, 0.66, h, yf, a, thick=0.04, limit=100, handle="black",
+         extra=dispenser_parts if dispenser else None)
     door(p, "DoorR", "right", "metal_galv", 0.0, w / 2, 0.66, h, yf, a, thick=0.04, limit=100, handle="black",
          extra=lambda: p.box("glow_cyan", (0.26, yf - 0.047, 1.5), (0.1, 0.006, 0.06)))                               # the display
     drawer(p, "DrawerFreezer", "metal_galv", "paint_white", 0.0, 0.38, w - 0.02, 0.54, d, yf, a, travel=0.4, handle="black", pull="bar")
@@ -226,7 +236,21 @@ def fridge_modern(a=0.0):
     p.slot("Shelf2", (0, 0, 1.23), (0.8, 0.6, 0.27))
     p.slot("Shelf3", (0, 0, 1.53), (0.8, 0.6, 0.27))
     p.slot("Crisper", (0, 0, 0.66), (0.8, 0.6, 0.24))
+    if dispenser:
+        p.slot("DispenserGlass", (-0.22, yf - 0.1, 1.2), (0.12, 0.1, 0.16))                                        # where a glass stands under the chute
     return p
+
+
+@variant("Fridge", "Modern")
+def fridge_modern(a=0.0):
+    """Two French doors on top and a pull-out freezer drawer below, in steel with black pulls."""
+    return _french_door_fridge("GI_Fridge_01", a)
+
+
+@item("kitchen", "FridgeDispenser")
+def fridge_dispenser(a=0.0):
+    """The French-door fridge with an ice and water dispenser in the left door (steel, black pulls)."""
+    return _french_door_fridge("GI_Fridge_Dispenser_01", a, dispenser=True)
 
 
 @item("kitchen", "Stove")

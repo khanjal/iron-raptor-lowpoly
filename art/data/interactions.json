@@ -8671,6 +8671,123 @@
     "power"
    ]
   },
+  "GI_Fridge_Dispenser_01": {
+   "parts": {
+    "DoorL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.45,
+      -0.38,
+      1.255
+     ],
+     "limit": -100,
+     "rest": -0.0
+    },
+    "DoorR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.45,
+      -0.38,
+      1.255
+     ],
+     "limit": 100,
+     "rest": 0.0
+    },
+    "DrawerFreezer": {
+     "kind": "slide",
+     "axis": "y",
+     "pivot": [
+      0.0,
+      -0.36,
+      0.38
+     ],
+     "limit": -0.4,
+     "rest": -0.0
+    }
+   },
+   "slots": {
+    "DrawerFreezer": {
+     "position": [
+      0.0,
+      -0.03,
+      0.15
+     ],
+     "size": [
+      0.76,
+      0.62,
+      0.3888
+     ],
+     "part": "DrawerFreezer"
+    },
+    "Shelf1": {
+     "position": [
+      0,
+      0,
+      0.93
+     ],
+     "size": [
+      0.8,
+      0.6,
+      0.27
+     ],
+     "part": null
+    },
+    "Shelf2": {
+     "position": [
+      0,
+      0,
+      1.23
+     ],
+     "size": [
+      0.8,
+      0.6,
+      0.27
+     ],
+     "part": null
+    },
+    "Shelf3": {
+     "position": [
+      0,
+      0,
+      1.53
+     ],
+     "size": [
+      0.8,
+      0.6,
+      0.27
+     ],
+     "part": null
+    },
+    "Crisper": {
+     "position": [
+      0,
+      0,
+      0.66
+     ],
+     "size": [
+      0.8,
+      0.6,
+      0.24
+     ],
+     "part": null
+    },
+    "DispenserGlass": {
+     "position": [
+      -0.22,
+      -0.46,
+      1.2
+     ],
+     "size": [
+      0.12,
+      0.1,
+      0.16
+     ],
+     "part": null
+    }
+   }
+  },
   "GI_Fridge_Modern_01": {
    "parts": {
     "DoorL": {
