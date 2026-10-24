@@ -134,7 +134,7 @@ def apply_paints(assets, paint_specs, entries, models=None):
 
 def apply_part_names(assets, entries=None):
     """Name the paintable parts after the area they colour where art/data/part_names.json says so: a part whose swatch has an entry for its model gets that name
-    (the first part, the model's main colour, stays "Main" unless the entry has a "$main" name for it). Parts of models with their own authored names (catalog.PAINTS) are left alone. Raises if two parts of a model end up with the same name."""
+    (the first part, the model's main colour, stays "Main" unless the model has a single part and the entry a "$main" name for it). Parts of models with their own authored names (catalog.PAINTS) are left alone. Raises if two parts of a model end up with the same name."""
     entries = entries or paints_tool.palette_entries()
     names = paints_tool.part_names()
     for a in assets:
@@ -143,7 +143,7 @@ def apply_part_names(assets, entries=None):
             continue
         for i, p in enumerate(a.get("paintable") or []):
             sw = entries[p["swatch"]][0]
-            if i == 0 and "$main" in mapping:
+            if i == 0 and "$main" in mapping and len(a["paintable"]) == 1:      # only a lone colour: a model that gains parts later keeps "Main"
                 p["part"] = mapping["$main"]
             elif i > 0 and sw in mapping:
                 p["part"] = mapping[sw]
@@ -216,7 +216,6 @@ def part_names_only():
     path = ROOT / "site" / "manifest.json"
     doc = json.loads(path.read_text(encoding="utf-8"))
     entries = paints_tool.palette_entries()
-    names = paints_tool.part_names()
     for a in doc["assets"]:
         if a["id"] not in catalog.PAINTS:
             for i, p in enumerate(a.get("paintable") or []):

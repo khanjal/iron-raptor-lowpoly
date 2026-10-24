@@ -156,7 +156,7 @@
   "$main": "Fixture"
  },
  "GD_KeroseneLamp_01": {
-  "$main": "Lamp body"
+  "$main": "Metalwork"
  },
  "GH_Curtains_Closed_01": {
   "$main": "Fabric"
@@ -216,6 +216,6 @@
   "$main": "Plate"
  },
  "GT_FirePoker_01": {
-  "$main": "Iron"
+  "$main": "Poker"
  }
 }

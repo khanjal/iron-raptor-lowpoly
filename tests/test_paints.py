@@ -188,9 +188,11 @@ class PartNames(unittest.TestCase):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
         parts = {a["id"]: {ENTRIES[p["swatch"]][0]: p["part"] for p in a.get("paintable", [])[1:]} for a in doc["assets"]}
         first = {a["id"]: (a.get("paintable") or [{}])[0].get("part") for a in doc["assets"]}
+        counts = {a["id"]: a.get("paintable") or [] for a in doc["assets"]}
         for aid, mapping in self.NAMES.items():
             self.assertIn(aid, parts, f"{aid} is not in the manifest")
             if "$main" in mapping:
+                self.assertEqual(len(counts[aid]), 1, f"{aid}: '$main' is only for models with a single part (a model with several keeps Main)")
                 self.assertEqual(first[aid], mapping["$main"], f"{aid}: first part")
             for sw, name in ((k, v) for k, v in mapping.items() if k != "$main"):
                 self.assertIn(sw, parts[aid], f"{aid}: {sw} is not one of the model's secondary parts, so the entry does nothing")

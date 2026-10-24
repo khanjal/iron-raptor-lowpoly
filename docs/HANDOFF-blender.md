@@ -29,7 +29,7 @@ Work on branch `claude/alien-investigation-assets-jy5lbt` (pull it first). Read 
 
 - Palette indices are baked into every GLB's UVs and the palette is append-only. `textures/palette/GlobalPalette.png` is made by `python tools/palette_png.py` (a test checks it is current).
 - A paint is a swap `{palette swatch index: '#RRGGBB'}` on a copy of the palette image; `tools/paints.py A B` says whether two GLBs are a pure recolour (it compares every mesh and pose, not only the main mesh).
-- `--catalog-only` (`python tools/make_manifest.py --catalog-only`) refreshes names, tags, paints and themes without Blender; `--part-names` applies only `art/data/part_names.json` (area names of the colour-picker parts) to the committed manifest. A normal run needs `out/meta`.
+- `--catalog-only` (`python tools/make_manifest.py --catalog-only`) refreshes names, tags, paints and themes without Blender; `--part-names` applies only `art/data/part_names.json` (area names of the colour-picker parts, and the `"$main"` name of a single-colour model) to the committed manifest. A normal run needs `out/meta`.
 - Say plainly in the commit message and `NOTES.md` what you built and looked at, and what you did not.
 
 ## Prompt to paste

@@ -6318,7 +6318,7 @@
    "lights": 1,
    "paintable": [
     {
-     "part": "Lamp body",
+     "part": "Metalwork",
      "swatch": 70,
      "hex": "#B06A3B"
     }
@@ -14800,7 +14800,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Iron",
+     "part": "Poker",
      "swatch": 3,
      "hex": "#4A525A"
     }
