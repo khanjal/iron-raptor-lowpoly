@@ -648,7 +648,7 @@ def export_fbx(coll, rel_path, rigged=False, sockets=True):
 
 
 # ===== glTF (GLB) for the web viewer ============================================================================
-GLB_COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/lowpoly-assets"   # written to every GLB's asset.copyright; equals tools/stamp_glb.py COPYRIGHT (tested)
+GLB_COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/iron-raptor-lowpoly"   # written to every GLB's asset.copyright; equals tools/stamp_glb.py COPYRIGHT (tested)
 GLB_FPS = 60                                                       # the frame rate the GLB's animations are sampled at (export_glb sets the scene to it)
 
 

@@ -1,6 +1,6 @@
 ---
 name: blender-assets
-description: How the models in khanjal/lowpoly-assets are made and checked (Python scripts in art/ driven through the Blender MCP, exported to out/ as FBX and GLB, shown by the site/ browser): the conventions, the sign rule that tilts parts the wrong way, the brief before a build, the checks that catch floating or hollow-looking parts, moving parts and markers, and what has to be re-run after a change (GLB, thumbnail, manifest). Use this whenever creating or changing a model, variant or palette colour under art/, when a model looks wrong in the browser or an engine (flipped, floating, upside down, hollow), or when re-exporting models.
+description: How the models in khanjal/iron-raptor-lowpoly are made and checked (Python scripts in art/ driven through the Blender MCP, exported to out/ as FBX and GLB, shown by the site/ browser): the conventions, the sign rule that tilts parts the wrong way, the brief before a build, the checks that catch floating or hollow-looking parts, moving parts and markers, and what has to be re-run after a change (GLB, thumbnail, manifest). Use this whenever creating or changing a model, variant or palette colour under art/, when a model looks wrong in the browser or an engine (flipped, floating, upside down, hollow), or when re-exporting models.
 ---
 
 # Making and fixing models (art/)

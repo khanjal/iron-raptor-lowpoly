@@ -1,9 +1,9 @@
 ---
 name: ship-it
-description: The end-to-end procedure for landing a change in khanjal/lowpoly-assets (Blender-generated low-poly models and their static asset browser) once the work is ready — confirm the branch, run the unit tests and check_site.py and report the real results, update the manifest and docs, commit with the right trailer, push a feature branch, open the PR from the template. Use this whenever finishing a change here, whenever about to commit, push or open a PR, even if the user just says "commit this", "ship it" or "let's land this".
+description: The end-to-end procedure for landing a change in khanjal/iron-raptor-lowpoly (Blender-generated low-poly models and their static asset browser) once the work is ready — confirm the branch, run the unit tests and check_site.py and report the real results, update the manifest and docs, commit with the right trailer, push a feature branch, open the PR from the template. Use this whenever finishing a change here, whenever about to commit, push or open a PR, even if the user just says "commit this", "ship it" or "let's land this".
 ---
 
-# Shipping a change in lowpoly-assets
+# Shipping a change in Iron Raptor Lowpoly
 
 Adapted from the `ship-it` skills in the owner's other projects. Each step exists because skipping it causes trouble later; follow the sequence, and judge a step that clearly does not apply rather than forcing it. The two model reviews (`pr-review`) are never the step that does not apply, however small the change.
 

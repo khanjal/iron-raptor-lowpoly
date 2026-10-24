@@ -231,3 +231,10 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
 /* the breadcrumbs above a model's details: each level is a link back to that category */
 #v-type .crumb { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; }
 #v-type .crumb:hover, #v-type .crumb:focus-visible { color: var(--ink); text-decoration-style: solid; }
+
+/* very narrow phones: the longer name leaves no room for the search box next to it, so the box drops to its own row */
+@media (max-width: 26rem) {
+  .top { flex-wrap: wrap; }
+  #search { order: 3; flex: 1 1 100%; max-width: none; }
+  #filters { top: 6.5rem; }   /* the header is two rows tall here (about 104 px), so the Filters drawer starts below both */
+}

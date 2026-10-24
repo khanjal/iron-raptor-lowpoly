@@ -1,8 +1,8 @@
-# lowpoly-assets (working name)
+# Iron Raptor Lowpoly
 
-[![Tests](https://github.com/khanjal/lowpoly-assets/actions/workflows/tests.yml/badge.svg)](https://github.com/khanjal/lowpoly-assets/actions/workflows/tests.yml)
-[![Pages](https://github.com/khanjal/lowpoly-assets/actions/workflows/pages.yml/badge.svg)](https://khanjal.github.io/lowpoly-assets/)
-[![Release](https://img.shields.io/github/v/release/khanjal/lowpoly-assets?include_prereleases)](https://github.com/khanjal/lowpoly-assets/releases)
+[![Tests](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/tests.yml/badge.svg)](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/tests.yml)
+[![Pages](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/pages.yml/badge.svg)](https://khanjal.github.io/iron-raptor-lowpoly/)
+[![Release](https://img.shields.io/github/v/release/khanjal/iron-raptor-lowpoly?include_prereleases)](https://github.com/khanjal/iron-raptor-lowpoly/releases)
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
 [![Models: CC BY 4.0](https://img.shields.io/badge/models-CC%20BY%204.0-green)](LICENSE-MODELS)
 ![Made with Blender](https://img.shields.io/badge/made%20with-Blender%20%2B%20Python-orange?logo=blender&logoColor=white)
@@ -51,9 +51,9 @@ cd site
 python -m http.server 8000      # then open http://localhost:8000
 ```
 
-It has to be served over http (a `file://` page cannot load the models). Publishing: `.github/workflows/pages.yml` deploys `site/` with GitHub Pages to https://khanjal.github.io/lowpoly-assets/ when a change to `site/` reaches `main` (the repository is public, which Pages needs on the Free plan).
+It has to be served over http (a `file://` page cannot load the models). Publishing: `.github/workflows/pages.yml` deploys `site/` with GitHub Pages to https://khanjal.github.io/iron-raptor-lowpoly/ when a change to `site/` reaches `main` (the repository is public, which Pages needs on the Free plan).
 
-**Downloading.** The viewer's *Download GLB* button gives one model. [Releases](https://github.com/khanjal/lowpoly-assets/releases) have zips of every GLB and of each category (`lowpoly-assets-glb-all.zip`, `-vehicles.zip`...), made by `.github/workflows/release.yml` when a `v*` tag is pushed (or by hand from the Actions tab); `python tools/make_release_zips.py` makes the same zips locally into `dist/`. Each zip has `CREDIT.txt` and `LICENSE-MODELS`, and every GLB carries the credit line in its `asset.copyright` field. FBX files are not published (they are not committed; building them needs Blender).
+**Downloading.** The viewer's *Download GLB* button gives one model. [Releases](https://github.com/khanjal/iron-raptor-lowpoly/releases) have zips of every GLB and of each category (`iron-raptor-lowpoly-glb-all.zip`, `-vehicles.zip`...), made by `.github/workflows/release.yml` when a `v*` tag is pushed (or by hand from the Actions tab); `python tools/make_release_zips.py` makes the same zips locally into `dist/`. Each zip has `CREDIT.txt` and `LICENSE-MODELS`, and every GLB carries the credit line in its `asset.copyright` field. FBX files are not published (they are not committed; building them needs Blender).
 
 `site/manifest.json` describes every model, one entry each:
 

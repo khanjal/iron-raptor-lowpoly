@@ -1,11 +1,11 @@
 blank_issues_enabled: true
 contact_links:
   - name: How the models are made, and using them in an engine
-    url: https://github.com/khanjal/lowpoly-assets#using-the-models-in-your-engine
+    url: https://github.com/khanjal/iron-raptor-lowpoly#using-the-models-in-your-engine
     about: Units, axes, the palette texture, formats, and what has been tested in Unity, Godot and Unreal. Most import problems are settings described here.
   - name: Licence and credit
-    url: https://github.com/khanjal/lowpoly-assets/blob/main/LICENSES.md
+    url: https://github.com/khanjal/iron-raptor-lowpoly/blob/main/LICENSES.md
     about: Code is MIT, models and data are CC BY 4.0 (credit required). What that means, and the third-party material in CREDITS.md.
   - name: Browse the models
-    url: https://khanjal.github.io/lowpoly-assets/
+    url: https://khanjal.github.io/iron-raptor-lowpoly/
     about: Search the asset browser before asking for a model; it may already exist, or exist as a variant.

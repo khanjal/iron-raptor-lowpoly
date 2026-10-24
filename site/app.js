@@ -280,7 +280,7 @@ async function showAsset(a) {
   setMax(state.max);
   if (matchMedia('(max-width: 62rem)').matches) document.body.style.overflow = 'hidden';
   $('filters').classList.remove('open');
-  document.title = a.name + ' · Lowpoly Assets';
+  document.title = a.name + ' · Iron Raptor Lowpoly';
   for (const c of document.querySelectorAll('.card')) c.classList.toggle('current', c.dataset.id === a.id);
   fillDetails(a);
 
