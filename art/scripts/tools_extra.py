@@ -104,7 +104,7 @@ def bench_vise():
     p.box("barn_red", (0, 0, 0.055), (0.12, 0.22, 0.05))                             # the body
     p.box("barn_red", (0, 0.09, 0.12), (0.1, 0.04, 0.08))                           # the fixed jaw
     p.box("barn_red", (0, -0.02, 0.12), (0.1, 0.04, 0.08))                          # the moving jaw
-    p.cyl("metal_dark", (0, -0.1, 0.1), 0.012, 0.2, n=8, axis="y")                   # the screw
+    p.cyl("metal_dark", (0, -0.105, 0.1), 0.012, 0.19, n=8, axis="y")                   # the screw
     p.cyl("metal_galv", (0, -0.2, 0.1), 0.006, 0.14, n=8, axis="x")                  # the T-handle
     return p
 
@@ -121,7 +121,7 @@ def snow_shovel():
     p.box("wood_light", (-0.39, 0, 0.015), (0.024, 0.14, 0.03))                      # the crosspiece closing the D around the handle
     p.box("truck_blue", (0.6, 0, 0.005), (0.4, 0.45, 0.01))                          # the scoop
     for s in (-1, 1):
-        p.box("truck_blue", (0.6, s * 0.2175, 0.02), (0.4, 0.015, 0.04))             # the side lips
+        p.box("truck_blue", (0.6, s * 0.2165, 0.02), (0.4, 0.015, 0.04))             # the side lips
     p.box("metal_dark", (0.42, 0, 0.012), (0.08, 0.05, 0.024))                       # the socket joining handle and scoop
     return p
 
@@ -146,7 +146,7 @@ def boot_scraper():
     p.box("black", (0, 0, 0.01), (0.3, 0.12, 0.02))                                   # the base plate
     for s in (-1, 1):
         p.box("black", (s * 0.12, 0, 0.07), (0.02, 0.02, 0.1))                        # the two posts
-    p.box("metal_dark", (0, 0, 0.105), (0.26, 0.012, 0.04))                           # the scraping blade
+    p.box("metal_dark", (0, 0, 0.105), (0.24, 0.012, 0.04))                           # the scraping blade
     return p
 
 
