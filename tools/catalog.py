@@ -195,7 +195,7 @@ _a("GV_Tractor_01", "Tractor", "vehicles/farm/tractor", "rural farm green red ne
 _a("GV_Pickup_01", "Farm pickup", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")
-# alien tech: ship parts, devices, wreckage, the landed ship's interior and its terminals
+# sci-fi: alien ship parts, devices and wreckage (the landed ship's interior and its terminals are under vehicles)
 _a("SH_PowerCell_01", "Power cell", "sci-fi/ship-part/power-cell", "glow cylinder energy carriable sci-fi alien ship new")
 _a("SH_HullPanel_01", "Hull panel", "sci-fi/ship-part/hull-panel", "hull plate hexagonal grey carriable sci-fi alien ship new")
 _a("SH_NavCrystal_01", "Nav crystal", "sci-fi/ship-part/nav-crystal", "navigation crystal glow cyan carriable sci-fi alien ship new")
