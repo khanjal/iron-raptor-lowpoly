@@ -114,11 +114,19 @@ def surface_by_swatch(path):
 
     def column(i):
         a = doc["accessors"][i]
+        if "sparse" in a or a.get("normalized") or "bufferView" not in a:
+            raise ValueError(f"{path.name}: accessor {i} is sparse, normalized or empty; only plain accessors are read")
         bv = doc["bufferViews"][a["bufferView"]]
         vals = array(kinds[a["componentType"]])
         n = dict(SCALAR=1, VEC2=2, VEC3=3)[a["type"]]
         start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
-        vals.frombytes(blob[start:start + a["count"] * n * vals.itemsize])
+        size = n * vals.itemsize
+        stride = bv.get("byteStride") or size                       # interleaved buffers step by more than one element
+        if stride == size:
+            vals.frombytes(blob[start:start + a["count"] * size])
+        else:
+            for k in range(a["count"]):
+                vals.frombytes(blob[start + k * stride:start + k * stride + size])
         return vals
 
     out = {}

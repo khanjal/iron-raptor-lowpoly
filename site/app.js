@@ -257,7 +257,7 @@ function setMax(on) {
   state.max = on;
   $('viewer').classList.toggle('max', on);
   $('maximize').textContent = on ? 'Shrink' : 'Expand';
-  $('maximize').setAttribute('aria-pressed', on ? 'true' : 'false');
+  document.body.style.overflow = on || matchMedia('(max-width: 62rem)').matches ? 'hidden' : '';   // the page behind a maximised viewer does not scroll
   try { localStorage.setItem('lowpoly-max', on ? '1' : ''); } catch (e) { /* private window: not remembered */ }
   if (state.viewer) state.viewer.resize();
 }
@@ -336,7 +336,7 @@ function setupLook(a) {
   const paints = a.paints || common || [];
   $('v-themes').hidden = themes.length === 0;
   $('v-paints').hidden = paints.length === 0 && parts.length === 0;
-  if (!themes.length && !paints.length) return;
+  if (!themes.length && !paints.length && !parts.length) return;
   let themeSwap = {}, overrides = {};
   const themeChips = new Map(), paintChips = new Map(), inputs = new Map();
   const press = (chips, name) => { for (const [n, b] of chips) b.setAttribute('aria-pressed', n === name ? 'true' : 'false'); };

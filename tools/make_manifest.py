@@ -159,9 +159,12 @@ def catalog_only():
     doc = json.loads(path.read_text(encoding="utf-8"))
     groups = variant_groups(catalog.ASSETS)
     assets = []
+    present = {a["id"] for a in doc["assets"]}
     for a in doc["assets"]:
         if a["id"] in catalog.SITE_IDS:                      # an entry still under the generator's name: move it to the browser's id
             new = catalog.SITE_IDS[a["id"]]
+            if new in present:                               # the browser's id already has its entry: the old one is stale, drop it rather than duplicate the id
+                continue
             a.update(id=new, glb=f"models/{new}.glb", thumb=f"thumbs/{new}.png")
             if "interactions" in a:
                 a["interactions"] = f"models/{sidecar_name(new)}"
