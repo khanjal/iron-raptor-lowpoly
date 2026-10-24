@@ -14210,6 +14210,439 @@
    ]
   },
   {
+   "id": "GT_Hoe_01",
+   "name": "Hoe",
+   "type": "tools/garden/hoe",
+   "tags": [
+    "farm",
+    "garden",
+    "hoe",
+    "new",
+    "steel",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    1.5,
+    0.022,
+    0.15
+   ],
+   "glb": "models/GT_Hoe_01.glb",
+   "thumb": "thumbs/GT_Hoe_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Spade_01",
+   "name": "Spade",
+   "type": "tools/garden/spade",
+   "tags": [
+    "farm",
+    "garden",
+    "new",
+    "shovel",
+    "spade",
+    "steel",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    1.235,
+    0.025,
+    0.2
+   ],
+   "glb": "models/GT_Spade_01.glb",
+   "thumb": "thumbs/GT_Spade_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_WateringCan_01",
+   "name": "Watering can",
+   "type": "tools/garden/watering-can",
+   "tags": [
+    "can",
+    "farm",
+    "galvanised",
+    "garden",
+    "new",
+    "watering"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 148,
+   "size": [
+    0.605,
+    0.35,
+    0.19
+   ],
+   "glb": "models/GT_WateringCan_01.glb",
+   "thumb": "thumbs/GT_WateringCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Axe_01",
+   "name": "Axe",
+   "type": "tools/hand/axe",
+   "tags": [
+    "axe",
+    "cabin",
+    "felling",
+    "new",
+    "steel",
+    "wood",
+    "woodshed"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.865,
+    0.045,
+    0.164
+   ],
+   "glb": "models/GT_Axe_01.glb",
+   "thumb": "thumbs/GT_Axe_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_Hammer_01",
+   "name": "Claw hammer",
+   "type": "tools/hand/hammer",
+   "tags": [
+    "claw",
+    "garage",
+    "hammer",
+    "new",
+    "steel",
+    "wood",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    0.308,
+    0.036,
+    0.147
+   ],
+   "glb": "models/GT_Hammer_01.glb",
+   "thumb": "thumbs/GT_Hammer_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_HandSaw_01",
+   "name": "Hand saw",
+   "type": "tools/hand/hand-saw",
+   "tags": [
+    "handsaw",
+    "new",
+    "saw",
+    "steel",
+    "wood",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.62,
+    0.025,
+    0.125
+   ],
+   "glb": "models/GT_HandSaw_01.glb",
+   "thumb": "thumbs/GT_HandSaw_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GT_Pliers_01",
+   "name": "Pliers",
+   "type": "tools/hand/pliers",
+   "tags": [
+    "garage",
+    "new",
+    "pliers",
+    "rubber",
+    "steel",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 92,
+   "size": [
+    0.194,
+    0.016,
+    0.089
+   ],
+   "glb": "models/GT_Pliers_01.glb",
+   "thumb": "thumbs/GT_Pliers_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GT_Screwdriver_01",
+   "name": "Screwdriver",
+   "type": "tools/hand/screwdriver",
+   "tags": [
+    "new",
+    "screwdriver",
+    "steel",
+    "workshop",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.274,
+    0.031,
+    0.036
+   ],
+   "glb": "models/GT_Screwdriver_01.glb",
+   "thumb": "thumbs/GT_Screwdriver_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Sledgehammer_01",
+   "name": "Sledgehammer",
+   "type": "tools/hand/sledgehammer",
+   "tags": [
+    "farm",
+    "maul",
+    "new",
+    "sledgehammer",
+    "steel",
+    "wood",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.9,
+    0.06,
+    0.182
+   ],
+   "glb": "models/GT_Sledgehammer_01.glb",
+   "thumb": "thumbs/GT_Sledgehammer_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_Wrench_01",
+   "name": "Wrench",
+   "type": "tools/hand/wrench",
+   "tags": [
+    "garage",
+    "new",
+    "spanner",
+    "steel",
+    "workshop",
+    "wrench"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.244,
+    0.012,
+    0.05
+   ],
+   "glb": "models/GT_Wrench_01.glb",
+   "thumb": "thumbs/GT_Wrench_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GV_Pickup_01",
    "name": "Farm pickup",
    "type": "vehicles/farm/pickup",
