@@ -1,0 +1,134 @@
+{
+ "GT_Hoe_01": {
+  "metal_dark": "Blade"
+ },
+ "GT_HoseCoil_01": {
+  "leaf_dark": "Alternate coils",
+  "shadow": "Centre"
+ },
+ "GT_PruningShears_01": {
+  "metal_dark": "Frame",
+  "metal_galv": "Cutting blade"
+ },
+ "GT_Spade_01": {
+  "metal_galv": "Blade",
+  "metal_dark": "Socket"
+ },
+ "GT_Sprinkler_01": {
+  "metal_galv": "Spray bar",
+  "copper": "Hose fitting"
+ },
+ "GT_WateringCan_01": {
+  "metal_dark": "Handle and rose"
+ },
+ "GT_Axe_01": {
+  "metal_dark": "Head",
+  "metal_galv": "Edge"
+ },
+ "GT_Hammer_01": {
+  "metal_dark": "Head",
+  "rubber": "Grip",
+  "metal_galv": "Face"
+ },
+ "GT_HandSaw_01": {
+  "wood_dark": "Handle",
+  "black": "Hand hole"
+ },
+ "GT_Pliers_01": {
+  "metal_galv": "Jaws",
+  "rubber": "Grips"
+ },
+ "GT_Screwdriver_01": {
+  "metal_galv": "Shaft",
+  "black": "Ferrule",
+  "metal_dark": "Tip"
+ },
+ "GT_Sledgehammer_01": {
+  "metal_dark": "Head",
+  "rubber": "Grip",
+  "metal_galv": "Faces"
+ },
+ "GT_Wrench_01": {
+  "metal_dark": "Jaw openings"
+ },
+ "GT_Plunger_01": {
+  "rubber": "Cup",
+  "wood_dark": "Knob"
+ },
+ "GT_CordReel_01": {
+  "basket_orange": "Cord",
+  "black": "Frame"
+ },
+ "GT_HandTruck_01": {
+  "rubber": "Wheels",
+  "metal_galv": "Toe plate"
+ },
+ "GT_PaintCan_01": {
+  "label_red": "Label",
+  "paint_yellow": "Paint"
+ },
+ "GT_RopeCoil_01": {
+  "hay": "Middle layer",
+  "dark_brown": "Core"
+ },
+ "GT_Sawhorse_01": {
+  "wood_light": "Top beam"
+ },
+ "GV_Pickup_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Ambulance_White_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Motorcycle_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Police_Sheriff_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Taxi_Yellow_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Van_01": {
+  "rubber": "Tyres"
+ },
+ "GV_Sedan_Damaged_01": {
+  "rubber": "Tyres"
+ },
+ "GI_Microwave_01": {
+  "glass": "Door window"
+ },
+ "GI_Washer_01": {
+  "glass": "Door window"
+ },
+ "GI_Dryer_01": {
+  "glass": "Door window"
+ },
+ "GI_Stove_01": {
+  "glass": "Oven window"
+ },
+ "GI_VendingMachine_01": {
+  "glass": "Display window"
+ },
+ "GH_Jukebox_01": {
+  "glass": "Display window"
+ },
+ "GO_Copier_01": {
+  "glass": "Scanner glass"
+ },
+ "GH_Bed_Bunk_01": {
+  "linen": "Bedding"
+ },
+ "GH_Bed_Child_01": {
+  "linen": "Bedding"
+ },
+ "GH_Bed_Single_01": {
+  "linen": "Bedding"
+ },
+ "GH_Cot_01": {
+  "linen": "Bedding"
+ },
+ "GH_Gurney_01": {
+  "linen": "Mattress"
+ }
+}

@@ -164,3 +164,40 @@ class AutoColours(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PartNames(unittest.TestCase):
+    """art/data/part_names.json names the secondary colours of a model after the area they colour (Handle, Tyres) instead of the swatch (Metal dark)."""
+    NAMES = paints.part_names()
+    NAMES_LEFT = 586      # secondary parts still named after a swatch: lower this as models get area names, never raise it
+
+    def test_every_entry_names_a_real_model_and_real_swatches(self):
+        swatches = {n for n, _ in ENTRIES}
+        for aid, mapping in self.NAMES.items():
+            self.assertIn(aid, catalog.ASSETS, aid)
+            self.assertNotIn(aid, catalog.PAINTS, f"{aid}: its parts are named in catalog.PAINTS")
+            for sw, name in mapping.items():
+                self.assertIn(sw, swatches, f"{aid}: {sw}")
+                self.assertTrue(name.strip() and name != "Main", f"{aid}: {sw} -> {name!r}")
+            self.assertEqual(len(set(mapping.values())), len(mapping), f"{aid}: two swatches with the same part name")
+
+    def test_the_manifest_uses_them(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        parts = {a["id"]: {ENTRIES[p["swatch"]][0]: p["part"] for p in a.get("paintable", [])[1:]} for a in doc["assets"]}
+        for aid, mapping in self.NAMES.items():
+            for sw, name in mapping.items():
+                if sw in parts[aid]:
+                    self.assertEqual(parts[aid][sw], name, f"{aid}: {sw}")
+
+    def test_part_names_do_not_repeat_within_a_model(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        for a in doc["assets"]:
+            labels = [p["part"] for p in a.get("paintable", [])]
+            self.assertEqual(len(labels), len(set(labels)), a["id"])
+
+    def test_the_count_of_parts_named_after_a_colour_only_goes_down(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        labels = {paints.part_label(n) for n, _ in ENTRIES}
+        left = sum(1 for a in doc["assets"] for p in a.get("paintable", [])[1:] if p["part"] in labels)
+        self.assertLessEqual(left, self.NAMES_LEFT, "more parts are named after a swatch than before: add them to art/data/part_names.json")
+        self.assertEqual(left, self.NAMES_LEFT, "fewer than NAMES_LEFT: lower NAMES_LEFT to match")
