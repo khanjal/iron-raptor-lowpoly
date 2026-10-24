@@ -34,6 +34,18 @@ BUILD = {
                          ids=["GV_Tractor_Green_01"]),
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
+    "ship_parts": dict(script="ships.py", globals={"SHIP_LIST": ["parts"]},
+                       ids=["SH_PowerCell_01", "SH_HullPanel_01", "SH_NavCrystal_01", "SH_EngineCoil_01", "SH_ThrusterNozzle_01", "SH_FuelCanister_01", "SH_ShieldEmitter_01",
+                            "SH_CommsArray_01", "SH_BlackBox_01", "SH_WarpRingSegment_01", "SH_LandingLeg_01", "SH_ConsoleModule_01", "SH_Beacon_01", "SH_SpecimenJar_01",
+                            "SH_ContainmentPod_01"]),
+    "ship_tools": dict(script="ships.py", globals={"SHIP_LIST": ["tools", "debris"]},
+                       ids=["SH_RepairTool_01", "SH_Scanner_01", "SH_Translator_01", "SH_HullShard_A_01", "SH_HullShard_B_01", "SH_CableTangle_01", "SH_ScorchedGround_01"]),
+    "ship_interior_lab": dict(script="ship_props.py", globals={"SHIP_PROP_LIST": ["lockers", "pod", "jars", "conduit", "holo", "couch", "tools", "samples"]},
+                              ids=["GV_ShipLockers_01", "GV_ShipPod_01", "GV_ShipJars_01", "GV_ShipConduit_01", "GV_ShipHoloTable_01", "GV_ShipCouch_01", "GV_ShipToolRack_01",
+                                   "GV_ShipSampleRack_01"]),
+    "ship_interior_deck": dict(script="ship_props.py", globals={"SHIP_PROP_LIST": ["helm", "navscreen", "radar", "crates", "drums", "bunk", "mess"]},
+                               ids=["GV_ShipHelm_01", "GV_ShipNavScreen_01", "GV_ShipRadarPost_01", "GV_ShipCrates_01", "GV_ShipDrums_01", "GV_ShipBunk_01", "GV_ShipMess_01"]),
+    "ship_terminals": dict(script="terminals.py", globals={"JOIN_LAMPS": True}, ids=["GV_ShipConsole_01", "GV_ShipTerminalBank_01", "GV_ShipTerminalLaunch_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
                        ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
     "int_fridge_dispenser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, ids=["GI_Fridge_Dispenser_01"]),
@@ -131,6 +143,47 @@ _a("GV_Tractor_01", "Tractor", "vehicles/farm/tractor", "rural farm green red ne
 _a("GV_Pickup_01", "Farm pickup", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")
+# alien tech: ship parts, devices, wreckage, the landed ship's interior and its terminals
+_a("SH_PowerCell_01", "Power cell", "alien/ship-part/power-cell", "glow cylinder energy carriable sci-fi alien ship new")
+_a("SH_HullPanel_01", "Hull panel", "alien/ship-part/hull-panel", "hull plate hexagonal grey carriable sci-fi alien ship new")
+_a("SH_NavCrystal_01", "Nav crystal", "alien/ship-part/nav-crystal", "navigation crystal glow cyan carriable sci-fi alien ship new")
+_a("SH_EngineCoil_01", "Engine coil", "alien/ship-part/engine-coil", "engine coil ring glow carriable sci-fi alien ship new")
+_a("SH_ThrusterNozzle_01", "Thruster nozzle", "alien/ship-part/thruster-nozzle", "thruster engine nozzle glow carriable sci-fi alien ship new")
+_a("SH_FuelCanister_01", "Fuel canister", "alien/ship-part/fuel-canister", "fuel canister tank carriable sci-fi alien ship new")
+_a("SH_ShieldEmitter_01", "Shield emitter", "alien/ship-part/shield-emitter", "shield emitter dish glow carriable sci-fi alien ship new")
+_a("SH_CommsArray_01", "Comms array", "alien/ship-part/comms-array", "communications antenna array carriable sci-fi alien ship new")
+_a("SH_BlackBox_01", "Black box", "alien/ship-part/black-box", "flight recorder box dark carriable sci-fi alien ship new")
+_a("SH_WarpRingSegment_01", "Warp ring segment", "alien/ship-part/warp-ring", "warp drive ring arc glow sci-fi alien ship new")
+_a("SH_LandingLeg_01", "Landing leg", "alien/ship-part/landing-leg", "landing leg strut pad sci-fi alien ship new")
+_a("SH_ConsoleModule_01", "Console module", "alien/ship-part/console-module", "console module buttons screen carriable sci-fi alien ship new")
+_a("SH_Beacon_01", "Beacon", "alien/device/beacon", "signal beacon light glow sci-fi alien ship new")
+_a("SH_SpecimenJar_01", "Specimen jar", "alien/device/specimen-jar", "specimen jar glass lab sci-fi alien ship new")
+_a("SH_ContainmentPod_01", "Containment pod", "alien/device/containment-pod", "containment pod capsule lab glow sci-fi alien ship new")
+_a("SH_RepairTool_01", "Repair tool", "alien/device/repair-tool", "repair handheld tool glow sci-fi alien ship new")
+_a("SH_Scanner_01", "Alien scanner", "alien/device/scanner", "scanner handheld screen glow sci-fi alien ship new")
+_a("SH_Translator_01", "Translator", "alien/device/translator", "translator handheld speaker glow sci-fi alien ship new")
+_a("SH_HullShard_A_01", "Hull shard, large", "alien/debris/hull-shard", "wreckage shard hull crash broken sci-fi alien ship damaged", "hull-shard")
+_a("SH_HullShard_B_01", "Hull shard, small", "alien/debris/hull-shard", "wreckage shard hull crash broken sci-fi alien ship damaged", "hull-shard")
+_a("SH_CableTangle_01", "Cable tangle", "alien/debris/cable-tangle", "wreckage cables crash tangled sci-fi alien ship damaged")
+_a("SH_ScorchedGround_01", "Scorched ground", "alien/debris/scorched-ground", "crash scorch burn mark ground decal sci-fi alien ship damaged")
+_a("GV_ShipLockers_01", "Ship lockers", "alien/ship-interior/lockers", "interior wall lockers storage sci-fi alien ship new")
+_a("GV_ShipPod_01", "Stasis pod", "alien/ship-interior/stasis-pod", "interior pod stasis glass glow sci-fi alien ship new")
+_a("GV_ShipJars_01", "Specimen jars shelf", "alien/ship-interior/specimen-jars", "interior jars specimens cow plant lab sci-fi alien ship new")
+_a("GV_ShipConduit_01", "Conduit run", "alien/ship-interior/conduit", "interior cable pipe wall sci-fi alien ship new")
+_a("GV_ShipHoloTable_01", "Holo-map table", "alien/ship-interior/holo-table", "interior hologram map table glow sci-fi alien ship new")
+_a("GV_ShipCouch_01", "Medical couch", "alien/ship-interior/couch", "interior medical couch lab sci-fi alien ship new")
+_a("GV_ShipToolRack_01", "Tool rack", "alien/ship-interior/tool-rack", "interior tools rack hooks wall sci-fi alien ship new")
+_a("GV_ShipSampleRack_01", "Sample rack", "alien/ship-interior/sample-rack", "interior samples vials rack wall sci-fi alien ship new")
+_a("GV_ShipHelm_01", "Pilot's helm", "alien/ship-interior/helm", "interior bridge pilot desk chair sci-fi alien ship new")
+_a("GV_ShipNavScreen_01", "Nav screen", "alien/ship-interior/nav-screen", "interior bridge screen star chart sci-fi alien ship new")
+_a("GV_ShipRadarPost_01", "Radar post", "alien/ship-interior/radar-post", "interior bridge radar scope sci-fi alien ship new")
+_a("GV_ShipCrates_01", "Ship crates", "alien/ship-interior/crates", "interior cargo crates pallet sci-fi alien ship new")
+_a("GV_ShipDrums_01", "Ship drums", "alien/ship-interior/drums", "interior cargo drums pallet sci-fi alien ship new")
+_a("GV_ShipBunk_01", "Ship bunk", "alien/ship-interior/bunk", "interior quarters bunk bed sci-fi alien ship new")
+_a("GV_ShipMess_01", "Mess table", "alien/ship-interior/mess-table", "interior quarters table benches sci-fi alien ship new")
+_a("GV_ShipConsole_01", "Ship control console", "alien/ship-console/console", "bridge console controls glow sci-fi alien ship new")
+_a("GV_ShipTerminalBank_01", "Bank terminal", "alien/ship-console/bank-terminal", "terminal green screen bank sci-fi alien ship new")
+_a("GV_ShipTerminalLaunch_01", "Launch terminal", "alien/ship-console/launch-terminal", "terminal red screen launch sci-fi alien ship new")
 # animals
 _a("GN_Cow_faceted_01", "Cow", "animals/farm/cow", "rural farm livestock black white animal quadruped")
 _a("GN_Horse_faceted_01", "Horse", "animals/farm/horse", "rural farm livestock brown animal quadruped")

@@ -373,7 +373,13 @@ def run():
         prop, lamps = built if isinstance(built, tuple) else (built, None)
         obj, coll = prop.finish()
         if lamps is not None:
-            lamp_objects(prop.name, obj, coll, lamps["plane"], lamps["v"], lamps["h"], lamps["us"], lamps.get("size", 0.06))
+            made = lamp_objects(prop.name, obj, coll, lamps["plane"], lamps["v"], lamps["h"], lamps["us"], lamps.get("size", 0.06))
+            if globals().get("JOIN_LAMPS"):                        # the asset browser has no state lamps to switch: the three become part of the body
+                bpy.ops.object.select_all(action="DESELECT")
+                for o in made + [obj]:
+                    o.select_set(True)
+                bpy.context.view_layer.objects.active = obj
+                bpy.ops.object.join()
         print(common.stats(obj))
         common.export_fbx(coll, f"Assets/Art/{area}/{prop.name}.fbx")
         obj.location.x = x
