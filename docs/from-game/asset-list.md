@@ -73,7 +73,7 @@ The `smooth` variants in `art/README.md` (animals 3,000-4,500, people 3,500-4,00
 - The silhouette reads from 10 m, and the colours are palette entries only (no new LFS-heavy textures).
 
 **Alien tech, starships.** The look: ramps, doors, hatches and landing legs read as alien, not as a human door on a hinge: they telescope, extend, slide into the hull or open like an iris, with a lit edge marking the opening. Landing legs come out of a recess in the hull (the hull has the bay) and end in a foot pad.
-- The game can pose two part kinds only: **`hinge`** and **`slide`** (`props_lib.part()`, `PropRuntime`, `ShipHullParts`, `ShipFlightRig`). A telescoping ramp or leg is several `slide` stages, an iris is several hinged leaves. **Do not rely on a part that scales or shrinks:** nothing in Unity poses it.
+- The game can pose two part kinds only: **`hinge`** and **`slide`** (vehicle wheels are a third kind, **`spin`**, which the game must turn about the axis through the pivot; the browser does) (`props_lib.part()`, `PropRuntime`, `ShipHullParts`, `ShipFlightRig`). A telescoping ramp or leg is several `slide` stages, an iris is several hinged leaves. **Do not rely on a part that scales or shrinks:** nothing in Unity poses it.
 - **Existing parts stay as they are**: every hull ramp is `ShipRamp` (a `hinge`, axis x) and the legs are `ShipLeg_N` (`slide`, z), and `ShipHullParts.cs` and `docs/art/ship-varieties.md` use those names as the model's interface. Keep the names and kinds unless the owner changes them. The new look applies to new parts and to a reworked hull that keeps those names.
 - A new part kind (scale/shrink, an iris pose) needs a Unity change first: #364 in the game repo.
 

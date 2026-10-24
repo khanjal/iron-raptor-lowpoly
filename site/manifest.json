@@ -6204,8 +6204,8 @@
     "truck"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1808,
+   "interactive": true,
+   "triangles": 2060,
    "size": [
     2.16,
     1.68,
@@ -6213,7 +6213,158 @@
    ],
    "glb": "models/GV_Pickup_01.glb",
    "thumb": "thumbs/GV_Pickup_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.97,
+      1.05
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.96,
+      0.89,
+      0.93
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.96,
+      0.89,
+      0.11
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.96,
+      0.89,
+      0.93
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.96,
+      0.89,
+      0.11
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.75,
+      -2.7
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.38,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.38,
+      -1.7
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.38,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.38,
+      -1.7
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6245,26 +6396,24 @@
    ],
    "aliases": [
     "GV_Pickup_Blue_01"
-   ]
+   ],
+   "interactions": "models/GV_Pickup_01.interactions.json"
   },
   {
    "id": "GV_Tractor_01",
    "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
-    "blue",
     "farm",
     "green",
     "machine",
     "new",
-    "orange",
     "red",
-    "rural",
-    "yellow"
+    "rural"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1856,
+   "interactive": true,
+   "triangles": 1988,
    "size": [
     2.92,
     2.93,
@@ -6272,7 +6421,98 @@
    ],
    "glb": "models/GV_Tractor_01.glb",
    "thumb": "thumbs/GV_Tractor_01.png",
-   "parts": {},
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      -0.5,
+      1.5,
+      1.1
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.5,
+      1.5,
+      1.1
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -1.12,
+      0.85,
+      -0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.85,
+      0.5,
+      1.55
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      1.12,
+      0.85,
+      -0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.85,
+      0.5,
+      1.55
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6320,7 +6560,8 @@
    ],
    "aliases": [
     "GV_Tractor_Green_01"
-   ]
+   ],
+   "interactions": "models/GV_Tractor_01.interactions.json"
   },
   {
    "id": "GV_Ambulance_White_01",
@@ -6336,8 +6577,8 @@
     "white"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1668,
+   "interactive": true,
+   "triangles": 2020,
    "size": [
     2.12,
     2.52,
@@ -6345,7 +6586,143 @@
    ],
    "glb": "models/GV_Ambulance_White_01.glb",
    "thumb": "thumbs/GV_Ambulance_White_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.93,
+      2.0
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.98,
+      0.755,
+      1.874
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.36,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.36,
+      -1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.98,
+      0.755,
+      1.874
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.36,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.36,
+      -1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.98,
+      1.45,
+      -2.7
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.98,
+      1.45,
+      -2.7
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6374,7 +6751,8 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Ambulance_White_01.interactions.json"
   },
   {
    "id": "GV_Motorcycle_01",
@@ -6388,7 +6766,7 @@
     "two-wheeler"
    ],
    "rigged": false,
-   "interactive": false,
+   "interactive": true,
    "triangles": 1120,
    "size": [
     0.9,
@@ -6397,7 +6775,38 @@
    ],
    "glb": "models/GV_Motorcycle_01.glb",
    "thumb": "thumbs/GV_Motorcycle_01.png",
-   "parts": {},
+   "parts": {
+    "Wheel_Front": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.32,
+      0.7
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_Rear": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.32,
+      -0.7
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6429,7 +6838,8 @@
    ],
    "aliases": [
     "GV_Motorcycle_Red_01"
-   ]
+   ],
+   "interactions": "models/GV_Motorcycle_01.interactions.json"
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -6446,8 +6856,8 @@
     "white"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1688,
+   "interactive": true,
+   "triangles": 2088,
    "size": [
     1.92,
     1.47,
@@ -6455,7 +6865,158 @@
    ],
    "glb": "models/GV_Police_Sheriff_01.glb",
    "thumb": "thumbs/GV_Police_Sheriff_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.68,
+      0.95
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.71,
+      -0.95
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.824
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.024
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.824
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.024
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6484,30 +7045,26 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Police_Sheriff_01.interactions.json"
   },
   {
    "id": "GV_Sedan_01",
    "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
-    "black",
     "blue",
     "car",
     "civilian",
-    "green",
-    "grey",
     "modern",
     "new",
     "red",
     "suburban",
-    "tan",
-    "urban",
-    "white"
+    "urban"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1652,
+   "interactive": true,
+   "triangles": 2052,
    "size": [
     1.92,
     1.38,
@@ -6515,7 +7072,158 @@
    ],
    "glb": "models/GV_Sedan_01.glb",
    "thumb": "thumbs/GV_Sedan_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.68,
+      0.95
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.71,
+      -0.95
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.824
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.024
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.824
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.024
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [
     "GV_Sedan_Damaged_01"
@@ -6579,7 +7287,8 @@
    ],
    "aliases": [
     "GV_Sedan_Blue_01"
-   ]
+   ],
+   "interactions": "models/GV_Sedan_01.interactions.json"
   },
   {
    "id": "GV_Sedan_Damaged_01",
@@ -6596,16 +7305,167 @@
     "wreck"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1220,
+   "interactive": true,
+   "triangles": 1736,
    "size": [
-    1.967,
-    1.457,
-    4.933
+    2.402,
+    1.417,
+    4.98
    ],
    "glb": "models/GV_Sedan_Damaged_01.glb",
    "thumb": "thumbs/GV_Sedan_Damaged_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.0292,
+      0.7008,
+      0.9502
+     ],
+     "limit": -60.0,
+     "rest": -13.3
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0603,
+      0.7323,
+      -0.9476
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.9033,
+      0.6706,
+      0.7832
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.8659,
+      0.6712,
+      -0.016
+     ],
+     "limit": 70.0,
+     "rest": 23.4
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8546,
+      0.3685,
+      1.3118
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.7285,
+      0.3706,
+      -1.3853
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.8544,
+      0.6312,
+      0.8654
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.8918,
+      0.6318,
+      0.0662
+     ],
+     "limit": -70.0,
+     "rest": -17.1
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.7432,
+      0.3326,
+      1.3865
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8694,
+      0.3348,
+      -1.3106
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [
     "GV_Sedan_01"
@@ -6634,7 +7494,8 @@
    ],
    "aliases": [
     "GV_Sedan_Red_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GV_Sedan_Damaged_01.interactions.json"
   },
   {
    "id": "GV_Taxi_Yellow_01",
@@ -6650,8 +7511,8 @@
     "yellow"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1676,
+   "interactive": true,
+   "triangles": 2076,
    "size": [
     1.92,
     1.53,
@@ -6659,7 +7520,158 @@
    ],
    "glb": "models/GV_Taxi_Yellow_01.glb",
    "thumb": "thumbs/GV_Taxi_Yellow_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.68,
+      0.95
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.71,
+      -0.95
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.824
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.88,
+      0.63,
+      0.024
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.824
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.88,
+      0.63,
+      0.024
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.8,
+      0.33,
+      -1.35
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6683,7 +7695,8 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Taxi_Yellow_01.interactions.json"
   },
   {
    "id": "GV_Van_01",
@@ -6698,8 +7711,8 @@
     "urban"
    ],
    "rigged": false,
-   "interactive": false,
-   "triangles": 1620,
+   "interactive": true,
+   "triangles": 1960,
    "size": [
     2.12,
     2.43,
@@ -6707,7 +7720,143 @@
    ],
    "glb": "models/GV_Van_01.glb",
    "thumb": "thumbs/GV_Van_01.png",
-   "parts": {},
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.93,
+      2.0
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.98,
+      0.755,
+      1.874
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.36,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.9,
+      0.36,
+      -1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.98,
+      0.755,
+      1.874
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.36,
+      1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.9,
+      0.36,
+      -1.75
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.98,
+      1.45,
+      -2.7
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.98,
+      1.45,
+      -2.7
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
    "clips": [],
    "variants": [],
    "paintable": [
@@ -6739,7 +7888,8 @@
    ],
    "aliases": [
     "GV_Van_Brown_01"
-   ]
+   ],
+   "interactions": "models/GV_Van_01.interactions.json"
   },
   {
    "id": "SH_Dart_01",

@@ -1,5 +1,5 @@
 {
- "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves along `axis`, `limit` metres to open; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
+ "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves along `axis`, `limit` metres to open; spin (a wheel) turns freely about `axis` through `pivot`, `limit` is 360; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
  "props": {
   "FD_EggCarton_01": {
    "parts": {
@@ -13015,6 +13015,672 @@
    },
    "slots": {}
   },
+  "GV_ATV_Green_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_ATV_Green_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.4976,
+      -0.6294,
+      0.3446
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.5172,
+      0.5904,
+      0.3497
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.5415,
+      -0.6125,
+      0.3032
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.5218,
+      0.6073,
+      0.3083
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_ATV_Red_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_ATV_Red_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.5354,
+      -0.6123,
+      0.3299
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.5315,
+      0.6074,
+      0.3042
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.5034,
+      -0.6147,
+      0.3784
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.5074,
+      0.605,
+      0.3527
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_ATV_Yellow_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      -0.62,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.52,
+      0.6,
+      0.3
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_ATV_Yellow_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.4909,
+      -0.6302,
+      0.3577
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.5174,
+      0.5896,
+      0.3553
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.5475,
+      -0.6077,
+      0.3062
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.521,
+      0.612,
+      0.3038
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Ambulance_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Ambulance_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0079,
+      -1.9555,
+      1.1263
+     ],
+     "limit": -60.0,
+     "rest": -15.1
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.99,
+      -1.8206,
+      0.9706
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9183,
+      -1.7161,
+      0.5684
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.862,
+      1.7798,
+      0.4081
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9691,
+      -1.8545,
+      0.9209
+     ],
+     "limit": -70.0,
+     "rest": -16.6
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8808,
+      -1.7471,
+      0.5228
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9371,
+      1.7487,
+      0.3625
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8983,
+      2.7795,
+      1.4552
+     ],
+     "limit": 100.0,
+     "rest": 13.3
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0608,
+      2.7457,
+      1.4055
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Bus_School_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -4.0,
+      1.28
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -3.4,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -3.4,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_Entry": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -2.75,
+      1.55
+     ],
+     "limit": 85.0,
+     "rest": 0.0
+    },
+    "Door_Rear": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.45,
+      4.92,
+      1.5
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Bus_School_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0424,
+      -4.0162,
+      1.2755
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0875,
+      -3.3941,
+      0.5064
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0165,
+      2.805,
+      0.5878
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0123,
+      -3.4181,
+      0.5004
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0834,
+      2.781,
+      0.5817
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_Entry": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2272,
+      -2.7563,
+      1.5653
+     ],
+     "limit": 85.0,
+     "rest": 22.5
+    },
+    "Door_Rear": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.3895,
+      4.9047,
+      1.6138
+     ],
+     "limit": 100.0,
+     "rest": 29.6
+    }
+   },
+   "slots": {}
+  },
   "GV_CrashedShip_01": {
    "parts": {
     "ShipRamp": {
@@ -13083,6 +13749,8429 @@
      "part": null
     }
    }
+  },
+  "GV_FireTruck_Red_01": {
+   "parts": {
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -3.414,
+      1.5
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -3.4,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      3.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2,
+      -3.414,
+      1.5
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -3.4,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      3.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_FireTruck_Red_Damaged_01": {
+   "parts": {
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2192,
+      -3.4263,
+      1.5114
+     ],
+     "limit": 75.0,
+     "rest": 16.7
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0739,
+      -3.3988,
+      0.511
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0235,
+      3.1003,
+      0.6058
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.1807,
+      -3.4447,
+      1.4996
+     ],
+     "limit": -75.0,
+     "rest": -17.8
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.026,
+      -3.4149,
+      0.5007
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0764,
+      3.0842,
+      0.5954
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Jeep_Olive_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.55,
+      0.92
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.42,
+      0.85
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.88,
+      -1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.88,
+      1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.42,
+      0.85
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.88,
+      -1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.88,
+      1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.73,
+      0.6
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Jeep_Olive_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0095,
+      -0.5301,
+      0.9589
+     ],
+     "limit": -55.0,
+     "rest": -16.9
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.873,
+      -0.4216,
+      0.8838
+     ],
+     "limit": 75.0,
+     "rest": 28.7
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.855,
+      -1.1613,
+      0.4295
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.907,
+      1.1376,
+      0.3803
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8866,
+      -0.3817,
+      0.8886
+     ],
+     "limit": -75.0,
+     "rest": -28.3
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9046,
+      -1.1214,
+      0.4343
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8525,
+      1.1775,
+      0.3851
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0411,
+      1.742,
+      0.5902
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Jeep_Tan_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.55,
+      0.92
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.42,
+      0.85
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.88,
+      -1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.88,
+      1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.42,
+      0.85
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.88,
+      -1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.88,
+      1.15,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.73,
+      0.6
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Jeep_Tan_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0339,
+      -0.5362,
+      0.9681
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8502,
+      -0.427,
+      0.917
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8445,
+      -1.1637,
+      0.4576
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8969,
+      1.1355,
+      0.4248
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9088,
+      -0.3875,
+      0.8756
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9145,
+      -1.1242,
+      0.4162
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8622,
+      1.1749,
+      0.3834
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0255,
+      1.7382,
+      0.6158
+     ],
+     "limit": -70.0,
+     "rest": -15.5
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.5,
+      0.75
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.95,
+      1.67
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0465,
+      -1.5281,
+      0.7832
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.1435,
+      1.8775,
+      1.839
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8852,
+      -1.441,
+      0.6724
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9319,
+      -0.4429,
+      0.7121
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7869,
+      -1.5997,
+      0.3435
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9317,
+      1.4945,
+      0.4666
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9718,
+      -1.3566,
+      0.7343
+     ],
+     "limit": -70.0,
+     "rest": -20.9
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9251,
+      -0.3585,
+      0.774
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9104,
+      -1.5225,
+      0.4001
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7656,
+      1.5717,
+      0.5231
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Grey_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.5,
+      0.75
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.95,
+      1.67
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Grey_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0034,
+      -1.4717,
+      0.8902
+     ],
+     "limit": -60.0,
+     "rest": -7.3
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0858,
+      2.0087,
+      1.6827
+     ],
+     "limit": 70.0,
+     "rest": 13.7
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9332,
+      -1.3314,
+      0.8287
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9156,
+      -0.3322,
+      0.792
+     ],
+     "limit": 70.0,
+     "rest": 22.1
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8664,
+      -1.5205,
+      0.5081
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8117,
+      1.5769,
+      0.3944
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9256,
+      -1.3663,
+      0.7727
+     ],
+     "limit": -70.0,
+     "rest": -21.7
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9433,
+      -0.3671,
+      0.736
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8326,
+      -1.5524,
+      0.4569
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8873,
+      1.5451,
+      0.3432
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Red_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.5,
+      0.75
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.95,
+      1.67
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_Red_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0392,
+      -1.4892,
+      0.7963
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0654,
+      1.9715,
+      1.6693
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9656,
+      -1.3374,
+      0.7143
+     ],
+     "limit": 70.0,
+     "rest": 22.9
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9368,
+      -0.338,
+      0.7007
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8925,
+      -1.52,
+      0.3913
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.803,
+      1.5784,
+      0.3491
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8935,
+      -1.3913,
+      0.7049
+     ],
+     "limit": -70.0,
+     "rest": -11.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9224,
+      -0.3918,
+      0.6913
+     ],
+     "limit": -70.0,
+     "rest": -13.2
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8067,
+      -1.5692,
+      0.3827
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8962,
+      1.5292,
+      0.3406
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.5,
+      0.75
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.95,
+      1.67
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -1.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.93,
+      -0.374,
+      0.665
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      1.55,
+      0.34
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Minivan_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0361,
+      -1.4683,
+      0.8842
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0839,
+      2.0139,
+      1.6648
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8961,
+      -1.3752,
+      0.7823
+     ],
+     "limit": 70.0,
+     "rest": 15.5
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9272,
+      -0.3765,
+      0.7422
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8062,
+      -1.5613,
+      0.4657
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9024,
+      1.5347,
+      0.3412
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9628,
+      -1.3164,
+      0.8061
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9318,
+      -0.3177,
+      0.7659
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8929,
+      -1.5077,
+      0.4874
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7966,
+      1.5884,
+      0.3629
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Black_01": {
+   "parts": {
+    "Wheel_F": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Black_Damaged_01": {
+   "parts": {
+    "Wheel_F": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0104,
+      -0.7135,
+      0.322
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0124,
+      0.6851,
+      0.3841
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Blue_01": {
+   "parts": {
+    "Wheel_Front": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_Rear": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Blue_Damaged_01": {
+   "parts": {
+    "Wheel_Front": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.0107,
+      -0.6839,
+      0.3877
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_Rear": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0202,
+      0.7142,
+      0.3208
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Red_01": {
+   "parts": {
+    "Wheel_Front": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_Rear": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.7,
+      0.32
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Motorcycle_Red_Damaged_01": {
+   "parts": {
+    "Wheel_Front": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.013,
+      -0.7108,
+      0.322
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_Rear": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.0346,
+      0.6875,
+      0.3715
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Black_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Black_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0033,
+      -1.0977,
+      1.0387
+     ],
+     "limit": -60.0,
+     "rest": -24.7
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9631,
+      -0.9982,
+      0.9321
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9853,
+      -0.1796,
+      0.9731
+     ],
+     "limit": 70.0,
+     "rest": 9.3
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9552,
+      -0.9493,
+      0.9977
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9329,
+      -0.1307,
+      1.0387
+     ],
+     "limit": -70.0,
+     "rest": -15.4
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.098,
+      2.6575,
+      1.0067
+     ],
+     "limit": -88.0,
+     "rest": -14.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8641,
+      -1.7894,
+      0.3841
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9578,
+      1.655,
+      0.5566
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9343,
+      -1.7436,
+      0.4456
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8405,
+      1.7008,
+      0.6181
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0752,
+      -1.0839,
+      1.0287
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.0263,
+      -0.921,
+      0.9226
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.993,
+      -0.1023,
+      0.9537
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8911,
+      -1.0012,
+      0.9841
+     ],
+     "limit": -70.0,
+     "rest": -11.3
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9243,
+      -0.1825,
+      1.0152
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0843,
+      2.6684,
+      0.9513
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9825,
+      -1.7236,
+      0.384
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8426,
+      1.7211,
+      0.5149
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.815,
+      -1.7988,
+      0.4417
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9549,
+      1.6459,
+      0.5726
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Green_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Green_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0009,
+      -1.0494,
+      0.9841
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9603,
+      -0.9181,
+      0.9154
+     ],
+     "limit": 70.0,
+     "rest": 13.1
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9507,
+      -0.0982,
+      0.9148
+     ],
+     "limit": 70.0,
+     "rest": 23.7
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9594,
+      -0.9408,
+      0.8927
+     ],
+     "limit": -70.0,
+     "rest": -25.3
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9691,
+      -0.1208,
+      0.8921
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0407,
+      2.7002,
+      0.7615
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.916,
+      -1.739,
+      0.4053
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8753,
+      1.7107,
+      0.4029
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8837,
+      -1.7603,
+      0.384
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9244,
+      1.6895,
+      0.3816
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Red_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Red_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0364,
+      -0.9976,
+      1.1225
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9271,
+      -0.9273,
+      1.0263
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9653,
+      -0.1093,
+      0.9837
+     ],
+     "limit": 70.0,
+     "rest": 9.5
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9907,
+      -0.8367,
+      1.0464
+     ],
+     "limit": -70.0,
+     "rest": -31.1
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9525,
+      -0.0187,
+      1.0038
+     ],
+     "limit": -70.0,
+     "rest": -21.3
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.1354,
+      2.732,
+      0.7079
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8224,
+      -1.7687,
+      0.5602
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.983,
+      1.6729,
+      0.3809
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9755,
+      -1.6837,
+      0.5791
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8149,
+      1.7579,
+      0.3998
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Tan_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_Tan_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.008,
+      -1.0637,
+      1.0211
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9504,
+      -0.9146,
+      0.982
+     ],
+     "limit": 70.0,
+     "rest": 14.2
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9261,
+      -0.0951,
+      0.9931
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9671,
+      -0.9706,
+      0.9035
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9915,
+      -0.151,
+      0.9146
+     ],
+     "limit": -70.0,
+     "rest": -17.7
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.1106,
+      2.6875,
+      0.8521
+     ],
+     "limit": -88.0,
+     "rest": -36.6
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9355,
+      -1.7284,
+      0.4589
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.833,
+      1.7197,
+      0.5056
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8622,
+      -1.7809,
+      0.3854
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9648,
+      1.6673,
+      0.4321
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      2.7,
+      0.75
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Pickup_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0636,
+      -1.0682,
+      1.0342
+     ],
+     "limit": -60.0,
+     "rest": -22.2
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.0166,
+      -0.932,
+      0.909
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.0048,
+      -0.1122,
+      0.9253
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9008,
+      -0.9615,
+      1.0045
+     ],
+     "limit": -70.0,
+     "rest": -18.7
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9126,
+      -0.1417,
+      1.0208
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0013,
+      2.6849,
+      0.889
+     ],
+     "limit": -88.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.943,
+      -1.7429,
+      0.3864
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8933,
+      1.706,
+      0.4549
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8546,
+      -1.7706,
+      0.476
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9042,
+      1.6784,
+      0.5444
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_Deputy_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_Deputy_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0218,
+      -1.1268,
+      0.899
+     ],
+     "limit": -60.0,
+     "rest": -26.3
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0845,
+      1.6471,
+      1.7471
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9363,
+      -0.9869,
+      0.8071
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9249,
+      0.0125,
+      0.839
+     ],
+     "limit": 70.0,
+     "rest": 10.2
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.874,
+      -1.4033,
+      0.4757
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8421,
+      1.3951,
+      0.5649
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.972,
+      -1.0062,
+      0.7292
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9834,
+      -0.0067,
+      0.7611
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8745,
+      -1.4209,
+      0.4044
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9064,
+      1.3775,
+      0.4935
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_FBI_SUV_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_FBI_SUV_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0075,
+      -1.1361,
+      0.9057
+     ],
+     "limit": -60.0,
+     "rest": -12.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.1158,
+      1.6267,
+      1.7847
+     ],
+     "limit": 70.0,
+     "rest": 10.1
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9488,
+      -0.9805,
+      0.8191
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9219,
+      0.0182,
+      0.8621
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.894,
+      -1.394,
+      0.4828
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8188,
+      1.4023,
+      0.6032
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9587,
+      -1.0281,
+      0.7337
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9856,
+      -0.0294,
+      0.7767
+     ],
+     "limit": -70.0,
+     "rest": -15.3
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8537,
+      -1.4377,
+      0.4046
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9289,
+      1.3587,
+      0.525
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_FBI_Van_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_FBI_Van_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0417,
+      -1.9577,
+      1.1392
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9453,
+      -1.8365,
+      1.0048
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8838,
+      -1.73,
+      0.6015
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8805,
+      1.7667,
+      0.449
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0125,
+      -1.8423,
+      0.9132
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9142,
+      -1.7354,
+      0.5174
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9175,
+      1.7613,
+      0.3649
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9085,
+      2.7634,
+      1.4991
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0493,
+      2.7576,
+      1.4075
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_MIB_Sedan_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_MIB_Sedan_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0289,
+      -0.9138,
+      0.8373
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0325,
+      0.9852,
+      0.7695
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8523,
+      -0.7875,
+      0.8197
+     ],
+     "limit": 70.0,
+     "rest": 26.5
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8513,
+      0.0115,
+      0.7785
+     ],
+     "limit": 70.0,
+     "rest": 26.9
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7863,
+      -1.3285,
+      0.5439
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.783,
+      1.368,
+      0.405
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9059,
+      -0.7936,
+      0.7422
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9069,
+      0.0053,
+      0.701
+     ],
+     "limit": -70.0,
+     "rest": -22.4
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8121,
+      -1.3341,
+      0.4734
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8155,
+      1.3624,
+      0.3345
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_Sheriff_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_Sheriff_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0256,
+      -0.9452,
+      0.7268
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.073,
+      0.9524,
+      0.7435
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8992,
+      -0.7742,
+      0.7057
+     ],
+     "limit": 70.0,
+     "rest": 21.6
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8581,
+      0.0247,
+      0.7001
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8566,
+      -1.3052,
+      0.4068
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7178,
+      1.3912,
+      0.3879
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8575,
+      -0.865,
+      0.6462
+     ],
+     "limit": -70.0,
+     "rest": -9.1
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8986,
+      -0.0661,
+      0.6406
+     ],
+     "limit": -70.0,
+     "rest": -15.5
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7404,
+      -1.3877,
+      0.3527
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8791,
+      1.3086,
+      0.3339
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_StatePolice_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Police_StatePolice_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0015,
+      -0.9501,
+      0.7141
+     ],
+     "limit": -60.0,
+     "rest": -19.9
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0494,
+      0.9493,
+      0.7434
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8763,
+      -0.8024,
+      0.6964
+     ],
+     "limit": 70.0,
+     "rest": 9.1
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8566,
+      -0.0027,
+      0.6961
+     ],
+     "limit": 70.0,
+     "rest": 14.3
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8204,
+      -1.3301,
+      0.3939
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7539,
+      1.3691,
+      0.3929
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.882,
+      -0.8458,
+      0.6318
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9017,
+      -0.046,
+      0.6315
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7781,
+      -1.3695,
+      0.3352
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8446,
+      1.3297,
+      0.3342
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Black_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Black_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0118,
+      -1.0693,
+      0.9751
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0916,
+      1.7551,
+      1.6339
+     ],
+     "limit": 70.0,
+     "rest": 16.4
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9451,
+      -0.9294,
+      0.871
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9268,
+      0.0698,
+      0.8352
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8848,
+      -1.3677,
+      0.5687
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8336,
+      1.4301,
+      0.4685
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9632,
+      -0.9669,
+      0.8005
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9815,
+      0.0323,
+      0.7647
+     ],
+     "limit": -70.0,
+     "rest": -14.9
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8636,
+      -1.402,
+      0.5041
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9149,
+      1.3957,
+      0.4039
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Grey_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Grey_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0205,
+      -1.143,
+      0.8954
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.1174,
+      1.6102,
+      1.8001
+     ],
+     "limit": 70.0,
+     "rest": 28.7
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9345,
+      -1.0479,
+      0.7372
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9758,
+      -0.0502,
+      0.7893
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8278,
+      -1.453,
+      0.403
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9434,
+      1.3408,
+      0.5491
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.973,
+      -0.9721,
+      0.7973
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9317,
+      0.0257,
+      0.8495
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.92,
+      -1.3835,
+      0.4581
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8043,
+      1.4103,
+      0.6042
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Navy_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Navy_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0207,
+      -1.1329,
+      0.8923
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0601,
+      1.6347,
+      1.7622
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9717,
+      -1.0057,
+      0.7322
+     ],
+     "limit": 70.0,
+     "rest": 20.8
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9772,
+      -0.0065,
+      0.7718
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8794,
+      -1.4185,
+      0.4033
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8949,
+      1.3793,
+      0.5141
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9373,
+      -0.9976,
+      0.7928
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9318,
+      0.0016,
+      0.8324
+     ],
+     "limit": -70.0,
+     "rest": -30.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8697,
+      -1.4111,
+      0.4588
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8542,
+      1.3867,
+      0.5697
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Red_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_Red_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0263,
+      -1.0684,
+      0.959
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0157,
+      1.7572,
+      1.6173
+     ],
+     "limit": 70.0,
+     "rest": 13.3
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9322,
+      -0.9554,
+      0.8382
+     ],
+     "limit": 70.0,
+     "rest": 28.7
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9412,
+      0.0439,
+      0.8022
+     ],
+     "limit": 70.0,
+     "rest": 19.3
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8544,
+      -1.3918,
+      0.5373
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8797,
+      1.4062,
+      0.4363
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9774,
+      -0.9395,
+      0.8008
+     ],
+     "limit": -70.0,
+     "rest": -19.7
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9683,
+      0.0599,
+      0.7648
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8952,
+      -1.3772,
+      0.503
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8699,
+      1.4208,
+      0.402
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.85
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.61
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.955,
+      0.026,
+      0.715
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      -0.974,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.955,
+      0.026,
+      0.715
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      -1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.875,
+      1.4,
+      0.4
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SUV_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0681,
+      -1.1014,
+      0.879
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0219,
+      1.6944,
+      1.6493
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.013,
+      -0.937,
+      0.7175
+     ],
+     "limit": 70.0,
+     "rest": 15.3
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9732,
+      0.0622,
+      0.7212
+     ],
+     "limit": 70.0,
+     "rest": 15.4
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9412,
+      -1.365,
+      0.4032
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8295,
+      1.4328,
+      0.4138
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8947,
+      -1.0133,
+      0.7716
+     ],
+     "limit": -70.0,
+     "rest": -30.3
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9345,
+      -0.0141,
+      0.7754
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8067,
+      -1.4349,
+      0.4528
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9184,
+      1.3629,
+      0.4634
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Black_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Black_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0486,
+      -0.9163,
+      0.8184
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0014,
+      0.9824,
+      0.7598
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9227,
+      -0.7706,
+      0.7316
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9012,
+      0.0282,
+      0.6944
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8468,
+      -1.3122,
+      0.4595
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7742,
+      1.3839,
+      0.3337
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8356,
+      -0.8151,
+      0.7936
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8571,
+      -0.0163,
+      0.7563
+     ],
+     "limit": -70.0,
+     "rest": -9.3
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7517,
+      -1.3526,
+      0.5158
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8243,
+      1.3435,
+      0.39
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0266,
+      -0.9805,
+      0.7161
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0019,
+      0.9159,
+      0.8348
+     ],
+     "limit": 60.0,
+     "rest": 22.5
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8558,
+      -0.8648,
+      0.6896
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8665,
+      -0.0658,
+      0.7269
+     ],
+     "limit": 70.0,
+     "rest": 18.2
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.775,
+      -1.3751,
+      0.3638
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8109,
+      1.3217,
+      0.4899
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9036,
+      -0.8398,
+      0.6546
+     ],
+     "limit": -70.0,
+     "rest": -15.3
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.893,
+      -0.0407,
+      0.6919
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8245,
+      -1.3523,
+      0.332
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7886,
+      1.3445,
+      0.4581
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Green_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Green_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0354,
+      -0.9691,
+      0.7301
+     ],
+     "limit": -60.0,
+     "rest": -10.5
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0245,
+      0.9292,
+      0.8151
+     ],
+     "limit": 60.0,
+     "rest": 15.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8468,
+      -0.8485,
+      0.7215
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8519,
+      -0.0488,
+      0.7447
+     ],
+     "limit": 70.0,
+     "rest": 15.8
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7764,
+      -1.365,
+      0.4032
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7937,
+      1.3338,
+      0.4815
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9116,
+      -0.835,
+      0.6461
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9064,
+      -0.0353,
+      0.6693
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8221,
+      -1.3527,
+      0.3347
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8048,
+      1.3461,
+      0.413
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Grey_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Grey_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0261,
+      -0.9629,
+      0.722
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0266,
+      0.9361,
+      0.7886
+     ],
+     "limit": 60.0,
+     "rest": 21.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8552,
+      -0.837,
+      0.7078
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8555,
+      -0.0371,
+      0.7233
+     ],
+     "limit": 70.0,
+     "rest": 12.1
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7864,
+      -1.357,
+      0.3949
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7874,
+      1.3425,
+      0.447
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9036,
+      -0.835,
+      0.6411
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9033,
+      -0.0352,
+      0.6565
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8124,
+      -1.3552,
+      0.3343
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8114,
+      1.3443,
+      0.3864
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Red_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Red_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0474,
+      -0.9551,
+      0.6889
+     ],
+     "limit": -60.0,
+     "rest": -13.3
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0389,
+      0.9426,
+      0.7364
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9204,
+      -0.7886,
+      0.635
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.884,
+      0.0105,
+      0.6424
+     ],
+     "limit": 70.0,
+     "rest": 23.4
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8627,
+      -1.315,
+      0.3307
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7397,
+      1.3821,
+      0.3556
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8377,
+      -0.8689,
+      0.6451
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8741,
+      -0.0697,
+      0.6525
+     ],
+     "limit": -70.0,
+     "rest": -17.1
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7357,
+      -1.388,
+      0.3398
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8586,
+      1.3091,
+      0.3647
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Tan_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_Tan_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0147,
+      -0.9268,
+      0.7903
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0368,
+      0.973,
+      0.7563
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8936,
+      -0.8134,
+      0.7039
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9024,
+      -0.0139,
+      0.677
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7967,
+      -1.348,
+      0.4249
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8266,
+      1.3503,
+      0.334
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8651,
+      -0.7917,
+      0.7684
+     ],
+     "limit": -70.0,
+     "rest": -12.4
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8563,
+      0.0078,
+      0.7414
+     ],
+     "limit": -70.0,
+     "rest": -30.3
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8021,
+      -1.3283,
+      0.4835
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7722,
+      1.37,
+      0.3926
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Sedan_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0192,
+      -0.9354,
+      0.7287
+     ],
+     "limit": -60.0,
+     "rest": -10.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0186,
+      0.9644,
+      0.719
+     ],
+     "limit": 60.0,
+     "rest": 7.6
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8965,
+      -0.793,
+      0.6753
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8806,
+      0.0067,
+      0.6586
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8269,
+      -1.3266,
+      0.3864
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7731,
+      1.3723,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8631,
+      -0.828,
+      0.6768
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8791,
+      -0.0284,
+      0.6601
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7728,
+      -1.3585,
+      0.3878
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8266,
+      1.3404,
+      0.3315
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Box_Blue_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.24,
+      6.93,
+      2.6
+     ],
+     "limit": 110.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.24,
+      6.93,
+      2.6
+     ],
+     "limit": -110.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Box_Blue_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.009,
+      4.2091,
+      0.5261
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9959,
+      5.509,
+      0.5296
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0909,
+      4.1878,
+      0.5323
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.104,
+      5.4877,
+      0.5358
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.1776,
+      6.9352,
+      2.6329
+     ],
+     "limit": 110.0,
+     "rest": 24.1
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.3022,
+      6.9101,
+      2.6402
+     ],
+     "limit": -110.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Box_White_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.24,
+      6.93,
+      2.6
+     ],
+     "limit": 110.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.24,
+      6.93,
+      2.6
+     ],
+     "limit": -110.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Box_White_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0496,
+      4.1963,
+      0.5864
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0485,
+      5.4962,
+      0.598
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0503,
+      4.1944,
+      0.5998
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0514,
+      5.4943,
+      0.6115
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2508,
+      6.9075,
+      2.7095
+     ],
+     "limit": 110.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2292,
+      6.9053,
+      2.7254
+     ],
+     "limit": -110.0,
+     "rest": -41.2
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Tanker_Silver_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      4.2,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      5.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_SemiTrailer_Tanker_Silver_Damaged_01": {
+   "parts": {
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0466,
+      4.2047,
+      0.5396
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0474,
+      5.5046,
+      0.5255
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0532,
+      4.2056,
+      0.5157
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0525,
+      5.5056,
+      0.5016
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Black_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -3.55,
+      1.45
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Black_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0811,
+      -3.5435,
+      1.4862
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.179,
+      -0.3102,
+      1.6102
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0052,
+      -2.1174,
+      0.5408
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0733,
+      1.4819,
+      0.5268
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0979,
+      2.7817,
+      0.5218
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2205,
+      -0.2649,
+      1.5869
+     ],
+     "limit": -75.0,
+     "rest": -15.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0943,
+      -2.0778,
+      0.5204
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0262,
+      1.5216,
+      0.5065
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0016,
+      2.8213,
+      0.5014
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -3.55,
+      1.45
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0686,
+      -3.5272,
+      1.5616
+     ],
+     "limit": 70.0,
+     "rest": 26.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2252,
+      -0.2537,
+      1.6212
+     ],
+     "limit": 75.0,
+     "rest": 13.4
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0856,
+      -2.0777,
+      0.5756
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0359,
+      1.5216,
+      0.5215
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0179,
+      2.8213,
+      0.502
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.1744,
+      -0.2863,
+      1.6542
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.014,
+      -2.1062,
+      0.6045
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0637,
+      1.493,
+      0.5504
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0817,
+      2.7927,
+      0.5308
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Red_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -3.55,
+      1.45
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_Red_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0854,
+      -3.5242,
+      1.5754
+     ],
+     "limit": 70.0,
+     "rest": 14.4
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.1697,
+      -0.2879,
+      1.665
+     ],
+     "limit": 75.0,
+     "rest": 15.6
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0048,
+      -2.1091,
+      0.6182
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0683,
+      1.4899,
+      0.5577
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0912,
+      2.7895,
+      0.5359
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2296,
+      -0.2462,
+      1.6265
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0946,
+      -2.0726,
+      0.5845
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0311,
+      1.5263,
+      0.5241
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0082,
+      2.8259,
+      0.5023
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -3.55,
+      1.45
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": 75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.2,
+      -0.294,
+      1.575
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      -2.1,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      1.5,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.05,
+      2.8,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Semi_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0163,
+      -3.5776,
+      1.4462
+     ],
+     "limit": 70.0,
+     "rest": 17.7
+    },
+    "Door_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.2282,
+      -0.34,
+      1.6095
+     ],
+     "limit": 75.0,
+     "rest": 15.2
+    },
+    "Wheel_A1R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0327,
+      -2.1225,
+      0.5029
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0794,
+      1.4765,
+      0.5729
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0963,
+      2.7762,
+      0.5982
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.1711,
+      -0.3099,
+      1.6593
+     ],
+     "limit": -75.0,
+     "rest": 0.0
+    },
+    "Wheel_A1L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0667,
+      -2.0961,
+      0.5465
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A2L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.02,
+      1.5029,
+      0.6166
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_A3L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0031,
+      2.8026,
+      0.6418
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
   },
   "GV_ShipEgg_01": {
    "parts": {
@@ -13309,6 +22398,3261 @@
      "part": null
     }
    }
+  },
+  "GV_Taxi_Checker_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Taxi_Checker_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0042,
+      -0.9555,
+      0.6902
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0063,
+      0.9442,
+      0.7355
+     ],
+     "limit": 60.0,
+     "rest": 8.7
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8839,
+      -0.8299,
+      0.6345
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8847,
+      -0.0299,
+      0.641
+     ],
+     "limit": 70.0,
+     "rest": 21.6
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8012,
+      -1.3534,
+      0.3309
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8038,
+      1.3466,
+      0.3527
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.876,
+      -0.8283,
+      0.6478
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8752,
+      -0.0283,
+      0.6543
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7988,
+      -1.3519,
+      0.343
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7962,
+      1.348,
+      0.3648
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Taxi_Yellow_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -0.95,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      0.95,
+      0.71
+     ],
+     "limit": 60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.824,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.88,
+      -0.024,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      -1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8,
+      1.35,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Taxi_Yellow_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0364,
+      -0.923,
+      0.7778
+     ],
+     "limit": -60.0,
+     "rest": -16.2
+    },
+    "Trunk": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0562,
+      0.9746,
+      0.736
+     ],
+     "limit": 60.0,
+     "rest": 16.5
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8479,
+      -0.8422,
+      0.7121
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.8867,
+      -0.0437,
+      0.6819
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7382,
+      -1.3744,
+      0.4332
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8692,
+      1.3205,
+      0.3312
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9099,
+      -0.7559,
+      0.734
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8711,
+      0.0426,
+      0.7037
+     ],
+     "limit": -70.0,
+     "rest": -14.7
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8598,
+      -1.296,
+      0.4531
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7288,
+      1.3989,
+      0.3511
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_TowTruck_Yellow_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.05,
+      0.97
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.93,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.96,
+      -0.11,
+      0.89
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.7,
+      0.38
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_TowTruck_Yellow_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0473,
+      -1.0054,
+      1.0895
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9171,
+      -0.9343,
+      1.0043
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9556,
+      -0.116,
+      0.9684
+     ],
+     "limit": 70.0,
+     "rest": 28.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0007,
+      -0.844,
+      1.0044
+     ],
+     "limit": -70.0,
+     "rest": -27.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9622,
+      -0.0257,
+      0.9685
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8176,
+      -1.7721,
+      0.5307
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9796,
+      1.6708,
+      0.3796
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9804,
+      -1.6875,
+      0.5308
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8184,
+      1.7554,
+      0.3797
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Blue_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Blue_Damaged_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.4797,
+      -1.0119,
+      1.6517
+     ],
+     "limit": 55.0,
+     "rest": 21.6
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5181,
+      -1.0605,
+      1.6066
+     ],
+     "limit": -55.0,
+     "rest": -20.7
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0542,
+      0.5883,
+      0.9617
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.897,
+      -1.485,
+      0.6889
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.1809,
+      0.4794,
+      0.8608
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7993,
+      -1.5677,
+      0.6123
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Green_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Green_Damaged_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.4868,
+      -1.1347,
+      1.5615
+     ],
+     "limit": 55.0,
+     "rest": 9.8
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5122,
+      -1.1651,
+      1.529
+     ],
+     "limit": -55.0,
+     "rest": -15.1
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0764,
+      0.5046,
+      0.9852
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8821,
+      -1.5396,
+      0.5591
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.1614,
+      0.4366,
+      0.9123
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8162,
+      -1.5912,
+      0.5038
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Orange_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Orange_Damaged_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.4535,
+      -1.0542,
+      1.5767
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5458,
+      -1.0175,
+      1.5714
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.1345,
+      0.4936,
+      0.8642
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7904,
+      -1.5579,
+      0.5981
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.104,
+      0.5757,
+      0.8524
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9084,
+      -1.4956,
+      0.5891
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Red_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Red_Damaged_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5793,
+      -1.0171,
+      1.6169
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.4197,
+      -1.0279,
+      1.6612
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.1494,
+      0.5545,
+      0.8607
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8911,
+      -1.5134,
+      0.6262
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.0882,
+      0.5303,
+      0.9599
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8071,
+      -1.5318,
+      0.7015
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Yellow_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5,
+      -1.1,
+      1.5
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.12,
+      0.5,
+      0.85
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.85,
+      -1.55,
+      0.5
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Tractor_Yellow_Damaged_01": {
+   "parts": {
+    "Engine_R": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      -0.4674,
+      -1.168,
+      1.5619
+     ],
+     "limit": 55.0,
+     "rest": 0.0
+    },
+    "Engine_L": {
+     "kind": "hinge",
+     "axis": "y",
+     "pivot": [
+      0.5322,
+      -1.1751,
+      1.5337
+     ],
+     "limit": -55.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.0916,
+      0.4661,
+      1.0078
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8489,
+      -1.5663,
+      0.5516
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.1474,
+      0.4501,
+      0.9447
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8504,
+      -1.5785,
+      0.5037
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Trailer_Flatbed_01": {
+   "parts": {
+    "Wheel_R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.2,
+      0.8,
+      0.45
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.2,
+      0.8,
+      0.45
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Trailer_Flatbed_Damaged_01": {
+   "parts": {
+    "Wheel_R": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -1.2305,
+      0.7656,
+      0.4682
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_L": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      1.1679,
+      0.8213,
+      0.5353
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0634,
+      -1.9936,
+      0.9761
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9166,
+      -1.9108,
+      0.777
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8325,
+      -1.7854,
+      0.3833
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9828,
+      1.7113,
+      0.3628
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.041,
+      -1.8264,
+      0.8239
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9653,
+      -1.7079,
+      0.4264
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8151,
+      1.7889,
+      0.4059
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.1298,
+      2.6623,
+      1.4449
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8278,
+      2.7467,
+      1.4919
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Brown_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Brown_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.1256,
+      -2.0093,
+      0.961
+     ],
+     "limit": -60.0,
+     "rest": -25.6
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.092,
+      -1.8352,
+      0.7541
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9925,
+      -1.7101,
+      0.3639
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8297,
+      1.7857,
+      0.4133
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8647,
+      -1.9273,
+      0.8216
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8044,
+      -1.7947,
+      0.4259
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9672,
+      1.7012,
+      0.4753
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9036,
+      2.7247,
+      1.5132
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0531,
+      2.6327,
+      1.5807
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Mail_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_Mail_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0243,
+      -1.9697,
+      1.0514
+     ],
+     "limit": -60.0,
+     "rest": -21.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9566,
+      -1.8633,
+      0.8686
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8766,
+      -1.7506,
+      0.4702
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9264,
+      1.7473,
+      0.3603
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      1.0032,
+      -1.8352,
+      0.8764
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9232,
+      -1.7248,
+      0.4774
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8734,
+      1.7732,
+      0.3675
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.0247,
+      2.7298,
+      1.4196
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9351,
+      2.7579,
+      1.4274
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -2.0,
+      0.93
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      -1.874,
+      0.755
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      -1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.9,
+      1.75,
+      0.36
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.98,
+      2.7,
+      1.45
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.98,
+      2.7,
+      1.45
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Van_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.014,
+      -2.003,
+      0.9538
+     ],
+     "limit": -60.0,
+     "rest": -22.1
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.99,
+      -1.8806,
+      0.7554
+     ],
+     "limit": 70.0,
+     "rest": 11.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9009,
+      -1.755,
+      0.3628
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.9161,
+      1.745,
+      0.3738
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9694,
+      -1.8722,
+      0.8032
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8985,
+      -1.7473,
+      0.4068
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8834,
+      1.7526,
+      0.4177
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "RearDoor_R": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -1.0268,
+      2.6911,
+      1.4645
+     ],
+     "limit": 100.0,
+     "rest": 0.0
+    },
+    "RearDoor_L": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9326,
+      2.6994,
+      1.5123
+     ],
+     "limit": -100.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Blue_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.4
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      0.026,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      0.026,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Blue_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0506,
+      -1.08,
+      0.7537
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0681,
+      1.736,
+      1.3977
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.949,
+      -0.9163,
+      0.6956
+     ],
+     "limit": 70.0,
+     "rest": 30.7
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9056,
+      0.0823,
+      0.6685
+     ],
+     "limit": 70.0,
+     "rest": 16.8
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8886,
+      -1.4034,
+      0.409
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7626,
+      1.4928,
+      0.3305
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8593,
+      -0.9947,
+      0.7051
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9027,
+      0.0039,
+      0.678
+     ],
+     "limit": -70.0,
+     "rest": -23.2
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7599,
+      -1.4748,
+      0.4177
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8859,
+      1.4214,
+      0.3392
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Sage_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.4
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      0.026,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      0.026,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Sage_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0195,
+      -1.1133,
+      0.7305
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.085,
+      1.6717,
+      1.504
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9225,
+      -0.9957,
+      0.6403
+     ],
+     "limit": 70.0,
+     "rest": 14.9
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9338,
+      0.004,
+      0.6597
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8231,
+      -1.4648,
+      0.3352
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8559,
+      1.4345,
+      0.3916
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8854,
+      -0.9769,
+      0.7257
+     ],
+     "limit": -70.0,
+     "rest": -15.9
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.874,
+      0.0228,
+      0.7452
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8249,
+      -1.4476,
+      0.4131
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7921,
+      1.4516,
+      0.4694
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Tan_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.4
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      0.026,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      0.026,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_Tan_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0472,
+      -1.0705,
+      0.8268
+     ],
+     "limit": -60.0,
+     "rest": -11.2
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.0368,
+      1.757,
+      1.4299
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.947,
+      -0.9346,
+      0.7306
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9318,
+      0.0645,
+      0.6894
+     ],
+     "limit": 70.0,
+     "rest": 10.3
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.861,
+      -1.4237,
+      0.4544
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8168,
+      1.4734,
+      0.3348
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8609,
+      -0.9588,
+      0.8127
+     ],
+     "limit": -70.0,
+     "rest": -27.2
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.8762,
+      0.0403,
+      0.7715
+     ],
+     "limit": -70.0,
+     "rest": -14.8
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7872,
+      -1.4458,
+      0.5293
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8314,
+      1.4514,
+      0.4097
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_White_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      -1.1,
+      0.68
+     ],
+     "limit": -60.0,
+     "rest": 0.0
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0,
+      1.7,
+      1.4
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.905,
+      0.026,
+      0.63
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      -0.974,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.905,
+      0.026,
+      0.63
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      -1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.825,
+      1.45,
+      0.33
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
+  "GV_Wagon_White_Damaged_01": {
+   "parts": {
+    "Hood": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      0.0366,
+      -1.1135,
+      0.6935
+     ],
+     "limit": -60.0,
+     "rest": -19.4
+    },
+    "Tailgate": {
+     "kind": "hinge",
+     "axis": "x",
+     "pivot": [
+      -0.039,
+      1.6696,
+      1.4724
+     ],
+     "limit": 70.0,
+     "rest": 28.8
+    },
+    "Door_FR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.872,
+      -1.0128,
+      0.6521
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Door_RR": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.9008,
+      -0.0134,
+      0.6732
+     ],
+     "limit": 70.0,
+     "rest": 0.0
+    },
+    "Wheel_FR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.7804,
+      -1.4799,
+      0.3416
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RR": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      -0.8641,
+      1.4182,
+      0.4029
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Door_FL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9372,
+      -0.9603,
+      0.6402
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Door_RL": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      0.9084,
+      0.039,
+      0.6613
+     ],
+     "limit": -70.0,
+     "rest": 0.0
+    },
+    "Wheel_FL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.8688,
+      -1.4321,
+      0.3307
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    },
+    "Wheel_RL": {
+     "kind": "spin",
+     "axis": "x",
+     "pivot": [
+      0.7852,
+      1.4661,
+      0.392
+     ],
+     "limit": 360.0,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
   }
  }
 }

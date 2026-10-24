@@ -1,0 +1,118 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GV_Sedan_01",
+ "space": "blender",
+ "parts": {
+  "Hood": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    -0.95,
+    0.68
+   ],
+   "limit": -60.0,
+   "rest": 0.0
+  },
+  "Trunk": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    0.95,
+    0.71
+   ],
+   "limit": 60.0,
+   "rest": 0.0
+  },
+  "Door_FR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.88,
+    -0.824,
+    0.63
+   ],
+   "limit": 70.0,
+   "rest": 0.0
+  },
+  "Door_RR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.88,
+    -0.024,
+    0.63
+   ],
+   "limit": 70.0,
+   "rest": 0.0
+  },
+  "Wheel_FR": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    -0.8,
+    -1.35,
+    0.33
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Wheel_RR": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    -0.8,
+    1.35,
+    0.33
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Door_FL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.88,
+    -0.824,
+    0.63
+   ],
+   "limit": -70.0,
+   "rest": 0.0
+  },
+  "Door_RL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.88,
+    -0.024,
+    0.63
+   ],
+   "limit": -70.0,
+   "rest": 0.0
+  },
+  "Wheel_FL": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.8,
+    -1.35,
+    0.33
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Wheel_RL": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.8,
+    1.35,
+    0.33
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  }
+ },
+ "slots": {}
+}
