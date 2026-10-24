@@ -3104,7 +3104,7 @@
   },
   {
    "id": "GD_Suitcase_01",
-   "name": "Suitcase",
+   "name": "Suitcase, standing",
    "type": "decor/clutter/suitcase",
    "tags": [
     "home",
@@ -3124,9 +3124,7 @@
    "thumb": "thumbs/GD_Suitcase_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GI_Suitcase_01"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -4934,11 +4932,7 @@
    "thumb": "thumbs/GH_Rug_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GH_Rug_02",
-    "GH_Rug_03",
-    "GH_Rug_04"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -4975,11 +4969,7 @@
    "thumb": "thumbs/GH_Rug_04.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GH_Rug_01",
-    "GH_Rug_02",
-    "GH_Rug_03"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -5016,11 +5006,7 @@
    "thumb": "thumbs/GH_Rug_03.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GH_Rug_01",
-    "GH_Rug_02",
-    "GH_Rug_04"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -5062,11 +5048,7 @@
    "thumb": "thumbs/GH_Rug_02.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GH_Rug_01",
-    "GH_Rug_03",
-    "GH_Rug_04"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -6360,14 +6342,14 @@
   },
   {
    "id": "GH_Mirror_01",
-   "name": "Mirror, standing",
+   "name": "Mirror, framed",
    "type": "fixtures/bath/mirror",
    "tags": [
+    "framed",
     "household",
     "indoor",
     "mirror",
-    "new",
-    "standing"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -9900,7 +9882,7 @@
   },
   {
    "id": "GI_Suitcase_01",
-   "name": "Suitcase",
+   "name": "Suitcase, opening",
    "type": "furniture/storage/suitcase",
    "tags": [
     "classic",
@@ -9936,9 +9918,7 @@
     }
    },
    "clips": [],
-   "variants": [
-    "GD_Suitcase_01"
-   ],
+   "variants": [],
    "interactions": "models/GI_Suitcase_01.interactions.json",
    "paintable": [
     {

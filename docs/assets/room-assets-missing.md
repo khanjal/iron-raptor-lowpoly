@@ -112,7 +112,7 @@ Fridges: Classic, Modern, Retro, Damaged and the ice and water dispenser were al
 | PC-SH-059 | Lazy Susan and napkin holder | missing | rare |  |
 | PC-SH-287 | Rotary card file and address book | missing | rare |  |
 
-## Computing and office tech (14)
+## Computing and office tech (11)
 
 | id | prop | status | rarity | closest existing |
 |---|---|---|---|---|
@@ -238,7 +238,7 @@ Fridges: Classic, Modern, Retro, Damaged and the ice and water dispenser were al
 | PC-SH-512 | Patio heater | missing | uncommon |  |
 | PC-SH-885 | RV generator | partial | uncommon | FM_Generator_01 (game id, not on the site) |
 
-## Kitchen and appliances (14)
+## Kitchen and appliances (13)
 
 | id | prop | status | rarity | closest existing |
 |---|---|---|---|---|
