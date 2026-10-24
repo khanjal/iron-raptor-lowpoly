@@ -1,4 +1,4 @@
-# Hand tools: batch 2 (2026-10-25)
+# Hand tools: batch 2 (2026-10-24)
 
 Continues `hand-tools.md` (batch 1). Ten more common household, garden and workshop items from the game's prop catalogue, in `art/scripts/tools_more.py` (group `tools_more`). US reference sizes. Origin on the floor at the middle of the footprint; shears and poker lie along X, working end at +X.
 
@@ -11,7 +11,7 @@ Continues `hand-tools.md` (batch 1). Ten more common household, garden and works
 | Pruning shears (`GT_PruningShears_01`) | 0.2 m | red grips, pivot bolt, a cutting blade and a hook blade |
 | Fire poker (`GT_FirePoker_01`) | 0.72 m | iron shaft, square loop handle, bent point |
 | Hose, coiled (`GT_HoseCoil_01`) | 0.45 m across, 0.12 m high | four layers round a dark core, tail and brass nozzle |
-| Lawn sprinkler (`GT_Sprinkler_01`) | 0.39 m with the fitting | spray bar with eight holes on two skids, brass fitting |
+| Lawn sprinkler (`GT_Sprinkler_01`) | 0.38 m with the fitting | spray bar with eight holes on two skids, brass fitting |
 | Extension cord reel (`GT_CordReel_01`) | 0.28 x 0.33 m | orange cord between two discs, frame with a carry handle |
 | Hand truck (`GT_HandTruck_01`) | 1.1 m tall | blue rails, cross bars, handle, toe plate, two wheels |
 

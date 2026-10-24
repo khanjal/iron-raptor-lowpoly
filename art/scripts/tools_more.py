@@ -4,9 +4,8 @@ extension cord reel and hand truck. Flat faceted models.
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/tools_more.py", run_name="__main__")
 Optional global TOOL_LIST (piece names). Exports Assets/Art/Global/Tools/GT_<Name>_01.fbx.
 
-Origin on the floor at the middle of the footprint. Small hand tools (shears, poker) lie on the floor along X, working end at +X; the rest stand as they are used (the hand truck's toe plate and the
-sprinkler's bar face +X, the working side).
-Front -Y for the rest. Sizes and details are in docs/assets/briefs/hand-tools-2.md.
+Origin on the floor at the middle of the footprint. Small hand tools (shears, poker) lie on the floor along X, working end at +X; the rest stand as they are used (the hand truck's toe plate faces +X, the working side).
+Front -Y otherwise. Sizes and details are in docs/assets/briefs/hand-tools-2.md.
 """
 
 import importlib
@@ -61,7 +60,7 @@ def rope_coil():
     p.cyl("tan", (0, 0, 0.015), 0.15, 0.03, n=12)
     p.cyl("hay", (0, 0, 0.045), 0.15, 0.03, n=12)
     p.cyl("tan", (0, 0, 0.075), 0.15, 0.03, n=12)
-    p.cyl("dark_brown", (0, 0, 0.045), 0.07, 0.09, n=12)                             # the open middle, a dark core as tall as the coil
+    p.cyl("dark_brown", (0, 0, 0.046), 0.07, 0.092, n=12)                            # the open middle, a dark core 2 mm taller than the coil (not coplanar with its top)
     p.box("tan", (0.2, 0.0, 0.01), (0.14, 0.02, 0.02))                               # the free end, along the floor from the coil's side
     return p
 
@@ -86,7 +85,7 @@ def paint_can():
     p.cyl("metal_galv", (0, 0, 0.085), 0.08, 0.17, n=12)
     p.cyl("label_red", (0, 0, 0.09), 0.0808, 0.07, n=12)                            # the paper label, just proud of the can
     p.cyl("metal_galv", (0, 0, 0.172), 0.084, 0.012, n=12)                          # the rim
-    p.cyl("paint_yellow", (0, 0, 0.174), 0.07, 0.006, n=12)                         # paint at the top where the lid is off
+    p.cyl("paint_yellow", (0, 0, 0.177), 0.07, 0.006, n=12)                         # the paint, a skin standing 2 mm over the rim so the open top shows
     p.box("paint_yellow", (0.0, -0.0815, 0.15), (0.03, 0.006, 0.05))                 # a drip on the front
     rod(p, "metal_dark", (-0.08, 0, 0.17), (0.0, 0, 0.23), w=0.006)                  # the wire bail
     rod(p, "metal_dark", (0.0, 0, 0.23), (0.08, 0, 0.17), w=0.006)
@@ -109,7 +108,7 @@ def pruning_shears():
 
 @piece("FirePoker")
 def fire_poker():
-    """A wrought iron fireplace poker 0.7 m long lying on the floor: a square loop handle at one end, a bent point at the other."""
+    """A wrought iron fireplace poker 0.72 m long lying on the floor: a square loop handle at one end, a bent point at the other."""
     p = Prop("GT_FirePoker_01")
     p.ox = 0.0085
     p.cyl("metal_dark", (0, 0, HEX * 0.007), 0.007, 0.6, n=6, axis="x")                      # the shaft
@@ -128,7 +127,7 @@ def hose_coil():
     p.ox = -0.1
     for k in range(4):
         p.cyl("corn_green" if k % 2 == 0 else "leaf_dark", (0, 0, 0.015 + k * 0.03), 0.225, 0.03, n=14)
-    p.cyl("shadow", (0, 0, 0.06), 0.1, 0.12, n=14)                                         # the open middle
+    p.cyl("shadow", (0, 0, 0.061), 0.1, 0.122, n=14)                                         # the open middle
     p.box("corn_green", (0.27, 0.0, 0.0125), (0.12, 0.025, 0.025))                           # the tail, along the floor from the coil's side
     p.cyl("copper", (0.375, 0, 0.0175), 0.0175, 0.1, n=8, axis="x")                          # the brass nozzle
     return p
@@ -136,9 +135,9 @@ def hose_coil():
 
 @piece("Sprinkler")
 def sprinkler():
-    """An oscillating lawn sprinkler 0.39 m long, fitting included: a steel spray bar with a row of holes on two yellow skids, a brass hose fitting at one end."""
+    """An oscillating lawn sprinkler 0.38 m long, fitting included: a steel spray bar with a row of holes on two yellow skids, a brass hose fitting at one end."""
     p = Prop("GT_Sprinkler_01")
-    p.ox = 0.0225
+    p.ox = 0.02
     for s in (-1, 1):
         p.box("paint_yellow", (s * 0.12, 0, 0.0075), (0.06, 0.16, 0.015))                  # the two skids
     p.box("metal_galv", (0, 0, 0.04), (0.34, 0.07, 0.05))                                  # the spray bar

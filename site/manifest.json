@@ -14265,7 +14265,7 @@
    "triangles": 300,
    "size": [
     0.65,
-    0.12,
+    0.122,
     0.439
    ],
    "glb": "models/GT_HoseCoil_01.glb",
@@ -14389,7 +14389,7 @@
     "new",
     "sprinkler",
     "steel",
-    "suburb",
+    "suburban",
     "yellow"
    ],
    "rigged": false,
@@ -14998,7 +14998,7 @@
    "triangles": 188,
    "size": [
     0.42,
-    0.09,
+    0.092,
     0.3
    ],
    "glb": "models/GT_RopeCoil_01.glb",

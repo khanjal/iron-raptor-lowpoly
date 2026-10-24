@@ -391,7 +391,7 @@ _a("GT_PaintCan_01", "Paint can", "tools/workshop/paint-can", "paint can yellow 
 _a("GT_PruningShears_01", "Pruning shears", "tools/garden/pruning-shears", "pruning shears secateurs red steel new garden")
 _a("GT_FirePoker_01", "Fire poker", "tools/household/fire-poker", "poker fireplace iron new cabin")
 _a("GT_HoseCoil_01", "Garden hose, coiled", "tools/garden/hose", "hose garden coiled green brass new farm")
-_a("GT_Sprinkler_01", "Lawn sprinkler", "tools/garden/sprinkler", "sprinkler lawn garden yellow steel new suburb")
+_a("GT_Sprinkler_01", "Lawn sprinkler", "tools/garden/sprinkler", "sprinkler lawn garden yellow steel new suburban")
 _a("GT_CordReel_01", "Extension cord reel", "tools/workshop/cord-reel", "extension cord reel orange yellow new garage")
 _a("GT_HandTruck_01", "Hand truck", "tools/workshop/hand-truck", "hand truck dolly blue steel new warehouse")
 _a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw weathered")
