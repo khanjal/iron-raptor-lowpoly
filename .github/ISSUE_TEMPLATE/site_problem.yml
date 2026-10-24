@@ -1,0 +1,56 @@
+name: Problem with the asset browser
+description: The website does not load, a filter, download or viewer control misbehaves, or it is hard to use
+labels: ["bug", "area:site"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issues are public. Please do not include anything private (a screenshot of other tabs, for instance).
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+      description: A screenshot helps.
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: The address you were on
+      description: Copy it from the address bar; it includes the model and filters.
+      placeholder: "https://khanjal.github.io/lowpoly-assets/#GV_Sedan_01"
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: "Safari 18 on iPhone 15"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Desktop or laptop
+        - Phone
+        - Tablet
+        - Using a keyboard only or a screen reader
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to see it
+      description: What you clicked, in order.
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console messages (if you know how)
+      description: In most browsers F12 > Console. Red lines are the useful ones.
+      render: text
