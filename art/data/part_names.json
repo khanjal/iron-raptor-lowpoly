@@ -274,5 +274,8 @@
  "GT_WorkLight_01": {
   "black": "Clamp and arm",
   "paint_yellow": "Bulb"
+ },
+ "FD_Watermelon_01": {
+  "leaf_dark": "Stripes"
  }
 }
