@@ -134,8 +134,9 @@ BUILD = {
     "insects": dict(kind="critters", clips=["Idle"],      # the clips come from art/scripts/insect_anim.py: Fly, Walk or Hop as well, by what the insect does
                     critters={"Ladybug": "GN_Ladybug_01", "Beetle": "GN_Beetle_01", "Firefly": "GN_Firefly_01", "Honeybee": "GN_Honeybee_01", "Butterfly_Blue": "GN_Butterfly_Blue_01",
                               "Moth": "GN_Moth_01", "Dragonfly": "GN_Dragonfly_01", "Ant": "GN_Ant_01", "Grasshopper": "GN_Grasshopper_01", "Caterpillar": "GN_Caterpillar_01",
-                              "Spider": "GN_Spider_01"},
-                    ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
+                              "Spider": "GN_Spider_01",
+                              "StinkBug": "GN_StinkBug_01", "Housefly": "GN_Housefly_01", "Mosquito": "GN_Mosquito_01", "Wasp": "GN_Wasp_01", "Cockroach": "GN_Cockroach_01", "Cricket": "GN_Cricket_01", "Mantis": "GN_Mantis_01", "Earwig": "GN_Earwig_01"},
+                    ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01', 'GN_StinkBug_01', 'GN_Housefly_01', 'GN_Mosquito_01', 'GN_Wasp_01', 'GN_Cockroach_01', 'GN_Cricket_01', 'GN_Mantis_01', 'GN_Earwig_01']),
     "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
     "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
     "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
@@ -304,6 +305,14 @@ _a("GN_Ant_01", "Ant", "animals/insect/ant", "wild garden insect bug black tiny"
 _a("GN_Grasshopper_01", "Grasshopper", "animals/insect/grasshopper", "wild field rural insect bug green hopper")
 _a("GN_Caterpillar_01", "Caterpillar", "animals/insect/caterpillar", "wild garden insect bug green larva")
 _a("GN_Spider_01", "Spider", "animals/arachnid/spider", "wild cellar barn bug arachnid brown eight-legs")
+_a("GN_StinkBug_01", "Stink bug", "animals/insect/stink-bug", "wild garden insect bug brown tiny")
+_a("GN_Housefly_01", "Housefly", "animals/insect/fly", "wild house insect bug fly grey tiny flying")
+_a("GN_Mosquito_01", "Mosquito", "animals/insect/mosquito", "wild insect bug mosquito grey tiny flying")
+_a("GN_Wasp_01", "Wasp", "animals/insect/wasp", "wild garden insect bug yellow black tiny flying")
+_a("GN_Cockroach_01", "Cockroach", "animals/insect/cockroach", "wild house insect bug brown")
+_a("GN_Cricket_01", "Cricket", "animals/insect/cricket", "wild garden insect bug brown tiny")
+_a("GN_Mantis_01", "Praying mantis", "animals/insect/mantis", "wild garden insect bug green")
+_a("GN_Earwig_01", "Earwig", "animals/insect/earwig", "wild garden insect bug brown tiny")
 # sports: balls, nets and goals, equipment
 _a("GS_Basketball_01", "Basketball", "sports/ball/basketball", "basketball orange new gym court playground")
 _a("GS_Soccerball_01", "Soccer ball", "sports/ball/soccer-ball", "soccer football white black new field")
