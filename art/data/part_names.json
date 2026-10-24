@@ -323,11 +323,11 @@
  },
  "FD_Can_Soup_01": {
   "metal_galv": "Can",
-  "metal_dark": "Top"
+  "metal_dark": "Lid"
  },
  "FD_Can_Beans_01": {
   "metal_galv": "Can",
-  "metal_dark": "Top"
+  "metal_dark": "Lid"
  },
  "FD_Jar_Pickles_01": {
   "label_white": "Label",

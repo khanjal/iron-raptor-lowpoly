@@ -199,7 +199,7 @@ PAINTS = {
     "FD_Fish_01": dict(base="Fresh", parts={"Body": "fabric_grey", "Tail fin": "metal_galv"}, presets={"Rotten": dict(was="FD_Fish_Rotten_01", set={"Body": "#6F7F4A"})}),
     "FD_HotDog_01": dict(base="Fresh", parts={"Bun": "dough", "Sausage": "meat_red", "Mustard": "paint_yellow"}, presets={"Rotten": dict(was="FD_HotDog_Rotten_01", set={"Mustard": "#7A5A44", "Bun": "#7A5A44", "Sausage": "#6F7F4A"})}),
     "FD_Sandwich_01": dict(base="Fresh", parts={"Bread": "dough", "Lettuce": "plant_green", "Filling": "meat_red"}, presets={"Rotten": dict(was="FD_Sandwich_Rotten_01", set={"Lettuce": "#6F7F4A", "Bread": "#7A5A44", "Filling": "#6F7F4A"})}),
-    "FD_SodaCan_Red_01": dict(base="Red", parts={"Label": "label_red", "Can": "metal_galv", "Top": "metal_dark"}, presets={"Blue": dict(was="FD_SodaCan_Blue_01", set={"Label": "#2F6F9F"}), "Green": dict(was="FD_SodaCan_Green_01", set={"Label": "#3F7A3A"})}),
+    "FD_SodaCan_Red_01": dict(base="Red", parts={"Label": "label_red", "Can": "metal_galv", "Lid": "metal_dark"}, presets={"Blue": dict(was="FD_SodaCan_Blue_01", set={"Label": "#2F6F9F"}), "Green": dict(was="FD_SodaCan_Green_01", set={"Label": "#3F7A3A"})}),
     "FD_Grapes_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
     "GN_Butterfly_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
     "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
@@ -427,13 +427,13 @@ _a("FD_ChipsBag_01", "Bag of chips", "food/boxed/chips", "bag chips snack new")
 _a("FD_CandyBar_01", "Candy bar", "food/boxed/candy-bar", "candy bar sweet snack new")
 _a("FD_DogBone_01", "Dog bone", "food/pet/dog-bone", "pet dog treat bone new")
 _a("FD_CatFoodTin_01", "Cat food tin", "food/pet/cat-food", "pet cat food tin new")
-_a("FD_HayFlake_01", "Hay flake", "food/pet/hay", "pet farm hay feed rural new")
+_a("FD_HayFlake_01", "Hay flake", "farm/feed/hay", "farm hay feed rural new")
 _a("FD_SeedBag_01", "Seed bag", "food/pet/seed", "pet bird seed bag new")
 _a("FD_Shirt_Hanger_01", "Shirt on a hanger", "clothing/garments/shirt", "clothes shirt hanger new")
 _a("FD_Jacket_Hanger_01", "Jacket on a hanger", "clothing/garments/jacket", "clothes jacket hanger new")
 _a("FD_Dress_Hanger_01", "Dress on a hanger", "clothing/garments/dress", "clothes dress hanger new")
-_a("FD_Pants_Folded_01", "Folded pants", "clothing/garments/pants", "clothes pants folded denim new")
-_a("FD_Towel_Folded_01", "Folded towel", "clothing/linen/towel", "towel folded bathroom new")
+_a("FD_Pants_Folded_01", "Stack of folded pants", "clothing/garments/pants", "clothes pants folded stack new")
+_a("FD_Towel_Folded_01", "Stack of folded towels", "clothing/linen/towel", "towel folded stack bathroom new")
 _a("FD_Shoes_Pair_01", "Pair of shoes", "clothing/footwear/shoes", "clothes shoes pair new")
 _a("FD_Scarf_01", "Scarf", "clothing/accessories/scarf", "clothes scarf red new")
 _a("FD_Orange_01", "Orange", "food/produce/orange", "fruit orange citrus fresh")
