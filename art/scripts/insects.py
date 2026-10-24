@@ -1,4 +1,5 @@
-"""Insects and a spider for the wild (ladybug, bee, butterflies, dragonfly, beetle, ant, grasshopper, firefly, moth, spider, caterpillar). Flat faceted
+"""Insects and a spider for the wild (ladybug, bee, butterflies, dragonfly, beetle, ant, grasshopper, firefly, moth, spider, caterpillar, and the wider cast of
+issue #80: stink bug, housefly, mosquito, wasp, cockroach, cricket, praying mantis, earwig). Flat faceted
 models. The FBX is a resting pose (not rigged). For the web viewer, insect_anim.py rigs each one from the moving parts marked here (wings, legs,
 antennae, caterpillar segments: `moving()`), and gives it Idle plus Fly, Walk, Hop or the ladybug's Open clips; see build_rigged().
 
@@ -492,13 +493,13 @@ def cockroach():
     """An American cockroach (about 35 mm): a flat reddish-brown oval body with a shield-like pronotum, a small head, spiny legs and antennae as long as the body."""
     p = new("GN_Cockroach_01")
     p.motion = "walk"
-    blob(p, "rust_dark", (0, 2.4, 3.4), (7.0, 14.4, 3.4), n=8, rings=3)                     # the wings, folded over the abdomen
-    blob(p, "dark_brown", (0, -10.0, 3.9), (7.0, 4.2, 2.5), n=8, rings=2)                   # the pronotum
-    blob(p, "dark_brown", (0, -15.2, 3.4), (3.0, 2.4, 2.3), n=6, rings=1)                   # the head
+    blob(p, "rust_dark", (0, 2.4, 4.0), (7.0, 14.4, 3.0), n=8, rings=3)                     # the wings, folded over the abdomen
+    blob(p, "dark_brown", (0, -10.0, 4.3), (7.0, 4.2, 2.5), n=8, rings=2)                   # the pronotum
+    blob(p, "dark_brown", (0, -15.2, 3.7), (3.0, 2.4, 2.3), n=6, rings=1)                   # the head
     for s in (-1, 1):
-        p.box("dark_brown", (s * 1.5, 15.4, 2.8), (0.9, 2.8, 0.9))                         # the cerci at the tail
-    legs(p, "dark_brown", 5.2, (-7.2, -1.2, 6.0), 3.4, 10.5, 4.0, 1.0, dy=1.8)
-    antennae(p, "dark_brown", (1.2, -16.0, 3.8), (9.0, -38.0, 6.5), 0.45)
+        p.box("dark_brown", (s * 1.5, 15.4, 3.4), (0.9, 2.8, 0.9))                         # the cerci at the tail
+    legs(p, "dark_brown", 4.8, (-7.2, -1.2, 6.0), 4.0, 10.5, 3.6, 1.0, dy=1.8)
+    antennae(p, "dark_brown", (1.2, -16.0, 4.1), (9.0, -38.0, 6.8), 0.45)
     return p
 
 
@@ -535,8 +536,8 @@ def mantis():
     for s in (-1, 1):
         ball_at(p, "black", (s * 3.6, -25.5, 13.0), 1.5, n=5)                               # the big eyes
         p.box("leaf_dark", (s * 1.6, 8.0, 11.8), (1.8, 30.0, 0.6), rot=(0, s * 8, 0))      # the wing covers
-        rod(p, "plant_green", (s * 2.0, -18.0, 10.0), (s * 3.2, -24.0, 12.5), 1.5)           # the raptorial foreleg: the femur held forward,
-        rod(p, "plant_green", (s * 3.2, -24.0, 12.5), (s * 2.6, -17.0, 9.0), 1.1)            # the tibia folded back under it
+        rod(p, "plant_green", (s * 2.2, -14.0, 10.5), (s * 4.4, -26.5, 13.0), 2.2)           # the raptorial foreleg: the big femur held forward,
+        rod(p, "plant_green", (s * 4.4, -26.5, 13.0), (s * 3.6, -15.0, 9.4), 1.6)            # the tibia folded back under it
     legs(p, "plant_green", 1.8, (-2.0, 8.0), 8.5, 9.0, 6.0, 1.0, dy=1.5)
     antennae(p, "plant_green", (1.0, -25.5, 13.5), (3.0, -32.0, 18.0), 0.3)
     return p

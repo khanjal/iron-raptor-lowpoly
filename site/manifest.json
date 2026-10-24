@@ -620,15 +620,14 @@
     "bug",
     "house",
     "insect",
-    "tiny",
     "wild"
    ],
    "rigged": true,
    "interactive": false,
    "triangles": 360,
    "size": [
-    0.033,
-    0.008,
+    0.032,
+    0.009,
     0.055
    ],
    "glb": "models/GN_Cockroach_01.glb",
@@ -849,6 +848,7 @@
    "tags": [
     "bug",
     "fly",
+    "flying",
     "grey",
     "house",
     "insect",
@@ -1035,6 +1035,7 @@
    "type": "animals/insect/mosquito",
    "tags": [
     "bug",
+    "flying",
     "grey",
     "insect",
     "mosquito",
@@ -1169,6 +1170,7 @@
    "tags": [
     "black",
     "bug",
+    "flying",
     "garden",
     "insect",
     "tiny",

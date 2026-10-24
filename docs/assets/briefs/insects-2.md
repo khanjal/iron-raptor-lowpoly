@@ -11,7 +11,7 @@ The list comes from the creatures of the game Grounded and Grounded 2 (see the c
 | Cockroach (`GN_Cockroach_01`) | American cockroach, about 35 mm: flat reddish-brown oval, shield-like pronotum, very long antennae, cerci | Idle, Walk |
 | Cricket (`GN_Cricket_01`) | house cricket, about 20 mm: big head, folded wings, two big jumping hind legs, very long thin antennae | Idle, Hop |
 | Praying mantis (`GN_Mantis_01`) | about 60 mm: long green body, triangular head with big eyes, folded raptorial forelegs, two pairs of walking legs | Idle, Walk |
-| Earwig (`GN_Earwig_01`) | about 15 mm: slim dark brown body, reddish head and pronotum, curved pincers at the tail | Idle, Walk |
+| Earwig (`GN_Earwig_01`) | about 14 mm without the pincers: slim dark brown body, reddish head and pronotum, curved pincers at the tail | Idle, Walk |
 
 ## Known limits
 Plain blobs and rods (flat faceted style); the flyers' legs do not move, the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
