@@ -27,8 +27,9 @@ class PaletteTextures(unittest.TestCase):
             for m in doc.get("materials", []):
                 if "baseColorTexture" not in m.get("pbrMetallicRoughness", {}):
                     bad.append(f"{f.name}:{m.get('name')}")
-            if doc.get("materials") and not doc.get("images"):
-                bad.append(f"{f.name}: no image")
+            for i, mesh in enumerate(doc.get("meshes", [])):
+                if any("material" not in p for p in mesh.get("primitives", [])):
+                    bad.append(f"{f.name}: mesh {i} has a primitive without a material")
         self.assertEqual(bad, [], "materials without the palette texture render white")
 
 
