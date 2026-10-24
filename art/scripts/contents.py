@@ -494,14 +494,14 @@ def jacket_hanger():
     p.box("fabric_brown", (0, 0, 0.35), (0.5, 0.07, 0.7), taper=0.9)
     for s in (-1, 1):
         p.box("fabric_brown", (s * 0.31, 0, 0.45), (0.12, 0.07, 0.5), rot=(0, -s * 6, 0))
-    p.box("black", (0, -0.0345, 0.35), (0.012, 0.004, 0.5))                           # the zip, on the front
+    p.box("black", (0, -0.0345, 0.35), (0.012, 0.006, 0.5))                           # the zip, on the front
     return p
 
 
 @item("clothes", "Dress_Hanger")
 def dress_hanger():
     p = Prop("FD_Dress_Hanger_01"); _hanger(p, 1.0)
-    p.box("cloth_red", (0, 0, 0.85), (0.32, 0.04, 0.3), taper=0.85)                     # the bodice, from the waist (0.7) to the shoulders
+    p.box("cloth_red", (0, 0, 0.85), (0.32, 0.04, 0.3), taper=1.1)                     # the bodice, from the waist (0.7) to the shoulders
     p.box("cloth_red", (0, 0, 0.35), (0.5, 0.05, 0.7), taper=0.6)                       # the skirt: narrow at the waist, wide at the hem
     return p
 
@@ -532,7 +532,7 @@ def shoes_pair():
 
 @item("clothes", "Scarf")
 def scarf():
-    p = Prop("FD_Scarf_01"); p.box("cloth_red", (0, 0, 0.01), (0.7, 0.14, 0.02)); p.box("paint_yellow", (0.12, 0, 0.0205), (0.04, 0.14, 0.002)); p.box("paint_yellow", (-0.12, 0, 0.0205), (0.04, 0.14, 0.002)); return p
+    p = Prop("FD_Scarf_01"); p.box("cloth_red", (0, 0, 0.01), (0.7, 0.14, 0.02)); p.box("paint_yellow", (0.12, 0, 0.0205), (0.04, 0.138, 0.002)); p.box("paint_yellow", (-0.12, 0, 0.0205), (0.04, 0.138, 0.002)); return p
 
 
 ROTTEN = {"banana_yellow": "fabric_brown", "corn_green": "mould", "lettuce_heart": "dead_wood", "grass": "mould",

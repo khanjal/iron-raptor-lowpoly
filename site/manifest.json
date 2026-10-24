@@ -3749,7 +3749,7 @@
    "size": [
     0.792,
     0.778,
-    0.072
+    0.073
    ],
    "glb": "models/FD_Jacket_Hanger_01.glb",
    "thumb": "thumbs/FD_Jacket_Hanger_01.png",
@@ -7353,7 +7353,6 @@
    "name": "Hay flake",
    "type": "farm/feed/hay",
    "tags": [
-    "farm",
     "feed",
     "hay",
     "new",
@@ -9841,7 +9840,6 @@
    "type": "food/pet/cat-food",
    "tags": [
     "cat",
-    "food",
     "new",
     "pet",
     "tin"
