@@ -2061,7 +2061,6 @@
     "new",
     "rural",
     "toilet",
-    "weathered",
     "wood"
    ],
    "rigged": false,
@@ -2130,8 +2129,7 @@
     "garden",
     "new",
     "rural",
-    "storage",
-    "weathered"
+    "storage"
    ],
    "rigged": false,
    "interactive": false,
