@@ -39,7 +39,7 @@ NAMES = {"truck_blue": "Blue", "cloth_red": "Red", "paint_white": "White", "trac
 WRECK = {   # the Damaged colour remap: paint faded, rusted, lights and glass gone dark
     "truck_blue": "rust", "cloth_red": "rust_dark", "paint_white": "concrete", "tractor_green": "dead_wood", "paint_yellow": "wood_grey",
     "tan": "wood_grey", "navy": "fabric_grey", "fabric_grey": "dead_wood", "orange_cat": "rust", "golden": "wood_grey", "cream": "wood_grey",
-    "metal_galv": "rust", "glass": "screen", "black": "rust_dark", "fabric_green": "dead_wood", "alien_violet": "fabric_grey",
+    "metal_galv": "rust", "glass": "screen", "clear_glass": "screen", "black": "rust_dark", "fabric_green": "dead_wood", "alien_violet": "fabric_grey",
 }
 
 KINDS = {   # length, width, hood, cabin, body height, cabin height, wheel radius, windscreen run, rear window run, solid (no glass behind the front doors)
@@ -51,7 +51,7 @@ KINDS = {   # length, width, hood, cabin, body height, cabin height, wheel radiu
 }
 
 
-def box_car(name, kind, body, trim="metal_galv", glass="glass", stripe=None, extras=()):
+def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=None, extras=()):
     """A road car from its dimensions (#344): a lofted body shell with a low nose, a rising hood and a tail; a glasshouse with a slanted
     windscreen, side windows that lean in and a rear window, carried on A, B and C pillars under a roof panel; door seams and handles,
     sills, mirrors, wheel arches and detailed wheels, a grille with bars, headlight and tail light housings, bumpers, a plate, an exhaust."""
@@ -92,6 +92,8 @@ def box_car(name, kind, body, trim="metal_galv", glass="glass", stripe=None, ext
         vehicles.glasshouse(p, body, [(y_k, hb, ht, ytop, zt), (y_c1, hb, ht, ytop, zt)])      # the cargo box: a vertical back
     else:
         vehicles.glasshouse(p, glass, [ends(y_c0), (s1, hb, ht, ytop, zt), (s2, hb, ht, ytop, zt), ends(y_c1)])
+    y_i1 = (y_b if solid else y_c1) - 0.1
+    vehicles.cab_interior(p, y_c0 + 0.05, y_i1, ytop, 2 * hb - 0.1, ch - 0.1, rows=[0.9] + ([1.6] if (y_i1 - y_c0) > 2.0 and not solid else []))   # dashboard, wheel and seats seen through the glass
     p.box(body, (0, (s1 + s2) / 2, zt + 0.025), (2 * ht + 0.06, s2 - s1 + 0.06, 0.07))                          # roof panel
     z_roof = zt + 0.06
     for sx in (-1, 1):

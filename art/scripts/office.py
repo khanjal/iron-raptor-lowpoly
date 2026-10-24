@@ -304,7 +304,7 @@ def printer_desktop():
 
 @piece("equipment", "WaterCooler")
 def water_cooler():
-    """A bottled-water cooler: cabinet with a hinged door, hot and cold taps over a drip tray, and a blue jug on top."""
+    """A bottled-water cooler: cabinet with a hinged door, hot and cold taps over a drip tray, and a clear jug of water on top."""
     p = Prop("GO_WaterCooler_01")
     w, d, h = 0.32, 0.34, 0.95
     yf = -d / 2
@@ -319,7 +319,8 @@ def water_cooler():
     p.box("black", (0, yf - 0.05, 0.712), (0.2, 0.08, 0.004))
     p.box("glow_cyan", (0.1, yf - 0.012, 0.88), (0.012, 0.004, 0.012))
     p.box("glow_red", (-0.1, yf - 0.012, 0.88), (0.012, 0.004, 0.012))
-    lathe(p, "water_blue", [(0.0, 0.04), (0.04, 0.04), (0.12, 0.12), (0.22, 0.15), (0.5, 0.15), (0.52, 0.1)], n=10, z0=h + 0.02)
+    lathe(p, "clear_glass", [(0.0, 0.04), (0.04, 0.04), (0.12, 0.12), (0.22, 0.15), (0.5, 0.15), (0.52, 0.1)], n=10, z0=h + 0.02)   # the jug
+    lathe(p, "clear_water", [(0.0, 0.03), (0.04, 0.03), (0.12, 0.108), (0.22, 0.138), (0.34, 0.138)], n=10, z0=h + 0.02)             # the water in it, filled to 0.34
     lathe(p, "label_white", [(0.26, 0.152), (0.4, 0.152)], n=10, z0=h + 0.02, cap=False)
     return p
 
