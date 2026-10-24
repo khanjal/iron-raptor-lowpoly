@@ -88,6 +88,11 @@ BUILD = {
     "food_bakery2": dict(script="contents.py", globals={"CONTENT_LIST": ['Baguette', 'Cake', 'Donut', 'CookieJar'], "EXPORT": True}, ids=['FD_Baguette_01', 'FD_Cake_01', 'FD_Donut_01', 'FD_CookieJar_01']),
     "food_dairy2": dict(script="contents.py", globals={"CONTENT_LIST": ['MilkCarton', 'MilkBottle', 'EggCarton', 'CheeseWedge', 'Butter', 'JuiceBox'], "EXPORT": True}, ids=['FD_MilkCarton_01', 'FD_MilkBottle_01', 'FD_EggCarton_01', 'FD_CheeseWedge_01', 'FD_Butter_01', 'FD_JuiceBox_01']),
     "food_prepared2": dict(script="contents.py", globals={"CONTENT_LIST": ['Steak', 'Sausages', 'Drumstick', 'TurkeyRoast', 'Fish', 'HotDog', 'PizzaBox', 'Sandwich', 'TVDinner'], "EXPORT": True}, ids=['FD_Steak_01', 'FD_Sausages_01', 'FD_Drumstick_01', 'FD_TurkeyRoast_01', 'FD_Fish_01', 'FD_HotDog_01', 'FD_PizzaBox_01', 'FD_Sandwich_01', 'FD_TVDinner_01']),
+    "food_drinks": dict(script="contents.py", globals={"CONTENT_LIST": ['SodaCan_Red', 'BeerCan', 'BeerBottle', 'WaterBottle', 'WineBottle', 'WhiskeyBottle', 'CoffeeCan']}, ids=['FD_SodaCan_Red_01', 'FD_BeerCan_01', 'FD_BeerBottle_01', 'FD_WaterBottle_01', 'FD_WineBottle_01', 'FD_WhiskeyBottle_01', 'FD_CoffeeCan_01']),
+    "food_canned": dict(script="contents.py", globals={"CONTENT_LIST": ['Can_Soup', 'Can_Beans', 'Jar_Pickles', 'Jar_Jam', 'Ketchup', 'Mustard', 'PeanutButter']}, ids=['FD_Can_Soup_01', 'FD_Can_Beans_01', 'FD_Jar_Pickles_01', 'FD_Jar_Jam_01', 'FD_Ketchup_01', 'FD_Mustard_01', 'FD_PeanutButter_01']),
+    "food_boxed": dict(script="contents.py", globals={"CONTENT_LIST": ['CerealBox', 'PastaBox', 'CrackerBox', 'FlourSack', 'SugarBag', 'ChipsBag', 'CandyBar']}, ids=['FD_CerealBox_01', 'FD_PastaBox_01', 'FD_CrackerBox_01', 'FD_FlourSack_01', 'FD_SugarBag_01', 'FD_ChipsBag_01', 'FD_CandyBar_01']),
+    "food_pet": dict(script="contents.py", globals={"CONTENT_LIST": ['DogBone', 'CatFoodTin', 'HayFlake', 'SeedBag']}, ids=['FD_DogBone_01', 'FD_CatFoodTin_01', 'FD_HayFlake_01', 'FD_SeedBag_01']),
+    "food_clothes": dict(script="contents.py", globals={"CONTENT_LIST": ['Shirt_Hanger', 'Jacket_Hanger', 'Dress_Hanger', 'Pants_Folded', 'Towel_Folded', 'Shoes_Pair', 'Scarf']}, ids=['FD_Shirt_Hanger_01', 'FD_Jacket_Hanger_01', 'FD_Dress_Hanger_01', 'FD_Pants_Folded_01', 'FD_Towel_Folded_01', 'FD_Shoes_Pair_01', 'FD_Scarf_01']),
     "food_produce": dict(script="contents.py", globals={"CONTENT_LIST": ["Apple_Green", "Apple_Yellow", "BananaBunch", "Lemon", "Pear", "Grapes_Purple", "Grapes_Green", "Strawberry"]},
                          ids=["FD_BananaBunch_01", "FD_Lemon_01", "FD_Pear_01",
                               "FD_Grapes_Green_01", "FD_Strawberry_01"]),
@@ -194,6 +199,7 @@ PAINTS = {
     "FD_Fish_01": dict(base="Fresh", parts={"Body": "fabric_grey", "Tail fin": "metal_galv"}, presets={"Rotten": dict(was="FD_Fish_Rotten_01", set={"Body": "#6F7F4A"})}),
     "FD_HotDog_01": dict(base="Fresh", parts={"Bun": "dough", "Sausage": "meat_red", "Mustard": "paint_yellow"}, presets={"Rotten": dict(was="FD_HotDog_Rotten_01", set={"Mustard": "#7A5A44", "Bun": "#7A5A44", "Sausage": "#6F7F4A"})}),
     "FD_Sandwich_01": dict(base="Fresh", parts={"Bread": "dough", "Lettuce": "plant_green", "Filling": "meat_red"}, presets={"Rotten": dict(was="FD_Sandwich_Rotten_01", set={"Lettuce": "#6F7F4A", "Bread": "#7A5A44", "Filling": "#6F7F4A"})}),
+    "FD_SodaCan_Red_01": dict(base="Red", parts={"Label": "label_red", "Can": "metal_galv", "Top": "metal_dark"}, presets={"Blue": dict(was="FD_SodaCan_Blue_01", set={"Label": "#2F6F9F"}), "Green": dict(was="FD_SodaCan_Green_01", set={"Label": "#3F7A3A"})}),
     "FD_Grapes_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
     "GN_Butterfly_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
     "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
@@ -398,6 +404,38 @@ _a("FD_Strawberry_01", "Strawberry", "food/produce/strawberry", "fruit red berry
 _a("FD_BreadLoaf_01", "Loaf of bread", "food/bakery/bread", "baked fresh brown")
 _a("FD_Pie_01", "Pie", "food/bakery/pie", "baked dessert fresh")
 _a("FD_Hamburger_01", "Hamburger", "food/prepared/hamburger", "fast-food diner fresh")
+_a("FD_SodaCan_Red_01", "Soda can", "food/drinks/soda-can", "drink soda can red metal new")
+_a("FD_BeerCan_01", "Beer can", "food/drinks/beer-can", "drink beer can metal new")
+_a("FD_BeerBottle_01", "Beer bottle", "food/drinks/beer-bottle", "drink beer bottle glass brown new")
+_a("FD_WaterBottle_01", "Water bottle", "food/drinks/water-bottle", "drink water bottle plastic new")
+_a("FD_WineBottle_01", "Wine bottle", "food/drinks/wine-bottle", "drink wine bottle glass green new")
+_a("FD_WhiskeyBottle_01", "Whiskey bottle", "food/drinks/whiskey-bottle", "drink whiskey bottle glass brown new")
+_a("FD_CoffeeCan_01", "Coffee can", "food/drinks/coffee-can", "coffee can metal red new")
+_a("FD_Can_Soup_01", "Can of soup", "food/canned/soup", "canned soup can metal red new")
+_a("FD_Can_Beans_01", "Can of beans", "food/canned/beans", "canned beans can metal new")
+_a("FD_Jar_Pickles_01", "Jar of pickles", "food/canned/pickles", "canned pickles jar glass green new")
+_a("FD_Jar_Jam_01", "Jar of jam", "food/canned/jam", "canned jam jar glass red new")
+_a("FD_Ketchup_01", "Ketchup", "food/canned/ketchup", "condiment ketchup bottle red diner new")
+_a("FD_Mustard_01", "Mustard", "food/canned/mustard", "condiment mustard bottle yellow diner new")
+_a("FD_PeanutButter_01", "Peanut butter", "food/canned/peanut-butter", "canned peanut butter jar brown new")
+_a("FD_CerealBox_01", "Cereal box", "food/boxed/cereal", "boxed cereal breakfast new")
+_a("FD_PastaBox_01", "Pasta box", "food/boxed/pasta", "boxed pasta new")
+_a("FD_CrackerBox_01", "Cracker box", "food/boxed/crackers", "boxed crackers snack new")
+_a("FD_FlourSack_01", "Flour sack", "food/boxed/flour", "sack flour baking new")
+_a("FD_SugarBag_01", "Sugar bag", "food/boxed/sugar", "bag sugar baking new")
+_a("FD_ChipsBag_01", "Bag of chips", "food/boxed/chips", "bag chips snack new")
+_a("FD_CandyBar_01", "Candy bar", "food/boxed/candy-bar", "candy bar sweet snack new")
+_a("FD_DogBone_01", "Dog bone", "food/pet/dog-bone", "pet dog treat bone new")
+_a("FD_CatFoodTin_01", "Cat food tin", "food/pet/cat-food", "pet cat food tin new")
+_a("FD_HayFlake_01", "Hay flake", "food/pet/hay", "pet farm hay feed rural new")
+_a("FD_SeedBag_01", "Seed bag", "food/pet/seed", "pet bird seed bag new")
+_a("FD_Shirt_Hanger_01", "Shirt on a hanger", "clothing/garments/shirt", "clothes shirt hanger new")
+_a("FD_Jacket_Hanger_01", "Jacket on a hanger", "clothing/garments/jacket", "clothes jacket hanger new")
+_a("FD_Dress_Hanger_01", "Dress on a hanger", "clothing/garments/dress", "clothes dress hanger new")
+_a("FD_Pants_Folded_01", "Folded pants", "clothing/garments/pants", "clothes pants folded denim new")
+_a("FD_Towel_Folded_01", "Folded towel", "clothing/linen/towel", "towel folded bathroom new")
+_a("FD_Shoes_Pair_01", "Pair of shoes", "clothing/footwear/shoes", "clothes shoes pair new")
+_a("FD_Scarf_01", "Scarf", "clothing/accessories/scarf", "clothes scarf red new")
 _a("FD_Orange_01", "Orange", "food/produce/orange", "fruit orange citrus fresh")
 _a("FD_Banana_01", "Banana", "food/produce/banana", "fruit yellow single fresh")
 _a("FD_Carrot_01", "Carrot", "food/produce/carrot", "vegetable orange root fresh")

@@ -299,5 +299,111 @@
   "metal_galv": "Foil",
   "food_orange": "Carrots",
   "plant_green": "Peas"
+ },
+ "FD_BeerCan_01": {
+  "metal_galv": "Can",
+  "metal_dark": "Lid"
+ },
+ "FD_BeerBottle_01": {
+  "metal_galv": "Cap"
+ },
+ "FD_WaterBottle_01": {
+  "$main": "Label and cap"
+ },
+ "FD_WineBottle_01": {
+  "cloth_red": "Capsule"
+ },
+ "FD_WhiskeyBottle_01": {
+  "label_white": "Label",
+  "black": "Cap"
+ },
+ "FD_CoffeeCan_01": {
+  "label_white": "Label",
+  "black": "Lid"
+ },
+ "FD_Can_Soup_01": {
+  "metal_galv": "Can",
+  "metal_dark": "Top"
+ },
+ "FD_Can_Beans_01": {
+  "metal_galv": "Can",
+  "metal_dark": "Top"
+ },
+ "FD_Jar_Pickles_01": {
+  "label_white": "Label",
+  "metal_galv": "Lid"
+ },
+ "FD_Jar_Jam_01": {
+  "cloth_red": "Lid"
+ },
+ "FD_Ketchup_01": {
+  "label_white": "Cap"
+ },
+ "FD_Mustard_01": {
+  "cloth_red": "Cap"
+ },
+ "FD_PeanutButter_01": {
+  "label_white": "Label",
+  "cloth_red": "Lid"
+ },
+ "FD_CerealBox_01": {
+  "paint_yellow": "Front panel",
+  "label_blue": "Title band"
+ },
+ "FD_PastaBox_01": {
+  "glass": "Window",
+  "dough": "Pasta"
+ },
+ "FD_CrackerBox_01": {
+  "crust": "Front panel"
+ },
+ "FD_FlourSack_01": {
+  "label_blue": "Label"
+ },
+ "FD_SugarBag_01": {
+  "label_blue": "Label"
+ },
+ "FD_ChipsBag_01": {
+  "cloth_red": "Label"
+ },
+ "FD_CandyBar_01": {
+  "cloth_red": "Wrapper"
+ },
+ "FD_DogBone_01": {
+  "$main": "Bone"
+ },
+ "FD_CatFoodTin_01": {
+  "metal_galv": "Tin",
+  "metal_dark": "Lid"
+ },
+ "FD_HayFlake_01": {
+  "wood_dark": "Band"
+ },
+ "FD_SeedBag_01": {
+  "plant_green": "Label"
+ },
+ "FD_Shirt_Hanger_01": {
+  "$main": "Fabric"
+ },
+ "FD_Jacket_Hanger_01": {
+  "$main": "Fabric"
+ },
+ "FD_Dress_Hanger_01": {
+  "$main": "Fabric"
+ },
+ "FD_Pants_Folded_01": {
+  "grey_suit": "Top pair",
+  "denim": "Bottom pair"
+ },
+ "FD_Towel_Folded_01": {
+  "paint_white": "Top towel",
+  "linen": "Bottom towel"
+ },
+ "FD_Shoes_Pair_01": {
+  "rubber": "Soles",
+  "paint_white": "Laces"
+ },
+ "FD_Scarf_01": {
+  "paint_yellow": "Stripes"
  }
 }
