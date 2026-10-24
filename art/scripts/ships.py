@@ -62,10 +62,10 @@ def hull_panel():
     for k in range(5):                                                       # a curved plate approximated by 5 tilted strips
         a = (k - 2) * 9
         x = (k - 2) * 0.17
-        p.box("alien_grey", (x, 0, 0.3 - abs(k - 2) * 0.012), (0.17, 0.5, 0.03), rot=(0, a, 0))
-    p.box("glow_cyan", (0, -0.1, 0.33), (0.7, 0.025, 0.018))
-    p.box("alien_dark", (0.2, 0.1, 0.32), (0.22, 0.2, 0.034), rot=(0, 5, 20))      # a scorch mark
-    p.box("metal_dark", (0, 0.24, 0.3), (0.75, 0.03, 0.04))
+        p.box("alien_grey", (x, 0, 0.065 - abs(k - 2) * 0.012), (0.17, 0.5, 0.03), rot=(0, a, 0))
+    p.box("glow_cyan", (0, -0.1, 0.095), (0.7, 0.025, 0.018))
+    p.box("alien_dark", (0.2, 0.1, 0.085), (0.22, 0.2, 0.034), rot=(0, 5, 20))      # a scorch mark
+    p.box("metal_dark", (0, 0.24, 0.065), (0.75, 0.03, 0.04))
     return p
 
 
@@ -150,21 +150,21 @@ def warp_ring():
     p = Prop("SH_WarpRingSegment_01")
     for k in range(8):
         a = math.radians(-45 + k * 12.86)
-        x, z = 0.55 * math.sin(a), 0.55 * math.cos(a) - 0.4
+        x, z = 0.55 * math.sin(a), 0.55 * math.cos(a) - 0.7
         p.box("alien_grey", (x, 0, z + 0.4), (0.12, 0.2, 0.1), rot=(0, math.degrees(a), 0))
         p.box("glow_cyan", (x * 1.01, -0.103, z + 0.4 + 0.0), (0.08, 0.008, 0.04), rot=(0, math.degrees(a), 0))
     for s in (-1, 1):
-        p.box("metal_dark", (s * 0.42, 0, 0.4), (0.06, 0.24, 0.08))
+        p.box("metal_dark", (s * 0.42, 0, 0.1), (0.06, 0.24, 0.08))
     return p
 
 
 @piece("parts", "LandingLeg")
 def landing_leg():
     p = Prop("SH_LandingLeg_01")
-    p.box("alien_grey", (0, 0, 0.35), (0.07, 0.07, 0.8), rot=(0, 0, 0))
-    p.box("metal_dark", (0.1, 0, 0.5), (0.04, 0.04, 0.45), rot=(0, -30, 0))
-    p.cyl("alien_grey", (0, 0, 0.03), 0.2, 0.06, n=6, top_radius=0.12)
-    p.cyl("metal_dark", (0, 0, 0.7), 0.06, 0.12, n=6)
+    p.box("alien_grey", (0, 0, 0.4), (0.07, 0.07, 0.8), rot=(0, 0, 0))
+    p.box("metal_dark", (0.1, 0, 0.55), (0.04, 0.04, 0.45), rot=(0, -30, 0))
+    p.cyl("alien_grey", (0, 0, 0.08), 0.2, 0.06, n=6, top_radius=0.12)
+    p.cyl("metal_dark", (0, 0, 0.75), 0.06, 0.12, n=6)
     return p
 
 
@@ -203,22 +203,22 @@ def specimen_jar():
 @piece("parts", "ContainmentPod")
 def containment_pod():
     p = Prop("SH_ContainmentPod_01")
-    lathe(p, "alien_grey", [(0.0, 0.01), (0.06, 0.2), (0.3, 0.32), (0.9, 0.32), (1.14, 0.2), (1.2, 0.01)], n=8, z0=0.1)
-    p.box("glow_cyan", (0, -0.3, 0.72), (0.3, 0.03, 0.5))
-    p.box("clear_glass", (0, -0.31, 0.72), (0.26, 0.01, 0.46))
-    p.box("metal_dark", (0, 0, 0.1), (0.5, 0.5, 0.06))
+    lathe(p, "alien_grey", [(0.0, 0.01), (0.06, 0.2), (0.3, 0.32), (0.9, 0.32), (1.14, 0.2), (1.2, 0.01)], n=8, z0=0.03)
+    p.box("glow_cyan", (0, -0.3, 0.65), (0.3, 0.03, 0.5))
+    p.box("clear_glass", (0, -0.31, 0.65), (0.26, 0.01, 0.46))
+    p.box("metal_dark", (0, 0, 0.03), (0.5, 0.5, 0.06))
     for z in (0.35, 1.0):
-        p.cyl("metal_dark", (0, 0, z + 0.1), 0.325, 0.03, n=8)
+        p.cyl("metal_dark", (0, 0, z + 0.03), 0.325, 0.03, n=8)
     return p
 
 
 @piece("tools", "RepairTool")
 def repair_tool():
     p = Prop("SH_RepairTool_01")
-    p.box("alien_grey", (0, 0, 0.1), (0.1, 0.28, 0.1))
-    p.box("metal_dark", (0, 0.06, 0.03), (0.06, 0.07, 0.12), rot=(-15, 0, 0))
-    p.cyl("metal_dark", (0, -0.2, 0.1), 0.03, 0.14, n=6, axis="y")
-    p.cyl("glow_cyan", (0, -0.28, 0.1), 0.02, 0.03, n=6, axis="y")
+    p.box("alien_grey", (0, 0, 0.14), (0.1, 0.28, 0.1))
+    p.box("metal_dark", (0, 0.06, 0.07), (0.06, 0.07, 0.12), rot=(-15, 0, 0))
+    p.cyl("metal_dark", (0, -0.2, 0.14), 0.03, 0.14, n=6, axis="y")
+    p.cyl("glow_cyan", (0, -0.28, 0.14), 0.02, 0.03, n=6, axis="y")
     return p
 
 
