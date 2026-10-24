@@ -36,10 +36,14 @@ class LegJoints(unittest.TestCase):
             low = min(z for z in (L.underside(c, abs(hip[0]), hip[1]) for c in carriers) if z is not None)
             self.assertLessEqual(hip[2] - low, spec["w"] + 1e-6, f"{name} leg {i}: the hip is buried deep inside")
 
-    def test_hip_is_not_in_the_shell_above(self):
-        """The leg leaves the underside: nothing but the carrier is between the hip and the ground."""
+    def test_shin_is_outside_the_body(self):
+        """From the knee down the leg is in the open: no point of the shin is inside any part of the body."""
         for name, spec, side, i, (hip, knee, foot) in self.each():
-            self.assertGreater(hip[2], foot[2], f"{name} leg {i}")
+            for k in range(1, 11):
+                t = k / 10
+                pt = tuple(knee[j] + (foot[j] - knee[j]) * t for j in range(3))
+                for b in bodies(spec):
+                    self.assertFalse(L.inside(b, *pt), f"{name} leg {i}: the shin is in the body at t={t}")
 
     def test_knee_is_clear_of_the_body(self):
         for name, spec, side, i, (hip, knee, foot) in self.each():

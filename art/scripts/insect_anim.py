@@ -1,4 +1,4 @@
-"""Rig the insects of insects.py and give them clips (Idle, plus Fly, Walk or Hop), for the GLBs of the web viewer.
+"""Rig the insects of insects.py and give them clips (Idle, plus Fly, Walk, Hop or the ladybug's Open), for the GLBs of the web viewer.
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/insect_anim.py", run_name="__main__")
 Optional global INSECT_LIST (names as in insects.CRITTERS). Builds each rigged model and prints its clips; the site build (tools/build_site_assets.py) calls
@@ -152,7 +152,7 @@ def idle_caterpillar(rig, t):
 
 
 def open_ladybug(rig, t):
-    """The wing covers (Elytron_L/R) swing up and out about their front corners and the hindwings (WingH_L/R) unfold sideways from under them, then all fold back."""
+    """The wing covers (Elytron_L/R) open like a gull's wings (lifted about a lengthwise line at the suture, the rear swung a little outward) and the hindwings (WingH_L/R) unfold sideways from under them, then all fold back."""
     w = 2 * math.pi * t
     a = min(1.0, 1.5 * (0.5 - 0.5 * math.cos(w)))
     turn(rig, "Body", x=-1.5 * a)

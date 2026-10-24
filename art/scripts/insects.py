@@ -182,7 +182,7 @@ def on_dome(p, colour, shape, x, y, r, thick=0.3, n=6, lift=0.0):
 
 # A seven-spot ladybug: on each wing cover three spots, and one more shared at the suture behind the pronotum (drawn as a half on each side).
 LADYBUG_SPOTS = ((2.25, -0.5, 0.7), (1.0, 1.1, 0.75), (2.0, 2.9, 0.6))
-SCUTELLAR_HALF = (0.42, -2.3, 0.55)
+SCUTELLAR_HALF = (0.36, -1.85, 0.34)
 
 
 @critter("beetles", "Ladybug")
