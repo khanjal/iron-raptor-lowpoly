@@ -751,7 +751,7 @@ def export_glb(coll, name, rigged=None, meta=True):
         if not mats:
             raise RuntimeError(f"{name}: mesh {o.name} has no material")
         for m in mats:
-            nodes = m.node_tree.nodes if m.node_tree else []
+            nodes = m.node_tree.nodes if m.use_nodes and m.node_tree else []
             if not any(n.type == "TEX_IMAGE" and n.image is not None for n in nodes):
                 raise RuntimeError(f"{name}: material {m.name} has no palette image")
     objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
