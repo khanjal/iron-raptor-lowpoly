@@ -150,21 +150,21 @@ def warp_ring():
     p = Prop("SH_WarpRingSegment_01")
     for k in range(8):
         a = math.radians(-45 + k * 12.86)
-        x, z = 0.55 * math.sin(a), 0.55 * math.cos(a) - 0.7
+        x, z = 0.55 * math.sin(a), 0.55 * math.cos(a) - 0.711
         p.box("alien_grey", (x, 0, z + 0.4), (0.12, 0.2, 0.1), rot=(0, math.degrees(a), 0))
         p.box("glow_cyan", (x * 1.01, -0.103, z + 0.4 + 0.0), (0.08, 0.008, 0.04), rot=(0, math.degrees(a), 0))
     for s in (-1, 1):
-        p.box("metal_dark", (s * 0.42, 0, 0.1), (0.06, 0.24, 0.08))
+        p.box("metal_dark", (s * 0.42, 0, 0.04), (0.06, 0.24, 0.08))
     return p
 
 
 @piece("parts", "LandingLeg")
 def landing_leg():
     p = Prop("SH_LandingLeg_01")
-    p.box("alien_grey", (0, 0, 0.4), (0.07, 0.07, 0.8), rot=(0, 0, 0))
-    p.box("metal_dark", (0.1, 0, 0.55), (0.04, 0.04, 0.45), rot=(0, -30, 0))
-    p.cyl("alien_grey", (0, 0, 0.08), 0.2, 0.06, n=6, top_radius=0.12)
-    p.cyl("metal_dark", (0, 0, 0.75), 0.06, 0.12, n=6)
+    p.box("alien_grey", (0, 0, 0.43), (0.07, 0.07, 0.74), rot=(0, 0, 0))
+    p.box("metal_dark", (0.1, 0, 0.5), (0.04, 0.04, 0.45), rot=(0, -30, 0))
+    p.cyl("alien_grey", (0, 0, 0.03), 0.2, 0.06, n=6, top_radius=0.12)
+    p.cyl("metal_dark", (0, 0, 0.74), 0.06, 0.12, n=6)
     return p
 
 
@@ -264,7 +264,7 @@ def hull_shard_b():
 def cable_tangle():
     p = Prop("SH_CableTangle_01")
     for k, (x, y, r) in enumerate(((0, 0, 20), (0.2, 0.1, -30), (-0.1, 0.2, 70), (0.1, -0.2, 110))):
-        p.box("alien_violet" if k % 2 else "metal_dark", (x, y, 0.03 + k * 0.01), (0.7, 0.04, 0.04), rot=(0, 0, r))
+        p.box("alien_violet" if k % 2 else "metal_dark", (x, y, 0.02 + k * 0.01), (0.7, 0.04, 0.04), rot=(0, 0, r))
     p.box("glow_cyan", (0.3, 0.1, 0.07), (0.1, 0.05, 0.05))
     return p
 
