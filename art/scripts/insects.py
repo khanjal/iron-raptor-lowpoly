@@ -267,15 +267,21 @@ def dragonfly():
 
 @critter("hoppers", "Ant")
 def ant():
+    """Three body parts joined by a waist: head, mesosoma (the thorax with the six legs on it), a small petiole node and the big gaster; elbowed antennae."""
     p = new("GN_Ant_01")
     p.motion = "walk"
-    blob(p, "black", (0, -3.2, 2.2), (1.0, 1.1, 0.9), n=6, rings=1)
-    blob(p, "rust_dark", (0, -0.8, 2.4), (0.8, 1.3, 0.8), n=6, rings=1)
-    blob(p, "black", (0, 2.4, 2.4), (1.3, 1.9, 1.2), n=6)
-    legs(p, "black", 0.5, (-1.6, -0.6, 0.4), 2.0, 2.3, 0.9, 0.3, dy=0.6)
+    blob(p, "black", (0, -3.7, 2.3), (1.2, 1.3, 1.1), n=6, rings=1)                         # head
     for s in (-1, 1):
-        rod(p, "black", (s * 0.4, -4.1, 2.4), (s * 0.9, -5.4, 3.4), 0.2)
-        rod(p, "black", (s * 0.9, -5.4, 3.4), (s * 0.7, -6.6, 2.6), 0.2)
+        p.box("rust_dark", (s * 0.6, -4.7, 1.9), (0.35, 0.8, 0.3), rot=(0, 0, s * -20))    # mandibles
+    blob(p, "rust_dark", (0, -1.0, 2.5), (0.9, 2.0, 0.9), n=6, rings=2)                    # mesosoma
+    blob(p, "rust_dark", (0, 1.2, 2.8), (0.5, 0.8, 0.6), n=6, rings=1)                     # petiole: the narrow waist
+    blob(p, "black", (0, 3.9, 2.4), (1.5, 2.6, 1.3), n=6, rings=2)                         # gaster
+    legs(p, "black", 0.5, (-2.0, -1.0, 0.0), 2.0, 2.3, 0.9, 0.3, dy=0.6)                   # all three pairs hang from the mesosoma
+    for s in (-1, 1):
+        base = (s * 0.5, -4.7, 2.7)
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", base):                          # scape forward and up, then the bend, then the funiculus
+            rod(p, "black", base, (s * 1.2, -6.4, 3.5), 0.2)
+            rod(p, "black", (s * 1.2, -6.4, 3.5), (s * 1.6, -7.6, 2.5), 0.2)
     return p
 
 
@@ -301,20 +307,32 @@ def grasshopper():
     return p
 
 
+THORAX_SEGMENTS = 3             # a caterpillar: head capsule, 3 thoracic segments (true legs), then abdominal segments (prolegs on four, claspers on the last)
+ABDOMEN_SEGMENTS = 8
+PROLEG_SEGMENTS = (3, 4, 5, 6)  # abdominal segments, counted from the thorax, that carry a pair of prolegs
+
+
 @critter("hoppers", "Caterpillar")
 def caterpillar():
     p = new("GN_Caterpillar_01")
     p.motion = "caterpillar"
-    for i in range(7):
-        y = -11.0 + 4.0 * i
-        z = 3.2 + 1.5 * math.sin(math.pi * i / 6)
-        with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the rear segment is the body the others move against
-            blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (3.0, 2.4, 2.8), n=6, rings=1)
-            p.box("paint_yellow", (0, y, z + 2.7), (1.6, 1.0, 0.5))
+    last = THORAX_SEGMENTS + ABDOMEN_SEGMENTS - 1
+    for i in range(THORAX_SEGMENTS + ABDOMEN_SEGMENTS):
+        y = -9.0 + 2.8 * i
+        z = 2.8 + 1.0 * math.sin(math.pi * i / last)
+        thorax = i < THORAX_SEGMENTS
+        w = 2.1 if thorax else (2.9 if i < last else 2.2)                                  # the thorax is slimmer, the tail tapers
+        with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the first segment is the body the others move against
+            blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (w, 2.3, w * 0.92), n=6, rings=2)
+            if not thorax:
+                p.box("paint_yellow", (0, y, z + w * 0.9), (1.4, 1.0, 0.4))
             for s in (-1, 1):
-                p.box("plant_green", (s * 1.8, y, 1.0), (1.0, 1.4, 2.0))
-    with moving(p, "Head", (0, -13.5, 2.0)):
-        blob(p, "cloth_red", (0, -15.5, 3.4), (2.8, 2.2, 2.6), n=6, rings=1)
+                if thorax:                                                                  # a true leg: thin, jointed, ends in a claw
+                    rod(p, "dark_brown", (s * 1.2, y, z - 1.2), (s * 1.8, y - 0.6, 0.0), 0.35)
+                elif i - THORAX_SEGMENTS in PROLEG_SEGMENTS or i == last:                  # a proleg (stubby) or an anal clasper at the tail
+                    p.box("plant_green", (s * 1.5, y - (1.0 if i == last else 0.0), 1.0), (1.2, 1.8, 2.0))
+    with moving(p, "Head", (0, -11.0, 2.0)):
+        blob(p, "cloth_red", (0, -12.4, 3.3), (2.2, 1.8, 2.1), n=6, rings=1)               # head capsule
     return p
 
 
