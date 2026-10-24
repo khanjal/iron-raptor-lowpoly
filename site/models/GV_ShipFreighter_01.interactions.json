@@ -1,0 +1,116 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GV_ShipFreighter_01",
+ "space": "blender",
+ "parts": {
+  "ShipRamp": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    -5.95,
+    0.44
+   ],
+   "limit": 85.0,
+   "rest": 85.0
+  },
+  "ShipLeg_1": {
+   "kind": "slide",
+   "axis": "z",
+   "pivot": [
+    7.0,
+    -4.2,
+    0.0
+   ],
+   "limit": -1.5,
+   "rest": -1.5
+  },
+  "ShipLeg_2": {
+   "kind": "slide",
+   "axis": "z",
+   "pivot": [
+    -7.0,
+    -4.2,
+    0.0
+   ],
+   "limit": -1.5,
+   "rest": -1.5
+  },
+  "ShipLeg_3": {
+   "kind": "slide",
+   "axis": "z",
+   "pivot": [
+    7.0,
+    6.0,
+    0.0
+   ],
+   "limit": -1.5,
+   "rest": -1.5
+  },
+  "ShipLeg_4": {
+   "kind": "slide",
+   "axis": "z",
+   "pivot": [
+    -7.0,
+    6.0,
+    0.0
+   ],
+   "limit": -1.5,
+   "rest": -1.5
+  }
+ },
+ "slots": {
+  "ShipFoot_1": {
+   "position": [
+    7.0,
+    -4.2,
+    0.0
+   ],
+   "size": [
+    1.1,
+    1.1,
+    0.0
+   ],
+   "part": null
+  },
+  "ShipFoot_2": {
+   "position": [
+    -7.0,
+    -4.2,
+    0.0
+   ],
+   "size": [
+    1.1,
+    1.1,
+    0.0
+   ],
+   "part": null
+  },
+  "ShipFoot_3": {
+   "position": [
+    7.0,
+    6.0,
+    0.0
+   ],
+   "size": [
+    1.1,
+    1.1,
+    0.0
+   ],
+   "part": null
+  },
+  "ShipFoot_4": {
+   "position": [
+    -7.0,
+    6.0,
+    0.0
+   ],
+   "size": [
+    1.1,
+    1.1,
+    0.0
+   ],
+   "part": null
+  }
+ }
+}
