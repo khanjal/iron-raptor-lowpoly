@@ -19,7 +19,7 @@ Adapted from the `blender-assets` skill in the game repo (Unity, Git LFS and `.m
 
 ## Brief before build
 
-Style: **better-made low-poly** with the shared palette and the Blender generators; not realism, and no scanned, library (Poly Pizza, Sketchfab, Poly Haven) or `generate_3d` models (wrong style, no rigs or markers, and the licence is the project's own; see CREDITS.md). Third-party material needs an entry in `CREDITS.md` first.
+Style: **better-made low-poly** with the shared palette and the Blender generators; not realism, and no scanned, library (Poly Pizza, Sketchfab, Poly Haven) or `generate_3d` models (wrong style, no rigs or markers, and the licence is the project's own; see LICENSES.md). Third-party material needs an entry in `CREDITS.md` first.
 
 For every new or reworked model, write down before any code (use the `asset-brief` skill; the brief goes in `docs/assets/briefs/<category>.md`, and the PR description links it):
 

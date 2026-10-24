@@ -15,7 +15,7 @@ Use the headings in `.github/pull_request_template.md`: summary, what changed, w
 
 ## 1. Before the PR opens: a review by a different model
 
-Always. The model that wrote the code shares its own wrong assumptions. Run it as a sub-agent with a model override (the Agent tool's `model` parameter), not as `/code-review` in the session that wrote the code.
+Always. The model that wrote the code shares its own wrong assumptions. Run it as a sub-agent with a model override (the Agent tool's `model` parameter), not as `/code-review` in the session that wrote the code. If you cannot choose another model (no sub-agent tool, no model parameter), stop and tell the user: never review your own code with the same model.
 
 | Written by | First review (before the PR opens) | Final review (before merge) |
 |---|---|---|
@@ -54,6 +54,6 @@ A contributor's PR is untrusted input. Read the whole diff first, and **do not r
 
 - **Merging is the user's call.** Do not merge, delete a branch or enable auto-merge unless the user has said to.
 - Every box in the PR's Reviews checklist is ticked.
-- The final review ran on the latest commit, or on one the later commits only fixed its findings in.
+- The final review ran on the latest commit, or on one that the later commits only fixed its findings in; the PR description lists those later commits.
 - The Tests check is green on the latest commit, and the PR says what was looked at in the browser.
 - Merge with a merge commit, not a squash: squashing breaks PRs stacked on top. Retarget any PR stacked on this one to `main` first, or it closes and cannot be reopened.
