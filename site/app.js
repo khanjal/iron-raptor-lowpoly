@@ -287,7 +287,7 @@ async function showAsset(a) {
     catch (e) { $('status').textContent = 'WebGL is not available here: ' + e.message; return; }
     window.lowpolyViewer = state.viewer; // handy in the browser console
     state.viewer.onPartsChanged = updatePartButtons;
-    state.viewer.onHover = (role) => { $('hint').textContent = role ? `Click to open or close: ${role}` : defaultHint(); };
+    state.viewer.onHover = (role) => { const spin = role && state.viewer.parts[role] && state.viewer.parts[role].kind === 'spin'; $('hint').textContent = role ? `Click to ${spin ? 'start or stop' : 'open or close'}: ${role}` : defaultHint(); };
   }
   state.viewer.resize();
   $('status').textContent = 'Loading…';
@@ -392,6 +392,7 @@ function updatePartButtons(states) {
     if (b) b.setAttribute('aria-pressed', s.open);
   }
   const anyClosed = states.some((s) => s.kind !== 'spin' && !s.open);
+  $('open-all').hidden = !states.some((s) => s.kind !== 'spin'); // a model with only wheels has nothing to open
   $('open-all').textContent = anyClosed ? 'Open all' : 'Close all';
 }
 

@@ -1,5 +1,5 @@
 {
- "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves along `axis`, `limit` metres to open; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
+ "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves along `axis`, `limit` metres to open; spin (a wheel) turns freely about `axis` through `pivot`, `limit` is 360; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
  "props": {
   "FD_EggCarton_01": {
    "parts": {
