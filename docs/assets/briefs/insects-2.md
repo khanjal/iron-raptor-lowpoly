@@ -13,8 +13,20 @@ The list comes from the creatures of the game Grounded and Grounded 2 (see the c
 | Praying mantis (`GN_Mantis_01`) | about 60 mm: long green body, triangular head with big eyes, folded raptorial forelegs, two pairs of walking legs | Idle, Walk |
 | Earwig (`GN_Earwig_01`) | about 14 mm without the pincers: slim dark brown body, reddish head and pronotum, curved pincers at the tail | Idle, Walk |
 
+## Batch 2 (the same issue)
+| Model | Real size and anatomy | Parts and clips |
+|---|---|---|
+| Aphid (`GN_Aphid_01`) | green aphid, about 3 mm: soft pear-shaped body, small head, long antennae, two cornicles at the tail | Idle, Walk |
+| Weevil (`GN_Weevil_01`) | about 8 mm: rounded dark body, a head drawn out into a long snout, elbowed antennae from its middle | Idle, Walk |
+| Stag beetle (`GN_StagBeetle_01`) | male, about 35 mm with the jaws: chestnut wing covers, black pronotum and head, huge branched jaws | Idle, Walk |
+| Scarab beetle (`GN_Scarab_01`) | dung beetle, about 25 mm: domed blue-black body, flat shovel head, broad legs | Idle, Walk |
+| Scorpion (`GN_Scorpion_01`) | about 55 mm without the tail: flat sandy body, two big claws, eight legs, a five-segment tail curled over the back to a stinger | Idle, Walk (eight legs) |
+| Wolf spider (`GN_WolfSpider_01`) | about 25 mm body: brown, a pale stripe down the back, two big front eyes, long strong legs | Idle, Walk (eight legs) |
+| Orb-weaver (`GN_OrbWeaver_01`) | about 20 mm body: big round abdomen with a pale patch, small cephalothorax, long legs | Idle, Walk (eight legs) |
+| Jumping spider (`GN_JumpingSpider_01`) | about 8 mm: stocky black cephalothorax, two huge front eyes, brown abdomen with a chevron, short legs | Idle, Walk (eight legs) |
+
 ## Known limits
 Plain blobs and rods (flat faceted style); the flyers' legs do not move, the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
 
 ## Still to do from #80
-Aphid, weevil, stag beetle, scarab, tick, scorpion, wolf spider, orb weaver, jumping spider, centipede, millipede, grub, snail, bumblebee, hornet, gnat; variants (black and red ants, more butterflies) as paints.
+Tick, centipede, millipede, grub, snail, bumblebee, hornet, gnat, black widow, tarantula; variants (black and red ants, more butterflies) as paints.

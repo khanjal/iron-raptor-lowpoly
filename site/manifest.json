@@ -73,6 +73,138 @@
  },
  "assets": [
   {
+   "id": "GN_JumpingSpider_01",
+   "name": "Jumping spider",
+   "type": "animals/arachnid/jumping-spider",
+   "tags": [
+    "arachnid",
+    "black",
+    "garden",
+    "spider",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 452,
+   "size": [
+    0.017,
+    0.007,
+    0.015
+   ],
+   "glb": "models/GN_JumpingSpider_01.glb",
+   "thumb": "thumbs/GN_JumpingSpider_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Cephalothorax and eyes",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Abdomen",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "GN_OrbWeaver_01",
+   "name": "Orb-weaver spider",
+   "type": "animals/arachnid/orb-weaver",
+   "tags": [
+    "arachnid",
+    "brown",
+    "garden",
+    "orange",
+    "spider",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 412,
+   "size": [
+    0.045,
+    0.017,
+    0.034
+   ],
+   "glb": "models/GN_OrbWeaver_01.glb",
+   "thumb": "thumbs/GN_OrbWeaver_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Abdomen",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Abdomen patch",
+     "swatch": 100,
+     "hex": "#E8922A"
+    }
+   ]
+  },
+  {
+   "id": "GN_Scorpion_01",
+   "name": "Scorpion",
+   "type": "animals/arachnid/scorpion",
+   "tags": [
+    "arachnid",
+    "desert",
+    "sandy",
+    "stinging",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 592,
+   "size": [
+    0.034,
+    0.024,
+    0.062
+   ],
+   "glb": "models/GN_Scorpion_01.glb",
+   "thumb": "thumbs/GN_Scorpion_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Claws and stinger",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
    "id": "GN_Spider_01",
    "name": "Spider",
    "type": "animals/arachnid/spider",
@@ -111,6 +243,46 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_WolfSpider_01",
+   "name": "Wolf spider",
+   "type": "animals/arachnid/wolf-spider",
+   "tags": [
+    "arachnid",
+    "brown",
+    "garden",
+    "spider",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 412,
+   "size": [
+    0.044,
+    0.014,
+    0.034
+   ],
+   "glb": "models/GN_WolfSpider_01.glb",
+   "thumb": "thumbs/GN_WolfSpider_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Abdomen",
+     "swatch": 58,
+     "hex": "#7A5A44"
     }
    ]
   },
@@ -412,6 +584,52 @@
      "part": "Rust dark",
      "swatch": 47,
      "hex": "#6B3A28"
+    }
+   ]
+  },
+  {
+   "id": "GN_Aphid_01",
+   "name": "Aphid",
+   "type": "animals/insect/aphid",
+   "tags": [
+    "bug",
+    "garden",
+    "green",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 268,
+   "size": [
+    0.003,
+    0.002,
+    0.006
+   ],
+   "glb": "models/GN_Aphid_01.glb",
+   "thumb": "thumbs/GN_Aphid_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Legs and antennae",
+     "swatch": 50,
+     "hex": "#4F7A32"
+    },
+    {
+     "part": "Cornicles",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     }
    ]
   },
@@ -1118,6 +1336,89 @@
    ]
   },
   {
+   "id": "GN_Scarab_01",
+   "name": "Scarab beetle",
+   "type": "animals/insect/scarab",
+   "tags": [
+    "beetle",
+    "black",
+    "bug",
+    "garden",
+    "insect",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 348,
+   "size": [
+    0.033,
+    0.012,
+    0.027
+   ],
+   "glb": "models/GN_Scarab_01.glb",
+   "thumb": "thumbs/GN_Scarab_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Head and legs",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_StagBeetle_01",
+   "name": "Stag beetle",
+   "type": "animals/insect/stag-beetle",
+   "tags": [
+    "beetle",
+    "black",
+    "brown",
+    "bug",
+    "garden",
+    "insect",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 408,
+   "size": [
+    0.032,
+    0.012,
+    0.047
+   ],
+   "glb": "models/GN_StagBeetle_01.glb",
+   "thumb": "thumbs/GN_StagBeetle_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Pronotum, head and legs",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "GN_StinkBug_01",
    "name": "Stink bug",
    "type": "animals/insect/stink-bug",
@@ -1203,6 +1504,52 @@
      "part": "Thorax and bands",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Weevil_01",
+   "name": "Weevil",
+   "type": "animals/insect/weevil",
+   "tags": [
+    "brown",
+    "bug",
+    "garden",
+    "insect",
+    "tiny",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 312,
+   "size": [
+    0.008,
+    0.005,
+    0.014
+   ],
+   "glb": "models/GN_Weevil_01.glb",
+   "thumb": "thumbs/GN_Weevil_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Snout, antennae and legs",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Head",
+     "swatch": 47,
+     "hex": "#6B3A28"
     }
    ]
   },

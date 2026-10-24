@@ -434,5 +434,33 @@
  "GN_Earwig_01": {
   "rust_dark": "Head and legs",
   "black": "Pincers"
+ },
+ "GN_Aphid_01": {
+  "leaf_dark": "Legs and antennae",
+  "black": "Cornicles"
+ },
+ "GN_Weevil_01": {
+  "black": "Snout, antennae and legs",
+  "rust_dark": "Head"
+ },
+ "GN_StagBeetle_01": {
+  "black": "Pronotum, head and legs"
+ },
+ "GN_Scarab_01": {
+  "black": "Head and legs"
+ },
+ "GN_Scorpion_01": {
+  "dark_brown": "Claws and stinger"
+ },
+ "GN_WolfSpider_01": {
+  "fabric_brown": "Abdomen"
+ },
+ "GN_OrbWeaver_01": {
+  "fabric_brown": "Abdomen",
+  "food_orange": "Abdomen patch"
+ },
+ "GN_JumpingSpider_01": {
+  "black": "Cephalothorax and eyes",
+  "fabric_brown": "Abdomen"
  }
 }
