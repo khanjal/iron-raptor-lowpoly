@@ -178,10 +178,10 @@ def jeep(body="tractor_green", name="GV_Jeep_01"):
         lamp(p, s * 0.62, -1.76, 0.9, 0.13, 0.12)                                                        # round headlights
         mudguard(p, body, s * 0.9, -1.15, 0.38, 0.5, 0.24, angles=(15, 45, 75, 105, 135, 165))
         mudguard(p, body, s * 0.9, 1.15, 0.38, 0.5, 0.24, angles=(15, 45, 75, 105, 135, 165))
-        p.box(body, (s * 0.85, -0.465, 0.85), (0.1, 0.07, 0.55))                                         # tub sides: the front panel, the doorway, the rear panel
-        p.box(body, (s * 0.85, 1.065, 0.85), (0.1, 1.27, 0.55))
-        p.box("black", (s * 0.85, -0.465, 1.14), (0.12, 0.07, 0.05))                                     # their top rail
-        p.box("black", (s * 0.85, 1.065, 1.14), (0.12, 1.27, 0.05))
+        p.sbox(body, (s * 0.85, -0.465, 0.85), (0.1, 0.07, 0.55))                                        # tub sides: the front panel, the doorway, the rear panel
+        p.sbox(body, (s * 0.85, 1.065, 0.85), (0.1, 1.27, 0.55))
+        p.sbox("black", (s * 0.85, -0.465, 1.14), (0.12, 0.07, 0.05))                                    # their top rail
+        p.sbox("black", (s * 0.85, 1.065, 1.14), (0.12, 1.27, 0.05))
         with p.part("Door_L" if s > 0 else "Door_R", pivot=(s * 0.88, -0.42, 0.85), kind="hinge", axis="z", limit=-75.0 * s):
             p.box(body, (s * 0.85, 0.0, 0.85), (0.1, 0.84, 0.55))                                        # the door
             p.box("black", (s * 0.85, 0.0, 1.14), (0.12, 0.84, 0.05))                                    # and its top rail
@@ -299,10 +299,10 @@ def semi_tractor(body="cloth_red", name="GV_Semi_01"):
     for s in (-1, 1):
         rod(p, body, (s * 1.1, -1.1, 2.07), (s * 0.98, -0.8, 3.05), 0.1)                                  # A pillars
         rod(p, body, (s * 1.1, 0.5, 2.05), (s * 0.98, 0.5, 3.05), 0.1)                                    # B pillars
-        p.box(body, (s * 1.17, -0.62, (0.85 + 2.05) / 2), (0.1, 0.64, 2.05 - 0.85))                      # the panel in front of the door
-        p.box(body, (s * 1.17, 0.1, (0.85 + z_f) / 2), (0.1, 0.8, z_f - 0.85))                           # rocker panel
-        p.box("black", (s * 1.05, -0.32, zmid), (0.1, 0.08, 2.05 - z_f))                                 # the post the door shuts against
-        p.box("black", (s * 1.05, 0.48, zmid), (0.1, 0.08, 2.05 - z_f))
+        p.sbox(body, (s * 1.17, -0.62, (0.85 + 2.05) / 2), (0.1, 0.64, 2.05 - 0.85))                     # the panel in front of the door
+        p.sbox(body, (s * 1.17, 0.1, (0.85 + z_f) / 2), (0.1, 0.8, z_f - 0.85))                          # rocker panel
+        p.sbox("black", (s * 1.05, -0.32, zmid), (0.1, 0.08, 2.05 - z_f))                                # the post the door shuts against
+        p.sbox("black", (s * 1.05, 0.48, zmid), (0.1, 0.08, 2.05 - z_f))
         vehicles.lean_box(p, "glass", s, 1.1, 0.98, 2.05, zroof, -0.78, -0.31, 2.06, 3.04, 0.03)         # the fixed window ahead of the door
         side = "L" if s > 0 else "R"
         with p.part(f"Door_{side}", pivot=(s * 1.2, -0.294, zmid), kind="hinge", axis="z", limit=-75.0 * s):
@@ -528,10 +528,10 @@ def fire_truck(body="cloth_red", name="GV_FireTruck_01"):
         rod(p, "metal_dark", (s * 0.7, 1.6, 0.75), (s * 0.9, 1.6, 0.45), 0.12)
         lamp(p, s * 0.8, -4.78, 1.1, 0.16, 0.14)
         p.box("cloth_red", (s * 1.0, 4.62, 1.5), (0.2, 0.06, 0.3))                                       # tail lights
-        p.box(body, (s * 1.17, -3.9, (0.72 + 2.0) / 2), (0.1, 0.95, 2.0 - 0.72))                        # the cab side ahead of the door
-        p.box(body, (s * 1.17, -2.93, (0.72 + z_f) / 2), (0.1, 0.95, z_f - 0.72))                        # rocker panel
+        p.sbox(body, (s * 1.17, -3.9, (0.72 + 2.0) / 2), (0.1, 0.95, 2.0 - 0.72))                       # the cab side ahead of the door
+        p.sbox(body, (s * 1.17, -2.93, (0.72 + z_f) / 2), (0.1, 0.95, z_f - 0.72))                       # rocker panel
         for y in (-3.43, -2.42):
-            p.box("black", (s * 1.05, y, zmid), (0.1, 0.08, 2.0 - z_f))                                  # the posts the door shuts against
+            p.sbox("black", (s * 1.05, y, zmid), (0.1, 0.08, 2.0 - z_f))                                  # the posts the door shuts against
             rod(p, body, (s * 1.12, y, 2.0), (s * 1.0, y, zroof), 0.08)                                  # and the window pillars above them
         vehicles.lean_box(p, "glass", s, 1.12, 1.0, 2.0, zroof, -4.3, -3.48, 2.01, 2.89, 0.03)           # the fixed window ahead of the door
         with p.part("Door_L" if s > 0 else "Door_R", pivot=(s * 1.2, -3.414, zmid), kind="hinge", axis="z", limit=-75.0 * s):

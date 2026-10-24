@@ -151,14 +151,14 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
             if kind in ("suv", "wagon"):
                 p.box("black", (sx * (ht - 0.04), (s1 + s2) / 2, z_roof + 0.015), (0.04, s2 - s1 - 0.3, 0.04))        # roof rails
         # the body round the doors: rocker panels, the panel in front of the first door, the posts they shut against, the panel behind the last door
-        p.box(body, (sx * (hw - 0.045), (y_c0 + y_floor) / 2, (base + 0.02 + z_f) / 2), (0.09, y_floor - y_c0, z_f - base - 0.02))
-        p.box(body, (sx * (hw - 0.045), (y_c0 + y0f - 0.006) / 2, (base + 0.02 + ytop) / 2), (0.09, y0f - 0.006 - y_c0, ytop - base - 0.02))
+        p.sbox(body, (sx * (hw - 0.045), (y_c0 + y_floor) / 2, (base + 0.02 + z_f) / 2), (0.09, y_floor - y_c0, z_f - base - 0.02))
+        p.sbox(body, (sx * (hw - 0.045), (y_c0 + y0f - 0.006) / 2, (base + 0.02 + ytop) / 2), (0.09, y0f - 0.006 - y_c0, ytop - base - 0.02))
         for y in (y_c0 + 0.07, y_b):
-            p.box("black", (sx * (hw - 0.14), y, zmid), (0.1, 0.08, ytop - z_f))
+            p.sbox("black", (sx * (hw - 0.14), y, zmid), (0.1, 0.08, ytop - z_f))
         if not solid:
-            p.box("black", (sx * (hw - 0.14), min(y_rd, y_c1 - 0.05), zmid), (0.1, 0.08, ytop - z_f))
+            p.sbox("black", (sx * (hw - 0.14), min(y_rd, y_c1 - 0.05), zmid), (0.1, 0.08, ytop - z_f))
             if y_c1 - y_rd > 0.03:
-                p.box(body, (sx * (hw - 0.045), (y_rd + 0.006 + y_c1) / 2, (base + 0.02 + ytop) / 2), (0.09, y_c1 - y_rd - 0.006, ytop - base - 0.02))
+                p.sbox(body, (sx * (hw - 0.045), (y_rd + 0.006 + y_c1) / 2, (base + 0.02 + ytop) / 2), (0.09, y_c1 - y_rd - 0.006, ytop - base - 0.02))
                 if s2 - (y_rd + 0.02) > 0.15:
                     lean(glass, sx, y_rd + 0.02, s2, ytop + 0.005, zt - 0.01, 0.03)           # the quarter window
         p.box("black", (sx * (hw - 0.01), 0, base + 0.07), (0.06, L - 1.9 - 2 * wr - 0.24, 0.07))               # sills
@@ -250,7 +250,7 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
 
 
 def tow_truck(body="paint_yellow", name="GV_TowTruck_01"):
-    p = vehicles.pickup(body=body, name=name)
+    p = vehicles.pickup(body=body, name=name, gate=False)                                            # the deck over the bed would be in the way of a dropping gate
     p.box("black", (0, 2.0, 0.95), (1.9, 2.2, 0.1))
     props_lib.rod(p, "metal_dark", (0, 2.0, 1.0), (0, 2.1, 2.4), 0.22)                               # the mast, up from the bed
     props_lib.rod(p, "metal_dark", (0, 2.1, 2.4), (0, 3.3, 1.7), 0.16)                               # the boom, out over the tail
@@ -324,7 +324,8 @@ def prune_floating(prop, margin=0.01):
     import bmesh
     from mathutils.bvhtree import BVHTree
     isl = []
-    for colour, bm in prop.parts.items():
+    pieces = list(prop.parts.items()) + [("__part__", bm) for g in prop.groups.values() for bm in g["parts"].values()]      # a wheel or a door is something to touch, and is never dropped
+    for colour, bm in pieces:
         bm.verts.ensure_lookup_table()
         bm.verts.index_update()                                   # the grime boxes damage() added since its own index_update() have index -1
         seen = set()
@@ -381,7 +382,7 @@ def prune_floating(prop, margin=0.01):
     main = max(groups.values(), key=lambda g: sum(len(isl[i][1]) for i in g))
     removed = 0
     for g in groups.values():
-        if g is main or any(isl[i][5] == "rubber" for i in g):                 # a tyre is never dropped: it would take a wheel off the model
+        if g is main or any(isl[i][5] in ("rubber", "__part__") for i in g):                 # a tyre is never dropped: it would take a wheel off the model
             continue
         for i in g:
             bmesh.ops.delete(isl[i][0], geom=isl[i][1], context="VERTS")

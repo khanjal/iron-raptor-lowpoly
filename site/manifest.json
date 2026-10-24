@@ -6776,7 +6776,7 @@
    "glb": "models/GV_Motorcycle_01.glb",
    "thumb": "thumbs/GV_Motorcycle_01.png",
    "parts": {
-    "Wheel_F": {
+    "Wheel_Front": {
      "kind": "spin",
      "axis": [
       1,
@@ -6791,7 +6791,7 @@
      "limit": 360.0,
      "rest": 0.0
     },
-    "Wheel_R": {
+    "Wheel_Rear": {
      "kind": "spin",
      "axis": [
       1,

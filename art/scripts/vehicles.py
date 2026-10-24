@@ -10,6 +10,7 @@ Colours come from the palette (`truck_blue`, `tractor_green`, ...); recolour a v
 
 import importlib
 import sys
+import contextlib
 import math
 from math import radians
 from pathlib import Path
@@ -52,7 +53,7 @@ def wheel_part(p, x, y, z):
 
 def name_wheels(p):
     """Give the wheel parts of a finished vehicle their names: Wheel_FL, Wheel_FR, Wheel_RL, Wheel_RR for two axles (L is +X: the model faces -Y),
-    Wheel_A1L, Wheel_A1R, Wheel_A2L... for more, Wheel_L and Wheel_R for one axle, Wheel_F and Wheel_R for a motorcycle's centre-line wheels."""
+    Wheel_A1L, Wheel_A1R, Wheel_A2L... for more, Wheel_L and Wheel_R for one axle, Wheel_Front and Wheel_Rear for a motorcycle's centre-line wheels."""
     wheels = [r for r in p.groups if r.startswith("Wheel@")]
     ys = sorted({float(r.split("@")[2]) for r in wheels})
     names = {}
@@ -60,7 +61,7 @@ def name_wheels(p):
         _, side, y = r.split("@")
         k = ys.index(float(y))
         if side == "C":
-            names[r] = "Wheel_F" if k == 0 else "Wheel_R"
+            names[r] = "Wheel_Front" if k == 0 else "Wheel_Rear"
         elif len(ys) == 1:
             names[r] = f"Wheel_{side}"
         elif len(ys) == 2:
@@ -198,7 +199,7 @@ def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="offi
             seat(p, colour, 0, y0 + off, fz + (0.1 if lift else 0), width - 0.5, ch + lift)
 
 
-def pickup(body="truck_blue", name="GV_Pickup_01"):
+def pickup(body="truck_blue", name="GV_Pickup_01", gate=True):
     """A farm pickup truck. A lofted hood and cab with a slanted windscreen, pillars, wheel arches, an open bed with ribs and wheel wells, bumpers,
     a grille with bars, headlight and tail light housings, mirrors, running boards and four wheels.
 
@@ -228,10 +229,10 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
         props_lib.rod(p, body, (s * 0.88, -0.95, 1.13), (s * 0.8, -0.68, 1.58), 0.09)     # A pillars
         props_lib.rod(p, body, (s * 0.88, -0.12, 1.12), (s * 0.79, -0.12, 1.58), 0.08)    # B pillars
         props_lib.rod(p, body, (s * 0.79, 0.6, 1.58), (s * 0.88, 0.85, 1.13), 0.13)       # C pillars
-        p.box(body, (s * 0.935, -0.99, (0.52 + ytop) / 2), (0.09, 0.1, ytop - 0.52))      # the panel in front of the door
-        p.box(body, (s * 0.935, -0.12, (0.52 + z_f) / 2), (0.09, 1.82, z_f - 0.52))       # rocker panel
+        p.sbox(body, (s * 0.935, -0.99, (0.52 + ytop) / 2), (0.09, 0.1, ytop - 0.52))      # the panel in front of the door
+        p.sbox(body, (s * 0.935, -0.12, (0.52 + z_f) / 2), (0.09, 1.82, z_f - 0.52))       # rocker panel
         for y in (-0.96, -0.12):
-            p.box("black", (s * 0.84, y, zmid), (0.1, 0.08, ytop - z_f))                   # the posts the doors shut against
+            p.sbox("black", (s * 0.84, y, zmid), (0.1, 0.08, ytop - z_f))                   # the posts the doors shut against
         # the doors, each a part (the front ones carry the mirror)
         side = "L" if s > 0 else "R"
         for role, ya, yb, front in ((f"Door_F{side}", -0.93, -0.13, True), (f"Door_R{side}", -0.11, 0.79, False)):
@@ -253,7 +254,7 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
         for y in (1.15, 1.6, 2.05, 2.45):
             p.box(body, (s * 0.985, y, 1.0), (0.03, 0.09, 0.46))                    # ribs pressed into the walls
         p.box(body, (s * 0.7, 1.7, 0.87), (0.4, 0.8, 0.22))                         # wheel wells inside the bed (under the tow deck, z 1.0)
-    with p.part("Tailgate", pivot=(0, 2.7, 0.75), kind="hinge", axis="x", limit=-88.0):
+    with (p.part("Tailgate", pivot=(0, 2.7, 0.75), kind="hinge", axis="x", limit=-88.0) if gate else contextlib.nullcontext()):
         p.box(body, (0, 2.7, 1.0), (1.9, 0.1, 0.5))                                  # tailgate
         p.box("black", (0, 2.77, 1.22), (0.5, 0.04, 0.06))                          # its handle
         p.box("black", (0, 2.762, 1.03), (1.2, 0.02, 0.1))                          # badge strip
@@ -501,6 +502,7 @@ def run():
     for key in names:
         fn, area = VEHICLES[key]
         prop = fn()
+        name_wheels(prop)                                             # Wheel_FL..., not the Wheel@L@-1.5 placeholders, which would be written to interactions.json
         obj, coll = prop.finish()
         print(common.stats(obj))
         common.export_fbx(coll, f"Assets/Art/{area}/Vehicles/{prop.name}.fbx")

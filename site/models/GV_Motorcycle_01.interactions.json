@@ -3,7 +3,7 @@
  "id": "GV_Motorcycle_01",
  "space": "blender",
  "parts": {
-  "Wheel_F": {
+  "Wheel_Front": {
    "kind": "spin",
    "axis": "x",
    "pivot": [
@@ -14,7 +14,7 @@
    "limit": 360.0,
    "rest": 0.0
   },
-  "Wheel_R": {
+  "Wheel_Rear": {
    "kind": "spin",
    "axis": "x",
    "pivot": [

@@ -88,6 +88,11 @@ class Prop:
     def box(self, colour, center, size, rot=(0, 0, 0), taper=1.0):
         common.add_box(self._bm(colour), center, size, rot_deg=rot, taper=taper)
 
+    def sbox(self, colour, center, size, rot=(0, 0, 0), taper=1.0):
+        """A box that holds the model together (a rocker panel, a post, the panel beside a door): damage() never drops it, however small it is."""
+        self.box(colour, center, size, rot, taper)
+        self.keep_solid(center, size, new=True)
+
     def cyl(self, colour, center, radius, height, n=8, axis="z", top_radius=None, rot=(0, 0, 0)):
         """A cylinder (or cone frustum) about centre. axis is z (upright), x or y. top_radius tapers the far end."""
         bm = self._bm(colour)
@@ -270,7 +275,7 @@ class Prop:
         reg = {"parts": {}, "slots": {}}
         for role, g in self.groups.items():
             gobjs = []
-            if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (its hinge axis leans by the same few degrees)
+            if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (the axis stays world x, y or z, so a wrecked door or wheel is a few degrees off its true hinge line)
                 rot, low = self.settled
                 m = rot.to_4x4()
                 for bm in g["parts"].values():

@@ -226,7 +226,7 @@ export class Viewer {
   _applyLights() {
     const dim = this.lightsOn && this.lights.length ? 0.28 : 1;
     for (const [l, v] of this.ambient) l.intensity = v * dim;
-    const open = Object.values(this.parts).some((p) => p.target > 0.5);
+    const open = Object.values(this.parts).some((p) => p.kind !== 'spin' && p.target > 0.5);
     for (const l of this.lights) l.light.visible = this.lightsOn && (l.when !== 'door_open' || open);
   }
 
@@ -281,7 +281,7 @@ export class Viewer {
   }
 
   setAllParts(open) {
-    for (const st of Object.values(this.parts)) st.target = open ? 1 : 0;
+    for (const st of Object.values(this.parts)) if (st.kind !== 'spin') st.target = open ? 1 : 0; // wheels are switched on one by one
     this.onPartsChanged(this.partStates());
     this._applyLights();
   }

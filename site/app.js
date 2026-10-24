@@ -304,7 +304,7 @@ async function showAsset(a) {
 
 function defaultHint() {
   const a = state.byId.get(state.current);
-  return a && a.interactive ? 'Click a door, drawer or lid to open it. Drag to orbit, scroll to zoom, right-drag to pan.' : 'Drag to orbit, scroll to zoom, right-drag to pan.';
+  return a && a.interactive ? 'Click a door, drawer, lid or wheel to open or spin it. Drag to orbit, scroll to zoom, right-drag to pan.' : 'Drag to orbit, scroll to zoom, right-drag to pan.';
 }
 
 function fillDetails(a) {
@@ -391,7 +391,7 @@ function updatePartButtons(states) {
     const b = $('v-part-list').querySelector(`[data-role="${s.role}"]`);
     if (b) b.setAttribute('aria-pressed', s.open);
   }
-  const anyClosed = states.some((s) => !s.open);
+  const anyClosed = states.some((s) => s.kind !== 'spin' && !s.open);
   $('open-all').textContent = anyClosed ? 'Open all' : 'Close all';
 }
 
@@ -410,7 +410,7 @@ $('reset-view').addEventListener('click', () => state.viewer && state.viewer.res
 $('open-all').addEventListener('click', () => {
   if (!state.viewer) return;
   const states = state.viewer.partStates();
-  state.viewer.setAllParts(states.some((s) => !s.open));
+  state.viewer.setAllParts(states.some((s) => s.kind !== 'spin' && !s.open));
 });
 $('clip').addEventListener('change', (e) => state.viewer.setClip(e.target.value));
 $('speed').addEventListener('input', (e) => { const v = parseFloat(e.target.value); state.viewer.setSpeed(v); $('speed-out').textContent = v.toFixed(1) + '×'; });
