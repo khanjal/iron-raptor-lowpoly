@@ -8583,15 +8583,15 @@
   {
    "id": "GV_ShipLockers_01",
    "name": "Ship lockers",
-   "type": "vehicles/ship-interior/storage",
+   "type": "vehicles/ship-interior/lockers",
    "tags": [
+    "sci-fi",
     "alien",
+    "ship",
     "interior",
     "locker",
-    "new",
-    "sci-fi",
-    "ship",
-    "wall"
+    "wall",
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -9203,14 +9203,15 @@
    "name": "Escape pod",
    "type": "vehicles/ship/escape-pod",
    "tags": [
-    "alien",
-    "capsule",
-    "crashed",
-    "new",
-    "pod",
     "sci-fi",
+    "alien",
     "ship",
-    "small"
+    "small",
+    "capsule",
+    "pod",
+    "landing",
+    "legs",
+    "new"
    ],
    "rigged": false,
    "interactive": false,
