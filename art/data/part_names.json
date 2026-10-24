@@ -127,5 +127,95 @@
  },
  "GH_Gurney_01": {
   "linen": "Mattress"
+ },
+ "SH_Beacon_01": {
+  "$main": "Casing"
+ },
+ "GD_Suitcase_01": {
+  "$main": "Case"
+ },
+ "GD_TrashCan_01": {
+  "$main": "Bin"
+ },
+ "GD_ComputerTower_01": {
+  "$main": "Case"
+ },
+ "GD_MobilePhone_01": {
+  "$main": "Body"
+ },
+ "GD_Radio_CB_01": {
+  "$main": "Case"
+ },
+ "GH_Mug_01": {
+  "$main": "Mug"
+ },
+ "GH_Plates_01": {
+  "$main": "Plates"
+ },
+ "GD_Fluorescent_01": {
+  "$main": "Fixture"
+ },
+ "GD_KeroseneLamp_01": {
+  "$main": "Metalwork"
+ },
+ "GH_Curtains_Closed_01": {
+  "$main": "Fabric"
+ },
+ "GH_Curtains_Open_01": {
+  "$main": "Fabric"
+ },
+ "GH_Cushion_01": {
+  "$main": "Cover"
+ },
+ "GH_Pillow_01": {
+  "$main": "Pillowcase"
+ },
+ "GD_TeddyBear_01": {
+  "$main": "Fur"
+ },
+ "GH_Toilet_01": {
+  "$main": "Porcelain"
+ },
+ "GH_Radiator_01": {
+  "$main": "Body"
+ },
+ "FD_Lemon_01": {
+  "$main": "Skin"
+ },
+ "GH_Bench_01": {
+  "$main": "Bench"
+ },
+ "GH_Chair_Kitchen_01": {
+  "$main": "Chair"
+ },
+ "GH_Sofa_Damaged_01": {
+  "$main": "Upholstery"
+ },
+ "GH_Table_Coffee_01": {
+  "$main": "Table"
+ },
+ "GP_Grey_01": {
+  "$main": "Skin"
+ },
+ "GP_Shadow_01": {
+  "$main": "Body"
+ },
+ "GS_GolfBall_01": {
+  "$main": "Ball"
+ },
+ "GS_HockeyPuck_01": {
+  "$main": "Puck"
+ },
+ "GS_BaseballBase_01": {
+  "$main": "Base"
+ },
+ "GS_Frisbee_01": {
+  "$main": "Disc"
+ },
+ "GS_HomePlate_01": {
+  "$main": "Plate"
+ },
+ "GT_FirePoker_01": {
+  "$main": "Poker"
  }
 }

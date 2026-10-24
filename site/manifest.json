@@ -270,7 +270,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Casing",
      "swatch": 43,
      "hex": "#A9B5A4"
     }
@@ -5121,7 +5121,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Case",
      "swatch": 58,
      "hex": "#7A5A44"
     }
@@ -5225,7 +5225,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Bin",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -5350,7 +5350,7 @@
    "lights": 1,
    "paintable": [
     {
-     "part": "Main",
+     "part": "Case",
      "swatch": 65,
      "hex": "#8A8D91"
     }
@@ -5537,7 +5537,7 @@
    "interactions": "models/GD_MobilePhone_01.interactions.json",
    "paintable": [
     {
-     "part": "Main",
+     "part": "Body",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -5649,7 +5649,7 @@
    "interactions": "models/GD_Radio_CB_01.interactions.json",
    "paintable": [
     {
-     "part": "Main",
+     "part": "Case",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -5976,7 +5976,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Mug",
      "swatch": 13,
      "hex": "#B8443B"
     }
@@ -6007,7 +6007,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Plates",
      "swatch": 59,
      "hex": "#EDEDE8"
     }
@@ -6284,7 +6284,7 @@
    "lights": 1,
    "paintable": [
     {
-     "part": "Main",
+     "part": "Fixture",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -6318,7 +6318,7 @@
    "lights": 1,
    "paintable": [
     {
-     "part": "Main",
+     "part": "Metalwork",
      "swatch": 70,
      "hex": "#B06A3B"
     }
@@ -6803,7 +6803,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Fabric",
      "swatch": 56,
      "hex": "#5E7F5A"
     }
@@ -6835,7 +6835,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Fabric",
      "swatch": 56,
      "hex": "#5E7F5A"
     }
@@ -6866,7 +6866,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Cover",
      "swatch": 57,
      "hex": "#C9A43A"
     }
@@ -6897,7 +6897,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Pillowcase",
      "swatch": 62,
      "hex": "#E6DFCF"
     }
@@ -7123,7 +7123,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Fur",
      "swatch": 80,
      "hex": "#A9784A"
     }
@@ -8472,7 +8472,7 @@
    "interactions": "models/GH_Toilet_01.interactions.json",
    "paintable": [
     {
-     "part": "Main",
+     "part": "Porcelain",
      "swatch": 59,
      "hex": "#EDEDE8"
     }
@@ -8950,7 +8950,7 @@
    "interactions": "models/GH_Radiator_01.interactions.json",
    "paintable": [
     {
-     "part": "Main",
+     "part": "Body",
      "swatch": 68,
      "hex": "#F2F2EE"
     }
@@ -9352,7 +9352,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Skin",
      "swatch": 119,
      "hex": "#F2DC3C"
     }
@@ -10581,7 +10581,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Bench",
      "swatch": 38,
      "hex": "#8B8578"
     }
@@ -10650,7 +10650,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Chair",
      "swatch": 0,
      "hex": "#C9A06A"
     }
@@ -10720,7 +10720,7 @@
    ],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Upholstery",
      "swatch": 58,
      "hex": "#7A5A44"
     }
@@ -12177,7 +12177,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Table",
      "swatch": 1,
      "hex": "#6B4A2E"
     }
@@ -12402,7 +12402,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Skin",
      "swatch": 43,
      "hex": "#A9B5A4"
     }
@@ -12535,7 +12535,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Body",
      "swatch": 44,
      "hex": "#15131A"
     }
@@ -13347,7 +13347,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Ball",
      "swatch": 104,
      "hex": "#F0EFE8"
     }
@@ -13379,7 +13379,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Puck",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -13524,7 +13524,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Base",
      "swatch": 104,
      "hex": "#F0EFE8"
     }
@@ -13729,7 +13729,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Disc",
      "swatch": 40,
      "hex": "#2F5F8F"
     }
@@ -13894,7 +13894,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Plate",
      "swatch": 104,
      "hex": "#F0EFE8"
     }
@@ -14800,7 +14800,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Poker",
      "swatch": 3,
      "hex": "#4A525A"
     }

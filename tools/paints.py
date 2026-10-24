@@ -99,7 +99,7 @@ def neutral(hex_):
 
 
 def part_names():
-    """art/data/part_names.json: {model id: {palette swatch name: the area it colours}}, for the models whose secondary colours are named by area
+    """art/data/part_names.json: {model id: {palette swatch name: the area it colours, "$main": the name of the only part of a single-colour model}}, for the models whose colours are named by area
     ("Handle", "Blade", "Tyres") instead of by the swatch's own name ("Metal dark"). A swatch with no entry keeps `part_label`."""
     path = ROOT / "art" / "data" / "part_names.json"
     return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}

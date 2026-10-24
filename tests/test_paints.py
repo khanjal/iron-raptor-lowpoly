@@ -172,16 +172,29 @@ class PartNames(unittest.TestCase):
             self.assertIn(aid, catalog.ASSETS, aid)
             self.assertNotIn(aid, catalog.PAINTS, f"{aid}: its parts are named in catalog.PAINTS")
             for sw, name in mapping.items():
-                self.assertIn(sw, swatches, f"{aid}: {sw}")
+                if sw != "$main":                   # "$main" names the first part, the model's main colour
+                    self.assertIn(sw, swatches, f"{aid}: {sw}")
                 self.assertTrue(name.strip() and name != "Main", f"{aid}: {sw} -> {name!r}")
             self.assertEqual(len(set(mapping.values())), len(mapping), f"{aid}: two swatches with the same part name")
+
+    def test_a_lone_main_part_has_a_name_of_its_own(self):
+        """The models with a single colour have no secondary part to tell it apart from, so they are named after what the colour covers (Case, Fur, Skin)."""
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        for a in doc["assets"]:
+            if len(a.get("paintable") or []) == 1:
+                self.assertNotEqual(a["paintable"][0]["part"], "Main", f"{a['id']}: add \"$main\": \"<what the colour covers>\" for it to art/data/part_names.json")
 
     def test_the_manifest_uses_them(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
         parts = {a["id"]: {ENTRIES[p["swatch"]][0]: p["part"] for p in a.get("paintable", [])[1:]} for a in doc["assets"]}
+        first = {a["id"]: (a.get("paintable") or [{}])[0].get("part") for a in doc["assets"]}
+        counts = {a["id"]: a.get("paintable") or [] for a in doc["assets"]}
         for aid, mapping in self.NAMES.items():
             self.assertIn(aid, parts, f"{aid} is not in the manifest")
-            for sw, name in mapping.items():
+            if "$main" in mapping:
+                self.assertEqual(len(counts[aid]), 1, f"{aid}: '$main' is only for models with a single part (a model with several keeps Main)")
+                self.assertEqual(first[aid], mapping["$main"], f"{aid}: first part")
+            for sw, name in ((k, v) for k, v in mapping.items() if k != "$main"):
                 self.assertIn(sw, parts[aid], f"{aid}: {sw} is not one of the model's secondary parts, so the entry does nothing")
                 self.assertEqual(parts[aid][sw], name, f"{aid}: {sw}")
 
