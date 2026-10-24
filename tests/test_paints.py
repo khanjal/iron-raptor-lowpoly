@@ -162,5 +162,35 @@ class AutoColours(unittest.TestCase):
         self.assertTrue(errs)
 
 
+class PartNames(unittest.TestCase):
+    """art/data/part_names.json names the secondary colours of a model after the area they colour (Handle, Tyres) instead of the swatch (Metal dark)."""
+    NAMES = paints.part_names()
+
+    def test_every_entry_names_a_real_model_and_real_swatches(self):
+        swatches = {n for n, _ in ENTRIES}
+        for aid, mapping in self.NAMES.items():
+            self.assertIn(aid, catalog.ASSETS, aid)
+            self.assertNotIn(aid, catalog.PAINTS, f"{aid}: its parts are named in catalog.PAINTS")
+            for sw, name in mapping.items():
+                self.assertIn(sw, swatches, f"{aid}: {sw}")
+                self.assertTrue(name.strip() and name != "Main", f"{aid}: {sw} -> {name!r}")
+            self.assertEqual(len(set(mapping.values())), len(mapping), f"{aid}: two swatches with the same part name")
+
+    def test_the_manifest_uses_them(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        parts = {a["id"]: {ENTRIES[p["swatch"]][0]: p["part"] for p in a.get("paintable", [])[1:]} for a in doc["assets"]}
+        for aid, mapping in self.NAMES.items():
+            self.assertIn(aid, parts, f"{aid} is not in the manifest")
+            for sw, name in mapping.items():
+                self.assertIn(sw, parts[aid], f"{aid}: {sw} is not one of the model's secondary parts, so the entry does nothing")
+                self.assertEqual(parts[aid][sw], name, f"{aid}: {sw}")
+
+    def test_part_names_do_not_repeat_within_a_model(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
+        for a in doc["assets"]:
+            labels = [p["part"] for p in a.get("paintable", [])]
+            self.assertEqual(len(labels), len(set(labels)), a["id"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -2527,7 +2527,7 @@
      "hex": "#4A525A"
     },
     {
-     "part": "Glass",
+     "part": "Door window",
      "swatch": 41,
      "hex": "#9FC8D8"
     },
@@ -2601,7 +2601,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Glass",
+     "part": "Oven window",
      "swatch": 41,
      "hex": "#9FC8D8"
     }
@@ -2723,7 +2723,7 @@
      "hex": "#E6E2D6"
     },
     {
-     "part": "Glass",
+     "part": "Door window",
      "swatch": 41,
      "hex": "#9FC8D8"
     }
@@ -2786,7 +2786,7 @@
      "hex": "#E6E2D6"
     },
     {
-     "part": "Glass",
+     "part": "Door window",
      "swatch": 41,
      "hex": "#9FC8D8"
     }
@@ -2897,7 +2897,7 @@
      "hex": "#B8BBBE"
     },
     {
-     "part": "Glass",
+     "part": "Scanner glass",
      "swatch": 41,
      "hex": "#9FC8D8"
     }
@@ -3236,7 +3236,7 @@
      "hex": "#B8443B"
     },
     {
-     "part": "Glass",
+     "part": "Display frame",
      "swatch": 41,
      "hex": "#9FC8D8"
     },
@@ -3321,7 +3321,7 @@
      "hex": "#4A525A"
     },
     {
-     "part": "Glass",
+     "part": "Display window",
      "swatch": 41,
      "hex": "#9FC8D8"
     }
@@ -9505,7 +9505,7 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Linen",
+     "part": "Bedding",
      "swatch": 62,
      "hex": "#E6DFCF"
     },
@@ -9552,7 +9552,7 @@
      "hex": "#D9A0A8"
     },
     {
-     "part": "Linen",
+     "part": "Pillow",
      "swatch": 62,
      "hex": "#E6DFCF"
     }
@@ -9589,7 +9589,7 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Linen",
+     "part": "Mattress and pillow",
      "swatch": 62,
      "hex": "#E6DFCF"
     },
@@ -9630,7 +9630,7 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Linen",
+     "part": "Bedding",
      "swatch": 62,
      "hex": "#E6DFCF"
     }
@@ -9666,7 +9666,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Linen",
+     "part": "Mattress",
      "swatch": 62,
      "hex": "#E6DFCF"
     },
@@ -14241,7 +14241,7 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal dark",
+     "part": "Blade and neck",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -14280,12 +14280,12 @@
      "hex": "#6E9A3E"
     },
     {
-     "part": "Leaf dark",
+     "part": "Alternate coils",
      "swatch": 50,
      "hex": "#4F7A32"
     },
     {
-     "part": "Shadow",
+     "part": "Centre",
      "swatch": 44,
      "hex": "#15131A"
     }
@@ -14324,12 +14324,12 @@
      "hex": "#C0392B"
     },
     {
-     "part": "Metal dark",
+     "part": "Frame and hook blade",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Metal galv",
+     "part": "Cutting blade",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -14368,12 +14368,12 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal galv",
+     "part": "Blade",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Metal dark",
+     "part": "Socket",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -14412,12 +14412,12 @@
      "hex": "#E0B83A"
     },
     {
-     "part": "Metal galv",
+     "part": "Spray bar",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Copper",
+     "part": "Hose fitting",
      "swatch": 70,
      "hex": "#B06A3B"
     }
@@ -14455,7 +14455,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Metal dark",
+     "part": "Handle, rose and lid ring",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -14494,12 +14494,12 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal dark",
+     "part": "Head",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Metal galv",
+     "part": "Edge",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -14538,17 +14538,17 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal dark",
+     "part": "Head",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Rubber",
+     "part": "Grip",
      "swatch": 15,
      "hex": "#2E2E32"
     },
     {
-     "part": "Metal galv",
+     "part": "Face",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -14586,12 +14586,12 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Wood dark",
+     "part": "Handle",
      "swatch": 1,
      "hex": "#6B4A2E"
     },
     {
-     "part": "Black",
+     "part": "Hand hole",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -14629,12 +14629,12 @@
      "hex": "#4A525A"
     },
     {
-     "part": "Metal galv",
+     "part": "Jaws",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Rubber",
+     "part": "Grips",
      "swatch": 15,
      "hex": "#2E2E32"
     }
@@ -14671,17 +14671,17 @@
      "hex": "#E0B83A"
     },
     {
-     "part": "Metal galv",
+     "part": "Shaft",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Black",
+     "part": "End cap",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal dark",
+     "part": "Tip",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -14720,17 +14720,17 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Metal dark",
+     "part": "Head",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Rubber",
+     "part": "Grip",
      "swatch": 15,
      "hex": "#2E2E32"
     },
     {
-     "part": "Metal galv",
+     "part": "Faces",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -14768,7 +14768,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Metal dark",
+     "part": "Jaw openings",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -14838,12 +14838,12 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Rubber",
+     "part": "Cup",
      "swatch": 15,
      "hex": "#2E2E32"
     },
     {
-     "part": "Wood dark",
+     "part": "Knob",
      "swatch": 1,
      "hex": "#6B4A2E"
     }
@@ -14882,12 +14882,12 @@
      "hex": "#E0B83A"
     },
     {
-     "part": "Basket orange",
+     "part": "Cord",
      "swatch": 124,
      "hex": "#D9702A"
     },
     {
-     "part": "Black",
+     "part": "Frame",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -14926,12 +14926,12 @@
      "hex": "#2F5F8F"
     },
     {
-     "part": "Rubber",
+     "part": "Wheels",
      "swatch": 15,
      "hex": "#2E2E32"
     },
     {
-     "part": "Metal galv",
+     "part": "Toe plate",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -14970,12 +14970,12 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Label red",
+     "part": "Label",
      "swatch": 102,
      "hex": "#C0392B"
     },
     {
-     "part": "Paint yellow",
+     "part": "Paint",
      "swatch": 42,
      "hex": "#E0B83A"
     }
@@ -15013,12 +15013,12 @@
      "hex": "#C49A5E"
     },
     {
-     "part": "Hay",
+     "part": "Middle layer",
      "swatch": 45,
      "hex": "#D8BE6A"
     },
     {
-     "part": "Dark brown",
+     "part": "Core",
      "swatch": 36,
      "hex": "#4A3322"
     }
@@ -15055,7 +15055,7 @@
      "hex": "#6B4A2E"
     },
     {
-     "part": "Wood light",
+     "part": "Top beam",
      "swatch": 0,
      "hex": "#C9A06A"
     }
@@ -15248,7 +15248,7 @@
      "hex": "#1B1B1E"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     },
@@ -15690,7 +15690,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     },
@@ -15910,7 +15910,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     }
@@ -16351,7 +16351,7 @@
      "hex": "#1E2A33"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     },
@@ -16560,7 +16560,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     }
@@ -16750,7 +16750,7 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Rubber",
+     "part": "Tyres",
      "swatch": 15,
      "hex": "#2E2E32"
     }

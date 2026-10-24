@@ -2,6 +2,7 @@
 
     python tools/make_manifest.py
     python tools/make_manifest.py --catalog-only    # no Blender: refresh names, tags, folded colour variants (paints) in the existing manifest
+    python tools/make_manifest.py --part-names      # no Blender: only apply art/data/part_names.json (area names of the paintable parts)
 
 Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Blender first (see README.md).
 
@@ -131,6 +132,24 @@ def apply_paints(assets, paint_specs, entries, models=None):
         a["tags"] = sorted(set(a["tags"]) | {re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-") for p in a["paints"]})
 
 
+def apply_part_names(assets, entries=None):
+    """Name the paintable parts after the area they colour where art/data/part_names.json says so: a part whose swatch has an entry for its model gets that name
+    (the first part stays "Main"). Parts of models with their own authored names (catalog.PAINTS) are left alone. Raises if two parts of a model end up with the same name."""
+    entries = entries or paints_tool.palette_entries()
+    names = paints_tool.part_names()
+    for a in assets:
+        mapping = names.get(a["id"])
+        if not mapping or a["id"] in catalog.PAINTS:
+            continue
+        for p in a.get("paintable") or []:
+            sw = entries[p["swatch"]][0]
+            if p["part"] != "Main" and sw in mapping:
+                p["part"] = mapping[sw]
+        labels = [p["part"] for p in a.get("paintable") or []]
+        if len(labels) != len(set(labels)):
+            raise ValueError(f"{a['id']}: two parts called the same after part_names.json: {labels}")
+
+
 def apply_aliases(assets):
     """entry["aliases"] = the ids a model had before catalog.SITE_IDS gave it its browser id, so old links, search and the game's lookups still find it."""
     for a in assets:
@@ -180,6 +199,7 @@ def catalog_only():
     assets.sort(key=lambda x: (x["type"], x["id"]))
     entries = paints_tool.palette_entries()
     apply_paints(assets, catalog.PAINTS, entries)
+    apply_part_names(assets)
     apply_aliases(assets)
     apply_themes(doc, assets, entries)
     doc.setdefault("palette", {})["common"] = paints_tool.common_colours(entries)
@@ -188,9 +208,28 @@ def catalog_only():
     print("updated site/manifest.json from the catalog:", len(assets), "assets")
 
 
+def part_names_only():
+    """Apply art/data/part_names.json to the paintable parts already in site/manifest.json and change nothing else (no GLBs, no Blender facts).
+    Every secondary part of every model without presets is first put back to its swatch's own label (that is all auto_parts ever gives it), so an edited or removed entry, or a removed model, takes effect too."""
+    path = ROOT / "site" / "manifest.json"
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    entries = paints_tool.palette_entries()
+    names = paints_tool.part_names()
+    for a in doc["assets"]:
+        if a["id"] not in catalog.PAINTS:
+            for p in a.get("paintable") or []:
+                if p["part"] != "Main":
+                    p["part"] = paints_tool.part_label(entries[p["swatch"]][0])
+    apply_part_names(doc["assets"], entries)
+    path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+    print("applied art/data/part_names.json to site/manifest.json")
+
+
 def main():
     if "--catalog-only" in sys.argv:
         return catalog_only()
+    if "--part-names" in sys.argv:
+        return part_names_only()
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
     for old, new in catalog.SITE_IDS.items():                      # the generator writes interactions.json under its own names; the browser knows the model by its id
@@ -208,6 +247,7 @@ def main():
             raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
     apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
+    apply_part_names(assets)
     apply_aliases(assets)
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches(), common=paints_tool.common_colours(paints_tool.palette_entries())), assets=assets)
