@@ -1,0 +1,25 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GH_AirConditioner_01",
+ "space": "blender",
+ "parts": {},
+ "slots": {},
+ "emitters": {
+  "Sound_Hum": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.0038,
+    0.0
+   ],
+   "event": "ac_hum",
+   "loop": true,
+   "loudness": 0.3,
+   "when": "on"
+  }
+ },
+ "traits": [
+  "noisy",
+  "power"
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Stove_01",
+ "space": "blender",
+ "parts": {
+  "Door": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    -0.345,
+    0.06
+   ],
+   "limit": 90,
+   "rest": 0.0
+  }
+ },
+ "slots": {
+  "Oven": {
+   "position": [
+    0,
+    0,
+    0.31
+   ],
+   "size": [
+    0.46,
+    0.46,
+    0.4
+   ],
+   "part": null
+  },
+  "BurnerL": {
+   "position": [
+    -0.14,
+    -0.12,
+    0.921
+   ],
+   "size": [
+    0.2,
+    0.2,
+    0.3
+   ],
+   "part": null
+  },
+  "BurnerR": {
+   "position": [
+    0.14,
+    -0.12,
+    0.921
+   ],
+   "size": [
+    0.2,
+    0.2,
+    0.3
+   ],
+   "part": null
+  }
+ },
+ "emitters": {
+  "Light_OvenLight": {
+   "kind": "light",
+   "position": [
+    0.0,
+    -0.151,
+    0.44
+   ],
+   "colour": "warm",
+   "range": 1.0,
+   "intensity": 1.0,
+   "flicker": false,
+   "when": "on",
+   "shape": "point"
+  },
+  "Sound_Click": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.355,
+    0.88
+   ],
+   "event": "knob_click",
+   "loop": false,
+   "loudness": 0.1,
+   "when": "trigger"
+  },
+  "Switch_Knob": {
+   "kind": "switch",
+   "position": [
+    0.0,
+    -0.355,
+    0.88
+   ],
+   "controls": [
+    "OvenLight"
+   ],
+   "action": "press",
+   "by": [
+    "human",
+    "alien"
+   ]
+  }
+ },
+ "traits": [
+  "power"
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Dumpster_01",
+ "space": "blender",
+ "parts": {
+  "LidL": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    -0.45,
+    0.47,
+    1.04
+   ],
+   "limit": -115,
+   "rest": -0.0
+  },
+  "LidR": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.45,
+    0.47,
+    1.04
+   ],
+   "limit": -115,
+   "rest": -0.0
+  }
+ },
+ "slots": {
+  "Inside": {
+   "position": [
+    0,
+    0,
+    0.19
+   ],
+   "size": [
+    1.6,
+    0.8,
+    0.7
+   ],
+   "part": null
+  }
+ }
+}

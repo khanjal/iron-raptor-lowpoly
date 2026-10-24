@@ -1,0 +1,43 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GD_FloorLamp_01",
+ "space": "blender",
+ "parts": {},
+ "slots": {},
+ "emitters": {
+  "Light_Bulb": {
+   "kind": "light",
+   "position": [
+    0.0,
+    0.0,
+    1.5312
+   ],
+   "colour": "warm",
+   "range": 6,
+   "intensity": 1.0,
+   "flicker": false,
+   "when": "on",
+   "shape": "point"
+  },
+  "Switch_Switch": {
+   "kind": "switch",
+   "position": [
+    0.0,
+    0.0,
+    1.218
+   ],
+   "controls": [
+    "Bulb"
+   ],
+   "action": "toggle",
+   "by": [
+    "human",
+    "alien"
+   ]
+  }
+ },
+ "traits": [
+  "blackout",
+  "power"
+ ]
+}

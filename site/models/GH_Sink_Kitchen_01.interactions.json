@@ -1,0 +1,40 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GH_Sink_Kitchen_01",
+ "space": "blender",
+ "parts": {},
+ "slots": {},
+ "emitters": {
+  "Sound_Water": {
+   "kind": "sound",
+   "position": [
+    -0.248,
+    0.064,
+    1.028
+   ],
+   "event": "tap_water",
+   "loop": true,
+   "loudness": 0.2,
+   "when": "on"
+  },
+  "Switch_Tap": {
+   "kind": "switch",
+   "position": [
+    -0.248,
+    0.192,
+    1.084
+   ],
+   "controls": [
+    "Water"
+   ],
+   "action": "toggle",
+   "by": [
+    "human",
+    "alien"
+   ]
+  }
+ },
+ "traits": [
+  "noisy"
+ ]
+}
