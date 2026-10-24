@@ -385,7 +385,7 @@ def chips_bag():
 
 @item("boxed", "CandyBar")
 def candy_bar():
-    p = Prop("FD_CandyBar_01"); p.box("fabric_brown", (0, 0, 0.01), (0.14, 0.04, 0.02)); p.box("cloth_red", (0, -0.0, 0.021), (0.14, 0.04, 0.004)); return p
+    p = Prop("FD_CandyBar_01"); p.box("fabric_brown", (0, 0, 0.01), (0.14, 0.04, 0.02)); p.box("cloth_red", (0, 0, 0.0215), (0.138, 0.038, 0.004)); return p
 
 
 # ===== Prepared food and meat ==================================================================================
@@ -463,7 +463,7 @@ def cat_food_tin():
 
 @item("pet", "HayFlake")
 def hay_flake():
-    p = Prop("FD_HayFlake_01"); p.box("hay", (0, 0, 0.06), (0.4, 0.2, 0.12)); p.box("wood_dark", (0.1, 0, 0.06), (0.012, 0.21, 0.125)); return p
+    p = Prop("FD_HayFlake_01"); p.box("hay", (0, 0, 0.06), (0.4, 0.2, 0.12)); p.box("wood_dark", (0.1, 0, 0.062), (0.012, 0.21, 0.124)); return p
 
 
 @item("pet", "SeedBag")
@@ -473,39 +473,44 @@ def seed_bag():
 
 # ===== Clothes (for wardrobes and laundry) =====================================================================
 def _hanger(p, z):
-    p.box("wood_light", (0, 0, z + 0.02), (0.4, 0.012, 0.012), rot=(0, 18, 0)); p.cyl("metal_galv", (0, 0, z + 0.05), 0.004, 0.04, n=4)
+    """A wooden hanger whose two arms slope down from the hook to rest on the shoulders of a garment whose top is at z."""
+    for s in (-1, 1):
+        p.box("wood_light", (s * 0.1, 0, z + 0.0135), (0.21, 0.012, 0.012), rot=(0, s * 15, 0))
+    p.cyl("metal_galv", (0, 0, z + 0.058), 0.004, 0.04, n=4)
 
 
 @item("clothes", "Shirt_Hanger")
 def shirt_hanger():
     p = Prop("FD_Shirt_Hanger_01"); _hanger(p, 0.6)
-    p.box("denim", (0, 0, 0.3), (0.44, 0.04, 0.62), taper=0.85)
+    p.box("denim", (0, 0, 0.3), (0.44, 0.04, 0.6), taper=0.85)
     for s in (-1, 1):
-        p.box("denim", (s * 0.26, 0, 0.5), (0.1, 0.04, 0.3), rot=(0, s * 20, 0))
+        p.box("denim", (s * 0.27, 0, 0.45), (0.1, 0.04, 0.3), rot=(0, -s * 12, 0))      # the sleeves hang down and a little out
     return p
 
 
 @item("clothes", "Jacket_Hanger")
 def jacket_hanger():
     p = Prop("FD_Jacket_Hanger_01"); _hanger(p, 0.7)
-    p.box("fabric_brown", (0, 0, 0.34), (0.5, 0.07, 0.7), taper=0.9)
+    p.box("fabric_brown", (0, 0, 0.35), (0.5, 0.07, 0.7), taper=0.9)
     for s in (-1, 1):
-        p.box("fabric_brown", (s * 0.29, 0, 0.45), (0.12, 0.07, 0.5), rot=(0, s * 8, 0))
-    p.box("black", (0, -0.04, 0.4), (0.012, 0.004, 0.5))
+        p.box("fabric_brown", (s * 0.31, 0, 0.45), (0.12, 0.07, 0.5), rot=(0, -s * 6, 0))
+    p.box("black", (0, -0.0345, 0.35), (0.012, 0.006, 0.5))                           # the zip, on the front
     return p
 
 
 @item("clothes", "Dress_Hanger")
 def dress_hanger():
-    p = Prop("FD_Dress_Hanger_01"); _hanger(p, 0.95)
-    p.box("cloth_red", (0, 0, 0.7), (0.32, 0.04, 0.5), taper=1.1); p.box("cloth_red", (0, 0, 0.35), (0.5, 0.05, 0.7), taper=0.62, rot=(180, 0, 0)); return p
+    p = Prop("FD_Dress_Hanger_01"); _hanger(p, 1.0)
+    p.box("cloth_red", (0, 0, 0.85), (0.32, 0.04, 0.3), taper=1.1)                     # the bodice, from the waist (0.7) to the shoulders
+    p.box("cloth_red", (0, 0, 0.35), (0.5, 0.05, 0.7), taper=0.6)                       # the skirt: narrow at the waist, wide at the hem
+    return p
 
 
 @item("clothes", "Pants_Folded")
 def pants_folded():
     p = Prop("FD_Pants_Folded_01")
     for k, c in enumerate(("denim", "rust_dark", "grey_suit")):
-        p.box(c, (0, 0, 0.03 + k * 0.06), (0.34, 0.26, 0.055))
+        p.box(c, (0, 0, 0.0275 + k * 0.054), (0.34, 0.26, 0.055))                        # three pairs stacked, each resting on the one below
     return p
 
 
@@ -513,7 +518,7 @@ def pants_folded():
 def towel_folded():
     p = Prop("FD_Towel_Folded_01")
     for k, c in enumerate(("linen", "fabric_blue", "paint_white")):
-        p.box(c, (0, 0, 0.04 + k * 0.08), (0.36, 0.24, 0.07))
+        p.box(c, (0, 0, 0.035 + k * 0.069), (0.36, 0.24, 0.07))
     return p
 
 
@@ -521,13 +526,13 @@ def towel_folded():
 def shoes_pair():
     p = Prop("FD_Shoes_Pair_01")
     for s in (-1, 1):
-        p.box("black", (s * 0.06, 0.0, 0.04), (0.09, 0.26, 0.08), taper=0.9); p.box("rubber", (s * 0.06, 0, 0.01), (0.095, 0.27, 0.02)); p.box("paint_white", (s * 0.06, 0.04, 0.085), (0.06, 0.1, 0.006))
+        p.box("black", (s * 0.06, 0.0, 0.04), (0.09, 0.26, 0.08), taper=0.9); p.box("rubber", (s * 0.06, 0, 0.01), (0.095, 0.27, 0.02)); p.box("paint_white", (s * 0.06, 0.04, 0.082), (0.06, 0.1, 0.006))
     return p
 
 
 @item("clothes", "Scarf")
 def scarf():
-    p = Prop("FD_Scarf_01"); p.box("cloth_red", (0, 0, 0.02), (0.6, 0.1, 0.03)); p.box("paint_yellow", (0.1, 0, 0.037), (0.04, 0.1, 0.004)); p.box("paint_yellow", (-0.1, 0, 0.037), (0.04, 0.1, 0.004)); return p
+    p = Prop("FD_Scarf_01"); p.box("cloth_red", (0, 0, 0.01), (0.7, 0.14, 0.02)); p.box("paint_yellow", (0.12, 0, 0.0205), (0.04, 0.138, 0.002)); p.box("paint_yellow", (-0.12, 0, 0.0205), (0.04, 0.138, 0.002)); return p
 
 
 ROTTEN = {"banana_yellow": "fabric_brown", "corn_green": "mould", "lettuce_heart": "dead_wood", "grass": "mould",

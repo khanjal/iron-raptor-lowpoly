@@ -3626,6 +3626,260 @@
    ]
   },
   {
+   "id": "FD_Scarf_01",
+   "name": "Scarf",
+   "type": "clothing/accessories/scarf",
+   "tags": [
+    "clothes",
+    "new",
+    "red",
+    "scarf"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.7,
+    0.021,
+    0.14
+   ],
+   "glb": "models/FD_Scarf_01.glb",
+   "thumb": "thumbs/FD_Scarf_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Stripes",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "FD_Shoes_Pair_01",
+   "name": "Pair of shoes",
+   "type": "clothing/footwear/shoes",
+   "tags": [
+    "clothes",
+    "new",
+    "pair",
+    "shoes"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.215,
+    0.085,
+    0.27
+   ],
+   "glb": "models/FD_Shoes_Pair_01.glb",
+   "thumb": "thumbs/FD_Shoes_Pair_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Soles",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Laces",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "FD_Dress_Hanger_01",
+   "name": "Dress on a hanger",
+   "type": "clothing/garments/dress",
+   "tags": [
+    "clothes",
+    "dress",
+    "hanger",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.5,
+    1.078,
+    0.05
+   ],
+   "glb": "models/FD_Dress_Hanger_01.glb",
+   "thumb": "thumbs/FD_Dress_Hanger_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Fabric",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_Jacket_Hanger_01",
+   "name": "Jacket on a hanger",
+   "type": "clothing/garments/jacket",
+   "tags": [
+    "clothes",
+    "hanger",
+    "jacket",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.792,
+    0.778,
+    0.073
+   ],
+   "glb": "models/FD_Jacket_Hanger_01.glb",
+   "thumb": "thumbs/FD_Jacket_Hanger_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Fabric",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "FD_Pants_Folded_01",
+   "name": "Stack of folded pants",
+   "type": "clothing/garments/pants",
+   "tags": [
+    "clothes",
+    "folded",
+    "new",
+    "pants",
+    "stack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.34,
+    0.163,
+    0.26
+   ],
+   "glb": "models/FD_Pants_Folded_01.glb",
+   "thumb": "thumbs/FD_Pants_Folded_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    },
+    {
+     "part": "Top pair",
+     "swatch": 26,
+     "hex": "#5A5F66"
+    },
+    {
+     "part": "Middle pair",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    }
+   ]
+  },
+  {
+   "id": "FD_Shirt_Hanger_01",
+   "name": "Shirt on a hanger",
+   "type": "clothing/garments/shirt",
+   "tags": [
+    "clothes",
+    "hanger",
+    "new",
+    "shirt"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.7,
+    0.678,
+    0.04
+   ],
+   "glb": "models/FD_Shirt_Hanger_01.glb",
+   "thumb": "thumbs/FD_Shirt_Hanger_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Fabric",
+     "swatch": 12,
+     "hex": "#3F5F8C"
+    }
+   ]
+  },
+  {
+   "id": "FD_Towel_Folded_01",
+   "name": "Stack of folded towels",
+   "type": "clothing/linen/towel",
+   "tags": [
+    "bathroom",
+    "folded",
+    "new",
+    "stack",
+    "towel"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.36,
+    0.208,
+    0.24
+   ],
+   "glb": "models/FD_Towel_Folded_01.glb",
+   "thumb": "thumbs/FD_Towel_Folded_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Bottom towel",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Top towel",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
    "id": "GD_Backpack_01",
    "name": "Backpack",
    "type": "decor/clutter/backpack",
@@ -7095,6 +7349,42 @@
    ]
   },
   {
+   "id": "FD_HayFlake_01",
+   "name": "Hay flake",
+   "type": "farm/feed/hay",
+   "tags": [
+    "feed",
+    "hay",
+    "new",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.4,
+    0.124,
+    0.21
+   ],
+   "glb": "models/FD_HayFlake_01.glb",
+   "thumb": "thumbs/FD_HayFlake_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Band",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
    "id": "GT_Barrel_01",
    "name": "Barrel",
    "type": "farm/props/barrel",
@@ -8412,6 +8702,553 @@
    ]
   },
   {
+   "id": "FD_CandyBar_01",
+   "name": "Candy bar",
+   "type": "food/boxed/candy-bar",
+   "tags": [
+    "bar",
+    "candy",
+    "new",
+    "snack",
+    "sweet"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.14,
+    0.024,
+    0.04
+   ],
+   "glb": "models/FD_CandyBar_01.glb",
+   "thumb": "thumbs/FD_CandyBar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Wrapper",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_CerealBox_01",
+   "name": "Cereal box",
+   "type": "food/boxed/cereal",
+   "tags": [
+    "boxed",
+    "breakfast",
+    "cereal",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.2,
+    0.3,
+    0.075
+   ],
+   "glb": "models/FD_CerealBox_01.glb",
+   "thumb": "thumbs/FD_CerealBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 100,
+     "hex": "#E8922A"
+    },
+    {
+     "part": "Front panel",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Title band",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
+  },
+  {
+   "id": "FD_ChipsBag_01",
+   "name": "Bag of chips",
+   "type": "food/boxed/chips",
+   "tags": [
+    "bag",
+    "chips",
+    "new",
+    "snack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 260,
+   "size": [
+    0.2,
+    0.267,
+    0.072
+   ],
+   "glb": "models/FD_ChipsBag_01.glb",
+   "thumb": "thumbs/FD_ChipsBag_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Label",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_CrackerBox_01",
+   "name": "Cracker box",
+   "type": "food/boxed/crackers",
+   "tags": [
+    "boxed",
+    "crackers",
+    "new",
+    "snack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.16,
+    0.2,
+    0.053
+   ],
+   "glb": "models/FD_CrackerBox_01.glb",
+   "thumb": "thumbs/FD_CrackerBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Front panel",
+     "swatch": 95,
+     "hex": "#C98A4B"
+    }
+   ]
+  },
+  {
+   "id": "FD_FlourSack_01",
+   "name": "Flour sack",
+   "type": "food/boxed/flour",
+   "tags": [
+    "baking",
+    "flour",
+    "new",
+    "sack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 212,
+   "size": [
+    0.24,
+    0.324,
+    0.121
+   ],
+   "glb": "models/FD_FlourSack_01.glb",
+   "thumb": "thumbs/FD_FlourSack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Label",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
+  },
+  {
+   "id": "FD_PastaBox_01",
+   "name": "Pasta box",
+   "type": "food/boxed/pasta",
+   "tags": [
+    "boxed",
+    "new",
+    "pasta"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.1,
+    0.24,
+    0.044
+   ],
+   "glb": "models/FD_PastaBox_01.glb",
+   "thumb": "thumbs/FD_PastaBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    },
+    {
+     "part": "Window",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    },
+    {
+     "part": "Pasta",
+     "swatch": 96,
+     "hex": "#E8C98A"
+    }
+   ]
+  },
+  {
+   "id": "FD_SugarBag_01",
+   "name": "Sugar bag",
+   "type": "food/boxed/sugar",
+   "tags": [
+    "bag",
+    "baking",
+    "new",
+    "sugar"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 212,
+   "size": [
+    0.12,
+    0.264,
+    0.061
+   ],
+   "glb": "models/FD_SugarBag_01.glb",
+   "thumb": "thumbs/FD_SugarBag_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Label",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
+  },
+  {
+   "id": "FD_Can_Beans_01",
+   "name": "Can of beans",
+   "type": "food/canned/beans",
+   "tags": [
+    "beans",
+    "can",
+    "canned",
+    "metal",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.082,
+    0.114,
+    0.082
+   ],
+   "glb": "models/FD_Can_Beans_01.glb",
+   "thumb": "thumbs/FD_Can_Beans_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Can",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "FD_Jar_Jam_01",
+   "name": "Jar of jam",
+   "type": "food/canned/jam",
+   "tags": [
+    "canned",
+    "glass",
+    "jam",
+    "jar",
+    "new",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.084,
+    0.125,
+    0.084
+   ],
+   "glb": "models/FD_Jar_Jam_01.glb",
+   "thumb": "thumbs/FD_Jar_Jam_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 90,
+     "hex": "#8A3A2E"
+    },
+    {
+     "part": "Lid",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_Ketchup_01",
+   "name": "Ketchup",
+   "type": "food/canned/ketchup",
+   "tags": [
+    "bottle",
+    "condiment",
+    "diner",
+    "ketchup",
+    "new",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.07,
+    0.205,
+    0.07
+   ],
+   "glb": "models/FD_Ketchup_01.glb",
+   "thumb": "thumbs/FD_Ketchup_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Cap",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
+  },
+  {
+   "id": "FD_Mustard_01",
+   "name": "Mustard",
+   "type": "food/canned/mustard",
+   "tags": [
+    "bottle",
+    "condiment",
+    "diner",
+    "mustard",
+    "new",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.06,
+    0.175,
+    0.06
+   ],
+   "glb": "models/FD_Mustard_01.glb",
+   "thumb": "thumbs/FD_Mustard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Cap",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_PeanutButter_01",
+   "name": "Peanut butter",
+   "type": "food/canned/peanut-butter",
+   "tags": [
+    "brown",
+    "butter",
+    "canned",
+    "jar",
+    "new",
+    "peanut"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.094,
+    0.155,
+    0.094
+   ],
+   "glb": "models/FD_PeanutButter_01.glb",
+   "thumb": "thumbs/FD_PeanutButter_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Lid",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_Jar_Pickles_01",
+   "name": "Jar of pickles",
+   "type": "food/canned/pickles",
+   "tags": [
+    "canned",
+    "glass",
+    "green",
+    "jar",
+    "new",
+    "pickles"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 168,
+   "size": [
+    0.102,
+    0.191,
+    0.097
+   ],
+   "glb": "models/FD_Jar_Pickles_01.glb",
+   "thumb": "thumbs/FD_Jar_Pickles_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 48,
+     "hex": "#6E9A3E"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Lid",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "FD_Can_Soup_01",
+   "name": "Can of soup",
+   "type": "food/canned/soup",
+   "tags": [
+    "can",
+    "canned",
+    "metal",
+    "new",
+    "red",
+    "soup"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.082,
+    0.104,
+    0.082
+   ],
+   "glb": "models/FD_Can_Soup_01.glb",
+   "thumb": "thumbs/FD_Can_Soup_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 102,
+     "hex": "#C0392B"
+    },
+    {
+     "part": "Can",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "FD_Butter_01",
    "name": "Butter",
    "type": "food/dairy/butter",
@@ -8659,6 +9496,128 @@
    ]
   },
   {
+   "id": "FD_BeerBottle_01",
+   "name": "Beer bottle",
+   "type": "food/drinks/beer-bottle",
+   "tags": [
+    "beer",
+    "bottle",
+    "brown",
+    "drink",
+    "glass",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.067,
+    0.257,
+    0.067
+   ],
+   "glb": "models/FD_BeerBottle_01.glb",
+   "thumb": "thumbs/FD_BeerBottle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Cap",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "FD_BeerCan_01",
+   "name": "Beer can",
+   "type": "food/drinks/beer-can",
+   "tags": [
+    "beer",
+    "can",
+    "drink",
+    "metal",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.068,
+    0.154,
+    0.068
+   ],
+   "glb": "models/FD_BeerCan_01.glb",
+   "thumb": "thumbs/FD_BeerCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Can",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "FD_CoffeeCan_01",
+   "name": "Coffee can",
+   "type": "food/drinks/coffee-can",
+   "tags": [
+    "can",
+    "coffee",
+    "metal",
+    "new",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.153,
+    0.211,
+    0.146
+   ],
+   "glb": "models/FD_CoffeeCan_01.glb",
+   "thumb": "thumbs/FD_CoffeeCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Lid",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "FD_JuiceBox_01",
    "name": "Juice box",
    "type": "food/drinks/juice-box",
@@ -8691,6 +9650,297 @@
      "part": "Label",
      "swatch": 104,
      "hex": "#F0EFE8"
+    }
+   ]
+  },
+  {
+   "id": "FD_SodaCan_Red_01",
+   "name": "Soda can",
+   "type": "food/drinks/soda-can",
+   "tags": [
+    "blue",
+    "can",
+    "drink",
+    "green",
+    "metal",
+    "new",
+    "red",
+    "soda"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.068,
+    0.124,
+    0.068
+   ],
+   "glb": "models/FD_SodaCan_Red_01.glb",
+   "thumb": "thumbs/FD_SodaCan_Red_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Label",
+     "swatch": 102,
+     "hex": "#C0392B"
+    },
+    {
+     "part": "Can",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Red",
+     "hex": "#C0392B",
+     "swap": {}
+    },
+    {
+     "name": "Blue",
+     "hex": "#2F6F9F",
+     "swap": {
+      "102": "#2F6F9F"
+     },
+     "was": "FD_SodaCan_Blue_01"
+    },
+    {
+     "name": "Green",
+     "hex": "#3F7A3A",
+     "swap": {
+      "102": "#3F7A3A"
+     },
+     "was": "FD_SodaCan_Green_01"
+    }
+   ]
+  },
+  {
+   "id": "FD_WaterBottle_01",
+   "name": "Water bottle",
+   "type": "food/drinks/water-bottle",
+   "tags": [
+    "bottle",
+    "drink",
+    "new",
+    "plastic",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.071,
+    0.232,
+    0.071
+   ],
+   "glb": "models/FD_WaterBottle_01.glb",
+   "thumb": "thumbs/FD_WaterBottle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Label and cap",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    }
+   ]
+  },
+  {
+   "id": "FD_WhiskeyBottle_01",
+   "name": "Whiskey bottle",
+   "type": "food/drinks/whiskey-bottle",
+   "tags": [
+    "bottle",
+    "brown",
+    "drink",
+    "glass",
+    "new",
+    "whiskey"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.093,
+    0.27,
+    0.093
+   ],
+   "glb": "models/FD_WhiskeyBottle_01.glb",
+   "thumb": "thumbs/FD_WhiskeyBottle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 34,
+     "hex": "#D9A441"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    },
+    {
+     "part": "Cap",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "FD_WineBottle_01",
+   "name": "Wine bottle",
+   "type": "food/drinks/wine-bottle",
+   "tags": [
+    "bottle",
+    "drink",
+    "glass",
+    "green",
+    "new",
+    "wine"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.083,
+    0.347,
+    0.083
+   ],
+   "glb": "models/FD_WineBottle_01.glb",
+   "thumb": "thumbs/FD_WineBottle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Capsule",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "FD_CatFoodTin_01",
+   "name": "Cat food tin",
+   "type": "food/pet/cat-food",
+   "tags": [
+    "cat",
+    "new",
+    "pet",
+    "tin"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.082,
+    0.039,
+    0.082
+   ],
+   "glb": "models/FD_CatFoodTin_01.glb",
+   "thumb": "thumbs/FD_CatFoodTin_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Tin",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "FD_DogBone_01",
+   "name": "Dog bone",
+   "type": "food/pet/dog-bone",
+   "tags": [
+    "bone",
+    "dog",
+    "new",
+    "pet",
+    "treat"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 196,
+   "size": [
+    0.173,
+    0.032,
+    0.062
+   ],
+   "glb": "models/FD_DogBone_01.glb",
+   "thumb": "thumbs/FD_DogBone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Bone",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
+  },
+  {
+   "id": "FD_SeedBag_01",
+   "name": "Seed bag",
+   "type": "food/pet/seed",
+   "tags": [
+    "bag",
+    "bird",
+    "new",
+    "pet",
+    "seed"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.16,
+    0.2,
+    0.073
+   ],
+   "glb": "models/FD_SeedBag_01.glb",
+   "thumb": "thumbs/FD_SeedBag_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Label",
+     "swatch": 78,
+     "hex": "#3F7A3A"
     }
    ]
   },
