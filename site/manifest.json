@@ -475,8 +475,8 @@
    "interactive": false,
    "triangles": 372,
    "size": [
-    0.023,
-    0.01,
+    0.02,
+    0.011,
     0.03
    ],
    "glb": "models/GN_Beetle_01.glb",
@@ -679,7 +679,7 @@
    "interactive": false,
    "triangles": 332,
    "size": [
-    0.006,
+    0.007,
     0.004,
     0.013
    ],
@@ -776,9 +776,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 464,
+   "triangles": 922,
    "size": [
-    0.009,
+    0.011,
     0.004,
     0.012
    ],
@@ -787,7 +787,8 @@
    "parts": {},
    "clips": [
     "Idle",
-    "Walk"
+    "Walk",
+    "Open"
    ],
    "variants": [],
    "paintable": [

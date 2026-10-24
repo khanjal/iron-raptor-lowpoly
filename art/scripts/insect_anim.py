@@ -151,6 +151,18 @@ def idle_caterpillar(rig, t):
     _caterpillar(rig, t, 0.5, 4.0)
 
 
+def open_ladybug(rig, t):
+    """The wing covers (Elytron_L/R) swing up and out about their front corners and the hindwings (WingH_L/R) unfold sideways from under them, then all fold back."""
+    w = 2 * math.pi * t
+    a = min(1.0, 1.5 * (0.5 - 0.5 * math.cos(w)))
+    turn(rig, "Body", x=-1.5 * a)
+    antennae(rig, w, amp=4.0)
+    for name, s in sides(rig, "Elytron"):
+        turn(rig, name, y=-s * 55.0 * a, z=-s * 14.0 * a)
+    for name, s in sides(rig, "WingH"):
+        turn(rig, name, y=-s * 10.0 * a, z=-s * 80.0 * a)
+
+
 def hop(rig, t):
     """Crouch on the hind legs, kick off, arc through the air with the legs trailing, land and settle (a quarter of the loop each)."""
     w = 2 * math.pi * t
@@ -172,6 +184,7 @@ MOTIONS = {
     "walk": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24)),
     "spider": (("Idle", idle_spider, 48, 24), ("Walk", lambda r, t: walk(r, t, swing=15.0, lift=14.0), 24, 24)),
     "caterpillar": (("Idle", idle_caterpillar, 48, 24), ("Walk", walk_caterpillar, 36, 24)),
+    "ladybug": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24), ("Open", open_ladybug, 48, 24)),
     "hop": (("Idle", idle_walker, 48, 24), ("Hop", hop, 36, 24)),
 }
 
