@@ -1,6 +1,6 @@
-# Insects, batch 1 of the wider cast (issue #80, 2026-10-24)
+# The wider cast of insects and arachnids, batches 1 and 2 (issue #80, 2026-10-24)
 
-The list comes from the creatures of the game Grounded and Grounded 2 (see the comment on #80), as real species. Eight new insects in `art/scripts/insects.py`, rigged and keyed by `insect_anim.py` like the others (head to -Y, feet on z = 0, built in millimetres):
+The list comes from the creatures of the game Grounded and Grounded 2 (see the comment on #80), as real species. Sixteen new creatures in `art/scripts/insects.py` (eight insects in batch 1, four beetle-like insects and four arachnids in batch 2), rigged and keyed by `insect_anim.py` like the others (head to -Y, feet on z = 0, built in millimetres):
 
 | Model | Real size and anatomy | Parts and clips |
 |---|---|---|
@@ -17,16 +17,16 @@ The list comes from the creatures of the game Grounded and Grounded 2 (see the c
 | Model | Real size and anatomy | Parts and clips |
 |---|---|---|
 | Aphid (`GN_Aphid_01`) | green aphid, about 3 mm: soft pear-shaped body, small head, long antennae, two cornicles at the tail | Idle, Walk |
-| Weevil (`GN_Weevil_01`) | about 8 mm: rounded dark body, a head drawn out into a long snout, elbowed antennae from its middle | Idle, Walk |
-| Stag beetle (`GN_StagBeetle_01`) | male, about 35 mm with the jaws: chestnut wing covers, black pronotum and head, huge branched jaws | Idle, Walk |
+| Weevil (`GN_Weevil_01`) | about 6 mm without the snout (11 mm with it): rounded dark body, a head drawn out into a long snout, elbowed antennae from its middle | Idle, Walk |
+| Stag beetle (`GN_StagBeetle_01`) | male, about 40 mm with the jaws: chestnut wing covers, black pronotum and head, huge branched jaws | Idle, Walk |
 | Scarab beetle (`GN_Scarab_01`) | dung beetle, about 25 mm: domed blue-black body, flat shovel head, broad legs | Idle, Walk |
-| Scorpion (`GN_Scorpion_01`) | about 55 mm without the tail: flat sandy body, two big claws, eight legs, a five-segment tail curled over the back to a stinger | Idle, Walk (eight legs) |
+| Scorpion (`GN_Scorpion_01`) | about 55 mm long with the claws: flat tan body, two big claws, eight legs, a five-segment tail curled over the back to a stinger | Idle, Walk (eight legs) |
 | Wolf spider (`GN_WolfSpider_01`) | about 25 mm body: brown, a pale stripe down the back, two big front eyes, long strong legs | Idle, Walk (eight legs) |
 | Orb-weaver (`GN_OrbWeaver_01`) | about 20 mm body: big round abdomen with a pale patch, small cephalothorax, long legs | Idle, Walk (eight legs) |
 | Jumping spider (`GN_JumpingSpider_01`) | about 8 mm: stocky black cephalothorax, two huge front eyes, brown abdomen with a chevron, short legs | Idle, Walk (eight legs) |
 
 ## Known limits
-Plain blobs and rods (flat faceted style); the flyers' legs do not move, the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
+Plain blobs and rods (flat faceted style); the scorpion's tail and the weevil's snout are static (only the weevil's antennae move), the arachnids' idle moves only the front pair of legs; the flyers' legs do not move, the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
 
 ## Still to do from #80
 Tick, centipede, millipede, grub, snail, bumblebee, hornet, gnat, black widow, tarantula; variants (black and red ants, more butterflies) as paints.

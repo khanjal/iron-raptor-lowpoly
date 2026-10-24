@@ -79,6 +79,8 @@
    "tags": [
     "arachnid",
     "black",
+    "bug",
+    "eight-legs",
     "garden",
     "spider",
     "tiny",
@@ -88,9 +90,9 @@
    "interactive": false,
    "triangles": 452,
    "size": [
-    0.017,
-    0.007,
-    0.015
+    0.011,
+    0.004,
+    0.01
    ],
    "glb": "models/GN_JumpingSpider_01.glb",
    "thumb": "thumbs/GN_JumpingSpider_01.png",
@@ -125,6 +127,8 @@
    "tags": [
     "arachnid",
     "brown",
+    "bug",
+    "eight-legs",
     "garden",
     "orange",
     "spider",
@@ -134,9 +138,9 @@
    "interactive": false,
    "triangles": 412,
    "size": [
-    0.045,
-    0.017,
-    0.034
+    0.04,
+    0.016,
+    0.029
    ],
    "glb": "models/GN_OrbWeaver_01.glb",
    "thumb": "thumbs/GN_OrbWeaver_01.png",
@@ -170,18 +174,20 @@
    "type": "animals/arachnid/scorpion",
    "tags": [
     "arachnid",
+    "bug",
     "desert",
-    "sandy",
+    "eight-legs",
     "stinging",
+    "tan",
     "wild"
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 592,
+   "triangles": 604,
    "size": [
     0.034,
-    0.024,
-    0.062
+    0.021,
+    0.055
    ],
    "glb": "models/GN_Scorpion_01.glb",
    "thumb": "thumbs/GN_Scorpion_01.png",
@@ -215,6 +221,7 @@
     "bug",
     "cellar",
     "eight-legs",
+    "spider",
     "wild"
    ],
    "rigged": true,
@@ -253,6 +260,8 @@
    "tags": [
     "arachnid",
     "brown",
+    "bug",
+    "eight-legs",
     "garden",
     "spider",
     "wild"
@@ -603,9 +612,9 @@
    "interactive": false,
    "triangles": 268,
    "size": [
-    0.003,
     0.002,
-    0.006
+    0.002,
+    0.005
    ],
    "glb": "models/GN_Aphid_01.glb",
    "thumb": "thumbs/GN_Aphid_01.png",
@@ -1351,7 +1360,7 @@
    "interactive": false,
    "triangles": 348,
    "size": [
-    0.033,
+    0.032,
     0.012,
     0.027
    ],
@@ -1393,9 +1402,9 @@
    "interactive": false,
    "triangles": 408,
    "size": [
-    0.032,
+    0.029,
     0.012,
-    0.047
+    0.043
    ],
    "glb": "models/GN_StagBeetle_01.glb",
    "thumb": "thumbs/GN_StagBeetle_01.png",
@@ -1521,11 +1530,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 312,
+   "triangles": 336,
    "size": [
-    0.008,
-    0.005,
-    0.014
+    0.006,
+    0.004,
+    0.011
    ],
    "glb": "models/GN_Weevil_01.glb",
    "thumb": "thumbs/GN_Weevil_01.png",
