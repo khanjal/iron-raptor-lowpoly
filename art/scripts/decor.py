@@ -497,7 +497,10 @@ def toy_truck():
 @piece("toys", "Football")
 def football():
     p = Prop("GD_Football_01")
-    p.box("fabric_brown", (0, 0, 0.11), (0.22, 0.22, 0.22), taper=0.9)
+    p.cyl("fabric_brown", (0, 0, 0.1), 0.1, 0.14, n=8, axis="y")                   # a prolate ball: a barrel with a cone at each end, 0.28 m long
+    p.cyl("fabric_brown", (0, -0.14, 0.1), 0.1, 0.1, n=8, axis="y", top_radius=0.02, rot=(0, 0, 180))
+    p.cyl("fabric_brown", (0, 0.14, 0.1), 0.1, 0.1, n=8, axis="y", top_radius=0.02)
+    p.box("paper", (0, 0, 0.2), (0.012, 0.1, 0.012))                               # the laces
     return p
 
 

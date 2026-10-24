@@ -1,0 +1,131 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Counter_Kitchen_01",
+ "space": "blender",
+ "parts": {
+  "Drawer1": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    -0.3,
+    -0.3,
+    0.74
+   ],
+   "limit": -0.4,
+   "rest": -0.0
+  },
+  "Drawer2": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    -0.3,
+    -0.3,
+    0.46
+   ],
+   "limit": -0.4,
+   "rest": -0.0
+  },
+  "Drawer3": {
+   "kind": "slide",
+   "axis": "y",
+   "pivot": [
+    -0.3,
+    -0.3,
+    0.2
+   ],
+   "limit": -0.4,
+   "rest": -0.0
+  },
+  "Door": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.58,
+    -0.315,
+    0.44
+   ],
+   "limit": 105,
+   "rest": 0.0
+  }
+ },
+ "slots": {
+  "Drawer1": {
+   "position": [
+    -0.3,
+    -0.03,
+    0.66
+   ],
+   "size": [
+    0.44,
+    0.5,
+    0.1728
+   ],
+   "part": "Drawer1"
+  },
+  "Drawer2": {
+   "position": [
+    -0.3,
+    -0.03,
+    0.36
+   ],
+   "size": [
+    0.44,
+    0.5,
+    0.2016
+   ],
+   "part": "Drawer2"
+  },
+  "Drawer3": {
+   "position": [
+    -0.3,
+    -0.03,
+    0.12
+   ],
+   "size": [
+    0.44,
+    0.5,
+    0.1728
+   ],
+   "part": "Drawer3"
+  },
+  "Cabinet": {
+   "position": [
+    0.3,
+    0,
+    0.03
+   ],
+   "size": [
+    0.5,
+    0.5,
+    0.37
+   ],
+   "part": null
+  },
+  "CabinetUpper": {
+   "position": [
+    0.3,
+    0,
+    0.43
+   ],
+   "size": [
+    0.5,
+    0.5,
+    0.4
+   ],
+   "part": null
+  },
+  "Top": {
+   "position": [
+    0,
+    0,
+    0.91
+   ],
+   "size": [
+    1.1,
+    0.5,
+    0.4
+   ],
+   "part": null
+  }
+ }
+}

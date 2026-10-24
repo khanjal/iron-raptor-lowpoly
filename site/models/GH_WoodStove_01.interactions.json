@@ -1,0 +1,38 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GH_WoodStove_01",
+ "space": "blender",
+ "parts": {},
+ "slots": {},
+ "emitters": {
+  "Light_Fire": {
+   "kind": "light",
+   "position": [
+    0.0,
+    -0.2405,
+    0.54
+   ],
+   "colour": "flame",
+   "range": 4,
+   "intensity": 1.0,
+   "flicker": true,
+   "when": "on",
+   "shape": "point"
+  },
+  "Sound_Crackle": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.0078,
+    0.54
+   ],
+   "event": "fire_crackle",
+   "loop": true,
+   "loudness": 0.2,
+   "when": "on"
+  }
+ },
+ "traits": [
+  "noisy"
+ ]
+}

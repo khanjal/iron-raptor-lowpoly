@@ -265,3 +265,11 @@ _a("GK_Wall_Window_Barn_01", "Window wall, siding", "building/kit/wall-window", 
 _a("GK_Door_Exterior_01", "Exterior door", "building/kit/door", "classic wood new modular")
 _a("FM_TreeOak_01", "Oak tree", "nature/trees/oak", "rural tree green plant big")
 _a("FM_TreePine_01", "Pine tree", "nature/trees/pine", "rural tree green plant conifer")
+
+
+# ===== Room and interior assets (tools/catalog_rooms.py) =============================================================
+import catalog_rooms  # noqa: E402
+
+BUILD.update(catalog_rooms.BUILD_ROOMS)
+for _id, _r in catalog_rooms.ASSETS_ROOMS.items():
+    _a(_id, _r["name"], _r["type"], _r["tags"], _r["group"])
