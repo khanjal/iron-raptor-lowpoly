@@ -365,7 +365,7 @@
    ]
   },
   {
-   "id": "GN_Butterfly_Blue_01",
+   "id": "GN_Butterfly_01",
    "name": "Butterfly",
    "type": "animals/insect/butterfly",
    "tags": [
@@ -385,8 +385,8 @@
     0.025,
     0.053
    ],
-   "glb": "models/GN_Butterfly_Blue_01.glb",
-   "thumb": "thumbs/GN_Butterfly_Blue_01.png",
+   "glb": "models/GN_Butterfly_01.glb",
+   "thumb": "thumbs/GN_Butterfly_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -411,6 +411,9 @@
      },
      "was": "GN_Butterfly_Monarch_01"
     }
+   ],
+   "aliases": [
+    "GN_Butterfly_Blue_01"
    ]
   },
   {
@@ -2615,7 +2618,7 @@
    ]
   },
   {
-   "id": "FD_Grapes_Green_01",
+   "id": "FD_Grapes_01",
    "name": "Grapes",
    "type": "food/produce/grapes",
    "tags": [
@@ -2633,8 +2636,8 @@
     0.076,
     0.076
    ],
-   "glb": "models/FD_Grapes_Green_01.glb",
-   "thumb": "thumbs/FD_Grapes_Green_01.png",
+   "glb": "models/FD_Grapes_01.glb",
+   "thumb": "thumbs/FD_Grapes_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -2659,6 +2662,9 @@
      },
      "was": "FD_Grapes_Purple_01"
     }
+   ],
+   "aliases": [
+    "FD_Grapes_Green_01"
    ]
   },
   {
@@ -5492,8 +5498,8 @@
    ]
   },
   {
-   "id": "GV_Pickup_Blue_01",
-   "name": "Farm pickup, blue",
+   "id": "GV_Pickup_01",
+   "name": "Farm pickup",
    "type": "vehicles/farm/pickup",
    "tags": [
     "blue",
@@ -5510,8 +5516,8 @@
     1.68,
     5.88
    ],
-   "glb": "models/GV_Pickup_Blue_01.glb",
-   "thumb": "thumbs/GV_Pickup_Blue_01.png",
+   "glb": "models/GV_Pickup_01.glb",
+   "thumb": "thumbs/GV_Pickup_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -5541,10 +5547,13 @@
      "swatch": 130,
      "hex": "#5C6066"
     }
+   ],
+   "aliases": [
+    "GV_Pickup_Blue_01"
    ]
   },
   {
-   "id": "GV_Tractor_Green_01",
+   "id": "GV_Tractor_01",
    "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
@@ -5566,8 +5575,8 @@
     2.93,
     3.92
    ],
-   "glb": "models/GV_Tractor_Green_01.glb",
-   "thumb": "thumbs/GV_Tractor_Green_01.png",
+   "glb": "models/GV_Tractor_01.glb",
+   "thumb": "thumbs/GV_Tractor_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -5613,6 +5622,9 @@
       "39": "#E0B83A"
      }
     }
+   ],
+   "aliases": [
+    "GV_Tractor_Green_01"
    ]
   },
   {
@@ -5670,7 +5682,7 @@
    ]
   },
   {
-   "id": "GV_Motorcycle_Red_01",
+   "id": "GV_Motorcycle_01",
    "name": "Motorcycle",
    "type": "vehicles/road/motorcycle",
    "tags": [
@@ -5688,8 +5700,8 @@
     1.335,
     2.04
    ],
-   "glb": "models/GV_Motorcycle_Red_01.glb",
-   "thumb": "thumbs/GV_Motorcycle_Red_01.png",
+   "glb": "models/GV_Motorcycle_01.glb",
+   "thumb": "thumbs/GV_Motorcycle_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -5719,6 +5731,9 @@
      "swatch": 7,
      "hex": "#1B1B1E"
     }
+   ],
+   "aliases": [
+    "GV_Motorcycle_Red_01"
    ]
   },
   {
@@ -5777,7 +5792,7 @@
    ]
   },
   {
-   "id": "GV_Sedan_Blue_01",
+   "id": "GV_Sedan_01",
    "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
@@ -5803,12 +5818,12 @@
     1.38,
     4.93
    ],
-   "glb": "models/GV_Sedan_Blue_01.glb",
-   "thumb": "thumbs/GV_Sedan_Blue_01.png",
+   "glb": "models/GV_Sedan_01.glb",
+   "thumb": "thumbs/GV_Sedan_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Red_Damaged_01"
+    "GV_Sedan_Damaged_01"
    ],
    "paintable": [
     {
@@ -5866,18 +5881,20 @@
       "40": "#1B1B1E"
      }
     }
+   ],
+   "aliases": [
+    "GV_Sedan_Blue_01"
    ]
   },
   {
-   "id": "GV_Sedan_Red_Damaged_01",
-   "name": "Sedan, red, wrecked",
+   "id": "GV_Sedan_Damaged_01",
+   "name": "Sedan, wrecked",
    "type": "vehicles/road/sedan",
    "tags": [
     "abandoned",
     "car",
     "damaged",
     "modern",
-    "red",
     "rusty",
     "suburban",
     "urban",
@@ -5891,12 +5908,12 @@
     1.457,
     4.933
    ],
-   "glb": "models/GV_Sedan_Red_Damaged_01.glb",
-   "thumb": "thumbs/GV_Sedan_Red_Damaged_01.png",
+   "glb": "models/GV_Sedan_Damaged_01.glb",
+   "thumb": "thumbs/GV_Sedan_Damaged_01.png",
    "parts": {},
    "clips": [],
    "variants": [
-    "GV_Sedan_Blue_01"
+    "GV_Sedan_01"
    ],
    "paintable": [
     {
@@ -5919,6 +5936,9 @@
      "swatch": 4,
      "hex": "#9A5A3A"
     }
+   ],
+   "aliases": [
+    "GV_Sedan_Red_Damaged_01"
    ]
   },
   {
@@ -5971,7 +5991,7 @@
    ]
   },
   {
-   "id": "GV_Van_Brown_01",
+   "id": "GV_Van_01",
    "name": "Delivery van",
    "type": "vehicles/road/van",
    "tags": [
@@ -5990,8 +6010,8 @@
     2.43,
     5.73
    ],
-   "glb": "models/GV_Van_Brown_01.glb",
-   "thumb": "thumbs/GV_Van_Brown_01.png",
+   "glb": "models/GV_Van_01.glb",
+   "thumb": "thumbs/GV_Van_01.png",
    "parts": {},
    "clips": [],
    "variants": [],
@@ -6021,6 +6041,9 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
+   ],
+   "aliases": [
+    "GV_Van_Brown_01"
    ]
   },
   {

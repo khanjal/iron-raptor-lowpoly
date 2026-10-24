@@ -18,21 +18,29 @@ COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/lowpoly-assets"
 JSON_CHUNK = 0x4E4F534A
 
 
-def stamp_bytes(raw, copyright=COPYRIGHT):
-    """The GLB bytes with asset.copyright set (the same bytes when it is already set)."""
+def rewrite_json(raw, mutate):
+    """The GLB bytes with `mutate(doc)` applied to the JSON chunk (the same bytes when mutate returns False; the binary chunk is copied unchanged)."""
     if len(raw) < 20 or raw[:4] != b"glTF":
         raise ValueError("not a GLB (bad magic)")
     jlen, jtype = struct.unpack_from("<II", raw, 12)
     if jtype != JSON_CHUNK:
         raise ValueError("first chunk is not JSON")
     doc = json.loads(raw[20:20 + jlen].decode("utf-8"))
-    if doc.get("asset", {}).get("copyright") == copyright:
+    if mutate(doc) is False:
         return raw
-    doc.setdefault("asset", {})["copyright"] = copyright
     body = json.dumps(doc, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
     body += b" " * (-len(body) % 4)
     rest = raw[20 + jlen:]
     return b"glTF" + struct.pack("<II", 2, 12 + 8 + len(body) + len(rest)) + struct.pack("<II", len(body), JSON_CHUNK) + body + rest
+
+
+def stamp_bytes(raw, copyright=COPYRIGHT):
+    """The GLB bytes with asset.copyright set (the same bytes when it is already set)."""
+    def mutate(doc):
+        if doc.get("asset", {}).get("copyright") == copyright:
+            return False
+        doc.setdefault("asset", {})["copyright"] = copyright
+    return rewrite_json(raw, mutate)
 
 
 def stamp(path, copyright=COPYRIGHT):

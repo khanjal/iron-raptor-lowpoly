@@ -37,7 +37,7 @@ class Paints(unittest.TestCase):
 
     def test_a_model_differs_from_a_wreck_by_shape_not_paint(self):
         with self.assertRaises(ValueError):
-            paints.derive(MODELS / "GV_Sedan_Blue_01.glb", MODELS / "GV_Sedan_Red_Damaged_01.glb", paints.palette())
+            paints.derive(MODELS / "GV_Sedan_01.glb", MODELS / "GV_Sedan_Damaged_01.glb", paints.palette())
 
     def test_unknown_swatch_part_or_colour_is_an_error(self):
         with self.assertRaises(ValueError):

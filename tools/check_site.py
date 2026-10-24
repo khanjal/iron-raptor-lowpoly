@@ -267,6 +267,17 @@ def check(site=None):
     for i in {x for x in ids if ids.count(x) > 1}:
         errors.append(f"duplicate id {i}")
     byid = {a.get("id"): a for a in assets}
+    seen_alias = {}
+    for a in assets:
+        al = a.get("aliases", [])
+        if not (isinstance(al, list) and all(isinstance(x, str) and x for x in al)):
+            errors.append(f"{a.get('id')}: aliases should be a list of ids")
+            continue
+        for x in al:
+            if x in byid:
+                errors.append(f"{a.get('id')}: alias {x} is the id of another model")
+            if seen_alias.setdefault(x, a.get("id")) != a.get("id"):
+                errors.append(f"alias {x} is claimed by {seen_alias[x]} and {a.get('id')}")
     for a in assets:
         check_entry(a, site, errors)
         for v in a.get("variants", []):

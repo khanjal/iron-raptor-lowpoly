@@ -1,4 +1,4 @@
-// The asset browser: search, categories, tag chips, a grid of thumbnails and the viewer panel. Reads manifest.json; deep links use the URL hash (#GV_Sedan_Blue_01).
+// The asset browser: search, categories, tag chips, a grid of thumbnails and the viewer panel. Reads manifest.json; deep links use the URL hash (#GV_Sedan_01).
 import { Viewer } from './viewer.js';
 
 const $ = (id) => document.getElementById(id);
@@ -44,8 +44,9 @@ async function init() {
   state.common = (doc.palette && doc.palette.common) || [];
   state.themes = doc.themes || {};
   for (const a of state.assets) {
-    a.haystack = [a.name, a.id, a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
+    a.haystack = [a.name, a.id, ...(a.aliases || []), a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
     state.byId.set(a.id, a);
+    for (const old of a.aliases || []) state.was.set(old, { asset: a }); // an id the model had before: old links and bookmarks still open it
     for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour or a style keeps its old link
     for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
@@ -218,7 +219,7 @@ function toggleTag(t) { state.tags.has(t) ? state.tags.delete(t) : state.tags.ad
 function toggleFeature(f) { state.features.has(f) ? state.features.delete(f) : state.features.add(f); writeUrlState(); render(); }
 
 // ---- url --------------------------------------------------------------------------------------------------------------------------------
-// The hash is the open model (#GV_Sedan_Blue_01). The filters live in the query string, so a link can carry both.
+// The hash is the open model (#GV_Sedan_01). The filters live in the query string, so a link can carry both.
 function readUrlState() {
   const p = new URLSearchParams(location.search);
   state.q = p.get('q') || '';

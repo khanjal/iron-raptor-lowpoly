@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import check_site  # noqa: E402
 import make_release_zips  # noqa: E402
+import rename_glb  # noqa: E402
 import stamp_glb  # noqa: E402
 
 
@@ -46,6 +47,32 @@ class Stamp(unittest.TestCase):
     def test_blender_export_uses_the_same_line(self):
         text = (ROOT / "art" / "scripts" / "common.py").read_text(encoding="utf-8")
         self.assertEqual(re.search(r'^GLB_COPYRIGHT = "([^"]+)"', text, re.M).group(1), stamp_glb.COPYRIGHT)
+
+
+class Rename(unittest.TestCase):
+    def test_the_node_and_mesh_take_the_new_name_and_the_rest_stays(self):
+        raw = tiny_glb({"asset": {"version": "2.0"}, "nodes": [{"name": "OLD"}, {"name": "Door"}], "meshes": [{"name": "OLD"}]})
+        new = rename_glb.rename_bytes(raw, "OLD", "NEW")
+        path = Path(tempfile.mkdtemp()) / "t.glb"
+        path.write_bytes(new)
+        doc, err = check_site.read_glb(path)
+        self.assertIsNone(err)
+        self.assertEqual([n["name"] for n in doc["nodes"]], ["NEW", "Door"])
+        self.assertEqual(doc["meshes"][0]["name"], "NEW")
+        self.assertEqual(rename_glb.rename_bytes(new, "OLD", "NEW"), new)       # nothing called OLD any more: unchanged
+
+    def test_rename_model_moves_every_file(self):
+        root = Path(tempfile.mkdtemp())
+        for d in ("site/models", "site/thumbs", "out/meta"):
+            (root / d).mkdir(parents=True)
+        (root / "site/models/A_Red_01.glb").write_bytes(tiny_glb({"asset": {"version": "2.0"}, "nodes": [{"name": "A_Red_01"}]}))
+        (root / "site/models/A_Red_01.interactions.json").write_text(json.dumps({"id": "A_Red_01"}))
+        (root / "site/thumbs/A_Red_01.png").write_bytes(b"png")
+        (root / "out/meta/A_Red_01.json").write_text(json.dumps({"id": "A_Red_01"}))
+        self.assertEqual(len(rename_glb.rename_model("A_Red_01", "A_01", root)), 4)
+        self.assertEqual(sorted(p.name for p in root.rglob("*") if p.is_file()), ["A_01.glb", "A_01.interactions.json", "A_01.json", "A_01.png"])
+        self.assertEqual(json.loads((root / "site/models/A_01.interactions.json").read_text())["id"], "A_01")
+        self.assertEqual(rename_glb.rename_model("A_Red_01", "A_01", root), [])  # already moved: nothing to do
 
 
 class Zips(unittest.TestCase):

@@ -21,7 +21,16 @@ def built_ids():
 
 class Catalog(unittest.TestCase):
     def test_every_built_model_is_described_and_the_other_way_round(self):
-        self.assertEqual(sorted(built_ids()), sorted(catalog.ASSETS))
+        self.assertEqual(sorted(catalog.site_id(i) for i in built_ids()), sorted(catalog.ASSETS))
+
+    def test_browser_ids_carry_no_paint_and_old_ids_are_aliases(self):
+        for old, new in catalog.SITE_IDS.items():
+            self.assertNotEqual(old, new)
+            self.assertNotIn(new, built_ids())           # a browser id is never also a generator's name
+            self.assertEqual(catalog.ALIASES[new], old)
+            self.assertIn(new, catalog.ASSETS)
+            self.assertNotIn(old, catalog.ASSETS)
+        self.assertEqual(len(set(catalog.SITE_IDS.values())), len(catalog.SITE_IDS))
 
     def test_ids_are_unique(self):
         ids = built_ids()

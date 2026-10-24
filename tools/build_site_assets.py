@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "art" / "scripts"))
 sys.path.insert(0, str(ROOT / "tools"))
 import common
 import catalog
+import rename_glb
 importlib.reload(common)
 importlib.reload(catalog)
 
@@ -186,4 +187,5 @@ if __name__ == "__main__":
         g = catalog.BUILD[name]
         kind = g.get("kind", "static")
         ids = {"static": build_static, "people": build_people, "animals": build_animals}[kind](g)
+        ids = rename_glb.rename_group(ids, catalog.SITE_IDS)         # the generator's name -> the browser's id
         print("built", name, len(ids), "models")
