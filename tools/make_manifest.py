@@ -1,6 +1,7 @@
 """Write site/manifest.json from the facts the Blender build left in out/meta/, the descriptions in tools/catalog.py and art/data/interactions.json.
 
     python tools/make_manifest.py
+    python tools/make_manifest.py --catalog-only    # no Blender: refresh names, tags, folded colour variants (paints) in the existing manifest
 
 Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Blender first (see README.md).
 
@@ -20,6 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import catalog
+import paints as paints_tool
 
 AXES = {"x": [1, 0, 0], "y": [0, 0, -1], "z": [0, 1, 0]}
 
@@ -109,7 +111,61 @@ def variant_groups(assets):
     return groups
 
 
+def apply_paints(assets, paint_specs, entries):
+    """Put the colour variants of catalog.PAINTS on their base model: entry["paintable"] (its parts) and entry["paints"] (the presets, the model's own paint first),
+    and make the preset names searchable tags. The models those presets used to be have no entry of their own, so they come out of every `variants` list."""
+    ids = {a["id"] for a in assets}
+    for a in assets:
+        a["variants"] = [v for v in a["variants"] if v in ids]
+        spec = paint_specs.get(a["id"])
+        if not spec:
+            continue
+        a["paintable"], a["paints"] = paints_tool.resolve(spec, entries)
+        a["tags"] = sorted(set(a["tags"]) | {re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-") for p in a["paints"]})
+
+
+def apply_themes(doc, assets, entries):
+    """doc["themes"] = {theme: {swatch index: hex}} once, and entry["themes"] = [{name, was?}] on the models catalog.THEMED lists (their style variants are not models of
+    their own). The style names become tags so a search for "retro" still finds the model."""
+    wanted = {t for styles in catalog.THEMED.values() for t in styles}
+    doc["themes"] = {t: swap for t, swap in paints_tool.themes(entries).items() if t in wanted}
+    for a in assets:
+        styles = catalog.THEMED.get(a["id"])
+        if not styles:
+            continue
+        a["themes"] = [dict(name=t, was=was) for t, was in styles.items()]
+        a["tags"] = sorted(set(a["tags"]) | {t.lower() for t in styles})
+        a["variants"] = [v for v in a["variants"] if v not in styles.values()]
+
+
+def catalog_only():
+    """Bring site/manifest.json in line with tools/catalog.py (names, tags, which models exist, variants, paints) without the Blender facts: for a change of
+    description or of what is folded into a paint. Facts about a model (size, triangles, parts, clips) are kept as they are."""
+    path = ROOT / "site" / "manifest.json"
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    groups = variant_groups(catalog.ASSETS)
+    assets = []
+    for a in doc["assets"]:
+        row = catalog.ASSETS.get(a["id"])
+        if row is None:
+            continue
+        a.pop("paintable", None)
+        a.pop("paints", None)
+        a.pop("themes", None)
+        a.update(name=row["name"], type=row["type"], tags=sorted(set(row["tags"])), variants=[v for v in groups.get(row["group"], []) if v != a["id"]] if row["group"] else [])
+        assets.append(a)
+    assets.sort(key=lambda x: (x["type"], x["id"]))
+    entries = paints_tool.palette_entries()
+    apply_paints(assets, catalog.PAINTS, entries)
+    apply_themes(doc, assets, entries)
+    doc["assets"] = assets
+    path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+    print("updated site/manifest.json from the catalog:", len(assets), "assets")
+
+
 def main():
+    if "--catalog-only" in sys.argv:
+        return catalog_only()
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
     groups = variant_groups(catalog.ASSETS)
@@ -123,8 +179,10 @@ def main():
         except ValueError as e:
             raise SystemExit(str(e))
     assets.sort(key=lambda x: (x["type"], x["id"]))
+    apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
+    apply_themes(doc, assets, paints_tool.palette_entries())
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
     for x in assets:

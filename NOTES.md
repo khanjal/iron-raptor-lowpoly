@@ -26,10 +26,8 @@ Pages is not available for a private repository on the Free plan. The docs (docs
 ## From now on this repo makes the models (2026-10-23)
 The game repo no longer makes its own art; it consumes what is built here. The planned assets, the open issues and PRs about models, and what the game expects to stay stable are in [`docs/from-game/README.md`](docs/from-game/README.md) (with copies of the asset list, the prop catalogue and the art notes). Syncing the `art/` changes merged in the game repo since 9a3d59ce is the first job there.
 
-## Not copied yet (open PRs in the game repo, merge first or copy by hand)
-- #358: road vehicles rebuilt (`vehicles.py`, `cars.py`).
-- #359: the nine flying ships (`ships.py`).
-- the other-vehicles batch (#357: `other_vehicles.py`, semi, bus, fire truck...).
+## Synced from the game repo (2026-10-23, later)
+Pulled in game PRs #358 (road vehicles: `vehicles.py`, `cars.py`), #359 (flying ships: `ships.py`) and the open #357 (`other_vehicles.py`, `cars.py`), merged over our local edits (GLB export, `clear_*` glass). `other_vehicles` is a new `build_all.py` group. None of it is built or exported yet.
 
 ## To decide before a GitHub repo exists
 - Repo name and owner account (the folder name here is a placeholder).
@@ -66,3 +64,23 @@ Added on request: produce variety, insects, sports gear, office gear. 68 new mod
 - Checks: `tools/check_site.py` and the 40 unit tests pass. The new models have been looked at as thumbnails and the copier's parts opened in the viewer; the prop audit (`audit_props.py`, which covers only the older scripts) has not been run on them, and none was checked in Unity, Godot or Unreal.
 - Rough spots: the baseball glove is blocky, the baseball and tennis ball seams are chunky strands on a faceted ball, the golf ball has no dimples, the dragonfly's abdomen floats (no perch). The game repo's `GD_Football_01` (a tapered box in `decor.py`) is not in the browser; `GS_Football_01` is the proper one.
 - Not done: the Rotten twins other than the banana bunch are built by `contents.py` but not in the browser; no `build_all.py` entries for the three new scripts (it is the game's list; add them when that file is split).
+
+## Colour variants are paints, not models (2026-10-23)
+A model whose only difference from another is colour is built and shipped once; its other colours are `paints` in the manifest (`tools/catalog.PAINTS`, explained in `tools/paints.py`). A paint is a swap `{palette swatch index: '#RRGGBB'}` applied to a copy of the palette image, so a person can also pick any colour for any paintable part (a purple apple). The game applies the same swap at load: copy the palette texture, fill the swatch cells (cell = 4 px in the 64 px image, index % 16 and index / 16 from the top), assign it to that instance's material.
+- Done for 11 models in the slice (sedan and tractor colours, apple, bananas, grapes, butterfly, desk, window wall, bat); the old ids still open in the viewer (`was`).
+- The generators are unchanged: they still build every colour, and `catalog.BUILD` keeps only the base in `ids`. The folded GLBs are deleted, so `tools/paints.py check` only compares a declared swap with its GLBs while both exist (build the pair in Blender first).
+- Does not fold: shape changes (Damaged cars, Retro/Modern sets with their own design) and decal liveries. The desk (steel to wood) was folded at first and put back: it is not a pure recolour (one steel swatch becomes steel and wood), which only the full comparison of every mesh shows.
+- Styles are themes, not paints (issue #48): `catalog.THEMED` lists the models whose Modern / Retro are only `home_styles.THEMES` (none yet); the manifest carries the themes once and the viewer's Style row applies one to the palette (`tools/paints.py check` compares a theme with the GLBs it replaces). `docs/style-audit.md` has the counts. Damaged is never a theme: it drops parts and tilts, and the Damaged fridge and wardrobe have doors hanging open.
+- The three fridges are three designs, not colours (asked for by the owner): Classic = two doors, freezer on top; Retro = one tall rounded door with one long handle; Modern = French doors over a pull-out freezer drawer (`fridge_retro`, `fridge_modern` in `interactive.py`, picked per style by `VARIANTS`). **Written without Blender, not built or looked at**: build `int_fridge` and check the shapes, then replace `GI_Fridge_Modern_01` and `GI_Fridge_Retro_01` in `site/` (the GLBs there are the old colour-only ones and show the classic shape).
+- The next real build runs `make_manifest.py` with the same `apply_paints`; `--catalog-only` refreshed the manifest here without Blender.
+
+## Textures brought across (2026-10-23)
+`textures/ground/` (26 ground textures, 11 decals) and `textures/palette/GlobalPalette.png` came over from the game repo (they are Git LFS there; the LFS objects were pulled). The palette image is regenerated from `common.PALETTE` by `tools/palette_png.py` (the game's copy lacked the 20 newest swatches); a test keeps it current. With these, everything in the game repo's art folders is either here, built from a script here, or deliberately left with the game (Unity materials, scenes, audio, prefabs, scripts). Still to build in Blender: most models (see the count above), the road/sidewalk/curb pieces, and the synced vehicle and ship scripts.
+
+## Blender hand-off run (2026-10-24)
+
+Built in Blender 5.2.3 through the Blender MCP: the four fridges (`int_fridge`), every car group (sedan, taxi, van, police, ambulance, motorcycle, tractor, pickup) and the two ships. Triangles: cars 1,528 to 1,856 (the tractor is 6 over the 1,850 in #358), ships 672 and 1,924. The paint check passed with `GV_Sedan_Red_01` and `GV_Tractor_Red_01` added temporarily (2 presets, 0 differ); those two ids and their GLBs were removed again.
+
+**Looked at:** the four fridges (Classic, Modern, Retro, Damaged) in the viewport from four sides. Modern reads as French doors over a freezer drawer; Retro reads as one tall door with a long handle. **Retro's body is still boxy:** only the door edges are round. **Not looked at:** the vehicles and ships (only counted), the fridges' moving-part axes and limits and shelf slots (the per-model interactions files are regenerated but not checked by eye), `audit.py` / `audit_props.py` (not run). `out/meta` for the models not rebuilt came from another checkout, and the water cooler's triangle count was set by hand to the GLB's 328.
+
+**Added after the hand-off (owner asked for an ice/water dispenser):** `GI_Fridge_Dispenser_01`, the French-door fridge with a dispenser in the left door (recess, chute, paddle, drip tray, lit selector, a slot for a glass). It is its own model (a different design, not a paint); the Modern fridge is unchanged (same GLB). Built and looked at from the front and three-quarter view. The dispenser light is glow only, not a `Light_` marker. Thumbnails were regenerated for all 122 models.

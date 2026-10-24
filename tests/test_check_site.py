@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import check_site  # noqa: E402
 
 SITE = ROOT / "site"
-KEEP = ("GI_Dresser_01", "GP_Farmer_01", "GI_Fridge_01", "GI_Fridge_Retro_01")
+KEEP = ("GI_Dresser_01", "GP_Farmer_01", "GI_Fridge_01", "GI_Fridge_Damaged_01")
 
 
 class RealSite(unittest.TestCase):
@@ -138,8 +138,8 @@ class Damage(unittest.TestCase):
     def test_variant_that_does_not_exist_or_is_one_way(self):
         self.entry("GI_Fridge_01")["variants"] = ["GI_Nothing_01"]
         self.assertTrue(any("not in the manifest" in p for p in self.problems()))
-        self.entry("GI_Fridge_01")["variants"] = ["GI_Fridge_Retro_01"]
-        self.entry("GI_Fridge_Retro_01")["variants"] = []
+        self.entry("GI_Fridge_01")["variants"] = ["GI_Fridge_Damaged_01"]
+        self.entry("GI_Fridge_Damaged_01")["variants"] = []
         self.assertTrue(any("does not list it back" in p for p in self.problems()))
 
     def test_page_that_refers_to_a_missing_file(self):

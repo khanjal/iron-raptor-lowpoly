@@ -67,6 +67,43 @@ def png_size(path):
     return struct.unpack(">II", raw[16:24])
 
 
+def check_paints(a, err):
+    """paintable: [{part, swatch, hex}] (the parts a person can colour); paints: [{name, hex, swap {swatch index: hex}, was?}], the first the model as exported
+    (empty swap), the others each swapping only swatches that are paintable parts; names and chip colours all different."""
+    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    parts, ps = a.get("paintable"), a.get("paints")
+    if not (isinstance(parts, list) and parts and isinstance(ps, list) and len(ps) >= 2):
+        err("paintable and paints go together: at least one part, the model's own paint and at least one more")
+        return
+    for i, p in enumerate(parts):
+        if not (isinstance(p, dict) and isinstance(p.get("part"), str) and p["part"].strip() and isinstance(p.get("swatch"), int) and 0 <= p["swatch"] < 256 and hexre.match(str(p.get("hex")))):
+            err(f"paintable[{i}] should be {{part, swatch, hex '#RRGGBB'}}")
+            return
+    if len({p["swatch"] for p in parts}) != len(parts) or len({p["part"] for p in parts}) != len(parts):
+        err("paintable: parts and swatches should all differ")
+    swatches = {str(p["swatch"]) for p in parts}
+    for i, p in enumerate(ps):
+        if not (isinstance(p, dict) and isinstance(p.get("name"), str) and p["name"].strip() and hexre.match(str(p.get("hex"))) and isinstance(p.get("swap"), dict)):
+            err(f"paints[{i}] should be {{name, hex '#RRGGBB', swap}}")
+            return
+        if bool(p["swap"]) == (i == 0):
+            err(f"paints[{i}]: only the first paint (the model as exported) has an empty swap")
+        for k, v in p["swap"].items():
+            if k not in swatches or not hexre.match(str(v)):
+                err(f"paints[{i}]: swap entry {k!r}: {v!r} should be a paintable swatch index and '#RRGGBB'")
+    if len({p["name"] for p in ps}) != len(ps):
+        err("paints: names should all differ")
+
+
+def check_themes(a, err):
+    """themes: [{name, was?}], names of themes the manifest defines at the top level (check_manifest looks them up)."""
+    ts = a["themes"]
+    if not (isinstance(ts, list) and ts and all(isinstance(t, dict) and isinstance(t.get("name"), str) and t["name"].strip() for t in ts)):
+        err("themes should be a list of {name, was?}")
+    elif len({t["name"] for t in ts}) != len(ts):
+        err("themes: names should all differ")
+
+
 def check_entry(a, site, errors):
     where = a.get("id", "?")
     err = lambda m: errors.append(f"{where}: {m}")
@@ -106,6 +143,10 @@ def check_entry(a, site, errors):
         if "rest" not in p:
             err(f"part {role}: rest missing")
 
+    if "paints" in a or "paintable" in a:
+        check_paints(a, err)
+    if "themes" in a:
+        check_themes(a, err)
     if "interactions" in a:
         check_interactions(a, site, err)
     glb, thumb = site / a["glb"], site / a["thumb"]
@@ -221,6 +262,15 @@ def check(site=None):
                 errors.append(f"{a.get('id')}: variant {v} is not in the manifest")
             elif a.get("id") not in byid[v].get("variants", []):
                 errors.append(f"{a.get('id')}: variant {v} does not list it back")
+    themes = doc.get("themes", {})
+    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    if not isinstance(themes, dict) or not all(isinstance(t, dict) and t and all(k.isdigit() and int(k) < 256 and hexre.match(str(v)) for k, v in t.items()) for t in themes.values()):
+        errors.append("themes should be {name: {swatch index: '#RRGGBB'}}")
+        themes = {}
+    for a in assets:
+        for t in a.get("themes", []) if isinstance(a.get("themes"), list) else []:
+            if isinstance(t, dict) and t.get("name") not in themes:
+                errors.append(f"{a.get('id')}: theme {t.get('name')!r} is not defined in the manifest's themes")
     for g in doc.get("palette", {}).get("glow", []):
         if not re.match(r"^#[0-9A-F]{6}$", g.get("hex", "")):
             errors.append(f"palette glow {g.get('name')}: bad hex")
