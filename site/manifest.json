@@ -15243,7 +15243,7 @@
      "hex": "#2F5F8F"
     },
     {
-     "part": "Black",
+     "part": "Frame and trim",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
@@ -15253,12 +15253,12 @@
      "hex": "#2E2E32"
     },
     {
-     "part": "Metal galv",
+     "part": "Bumpers and chrome",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Office dark",
+     "part": "Seats",
      "swatch": 130,
      "hex": "#5C6066"
     }
@@ -15601,24 +15601,24 @@
      "hex": "#E6E2D6"
     },
     {
-     "part": "Cloth red",
-     "swatch": 13,
-     "hex": "#B8443B"
-    },
-    {
-     "part": "Black",
+     "part": "Underbody and trim",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal galv",
-     "swatch": 2,
-     "hex": "#A9B4BC"
+     "part": "Stripe and cross",
+     "swatch": 13,
+     "hex": "#B8443B"
     },
     {
-     "part": "Rubber",
-     "swatch": 15,
-     "hex": "#2E2E32"
+     "part": "Engine, cargo floor and exhaust",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Bumpers and chrome",
+     "swatch": 2,
+     "hex": "#A9B4BC"
     }
    ],
    "interactions": "models/GV_Ambulance_White_01.interactions.json"
@@ -15685,7 +15685,7 @@
      "hex": "#B8443B"
     },
     {
-     "part": "Metal galv",
+     "part": "Forks, rims and exhaust",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
@@ -15695,12 +15695,12 @@
      "hex": "#2E2E32"
     },
     {
-     "part": "Metal dark",
+     "part": "Engine and mechanics",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Black",
+     "part": "Frame and seat",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -15891,21 +15891,21 @@
    "paintable": [
     {
      "part": "Main",
-     "swatch": 21,
-     "hex": "#B79A6A"
-    },
-    {
-     "part": "Paint white",
-     "swatch": 6,
-     "hex": "#E6E2D6"
-    },
-    {
-     "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal galv",
+     "part": "Body",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Stripe",
+     "swatch": 21,
+     "hex": "#B79A6A"
+    },
+    {
+     "part": "Bumpers and chrome",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
@@ -16346,7 +16346,7 @@
      "hex": "#6B3A28"
     },
     {
-     "part": "Screen",
+     "part": "Windows",
      "swatch": 61,
      "hex": "#1E2A33"
     },
@@ -16356,7 +16356,7 @@
      "hex": "#2E2E32"
     },
     {
-     "part": "Rust",
+     "part": "Bumpers and trim",
      "swatch": 4,
      "hex": "#9A5A3A"
     }
@@ -16550,12 +16550,12 @@
      "hex": "#E0B83A"
     },
     {
-     "part": "Black",
+     "part": "Underbody and trim",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal galv",
+     "part": "Bumpers and chrome",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
@@ -16735,17 +16735,17 @@
      "hex": "#7A5A44"
     },
     {
-     "part": "Black",
+     "part": "Underbody and trim",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Paint white",
-     "swatch": 6,
-     "hex": "#E6E2D6"
+     "part": "Engine, cargo floor and exhaust",
+     "swatch": 3,
+     "hex": "#4A525A"
     },
     {
-     "part": "Metal galv",
+     "part": "Bumpers and chrome",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
