@@ -210,13 +210,13 @@ def catalog_only():
 
 def part_names_only():
     """Apply art/data/part_names.json to the paintable parts already in site/manifest.json and change nothing else (no GLBs, no Blender facts).
-    Every secondary part of a model that has an entry is first put back to its swatch's own label, so an edited or removed entry takes effect too."""
+    Every secondary part of every model without presets is first put back to its swatch's own label (that is all auto_parts ever gives it), so an edited or removed entry, or a removed model, takes effect too."""
     path = ROOT / "site" / "manifest.json"
     doc = json.loads(path.read_text(encoding="utf-8"))
     entries = paints_tool.palette_entries()
     names = paints_tool.part_names()
     for a in doc["assets"]:
-        if a["id"] in names and a["id"] not in catalog.PAINTS:
+        if a["id"] not in catalog.PAINTS:
             for p in a.get("paintable") or []:
                 if p["part"] != "Main":
                     p["part"] = paints_tool.part_label(entries[p["swatch"]][0])
