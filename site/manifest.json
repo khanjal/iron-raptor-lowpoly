@@ -5483,6 +5483,45 @@
    ]
   },
   {
+   "id": "GE_LandlinePhone_01",
+   "name": "Landline phone",
+   "type": "decor/electronics/landline-phone",
+   "tags": [
+    "desk",
+    "kitchen",
+    "landline",
+    "new",
+    "phone",
+    "telephone"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.25,
+    0.155,
+    0.245
+   ],
+   "glb": "models/GE_LandlinePhone_01.glb",
+   "thumb": "thumbs/GE_LandlinePhone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GE_LandlinePhone_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Dial",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
    "id": "GD_Laptop_01",
    "name": "Laptop",
    "type": "decor/electronics/laptop",
@@ -8133,6 +8172,336 @@
    ]
   },
   {
+   "id": "GT_ChoppingBlock_01",
+   "name": "Chopping block",
+   "type": "farm/props/chopping-block",
+   "tags": [
+    "block",
+    "cabin",
+    "chopping",
+    "farm",
+    "new",
+    "stump",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 144,
+   "size": [
+    1.089,
+    0.925,
+    1.07
+   ],
+   "glb": "models/GT_ChoppingBlock_01.glb",
+   "thumb": "thumbs/GT_ChoppingBlock_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 51,
+     "hex": "#5A4630"
+    },
+    {
+     "part": "Split logs",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Top face",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "GT_Crate_01",
+   "name": "Wooden crate",
+   "type": "farm/props/crate",
+   "tags": [
+    "crate",
+    "farm",
+    "new",
+    "rural",
+    "storage",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.52,
+    0.5,
+    0.52
+   ],
+   "glb": "models/GT_Crate_01.glb",
+   "thumb": "thumbs/GT_Crate_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Edge battens",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_FeedSack_01",
+   "name": "Feed sack",
+   "type": "farm/props/feed-sack",
+   "tags": [
+    "cream",
+    "farm",
+    "feed",
+    "grain",
+    "new",
+    "rural",
+    "sack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.42,
+    0.65,
+    0.22
+   ],
+   "glb": "models/GT_FeedSack_01.glb",
+   "thumb": "thumbs/GT_FeedSack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Label",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GT_FirewoodPile_Loose_01",
+   "name": "Firewood, loose pile",
+   "type": "farm/props/firewood-pile",
+   "tags": [
+    "cabin",
+    "farm",
+    "firewood",
+    "loose",
+    "new",
+    "pile",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 320,
+   "size": [
+    0.659,
+    0.397,
+    0.653
+   ],
+   "glb": "models/GT_FirewoodPile_Loose_01.glb",
+   "thumb": "thumbs/GT_FirewoodPile_Loose_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Dark logs",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_FirewoodStack_01",
+   "name": "Firewood stack",
+   "type": "farm/props/firewood-stack",
+   "tags": [
+    "cabin",
+    "farm",
+    "firewood",
+    "new",
+    "stack",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 832,
+   "size": [
+    1.6,
+    0.925,
+    0.5
+   ],
+   "glb": "models/GT_FirewoodStack_01.glb",
+   "thumb": "thumbs/GT_FirewoodStack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Alternate logs",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Posts and rails",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "GT_FirewoodStack_Small_01",
+   "name": "Firewood stack, small",
+   "type": "farm/props/firewood-stack-small",
+   "tags": [
+    "cabin",
+    "farm",
+    "firewood",
+    "new",
+    "small",
+    "stack",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 280,
+   "size": [
+    0.85,
+    0.593,
+    0.45
+   ],
+   "glb": "models/GT_FirewoodStack_Small_01.glb",
+   "thumb": "thumbs/GT_FirewoodStack_Small_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Alternate logs",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_FirewoodStack_Triangle_01",
+   "name": "Firewood stack, triangular",
+   "type": "farm/props/firewood-stack-triangle",
+   "tags": [
+    "cabin",
+    "farm",
+    "firewood",
+    "new",
+    "stack",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 444,
+   "size": [
+    1.13,
+    0.887,
+    0.5
+   ],
+   "glb": "models/GT_FirewoodStack_Triangle_01.glb",
+   "thumb": "thumbs/GT_FirewoodStack_Triangle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Alternate logs",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Posts and rails",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "FM_Generator_01",
+   "name": "Generator",
+   "type": "farm/props/generator",
+   "tags": [
+    "engine",
+    "farm",
+    "generator",
+    "metal",
+    "new",
+    "power",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 120,
+   "size": [
+    0.9,
+    1.2,
+    0.8
+   ],
+   "glb": "models/FM_Generator_01.glb",
+   "thumb": "thumbs/FM_Generator_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/FM_Generator_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Top cover",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Feet",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
    "id": "GT_HayBale_Round_01",
    "name": "Round hay bale",
    "type": "farm/props/hay-bale",
@@ -8165,6 +8534,118 @@
      "part": "Wood dark",
      "swatch": 1,
      "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_HayBale_Square_01",
+   "name": "Square hay bale",
+   "type": "farm/props/hay-bale-square",
+   "tags": [
+    "bale",
+    "farm",
+    "hay",
+    "new",
+    "rural",
+    "square",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.9,
+    0.46,
+    0.47
+   ],
+   "glb": "models/GT_HayBale_Square_01.glb",
+   "thumb": "thumbs/GT_HayBale_Square_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Twine",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GT_Jerrycan_01",
+   "name": "Jerrycan",
+   "type": "farm/props/jerrycan",
+   "tags": [
+    "farm",
+    "fuel",
+    "garage",
+    "jerrycan",
+    "metal",
+    "new",
+    "red"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.34,
+    0.51,
+    0.16
+   ],
+   "glb": "models/GT_Jerrycan_01.glb",
+   "thumb": "thumbs/GT_Jerrycan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Can",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GT_MilkCan_01",
+   "name": "Milk can",
+   "type": "farm/props/milk-can",
+   "tags": [
+    "can",
+    "dairy",
+    "farm",
+    "metal",
+    "milk",
+    "new",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 128,
+   "size": [
+    0.37,
+    0.63,
+    0.34
+   ],
+   "glb": "models/GT_MilkCan_01.glb",
+   "thumb": "thumbs/GT_MilkCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Lid knob and handles",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -8215,6 +8696,88 @@
    ]
   },
   {
+   "id": "GT_Stool_01",
+   "name": "Stool",
+   "type": "farm/props/stool",
+   "tags": [
+    "farm",
+    "four-legged",
+    "new",
+    "rural",
+    "stool",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 92,
+   "size": [
+    0.34,
+    0.485,
+    0.34
+   ],
+   "glb": "models/GT_Stool_01.glb",
+   "thumb": "thumbs/GT_Stool_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Seat",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "FM_WaterTrough_01",
+   "name": "Water trough",
+   "type": "farm/props/water-trough",
+   "tags": [
+    "animal",
+    "farm",
+    "new",
+    "rural",
+    "trough",
+    "water",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    1.6,
+    0.6,
+    0.56
+   ],
+   "glb": "models/FM_WaterTrough_01.glb",
+   "thumb": "thumbs/FM_WaterTrough_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Water",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    },
+    {
+     "part": "Legs",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
    "id": "FM_DogHouse_01",
    "name": "Doghouse",
    "type": "farm/structures/doghouse",
@@ -8246,6 +8809,79 @@
      "part": "Wood dark",
      "swatch": 1,
      "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GI_FenceSection_01",
+   "name": "Fence section",
+   "type": "farm/structures/fence-section",
+   "tags": [
+    "farm",
+    "fence",
+    "grey",
+    "new",
+    "rural",
+    "section",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    2.52,
+    1.2,
+    0.12
+   ],
+   "glb": "models/GI_FenceSection_01.glb",
+   "thumb": "thumbs/GI_FenceSection_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Boards and posts",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "GI_Gate_01",
+   "name": "Gate",
+   "type": "farm/structures/gate",
+   "tags": [
+    "farm",
+    "fence",
+    "gate",
+    "new",
+    "rural",
+    "tan",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 120,
+   "size": [
+    2.92,
+    1.4,
+    0.14
+   ],
+   "glb": "models/GI_Gate_01.glb",
+   "thumb": "thumbs/GI_Gate_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Gate posts",
+     "swatch": 38,
+     "hex": "#8B8578"
     }
    ]
   },
@@ -8320,6 +8956,50 @@
      "part": "Fabric grey",
      "swatch": 65,
      "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GT_MailboxPost_01",
+   "name": "Mailbox on a post",
+   "type": "farm/structures/mailbox-post",
+   "tags": [
+    "farm",
+    "mailbox",
+    "metal",
+    "new",
+    "post",
+    "rural",
+    "suburban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.26,
+    1.26,
+    0.42
+   ],
+   "glb": "models/GT_MailboxPost_01.glb",
+   "thumb": "thumbs/GT_MailboxPost_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Post",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Flag",
+     "swatch": 13,
+     "hex": "#B8443B"
     }
    ]
   },
@@ -8690,6 +9370,47 @@
    ]
   },
   {
+   "id": "GL_BareBulb_01",
+   "name": "Bare bulb",
+   "type": "fixtures/outdoor/bare-bulb",
+   "tags": [
+    "barn",
+    "bulb",
+    "farm",
+    "lamp",
+    "light",
+    "new",
+    "shed"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.07,
+    1.28,
+    0.07
+   ],
+   "glb": "models/GL_BareBulb_01.glb",
+   "thumb": "thumbs/GL_BareBulb_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GL_BareBulb_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Socket",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GI_Dumpster_01",
    "name": "Dumpster",
    "type": "fixtures/outdoor/dumpster",
@@ -8759,6 +9480,90 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GL_FloodlightStand_01",
+   "name": "Floodlight stand",
+   "type": "fixtures/outdoor/floodlight-stand",
+   "tags": [
+    "fbi",
+    "floodlight",
+    "light",
+    "new",
+    "outdoor",
+    "tripod"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 200,
+   "size": [
+    1.506,
+    3.35,
+    1.32
+   ],
+   "glb": "models/GL_FloodlightStand_01.glb",
+   "thumb": "thumbs/GL_FloodlightStand_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Lens",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Mast",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GL_PoleLamp_01",
+   "name": "Pole lamp",
+   "type": "fixtures/outdoor/pole-lamp",
+   "tags": [
+    "lamp",
+    "light",
+    "new",
+    "pole",
+    "rural",
+    "street",
+    "yard"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    0.36,
+    6.0,
+    1.07
+   ],
+   "glb": "models/GL_PoleLamp_01.glb",
+   "thumb": "thumbs/GL_PoleLamp_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GL_PoleLamp_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Lamp shade",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -9037,6 +9842,187 @@
      "part": "Body",
      "swatch": 68,
      "hex": "#F2F2EE"
+    }
+   ]
+  },
+  {
+   "id": "GL_ServiceEntry_01",
+   "name": "Electric service entry",
+   "type": "fixtures/utilities/service-entry",
+   "tags": [
+    "electric",
+    "entry",
+    "farm",
+    "house",
+    "meter",
+    "new",
+    "power",
+    "service"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 236,
+   "size": [
+    0.32,
+    4.215,
+    0.185
+   ],
+   "glb": "models/GL_ServiceEntry_01.glb",
+   "thumb": "thumbs/GL_ServiceEntry_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Meter ring, hub and fittings",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Meter glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GL_UtilityPole_01",
+   "name": "Utility pole",
+   "type": "fixtures/utilities/utility-pole",
+   "tags": [
+    "new",
+    "pole",
+    "power",
+    "rural",
+    "utility",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 324,
+   "size": [
+    2.0,
+    8.215,
+    0.416
+   ],
+   "glb": "models/GL_UtilityPole_01.glb",
+   "thumb": "thumbs/GL_UtilityPole_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Crossarms, butt and cap",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Braces",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GL_UtilityPoleCorner_01",
+   "name": "Utility pole, corner",
+   "type": "fixtures/utilities/utility-pole-corner",
+   "tags": [
+    "corner",
+    "new",
+    "pole",
+    "power",
+    "rural",
+    "utility",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 552,
+   "size": [
+    2.0,
+    8.215,
+    2.0
+   ],
+   "glb": "models/GL_UtilityPoleCorner_01.glb",
+   "thumb": "thumbs/GL_UtilityPoleCorner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Crossarms, butt and cap",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Braces",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GL_UtilityPoleTransformer_01",
+   "name": "Utility pole with transformer",
+   "type": "fixtures/utilities/utility-pole-transformer",
+   "tags": [
+    "new",
+    "pole",
+    "power",
+    "rural",
+    "transformer",
+    "utility",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 492,
+   "size": [
+    2.0,
+    8.215,
+    0.432
+   ],
+   "glb": "models/GL_UtilityPoleTransformer_01.glb",
+   "thumb": "thumbs/GL_UtilityPoleTransformer_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Crossarms, butt and cap",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Braces and transformer",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Straps and racks",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -17822,6 +18808,45 @@
    ]
   },
   {
+   "id": "GT_Pitchfork_01",
+   "name": "Pitchfork",
+   "type": "tools/garden/pitchfork",
+   "tags": [
+    "farm",
+    "hay",
+    "new",
+    "pitchfork",
+    "rural",
+    "steel",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.2,
+    1.73,
+    0.035
+   ],
+   "glb": "models/GT_Pitchfork_01.glb",
+   "thumb": "thumbs/GT_Pitchfork_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Tines and socket",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GT_PruningShears_01",
    "name": "Pruning shears",
    "type": "tools/garden/pruning-shears",
@@ -17862,6 +18887,94 @@
      "part": "Cutting blade",
      "swatch": 2,
      "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_Rake_01",
+   "name": "Rake",
+   "type": "tools/garden/rake",
+   "tags": [
+    "farm",
+    "garden",
+    "new",
+    "rake",
+    "rural",
+    "steel",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 140,
+   "size": [
+    0.42,
+    1.52,
+    0.036
+   ],
+   "glb": "models/GT_Rake_01.glb",
+   "thumb": "thumbs/GT_Rake_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Head and socket",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Teeth",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GT_Shovel_01",
+   "name": "Shovel",
+   "type": "tools/garden/shovel",
+   "tags": [
+    "farm",
+    "garden",
+    "new",
+    "rural",
+    "shovel",
+    "steel",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 56,
+   "size": [
+    0.22,
+    1.295,
+    0.056
+   ],
+   "glb": "models/GT_Shovel_01.glb",
+   "thumb": "thumbs/GT_Shovel_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Blade",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Socket",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },

@@ -29,7 +29,7 @@ def rake():
     p.cyl("wood_light", (0, 0, 0.82), 0.016, 1.4, n=6)                                  # from inside the socket (up from z 0.12) to the top
     p.box("metal_dark", (0, -0.0, 0.03), (0.42, 0.03, 0.03))
     for i in range(8):
-        p.box("metal_dark", (-0.18 + i * 0.0514, 0.0, 0.0), (0.012, 0.012, 0.07), taper=0.5)
+        p.box("metal_galv", (-0.18 + i * 0.0514, 0.0, 0.035), (0.012, 0.012, 0.07), taper=0.5)
     p.box("metal_dark", (0, 0, 0.095), (0.036, 0.036, 0.15))                            # the socket: from the head bar (z 0.015-0.045) up to z 0.17
     return p
 
@@ -78,7 +78,7 @@ def milk_can():
     p.cyl("metal_galv", (0, 0, 0.22), 0.17, 0.44, n=8, top_radius=0.15)
     p.cyl("metal_galv", (0, 0, 0.5), 0.09, 0.12, n=8, top_radius=0.085)
     p.cyl("metal_galv", (0, 0, 0.575), 0.12, 0.03, n=8)
-    p.cyl("metal_dark", (0, 0, 0.62), 0.04, 0.05, n=6)
+    p.cyl("metal_dark", (0, 0, 0.605), 0.04, 0.05, n=6)
     for s in (-1, 1):
         p.box("metal_dark", (s * 0.17, 0, 0.36), (0.03, 0.05, 0.1))
     return p
@@ -88,7 +88,7 @@ def hay_square():
     p = Prop("GT_HayBale_Square_01")
     p.box("hay", (0, 0, 0.225), (0.9, 0.45, 0.45))
     for x in (-0.22, 0.22):
-        p.box("wood_dark", (x, 0, 0.225), (0.02, 0.47, 0.47))                # the twine
+        p.box("wood_dark", (x, 0, 0.23), (0.02, 0.47, 0.46))                # the twine
     return p
 
 
@@ -134,7 +134,7 @@ def feed_sack():
     p = Prop("GT_FeedSack_01")
     p.box("cream", (0, 0, 0.3), (0.42, 0.22, 0.6), taper=0.9)
     p.box("cream", (0, 0, 0.62), (0.34, 0.16, 0.06), taper=0.7)
-    p.box("cloth_red", (0, -0.112, 0.3), (0.22, 0.004, 0.14))
+    p.box("cloth_red", (0, -0.1, 0.3), (0.22, 0.02, 0.14))
     return p
 
 
@@ -154,8 +154,8 @@ def gate():
         p.box("wood_light", (0, 0, z), (2.8, 0.05, 0.1))
     for x in (-1.3, 0.0, 1.3):
         p.box("wood_light", (x, 0.0, 0.8), (0.08, 0.04, 1.1))
-    p.box("wood_light", (0, 0, 0.8), (3.0, 0.04, 0.08), rot=(0, 24, 0))
-    p.box("metal_dark", (1.35, -0.05, 1.0), (0.1, 0.03, 0.04))
+    p.box("wood_light", (0, 0, 0.8), (2.3, 0.04, 0.08), rot=(0, 24, 0))
+    p.box("metal_dark", (1.35, -0.03, 1.0), (0.1, 0.04, 0.04))
     return p
 
 
@@ -163,7 +163,7 @@ def mailbox():
     p = Prop("GT_MailboxPost_01")
     p.box("wood_grey", (0, 0, 0.55), (0.08, 0.08, 1.1))
     p.box("metal_dark", (0, 0, 1.15), (0.24, 0.42, 0.2))
-    p.box("cloth_red", (0.14, 0.05, 1.22), (0.015, 0.1, 0.08))
+    p.box("cloth_red", (0.125, 0.05, 1.22), (0.03, 0.1, 0.08))
     return p
 
 
@@ -213,8 +213,12 @@ def generator():
 
 def water_trough():
     p = Prop("FM_WaterTrough_01")
-    p.box("wood_grey", (0, 0, 0.3), (1.6, 0.5, 0.6))
-    p.box("glass", (0, 0, 0.58), (1.45, 0.38, 0.03))
+    p.box("wood_grey", (0, 0, 0.05), (1.6, 0.5, 0.1))                                   # the bottom
+    for sy in (-1, 1):
+        p.box("wood_grey", (0, sy * 0.22, 0.3), (1.6, 0.06, 0.6))                        # the long sides
+    for sx in (-1, 1):
+        p.box("wood_grey", (sx * 0.77, 0, 0.3), (0.06, 0.5, 0.6))                        # the ends
+    p.box("glass", (0, 0, 0.45), (1.48, 0.38, 0.03))                                     # the water, 13 cm below the rim
     for x in (-0.7, 0.7):
         p.box("wood_dark", (x, 0, 0.15), (0.08, 0.56, 0.3))
     return p
@@ -233,7 +237,7 @@ def _pile(p, rows, r=0.09, length=0.5):
     for row, count in enumerate(rows):
         for i in range(count):
             x = (i - (count - 1) / 2) * 2 * r
-            z = r + row * r * 1.732
+            z = r * 0.887 + row * r * 1.732                       # the lowest log lies on a flat face
             p.cyl("wood_dark" if (i + row) % 2 else "wood_light", (x, 0, z), r, length, n=6, axis="y")
 
 
@@ -273,14 +277,14 @@ def firewood_loose():
     import random
     rng = random.Random(7)
     p = Prop("GT_FirewoodPile_Loose_01")
-    layers = ((7, 0.32, 0.075), (5, 0.24, 0.17), (3, 0.14, 0.26), (1, 0.0, 0.34))
+    layers = ((7, 0.32, 0.0665), (5, 0.24, 0.16), (3, 0.14, 0.25), (1, 0.0, 0.33))
     for count, spread, z in layers:
         for k in range(count):
             a = rng.uniform(0, 360)
             d = rng.uniform(0, spread)
             x, y = d * math.cos(math.radians(a)), d * math.sin(math.radians(a))
             p.cyl("wood_dark" if rng.random() < 0.5 else "wood_light", (x, y, z), 0.075, rng.uniform(0.4, 0.55), n=6, axis="y",
-                  rot=(rng.uniform(-6, 6), 0, rng.uniform(0, 180)))
+                  rot=(0, 0, rng.uniform(0, 180)))
     return p
 
 
@@ -292,7 +296,7 @@ def chopping_block():
     p.cyl("wood_dark", (0.116, 0.0, 0.67), 0.018, 0.55, n=5, rot=(0, 25, 0))                # the handle, up from the head
     p.box("metal_galv", (0.0, 0.0, 0.46), (0.04, 0.16, 0.1))                                 # the head, bitten into the top of the block
     for k, (x, y, yaw) in enumerate(((0.5, 0.3, 20), (0.62, -0.1, 80), (0.45, -0.35, 150))):
-        p.cyl("wood_dark" if k % 2 else "wood_light", (x, y, 0.07), 0.07, 0.4, n=6, axis="y", rot=(0, 0, yaw))
+        p.cyl("wood_grey", (x, y, 0.0621), 0.07, 0.4, n=6, axis="y", rot=(0, 0, yaw))
     return p
 
 
@@ -317,7 +321,7 @@ def landline_phone():
     p.box("black", (0, 0, 0.115), (0.24, 0.07, 0.04))
     p.box("black", (-0.1, 0, 0.13), (0.05, 0.09, 0.05))
     p.box("black", (0.1, 0, 0.13), (0.05, 0.09, 0.05))
-    p.cyl("metal_galv", (0, 0.06, 0.1), 0.05, 0.012, n=8)
+    p.cyl("metal_galv", (0, -0.075, 0.1), 0.05, 0.012, n=8)
     return p
 
 
@@ -349,20 +353,20 @@ def utility_pole_body(p):
 def crossarm(p, z, along="x", face=-0.185, reach=1.0, braces=True, middle=False):
     """A crossarm 2 m long with a pin insulator at each end (and in the middle if `middle`: only the lower arm, the top arm's middle wire sits on the pole top) and two angle braces. along x: on the front face, along y: on the +X face."""
     if along == "x":
-        p.box("wood_dark", (0, face, z), (2.0 * reach, 0.11, 0.13))
+        p.box("wood_dark", (0, face + 0.02, z), (2.0 * reach, 0.15, 0.13))      # 0.15 deep, its front face stays at face - 0.055 and its back goes into the pole
         for x in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
             pin_insulator(p, x, face, z + 0.065)
         if braces:
             for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.7, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
+                props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.54, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
     else:
         x0 = face                                                            # the Blender -X face: Unity +X, where the road wires are tied
-        p.box("wood_dark", (x0, 0, z), (0.11, 2.0 * reach, 0.13))
+        p.box("wood_dark", (x0 + 0.02, 0, z), (0.15, 2.0 * reach, 0.13))
         for y in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
             pin_insulator(p, x0, y, z + 0.065)
         if braces:
             for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (x0 * 0.7, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
+                props_lib.rod(p, "metal_galv", (x0 * 0.54, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
 
 
 def utility_pole():
@@ -391,9 +395,9 @@ def utility_pole_transformer():
     p.cyl("metal_galv", (-0.5, 0, 6.8), 0.2, 0.06, n=10, top_radius=0.15)    # its lid
     for y in (-0.08, 0.08):
         p.cyl("porcelain", (-0.5, y, 6.88), 0.035, 0.1, n=6, top_radius=0.025)  # the bushings
-    p.box("metal_dark", (0.18, 0, 6.32), (0.07, 0.05, 0.55))                 # the secondary rack on the Unity -X side
+    p.box("metal_dark", (0.14, 0, 6.32), (0.1, 0.05, 0.55))                 # the secondary rack on the Unity -X side
     for z in (6.15, 6.5):
-        p.cyl("porcelain", (0.27, 0, z), 0.04, 0.07, n=6, axis="x")         # the spools the drop wires are tied to
+        p.cyl("porcelain", (0.22, 0, z), 0.04, 0.07, n=6, axis="x")         # the spools the drop wires are tied to
     return p
 
 

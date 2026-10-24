@@ -461,5 +461,100 @@
  "GN_JumpingSpider_01": {
   "black": "Cephalothorax and eyes",
   "fabric_brown": "Abdomen"
+ },
+ "GT_Rake_01": {
+  "metal_dark": "Head and socket",
+  "metal_galv": "Teeth"
+ },
+ "GT_Shovel_01": {
+  "metal_galv": "Blade",
+  "metal_dark": "Socket"
+ },
+ "GT_Pitchfork_01": {
+  "metal_dark": "Tines and socket"
+ },
+ "GT_Crate_01": {
+  "wood_dark": "Edge battens"
+ },
+ "GT_MilkCan_01": {
+  "metal_dark": "Lid knob and handles"
+ },
+ "GT_HayBale_Square_01": {
+  "wood_dark": "Twine"
+ },
+ "GT_Jerrycan_01": {
+  "$main": "Can"
+ },
+ "GT_FeedSack_01": {
+  "cloth_red": "Label"
+ },
+ "GT_Stool_01": {
+  "wood_light": "Seat"
+ },
+ "GT_FirewoodStack_01": {
+  "wood_light": "Alternate logs",
+  "wood_grey": "Posts and rails"
+ },
+ "GT_FirewoodStack_Triangle_01": {
+  "wood_light": "Alternate logs",
+  "wood_grey": "Posts and rails"
+ },
+ "GT_FirewoodStack_Small_01": {
+  "wood_dark": "Alternate logs"
+ },
+ "GT_FirewoodPile_Loose_01": {
+  "wood_dark": "Dark logs"
+ },
+ "GT_ChoppingBlock_01": {
+  "wood_light": "Top face",
+  "wood_grey": "Split logs"
+ },
+ "GI_FenceSection_01": {
+  "$main": "Boards and posts"
+ },
+ "GI_Gate_01": {
+  "wood_grey": "Gate posts"
+ },
+ "GT_MailboxPost_01": {
+  "wood_grey": "Post",
+  "cloth_red": "Flag"
+ },
+ "GL_BareBulb_01": {
+  "metal_dark": "Socket"
+ },
+ "GL_PoleLamp_01": {
+  "metal_dark": "Lamp shade"
+ },
+ "GE_LandlinePhone_01": {
+  "metal_galv": "Dial"
+ },
+ "GL_UtilityPole_01": {
+  "wood_dark": "Crossarms, butt and cap",
+  "metal_galv": "Braces"
+ },
+ "GL_UtilityPoleCorner_01": {
+  "wood_dark": "Crossarms, butt and cap",
+  "metal_galv": "Braces"
+ },
+ "GL_UtilityPoleTransformer_01": {
+  "wood_dark": "Crossarms, butt and cap",
+  "metal_galv": "Braces and transformer",
+  "metal_dark": "Straps and racks"
+ },
+ "GL_ServiceEntry_01": {
+  "metal_dark": "Meter ring, hub and fittings",
+  "glass": "Meter glass"
+ },
+ "GL_FloodlightStand_01": {
+  "paint_white": "Lens",
+  "metal_galv": "Mast"
+ },
+ "FM_Generator_01": {
+  "paint_yellow": "Top cover",
+  "rubber": "Feet"
+ },
+ "FM_WaterTrough_01": {
+  "glass": "Water",
+  "wood_dark": "Legs"
  }
 }
