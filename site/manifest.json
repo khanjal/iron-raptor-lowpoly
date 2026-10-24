@@ -388,11 +388,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 300,
+   "triangles": 368,
    "size": [
     0.006,
     0.004,
-    0.011
+    0.014
    ],
    "glb": "models/GN_Ant_01.glb",
    "thumb": "thumbs/GN_Ant_01.png",
@@ -574,11 +574,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 508,
+   "triangles": 804,
    "size": [
+    0.005,
     0.006,
-    0.008,
-    0.033
+    0.036
    ],
    "glb": "models/GN_Caterpillar_01.glb",
    "thumb": "thumbs/GN_Caterpillar_01.png",
@@ -600,14 +600,14 @@
      "hex": "#8DB752"
     },
     {
-     "part": "Cloth red",
-     "swatch": 13,
-     "hex": "#B8443B"
-    },
-    {
      "part": "Paint yellow",
      "swatch": 42,
      "hex": "#E0B83A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
     }
    ]
   },
