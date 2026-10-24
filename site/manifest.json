@@ -627,9 +627,9 @@
    "interactive": false,
    "triangles": 360,
    "size": [
-    0.028,
-    0.007,
-    0.048
+    0.033,
+    0.008,
+    0.055
    ],
    "glb": "models/GN_Cockroach_01.glb",
    "thumb": "thumbs/GN_Cockroach_01.png",
@@ -765,9 +765,9 @@
    "interactive": false,
    "triangles": 336,
    "size": [
-    0.012,
-    0.004,
-    0.028
+    0.009,
+    0.003,
+    0.022
    ],
    "glb": "models/GN_Earwig_01.glb",
    "thumb": "thumbs/GN_Earwig_01.png",
@@ -859,9 +859,9 @@
    "interactive": false,
    "triangles": 392,
    "size": [
-    0.011,
-    0.006,
-    0.009
+    0.009,
+    0.005,
+    0.007
    ],
    "glb": "models/GN_Housefly_01.glb",
    "thumb": "thumbs/GN_Housefly_01.png",
@@ -997,9 +997,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 444,
+   "triangles": 396,
    "size": [
-    0.024,
+    0.023,
     0.018,
     0.062
    ],
@@ -1045,9 +1045,9 @@
    "interactive": false,
    "triangles": 384,
    "size": [
-    0.01,
     0.006,
-    0.014
+    0.004,
+    0.008
    ],
    "glb": "models/GN_Mosquito_01.glb",
    "thumb": "thumbs/GN_Mosquito_01.png",
