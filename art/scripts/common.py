@@ -739,6 +739,10 @@ def export_glb(coll, name, rigged=None, meta=True):
     info = describe(coll)
     rigged = info["rigged"] if rigged is None else rigged
     sync_materials(coll.all_objects)                                 # (a rigged model reaches here without export_fbx having run first)
+    for o in coll.all_objects:                                       # an empty image node exports a flat white model that no colour picker can repaint
+        for m in (o.data.materials if o.type == "MESH" else []):
+            if not any(n.type == "TEX_IMAGE" and n.image is not None for n in m.node_tree.nodes):
+                raise RuntimeError(f"{name}: material {m.name} has no palette image")
     objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
     top = [o for o in objs if o.parent is None]
     saved_loc = [(o, o.location.copy()) for o in top]
