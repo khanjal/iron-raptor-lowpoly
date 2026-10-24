@@ -23,7 +23,7 @@ const TAG_GROUPS = [
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
-  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [], common: [],
+  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [], common: [], max: false,
   q: '', category: '', tags: new Set(), features: new Set(),
   current: null, viewer: null, expanded: new Set(),
 };
@@ -252,6 +252,16 @@ function syncFromHash() {
   showAsset(a);
 }
 
+// Maximised: the viewer covers the page and the stage fills it (css .viewer.max). The choice is remembered for the next model and visit.
+function setMax(on) {
+  state.max = on;
+  $('viewer').classList.toggle('max', on);
+  $('maximize').textContent = on ? 'Shrink' : 'Expand';
+  $('maximize').setAttribute('aria-pressed', on ? 'true' : 'false');
+  try { localStorage.setItem('lowpoly-max', on ? '1' : ''); } catch (e) { /* private window: not remembered */ }
+  if (state.viewer) state.viewer.resize();
+}
+
 function closeViewer(updateHash = true) {
   if (updateHash && location.hash) history.pushState(null, '', location.pathname + location.search);
   state.current = null;
@@ -265,6 +275,7 @@ async function showAsset(a) {
   state.current = a.id;
   $('viewer').hidden = false;
   $('layout').classList.add('has-viewer');
+  setMax(state.max);
   if (matchMedia('(max-width: 62rem)').matches) document.body.style.overflow = 'hidden';
   $('filters').classList.remove('open');
   document.title = a.name + ' · Lowpoly Assets';
@@ -394,6 +405,7 @@ $('filters-toggle').addEventListener('click', () => {
   $('filters-toggle').setAttribute('aria-expanded', on);
 });
 $('close').addEventListener('click', () => closeViewer());
+$('maximize').addEventListener('click', () => setMax(!state.max));
 $('reset-view').addEventListener('click', () => state.viewer && state.viewer.resetView());
 $('open-all').addEventListener('click', () => {
   if (!state.viewer) return;
@@ -407,6 +419,7 @@ $('play').addEventListener('click', () => {
   v.setPlaying(!v.playing);
   $('play').textContent = v.playing ? 'Pause' : 'Play';
 });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) closeViewer(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) { if (state.max) setMax(false); else closeViewer(); } });
 
+try { state.max = localStorage.getItem('lowpoly-max') === '1'; } catch (e) { /* no storage: not maximised */ }
 init();

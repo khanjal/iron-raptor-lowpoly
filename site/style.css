@@ -172,6 +172,10 @@ details.more > summary { cursor: pointer; color: var(--muted); font-size: .85rem
 }
 .status:empty { display: none; }
 .panel { padding: 1rem; }
+/* maximised: the viewer covers the page under the header, the stage takes all the room and the details sit in a column beside it (below it on a phone) */
+.viewer.max { position: fixed; z-index: 35; top: 3.7rem; left: 0; right: 0; bottom: 0; max-height: none; border: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem); overflow: hidden; }
+.viewer.max .stage { aspect-ratio: auto; height: 100%; }
+.viewer.max .panel { overflow: auto; border-left: 1px solid var(--line); }
 .panel h2#v-name { font-size: 1.3rem; text-transform: none; letter-spacing: 0; color: var(--ink); margin: 0; }
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: .8rem; }
 .row[hidden] { display: none; }
@@ -208,6 +212,9 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
     position: fixed; z-index: 40; inset: 0; max-height: none; border: 0;
   }
   .stage { aspect-ratio: auto; height: min(62vh, 30rem); }
+  .viewer.max { top: 0; display: block; overflow: auto; }
+  .viewer.max .stage { height: 80vh; }
+  .viewer.max .panel { border-left: 0; }
   .top { gap: .5rem; padding: .5rem .7rem; }
   .gh { display: none; }   /* no room next to the search box; the footer links to GitHub */
   h1 { font-size: 1.05rem; }
