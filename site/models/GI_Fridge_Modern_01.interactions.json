@@ -3,52 +3,63 @@
  "id": "GI_Fridge_Modern_01",
  "space": "blender",
  "parts": {
-  "Door": {
+  "DoorL": {
    "kind": "hinge",
    "axis": "z",
    "pivot": [
-    0.35,
-    -0.37,
-    0.645
+    -0.45,
+    -0.38,
+    1.255
+   ],
+   "limit": -100,
+   "rest": -0.0
+  },
+  "DoorR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.45,
+    -0.38,
+    1.255
    ],
    "limit": 100,
    "rest": 0.0
   },
-  "DoorFreezer": {
-   "kind": "hinge",
-   "axis": "z",
+  "DrawerFreezer": {
+   "kind": "slide",
+   "axis": "y",
    "pivot": [
-    0.35,
-    -0.37,
-    1.505
+    0.0,
+    -0.36,
+    0.38
    ],
-   "limit": 100,
-   "rest": 0.0
+   "limit": -0.4,
+   "rest": -0.0
   }
  },
  "slots": {
-  "Crisper": {
+  "DrawerFreezer": {
    "position": [
-    0,
-    0,
-    0.13
+    0.0,
+    -0.03,
+    0.15
    ],
    "size": [
-    0.6,
-    0.55,
-    0.3
+    0.76,
+    0.62,
+    0.3888
    ],
-   "part": null
+   "part": "DrawerFreezer"
   },
   "Shelf1": {
    "position": [
     0,
     0,
-    0.46
+    0.93
    ],
    "size": [
+    0.8,
     0.6,
-    0.55,
     0.27
    ],
    "part": null
@@ -57,12 +68,12 @@
    "position": [
     0,
     0,
-    0.76
+    1.23
    ],
    "size": [
+    0.8,
     0.6,
-    0.55,
-    0.22
+    0.27
    ],
    "part": null
   },
@@ -70,38 +81,25 @@
    "position": [
     0,
     0,
-    1.01
+    1.53
    ],
    "size": [
+    0.8,
     0.6,
-    0.55,
-    0.17
-   ],
-   "part": null
-  },
-  "Freezer1": {
-   "position": [
-    0,
-    0,
-    1.215
-   ],
-   "size": [
-    0.6,
-    0.55,
     0.27
    ],
    "part": null
   },
-  "Freezer2": {
+  "Crisper": {
    "position": [
     0,
     0,
-    1.51
+    0.66
    ],
    "size": [
+    0.8,
     0.6,
-    0.55,
-    0.27
+    0.24
    ],
    "part": null
   }
@@ -111,8 +109,8 @@
    "kind": "light",
    "position": [
     0.0,
-    -0.07,
-    1.08
+    -0.072,
+    1.11
    ],
    "colour": "cool",
    "range": 1.5,
@@ -125,8 +123,8 @@
    "kind": "sound",
    "position": [
     0.0,
-    0.21,
-    0.54
+    0.216,
+    0.555
    ],
    "event": "fridge_hum",
    "loop": true,

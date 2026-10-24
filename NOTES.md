@@ -76,3 +76,9 @@ A model whose only difference from another is colour is built and shipped once; 
 
 ## Textures brought across (2026-10-23)
 `textures/ground/` (26 ground textures, 11 decals) and `textures/palette/GlobalPalette.png` came over from the game repo (they are Git LFS there; the LFS objects were pulled). The palette image is regenerated from `common.PALETTE` by `tools/palette_png.py` (the game's copy lacked the 20 newest swatches); a test keeps it current. With these, everything in the game repo's art folders is either here, built from a script here, or deliberately left with the game (Unity materials, scenes, audio, prefabs, scripts). Still to build in Blender: most models (see the count above), the road/sidewalk/curb pieces, and the synced vehicle and ship scripts.
+
+## Blender hand-off run (2026-10-24)
+
+Built in Blender 5.2.3 through the Blender MCP: the four fridges (`int_fridge`), every car group (sedan, taxi, van, police, ambulance, motorcycle, tractor, pickup) and the two ships. Triangles: cars 1,528 to 1,856 (the tractor is 6 over the 1,850 in #358), ships 672 and 1,924. The paint check passed with `GV_Sedan_Red_01` and `GV_Tractor_Red_01` added temporarily (2 presets, 0 differ); those two ids and their GLBs were removed again.
+
+**Looked at:** the four fridges (Classic, Modern, Retro, Damaged) in the viewport from four sides. Modern reads as French doors over a freezer drawer; Retro reads as one tall door with a long handle. **Retro's body is still boxy:** only the door edges are round. **Not looked at:** the vehicles and ships (only counted), the fridges' moving-part axes and limits and shelf slots (the per-model interactions files are regenerated but not checked by eye), thumbnails (not regenerated), `audit.py` / `audit_props.py` (not run). `out/meta` for the models not rebuilt came from another checkout, and the water cooler's triangle count was set by hand to the GLB's 328.

@@ -660,16 +660,16 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 180,
+   "triangles": 252,
    "size": [
-    0.7,
-    1.8,
-    0.777
+    0.9,
+    1.85,
+    0.797
    ],
    "glb": "models/GI_Fridge_Modern_01.glb",
    "thumb": "thumbs/GI_Fridge_Modern_01.png",
    "parts": {
-    "Door": {
+    "DoorL": {
      "kind": "hinge",
      "axis": [
       0,
@@ -677,27 +677,42 @@
       0
      ],
      "pivot": [
-      0.35,
-      0.645,
-      0.37
+      -0.45,
+      1.255,
+      0.38
+     ],
+     "limit": -100,
+     "rest": -0.0
+    },
+    "DoorR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.45,
+      1.255,
+      0.38
      ],
      "limit": 100,
      "rest": 0.0
     },
-    "DoorFreezer": {
-     "kind": "hinge",
+    "DrawerFreezer": {
+     "kind": "slide",
      "axis": [
       0,
-      1,
-      0
+      0,
+      -1
      ],
      "pivot": [
-      0.35,
-      1.505,
-      0.37
+      0.0,
+      0.38,
+      0.36
      ],
-     "limit": 100,
-     "rest": 0.0
+     "limit": -0.4,
+     "rest": -0.0
     }
    },
    "clips": [],
@@ -724,11 +739,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 180,
+   "triangles": 384,
    "size": [
-    0.7,
-    1.8,
-    0.777
+    0.72,
+    1.6,
+    0.785
    ],
    "glb": "models/GI_Fridge_Retro_01.glb",
    "thumb": "thumbs/GI_Fridge_Retro_01.png",
@@ -741,23 +756,8 @@
       0
      ],
      "pivot": [
-      0.35,
-      0.645,
-      0.37
-     ],
-     "limit": 100,
-     "rest": 0.0
-    },
-    "DoorFreezer": {
-     "kind": "hinge",
-     "axis": [
-      0,
-      1,
-      0
-     ],
-     "pivot": [
-      0.35,
-      1.505,
+      0.33,
+      0.86,
       0.37
      ],
      "limit": 100,
@@ -3741,11 +3741,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 636,
+   "triangles": 1716,
    "size": [
-    2.1,
-    1.661,
-    5.65
+    2.16,
+    1.68,
+    5.88
    ],
    "glb": "models/GV_Pickup_Blue_01.glb",
    "thumb": "thumbs/GV_Pickup_Blue_01.png",
@@ -3770,11 +3770,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 552,
+   "triangles": 1856,
    "size": [
-    2.81,
+    2.92,
     2.93,
-    3.865
+    3.92
    ],
    "glb": "models/GV_Tractor_Green_01.glb",
    "thumb": "thumbs/GV_Tractor_Green_01.png",
@@ -3840,11 +3840,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 672,
+   "triangles": 1576,
    "size": [
-    2.3,
-    2.512,
-    5.7
+    2.12,
+    2.52,
+    5.73
    ],
    "glb": "models/GV_Ambulance_White_01.glb",
    "thumb": "thumbs/GV_Ambulance_White_01.png",
@@ -3865,10 +3865,10 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 164,
+   "triangles": 1120,
    "size": [
-    0.7,
-    0.994,
+    0.9,
+    1.335,
     2.04
    ],
    "glb": "models/GV_Motorcycle_Red_01.glb",
@@ -3893,11 +3893,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 660,
+   "triangles": 1596,
    "size": [
-    2.1,
-    1.464,
-    4.9
+    1.92,
+    1.47,
+    4.93
    ],
    "glb": "models/GV_Police_Sheriff_01.glb",
    "thumb": "thumbs/GV_Police_Sheriff_01.png",
@@ -3926,11 +3926,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 624,
+   "triangles": 1560,
    "size": [
-    2.1,
-    1.334,
-    4.9
+    1.92,
+    1.38,
+    4.93
    ],
    "glb": "models/GV_Sedan_Blue_01.glb",
    "thumb": "thumbs/GV_Sedan_Blue_01.png",
@@ -4014,11 +4014,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 516,
+   "triangles": 1140,
    "size": [
-    1.905,
-    1.392,
-    4.932
+    2.027,
+    1.445,
+    4.984
    ],
    "glb": "models/GV_Sedan_Red_Damaged_01.glb",
    "thumb": "thumbs/GV_Sedan_Red_Damaged_01.png",
@@ -4043,11 +4043,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 648,
+   "triangles": 1584,
    "size": [
-    2.1,
-    1.514,
-    4.9
+    1.92,
+    1.53,
+    4.93
    ],
    "glb": "models/GV_Taxi_Yellow_01.glb",
    "thumb": "thumbs/GV_Taxi_Yellow_01.png",
@@ -4069,11 +4069,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 624,
+   "triangles": 1528,
    "size": [
-    2.3,
-    2.382,
-    5.7
+    2.12,
+    2.43,
+    5.73
    ],
    "glb": "models/GV_Van_Brown_01.glb",
    "thumb": "thumbs/GV_Van_Brown_01.png",
@@ -4096,11 +4096,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 100,
+   "triangles": 672,
    "size": [
-    5.611,
-    0.92,
-    5.65
+    5.811,
+    1.35,
+    7.21
    ],
    "glb": "models/SH_Dart_01.glb",
    "thumb": "thumbs/SH_Dart_01.png",
@@ -4125,11 +4125,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 416,
+   "triangles": 1924,
    "size": [
-    9.2,
-    3.8,
-    9.2
+    9.34,
+    5.0,
+    9.48
    ],
    "glb": "models/SH_Scout_01.glb",
    "thumb": "thumbs/SH_Scout_01.png",
