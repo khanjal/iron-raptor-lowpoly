@@ -14265,7 +14265,7 @@
    "triangles": 300,
    "size": [
     0.65,
-    0.122,
+    0.12,
     0.439
    ],
    "glb": "models/GT_HoseCoil_01.glb",
@@ -14396,7 +14396,7 @@
    "interactive": false,
    "triangles": 224,
    "size": [
-    0.385,
+    0.38,
     0.069,
     0.16
    ],
@@ -14908,7 +14908,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 176,
+   "triangles": 192,
    "size": [
     0.32,
     1.115,
@@ -14998,7 +14998,7 @@
    "triangles": 188,
    "size": [
     0.42,
-    0.092,
+    0.09,
     0.3
    ],
    "glb": "models/GT_RopeCoil_01.glb",
@@ -15040,7 +15040,7 @@
    "triangles": 84,
    "size": [
     0.8,
-    0.598,
+    0.6,
     0.425
    ],
    "glb": "models/GT_Sawhorse_01.glb",

@@ -4,8 +4,9 @@ extension cord reel and hand truck. Flat faceted models.
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/tools_more.py", run_name="__main__")
 Optional global TOOL_LIST (piece names). Exports Assets/Art/Global/Tools/GT_<Name>_01.fbx.
 
-Origin on the floor at the middle of the footprint. Small hand tools (shears, poker) lie on the floor along X, working end at +X; the rest stand as they are used.
-Front -Y. Sizes and details are in docs/assets/briefs/hand-tools-2.md.
+Origin on the floor at the middle of the footprint. Small hand tools (shears, poker) lie on the floor along X, working end at +X; the rest stand as they are used (the hand truck's toe plate and the
+sprinkler's bar face +X, the working side).
+Front -Y for the rest. Sizes and details are in docs/assets/briefs/hand-tools-2.md.
 """
 
 import importlib
@@ -44,7 +45,7 @@ def piece(name):
 
 @piece("Plunger")
 def plunger():
-    """A sink plunger 0.5 m tall: black rubber cup 0.15 m across, wooden handle, a small knob on top."""
+    """A sink plunger 0.55 m tall: black rubber cup 0.15 m across, wooden handle, a small knob on top."""
     p = Prop("GT_Plunger_01")
     p.cyl("rubber", (0, 0, 0.04), 0.075, 0.08, n=10, top_radius=0.03)                # the cup, wide end on the floor
     p.cyl("wood_light", (0, 0, 0.3), 0.013, 0.46, n=8)                               # handle, from inside the cup up
@@ -54,13 +55,13 @@ def plunger():
 
 @piece("RopeCoil")
 def rope_coil():
-    """A coil of 12 mm rope, 0.3 m across and 0.09 m high: three layers around an open middle, one end laid out along the floor."""
+    """A coil of thick (about 25 mm) rope, 0.3 m across and 0.09 m high: three layers around an open middle, one end laid out along the floor."""
     p = Prop("GT_RopeCoil_01")
     p.ox = -0.06
     p.cyl("tan", (0, 0, 0.015), 0.15, 0.03, n=12)
     p.cyl("hay", (0, 0, 0.045), 0.15, 0.03, n=12)
     p.cyl("tan", (0, 0, 0.075), 0.15, 0.03, n=12)
-    p.cyl("dark_brown", (0, 0, 0.046), 0.07, 0.092, n=12)                            # the open middle, a dark core a little taller than the coil
+    p.cyl("dark_brown", (0, 0, 0.045), 0.07, 0.09, n=12)                             # the open middle, a dark core as tall as the coil
     p.box("tan", (0.2, 0.0, 0.01), (0.14, 0.02, 0.02))                               # the free end, along the floor from the coil's side
     return p
 
@@ -72,7 +73,7 @@ def sawhorse():
     p.box("wood_light", (0, 0, 0.555), (0.8, 0.09, 0.09))                           # top beam
     for sx in (-1, 1):
         for sy in (-1, 1):
-            rod(p, "wood_dark", (sx * 0.32, sy * 0.03, 0.52), (sx * 0.34, sy * 0.19, 0.01), w=0.045, h=0.045)
+            rod(p, "wood_dark", (sx * 0.32, sy * 0.03, 0.52), (sx * 0.34, sy * 0.19, 0.0078), w=0.045, h=0.045)
     for sx in (-1, 1):
         p.box("wood_dark", (sx * 0.33, 0, 0.3), (0.03, 0.2, 0.04))                  # a brace across each pair of legs
     return p
@@ -80,12 +81,12 @@ def sawhorse():
 
 @piece("PaintCan")
 def paint_can():
-    """A one gallon paint can (0.16 m across, 0.17 m high): label, rim, lid, wire bail and a drip of yellow paint down the side."""
+    """A one gallon paint can (0.16 m across, 0.17 m high): label, rim, wire bail, paint at the open top and a drip of yellow paint down the side."""
     p = Prop("GT_PaintCan_01")
     p.cyl("metal_galv", (0, 0, 0.085), 0.08, 0.17, n=12)
     p.cyl("label_red", (0, 0, 0.09), 0.0808, 0.07, n=12)                            # the paper label, just proud of the can
     p.cyl("metal_galv", (0, 0, 0.172), 0.084, 0.012, n=12)                          # the rim
-    p.cyl("paint_yellow", (0, 0, 0.176), 0.07, 0.006, n=12)                         # paint at the top where the lid is off
+    p.cyl("paint_yellow", (0, 0, 0.174), 0.07, 0.006, n=12)                         # paint at the top where the lid is off
     p.box("paint_yellow", (0.0, -0.0815, 0.15), (0.03, 0.006, 0.05))                 # a drip on the front
     rod(p, "metal_dark", (-0.08, 0, 0.17), (0.0, 0, 0.23), w=0.006)                  # the wire bail
     rod(p, "metal_dark", (0.0, 0, 0.23), (0.08, 0, 0.17), w=0.006)
@@ -127,7 +128,7 @@ def hose_coil():
     p.ox = -0.1
     for k in range(4):
         p.cyl("corn_green" if k % 2 == 0 else "leaf_dark", (0, 0, 0.015 + k * 0.03), 0.225, 0.03, n=14)
-    p.cyl("shadow", (0, 0, 0.061), 0.1, 0.122, n=14)                                         # the open middle
+    p.cyl("shadow", (0, 0, 0.06), 0.1, 0.12, n=14)                                         # the open middle
     p.box("corn_green", (0.27, 0.0, 0.0125), (0.12, 0.025, 0.025))                           # the tail, along the floor from the coil's side
     p.cyl("copper", (0.375, 0, 0.0175), 0.0175, 0.1, n=8, axis="x")                          # the brass nozzle
     return p
@@ -135,7 +136,7 @@ def hose_coil():
 
 @piece("Sprinkler")
 def sprinkler():
-    """An oscillating lawn sprinkler 0.36 m long: a steel spray bar with a row of holes on two yellow skids, a brass hose fitting at one end."""
+    """An oscillating lawn sprinkler 0.39 m long, fitting included: a steel spray bar with a row of holes on two yellow skids, a brass hose fitting at one end."""
     p = Prop("GT_Sprinkler_01")
     p.ox = 0.0225
     for s in (-1, 1):
@@ -143,7 +144,7 @@ def sprinkler():
     p.box("metal_galv", (0, 0, 0.04), (0.34, 0.07, 0.05))                                  # the spray bar
     for k in range(8):
         p.cyl("black", (-0.14 + k * 0.04, 0, 0.066), 0.005, 0.006, n=6)                      # the spray holes
-    p.cyl("copper", (-0.195, 0, 0.04), 0.017, 0.04, n=8, axis="x")                           # hose fitting
+    p.cyl("copper", (-0.19, 0, 0.04), 0.017, 0.04, n=8, axis="x")                           # hose fitting
     return p
 
 
@@ -167,7 +168,7 @@ def hand_truck():
     p.ox = -0.06
     for s in (-1, 1):
         p.box("truck_blue", (0, s * 0.17, 0.55), (0.025, 0.025, 1.1))                       # the two rails
-        p.cyl("rubber", (0, s * 0.2, 0.1), 0.1, 0.035, n=10, axis="y")                       # the wheels
+        p.cyl("rubber", (0, s * 0.2, 0.1), 0.1, 0.035, n=12, axis="y")                       # the wheels
     for z in (0.35, 0.65, 0.95):
         p.box("truck_blue", (0, 0, z), (0.02, 0.34, 0.02))                                   # cross bars
     p.box("truck_blue", (0, 0, 1.1), (0.04, 0.36, 0.03))                                     # the handle
