@@ -583,14 +583,14 @@ def aphid():
     blob(p, "plant_green", (0, -0.8, 1.05), (0.44, 0.44, 0.4), n=6, rings=1)                # the head and thorax
     for s in (-1, 1):
         rod(p, "black", (s * 0.36, 1.45, 1.12), (s * 0.44, 2.15, 1.36), 0.13)               # the cornicles
-    legs(p, "leaf_dark", 0.3, (-0.5, -0.1, 0.4), 0.9, 0.75, 0.5, 0.08, dy=0.16)
+    legs(p, "leaf_dark", 0.2, (-0.5, -0.1, 0.4), 0.9, 0.75, 0.5, 0.08, dy=0.16)
     antennae(p, "leaf_dark", (0.16, -0.95, 1.2), (0.64, -2.55, 1.85), 0.065)
     return p
 
 
 @critter("beetles", "Weevil")
 def weevil():
-    """A weevil (about 6 mm without the snout): a rounded dark body, a small head drawn out into a long curved snout, elbowed antennae from the middle of the snout."""
+    """A weevil (about 8 mm without the snout): a rounded dark body, a small head drawn out into a long curved snout, elbowed antennae from the middle of the snout."""
     p = new("GN_Weevil_01")
     p.motion = "walk"
     blob(p, "dark_brown", (0, 1.2, 2.4), (1.9, 2.7, 1.9), n=6, rings=3)                     # the wing covers
@@ -602,7 +602,7 @@ def weevil():
         with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 0.35, -5.6, 1.8)):           # elbowed: first out and forward, then bent outward
             rod(p, "black", (s * 0.35, -5.6, 1.8), (s * 0.9, -6.5, 2.4), 0.12)
             rod(p, "black", (s * 0.9, -6.5, 2.4), (s * 1.8, -7.0, 1.9), 0.12)
-    legs(p, "black", 1.2, (-1.8, -0.4, 1.3), 1.45, 1.6, 1.1, 0.32, dy=0.4)
+    legs(p, "black", 0.9, (-1.8, -0.4, 1.3), 1.45, 1.6, 1.1, 0.32, dy=0.4)
     return p
 
 
@@ -616,7 +616,7 @@ def stag_beetle():
     blob(p, "black", (0, -13.0, 6.0), (6.0, 3.2, 3.8), n=6, rings=1)                        # the head
     for s in (-1, 1):
         rod(p, "rust_dark", (s * 3.0, -13.5, 6.0), (s * 5.5, -19.5, 6.5), 2.4)               # the jaws: out and forward,
-        rod(p, "rust_dark", (s * 5.5, -19.5, 6.5), (s * 2.0, -24.0, 7.0), 1.9)               # then curving in to meet
+        rod(p, "rust_dark", (s * 5.5, -19.5, 6.5), (s * 2.0, -24.0, 7.0), 1.9)               # then curving in toward each other
         rod(p, "rust_dark", (s * 4.9, -18.2, 6.4), (s * 2.6, -18.6, 6.4), 1.2)               # and a tooth on the inside
     antennae(p, "black", (1.8, -12.5, 7.5), (5.0, -19.0, 10.5), 0.8)
     legs(p, "black", 4.6, (-9.0, -1.0, 6.5), 4.5, 9.0, 5.0, 1.4, dy=2.0)
@@ -664,7 +664,7 @@ def wolf_spider():
     p.motion = "spider"
     blob(p, "dark_brown", (0, -5.0, 5.0), (6.0, 6.5, 4.0), n=8, rings=2)                    # the cephalothorax
     blob(p, "fabric_brown", (0, 7.0, 5.0), (5.5, 9.0, 4.5), n=8, rings=3)                   # the abdomen
-    p.box("tan", (0, -5.0, 8.5), (1.6, 10.0, 0.6))                                          # the pale stripe
+    p.box("tan", (0, -5.0, 8.4), (1.6, 5.0, 0.6))                                           # the pale stripe
     for s in (-1, 1):
         ball_at(p, "black", (s * 2.3, -10.5, 7.0), 1.4, n=5)                                # the two big front eyes
     arachnid_legs(p, "dark_brown", 5.5, (-9.0, -6.0, -2.0, 1.5), (-5.0, -2.0, 3.0, 7.0), 4.5, 16.0, 8.0, 1.3)
@@ -676,12 +676,12 @@ def orb_weaver():
     """An orb-weaver spider (about 21 mm body): a big round abdomen with a bright patch, a small cephalothorax and long legs."""
     p = new("GN_OrbWeaver_01")
     p.motion = "spider"
-    blob(p, "fabric_brown", (0, 5.0, 9.0), (6.5, 7.4, 6.5), n=8, rings=3)                   # the big abdomen
-    p.box("food_orange", (0, 5.0, 15.2), (4.2, 5.0, 0.5))                                   # the patch on top
+    blob(p, "fabric_brown", (0, 3.0, 9.0), (6.5, 7.4, 6.5), n=8, rings=3)                   # the big abdomen
+    ball_at(p, "food_orange", (0, 3.0, 14.6), 2.0, n=5)                                   # the bright spot on top
     blob(p, "rust_dark", (0, -5.0, 5.0), (4.0, 4.2, 3.2), n=8, rings=2)                     # the cephalothorax
     for s in (-1, 1):
         ball_at(p, "black", (s * 1.4, -8.9, 5.8), 0.7, n=5)                                 # the small eyes
-    arachnid_legs(p, "rust_dark", 3.4, (-8.0, -5.5, -2.5, 0.0), (-5.0, -2.5, 1.5, 4.0), 4.4, 16.0, 9.0, 0.9)
+    arachnid_legs(p, "rust_dark", 3.4, (-8.0, -5.5, -3.0, -1.0), (-5.0, -2.5, 1.5, 4.0), 4.4, 16.0, 9.0, 0.9)
     return p
 
 
@@ -696,7 +696,7 @@ def jumping_spider():
     for s in (-1, 1):
         ball_at(p, "black", (s * 0.8, -3.1, 2.7), 0.7, n=5)                                 # the huge front eyes
         ball_at(p, "paint_white", (s * 0.8, -3.7, 2.8), 0.2, n=4)                           # their highlight
-    arachnid_legs(p, "dark_brown", 1.8, (-3.0, -2.0, -0.7, 1.0), (-1.3, -0.7, 0.7, 1.6), 1.6, 3.6, 2.3, 0.55)
+    arachnid_legs(p, "dark_brown", 1.8, (-2.6, -1.8, -0.7, 0.8), (-1.3, -0.7, 0.7, 1.6), 1.6, 3.6, 2.3, 0.55)
     return p
 
 

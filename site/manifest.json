@@ -92,7 +92,7 @@
    "size": [
     0.011,
     0.004,
-    0.01
+    0.009
    ],
    "glb": "models/GN_JumpingSpider_01.glb",
    "thumb": "thumbs/GN_JumpingSpider_01.png",
@@ -136,11 +136,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 412,
+   "triangles": 436,
    "size": [
     0.04,
-    0.016,
-    0.029
+    0.017,
+    0.027
    ],
    "glb": "models/GN_OrbWeaver_01.glb",
    "thumb": "thumbs/GN_OrbWeaver_01.png",
@@ -160,11 +160,6 @@
      "part": "Abdomen",
      "swatch": 58,
      "hex": "#7A5A44"
-    },
-    {
-     "part": "Abdomen patch",
-     "swatch": 100,
-     "hex": "#E8922A"
     }
    ]
   },
@@ -1379,7 +1374,7 @@
      "hex": "#2B3A55"
     },
     {
-     "part": "Head and legs",
+     "part": "Head, antennae and legs",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -1421,7 +1416,7 @@
      "hex": "#6B3A28"
     },
     {
-     "part": "Pronotum, head and legs",
+     "part": "Pronotum, head, antennae and legs",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -1532,7 +1527,7 @@
    "interactive": false,
    "triangles": 336,
    "size": [
-    0.006,
+    0.005,
     0.004,
     0.011
    ],

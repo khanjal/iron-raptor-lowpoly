@@ -17,12 +17,12 @@ The list comes from the creatures of the game Grounded and Grounded 2 (see the c
 | Model | Real size and anatomy | Parts and clips |
 |---|---|---|
 | Aphid (`GN_Aphid_01`) | green aphid, about 3 mm: soft pear-shaped body, small head, long antennae, two cornicles at the tail | Idle, Walk |
-| Weevil (`GN_Weevil_01`) | about 6 mm without the snout (11 mm with it): rounded dark body, a head drawn out into a long snout, elbowed antennae from its middle | Idle, Walk |
+| Weevil (`GN_Weevil_01`) | about 8 mm without the snout (11 mm with it): rounded dark body, a head drawn out into a long snout, elbowed antennae from its middle | Idle, Walk |
 | Stag beetle (`GN_StagBeetle_01`) | male, about 40 mm with the jaws: chestnut wing covers, black pronotum and head, huge branched jaws | Idle, Walk |
 | Scarab beetle (`GN_Scarab_01`) | dung beetle, about 25 mm: domed blue-black body, flat shovel head, broad legs | Idle, Walk |
 | Scorpion (`GN_Scorpion_01`) | about 55 mm long with the claws: flat tan body, two big claws, eight legs, a five-segment tail curled over the back to a stinger | Idle, Walk (eight legs) |
 | Wolf spider (`GN_WolfSpider_01`) | about 25 mm body: brown, a pale stripe down the back, two big front eyes, long strong legs | Idle, Walk (eight legs) |
-| Orb-weaver (`GN_OrbWeaver_01`) | about 20 mm body: big round abdomen with a pale patch, small cephalothorax, long legs | Idle, Walk (eight legs) |
+| Orb-weaver (`GN_OrbWeaver_01`) | about 21 mm body: big round abdomen with a bright orange spot, small cephalothorax, long legs | Idle, Walk (eight legs) |
 | Jumping spider (`GN_JumpingSpider_01`) | about 8 mm: stocky black cephalothorax, two huge front eyes, brown abdomen with a chevron, short legs | Idle, Walk (eight legs) |
 
 ## Known limits
