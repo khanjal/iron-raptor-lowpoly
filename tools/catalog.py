@@ -34,6 +34,15 @@ BUILD = {
                          ids=["GV_Tractor_Green_01"]),
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
+    "ships_more": dict(script="ships.py", globals={"SHIP_LIST": ["Cigar", "Triangle", "EscapePod", "ProbeDrone", "DropShip", "MIBCraft", "Mothership"]},
+                       ids=["SH_Cigar_01", "SH_Triangle_01", "SH_EscapePod_01", "SH_ProbeDrone_01", "SH_DropShip_01", "SH_MIBCraft_01", "SH_Mothership_01"]),
+    "ship_ufo": dict(script="ufo.py", ids=["SH_AbductionUfo_01"]),
+    "ship_saucer": dict(script="vehicles.py", globals={"VEHICLE_LIST": ["ship"]}, ids=["GV_CrashedShip_01"]),
+    "ship_hulls": dict(script="ship_hulls.py", ids=["GV_ShipEgg_01", "GV_ShipFreighter_01"]),
+    "ship_props": dict(script="ship_props.py", ids=["GV_ShipLockers_01", "GV_ShipPod_01", "GV_ShipJars_01", "GV_ShipConduit_01", "GV_ShipHoloTable_01", "GV_ShipCouch_01",
+                                                    "GV_ShipToolRack_01", "GV_ShipSampleRack_01", "GV_ShipHelm_01", "GV_ShipNavScreen_01", "GV_ShipRadarPost_01",
+                                                    "GV_ShipCrates_01", "GV_ShipDrums_01", "GV_ShipBunk_01", "GV_ShipMess_01"]),
+    "ship_terminals": dict(script="terminals.py", ids=["GV_ShipConsole_01", "GV_ShipTerminalBank_01", "GV_ShipTerminalLaunch_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
                        ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
     "int_fridge_dispenser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, ids=["GI_Fridge_Dispenser_01"]),
@@ -131,6 +140,35 @@ _a("GV_Tractor_01", "Tractor", "vehicles/farm/tractor", "rural farm green red ne
 _a("GV_Pickup_01", "Farm pickup", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")
+_a("SH_Cigar_01", "Cigar ship", "vehicles/ship/cigar", "sci-fi alien ship long cylinder craft glow new")
+_a("SH_Triangle_01", "Triangle ship", "vehicles/ship/triangle", "sci-fi alien ship black triangle craft lights new")
+_a("SH_EscapePod_01", "Escape pod", "vehicles/ship/escape-pod", "sci-fi alien ship small capsule pod crashed new")
+_a("SH_ProbeDrone_01", "Probe drone", "vehicles/ship/probe-drone", "sci-fi alien ship small floating scout drone new")
+_a("SH_DropShip_01", "Drop ship", "vehicles/ship/drop-ship", "sci-fi alien ship transport landing craft new")
+_a("SH_MIBCraft_01", "Agency craft", "vehicles/ship/agency-craft", "sci-fi ship government black agency craft new")
+_a("SH_Mothership_01", "Mothership", "vehicles/ship/mothership", "sci-fi alien ship huge orbiting carrier new")
+_a("SH_AbductionUfo_01", "Abduction UFO", "vehicles/ship/abduction-ufo", "sci-fi alien ship flying saucer ufo beam cyan small new")
+_a("GV_CrashedShip_01", "Crashed saucer", "vehicles/ship/crashed-saucer", "sci-fi alien ship saucer landed crashed walkable interior ramp grey cyan damaged")
+_a("GV_ShipEgg_01", "Egg ship", "vehicles/ship/egg", "sci-fi alien ship egg gold violet landed walkable interior ramp legs new")
+_a("GV_ShipFreighter_01", "Freighter ship", "vehicles/ship/freighter", "sci-fi alien ship freighter cargo containers landed walkable interior ramp legs new")
+_a("GV_ShipLockers_01", "Ship lockers", "vehicles/ship-interior/storage", "sci-fi alien ship interior locker wall new")
+_a("GV_ShipPod_01", "Stasis pod", "vehicles/ship-interior/pod", "sci-fi alien ship interior stasis sleep capsule glow new")
+_a("GV_ShipJars_01", "Specimen jars", "vehicles/ship-interior/jars", "sci-fi alien ship interior lab specimen jar glass cow plant new")
+_a("GV_ShipConduit_01", "Cable run", "vehicles/ship-interior/conduit", "sci-fi alien ship interior cable conduit wall new")
+_a("GV_ShipHoloTable_01", "Holo-map table", "vehicles/ship-interior/holo-table", "sci-fi alien ship interior hologram map table glow new")
+_a("GV_ShipCouch_01", "Medical couch", "vehicles/ship-interior/couch", "sci-fi alien ship interior lab medical bed couch new")
+_a("GV_ShipToolRack_01", "Ship tool rack", "vehicles/ship-interior/tool-rack", "sci-fi alien ship interior lab tools wall new")
+_a("GV_ShipSampleRack_01", "Sample rack", "vehicles/ship-interior/sample-rack", "sci-fi alien ship interior lab samples wall new")
+_a("GV_ShipHelm_01", "Pilot's helm", "vehicles/ship-interior/helm", "sci-fi alien ship interior bridge pilot desk chair new")
+_a("GV_ShipNavScreen_01", "Nav screen", "vehicles/ship-interior/nav-screen", "sci-fi alien ship interior bridge screen star chart new")
+_a("GV_ShipRadarPost_01", "Radar post", "vehicles/ship-interior/radar-post", "sci-fi alien ship interior bridge radar new")
+_a("GV_ShipCrates_01", "Cargo crates", "vehicles/ship-interior/crates", "sci-fi alien ship interior cargo crates pallet new")
+_a("GV_ShipDrums_01", "Cargo drums", "vehicles/ship-interior/drums", "sci-fi alien ship interior cargo drums barrels pallet new")
+_a("GV_ShipBunk_01", "Ship bunk", "vehicles/ship-interior/bunk", "sci-fi alien ship interior quarters bed bunk new")
+_a("GV_ShipMess_01", "Mess table", "vehicles/ship-interior/mess-table", "sci-fi alien ship interior quarters table seats new")
+_a("GV_ShipConsole_01", "Ship console", "vehicles/ship-interior/console", "sci-fi alien ship interior control desk buttons glow new")
+_a("GV_ShipTerminalBank_01", "Bank terminal", "vehicles/ship-interior/terminal-bank", "sci-fi alien ship interior terminal green screen ledger new")
+_a("GV_ShipTerminalLaunch_01", "Launch terminal", "vehicles/ship-interior/terminal-launch", "sci-fi alien ship interior terminal red screen lever warning new")
 # animals
 _a("GN_Cow_faceted_01", "Cow", "animals/farm/cow", "rural farm livestock black white animal quadruped")
 _a("GN_Horse_faceted_01", "Horse", "animals/farm/horse", "rural farm livestock brown animal quadruped")
