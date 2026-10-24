@@ -15253,12 +15253,12 @@
      "hex": "#2E2E32"
     },
     {
-     "part": "Bumpers and hubs",
+     "part": "Bumpers and chrome",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Office dark",
+     "part": "Seats",
      "swatch": 130,
      "hex": "#5C6066"
     }
@@ -15895,12 +15895,12 @@
      "hex": "#1B1B1E"
     },
     {
-     "part": "Stripe",
+     "part": "Body",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
     {
-     "part": "Body",
+     "part": "Stripe",
      "swatch": 21,
      "hex": "#B79A6A"
     },

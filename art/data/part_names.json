@@ -77,7 +77,8 @@
  "GV_Pickup_01": {
   "rubber": "Tyres",
   "black": "Frame and trim",
-  "metal_galv": "Bumpers and hubs"
+  "metal_galv": "Bumpers and chrome",
+  "office_dark": "Seats"
  },
  "GV_Motorcycle_01": {
   "rubber": "Tyres",
@@ -88,8 +89,8 @@
  "GV_Police_Sheriff_01": {
   "rubber": "Tyres",
   "metal_galv": "Bumpers and chrome",
-  "paint_white": "Stripe",
-  "tan_uniform": "Body"
+  "paint_white": "Body",
+  "tan_uniform": "Stripe"
  },
  "GV_Taxi_Yellow_01": {
   "rubber": "Tyres",
