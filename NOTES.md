@@ -119,5 +119,6 @@ The game's room kit had its generators here from the first sync (`household.py`,
 - **Fixed:** the football was a box (`decor.py`): now a barrel with two cones and laces.
 - The ids keep the game's names, including `GH_Bookcase_02` to `05`, `GH_Rug_02` to `04` and `GH_Shelf_Wall_02` to `05` (the catalog test now allows `_01` to `_09`).
 - **Not done:** the ~325 room props the game never modelled (`docs/assets/room-assets-missing.md`, from the prop catalogue), the `_Modern`/`_Retro`/`_Damaged` style sets of the pieces above, and `contents.py` (the game's food and kit: 70 more pieces).
+
 ## Ant and caterpillar segments (2026-10-24, branch `fix/insect-segments`)
 - Ant rebuilt with a petiole waist, legs on the mesosoma, mandibles and elbowed antenna bones; caterpillar rebuilt with 11 overlapping segments (the real animal has 13, cut for the triangle budget), true legs on the thorax and prolegs on four abdominal segments. Not done: mandibles attach only at their back ends, the caterpillar's `paintable` order in the manifest was patched by hand, the other insects were read, not rendered.
