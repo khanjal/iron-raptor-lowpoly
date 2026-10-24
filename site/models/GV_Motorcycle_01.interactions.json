@@ -1,0 +1,30 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GV_Motorcycle_01",
+ "space": "blender",
+ "parts": {
+  "Wheel_Front": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    -0.7,
+    0.32
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Wheel_Rear": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    0.7,
+    0.32
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  }
+ },
+ "slots": {}
+}

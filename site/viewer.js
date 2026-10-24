@@ -226,7 +226,7 @@ export class Viewer {
   _applyLights() {
     const dim = this.lightsOn && this.lights.length ? 0.28 : 1;
     for (const [l, v] of this.ambient) l.intensity = v * dim;
-    const open = Object.values(this.parts).some((p) => p.target > 0.5);
+    const open = Object.values(this.parts).some((p) => p.kind !== 'spin' && p.target > 0.5);
     for (const l of this.lights) l.light.visible = this.lightsOn && (l.when !== 'door_open' || open);
   }
 
@@ -239,13 +239,18 @@ export class Viewer {
       const axis = new THREE.Vector3(...d.axis).normalize();
       const rest = d.rest || 0;
       const st = { role, node, kind: d.kind, axis, limit: d.limit, rest, meshes: [], s: 0, target: 0 };
-      if (d.kind === 'hinge') {
+      if (d.kind === 'spin') {
+        // a wheel: turns about its axis for as long as it is switched on (limit is one turn, 360, and does not matter here)
+        st.baseQuat = node.quaternion.clone();
+        st.angle = 0;
+        st.s = st.target = 0;
+      } else if (d.kind === 'hinge') {
         // the exported pose may already be a little open (the Damaged styles); take that out to get the shut pose, then s runs 0 (shut) .. 1 (open by `limit`)
         st.baseQuat = node.quaternion.clone().multiply(new THREE.Quaternion().setFromAxisAngle(axis, THREE.MathUtils.degToRad(-rest)));
       } else {
         st.basePos = node.position.clone().addScaledVector(axis, -rest);
       }
-      st.s = st.target = d.limit ? rest / d.limit : 0;
+      if (d.kind !== 'spin') st.s = st.target = d.limit ? rest / d.limit : 0;
       node.traverse((o) => {
         if (!o.isMesh) return;
         o.material = o.material.clone(); // own material, so hovering one part does not light the whole model
@@ -258,7 +263,9 @@ export class Viewer {
 
   _applyPart(st) {
     const amount = st.limit * st.s;
-    if (st.kind === 'hinge') {
+    if (st.kind === 'spin') {
+      st.node.quaternion.copy(st.baseQuat).multiply(new THREE.Quaternion().setFromAxisAngle(st.axis, st.angle));
+    } else if (st.kind === 'hinge') {
       st.node.quaternion.copy(st.baseQuat).multiply(new THREE.Quaternion().setFromAxisAngle(st.axis, THREE.MathUtils.degToRad(amount)));
     } else {
       st.node.position.copy(st.basePos).addScaledVector(st.axis, amount);
@@ -274,7 +281,7 @@ export class Viewer {
   }
 
   setAllParts(open) {
-    for (const st of Object.values(this.parts)) st.target = open ? 1 : 0;
+    for (const st of Object.values(this.parts)) if (st.kind !== 'spin') st.target = open ? 1 : 0; // wheels are switched on one by one
     this.onPartsChanged(this.partStates());
     this._applyLights();
   }
@@ -408,7 +415,12 @@ export class Viewer {
     const dt = Math.min(this.clock.getDelta(), 0.1);
     if (this.mixer) this.mixer.update(dt);
     for (const st of Object.values(this.parts)) {
-      if (st.s !== st.target) {
+      if (st.kind === 'spin') {
+        if (st.target > 0.5) {
+          st.angle = (st.angle + dt * 6) % (Math.PI * 2); // about one turn a second, the way a wheel turns at walking pace
+          this._applyPart(st);
+        }
+      } else if (st.s !== st.target) {
         const step = dt / 0.45; // a door takes about half a second
         st.s = st.s < st.target ? Math.min(st.target, st.s + step) : Math.max(st.target, st.s - step);
         this._applyPart(st);

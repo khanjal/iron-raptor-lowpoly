@@ -36,6 +36,7 @@ class Prop:
         self.emitters = []                    # (kind, name, position or None, frac or None, info): lights, sounds and switches (emitters.py)
         self.traits = set()                   # power, possess, jam, blackout, noisy: what the alien abilities can do with it
         self.keep = []                        # (centre, size) of boxes damage() must never drop: walls that close a container (interactive.shell)
+        self.settled = None                   # (rotation matrix, drop) of the tilt damage() gave the body, so the moving parts can follow it
         self._cur = None
 
     def _bm(self, colour):
@@ -49,8 +50,9 @@ class Prop:
         """Context manager: everything added inside becomes a separate moving part called `role` (Door, Drawer1, Lid...).
 
         pivot  the point it turns or slides about, in the prop's coordinates; the part's origin is put there so Unity can rotate it
-        kind   hinge (turns about `axis` through the pivot, `limit` degrees to open; the sign picks the swing direction) or
-               slide (moves along `axis`, `limit` metres to open)
+        kind   hinge (turns about `axis` through the pivot, `limit` degrees to open; the sign picks the swing direction),
+               slide (moves along `axis`, `limit` metres to open) or
+               spin (a wheel: turns freely about `axis` through the pivot; limit is 360 and rest 0)
         rest   how far open the part is in the exported model (0 = shut); a damaged fridge can hang ajar
 
             with p.part("Door", pivot=(-0.3, -0.35, 0.9), kind="hinge", axis="z", limit=105):
@@ -85,6 +87,11 @@ class Prop:
 
     def box(self, colour, center, size, rot=(0, 0, 0), taper=1.0):
         common.add_box(self._bm(colour), center, size, rot_deg=rot, taper=taper)
+
+    def sbox(self, colour, center, size, rot=(0, 0, 0), taper=1.0):
+        """A box that holds the model together (a rocker panel, a post, the panel beside a door): damage() never drops it, however small it is."""
+        self.box(colour, center, size, rot, taper)
+        self.keep_solid(center, size, new=True)
 
     def cyl(self, colour, center, radius, height, n=8, axis="z", top_radius=None, rot=(0, 0, 0)):
         """A cylinder (or cone frustum) about centre. axis is z (upright), x or y. top_radius tapers the far end."""
@@ -231,13 +238,18 @@ class Prop:
         def settle(obj):
             import bpy
             obj.rotation_euler = (radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)))
+            rot = obj.rotation_euler.to_matrix()                   # the moving parts are built untilted: finish() puts them through the same turn and drop
             bpy.context.view_layer.objects.active = obj
             bpy.ops.object.select_all(action="DESELECT")
             obj.select_set(True)
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
             low = min(v.co.z for v in obj.data.vertices)
+            for g in self.groups.values():                         # a wheel is a moving part: the lowest point is the body's or a part's, whichever is lower
+                for bm in g["parts"].values():
+                    low = min([low] + [(rot @ v.co).z for v in bm.verts])
             for v in obj.data.vertices:
                 v.co.z -= low
+            self.settled = (rot, low)
         if tilt:
             self.post = settle
 
@@ -263,6 +275,15 @@ class Prop:
         reg = {"parts": {}, "slots": {}}
         for role, g in self.groups.items():
             gobjs = []
+            if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (the axis stays world x, y or z, so a wrecked door or wheel is a few degrees off its true hinge line)
+                rot, low = self.settled
+                m = rot.to_4x4()
+                for bm in g["parts"].values():
+                    bmesh.ops.transform(bm, matrix=m, verts=bm.verts)
+                    for v in bm.verts:
+                        v.co.z -= low
+                g["pivot"] = m @ g["pivot"]
+                g["pivot"].z -= low
             for colour, bm in g["parts"].items():
                 bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
                 gobjs.append(common.new_mesh_object(f"{self.name}_{role}_{colour}", bm, coll, colour, flat=True))
@@ -323,6 +344,7 @@ class Prop:
             INTERACTIONS[self.name] = reg
         self.parts = {}
         self.groups = {}
+        self.settled = None
         return obj, coll
 
 
@@ -341,7 +363,7 @@ def write_interactions():
     doc = {
         "about": "What can be done with each prop (interactive.py, emitters.py). Coordinates are Blender space (X right, Y back, Z up, "
                  "front is -Y), metres. parts: hinge turns about `axis` through `pivot`, `limit` degrees to open (sign = direction); slide moves "
-                 "along `axis`, `limit` metres to open; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides "
+                 "along `axis`, `limit` metres to open; spin (a wheel) turns freely about `axis` through `pivot`, `limit` is 360; `rest` is the exported pose (0 = shut). slots: where loose items go; one with a `part` rides "
                  "on that moving part. emitters: lights, sounds and switches (Light_/Sound_/Switch_ empties) with what they do; traits: power, "
                  "possess, jam, blackout, noisy (what the alien abilities can do with it). See emitters.py for the fields.",
         "props": dict(sorted(merged.items())),

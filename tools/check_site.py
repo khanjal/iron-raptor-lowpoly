@@ -139,7 +139,7 @@ def check_entry(a, site, errors):
     if a["interactive"] != bool(a["parts"]):
         err("interactive does not match parts")
     for role, p in a["parts"].items():
-        if p.get("kind") not in ("hinge", "slide"):
+        if p.get("kind") not in ("hinge", "slide", "spin"):
             err(f"part {role}: kind {p.get('kind')!r}")
         if not (isinstance(p.get("axis"), list) and len(p["axis"]) == 3 and abs(sum(v * v for v in p["axis"]) - 1) < 1e-6):
             err(f"part {role}: axis should be a unit vector")

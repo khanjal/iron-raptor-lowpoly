@@ -65,7 +65,7 @@ It has to be served over http (a `file://` page cannot load the models). Publish
 | `rigged`, `interactive` | has a skeleton; has moving parts |
 | `triangles`, `size` | triangle count; `[width, height, depth]` in metres |
 | `glb`, `thumb` | paths under `site/` |
-| `parts` | moving parts: `kind` (`hinge` or `slide`), `axis` (a unit vector), `pivot`, `limit` (degrees to open, or metres to slide; the sign is the direction), `rest` (how far open the exported pose is; 0 = shut), **in glTF axes** |
+| `parts` | moving parts: `kind` (`hinge`, `slide`, or `spin` for a wheel that turns freely about its axis; its `limit` is 360), `axis` (a unit vector), `pivot`, `limit` (degrees to open, or metres to slide; the sign is the direction), `rest` (how far open the exported pose is; 0 = shut), **in glTF axes** |
 | `clips` | animation names in the GLB |
 | `variants` | ids of the same model in another skin |
 
