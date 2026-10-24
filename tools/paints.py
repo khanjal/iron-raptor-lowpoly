@@ -79,6 +79,83 @@ def resolve(spec, entries):
     return parts, out
 
 
+# The colours every model offers when it has no presets of its own: name -> swatch name of the palette (so the colours stay the palette's)
+COMMON = [("Red", "cloth_red"), ("Orange", "basket_orange"), ("Yellow", "paint_yellow"), ("Green", "tractor_green"), ("Blue", "truck_blue"), ("Purple", "alien_violet"),
+          ("Pink", "pink"), ("Brown", "fabric_brown"), ("White", "paint_white"), ("Grey", "fabric_grey"), ("Black", "black")]
+MAX_PARTS = 5          # a model offers at most this many colour boxes
+MIN_SHARE = 0.03       # a swatch that covers less of the surface than this is not offered
+
+
+def common_colours(entries):
+    """[{name, hex}] of COMMON, for the manifest's palette.common."""
+    return [dict(name=n, hex=colour(sw, entries)) for n, sw in COMMON]
+
+
+def neutral(hex_):
+    """True for black, white and greys (little colour, or very dark): they are not what a person means by 'the colour' of a model."""
+    r, g, b = (int(hex_[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    hi, lo = max(r, g, b), min(r, g, b)
+    return hi < 0.18 or (hi - lo) / hi < 0.25
+
+
+def part_label(swatch_name):
+    """'skin_tan' -> 'Skin tan': what the swatch is called in the palette (the colour word says which swatch it is, even after the person repaints it)."""
+    return swatch_name.replace("_", " ").capitalize()
+
+
+def surface_by_swatch(path):
+    """{swatch index: surface area} of a GLB (triangle areas in the model's own units; node transforms are not applied)."""
+    path = Path(path)
+    raw = path.read_bytes()
+    jlen = struct.unpack_from("<I", raw, 12)[0]
+    doc = json.loads(raw[20:20 + jlen])
+    blob = raw[20 + jlen + 8:]
+    kinds = {5126: "f", 5123: "H", 5125: "I", 5121: "B"}
+
+    def column(i):
+        a = doc["accessors"][i]
+        bv = doc["bufferViews"][a["bufferView"]]
+        vals = array(kinds[a["componentType"]])
+        n = dict(SCALAR=1, VEC2=2, VEC3=3)[a["type"]]
+        start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
+        vals.frombytes(blob[start:start + a["count"] * n * vals.itemsize])
+        return vals
+
+    out = {}
+    for node in doc.get("nodes", []):
+        if "mesh" not in node:
+            continue
+        for prim in doc["meshes"][node["mesh"]]["primitives"]:
+            at = prim["attributes"]
+            pos, uv = column(at["POSITION"]), column(at["TEXCOORD_0"])
+            idx = column(prim["indices"]) if "indices" in prim else range(len(pos) // 3)
+            for t in range(0, len(idx) - 2, 3):
+                a, b, c = idx[t], idx[t + 1], idx[t + 2]
+                u = [pos[b * 3 + k] - pos[a * 3 + k] for k in range(3)]
+                v = [pos[c * 3 + k] - pos[a * 3 + k] for k in range(3)]
+                area = 0.5 * ((u[1] * v[2] - u[2] * v[1]) ** 2 + (u[2] * v[0] - u[0] * v[2]) ** 2 + (u[0] * v[1] - u[1] * v[0]) ** 2) ** 0.5
+                sw = int(uv[a * 2] * GRID) + GRID * int(uv[a * 2 + 1] * GRID)
+                out[sw] = out.get(sw, 0.0) + area
+    return out
+
+
+def auto_parts(path, entries):
+    """The colours of a model as `paintable` parts [{part, swatch, hex}], without a catalog entry: the swatches that cover the most surface (not the glowing or
+    see-through ones, not slivers), at most MAX_PARTS. The first is the main colour, the one the common presets repaint: the biggest swatch (not skin or hair), unless that is
+    black, white or grey and a coloured one covers at least half as much. Recolouring a swatch recolours every face that uses it, which is what a part is here."""
+    area = surface_by_swatch(path)
+    total = sum(area.values()) or 1.0
+    rows = [(sw, a / total) for sw, a in sorted(area.items(), key=lambda x: -x[1])
+            if sw < len(entries) and not entries[sw][0].startswith(("glow_", "clear_")) and a / total >= MIN_SHARE]
+    if not rows:
+        return []
+    body = [r for r in rows if not entries[r[0]][0].startswith(("skin", "hair"))] or rows      # a person's main colour is their clothes, not their skin
+    main = next((r for r in body if not neutral(entries[r[0]][1]) and r[1] >= body[0][1] / 2), body[0])
+    rows = ([main] + [r for r in rows if r is not main])[:MAX_PARTS]
+    parts = [dict(part="Main" if i == 0 else part_label(entries[sw][0]), swatch=sw, hex=entries[sw][1]) for i, (sw, _) in enumerate(rows)]
+    return parts
+
+
 def themes(entries):
     """The colour themes of art/scripts/home_styles.py (THEMES: Modern, Retro, Damaged) as {theme: {swatch index: '#RRGGBB'}}, read without importing Blender.
     A theme maps a swatch to another one wherever a piece uses it; swatches a model does not use are simply not in its mesh. Identity entries are dropped."""

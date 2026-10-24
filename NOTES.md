@@ -54,6 +54,9 @@ Pulled in game PRs #358 (road vehicles: `vehicles.py`, `cars.py`), #359 (flying 
 - Credit travels with the files: `asset.copyright` in every GLB (`tools/stamp_glb.py` for the existing 131, `GLB_COPYRIGHT` in `common.py` for new Blender builds; `check_site.py` and a test keep the two in step), a note under the viewer's Download button and in the page footer.
 - The game's name is gone from the docs (README, NOTES, `art/README.md`, `docs/from-game/`); "the game" / "the game repo" instead. Issue numbers (#355, #364...) are the game repo's. Unity menu paths read `Tools > <game name> > ...`. The repo's earlier commits still have the name.
 
+## A colour picker for every model (2026-10-23)
+A model with no entry in `catalog.PAINTS` still gets `paintable` in the manifest, worked out from its GLB by `paints.auto_parts`: the swatches that cover the most surface (not glow or see-through ones, not under 3%), at most 5, the first one labelled "Main". Main is the biggest swatch, but not skin or hair, and not black, white or grey when a coloured swatch covers at least half as much. The viewer shows Original plus the 11 colours of `palette.common` (`paints.COMMON`) for the main part, and a colour box per part. Models with their own `paints` keep them. `check_site.py` checks each part's swatch is used by the GLB. Labels are the palette's swatch names, so a part called "Cloth red" can be blue after a repaint. Recolouring a swatch recolours every face that uses it: parts that share a swatch cannot be told apart.
+
 ## More families (2026-10-23, branch `licence`)
 Added on request: produce variety, insects, sports gear, office gear. 68 new models, so the browser now has 131.
 - **Produce** (`contents.py`): the apple is one dimpled shape in `cloth_red`, `apple_green` and `apple_yellow` (the old FD_Apple_01 changed shape too); a banana bunch (+ Rotten), lemon, pear, purple and green grapes, strawberry.

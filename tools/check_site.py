@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import paints  # noqa: E402
 import stamp_glb  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -69,11 +70,17 @@ def png_size(path):
 
 def check_paints(a, err):
     """paintable: [{part, swatch, hex}] (the parts a person can colour); paints: [{name, hex, swap {swatch index: hex}, was?}], the first the model as exported
-    (empty swap), the others each swapping only swatches that are paintable parts; names and chip colours all different."""
+    (empty swap), the others each swapping only swatches that are paintable parts; names and chip colours all different.
+    `paints` may be missing: the model then offers palette.common for its first part."""
     hexre = re.compile(r"^#[0-9A-F]{6}$")
     parts, ps = a.get("paintable"), a.get("paints")
-    if not (isinstance(parts, list) and parts and isinstance(ps, list) and len(ps) >= 2):
-        err("paintable and paints go together: at least one part, the model's own paint and at least one more")
+    if not (isinstance(parts, list) and parts):
+        err("paints needs paintable: at least one part")
+        return
+    if "paints" not in a:
+        ps = None
+    elif not (isinstance(ps, list) and len(ps) >= 2):
+        err("paints: the model's own paint and at least one more")
         return
     for i, p in enumerate(parts):
         if not (isinstance(p, dict) and isinstance(p.get("part"), str) and p["part"].strip() and isinstance(p.get("swatch"), int) and 0 <= p["swatch"] < 256 and hexre.match(str(p.get("hex")))):
@@ -82,7 +89,7 @@ def check_paints(a, err):
     if len({p["swatch"] for p in parts}) != len(parts) or len({p["part"] for p in parts}) != len(parts):
         err("paintable: parts and swatches should all differ")
     swatches = {str(p["swatch"]) for p in parts}
-    for i, p in enumerate(ps):
+    for i, p in enumerate(ps or []):
         if not (isinstance(p, dict) and isinstance(p.get("name"), str) and p["name"].strip() and hexre.match(str(p.get("hex"))) and isinstance(p.get("swap"), dict)):
             err(f"paints[{i}] should be {{name, hex '#RRGGBB', swap}}")
             return
@@ -91,7 +98,7 @@ def check_paints(a, err):
         for k, v in p["swap"].items():
             if k not in swatches or not hexre.match(str(v)):
                 err(f"paints[{i}]: swap entry {k!r}: {v!r} should be a paintable swatch index and '#RRGGBB'")
-    if len({p["name"] for p in ps}) != len(ps):
+    if ps and len({p["name"] for p in ps}) != len(ps):
         err("paints: names should all differ")
 
 
@@ -158,6 +165,11 @@ def check_entry(a, site, errors):
             err(f"{a['glb']}: {e}")
         else:
             check_against_glb(a, doc, err)
+            if a.get("paintable") and isinstance(a["paintable"], list):
+                used = paints.used_swatches(glb)
+                for p in a["paintable"]:
+                    if isinstance(p, dict) and p.get("swatch") not in used:
+                        err(f"paintable {p.get('part')}: swatch {p.get('swatch')} is not used by the GLB")
     if not thumb.is_file():
         err(f"{a['thumb']} does not exist")
     elif png_size(thumb) != (256, 256):
@@ -274,6 +286,11 @@ def check(site=None):
     for g in doc.get("palette", {}).get("glow", []):
         if not re.match(r"^#[0-9A-F]{6}$", g.get("hex", "")):
             errors.append(f"palette glow {g.get('name')}: bad hex")
+    common = doc.get("palette", {}).get("common", [])
+    if not (isinstance(common, list) and all(isinstance(c, dict) and isinstance(c.get("name"), str) and re.match(r"^#[0-9A-F]{6}$", str(c.get("hex"))) for c in common)):
+        errors.append("palette.common should be a list of {name, hex '#RRGGBB'}")
+    elif any(a.get("paintable") and "paints" not in a for a in assets) and not common:
+        errors.append("models offer common colours but palette.common is empty")
     check_page(site, errors)
     return errors
 

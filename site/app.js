@@ -23,7 +23,7 @@ const TAG_GROUPS = [
 const FEATURES = [['animated', 'Animated (clips)', (a) => a.clips.length > 0], ['opens', 'Has moving parts', (a) => a.interactive], ['lit', 'Has lights', (a) => !!a.lights]];
 
 const state = {
-  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [],
+  assets: [], byId: new Map(), was: new Map(), wantPaint: null, wantTheme: null, themes: {}, glow: [], common: [],
   q: '', category: '', tags: new Set(), features: new Set(),
   current: null, viewer: null, expanded: new Set(),
 };
@@ -41,6 +41,7 @@ async function init() {
   }
   state.assets = doc.assets;
   state.glow = (doc.palette && doc.palette.glow) || [];
+  state.common = (doc.palette && doc.palette.common) || [];
   state.themes = doc.themes || {};
   for (const a of state.assets) {
     a.haystack = [a.name, a.id, a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
@@ -315,9 +316,12 @@ function fillDetails(a) {
 
 // Look: a style (a theme from the manifest: one swap over the palette, the same for every model that lists it), the model's colour presets as chips, and a
 // colour box for every paintable part, so any part can be any colour. The viewer repaints a copy of the palette image ({swatch index: '#RRGGBB'}); nothing
-// about the mesh changes. What a person picks for a part wins over the style.
+// about the mesh changes. What a person picks for a part wins over the style. A model with parts but no presets of its own gets Original plus the
+// manifest's common colours (palette.common) for its first part, the main colour.
 function setupLook(a) {
-  const paints = a.paints || [], parts = a.paintable || [], themes = a.themes || [];
+  const parts = a.paintable || [], themes = a.themes || [];
+  const common = a.paints || !parts.length ? null : [{ name: 'Original', hex: parts[0].hex, swap: {} }, ...state.common.map((c) => ({ name: c.name, hex: c.hex, swap: { [parts[0].swatch]: c.hex } }))];
+  const paints = a.paints || common || [];
   $('v-themes').hidden = themes.length === 0;
   $('v-paints').hidden = paints.length === 0 && parts.length === 0;
   if (!themes.length && !paints.length) return;

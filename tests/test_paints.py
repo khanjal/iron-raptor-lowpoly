@@ -123,5 +123,44 @@ class Paints(unittest.TestCase):
         self.assertEqual(errs, [])
 
 
+class AutoColours(unittest.TestCase):
+    """A model with no entry in catalog.PAINTS still has colours to change: its biggest swatches, the main one first."""
+
+    def parts(self, model):
+        return paints.auto_parts(MODELS / f"{model}.glb", ENTRIES)
+
+    def test_the_main_colour_is_the_body_not_the_trim(self):
+        self.assertEqual(self.parts("GV_Taxi_Yellow_01")[0]["hex"], "#E0B83A")          # yellow, though black covers about as much
+        self.assertEqual(self.parts("GN_Cow_faceted_01")[0]["hex"], "#E6E2D6")          # white: nothing coloured covers half as much
+        self.assertNotEqual(self.parts("GP_Waitress_01")[0]["hex"], "#C58C65")          # her uniform, not her skin
+
+    def test_no_glowing_or_see_through_swatch_is_offered(self):
+        names = {i: n for i, (n, _) in enumerate(ENTRIES)}
+        for a in json.loads((ROOT / "site" / "manifest.json").read_text())["assets"]:
+            for p in a.get("paintable", []):
+                self.assertFalse(names[p["swatch"]].startswith(("glow_", "clear_")), a["id"])
+                self.assertLessEqual(len(a["paintable"]), paints.MAX_PARTS, a["id"])
+
+    def test_a_model_without_presets_gets_parts_only(self):
+        assets = [dict(id="GV_Taxi_Yellow_01", variants=[], tags=[]), dict(id="NO_SUCH_MODEL", variants=[], tags=[])]
+        mm.apply_paints(assets, {}, ENTRIES, MODELS)
+        self.assertEqual(assets[0]["paintable"][0]["part"], "Main")
+        self.assertNotIn("paints", assets[0])
+        self.assertNotIn("paintable", assets[1])
+
+    def test_the_manifest_has_the_common_colours_and_most_models_are_paintable(self):
+        doc = json.loads((ROOT / "site" / "manifest.json").read_text())
+        self.assertEqual([c["name"] for c in doc["palette"]["common"]], [n for n, _ in paints.COMMON])
+        paintable = [a for a in doc["assets"] if a.get("paintable")]
+        self.assertGreaterEqual(len(paintable), len(doc["assets"]) - 3)
+
+    def test_the_checker_accepts_parts_without_presets_and_rejects_presets_without_parts(self):
+        errs = []
+        check_site.check_paints(dict(paintable=[dict(part="Main", swatch=3, hex="#000000")]), errs.append)
+        self.assertEqual(errs, [])
+        check_site.check_paints(dict(paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"3": "#FFFFFF"})]), errs.append)
+        self.assertTrue(errs)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -111,14 +111,21 @@ def variant_groups(assets):
     return groups
 
 
-def apply_paints(assets, paint_specs, entries):
+def apply_paints(assets, paint_specs, entries, models=None):
     """Put the colour variants of catalog.PAINTS on their base model: entry["paintable"] (its parts) and entry["paints"] (the presets, the model's own paint first),
-    and make the preset names searchable tags. The models those presets used to be have no entry of their own, so they come out of every `variants` list."""
+    and make the preset names searchable tags. The models those presets used to be have no entry of their own, so they come out of every `variants` list.
+    A model with no entry in PAINTS gets `paintable` alone, worked out from its GLB in `models` (default site/models): the viewer offers the common colours
+    (palette.common) for its first part and a colour box for each part. A GLB that is not there leaves the model without."""
     ids = {a["id"] for a in assets}
+    models = Path(models or ROOT / "site" / "models")
     for a in assets:
         a["variants"] = [v for v in a["variants"] if v in ids]
         spec = paint_specs.get(a["id"])
         if not spec:
+            glb = models / f"{a['id']}.glb"
+            parts = paints_tool.auto_parts(glb, entries) if glb.is_file() else []
+            if parts:
+                a["paintable"] = parts
             continue
         a["paintable"], a["paints"] = paints_tool.resolve(spec, entries)
         a["tags"] = sorted(set(a["tags"]) | {re.sub(r"[^a-z0-9]+", "-", p["name"].lower()).strip("-") for p in a["paints"]})
@@ -158,6 +165,7 @@ def catalog_only():
     entries = paints_tool.palette_entries()
     apply_paints(assets, catalog.PAINTS, entries)
     apply_themes(doc, assets, entries)
+    doc.setdefault("palette", {})["common"] = paints_tool.common_colours(entries)
     doc["assets"] = assets
     path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     print("updated site/manifest.json from the catalog:", len(assets), "assets")
@@ -181,7 +189,7 @@ def main():
     assets.sort(key=lambda x: (x["type"], x["id"]))
     apply_paints(assets, catalog.PAINTS, paints_tool.palette_entries())
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
-    doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches()), assets=assets)
+    doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches(), common=paints_tool.common_colours(paints_tool.palette_entries())), assets=assets)
     apply_themes(doc, assets, paints_tool.palette_entries())
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
