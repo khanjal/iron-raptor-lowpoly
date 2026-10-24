@@ -211,7 +211,7 @@ def pie():
 @item("bakery", "Cake")
 def cake():
     p = Prop("FD_Cake_01")
-    p.cyl("paint_white", (0, 0, 0.06), 0.14, 0.12, n=10); p.cyl("fabric_pink", (0, 0, 0.16), 0.11, 0.08, n=10); p.cyl("cloth_red", (0, 0, 0.215), 0.04, 0.03, n=6)
+    p.cyl("paint_white", (0, 0, 0.065), 0.14, 0.11, n=10); p.cyl("fabric_pink", (0, 0, 0.16), 0.11, 0.08, n=10); p.cyl("cloth_red", (0, 0, 0.215), 0.04, 0.03, n=6)
     for a in range(0, 360, 90):
         p.cyl("paint_yellow", (0.07 * math.cos(math.radians(a)), 0.07 * math.sin(math.radians(a)), 0.225), 0.006, 0.05, n=4)
     p.cyl("metal_galv", (0, 0, 0.005), 0.16, 0.01, n=10); return p
@@ -219,7 +219,7 @@ def cake():
 
 @item("bakery", "Donut")
 def donut():
-    p = Prop("FD_Donut_01"); p.cyl("crust", (0, 0, 0.02), 0.045, 0.04, n=8); p.cyl("fabric_pink", (0, 0, 0.042), 0.04, 0.006, n=8); p.cyl("black", (0, 0, 0.03), 0.014, 0.045, n=6); return p
+    p = Prop("FD_Donut_01"); p.cyl("crust", (0, 0, 0.02), 0.045, 0.04, n=8); p.cyl("fabric_pink", (0, 0, 0.042), 0.04, 0.006, n=8); p.cyl("black", (0, 0, 0.0253), 0.014, 0.0405, n=6); return p
 
 
 @item("bakery", "CookieJar")
@@ -234,7 +234,7 @@ def cookie_jar():
 @item("dairy", "MilkCarton")
 def milk_carton():
     p = Prop("FD_MilkCarton_01"); p.box("label_white", (0, 0, 0.1), (0.07, 0.07, 0.2)); p.box("label_blue", (0, -0.036, 0.09), (0.06, 0.004, 0.1))
-    p.box("label_white", (0, 0, 0.23), (0.07, 0.07, 0.05), rot=(0, 0, 0), taper=0.4); return p
+    p.box("label_white", (0, 0, 0.225), (0.07, 0.07, 0.05), rot=(0, 0, 0), taper=0.4); return p
 
 
 @item("dairy", "MilkBottle")
@@ -255,7 +255,7 @@ def cheese():
 
 @item("dairy", "Butter")
 def butter():
-    p = Prop("FD_Butter_01"); p.box("paint_yellow", (0, 0, 0.025), (0.1, 0.05, 0.05)); p.box("paint_white", (0, 0, 0.055), (0.1, 0.05, 0.008)); return p
+    p = Prop("FD_Butter_01"); p.box("paint_yellow", (0, 0, 0.025), (0.1, 0.05, 0.05)); p.box("paint_white", (0, 0, 0.054), (0.1, 0.05, 0.008)); return p
 
 
 @item("dairy", "JuiceBox")
@@ -435,7 +435,7 @@ def pizza_box():
 
 @item("prepared", "Sandwich")
 def sandwich():
-    p = Prop("FD_Sandwich_01"); p.box("dough", (0, 0, 0.012), (0.12, 0.1, 0.024), taper=0.9); p.box("plant_green", (0, 0, 0.03), (0.12, 0.1, 0.01)); p.box("meat_red", (0, 0, 0.038), (0.11, 0.09, 0.01)); p.box("dough", (0, 0, 0.052), (0.12, 0.1, 0.022), taper=0.9); return p
+    p = Prop("FD_Sandwich_01"); p.box("dough", (0, 0, 0.012), (0.12, 0.1, 0.024), taper=0.9); p.box("plant_green", (0, 0, 0.029), (0.12, 0.1, 0.01)); p.box("meat_red", (0, 0, 0.038), (0.11, 0.09, 0.01)); p.box("dough", (0, 0, 0.052), (0.12, 0.1, 0.022), taper=0.9); return p
 
 
 @item("prepared", "TVDinner")

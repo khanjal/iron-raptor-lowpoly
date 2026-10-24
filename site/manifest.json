@@ -8285,8 +8285,7 @@
     "baked",
     "cookies",
     "fresh",
-    "jar",
-    "rotten"
+    "jar"
    ],
    "rigged": false,
    "interactive": false,
@@ -8303,7 +8302,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Lid",
+     "part": "Main",
      "swatch": 79,
      "hex": "#C0643A"
     },
@@ -8311,21 +8310,6 @@
      "part": "Cookies",
      "swatch": 95,
      "hex": "#C98A4B"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#C0643A",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#C0643A",
-     "swap": {
-      "95": "#7A7064"
-     },
-     "was": "FD_CookieJar_Rotten_01"
     }
    ]
   },
@@ -8345,7 +8329,7 @@
    "triangles": 76,
    "size": [
     0.09,
-    0.052,
+    0.045,
     0.09
    ],
    "glb": "models/FD_Donut_01.glb",
@@ -8442,7 +8426,7 @@
    "triangles": 24,
    "size": [
     0.1,
-    0.059,
+    0.058,
     0.05
    ],
    "glb": "models/FD_Butter_01.glb",
@@ -8546,8 +8530,7 @@
     "carton",
     "dairy",
     "eggs",
-    "fresh",
-    "rotten"
+    "fresh"
    ],
    "rigged": false,
    "interactive": true,
@@ -8581,7 +8564,7 @@
    "interactions": "models/FD_EggCarton_01.interactions.json",
    "paintable": [
     {
-     "part": "Carton",
+     "part": "Main",
      "swatch": 93,
      "hex": "#D9CDB5"
     },
@@ -8599,81 +8582,6 @@
      "part": "Brown eggs",
      "swatch": 109,
      "hex": "#B97C4B"
-    },
-    {
-     "part": "Blue eggs",
-     "swatch": 110,
-     "hex": "#B5D3CE"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#D9CDB5",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#D9CDB5",
-     "swap": {
-      "108": "#8B8578",
-      "109": "#7A5A44",
-      "110": "#7A7064"
-     },
-     "was": "FD_EggCarton_Rotten_01"
-    }
-   ]
-  },
-  {
-   "id": "FD_JuiceBox_01",
-   "name": "Juice box",
-   "type": "food/dairy/juice-box",
-   "tags": [
-    "carton",
-    "drink",
-    "fresh",
-    "juice",
-    "rotten"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 36,
-   "size": [
-    0.06,
-    0.13,
-    0.042
-   ],
-   "glb": "models/FD_JuiceBox_01.glb",
-   "thumb": "thumbs/FD_JuiceBox_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Box",
-     "swatch": 100,
-     "hex": "#E8922A"
-    },
-    {
-     "part": "Label",
-     "swatch": 104,
-     "hex": "#F0EFE8"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#E8922A",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#6F7F4A",
-     "swap": {
-      "100": "#6F7F4A",
-      "104": "#8B8578"
-     },
-     "was": "FD_JuiceBox_Rotten_01"
     }
    ]
   },
@@ -8686,7 +8594,6 @@
     "fresh",
     "glass",
     "milk",
-    "rotten",
     "white"
    ],
    "rigged": false,
@@ -8704,7 +8611,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Label",
+     "part": "Main",
      "swatch": 104,
      "hex": "#F0EFE8"
     },
@@ -8712,21 +8619,6 @@
      "part": "Cap",
      "swatch": 2,
      "hex": "#A9B4BC"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#F0EFE8",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#8B8578",
-     "swap": {
-      "104": "#8B8578"
-     },
-     "was": "FD_MilkBottle_Rotten_01"
     }
    ]
   },
@@ -8738,15 +8630,14 @@
     "dairy",
     "fresh",
     "milk",
-    "rotten",
     "white"
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 36,
+   "triangles": 34,
    "size": [
     0.07,
-    0.255,
+    0.25,
     0.073
    ],
    "glb": "models/FD_MilkCarton_01.glb",
@@ -8756,7 +8647,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Carton",
+     "part": "Main",
      "swatch": 104,
      "hex": "#F0EFE8"
     },
@@ -8765,20 +8656,41 @@
      "swatch": 103,
      "hex": "#2F6F9F"
     }
+   ]
+  },
+  {
+   "id": "FD_JuiceBox_01",
+   "name": "Juice box",
+   "type": "food/drinks/juice-box",
+   "tags": [
+    "carton",
+    "drink",
+    "fresh",
+    "juice"
    ],
-   "paints": [
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.06,
+    0.13,
+    0.042
+   ],
+   "glb": "models/FD_JuiceBox_01.glb",
+   "thumb": "thumbs/FD_JuiceBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
     {
-     "name": "Fresh",
-     "hex": "#F0EFE8",
-     "swap": {}
+     "part": "Main",
+     "swatch": 100,
+     "hex": "#E8922A"
     },
     {
-     "name": "Rotten",
-     "hex": "#8B8578",
-     "swap": {
-      "104": "#8B8578"
-     },
-     "was": "FD_MilkCarton_Rotten_01"
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
     }
    ]
   },
@@ -8996,7 +8908,6 @@
     "box",
     "fast-food",
     "fresh",
-    "rotten",
     "takeout"
    ],
    "rigged": false,
@@ -9017,26 +8928,6 @@
      "part": "Box",
      "swatch": 58,
      "hex": "#7A5A44"
-    },
-    {
-     "part": "Label",
-     "swatch": 13,
-     "hex": "#B8443B"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#7A5A44",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#7A5A44",
-     "swap": {
-      "13": "#6F7F4A"
-     },
-     "was": "FD_PizzaBox_Rotten_01"
     }
    ]
   },
@@ -9180,7 +9071,7 @@
      "hex": "#B04848"
     },
     {
-     "part": "Plate",
+     "part": "Plate and fat",
      "swatch": 6,
      "hex": "#E6E2D6"
     }
@@ -9269,7 +9160,6 @@
     "fresh",
     "frozen",
     "meal",
-    "rotten",
     "tray"
    ],
    "rigged": false,
@@ -9287,7 +9177,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Tray",
+     "part": "Main",
      "swatch": 103,
      "hex": "#2F6F9F"
     },
@@ -9305,22 +9195,6 @@
      "part": "Peas",
      "swatch": 78,
      "hex": "#3F7A3A"
-    }
-   ],
-   "paints": [
-    {
-     "name": "Fresh",
-     "hex": "#2F6F9F",
-     "swap": {}
-    },
-    {
-     "name": "Rotten",
-     "hex": "#2F6F9F",
-     "swap": {
-      "78": "#6F7F4A",
-      "100": "#6F7F4A"
-     },
-     "was": "FD_TVDinner_Rotten_01"
     }
    ]
   },
@@ -9541,22 +9415,22 @@
      "hex": "#4F7A32"
     },
     {
-     "part": "Stem and ribs",
+     "part": "Core, stem and ribs",
      "swatch": 87,
      "hex": "#A8BDA0"
     },
     {
-     "part": "Inner leaves",
+     "part": "Middle leaves",
      "swatch": 8,
      "hex": "#5E8C4A"
     },
     {
-     "part": "Heart",
+     "part": "Second leaves",
      "swatch": 48,
      "hex": "#6E9A3E"
     },
     {
-     "part": "Pale leaves",
+     "part": "Innermost leaves",
      "swatch": 49,
      "hex": "#8DB752"
     }
@@ -9661,12 +9535,12 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Husk",
+     "part": "Stalk and outer husk",
      "swatch": 48,
      "hex": "#6E9A3E"
     },
     {
-     "part": "Leaves",
+     "part": "Inner husk",
      "swatch": 49,
      "hex": "#8DB752"
     },
@@ -10176,7 +10050,7 @@
     "fruit",
     "green",
     "large",
-    "red"
+    "rotten"
    ],
    "rigged": false,
    "interactive": false,
@@ -10193,7 +10067,7 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Rind",
      "swatch": 8,
      "hex": "#5E8C4A"
     },
@@ -10201,6 +10075,22 @@
      "part": "Stripes",
      "swatch": 50,
      "hex": "#4F7A32"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Fresh",
+     "hex": "#5E8C4A",
+     "swap": {}
+    },
+    {
+     "name": "Rotten",
+     "hex": "#6F7F4A",
+     "swap": {
+      "8": "#6F7F4A",
+      "50": "#6F7F4A"
+     },
+     "was": "FD_Watermelon_Rotten_01"
     }
    ]
   },

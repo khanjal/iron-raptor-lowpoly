@@ -177,29 +177,23 @@ PAINTS = {
     "FD_Tomato_01": dict(base="Fresh", parts={"Skin": "cloth_red", "Calyx": "plant_green"}, presets={"Rotten": dict(was="FD_Tomato_Rotten_01", set={"Skin": "#6F7F4A", "Calyx": "#6F7F4A"})}),
     "FD_Potato_01": dict(base="Fresh", parts={"Skin": "tan"}, presets={"Rotten": dict(was="FD_Potato_Rotten_01", set={"Skin": "#7A7064"})}),
     "FD_Onion_01": dict(base="Fresh", parts={"Skin": "golden", "Roots and tip": "dead_wood"}, presets={"Rotten": dict(was="FD_Onion_Rotten_01", set={"Skin": "#7A7064"})}),
-    "FD_Corn_01": dict(base="Fresh", parts={"Husk": "corn_green", "Leaves": "corn_leaf", "Kernels": "corn_cob"}, presets={"Rotten": dict(was="FD_Corn_Rotten_01", set={"Husk": "#6F7F4A", "Leaves": "#7A7064", "Kernels": "#7A5A44"})}),
+    "FD_Corn_01": dict(base="Fresh", parts={"Stalk and outer husk": "corn_green", "Inner husk": "corn_leaf", "Kernels": "corn_cob"}, presets={"Rotten": dict(was="FD_Corn_Rotten_01", set={"Stalk and outer husk": "#6F7F4A", "Inner husk": "#7A7064", "Kernels": "#7A5A44"})}),
     "FD_Lettuce_01": dict(base="Fresh", parts={"Leaves": "corn_leaf", "Heart": "lettuce_heart", "Outer leaves": "corn_green"}, presets={"Rotten": dict(was="FD_Lettuce_Rotten_01", set={"Outer leaves": "#6F7F4A", "Leaves": "#7A7064", "Heart": "#7A7064"})}),
-    "FD_Cabbage_01": dict(base="Fresh", parts={"Outer leaves": "leaf_dark", "Stem and ribs": "siding_green", "Inner leaves": "grass", "Heart": "corn_green", "Pale leaves": "corn_leaf"}, presets={"Rotten": dict(was="FD_Cabbage_Rotten_01", set={"Inner leaves": "#6F7F4A", "Heart": "#6F7F4A", "Pale leaves": "#7A7064", "Outer leaves": "#6F7F4A", "Stem and ribs": "#6F7F4A"})}),
+    "FD_Cabbage_01": dict(base="Fresh", parts={"Outer leaves": "leaf_dark", "Core, stem and ribs": "siding_green", "Middle leaves": "grass", "Second leaves": "corn_green", "Innermost leaves": "corn_leaf"}, presets={"Rotten": dict(was="FD_Cabbage_Rotten_01", set={"Middle leaves": "#6F7F4A", "Second leaves": "#6F7F4A", "Innermost leaves": "#7A7064", "Outer leaves": "#6F7F4A", "Core, stem and ribs": "#6F7F4A"})}),
+    "FD_Watermelon_01": dict(base="Fresh", parts={"Rind": "grass", "Stripes": "leaf_dark"}, presets={"Rotten": dict(was="FD_Watermelon_Rotten_01", set={"Rind": "#6F7F4A", "Stripes": "#6F7F4A"})}),
     "FD_Pumpkin_01": dict(base="Fresh", parts={"Rind": "food_orange", "Stem": "plant_green"}, presets={"Rotten": dict(was="FD_Pumpkin_Rotten_01", set={"Stem": "#6F7F4A", "Rind": "#6F7F4A"})}),
     "FD_Baguette_01": dict(base="Fresh", parts={"Crust": "crust", "Cuts": "dough"}, presets={"Rotten": dict(was="FD_Baguette_Rotten_01", set={"Crust": "#7A7064", "Cuts": "#7A5A44"})}),
     "FD_Cake_01": dict(base="Fresh", parts={"Top tier": "fabric_pink", "Base tier": "paint_white", "Plate": "metal_galv", "Cherry": "cloth_red", "Candles": "paint_yellow"}, presets={"Rotten": dict(was="FD_Cake_Rotten_01", set={"Base tier": "#7A7064", "Cherry": "#6F7F4A", "Candles": "#7A5A44", "Top tier": "#7A7064"})}),
     "FD_Donut_01": dict(base="Fresh", parts={"Dough": "crust", "Icing": "fabric_pink", "Hole": "black"}, presets={"Rotten": dict(was="FD_Donut_Rotten_01", set={"Icing": "#7A7064", "Dough": "#7A7064"})}),
-    "FD_CookieJar_01": dict(base="Fresh", parts={"Lid": "terracotta", "Cookies": "crust"}, presets={"Rotten": dict(was="FD_CookieJar_Rotten_01", set={"Cookies": "#7A7064"})}),
-    "FD_MilkCarton_01": dict(base="Fresh", parts={"Carton": "label_white", "Label": "label_blue"}, presets={"Rotten": dict(was="FD_MilkCarton_Rotten_01", set={"Carton": "#8B8578"})}),
-    "FD_MilkBottle_01": dict(base="Fresh", parts={"Label": "label_white", "Cap": "metal_galv"}, presets={"Rotten": dict(was="FD_MilkBottle_Rotten_01", set={"Label": "#8B8578"})}),
-    "FD_EggCarton_01": dict(base="Fresh", parts={"Carton": "stucco", "White eggs": "egg_white", "Label": "label_red", "Brown eggs": "egg_brown", "Blue eggs": "egg_blue"}, presets={"Rotten": dict(was="FD_EggCarton_Rotten_01", set={"White eggs": "#8B8578", "Brown eggs": "#7A5A44", "Blue eggs": "#7A7064"})}),
     "FD_CheeseWedge_01": dict(base="Fresh", parts={"Cut face": "cheese_cut", "Rind": "cheese_rind", "Holes": "cheese_hole"}, presets={"Rotten": dict(was="FD_CheeseWedge_Rotten_01", set={"Cut face": "#6F7F4A", "Rind": "#7A7064", "Holes": "#7A5A44"})}),
     "FD_Butter_01": dict(base="Fresh", parts={"Butter": "paint_yellow", "Wrapper": "paint_white"}, presets={"Rotten": dict(was="FD_Butter_Rotten_01", set={"Wrapper": "#7A7064", "Butter": "#7A5A44"})}),
-    "FD_JuiceBox_01": dict(base="Fresh", parts={"Box": "food_orange", "Label": "label_white"}, presets={"Rotten": dict(was="FD_JuiceBox_Rotten_01", set={"Box": "#6F7F4A", "Label": "#8B8578"})}),
-    "FD_Steak_01": dict(base="Fresh", parts={"Meat": "meat_red", "Plate": "paint_white"}, presets={"Rotten": dict(was="FD_Steak_Rotten_01", set={"Plate": "#7A7064", "Meat": "#6F7F4A"})}),
+    "FD_Steak_01": dict(base="Fresh", parts={"Meat": "meat_red", "Plate and fat": "paint_white"}, presets={"Rotten": dict(was="FD_Steak_Rotten_01", set={"Plate and fat": "#7A7064", "Meat": "#6F7F4A"})}),
     "FD_Sausages_01": dict(base="Fresh", parts={"Sausages": "rust", "Plate": "paint_white"}, presets={"Rotten": dict(was="FD_Sausages_Rotten_01", set={"Sausages": "#6F7F4A", "Plate": "#7A7064"})}),
     "FD_Drumstick_01": dict(base="Fresh", parts={"Meat": "crust", "Bone": "horn_cream"}, presets={"Rotten": dict(was="FD_Drumstick_Rotten_01", set={"Meat": "#7A7064"})}),
     "FD_TurkeyRoast_01": dict(base="Fresh", parts={"Skin": "crust", "Tray": "metal_galv", "Leg bones": "paint_white"}, presets={"Rotten": dict(was="FD_TurkeyRoast_Rotten_01", set={"Leg bones": "#7A7064", "Skin": "#7A7064"})}),
     "FD_Fish_01": dict(base="Fresh", parts={"Body": "fabric_grey", "Tail fin": "metal_galv"}, presets={"Rotten": dict(was="FD_Fish_Rotten_01", set={"Body": "#6F7F4A"})}),
     "FD_HotDog_01": dict(base="Fresh", parts={"Bun": "dough", "Sausage": "meat_red", "Mustard": "paint_yellow"}, presets={"Rotten": dict(was="FD_HotDog_Rotten_01", set={"Mustard": "#7A5A44", "Bun": "#7A5A44", "Sausage": "#6F7F4A"})}),
-    "FD_PizzaBox_01": dict(base="Fresh", parts={"Box": "fabric_brown", "Label": "cloth_red"}, presets={"Rotten": dict(was="FD_PizzaBox_Rotten_01", set={"Label": "#6F7F4A"})}),
     "FD_Sandwich_01": dict(base="Fresh", parts={"Bread": "dough", "Lettuce": "plant_green", "Filling": "meat_red"}, presets={"Rotten": dict(was="FD_Sandwich_Rotten_01", set={"Lettuce": "#6F7F4A", "Bread": "#7A5A44", "Filling": "#6F7F4A"})}),
-    "FD_TVDinner_01": dict(base="Fresh", parts={"Tray": "label_blue", "Foil": "metal_galv", "Carrots": "food_orange", "Peas": "plant_green"}, presets={"Rotten": dict(was="FD_TVDinner_Rotten_01", set={"Peas": "#6F7F4A", "Carrots": "#6F7F4A"})}),
     "FD_Grapes_01": dict(base="Green", parts={"Fruit": "grape_green"}, presets={"Purple": dict(was="FD_Grapes_Purple_01", set={"Fruit": "#5A2E6B"})}),
     "GN_Butterfly_01": dict(base="Blue", parts={"Wings": "wing_blue"}, presets={"Monarch": dict(was="GN_Butterfly_Monarch_01", set={"Wings": "#E8922A"})}),
     "GK_Wall_Window_Barn_01": dict(base="Barn red", parts={"Siding": "barn_red"}, presets={"Clapboard": dict(was="GK_Wall_Window_Clapboard_01", set={"Siding": "#E6E2D6"})}),
@@ -414,7 +408,7 @@ _a("FD_Corn_01", "Corn on the cob", "food/produce/corn", "vegetable yellow cob r
 _a("FD_Lettuce_01", "Lettuce", "food/produce/lettuce", "vegetable green salad fresh")
 _a("FD_Cabbage_01", "Cabbage", "food/produce/cabbage", "vegetable green fresh")
 _a("FD_Pumpkin_01", "Pumpkin", "food/produce/pumpkin", "vegetable orange rural fresh")
-_a("FD_Watermelon_01", "Watermelon", "food/produce/watermelon", "fruit green red large fresh")
+_a("FD_Watermelon_01", "Watermelon", "food/produce/watermelon", "fruit green large fresh")
 _a("FD_Baguette_01", "Baguette", "food/bakery/baguette", "baked bread fresh brown")
 _a("FD_Cake_01", "Cake", "food/bakery/cake", "baked dessert fresh")
 _a("FD_Donut_01", "Donut", "food/bakery/donut", "baked dessert fresh diner")
@@ -424,7 +418,7 @@ _a("FD_MilkBottle_01", "Milk bottle", "food/dairy/milk-bottle", "dairy milk glas
 _a("FD_EggCarton_01", "Egg carton", "food/dairy/egg-carton", "dairy eggs carton fresh")
 _a("FD_CheeseWedge_01", "Cheese wedge", "food/dairy/cheese", "dairy cheese yellow fresh")
 _a("FD_Butter_01", "Butter", "food/dairy/butter", "dairy yellow fresh")
-_a("FD_JuiceBox_01", "Juice box", "food/dairy/juice-box", "drink juice carton fresh")
+_a("FD_JuiceBox_01", "Juice box", "food/drinks/juice-box", "drink juice carton fresh")
 _a("FD_Steak_01", "Steak", "food/prepared/steak", "meat red fresh")
 _a("FD_Sausages_01", "Sausages", "food/prepared/sausages", "meat brown fresh")
 _a("FD_Drumstick_01", "Drumstick", "food/prepared/drumstick", "meat chicken brown fresh")

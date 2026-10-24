@@ -341,11 +341,11 @@ def baguette(p):
         t = k / 8
         r = 0.032 * max(sin(pi * (0.04 + 0.92 * t)), 0.1) ** 0.4
         st.append((-0.35 + 0.7 * t, r, r * 0.9))
-    loft_along(p, "crust", "y", st, n=8, cz=0.03)
+    loft_along(p, "crust", "y", st, n=8, cz=0.0288)
     for k in range(5):                                                         # slashes sunk a millimetre into the crust, which is 0.9 r tall at that point
         y = -0.2 + 0.1 * k
         r = 0.032 * max(sin(pi * (0.04 + 0.92 * (y + 0.35) / 0.7)), 0.1) ** 0.4
-        p.box("dough", (0, y, 0.03 + 0.9 * r - 0.001), (0.02, 0.012, 0.004), rot=(0, 0, 35))
+        p.box("dough", (0, y, 0.0288 + 0.9 * r - 0.001), (0.02, 0.012, 0.004), rot=(0, 0, 35))
 
 
 def sausages(p):
@@ -356,17 +356,17 @@ def sausages(p):
 
 
 def drumstick(p):
-    loft_along(p, "crust", "x", [(-0.05, 0.004, 0.004), (-0.04, 0.026, 0.026), (-0.01, 0.036, 0.036), (0.02, 0.030, 0.030), (0.05, 0.016, 0.016), (0.065, 0.011, 0.011)], n=8, cz=0.038)
-    p.cyl("horn_cream", (0.095, 0, 0.038), 0.007, 0.07, n=6, axis="x")
-    props_lib.ball(p, "horn_cream", (0.135, 0, 0.038), 0.0105, n=6, rings=3)
+    loft_along(p, "crust", "x", [(-0.05, 0.004, 0.004), (-0.04, 0.026, 0.026), (-0.01, 0.036, 0.036), (0.02, 0.030, 0.030), (0.05, 0.016, 0.016), (0.065, 0.011, 0.011)], n=8, cz=0.036)
+    p.cyl("horn_cream", (0.095, 0, 0.036), 0.007, 0.07, n=6, axis="x")
+    props_lib.ball(p, "horn_cream", (0.135, 0, 0.036), 0.0105, n=6, rings=3)
 
 
 def fish(p):
     """A fish lying on its side, head to the left: a lofted body, a flat forked tail and an eye."""
     loft_along(p, "fabric_grey", "x", [(-0.17, 0.004, 0.003), (-0.15, 0.028, 0.016), (-0.10, 0.044, 0.026), (0.0, 0.048, 0.028), (0.08, 0.036, 0.022), (0.12, 0.016, 0.012), (0.14, 0.010, 0.008)],
-               n=8, cz=0.03)
-    p.quads("metal_galv", [[(0.138, -0.008, 0.03), (0.138, 0.008, 0.03)], [(0.19, -0.045, 0.03), (0.19, 0.045, 0.03)]], thick=0.002, facing=(0, 0, 1))
-    p.cyl("black", (-0.12, -0.012, 0.0515), 0.006, 0.004, n=6)
+               n=8, cz=0.028)
+    p.quads("metal_galv", [[(0.138, -0.008, 0.028), (0.138, 0.008, 0.028)], [(0.19, -0.045, 0.028), (0.19, 0.045, 0.028)]], thick=0.002, facing=(0, 0, 1))
+    p.cyl("black", (-0.12, -0.012, 0.0495), 0.006, 0.004, n=6)
 
 
 def _bag_ring(z, h, hx, hy):
