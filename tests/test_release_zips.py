@@ -18,7 +18,8 @@ class Zips(unittest.TestCase):
                 names = set(z.namelist())
             self.assertIn("GI_Fridge_01.glb", names)
             self.assertIn("GI_Fridge_01.interactions.json", names)
-            self.assertNotIn("GV_Police_Sheriff_01.interactions.json", names)   # no entry, no file
+            self.assertIn("GV_Police_Sheriff_01.interactions.json", names)      # a vehicle: doors, hood, trunk and wheels
+            self.assertNotIn("GS_Baseball_01.interactions.json", names)         # no entry, no file
 
 
 if __name__ == "__main__":

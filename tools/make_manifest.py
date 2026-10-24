@@ -193,6 +193,9 @@ def main():
         return catalog_only()
     meta_dir = ROOT / "out" / "meta"
     inter = json.loads((ROOT / "art" / "data" / "interactions.json").read_text(encoding="utf-8"))["props"]
+    for old, new in catalog.SITE_IDS.items():                      # the generator writes interactions.json under its own names; the browser knows the model by its id
+        if old in inter and new not in inter:
+            inter[new] = inter[old]
     groups = variant_groups(catalog.ASSETS)
     assets = []
     for aid, a in catalog.ASSETS.items():

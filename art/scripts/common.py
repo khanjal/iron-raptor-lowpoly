@@ -295,13 +295,17 @@ def palette_image():
     return img
 
 
+def _refill_image(mat, img):
+    for node in (mat.node_tree.nodes if mat.node_tree else []):    # a Blender file that other work shares can lose the image: an empty node exports flat white
+        if node.type == "TEX_IMAGE" and node.image is None:
+            node.image = img
+
+
 def palette_material():
     img = palette_image()
     mat = bpy.data.materials.get(MATERIAL_NAME)
     if mat is not None:
-        for node in (mat.node_tree.nodes if mat.node_tree else []):    # a Blender file that other work shares can lose the image: an empty node exports flat white
-            if node.type == "TEX_IMAGE" and node.image is None:
-                node.image = img
+        _refill_image(mat, img)
         return mat
     mat = bpy.data.materials.new(MATERIAL_NAME)
     mat.use_nodes = True
@@ -320,6 +324,7 @@ def glass_material():
     """The transparent twin of palette_material(): the same texture, GLASS_ALPHA opaque, blended (glTF alphaMode BLEND on export)."""
     mat = bpy.data.materials.get(GLASS_MATERIAL_NAME)
     if mat is not None:
+        _refill_image(mat, palette_image())
         return mat
     base = palette_material()
     mat = base.copy()
@@ -739,6 +744,16 @@ def export_glb(coll, name, rigged=None, meta=True):
     info = describe(coll)
     rigged = info["rigged"] if rigged is None else rigged
     sync_materials(coll.all_objects)                                 # (a rigged model reaches here without export_fbx having run first)
+    for o in coll.all_objects:                                       # an empty image node exports a flat white model that no colour picker can repaint
+        if o.type != "MESH":
+            continue
+        mats = [m for m in o.data.materials if m is not None]
+        if not mats:
+            raise RuntimeError(f"{name}: mesh {o.name} has no material")
+        for m in mats:
+            nodes = m.node_tree.nodes if m.use_nodes and m.node_tree else []
+            if not any(n.type == "TEX_IMAGE" and n.image is not None for n in nodes):
+                raise RuntimeError(f"{name}: material {m.name} has no palette image")
     objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
     top = [o for o in objs if o.parent is None]
     saved_loc = [(o, o.location.copy()) for o in top]
