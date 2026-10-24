@@ -1,10 +1,10 @@
-"""Rig the insects of insects.py and give them clips (Idle, plus Fly, Walk or Hop), for the GLBs of the web viewer.
+"""Rig the insects of insects.py and give them clips (Idle, plus Fly, Walk, Hop or the ladybug's Open), for the GLBs of the web viewer.
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/insect_anim.py", run_name="__main__")
 Optional global INSECT_LIST (names as in insects.CRITTERS). Builds each rigged model and prints its clips; the site build (tools/build_site_assets.py) calls
 build_rigged() itself and writes the GLB.
 
-The moving pieces are the ones insects.py marks with moving(): wings, legs, antennae, a grasshopper's hind legs, a caterpillar's segments. Each becomes
+The moving pieces are the ones insects.py marks with moving(): wings, legs, antennae, the ladybug's wing covers and hindwings, a grasshopper's hind legs, a caterpillar's segments. Each becomes
 a bone at its pivot, all children of a Body bone (Root > Body > piece); the mesh is one object skinned rigidly (a piece follows its bone, the faceted
 look hides it), like the Insectoid. The models are millimetres in size, so the rig is built in metres at that size and the shifts below are tiny.
 
@@ -151,6 +151,18 @@ def idle_caterpillar(rig, t):
     _caterpillar(rig, t, 0.5, 4.0)
 
 
+def open_ladybug(rig, t):
+    """The wing covers (Elytron_L/R) open like a gull's wings (lifted about a lengthwise line at the suture, the rear swung a little outward) and the hindwings (WingH_L/R) unfold sideways from under them, then all fold back."""
+    w = 2 * math.pi * t
+    a = min(1.0, 1.5 * (0.5 - 0.5 * math.cos(w)))
+    turn(rig, "Body", x=-1.5 * a)
+    antennae(rig, w, amp=4.0)
+    for name, s in sides(rig, "Elytron"):
+        turn(rig, name, y=-s * 55.0 * a, z=-s * 14.0 * a)
+    for name, s in sides(rig, "WingH"):
+        turn(rig, name, y=-s * 10.0 * a, z=-s * 80.0 * a)
+
+
 def hop(rig, t):
     """Crouch on the hind legs, kick off, arc through the air with the legs trailing, land and settle (a quarter of the loop each)."""
     w = 2 * math.pi * t
@@ -172,6 +184,7 @@ MOTIONS = {
     "walk": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24)),
     "spider": (("Idle", idle_spider, 48, 24), ("Walk", lambda r, t: walk(r, t, swing=15.0, lift=14.0), 24, 24)),
     "caterpillar": (("Idle", idle_caterpillar, 48, 24), ("Walk", walk_caterpillar, 36, 24)),
+    "ladybug": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24), ("Open", open_ladybug, 48, 24)),
     "hop": (("Idle", idle_walker, 48, 24), ("Hop", hop, 36, 24)),
 }
 
