@@ -2,7 +2,7 @@
 
     python tools/make_manifest.py
     python tools/make_manifest.py --catalog-only    # no Blender: refresh names, tags, folded colour variants (paints) in the existing manifest
-    python tools/make_manifest.py --part-names      # no Blender: only apply art/data/part_names.json (area names of the paintable parts)
+    python tools/make_manifest.py --part-names      # no Blender: only apply art/data/part_names.json (area names of the paintable parts, "$main" for a single-colour model)
 
 Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Blender first (see README.md).
 

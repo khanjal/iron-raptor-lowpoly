@@ -62,6 +62,7 @@ A new or changed model is not finished until the browser has it. In this order:
 1. Add or edit the entry in `tools/catalog.py` (three-level `category/group/kind` type, tags, variants; the rules are tested).
 2. Build it: in Blender, `runpy.run_path(r"<repo>/tools/build_site_assets.py", init_globals={"GROUPS": ["<group>"]}, run_name="__main__")`, one group per call (group names are the keys of `BUILD` in `tools/catalog.py`; `ONLY=[...]` limits an animals or people group). It runs the art script, writes the GLB into `site/models/` and the facts file into `out/meta/`, and removes what it built. Writing GLBs with `common.configure(formats="fbx,glb")` alone goes to `out/glb/`, which the site does not read. New builds carry the credit line (`GLB_COPYRIGHT` in `common.py`); older files: `python tools/stamp_glb.py`.
 3. `python tools/make_manifest.py`, then thumbnails: `python tools/thumb_server.py` and open `http://localhost:8766/tools/thumbs.html` (`?only=ID,ID` for some).
+3b. Name the colour-picker parts in `art/data/part_names.json` (`{id: {swatch name: area}}`, and `"$main": "Case"` for a model with a single colour); a one-colour model left as "Main" fails `tests/test_paints.py`. `python tools/make_manifest.py --part-names` applies it to the committed manifest.
 4. `python tools/check_site.py` and `python -m unittest discover -s tests -t .`.
 5. Run the site (`cd site && python -m http.server 8000`) and open the model: size, which way it faces, moving parts turn about the right pivots, clips play. Say what you looked at.
 

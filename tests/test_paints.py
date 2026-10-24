@@ -182,7 +182,7 @@ class PartNames(unittest.TestCase):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
         for a in doc["assets"]:
             if len(a.get("paintable") or []) == 1:
-                self.assertNotEqual(a["paintable"][0]["part"], "Main", a["id"])
+                self.assertNotEqual(a["paintable"][0]["part"], "Main", f"{a['id']}: add \"$main\": \"<what the colour covers>\" for it to art/data/part_names.json")
 
     def test_the_manifest_uses_them(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))
