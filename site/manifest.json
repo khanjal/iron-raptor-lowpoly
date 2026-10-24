@@ -14336,6 +14336,44 @@
    ]
   },
   {
+   "id": "GT_SnowShovel_01",
+   "name": "Snow shovel",
+   "type": "tools/garden/snow-shovel",
+   "tags": [
+    "blue",
+    "new",
+    "shovel",
+    "snow",
+    "winter",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 116,
+   "size": [
+    1.265,
+    0.04,
+    0.45
+   ],
+   "glb": "models/GT_SnowShovel_01.glb",
+   "thumb": "thumbs/GT_SnowShovel_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Handle and grip",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
    "id": "GT_Spade_01",
    "name": "Spade",
    "type": "tools/garden/spade",
@@ -14598,6 +14636,44 @@
    ]
   },
   {
+   "id": "GT_Mallet_01",
+   "name": "Rubber mallet",
+   "type": "tools/hand/mallet",
+   "tags": [
+    "garage",
+    "mallet",
+    "new",
+    "rubber",
+    "wood",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 40,
+   "size": [
+    0.345,
+    0.05,
+    0.12
+   ],
+   "glb": "models/GT_Mallet_01.glb",
+   "thumb": "thumbs/GT_Mallet_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Head",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
    "id": "GT_Pliers_01",
    "name": "Pliers",
    "type": "tools/hand/pliers",
@@ -14775,6 +14851,131 @@
    ]
   },
   {
+   "id": "GT_BathroomScale_01",
+   "name": "Bathroom scale",
+   "type": "tools/household/bathroom-scale",
+   "tags": [
+    "bathroom",
+    "new",
+    "scale",
+    "weight",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 136,
+   "size": [
+    0.3,
+    0.045,
+    0.3
+   ],
+   "glb": "models/GT_BathroomScale_01.glb",
+   "thumb": "thumbs/GT_BathroomScale_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Feet",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    },
+    {
+     "part": "Display",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
+   "id": "GT_BootScraper_01",
+   "name": "Boot scraper",
+   "type": "tools/household/boot-scraper",
+   "tags": [
+    "black",
+    "boot",
+    "farm",
+    "iron",
+    "new",
+    "porch",
+    "scraper"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.3,
+    0.125,
+    0.12
+   ],
+   "glb": "models/GT_BootScraper_01.glb",
+   "thumb": "thumbs/GT_BootScraper_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Blade",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_ClothesIron_01",
+   "name": "Clothes iron",
+   "type": "tools/household/clothes-iron",
+   "tags": [
+    "black",
+    "clothes",
+    "iron",
+    "laundry",
+    "new",
+    "steam",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.12,
+    0.18,
+    0.27
+   ],
+   "glb": "models/GT_ClothesIron_01.glb",
+   "thumb": "thumbs/GT_ClothesIron_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Sole plate",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Handle",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "GT_FirePoker_01",
    "name": "Fire poker",
    "type": "tools/household/fire-poker",
@@ -14850,6 +15051,125 @@
    ]
   },
   {
+   "id": "GT_ToiletBrush_01",
+   "name": "Toilet brush",
+   "type": "tools/household/toilet-brush",
+   "tags": [
+    "bathroom",
+    "black",
+    "brush",
+    "new",
+    "toilet",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 128,
+   "size": [
+    0.1,
+    0.52,
+    0.095
+   ],
+   "glb": "models/GT_ToiletBrush_01.glb",
+   "thumb": "thumbs/GT_ToiletBrush_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Handle",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Bristles",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
+   "id": "GT_BenchVise_01",
+   "name": "Bench vise",
+   "type": "tools/workshop/bench-vise",
+   "tags": [
+    "bench",
+    "cast-iron",
+    "garage",
+    "new",
+    "red",
+    "vise",
+    "workshop"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    0.16,
+    0.16,
+    0.316
+   ],
+   "glb": "models/GT_BenchVise_01.glb",
+   "thumb": "thumbs/GT_BenchVise_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Screw",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GT_CarBattery_01",
+   "name": "Car battery",
+   "type": "tools/workshop/car-battery",
+   "tags": [
+    "battery",
+    "black",
+    "car",
+    "garage",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.24,
+    0.215,
+    0.175
+   ],
+   "glb": "models/GT_CarBattery_01.glb",
+   "thumb": "thumbs/GT_CarBattery_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Label",
+     "swatch": 104,
+     "hex": "#F0EFE8"
+    }
+   ]
+  },
+  {
    "id": "GT_CordReel_01",
    "name": "Extension cord reel",
    "type": "tools/workshop/cord-reel",
@@ -14890,6 +15210,51 @@
      "part": "Frame",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GT_CordlessDrill_01",
+   "name": "Cordless drill",
+   "type": "tools/workshop/cordless-drill",
+   "tags": [
+    "black",
+    "cordless",
+    "drill",
+    "garage",
+    "new",
+    "power",
+    "workshop",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 120,
+   "size": [
+    0.06,
+    0.255,
+    0.36
+   ],
+   "glb": "models/GT_CordlessDrill_01.glb",
+   "thumb": "thumbs/GT_CordlessDrill_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Battery and trigger",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Chuck",
+     "swatch": 2,
+     "hex": "#A9B4BC"
     }
    ]
   },
@@ -15058,6 +15423,50 @@
      "part": "Top beam",
      "swatch": 0,
      "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "GT_WorkLight_01",
+   "name": "Clip-on work light",
+   "type": "tools/workshop/work-light",
+   "tags": [
+    "clamp",
+    "garage",
+    "light",
+    "new",
+    "steel",
+    "work",
+    "yellow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    0.22,
+    0.25,
+    0.155
+   ],
+   "glb": "models/GT_WorkLight_01.glb",
+   "thumb": "thumbs/GT_WorkLight_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Clamp and arm",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Bulb",
+     "swatch": 42,
+     "hex": "#E0B83A"
     }
    ]
   },

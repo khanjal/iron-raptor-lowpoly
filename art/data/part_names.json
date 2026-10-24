@@ -239,5 +239,40 @@
   "metal_galv": "Bumpers and chrome",
   "metal_dark": "Engine, cargo floor and exhaust",
   "cloth_red": "Stripe and cross"
+ },
+ "GT_Mallet_01": {
+  "rubber": "Head"
+ },
+ "GT_ClothesIron_01": {
+  "metal_galv": "Sole plate",
+  "black": "Handle"
+ },
+ "GT_BathroomScale_01": {
+  "rubber": "Feet",
+  "screen": "Display"
+ },
+ "GT_CordlessDrill_01": {
+  "black": "Battery and trigger",
+  "metal_galv": "Chuck"
+ },
+ "GT_BenchVise_01": {
+  "metal_dark": "Screw"
+ },
+ "GT_SnowShovel_01": {
+  "wood_light": "Handle and grip"
+ },
+ "GT_CarBattery_01": {
+  "label_white": "Label"
+ },
+ "GT_BootScraper_01": {
+  "metal_dark": "Blade"
+ },
+ "GT_ToiletBrush_01": {
+  "black": "Handle",
+  "tan": "Bristles"
+ },
+ "GT_WorkLight_01": {
+  "black": "Clamp and arm",
+  "paint_yellow": "Bulb"
  }
 }
