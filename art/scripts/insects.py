@@ -1,5 +1,6 @@
 """Insects and a spider for the wild (ladybug, bee, butterflies, dragonfly, beetle, ant, grasshopper, firefly, moth, spider, caterpillar, and the wider cast of
-issue #80: stink bug, housefly, mosquito, wasp, cockroach, cricket, praying mantis, earwig). Flat faceted
+issue #80: stink bug, housefly, mosquito, wasp, cockroach, cricket, praying mantis, earwig, aphid, weevil, stag beetle, scarab, scorpion, wolf spider,
+orb-weaver and jumping spider). Flat faceted
 models. The FBX is a resting pose (not rigged). For the web viewer, insect_anim.py rigs each one from the moving parts marked here (wings, legs,
 antennae, caterpillar segments: `moving()`), and gives it Idle plus Fly, Walk, Hop or the ladybug's Open clips; see build_rigged().
 
@@ -556,6 +557,146 @@ def earwig():
         rod(p, "black", (s * 1.8, 10.0, 1.6), (s * 1.1, 12.0, 1.6), 0.44)
     legs(p, "rust_dark", 1.4, (-3.2, -1.2, 1.2), 1.3, 2.8, 1.3, 0.28, dy=0.65)
     antennae(p, "rust_dark", (0.5, -6.1, 2.1), (1.9, -10.0, 3.2), 0.24)
+    return p
+
+
+# ===== The wider cast, batch 2: more beetles, an aphid and the arachnids (issue #80) ================================
+def arachnid_legs(p, colour, x, ys, dys, z_hip, reach, up, w):
+    """Eight walking legs, four a side, each a moving piece Leg_<L|R><n> (n counts from the head) pivoting at its hip inside the cephalothorax:
+    hip at (+-0.7 x, y, z_hip), knee out and up, foot on the ground, the front pair reaching forward and the back pair backward (dys)."""
+    for s in (-1, 1):
+        for i, (y, dy) in enumerate(zip(ys, dys)):
+            hip = (s * x * 0.7, y, z_hip)
+            knee = (s * (x + reach * 0.55), y + dy * 0.8, z_hip + up)
+            foot = (s * (x + reach), y + dy * 1.6, 0.0)
+            with moving(p, f"Leg_{'L' if s > 0 else 'R'}{i}", hip):
+                rod(p, colour, hip, knee, w)
+                rod(p, colour, knee, foot, w * 0.8)
+
+
+@critter("beetles", "Aphid")
+def aphid():
+    """A green aphid (about 3 mm): a soft pear-shaped body, a small head with long antennae, two short cornicles at the tail and six thin legs."""
+    p = new("GN_Aphid_01")
+    p.motion = "walk"
+    blob(p, "plant_green", (0, 0.65, 1.05), (0.76, 1.1, 0.72), n=6, rings=2)                # the abdomen
+    blob(p, "plant_green", (0, -0.8, 1.05), (0.44, 0.44, 0.4), n=6, rings=1)                # the head and thorax
+    for s in (-1, 1):
+        rod(p, "black", (s * 0.36, 1.45, 1.12), (s * 0.44, 2.15, 1.36), 0.13)               # the cornicles
+    legs(p, "leaf_dark", 0.2, (-0.5, -0.1, 0.4), 0.9, 0.75, 0.5, 0.08, dy=0.16)
+    antennae(p, "leaf_dark", (0.16, -0.95, 1.2), (0.64, -2.55, 1.85), 0.065)
+    return p
+
+
+@critter("beetles", "Weevil")
+def weevil():
+    """A weevil (about 8 mm without the snout): a rounded dark body, a small head drawn out into a long curved snout, elbowed antennae from the middle of the snout."""
+    p = new("GN_Weevil_01")
+    p.motion = "walk"
+    blob(p, "dark_brown", (0, 1.2, 2.4), (1.9, 2.7, 1.9), n=6, rings=3)                     # the wing covers
+    blob(p, "dark_brown", (0, -1.9, 2.4), (1.45, 1.1, 1.35), n=6, rings=1)                  # the pronotum
+    blob(p, "rust_dark", (0, -3.2, 2.25), (0.9, 0.8, 0.9), n=6, rings=1)                    # the head
+    rod(p, "black", (0, -3.7, 2.15), (0, -6.3, 1.5), 0.65)                                  # the rostrum
+    rod(p, "black", (0, -6.3, 1.5), (0, -7.1, 1.1), 0.5)
+    for s in (-1, 1):
+        with moving(p, f"Antenna_{'L' if s > 0 else 'R'}", (s * 0.35, -5.6, 1.8)):           # elbowed: first out and forward, then bent outward
+            rod(p, "black", (s * 0.35, -5.6, 1.8), (s * 0.9, -6.5, 2.4), 0.12)
+            rod(p, "black", (s * 0.9, -6.5, 2.4), (s * 1.8, -7.0, 1.9), 0.12)
+    legs(p, "black", 0.9, (-1.8, -0.4, 1.3), 1.45, 1.6, 1.1, 0.32, dy=0.4)
+    return p
+
+
+@critter("beetles", "StagBeetle")
+def stag_beetle():
+    """A male stag beetle (about 40 mm with the jaws): chestnut wing covers, a black pronotum and head, huge branched jaws, a short clubbed antenna and strong legs."""
+    p = new("GN_StagBeetle_01")
+    p.motion = "walk"
+    blob(p, "rust_dark", (0, 6.0, 6.0), (7.0, 12.0, 5.5), n=8, rings=3)                     # the wing covers
+    blob(p, "black", (0, -8.0, 6.2), (7.5, 4.0, 4.2), n=8, rings=2)                         # the pronotum
+    blob(p, "black", (0, -13.0, 6.0), (6.0, 3.2, 3.8), n=6, rings=1)                        # the head
+    for s in (-1, 1):
+        rod(p, "rust_dark", (s * 3.0, -13.5, 6.0), (s * 5.5, -19.5, 6.5), 2.4)               # the jaws: out and forward,
+        rod(p, "rust_dark", (s * 5.5, -19.5, 6.5), (s * 2.0, -24.0, 7.0), 1.9)               # then curving in toward each other
+        rod(p, "rust_dark", (s * 4.9, -18.2, 6.4), (s * 2.6, -18.6, 6.4), 1.2)               # and a tooth on the inside
+    antennae(p, "black", (1.8, -12.5, 7.5), (5.0, -19.0, 10.5), 0.8)
+    legs(p, "black", 4.6, (-9.0, -1.0, 6.5), 4.5, 9.0, 5.0, 1.4, dy=2.0)
+    return p
+
+
+@critter("beetles", "Scarab")
+def scarab():
+    """A scarab (dung) beetle (about 25 mm): a rounded blue-black body, a flat shovel-shaped head, short clubbed antennae and broad legs."""
+    p = new("GN_Scarab_01")
+    p.motion = "walk"
+    blob(p, "navy", (0, 3.0, 6.6), (9.0, 9.0, 5.4), n=8, rings=3)                           # the domed wing covers, belly clear of the ground
+    blob(p, "navy", (0, -7.0, 5.8), (8.0, 3.5, 4.0), n=8, rings=2)                          # the pronotum
+    blob(p, "black", (0, -11.0, 4.8), (6.5, 2.5, 2.6), n=8, rings=1)                        # the flat clypeus, the digging head
+    antennae(p, "black", (2.5, -11.6, 5.5), (5.0, -15.0, 7.0), 0.7)
+    legs(p, "black", 6.0, (-6.0, -1.0, 6.0), 4.2, 9.0, 4.5, 1.6, dy=1.5)
+    return p
+
+
+@critter("arachnids", "Scorpion")
+def scorpion():
+    """A scorpion (about 55 mm long with the claws): a flat tan body, two big claws, eight legs and a five-segment tail carried curled over the back to a stinger."""
+    p = new("GN_Scorpion_01")
+    p.motion = "spider"
+    blob(p, "tan", (0, -6.0, 4.0), (6.0, 8.0, 3.0), n=8, rings=2)                           # the carapace
+    blob(p, "tan", (0, 8.0, 4.0), (6.5, 10.0, 3.2), n=8, rings=3)                           # the abdomen
+    tail = [(0, 15, 4.5), (0, 21, 5.5), (0, 24, 10.5), (0, 20, 16.5), (0, 13, 19.5), (0, 8, 18.0)]
+    for a, b in zip(tail, tail[1:]):
+        rod(p, "tan", a, b, 3.2)                                                            # the five tail segments, curling up and forward over the back
+    ball_at(p, "dark_brown", (0, 8.0, 18.0), 2.3, n=6)                                      # the venom gland
+    rod(p, "dark_brown", (0, 8.0, 18.0), (0, 5.0, 15.5), 1.2)                               # the stinger, hooked down and forward
+    for s in (-1, 1):
+        rod(p, "tan", (s * 3.0, -10.0, 4.0), (s * 9.0, -20.0, 4.0), 2.6)                    # the pedipalp arm
+        ball_at(p, "dark_brown", (s * 9.6, -21.6, 4.0), 3.2, n=6)                           # the claw's palm
+        rod(p, "dark_brown", (s * 9.6, -21.6, 4.0), (s * 7.5, -29.0, 4.0), 1.4)             # the two fingers
+        rod(p, "dark_brown", (s * 9.6, -21.6, 4.0), (s * 12.5, -29.0, 4.0), 1.4)
+    arachnid_legs(p, "tan", 4.6, (-8.0, -3.0, 2.0, 7.0), (-2.0, -1.0, 1.0, 2.0), 3.2, 12.0, 4.0, 1.2)
+    return p
+
+
+@critter("arachnids", "WolfSpider")
+def wolf_spider():
+    """A wolf spider (about 25 mm body): a brown body with a pale stripe down the back, two big forward eyes and long strong legs."""
+    p = new("GN_WolfSpider_01")
+    p.motion = "spider"
+    blob(p, "dark_brown", (0, -5.0, 5.0), (6.0, 6.5, 4.0), n=8, rings=2)                    # the cephalothorax
+    blob(p, "fabric_brown", (0, 7.0, 5.0), (5.5, 9.0, 4.5), n=8, rings=3)                   # the abdomen
+    p.box("tan", (0, -5.0, 8.4), (1.6, 5.0, 0.6))                                           # the pale stripe
+    for s in (-1, 1):
+        ball_at(p, "black", (s * 2.3, -10.5, 7.0), 1.4, n=5)                                # the two big front eyes
+    arachnid_legs(p, "dark_brown", 5.5, (-9.0, -6.0, -2.0, 1.5), (-5.0, -2.0, 3.0, 7.0), 4.5, 16.0, 8.0, 1.3)
+    return p
+
+
+@critter("arachnids", "OrbWeaver")
+def orb_weaver():
+    """An orb-weaver spider (about 21 mm body): a big round abdomen with a bright patch, a small cephalothorax and long legs."""
+    p = new("GN_OrbWeaver_01")
+    p.motion = "spider"
+    blob(p, "fabric_brown", (0, 3.0, 9.0), (6.5, 7.4, 6.5), n=8, rings=3)                   # the big abdomen
+    ball_at(p, "food_orange", (0, 3.0, 14.6), 2.0, n=5)                                   # the bright spot on top
+    blob(p, "rust_dark", (0, -5.0, 5.0), (4.0, 4.2, 3.2), n=8, rings=2)                     # the cephalothorax
+    for s in (-1, 1):
+        ball_at(p, "black", (s * 1.4, -8.9, 5.8), 0.7, n=5)                                 # the small eyes
+    arachnid_legs(p, "rust_dark", 3.4, (-8.0, -5.5, -3.0, -1.0), (-5.0, -2.5, 1.5, 4.0), 4.4, 16.0, 9.0, 0.9)
+    return p
+
+
+@critter("arachnids", "JumpingSpider")
+def jumping_spider():
+    """A jumping spider (about 8 mm): a stocky black cephalothorax with two huge front eyes, a brown abdomen with a pale chevron and short strong legs."""
+    p = new("GN_JumpingSpider_01")
+    p.motion = "spider"
+    blob(p, "black", (0, -1.3, 2.0), (2.1, 2.1, 1.7), n=8, rings=2)                         # the cephalothorax
+    blob(p, "fabric_brown", (0, 2.2, 1.9), (1.7, 2.3, 1.6), n=8, rings=2)                   # the abdomen
+    p.box("paint_white", (0, 2.0, 3.3), (0.9, 1.0, 0.3))                                    # the pale chevron
+    for s in (-1, 1):
+        ball_at(p, "black", (s * 0.8, -3.1, 2.7), 0.7, n=5)                                 # the huge front eyes
+        ball_at(p, "paint_white", (s * 0.8, -3.7, 2.8), 0.2, n=4)                           # their highlight
+    arachnid_legs(p, "dark_brown", 1.8, (-2.6, -1.8, -0.7, 0.8), (-1.3, -0.7, 0.7, 1.6), 1.6, 3.6, 2.3, 0.55)
     return p
 
 
