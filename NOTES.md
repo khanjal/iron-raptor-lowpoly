@@ -64,7 +64,7 @@ A model with no entry in `catalog.PAINTS` still gets `paintable` in the manifest
 
 ## The rest of the cast and the farm animals (2026-10-23)
 Added to the browser: 10 people (farmer's spouse, grandparent, worker, deputy, two FBI agents, Man in Black, Nordic, Shadow entity, Reptilian) and sheep, pig and goat: 135 models. IDs are what the scripts name them (`GP_FbiAgentF_01`, `GN_Sheep_faceted_01`). They have the same clips as the others (people Idle, Walk, Run, Sit; animals Idle, Walk).
-- **A trap found on the way:** the shared Blender file's `GlobalPalette` material had lost its image (an empty Image Texture node), so the first build of these 13 came out as flat white GLBs. `common.palette_material()` now relinks an empty node. A GLB without an embedded image shows white in the viewer; `check_site.py` does not catch that yet.
+- **A trap found on the way:** the shared Blender file's `GlobalPalette` material had lost its image (an empty Image Texture node), so the first build of these 13 came out as flat white GLBs. `common.palette_material()` now relinks an empty node. A GLB without an embedded image shows white in the viewer and the colour pickers cannot repaint it; `export_glb` now refuses to write one and `tests/test_glb_palette.py` checks every committed GLB.
 - Not looked at in the viewer beyond the thumbnails and the goat; their clips were keyed by the same scripts as the old ones but not checked one by one.
 
 ## More families (2026-10-23, branch `licence`)
