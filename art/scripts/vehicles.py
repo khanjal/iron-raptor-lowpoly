@@ -39,15 +39,47 @@ def V(x, y, z):
 
 
 # ===== Shared pieces for every road vehicle (#344: more detail, same palette) =====================================================
+def wheel_role(x, y):
+    """The temporary name of the moving part for the wheel at (x, y): every tyre at the same side and the same y (a dual pair) is one part.
+    name_wheels() turns these into Wheel_FL, Wheel_RR... once the whole vehicle is built and the axles are known."""
+    return f"Wheel@{'C' if abs(x) < 0.05 else ('L' if x > 0 else 'R')}@{round(y, 2)}"
+
+
+def wheel_part(p, x, y, z):
+    """Everything added inside is one wheel that spins about the X axis through its centre (x, y, z)."""
+    return p.part(wheel_role(x, y), pivot=(x, y, z), kind="spin", axis="x", limit=360.0)
+
+
+def name_wheels(p):
+    """Give the wheel parts of a finished vehicle their names: Wheel_FL, Wheel_FR, Wheel_RL, Wheel_RR for two axles (L is +X: the model faces -Y),
+    Wheel_A1L, Wheel_A1R, Wheel_A2L... for more, Wheel_L and Wheel_R for one axle, Wheel_F and Wheel_R for a motorcycle's centre-line wheels."""
+    wheels = [r for r in p.groups if r.startswith("Wheel@")]
+    ys = sorted({float(r.split("@")[2]) for r in wheels})
+    names = {}
+    for r in wheels:
+        _, side, y = r.split("@")
+        k = ys.index(float(y))
+        if side == "C":
+            names[r] = "Wheel_F" if k == 0 else "Wheel_R"
+        elif len(ys) == 1:
+            names[r] = f"Wheel_{side}"
+        elif len(ys) == 2:
+            names[r] = f"Wheel_{'F' if k == 0 else 'R'}{side}"
+        else:
+            names[r] = f"Wheel_A{k + 1}{side}"
+    p.groups = {names.get(r, r): g for r, g in p.groups.items()}
+
+
 def car_wheel(p, trim, x, y, r, w, n=10, z=None):
-    """A road wheel on the X axis: the tyre, then on the outer face a rim, a dark dish and a cap (the inner face is never seen)."""
+    """A road wheel on the X axis, a spinning part: the tyre, then on the outer face a rim, a dark dish and a cap (the inner face is never seen)."""
     z = r if z is None else z
     out = 1 if x >= 0 else -1
-    p.cyl("rubber", (x, y, z), r, w, n=n, axis="x")
-    xo = x + out * (w / 2 + 0.006)
-    p.cyl(trim, (xo, y, z), r * 0.64, 0.014, n=n, axis="x")                                # rim
-    p.cyl("black", (xo + out * 0.008, y, z), r * 0.42, 0.016, n=8, axis="x")               # dark dish
-    p.cyl(trim, (xo + out * 0.016, y, z), r * 0.15, 0.016, n=6, axis="x")                  # cap
+    with wheel_part(p, x, y, z):
+        p.cyl("rubber", (x, y, z), r, w, n=n, axis="x")
+        xo = x + out * (w / 2 + 0.006)
+        p.cyl(trim, (xo, y, z), r * 0.64, 0.014, n=n, axis="x")                                # rim
+        p.cyl("black", (xo + out * 0.008, y, z), r * 0.42, 0.016, n=8, axis="x")               # dark dish
+        p.cyl(trim, (xo + out * 0.016, y, z), r * 0.15, 0.016, n=6, axis="x")                  # cap
 
 
 def arch(p, colour, x, y, zc, r, w=0.07, lo=10):
@@ -69,6 +101,64 @@ def body_loft(p, colour, stations, shoulder=0.8):
     p.loft_rings(colour, rings)
 
 
+def _cut(st, drop):
+    """For one body station (y, half_width, z_bottom, z_top, tuck): the points of the cut `drop` below its top, as body_loft's ring is built:
+    (z of the cut, x of the side at that height, z of the shoulder)."""
+    y, hw, zb, zt, tuck = st
+    zs = zb + (zt - zb) * 0.8
+    zc = zt - drop
+    assert zc < zs and zc > zb, (st, drop)
+    return zc, (hw - 0.04) + 0.04 * (zc - zb) / (zs - zb), zs
+
+
+def low_loft(p, colour, stations, drop):
+    """The part of body_loft's shell that stays put under a lid (a hood, a boot lid, a tailgate): everything up to `drop` below the top."""
+    rings = []
+    for st in stations:
+        y, hw, zb, zt, tuck = st
+        zc, xc, zs = _cut(st, drop)
+        rings.append([V(-(hw - 0.04), y, zb), V(hw - 0.04, y, zb), V(xc, y, zc), V(-xc, y, zc)])
+    p.loft_rings(colour, rings)
+
+
+def lid_loft(p, colour, stations, drop):
+    """The lid that goes with low_loft: the top `drop` of the same shell, a solid piece (whatever sits under it, an engine or a spare wheel, is inside it while it is shut)."""
+    rings = []
+    for st in stations:
+        y, hw, zb, zt, tuck = st
+        zc, xc, zs = _cut(st, drop)
+        rings.append([V(-xc, y, zc), V(xc, y, zc), V(hw, y, zs), V(hw - tuck, y, zt), V(-(hw - tuck), y, zt), V(-hw, y, zs)])
+    p.loft_rings(colour, rings)
+
+
+def lean_box(p, colour, sx, hb, ht, zlo, zhi, ya, yb, z0, z1, thick, outset=0.0):
+    """A panel lying on the leaning side of a glasshouse whose side runs from half-width hb at height zlo to ht at zhi, from y ya to yb and height z0 to z1
+    (outset is how far it stands off the surface): a door window, a quarter window, a decal."""
+    a = math.atan2(hb - ht, zhi - zlo)
+    zc = (z0 + z1) / 2
+    xc = hb + (ht - hb) * (zc - zlo) / (zhi - zlo) + outset * math.cos(a)
+    p.box(colour, (sx * xc, (ya + yb) / 2, zc + outset * math.sin(a)), (thick, yb - ya, (z1 - z0) / math.cos(a)), rot=(0, -sx * math.degrees(a), 0))
+
+
+def core_loft(p, colour, stations, thick):
+    """body_loft's shell without its side panels: what stays when the sides below the shoulder come off (the panels are panel_loft, `thick` thick)."""
+    rings = []
+    for y, hw, zb, zt, tuck in stations:
+        zs = zb + (zt - zb) * 0.8
+        rings.append([V(-(hw - 0.04 - thick), y, zb), V(hw - 0.04 - thick, y, zb), V(hw - thick, y, zs), V(hw, y, zs), V(hw - tuck, y, zt),
+                      V(-(hw - tuck), y, zt), V(-hw, y, zs), V(-(hw - thick), y, zs)])
+    p.loft_rings(colour, rings)
+
+
+def panel_loft(p, colour, stations, sx, thick):
+    """The side panel (side sx) that goes with core_loft: the shell below its shoulder, `thick` thick."""
+    rings = []
+    for y, hw, zb, zt, tuck in stations:
+        zs = zb + (zt - zb) * 0.8
+        rings.append([V(sx * (hw - 0.04), y, zb), V(sx * hw, y, zs), V(sx * (hw - thick), y, zs), V(sx * (hw - 0.04 - thick), y, zb)])
+    p.loft_rings(colour, rings)
+
+
 def glasshouse(p, colour, stations):
     """The cabin skinned from (y, half_width_base, half_width_top, z_base, z_top): slanted windscreen, side windows leaning in, rear window."""
     p.loft_rings(colour, [[V(-hb, y, zb), V(hb, y, zb), V(ht, y, zt), V(-ht, y, zt)] for y, hb, ht, zb, zt in stations])
@@ -86,46 +176,75 @@ def seat(p, colour, x, y, z, w, ch):
     p.box(colour, (x, y + 0.24, z + 0.1 + back / 2), (w, 0.1, back), rot=(-8, 0, 0))
 
 
-def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="office_dark"):
+def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="office_dark", floor=None):
     """What you see through the glass of a cabin from y0 (the windscreen end) to y1 on a floor at height z, `width` wide and ch under the roof:
     a floor mat, a dashboard, a steering wheel on the left (-X), and a row of seats for each y offset in rows (the first row is the front;
-    bench=True makes it one seat across, otherwise two seats; later rows are benches)."""
+    bench=True makes it one seat across, otherwise two seats; later rows are benches).
+    floor= puts the floor lower than z (a car whose doors open: the floor is the car's, z is the window sill): the dashboard reaches down to it,
+    the seats stand on it and the steering wheel stays up where z is."""
+    fz = z if floor is None else floor
+    lift = z - fz
     x = width / 2 - 0.42
-    p.box("black", (0, (y0 + y1) / 2, z + 0.01), (width - 0.1, y1 - y0 - 0.1, 0.02))                         # floor mat
-    p.box("black", (0, y0 + 0.22, z + 0.12), (width - 0.1, 0.36, 0.24))                                     # dashboard
+    p.box("black", (0, (y0 + y1) / 2, fz + 0.01), (width - 0.1, y1 - y0 - 0.1, 0.02))                        # floor mat
+    p.box("black", (0, y0 + 0.22, fz + (0.24 + lift) / 2), (width - 0.1, 0.36, 0.24 + lift))                # dashboard
     p.cyl("black", (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.16, 0.03, n=6, axis="y")                      # steering wheel
+    if lift:
+        props_lib.rod(p, "metal_dark", (-x, y0 + 0.4, fz + (0.24 + lift) * 0.7), (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.05)   # its column
     for k, off in enumerate(rows):
         if k == 0 and not bench:
             for sx in (-1, 1):
-                seat(p, colour, sx * x, y0 + off, z, 0.5, ch)
+                seat(p, colour, sx * x, y0 + off, fz + (0.1 if lift else 0), 0.5, ch + lift)
         else:
-            seat(p, colour, 0, y0 + off, z, width - 0.5, ch)
+            seat(p, colour, 0, y0 + off, fz + (0.1 if lift else 0), width - 0.5, ch + lift)
 
 
 def pickup(body="truck_blue", name="GV_Pickup_01"):
-    """A farm pickup truck. A lofted hood and cab with a slanted windscreen, pillars, door seams and handles, wheel arches, an open bed with
-    ribs and wheel wells, bumpers, a grille with bars, headlight and tail light housings, mirrors, running boards and four wheels."""
+    """A farm pickup truck. A lofted hood and cab with a slanted windscreen, pillars, wheel arches, an open bed with ribs and wheel wells, bumpers,
+    a grille with bars, headlight and tail light housings, mirrors, running boards and four wheels.
+
+    It opens: four doors (Door_FL, Door_FR, Door_RL, Door_RR; L is +X) on a hollow cab with a floor and seats, the hood (Hood) over an engine, and the
+    tailgate (Tailgate), which drops flat. The wheels spin."""
     p = Prop(name)
+    z_f, ytop = 0.65, 1.13                                                          # the cab floor, and the sill the windows stand on
+    zmid = (z_f + ytop) / 2
     p.box("black", (0, 0, 0.5), (1.7, 5.0, 0.18))                                    # frame
-    body_loft(p, body, [(-2.62, 0.88, 0.58, 0.98, 0.06), (-2.45, 0.97, 0.52, 1.06, 0.07), (-1.7, 0.98, 0.52, 1.12, 0.07),
-                        (-1.05, 0.98, 0.52, 1.14, 0.06), (0.85, 0.98, 0.52, 1.12, 0.05)])   # hood, wings and the lower cab in one shell
-    p.box(body, (0, -1.85, 1.15), (0.55, 0.75, 0.07))                               # hood scoop
-    p.box("black", (0, -2.21, 1.14), (0.42, 0.03, 0.05))                            # its intake
-    glasshouse(p, "clear_glass", [(-0.95, 0.87, 0.86, 1.13, 1.15), (-0.68, 0.87, 0.78, 1.13, 1.58), (0.6, 0.87, 0.78, 1.13, 1.58), (0.85, 0.87, 0.84, 1.13, 1.17)])
-    cab_interior(p, -0.7, 0.7, 1.13, 1.5, 0.4, rows=(0.5, 1.15), bench=True)                                           # dashboard, wheel and seats you can see
-    p.box(body, (0, -0.04, 1.63), (1.64, 1.38, 0.1))                               # roof (its top where the tow truck's beacon expects it)
+    A = (-2.62, 0.88, 0.58, 0.98, 0.06); B = (-2.45, 0.97, 0.52, 1.06, 0.07); C = (-1.7, 0.98, 0.52, 1.12, 0.07); D = (-1.05, 0.98, 0.52, 1.14, 0.06)
+    body_loft(p, body, [A, B])                                                       # the nose
+    low_loft(p, body, [B, C, D], 0.17)                                               # the engine bay
+    with p.part("Hood", pivot=(0, -1.05, 0.97), kind="hinge", axis="x", limit=-60.0):
+        lid_loft(p, body, [B, C, D], 0.17)
+        p.box(body, (0, -1.85, 1.15), (0.55, 0.75, 0.07))                           # hood scoop
+        p.box("black", (0, -2.21, 1.14), (0.42, 0.03, 0.05))                        # its intake
+    p.box("metal_dark", (0, -1.5, 1.0), (0.5, 0.8, 0.22))                           # engine, inside the hood while it is shut
+    p.box("black", (-0.55, -2.0, 1.0), (0.2, 0.16, 0.2))
+    p.box("black", (0, -2.2, 1.0), (1.3, 0.08, 0.22))                               # radiator
+    glasshouse(p, "clear_glass", [(-0.95, 0.87, 0.86, 1.13, 1.15), (-0.68, 0.87, 0.78, 1.13, 1.58)])                       # the windscreen
+    glasshouse(p, "clear_glass", [(0.6, 0.87, 0.78, 1.13, 1.58), (0.85, 0.87, 0.84, 1.13, 1.17)])                          # the rear window
+    cab_interior(p, -0.7, 0.7, ytop, 1.5, 0.4, rows=(0.5, 1.15), bench=True, floor=z_f)                                 # dashboard, wheel and seats you can see
+    p.box("black", (0, -0.1, z_f - 0.05), (1.76, 1.9, 0.1))                         # the floor
+    p.box(body, (0, 0.8, (0.52 + ytop) / 2), (1.9, 0.1, ytop - 0.52))              # the back wall of the cab
+    p.box(body, (0, -0.04, 1.63), (1.64, 1.38, 0.1))                               # roof (its top where the tow truck beacon expects it)
     for s in (-1, 1):
         props_lib.rod(p, body, (s * 0.88, -0.95, 1.13), (s * 0.8, -0.68, 1.58), 0.09)     # A pillars
         props_lib.rod(p, body, (s * 0.88, -0.12, 1.12), (s * 0.79, -0.12, 1.58), 0.08)    # B pillars
         props_lib.rod(p, body, (s * 0.79, 0.6, 1.58), (s * 0.88, 0.85, 1.13), 0.13)       # C pillars
-        for y in (-0.94, -0.12, 0.8):
-            p.box("black", (s * 0.98, y, 0.86), (0.05, 0.03, 0.46))                # door seams (thick, so they sit in the leaning side)
-        for y in (-0.3, 0.5):
-            p.box("metal_galv", (s * 0.985, y, 1.02), (0.04, 0.16, 0.04))          # handles
-        mirror(p, body, s, 0.9, -0.9, 1.2)
+        p.box(body, (s * 0.935, -0.99, (0.52 + ytop) / 2), (0.09, 0.1, ytop - 0.52))      # the panel in front of the door
+        p.box(body, (s * 0.935, -0.12, (0.52 + z_f) / 2), (0.09, 1.82, z_f - 0.52))       # rocker panel
+        for y in (-0.96, -0.12):
+            p.box("black", (s * 0.84, y, zmid), (0.1, 0.08, ytop - z_f))                   # the posts the doors shut against
+        # the doors, each a part (the front ones carry the mirror)
+        side = "L" if s > 0 else "R"
+        for role, ya, yb, front in ((f"Door_F{side}", -0.93, -0.13, True), (f"Door_R{side}", -0.11, 0.79, False)):
+            with p.part(role, pivot=(s * 0.96, ya, zmid), kind="hinge", axis="z", limit=-70.0 * s):
+                p.box(body, (s * 0.935, (ya + yb) / 2, zmid), (0.09, yb - ya, ytop - z_f))
+                p.box("black", (s * 0.89, (ya + yb) / 2, zmid + 0.02), (0.016, yb - ya - 0.08, ytop - z_f - 0.1))     # the door card
+                lean_box(p, "clear_glass", s, 0.87, 0.78, 1.13, 1.58, max(ya + 0.04, -0.68) if front else ya + 0.04, yb - 0.04, 1.135, 1.57, 0.03)
+                p.box("metal_galv", (s * 0.985, yb - 0.15, 1.02), (0.04, 0.16, 0.04))      # handle
+                if front:
+                    mirror(p, body, s, 0.9, -0.9, 1.2)
         p.box("black", (s * 1.0, -0.5, 0.5), (0.14, 1.5, 0.06))                    # running boards
     for x in (-0.3, 0.0, 0.3):
-        p.box("paint_yellow", (x, -0.745, 1.63), (0.1, 0.05, 0.06))                # cab lights, on the roof's front edge
+        p.box("paint_yellow", (x, -0.745, 1.63), (0.1, 0.05, 0.06))                # cab lights, on the roof front edge
     # bed
     p.box(body, (0, 1.75, 0.72), (1.9, 2.0, 0.1))                                    # bed floor
     for s in (-1, 1):
@@ -134,16 +253,20 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
         for y in (1.15, 1.6, 2.05, 2.45):
             p.box(body, (s * 0.985, y, 1.0), (0.03, 0.09, 0.46))                    # ribs pressed into the walls
         p.box(body, (s * 0.7, 1.7, 0.87), (0.4, 0.8, 0.22))                         # wheel wells inside the bed (under the tow deck, z 1.0)
-    p.box(body, (0, 2.7, 1.0), (1.9, 0.1, 0.5))                                      # tailgate
-    p.box("black", (0, 2.77, 1.22), (0.5, 0.04, 0.06))                              # its handle
-    p.box("black", (0, 2.762, 1.03), (1.2, 0.02, 0.1))                              # badge strip
+    with p.part("Tailgate", pivot=(0, 2.7, 0.75), kind="hinge", axis="x", limit=-88.0):
+        p.box(body, (0, 2.7, 1.0), (1.9, 0.1, 0.5))                                  # tailgate
+        p.box("black", (0, 2.77, 1.22), (0.5, 0.04, 0.06))                          # its handle
+        p.box("black", (0, 2.762, 1.03), (1.2, 0.02, 0.1))                          # badge strip
+        p.box("paint_white", (0, 2.76, 0.86), (0.45, 0.02, 0.2))                    # plate
+        for s in (-1, 1):
+            p.box("black", (s * 0.86, 2.74, 1.0), (0.2, 0.05, 0.36))                # tail light housings
+            p.box("cloth_red", (s * 0.86, 2.745, 1.0), (0.16, 0.08, 0.3))           # tail lights (reach back into the tailgate)
     p.box(body, (0, 0.78, 1.0), (1.9, 0.1, 0.5))                                     # bed front wall
     # bumpers, grille, lights
     p.box("metal_galv", (0, -2.7, 0.6), (2.0, 0.18, 0.22))
     p.box("black", (0, -2.66, 0.43), (1.5, 0.1, 0.14))                              # valance
     p.box("metal_galv", (0, 2.82, 0.58), (2.0, 0.18, 0.2))
     p.box("black", (0, 2.95, 0.5), (0.12, 0.28, 0.12))                              # tow receiver
-    p.box("paint_white", (0, 2.76, 0.86), (0.45, 0.02, 0.2))                        # plate
     p.box("black", (0, -2.64, 0.82), (0.9, 0.06, 0.26))                             # grille
     for z in (0.74, 0.82, 0.9):
         p.box("metal_galv", (0, -2.675, z), (0.88, 0.03, 0.03))
@@ -151,8 +274,6 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
         p.box("metal_galv", (s * 0.7, -2.64, 0.84), (0.34, 0.07, 0.22))             # headlight bezels
         p.box("paint_yellow", (s * 0.7, -2.665, 0.84), (0.28, 0.09, 0.16))          # headlights (reach back into the nose)
         p.box("orange_cat", (s * 0.93, -2.64, 0.64), (0.1, 0.06, 0.1))              # indicators
-        p.box("black", (s * 0.86, 2.74, 1.0), (0.2, 0.05, 0.36))                    # tail light housings
-        p.box("cloth_red", (s * 0.86, 2.745, 1.0), (0.16, 0.08, 0.3))               # tail lights (reach back into the tailgate)
     p.cyl("metal_dark", (0.6, 2.9, 0.47), 0.05, 0.3, n=6, axis="y")                 # exhaust, up into the bumper
     # wheels and arches
     for s in (-1, 1):
@@ -167,7 +288,17 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
     big treaded rear wheels under curved mudguards, small front wheels, exhaust, air cleaner, lift arms and a hitch."""
     p = Prop(name)
     p.box("black", (0, 0, 0.7), (1.0, 3.6, 0.3))                                     # chassis
-    body_loft(p, body, [(-2.0, 0.34, 0.9, 1.55, 0.09), (-1.85, 0.43, 0.82, 1.68, 0.08), (-0.5, 0.5, 0.8, 1.7, 0.08), (-0.3, 0.5, 0.8, 1.62, 0.05)])   # hood
+    H0, H1, H2, H3 = (-2.0, 0.34, 0.9, 1.55, 0.09), (-1.85, 0.43, 0.82, 1.68, 0.08), (-0.5, 0.5, 0.8, 1.7, 0.08), (-0.3, 0.5, 0.8, 1.62, 0.05)
+    body_loft(p, body, [H0, H1])                                                     # the nose
+    core_loft(p, body, [H1, H2, H3], 0.09)                                           # the engine bay: a fixed top, and the side panels come off
+    for sx in (-1, 1):
+        p.box("metal_dark", (sx * 0.43, -1.1, 1.1), (0.07, 0.7, 0.3))                # engine block and manifold: inside the side panel while it is shut
+        p.box("black", (sx * 0.43, -1.65, 1.1), (0.07, 0.25, 0.3))                   # radiator
+        p.box("black", (sx * 0.43, -0.65, 1.0), (0.07, 0.2, 0.2))                    # battery and filter
+        with p.part("Engine_L" if sx > 0 else "Engine_R", pivot=(sx * 0.5, -1.1, 1.5), kind="hinge", axis="y", limit=-55.0 * sx):
+            panel_loft(p, body, [H1, H2, H3], sx, 0.09)
+            for z in (0.98, 1.14, 1.3):
+                p.box("black", (sx * 0.49, -1.2, z), (0.04, 0.6, 0.04))              # engine vents
     p.box("black", (0, -2.02, 1.2), (0.56, 0.05, 0.5))                               # grille
     for z in (1.02, 1.2, 1.38):
         p.box("metal_galv", (0, -2.045, z), (0.58, 0.02, 0.04))                      # grille bars
@@ -185,8 +316,6 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
         p.box("black", (s * 0.25, 0.0, 1.62), (0.06, 0.06, 0.16))
         for sy in (-0.4, 1.0):
             p.box(body, (s * 0.5, sy, 2.14), (0.08, 0.08, 1.48))                     # cab posts, from the body up to the roof
-        for z in (1.0, 1.2, 1.4):
-            p.box("black", (s * 0.44, -1.2, z), (0.05, 0.6, 0.04))                  # engine vents (set into the leaning hood side)
     p.box(body, (0, 0.3, 2.88), (1.45, 1.8, 0.1))                                    # canopy roof
     p.box("metal_dark", (0, 0.3, 2.81), (1.2, 1.55, 0.05))                           # its underside
     props_lib.rod(p, "metal_dark", (0, -0.3, 1.4), (0, -0.17, 1.84), 0.06)           # steering column, up to the wheel
@@ -199,16 +328,17 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
         props_lib.rod(p, "metal_dark", (s * 0.35, 1.0, 1.0), (s * 0.35, 1.78, 0.74), 0.07)   # lift arms
         # the rear wheel: a tyre, a treaded ring of lugs, a hub in the body colour and a cap
         x, y, z, r, w = s * 1.12, 0.5, 0.85, 0.85, 0.55
-        rt = r - 0.05                                                                   # the lugs reach the full radius
-        p.cyl("rubber", (x, y, z), rt, w, n=14, axis="x")
-        for k in range(14):
-            a = radians(k * 360 / 14 + 360 / 28)
-            props_lib.rod(p, "rubber", (x, y + (rt - 0.02) * math.cos(a), z + (rt - 0.02) * math.sin(a)),
-                          (x, y + r * math.cos(a), z + r * math.sin(a)), w * 0.85, 0.09)
-        xo = x + s * (w / 2 + 0.006)
-        p.cyl(body, (xo, y, z), r * 0.55, 0.02, n=10, axis="x")
-        p.cyl("metal_dark", (xo + s * 0.012, y, z), r * 0.3, 0.02, n=8, axis="x")
-        p.cyl("metal_galv", (xo + s * 0.024, y, z), r * 0.1, 0.02, n=6, axis="x")
+        with wheel_part(p, x, y, z):
+            rt = r - 0.05                                                                   # the lugs reach the full radius
+            p.cyl("rubber", (x, y, z), rt, w, n=14, axis="x")
+            for k in range(14):
+                a = radians(k * 360 / 14 + 360 / 28)
+                props_lib.rod(p, "rubber", (x, y + (rt - 0.02) * math.cos(a), z + (rt - 0.02) * math.sin(a)),
+                              (x, y + r * math.cos(a), z + r * math.sin(a)), w * 0.85, 0.09)
+            xo = x + s * (w / 2 + 0.006)
+            p.cyl(body, (xo, y, z), r * 0.55, 0.02, n=10, axis="x")
+            p.cyl("metal_dark", (xo + s * 0.012, y, z), r * 0.3, 0.02, n=8, axis="x")
+            p.cyl("metal_galv", (xo + s * 0.024, y, z), r * 0.1, 0.02, n=6, axis="x")
         # the curved mudguard over it, and the step below the cab
         zc, rg = z, r + 0.13                                                        # the chords sag inside the arc, so stand it well off the lugs
         pts = [(y + rg * math.cos(radians(a)), zc + rg * math.sin(radians(a))) for a in (15, 45, 75, 105, 135, 165)]
@@ -220,15 +350,16 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
         p.box("metal_dark", (s * 0.68, 0.5, 1.15), (0.26, 1.5, 0.1))                 # footplate, between the body and the wheel
         # the front wheel: smaller, with its own lugs
         x, y, z, r, w = s * 0.85, -1.55, 0.5, 0.5, 0.28
-        rt = r - 0.04
-        p.cyl("rubber", (x, y, z), rt, w, n=10, axis="x")
-        for k in range(10):
-            a = radians(k * 36 + 18)
-            props_lib.rod(p, "rubber", (x, y + (rt - 0.02) * math.cos(a), z + (rt - 0.02) * math.sin(a)),
-                          (x, y + r * math.cos(a), z + r * math.sin(a)), w * 0.7, 0.07)
-        xo = x + s * (w / 2 + 0.006)
-        p.cyl(body, (xo, y, z), r * 0.55, 0.02, n=8, axis="x")
-        p.cyl("metal_galv", (xo + s * 0.012, y, z), r * 0.14, 0.02, n=6, axis="x")
+        with wheel_part(p, x, y, z):
+            rt = r - 0.04
+            p.cyl("rubber", (x, y, z), rt, w, n=10, axis="x")
+            for k in range(10):
+                a = radians(k * 36 + 18)
+                props_lib.rod(p, "rubber", (x, y + (rt - 0.02) * math.cos(a), z + (rt - 0.02) * math.sin(a)),
+                              (x, y + r * math.cos(a), z + r * math.sin(a)), w * 0.7, 0.07)
+            xo = x + s * (w / 2 + 0.006)
+            p.cyl(body, (xo, y, z), r * 0.55, 0.02, n=8, axis="x")
+            p.cyl("metal_galv", (xo + s * 0.012, y, z), r * 0.14, 0.02, n=6, axis="x")
         p.box("metal_galv", (s * 0.33, -2.04, 1.5), (0.2, 0.07, 0.17))               # headlight bezels
         p.box("paint_yellow", (s * 0.33, -2.07, 1.5), (0.16, 0.05, 0.13))            # headlights
         p.box("paint_yellow", (s * 0.5, 1.22, 2.88), (0.14, 0.05, 0.07))              # work lights on the canopy's rear edge

@@ -36,6 +36,7 @@ class Prop:
         self.emitters = []                    # (kind, name, position or None, frac or None, info): lights, sounds and switches (emitters.py)
         self.traits = set()                   # power, possess, jam, blackout, noisy: what the alien abilities can do with it
         self.keep = []                        # (centre, size) of boxes damage() must never drop: walls that close a container (interactive.shell)
+        self.settled = None                   # (rotation matrix, drop) of the tilt damage() gave the body, so the moving parts can follow it
         self._cur = None
 
     def _bm(self, colour):
@@ -49,8 +50,9 @@ class Prop:
         """Context manager: everything added inside becomes a separate moving part called `role` (Door, Drawer1, Lid...).
 
         pivot  the point it turns or slides about, in the prop's coordinates; the part's origin is put there so Unity can rotate it
-        kind   hinge (turns about `axis` through the pivot, `limit` degrees to open; the sign picks the swing direction) or
-               slide (moves along `axis`, `limit` metres to open)
+        kind   hinge (turns about `axis` through the pivot, `limit` degrees to open; the sign picks the swing direction),
+               slide (moves along `axis`, `limit` metres to open) or
+               spin (a wheel: turns freely about `axis` through the pivot; limit is 360 and rest 0)
         rest   how far open the part is in the exported model (0 = shut); a damaged fridge can hang ajar
 
             with p.part("Door", pivot=(-0.3, -0.35, 0.9), kind="hinge", axis="z", limit=105):
@@ -231,13 +233,18 @@ class Prop:
         def settle(obj):
             import bpy
             obj.rotation_euler = (radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)))
+            rot = obj.rotation_euler.to_matrix()                   # the moving parts are built untilted: finish() puts them through the same turn and drop
             bpy.context.view_layer.objects.active = obj
             bpy.ops.object.select_all(action="DESELECT")
             obj.select_set(True)
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
             low = min(v.co.z for v in obj.data.vertices)
+            for g in self.groups.values():                         # a wheel is a moving part: the lowest point is the body's or a part's, whichever is lower
+                for bm in g["parts"].values():
+                    low = min([low] + [(rot @ v.co).z for v in bm.verts])
             for v in obj.data.vertices:
                 v.co.z -= low
+            self.settled = (rot, low)
         if tilt:
             self.post = settle
 
@@ -263,6 +270,15 @@ class Prop:
         reg = {"parts": {}, "slots": {}}
         for role, g in self.groups.items():
             gobjs = []
+            if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (its hinge axis leans by the same few degrees)
+                rot, low = self.settled
+                m = rot.to_4x4()
+                for bm in g["parts"].values():
+                    bmesh.ops.transform(bm, matrix=m, verts=bm.verts)
+                    for v in bm.verts:
+                        v.co.z -= low
+                g["pivot"] = m @ g["pivot"]
+                g["pivot"].z -= low
             for colour, bm in g["parts"].items():
                 bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
                 gobjs.append(common.new_mesh_object(f"{self.name}_{role}_{colour}", bm, coll, colour, flat=True))
@@ -323,6 +339,7 @@ class Prop:
             INTERACTIONS[self.name] = reg
         self.parts = {}
         self.groups = {}
+        self.settled = None
         return obj, coll
 
 

@@ -1,0 +1,107 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GV_Ambulance_White_01",
+ "space": "blender",
+ "parts": {
+  "Hood": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    0.0,
+    -2.0,
+    0.93
+   ],
+   "limit": -60.0,
+   "rest": 0.0
+  },
+  "Door_FR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.98,
+    -1.874,
+    0.755
+   ],
+   "limit": 70.0,
+   "rest": 0.0
+  },
+  "Wheel_FR": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    -0.9,
+    -1.75,
+    0.36
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Wheel_RR": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    -0.9,
+    1.75,
+    0.36
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Door_FL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.98,
+    -1.874,
+    0.755
+   ],
+   "limit": -70.0,
+   "rest": 0.0
+  },
+  "Wheel_FL": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.9,
+    -1.75,
+    0.36
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "Wheel_RL": {
+   "kind": "spin",
+   "axis": "x",
+   "pivot": [
+    0.9,
+    1.75,
+    0.36
+   ],
+   "limit": 360.0,
+   "rest": 0.0
+  },
+  "RearDoor_R": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.98,
+    2.7,
+    1.45
+   ],
+   "limit": 100.0,
+   "rest": 0.0
+  },
+  "RearDoor_L": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.98,
+    2.7,
+    1.45
+   ],
+   "limit": -100.0,
+   "rest": 0.0
+  }
+ },
+ "slots": {}
+}
