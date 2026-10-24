@@ -51,6 +51,7 @@ async function init() {
     for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
   readUrlState();
+  if ((new URLSearchParams(location.search).get('cat') || '') !== state.category) writeUrlState();   // an old ?cat=alien link is rewritten to sci-fi, as an old #id is
   buildTree();
   buildChips();
   render();
@@ -110,7 +111,8 @@ function buildTree() {
   $('tree').replaceChildren(treeList(root, true));
 }
 
-function label(s) { return s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase()); }
+const LABELS = { 'sci-fi': 'Sci-fi' };   // names that keep their hyphen
+function label(s) { return LABELS[s] || s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase()); }
 
 function treeList(node, top) {
   const ul = el('ul');
@@ -223,7 +225,7 @@ function toggleFeature(f) { state.features.has(f) ? state.features.delete(f) : s
 function readUrlState() {
   const p = new URLSearchParams(location.search);
   state.q = p.get('q') || '';
-  state.category = p.get('cat') || '';
+  state.category = (p.get('cat') || '').replace(/^alien(?=\/|$)/, 'sci-fi');      // links made while the category was still called alien
   state.tags = new Set((p.get('tags') || '').split(',').filter(Boolean));
   state.features = new Set((p.get('f') || '').split(',').filter(Boolean));
   $('search').value = state.q;
