@@ -982,11 +982,10 @@
    "name": "Bread box",
    "type": "appliances/kitchen/bread-box",
    "tags": [
-    "appliances",
     "box",
     "bread",
+    "classic",
     "indoor",
-    "kitchen",
     "new"
    ],
    "rigged": false,
@@ -1034,10 +1033,10 @@
   },
   {
    "id": "GI_Counter_Kitchen_01",
-   "name": "Counter kitchen",
+   "name": "Kitchen counter",
    "type": "appliances/kitchen/counter-kitchen",
    "tags": [
-    "appliances",
+    "classic",
     "counter",
     "indoor",
     "kitchen",
@@ -1133,70 +1132,6 @@
      "part": "Concrete",
      "swatch": 46,
      "hex": "#9A9A94"
-    }
-   ]
-  },
-  {
-   "id": "GI_Dryer_01",
-   "name": "Dryer",
-   "type": "appliances/kitchen/dryer",
-   "tags": [
-    "appliances",
-    "dryer",
-    "indoor",
-    "kitchen",
-    "new"
-   ],
-   "rigged": false,
-   "interactive": true,
-   "triangles": 256,
-   "size": [
-    0.6,
-    0.9,
-    0.725
-   ],
-   "glb": "models/GI_Dryer_01.glb",
-   "thumb": "thumbs/GI_Dryer_01.png",
-   "parts": {
-    "Door": {
-     "kind": "hinge",
-     "axis": [
-      0,
-      1,
-      0
-     ],
-     "pivot": [
-      0.26,
-      0.4,
-      0.345
-     ],
-     "limit": 110,
-     "rest": 0.0
-    }
-   },
-   "clips": [],
-   "variants": [],
-   "interactions": "models/GI_Dryer_01.interactions.json",
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 69,
-     "hex": "#EBDDB5"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
-    },
-    {
-     "part": "Paint white",
-     "swatch": 6,
-     "hex": "#E6E2D6"
-    },
-    {
-     "part": "Glass",
-     "swatch": 41,
-     "hex": "#9FC8D8"
     }
    ]
   },
@@ -1627,101 +1562,6 @@
    ]
   },
   {
-   "id": "GH_JarShelf_01",
-   "name": "Jar shelf",
-   "type": "appliances/kitchen/jar-shelf",
-   "tags": [
-    "appliances",
-    "indoor",
-    "jar",
-    "kitchen",
-    "new",
-    "shelf"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 780,
-   "size": [
-    0.905,
-    0.878,
-    0.16
-   ],
-   "glb": "models/GH_JarShelf_01.glb",
-   "thumb": "thumbs/GH_JarShelf_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 0,
-     "hex": "#C9A06A"
-    },
-    {
-     "part": "Wood dark",
-     "swatch": 1,
-     "hex": "#6B4A2E"
-    },
-    {
-     "part": "Metal galv",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
-     "part": "Cloth red",
-     "swatch": 13,
-     "hex": "#B8443B"
-    },
-    {
-     "part": "Plant green",
-     "swatch": 78,
-     "hex": "#3F7A3A"
-    }
-   ]
-  },
-  {
-   "id": "GH_Kettle_01",
-   "name": "Kettle",
-   "type": "appliances/kitchen/kettle",
-   "tags": [
-    "appliances",
-    "indoor",
-    "kettle",
-    "kitchen",
-    "new"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 72,
-   "size": [
-    0.302,
-    0.233,
-    0.2
-   ],
-   "glb": "models/GH_Kettle_01.glb",
-   "thumb": "thumbs/GH_Kettle_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
-    },
-    {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
-    }
-   ]
-  },
-  {
    "id": "GI_Microwave_01",
    "name": "Microwave",
    "type": "appliances/kitchen/microwave",
@@ -1785,172 +1625,12 @@
    ]
   },
   {
-   "id": "GH_Mug_01",
-   "name": "Mug",
-   "type": "appliances/kitchen/mug",
-   "tags": [
-    "appliances",
-    "indoor",
-    "kitchen",
-    "mug",
-    "new"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 40,
-   "size": [
-    0.11,
-    0.1,
-    0.08
-   ],
-   "glb": "models/GH_Mug_01.glb",
-   "thumb": "thumbs/GH_Mug_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 13,
-     "hex": "#B8443B"
-    }
-   ]
-  },
-  {
-   "id": "GH_Plates_01",
-   "name": "Plates",
-   "type": "appliances/kitchen/plates",
-   "tags": [
-    "appliances",
-    "indoor",
-    "kitchen",
-    "new",
-    "plates"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 180,
-   "size": [
-    0.22,
-    0.078,
-    0.209
-   ],
-   "glb": "models/GH_Plates_01.glb",
-   "thumb": "thumbs/GH_Plates_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 59,
-     "hex": "#EDEDE8"
-    }
-   ]
-  },
-  {
-   "id": "GH_Pot_01",
-   "name": "Pot",
-   "type": "appliances/kitchen/pot",
-   "tags": [
-    "appliances",
-    "indoor",
-    "kitchen",
-    "new",
-    "pot"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 68,
-   "size": [
-    0.335,
-    0.211,
-    0.25
-   ],
-   "glb": "models/GH_Pot_01.glb",
-   "thumb": "thumbs/GH_Pot_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 3,
-     "hex": "#4A525A"
-    },
-    {
-     "part": "Metal galv",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
-    }
-   ]
-  },
-  {
-   "id": "GH_Sink_Kitchen_01",
-   "name": "Sink kitchen",
-   "type": "appliances/kitchen/sink-kitchen",
-   "tags": [
-    "appliances",
-    "indoor",
-    "kitchen",
-    "new",
-    "sink"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 104,
-   "size": [
-    1.24,
-    1.12,
-    0.64
-   ],
-   "glb": "models/GH_Sink_Kitchen_01.glb",
-   "thumb": "thumbs/GH_Sink_Kitchen_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "interactions": "models/GH_Sink_Kitchen_01.interactions.json",
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 0,
-     "hex": "#C9A06A"
-    },
-    {
-     "part": "Concrete",
-     "swatch": 46,
-     "hex": "#9A9A94"
-    },
-    {
-     "part": "Wood dark",
-     "swatch": 1,
-     "hex": "#6B4A2E"
-    },
-    {
-     "part": "Metal galv",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
-    }
-   ]
-  },
-  {
    "id": "GI_Stove_01",
    "name": "Stove",
    "type": "appliances/kitchen/stove",
    "tags": [
-    "appliances",
+    "classic",
     "indoor",
-    "kitchen",
     "new",
     "stove"
    ],
@@ -2018,9 +1698,8 @@
    "name": "Toaster",
    "type": "appliances/kitchen/toaster",
    "tags": [
-    "appliances",
+    "classic",
     "indoor",
-    "kitchen",
     "new",
     "toaster"
    ],
@@ -2074,13 +1753,75 @@
    ]
   },
   {
+   "id": "GI_Dryer_01",
+   "name": "Dryer",
+   "type": "appliances/laundry/dryer",
+   "tags": [
+    "classic",
+    "dryer",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 256,
+   "size": [
+    0.6,
+    0.9,
+    0.725
+   ],
+   "glb": "models/GI_Dryer_01.glb",
+   "thumb": "thumbs/GI_Dryer_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.26,
+      0.4,
+      0.345
+     ],
+     "limit": 110,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Dryer_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
    "id": "GI_Washer_01",
    "name": "Washer",
-   "type": "appliances/kitchen/washer",
+   "type": "appliances/laundry/washer",
    "tags": [
-    "appliances",
+    "classic",
     "indoor",
-    "kitchen",
     "new",
     "washer"
    ],
@@ -2452,12 +2193,11 @@
    "name": "Coffee machine",
    "type": "appliances/service/coffee-machine",
    "tags": [
-    "appliances",
     "coffee",
+    "household",
     "indoor",
     "machine",
-    "new",
-    "service"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -2497,11 +2237,10 @@
    "name": "Cooler",
    "type": "appliances/service/cooler",
    "tags": [
-    "appliances",
+    "classic",
     "cooler",
     "indoor",
-    "new",
-    "service"
+    "new"
    ],
    "rigged": false,
    "interactive": true,
@@ -2551,11 +2290,10 @@
    "name": "Jukebox",
    "type": "appliances/service/jukebox",
    "tags": [
-    "appliances",
+    "household",
     "indoor",
     "jukebox",
-    "new",
-    "service"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -2600,11 +2338,10 @@
    "name": "Vending machine",
    "type": "appliances/service/vending-machine",
    "tags": [
-    "appliances",
+    "classic",
     "indoor",
     "machine",
     "new",
-    "service",
     "vending"
    ],
    "rigged": false,
@@ -2813,8 +2550,7 @@
    "type": "decor/clutter/backpack",
    "tags": [
     "backpack",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new"
    ],
@@ -2850,8 +2586,7 @@
    "type": "decor/clutter/boots-pair",
    "tags": [
     "boots",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "pair"
@@ -2888,8 +2623,7 @@
    "type": "decor/clutter/broom",
    "tags": [
     "broom",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new"
    ],
@@ -2929,9 +2663,8 @@
    "name": "Coat hooks",
    "type": "decor/clutter/coat-hooks",
    "tags": [
-    "clutter",
     "coat",
-    "decor",
+    "home",
     "hooks",
     "indoor",
     "new"
@@ -2977,9 +2710,8 @@
    "name": "Doormat",
    "type": "decor/clutter/doormat",
    "tags": [
-    "clutter",
-    "decor",
     "doormat",
+    "home",
     "indoor",
     "new"
    ],
@@ -3014,10 +2746,9 @@
    "name": "Fire extinguisher",
    "type": "decor/clutter/fire-extinguisher",
    "tags": [
-    "clutter",
-    "decor",
     "extinguisher",
     "fire",
+    "home",
     "indoor",
     "new"
    ],
@@ -3058,9 +2789,8 @@
    "type": "decor/clutter/first-aid-kit",
    "tags": [
     "aid",
-    "clutter",
-    "decor",
     "first",
+    "home",
     "indoor",
     "kit",
     "new"
@@ -3096,9 +2826,8 @@
    "name": "Flashlight",
    "type": "decor/clutter/flashlight",
    "tags": [
-    "clutter",
-    "decor",
     "flashlight",
+    "home",
     "indoor",
     "new"
    ],
@@ -3130,14 +2859,11 @@
   },
   {
    "id": "GD_HandLetteredSign_01",
-   "name": "Hand lettered sign",
+   "name": "Hand-lettered sign",
    "type": "decor/clutter/hand-lettered-sign",
    "tags": [
-    "clutter",
-    "decor",
-    "hand",
+    "home",
     "indoor",
-    "lettered",
     "new",
     "sign"
    ],
@@ -3178,8 +2904,7 @@
    "type": "decor/clutter/ironing-board",
    "tags": [
     "board",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "ironing",
     "new"
@@ -3216,8 +2941,7 @@
    "type": "decor/clutter/laundry-basket",
    "tags": [
     "basket",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "laundry",
     "new"
@@ -3258,8 +2982,7 @@
    "name": "Lunchbox",
    "type": "decor/clutter/lunchbox",
    "tags": [
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "lunchbox",
     "new"
@@ -3301,8 +3024,7 @@
    "type": "decor/clutter/mop-bucket",
    "tags": [
     "bucket",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "mop",
     "new"
@@ -3344,8 +3066,7 @@
    "type": "decor/clutter/picnic-basket",
    "tags": [
     "basket",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "picnic"
@@ -3386,8 +3107,7 @@
    "name": "Suitcase",
    "type": "decor/clutter/suitcase",
    "tags": [
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "suitcase"
@@ -3420,8 +3140,7 @@
    "name": "Thermos",
    "type": "decor/clutter/thermos",
    "tags": [
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "thermos"
@@ -3457,8 +3176,7 @@
    "name": "Tinfoil pane",
    "type": "decor/clutter/tinfoil-pane",
    "tags": [
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "pane",
@@ -3491,53 +3209,14 @@
    ]
   },
   {
-   "id": "GD_Toolbox_01",
-   "name": "Toolbox",
-   "type": "decor/clutter/toolbox",
-   "tags": [
-    "clutter",
-    "decor",
-    "indoor",
-    "new",
-    "toolbox"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 36,
-   "size": [
-    0.5,
-    0.32,
-    0.22
-   ],
-   "glb": "models/GD_Toolbox_01.glb",
-   "thumb": "thumbs/GD_Toolbox_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 13,
-     "hex": "#B8443B"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
-    }
-   ]
-  },
-  {
    "id": "GD_TrashCan_01",
-   "name": "Trash can indoor",
+   "name": "Wastebin, indoor",
    "type": "decor/clutter/trash-can-indoor",
    "tags": [
-    "can",
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "trash"
+    "wastebin"
    ],
    "rigged": false,
    "interactive": false,
@@ -3551,9 +3230,7 @@
    "thumb": "thumbs/GD_TrashCan_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "GI_TrashCan_01"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -3567,8 +3244,7 @@
    "name": "Umbrella stand",
    "type": "decor/clutter/umbrella-stand",
    "tags": [
-    "clutter",
-    "decor",
+    "home",
     "indoor",
     "new",
     "stand",
@@ -3660,8 +3336,7 @@
    "type": "decor/electronics/computer-tower",
    "tags": [
     "computer",
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "new",
     "tower"
@@ -3694,8 +3369,7 @@
    "name": "Intercom",
    "type": "decor/electronics/intercom",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "intercom",
     "new"
@@ -3737,8 +3411,7 @@
    "name": "Keyboard",
    "type": "decor/electronics/keyboard",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "keyboard",
     "new"
@@ -3774,8 +3447,7 @@
    "name": "Laptop",
    "type": "decor/electronics/laptop",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "laptop",
     "new"
@@ -3813,8 +3485,7 @@
    "name": "Light switch",
    "type": "decor/electronics/light-switch",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "light",
     "new",
@@ -3852,8 +3523,7 @@
    "name": "Mobile phone",
    "type": "decor/electronics/mobile-phone",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "mobile",
     "new",
@@ -3886,8 +3556,7 @@
    "name": "Monitor",
    "type": "decor/electronics/monitor",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "monitor",
     "new"
@@ -3964,12 +3633,10 @@
   },
   {
    "id": "GD_Radio_CB_01",
-   "name": "Radio cb",
+   "name": "CB radio",
    "type": "decor/electronics/radio-cb",
    "tags": [
-    "cb",
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "new",
     "radio"
@@ -3998,12 +3665,11 @@
   },
   {
    "id": "GD_Radio_Handheld_01",
-   "name": "Radio handheld",
+   "name": "Radio, handheld",
    "type": "decor/electronics/radio-handheld",
    "tags": [
-    "decor",
-    "electronics",
     "handheld",
+    "home",
     "indoor",
     "new",
     "radio"
@@ -4037,11 +3703,10 @@
   },
   {
    "id": "GD_Radio_Retro_01",
-   "name": "Radio retro",
+   "name": "Radio, retro",
    "type": "decor/electronics/radio-retro",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "new",
     "radio",
@@ -4084,8 +3749,7 @@
    "name": "Rotary phone",
    "type": "decor/electronics/rotary-phone",
    "tags": [
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "new",
     "phone",
@@ -4124,8 +3788,7 @@
    "type": "decor/electronics/security-camera",
    "tags": [
     "camera",
-    "decor",
-    "electronics",
+    "home",
     "indoor",
     "new",
     "security"
@@ -4213,11 +3876,9 @@
    "type": "decor/electronics/tv-crt",
    "tags": [
     "crt",
-    "decor",
-    "electronics",
+    "home",
     "indoor",
-    "new",
-    "tv"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -4258,14 +3919,157 @@
    ]
   },
   {
+   "id": "GH_Kettle_01",
+   "name": "Kettle",
+   "type": "decor/kitchenware/kettle",
+   "tags": [
+    "household",
+    "indoor",
+    "kettle",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.302,
+    0.233,
+    0.2
+   ],
+   "glb": "models/GH_Kettle_01.glb",
+   "thumb": "thumbs/GH_Kettle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Mug_01",
+   "name": "Mug",
+   "type": "decor/kitchenware/mug",
+   "tags": [
+    "household",
+    "indoor",
+    "mug",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 40,
+   "size": [
+    0.11,
+    0.1,
+    0.08
+   ],
+   "glb": "models/GH_Mug_01.glb",
+   "thumb": "thumbs/GH_Mug_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GH_Plates_01",
+   "name": "Plates",
+   "type": "decor/kitchenware/plates",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "plates"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 180,
+   "size": [
+    0.22,
+    0.078,
+    0.209
+   ],
+   "glb": "models/GH_Plates_01.glb",
+   "thumb": "thumbs/GH_Plates_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Pot_01",
+   "name": "Pot",
+   "type": "decor/kitchenware/pot",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "pot"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 68,
+   "size": [
+    0.335,
+    0.211,
+    0.25
+   ],
+   "glb": "models/GH_Pot_01.glb",
+   "thumb": "thumbs/GH_Pot_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
    "id": "GD_Candle_01",
    "name": "Candle",
-   "type": "decor/lamps/candle",
+   "type": "decor/lighting/candle",
    "tags": [
     "candle",
-    "decor",
+    "home",
     "indoor",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4304,12 +4108,11 @@
   {
    "id": "GD_CeilingShade_01",
    "name": "Ceiling shade",
-   "type": "decor/lamps/ceiling-shade",
+   "type": "decor/lighting/ceiling-shade",
    "tags": [
     "ceiling",
-    "decor",
+    "home",
     "indoor",
-    "lamps",
     "new",
     "shade"
    ],
@@ -4344,12 +4147,11 @@
   {
    "id": "GD_Chandelier_01",
    "name": "Chandelier",
-   "type": "decor/lamps/chandelier",
+   "type": "decor/lighting/chandelier",
    "tags": [
     "chandelier",
-    "decor",
+    "home",
     "indoor",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4388,13 +4190,12 @@
   {
    "id": "GD_DeskLamp_01",
    "name": "Desk lamp",
-   "type": "decor/lamps/desk-lamp",
+   "type": "decor/lighting/desk-lamp",
    "tags": [
-    "decor",
     "desk",
+    "home",
     "indoor",
     "lamp",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4428,13 +4229,12 @@
   {
    "id": "GD_FloorLamp_01",
    "name": "Floor lamp",
-   "type": "decor/lamps/floor-lamp",
+   "type": "decor/lighting/floor-lamp",
    "tags": [
-    "decor",
     "floor",
+    "home",
     "indoor",
     "lamp",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4468,12 +4268,11 @@
   {
    "id": "GD_Fluorescent_01",
    "name": "Fluorescent",
-   "type": "decor/lamps/fluorescent",
+   "type": "decor/lighting/fluorescent",
    "tags": [
-    "decor",
     "fluorescent",
+    "home",
     "indoor",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4502,13 +4301,12 @@
   {
    "id": "GD_KeroseneLamp_01",
    "name": "Kerosene lamp",
-   "type": "decor/lamps/kerosene-lamp",
+   "type": "decor/lighting/kerosene-lamp",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "kerosene",
     "lamp",
-    "lamps",
     "new"
    ],
    "rigged": false,
@@ -4624,10 +4422,9 @@
    "type": "decor/paper/book-stack",
    "tags": [
     "book",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "paper",
     "stack"
    ],
    "rigged": false,
@@ -4671,11 +4468,10 @@
    "name": "Mail pile",
    "type": "decor/paper/mail-pile",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "mail",
     "new",
-    "paper",
     "pile"
    ],
    "rigged": false,
@@ -4714,11 +4510,10 @@
    "name": "Newspaper",
    "type": "decor/paper/newspaper",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "new",
-    "newspaper",
-    "paper"
+    "newspaper"
    ],
    "rigged": false,
    "interactive": false,
@@ -4757,11 +4552,10 @@
    "type": "decor/paper/open-book",
    "tags": [
     "book",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "open",
-    "paper"
+    "open"
    ],
    "rigged": false,
    "interactive": false,
@@ -4795,10 +4589,9 @@
    "type": "decor/plants/cactus",
    "tags": [
     "cactus",
-    "decor",
+    "home",
     "indoor",
-    "new",
-    "plants"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -4831,12 +4624,11 @@
    "name": "Hanging plant",
    "type": "decor/plants/hanging-plant",
    "tags": [
-    "decor",
     "hanging",
+    "home",
     "indoor",
     "new",
-    "plant",
-    "plants"
+    "plant"
    ],
    "rigged": false,
    "interactive": false,
@@ -4910,11 +4702,10 @@
    "name": "Vase flowers",
    "type": "decor/plants/vase-flowers",
    "tags": [
-    "decor",
     "flowers",
+    "home",
     "indoor",
     "new",
-    "plants",
     "vase"
    ],
    "rigged": false,
@@ -4964,10 +4755,9 @@
    "type": "decor/soft/blanket",
    "tags": [
     "blanket",
-    "decor",
+    "household",
     "indoor",
-    "new",
-    "soft"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -4996,59 +4786,15 @@
    ]
   },
   {
-   "id": "GH_CoatRack_01",
-   "name": "Coat rack",
-   "type": "decor/soft/coat-rack",
-   "tags": [
-    "coat",
-    "decor",
-    "indoor",
-    "new",
-    "rack",
-    "soft"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 192,
-   "size": [
-    0.669,
-    1.86,
-    0.669
-   ],
-   "glb": "models/GH_CoatRack_01.glb",
-   "thumb": "thumbs/GH_CoatRack_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 1,
-     "hex": "#6B4A2E"
-    },
-    {
-     "part": "Fabric grey",
-     "swatch": 65,
-     "hex": "#8A8D91"
-    },
-    {
-     "part": "Fabric brown",
-     "swatch": 58,
-     "hex": "#7A5A44"
-    }
-   ]
-  },
-  {
    "id": "GH_Curtains_Closed_01",
-   "name": "Curtains closed",
+   "name": "Curtains, closed",
    "type": "decor/soft/curtains-closed",
    "tags": [
     "closed",
     "curtains",
-    "decor",
+    "household",
     "indoor",
-    "new",
-    "soft"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -5073,15 +4819,14 @@
   },
   {
    "id": "GH_Curtains_Open_01",
-   "name": "Curtains open",
+   "name": "Curtains, open",
    "type": "decor/soft/curtains-open",
    "tags": [
     "curtains",
-    "decor",
+    "household",
     "indoor",
     "new",
-    "open",
-    "soft"
+    "open"
    ],
    "rigged": false,
    "interactive": false,
@@ -5110,10 +4855,9 @@
    "type": "decor/soft/cushion",
    "tags": [
     "cushion",
-    "decor",
+    "household",
     "indoor",
-    "new",
-    "soft"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -5141,11 +4885,10 @@
    "name": "Pillow",
    "type": "decor/soft/pillow",
    "tags": [
-    "decor",
+    "household",
     "indoor",
     "new",
-    "pillow",
-    "soft"
+    "pillow"
    ],
    "rigged": false,
    "interactive": false,
@@ -5170,14 +4913,14 @@
   },
   {
    "id": "GH_Rug_01",
-   "name": "Rug",
+   "name": "Rug, rectangular",
    "type": "decor/soft/rug",
    "tags": [
-    "decor",
+    "household",
     "indoor",
     "new",
-    "rug",
-    "soft"
+    "rectangular",
+    "rug"
    ],
    "rigged": false,
    "interactive": false,
@@ -5211,15 +4954,14 @@
   },
   {
    "id": "GH_Rug_04",
-   "name": "Rug oval",
+   "name": "Rug, oval",
    "type": "decor/soft/rug-oval",
    "tags": [
-    "decor",
+    "household",
     "indoor",
     "new",
     "oval",
-    "rug",
-    "soft"
+    "rug"
    ],
    "rigged": false,
    "interactive": false,
@@ -5253,15 +4995,14 @@
   },
   {
    "id": "GH_Rug_03",
-   "name": "Rug round",
+   "name": "Rug, round",
    "type": "decor/soft/rug-round",
    "tags": [
-    "decor",
+    "household",
     "indoor",
     "new",
     "round",
-    "rug",
-    "soft"
+    "rug"
    ],
    "rigged": false,
    "interactive": false,
@@ -5300,15 +5041,14 @@
   },
   {
    "id": "GH_Rug_02",
-   "name": "Rug runner",
+   "name": "Rug, runner",
    "type": "decor/soft/rug-runner",
    "tags": [
-    "decor",
+    "household",
     "indoor",
     "new",
     "rug",
-    "runner",
-    "soft"
+    "runner"
    ],
    "rigged": false,
    "interactive": false,
@@ -5341,63 +5081,14 @@
    ]
   },
   {
-   "id": "GH_ToyBox_01",
-   "name": "Toy box",
-   "type": "decor/soft/toy-box",
-   "tags": [
-    "box",
-    "decor",
-    "indoor",
-    "new",
-    "soft",
-    "toy"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 80,
-   "size": [
-    0.82,
-    0.58,
-    0.47
-   ],
-   "glb": "models/GH_ToyBox_01.glb",
-   "thumb": "thumbs/GH_ToyBox_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 63,
-     "hex": "#56708F"
-    },
-    {
-     "part": "Wood light",
-     "swatch": 0,
-     "hex": "#C9A06A"
-    },
-    {
-     "part": "Paint yellow",
-     "swatch": 42,
-     "hex": "#E0B83A"
-    },
-    {
-     "part": "Cloth red",
-     "swatch": 13,
-     "hex": "#B8443B"
-    }
-   ]
-  },
-  {
    "id": "GD_Doll_01",
    "name": "Doll",
    "type": "decor/toys/doll",
    "tags": [
-    "decor",
     "doll",
+    "home",
     "indoor",
-    "new",
-    "toys"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -5431,48 +5122,15 @@
    ]
   },
   {
-   "id": "GD_Football_01",
-   "name": "Football",
-   "type": "decor/toys/football",
-   "tags": [
-    "decor",
-    "football",
-    "indoor",
-    "new",
-    "toys"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 96,
-   "size": [
-    0.2,
-    0.206,
-    0.38
-   ],
-   "glb": "models/GD_Football_01.glb",
-   "thumb": "thumbs/GD_Football_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 58,
-     "hex": "#7A5A44"
-    }
-   ]
-  },
-  {
    "id": "GD_TeddyBear_01",
    "name": "Teddy bear",
    "type": "decor/toys/teddy-bear",
    "tags": [
     "bear",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "teddy",
-    "toys"
+    "teddy"
    ],
    "rigged": false,
    "interactive": false,
@@ -5501,11 +5159,10 @@
    "type": "decor/toys/toy-blocks",
    "tags": [
     "blocks",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "toy",
-    "toys"
+    "toy"
    ],
    "rigged": false,
    "interactive": false,
@@ -5548,11 +5205,10 @@
    "name": "Toy truck",
    "type": "decor/toys/toy-truck",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "new",
     "toy",
-    "toys",
     "truck"
    ],
    "rigged": false,
@@ -5587,57 +5243,15 @@
    ]
   },
   {
-   "id": "GD_Clock_Wall_Retro_01",
-   "name": "Wall clock, retro",
-   "type": "decor/wall/clock",
-   "tags": [
-    "new",
-    "retro",
-    "time",
-    "wall"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 256,
-   "size": [
-    0.56,
-    0.56,
-    0.042
-   ],
-   "glb": "models/GD_Clock_Wall_Retro_01.glb",
-   "thumb": "thumbs/GD_Clock_Wall_Retro_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 42,
-     "hex": "#E0B83A"
-    },
-    {
-     "part": "Copper",
-     "swatch": 70,
-     "hex": "#B06A3B"
-    },
-    {
-     "part": "Paint white",
-     "swatch": 6,
-     "hex": "#E6E2D6"
-    }
-   ]
-  },
-  {
    "id": "GD_BulletinBoard_01",
    "name": "Bulletin board",
-   "type": "decor/walldecor/bulletin-board",
+   "type": "decor/wall/bulletin-board",
    "tags": [
     "board",
     "bulletin",
-    "decor",
+    "home",
     "indoor",
-    "new",
-    "walldecor"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -5683,13 +5297,12 @@
   {
    "id": "GD_Calendar_01",
    "name": "Calendar",
-   "type": "decor/walldecor/calendar",
+   "type": "decor/wall/calendar",
    "tags": [
     "calendar",
-    "decor",
+    "home",
     "indoor",
-    "new",
-    "walldecor"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -5723,16 +5336,56 @@
    ]
   },
   {
+   "id": "GD_Clock_Wall_Retro_01",
+   "name": "Wall clock, retro",
+   "type": "decor/wall/clock",
+   "tags": [
+    "new",
+    "retro",
+    "time",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 256,
+   "size": [
+    0.56,
+    0.56,
+    0.042
+   ],
+   "glb": "models/GD_Clock_Wall_Retro_01.glb",
+   "thumb": "thumbs/GD_Clock_Wall_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
    "id": "GD_DeerTrophy_01",
    "name": "Deer trophy",
-   "type": "decor/walldecor/deer-trophy",
+   "type": "decor/wall/deer-trophy",
    "tags": [
-    "decor",
     "deer",
+    "home",
     "indoor",
     "new",
-    "trophy",
-    "walldecor"
+    "trophy"
    ],
    "rigged": false,
    "interactive": false,
@@ -5767,15 +5420,15 @@
   },
   {
    "id": "GD_Frame_Landscape_01",
-   "name": "Frame landscape",
-   "type": "decor/walldecor/frame-landscape",
+   "name": "Picture frame, landscape",
+   "type": "decor/wall/frame-landscape",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "landscape",
     "new",
-    "walldecor"
+    "picture"
    ],
    "rigged": false,
    "interactive": false,
@@ -5813,15 +5466,15 @@
   },
   {
    "id": "GD_Frame_Landscape_02",
-   "name": "Frame landscape, style 2",
-   "type": "decor/walldecor/frame-landscape-02",
+   "name": "Picture frame, landscape 2",
+   "type": "decor/wall/frame-landscape",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "landscape",
     "new",
-    "walldecor"
+    "picture"
    ],
    "rigged": false,
    "interactive": false,
@@ -5864,15 +5517,15 @@
   },
   {
    "id": "GD_Frame_Landscape_03",
-   "name": "Frame landscape, style 3",
-   "type": "decor/walldecor/frame-landscape-03",
+   "name": "Picture frame, landscape 3",
+   "type": "decor/wall/frame-landscape",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "landscape",
     "new",
-    "walldecor"
+    "picture"
    ],
    "rigged": false,
    "interactive": false,
@@ -5910,15 +5563,15 @@
   },
   {
    "id": "GD_Frame_Portrait_01",
-   "name": "Frame portrait",
-   "type": "decor/walldecor/frame-portrait",
+   "name": "Picture frame, portrait",
+   "type": "decor/wall/frame-portrait",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "new",
-    "portrait",
-    "walldecor"
+    "picture",
+    "portrait"
    ],
    "rigged": false,
    "interactive": false,
@@ -5960,15 +5613,15 @@
   },
   {
    "id": "GD_Frame_Portrait_02",
-   "name": "Frame portrait, style 2",
-   "type": "decor/walldecor/frame-portrait-02",
+   "name": "Picture frame, portrait 2",
+   "type": "decor/wall/frame-portrait",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "new",
-    "portrait",
-    "walldecor"
+    "picture",
+    "portrait"
    ],
    "rigged": false,
    "interactive": false,
@@ -6015,15 +5668,14 @@
   },
   {
    "id": "GD_KidDrawing_01",
-   "name": "Kid drawing",
-   "type": "decor/walldecor/kid-drawing",
+   "name": "Child's drawing",
+   "type": "decor/wall/kid-drawing",
    "tags": [
-    "decor",
+    "childs",
     "drawing",
+    "home",
     "indoor",
-    "kid",
-    "new",
-    "walldecor"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -6055,15 +5707,14 @@
   },
   {
    "id": "GD_KidDrawing_02",
-   "name": "Kid drawing, style 2",
-   "type": "decor/walldecor/kid-drawing-02",
+   "name": "Child's drawing, 2",
+   "type": "decor/wall/kid-drawing",
    "tags": [
-    "decor",
+    "childs",
     "drawing",
+    "home",
     "indoor",
-    "kid",
-    "new",
-    "walldecor"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -6105,15 +5756,14 @@
   },
   {
    "id": "GD_Mirror_Wall_01",
-   "name": "Mirror wall",
-   "type": "decor/walldecor/mirror-wall",
+   "name": "Mirror, wall",
+   "type": "decor/wall/mirror-wall",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "mirror",
     "new",
-    "wall",
-    "walldecor"
+    "wall"
    ],
    "rigged": false,
    "interactive": false,
@@ -6144,14 +5794,13 @@
   {
    "id": "GD_NewspaperClippings_01",
    "name": "Newspaper clippings",
-   "type": "decor/walldecor/newspaper-clippings",
+   "type": "decor/wall/newspaper-clippings",
    "tags": [
     "clippings",
-    "decor",
+    "home",
     "indoor",
     "new",
-    "newspaper",
-    "walldecor"
+    "newspaper"
    ],
    "rigged": false,
    "interactive": false,
@@ -6186,16 +5835,15 @@
   },
   {
    "id": "GD_PhotoFrame_01",
-   "name": "Photo frame standing",
-   "type": "decor/walldecor/photo-frame-standing",
+   "name": "Photo frame, standing",
+   "type": "decor/wall/photo-frame-standing",
    "tags": [
-    "decor",
     "frame",
+    "home",
     "indoor",
     "new",
     "photo",
-    "standing",
-    "walldecor"
+    "standing"
    ],
    "rigged": false,
    "interactive": false,
@@ -6226,13 +5874,12 @@
   {
    "id": "GD_Poster_01",
    "name": "Poster",
-   "type": "decor/walldecor/poster",
+   "type": "decor/wall/poster",
    "tags": [
-    "decor",
+    "home",
     "indoor",
     "new",
-    "poster",
-    "walldecor"
+    "poster"
    ],
    "rigged": false,
    "interactive": false,
@@ -6271,11 +5918,10 @@
    "type": "equipment/office/lab-bench",
    "tags": [
     "bench",
-    "equipment",
+    "household",
     "indoor",
     "lab",
-    "new",
-    "office"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -6313,11 +5959,10 @@
    "name": "Microscope",
    "type": "equipment/office/microscope",
    "tags": [
-    "equipment",
+    "household",
     "indoor",
     "microscope",
-    "new",
-    "office"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -6352,10 +5997,9 @@
    "name": "Server rack",
    "type": "equipment/office/server-rack",
    "tags": [
-    "equipment",
+    "household",
     "indoor",
     "new",
-    "office",
     "rack",
     "server"
    ],
@@ -6379,48 +6023,6 @@
      "part": "Main",
      "swatch": 7,
      "hex": "#1B1B1E"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
-    }
-   ]
-  },
-  {
-   "id": "GH_Whiteboard_01",
-   "name": "Whiteboard",
-   "type": "equipment/office/whiteboard",
-   "tags": [
-    "equipment",
-    "indoor",
-    "new",
-    "office",
-    "whiteboard"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 84,
-   "size": [
-    1.5,
-    1.9,
-    0.68
-   ],
-   "glb": "models/GH_Whiteboard_01.glb",
-   "thumb": "thumbs/GH_Whiteboard_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 2,
-     "hex": "#A9B4BC"
-    },
-    {
-     "part": "Enamel white",
-     "swatch": 68,
-     "hex": "#F2F2EE"
     },
     {
      "part": "Metal dark",
@@ -6758,14 +6360,14 @@
   },
   {
    "id": "GH_Mirror_01",
-   "name": "Mirror",
+   "name": "Mirror, standing",
    "type": "fixtures/bath/mirror",
    "tags": [
-    "bath",
-    "fixtures",
+    "household",
     "indoor",
     "mirror",
-    "new"
+    "new",
+    "standing"
    ],
    "rigged": false,
    "interactive": false,
@@ -6798,8 +6400,7 @@
    "name": "Shower",
    "type": "fixtures/bath/shower",
    "tags": [
-    "bath",
-    "fixtures",
+    "household",
     "indoor",
     "new",
     "shower"
@@ -6833,11 +6434,11 @@
   },
   {
    "id": "GH_Sink_Bath_01",
-   "name": "Sink bath",
+   "name": "Bathroom sink",
    "type": "fixtures/bath/sink-bath",
    "tags": [
-    "bath",
-    "fixtures",
+    "bathroom",
+    "household",
     "indoor",
     "new",
     "sink"
@@ -6874,8 +6475,7 @@
    "name": "Toilet",
    "type": "fixtures/bath/toilet",
    "tags": [
-    "bath",
-    "fixtures",
+    "household",
     "indoor",
     "new",
     "toilet"
@@ -6907,8 +6507,7 @@
    "name": "Towel rail",
    "type": "fixtures/bath/towel-rail",
    "tags": [
-    "bath",
-    "fixtures",
+    "household",
     "indoor",
     "new",
     "rail",
@@ -6945,8 +6544,7 @@
    "name": "Tub",
    "type": "fixtures/bath/tub",
    "tags": [
-    "bath",
-    "fixtures",
+    "household",
     "indoor",
     "new",
     "tub"
@@ -6979,13 +6577,65 @@
    ]
   },
   {
+   "id": "GH_Sink_Kitchen_01",
+   "name": "Kitchen sink",
+   "type": "fixtures/kitchen/sink",
+   "tags": [
+    "household",
+    "indoor",
+    "kitchen",
+    "new",
+    "sink"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    1.24,
+    1.12,
+    0.64
+   ],
+   "glb": "models/GH_Sink_Kitchen_01.glb",
+   "thumb": "thumbs/GH_Sink_Kitchen_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Sink_Kitchen_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GI_Dumpster_01",
    "name": "Dumpster",
    "type": "fixtures/outdoor/dumpster",
    "tags": [
+    "classic",
     "dumpster",
-    "fixtures",
-    "indoor",
     "new",
     "outdoor"
    ],
@@ -7058,8 +6708,7 @@
    "type": "fixtures/outdoor/trash-can",
    "tags": [
     "can",
-    "fixtures",
-    "indoor",
+    "classic",
     "new",
     "outdoor",
     "trash"
@@ -7092,9 +6741,7 @@
     }
    },
    "clips": [],
-   "variants": [
-    "GD_TrashCan_01"
-   ],
+   "variants": [],
    "interactions": "models/GI_TrashCan_01.interactions.json",
    "paintable": [
     {
@@ -7116,10 +6763,9 @@
    "tags": [
     "air",
     "conditioner",
-    "fixtures",
+    "household",
     "indoor",
-    "new",
-    "utilities"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -7159,10 +6805,9 @@
    "type": "fixtures/utilities/boiler",
    "tags": [
     "boiler",
-    "fixtures",
+    "household",
     "indoor",
-    "new",
-    "utilities"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -7202,10 +6847,9 @@
    "type": "fixtures/utilities/fireplace",
    "tags": [
     "fireplace",
-    "fixtures",
+    "household",
     "indoor",
-    "new",
-    "utilities"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -7251,11 +6895,10 @@
    "type": "fixtures/utilities/fuse-box",
    "tags": [
     "box",
-    "fixtures",
+    "classic",
     "fuse",
     "indoor",
-    "new",
-    "utilities"
+    "new"
    ],
    "rigged": false,
    "interactive": true,
@@ -7310,11 +6953,10 @@
    "name": "Radiator",
    "type": "fixtures/utilities/radiator",
    "tags": [
-    "fixtures",
+    "household",
     "indoor",
     "new",
-    "radiator",
-    "utilities"
+    "radiator"
    ],
    "rigged": false,
    "interactive": false,
@@ -7343,11 +6985,10 @@
    "name": "Water heater",
    "type": "fixtures/utilities/water-heater",
    "tags": [
-    "fixtures",
     "heater",
+    "household",
     "indoor",
     "new",
-    "utilities",
     "water"
    ],
    "rigged": false,
@@ -7382,11 +7023,10 @@
    "name": "Wood stove",
    "type": "fixtures/utilities/wood-stove",
    "tags": [
-    "fixtures",
+    "household",
     "indoor",
     "new",
     "stove",
-    "utilities",
     "wood"
    ],
    "rigged": false,
@@ -7860,13 +7500,12 @@
   },
   {
    "id": "GH_Bed_Bunk_01",
-   "name": "Bed bunk",
-   "type": "furniture/beds/bed-bunk",
+   "name": "Bunk bed",
+   "type": "furniture/bedroom/bed-bunk",
    "tags": [
     "bed",
-    "beds",
     "bunk",
-    "furniture",
+    "household",
     "indoor",
     "new"
    ],
@@ -7903,13 +7542,12 @@
   },
   {
    "id": "GH_Bed_Child_01",
-   "name": "Bed child",
-   "type": "furniture/beds/bed-child",
+   "name": "Child's bed",
+   "type": "furniture/bedroom/bed-child",
    "tags": [
     "bed",
-    "beds",
-    "child",
-    "furniture",
+    "childs",
+    "household",
     "indoor",
     "new"
    ],
@@ -7946,12 +7584,11 @@
   },
   {
    "id": "GH_Bed_Single_01",
-   "name": "Bed single",
-   "type": "furniture/beds/bed-single",
+   "name": "Single bed",
+   "type": "furniture/bedroom/bed-single",
    "tags": [
     "bed",
-    "beds",
-    "furniture",
+    "household",
     "indoor",
     "new",
     "single"
@@ -7990,11 +7627,10 @@
   {
    "id": "GH_Cot_01",
    "name": "Cot",
-   "type": "furniture/beds/cot",
+   "type": "furniture/bedroom/cot",
    "tags": [
-    "beds",
     "cot",
-    "furniture",
+    "household",
     "indoor",
     "new"
    ],
@@ -8027,11 +7663,10 @@
   {
    "id": "GH_Gurney_01",
    "name": "Gurney",
-   "type": "furniture/beds/gurney",
+   "type": "furniture/bedroom/gurney",
    "tags": [
-    "beds",
-    "furniture",
     "gurney",
+    "household",
     "indoor",
     "new"
    ],
@@ -8832,6 +8467,48 @@
    ]
   },
   {
+   "id": "GH_Whiteboard_01",
+   "name": "Whiteboard, wall",
+   "type": "furniture/office/whiteboard-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "wall",
+    "whiteboard"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    1.5,
+    1.9,
+    0.68
+   ],
+   "glb": "models/GH_Whiteboard_01.glb",
+   "thumb": "thumbs/GH_Whiteboard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Enamel white",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GH_Armchair_Retro_01",
    "name": "Armchair, retro",
    "type": "furniture/seating/armchair",
@@ -8872,10 +8549,9 @@
    "type": "furniture/seating/bar-stool",
    "tags": [
     "bar",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "seating",
     "stool"
    ],
    "rigged": false,
@@ -8910,10 +8586,9 @@
    "type": "furniture/seating/bench",
    "tags": [
     "bench",
-    "furniture",
+    "household",
     "indoor",
-    "new",
-    "seating"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -8938,15 +8613,14 @@
   },
   {
    "id": "GH_Chair_Dining_01",
-   "name": "Chair dining",
+   "name": "Dining chair",
    "type": "furniture/seating/chair-dining",
    "tags": [
     "chair",
     "dining",
-    "furniture",
+    "household",
     "indoor",
-    "new",
-    "seating"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -8976,15 +8650,14 @@
   },
   {
    "id": "GH_Chair_Kitchen_01",
-   "name": "Chair kitchen",
+   "name": "Kitchen chair",
    "type": "furniture/seating/chair-kitchen",
    "tags": [
     "chair",
-    "furniture",
+    "household",
     "indoor",
     "kitchen",
-    "new",
-    "seating"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -9013,11 +8686,10 @@
    "type": "furniture/seating/rocking-chair",
    "tags": [
     "chair",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "rocking",
-    "seating"
+    "rocking"
    ],
    "rigged": false,
    "interactive": false,
@@ -9157,62 +8829,15 @@
    ]
   },
   {
-   "id": "GH_Bookcase_Modern_01",
-   "name": "Bookcase, modern",
+   "id": "GH_Bookcase_02",
+   "name": "Bookcase, novels",
    "type": "furniture/storage/bookcase",
    "tags": [
-    "books",
-    "living-room",
-    "modern",
-    "new",
-    "shelves"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 324,
-   "size": [
-    1.23,
-    1.53,
-    0.35
-   ],
-   "glb": "models/GH_Bookcase_Modern_01.glb",
-   "thumb": "thumbs/GH_Bookcase_Modern_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 7,
-     "hex": "#1B1B1E"
-    },
-    {
-     "part": "Fabric grey",
-     "swatch": 65,
-     "hex": "#8A8D91"
-    },
-    {
-     "part": "Paint white",
-     "swatch": 6,
-     "hex": "#E6E2D6"
-    },
-    {
-     "part": "Wood light",
-     "swatch": 0,
-     "hex": "#C9A06A"
-    }
-   ]
-  },
-  {
-   "id": "GH_Bookcase_02",
-   "name": "Bookcase, style 2",
-   "type": "furniture/storage/bookcase-02",
-   "tags": [
     "bookcase",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "storage"
+    "novels"
    ],
    "rigged": false,
    "interactive": false,
@@ -9261,14 +8886,14 @@
   },
   {
    "id": "GH_Bookcase_03",
-   "name": "Bookcase, style 3",
-   "type": "furniture/storage/bookcase-03",
+   "name": "Bookcase, sparse",
+   "type": "furniture/storage/bookcase",
    "tags": [
     "bookcase",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "storage"
+    "sparse"
    ],
    "rigged": false,
    "interactive": false,
@@ -9317,14 +8942,14 @@
   },
   {
    "id": "GH_Bookcase_04",
-   "name": "Bookcase, style 4",
-   "type": "furniture/storage/bookcase-04",
+   "name": "Bookcase, binders",
+   "type": "furniture/storage/bookcase",
    "tags": [
+    "binders",
     "bookcase",
-    "furniture",
+    "household",
     "indoor",
-    "new",
-    "storage"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -9373,14 +8998,14 @@
   },
   {
    "id": "GH_Bookcase_05",
-   "name": "Bookcase, style 5",
-   "type": "furniture/storage/bookcase-05",
+   "name": "Bookcase, bright",
+   "type": "furniture/storage/bookcase",
    "tags": [
     "bookcase",
-    "furniture",
+    "bright",
+    "household",
     "indoor",
-    "new",
-    "storage"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -9428,15 +9053,61 @@
    ]
   },
   {
+   "id": "GH_Bookcase_Modern_01",
+   "name": "Bookcase, modern",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "books",
+    "living-room",
+    "modern",
+    "new",
+    "shelves"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 324,
+   "size": [
+    1.23,
+    1.53,
+    0.35
+   ],
+   "glb": "models/GH_Bookcase_Modern_01.glb",
+   "thumb": "thumbs/GH_Bookcase_Modern_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
    "id": "GI_Cabinet_01",
    "name": "Cabinet",
    "type": "furniture/storage/cabinet",
    "tags": [
     "cabinet",
-    "furniture",
+    "classic",
     "indoor",
-    "new",
-    "storage"
+    "new"
    ],
    "rigged": false,
    "interactive": true,
@@ -9601,6 +9272,48 @@
    ]
   },
   {
+   "id": "GH_CoatRack_01",
+   "name": "Coat rack",
+   "type": "furniture/storage/coat-rack",
+   "tags": [
+    "coat",
+    "household",
+    "indoor",
+    "new",
+    "rack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 192,
+   "size": [
+    0.669,
+    1.86,
+    0.669
+   ],
+   "glb": "models/GH_CoatRack_01.glb",
+   "thumb": "thumbs/GH_CoatRack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
    "id": "GI_Dresser_01",
    "name": "Dresser",
    "type": "furniture/storage/dresser",
@@ -9685,6 +9398,58 @@
    ]
   },
   {
+   "id": "GH_JarShelf_01",
+   "name": "Jar shelf",
+   "type": "furniture/storage/jar-shelf",
+   "tags": [
+    "household",
+    "indoor",
+    "jar",
+    "new",
+    "shelf"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 780,
+   "size": [
+    0.905,
+    0.878,
+    0.16
+   ],
+   "glb": "models/GH_JarShelf_01.glb",
+   "thumb": "thumbs/GH_JarShelf_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ]
+  },
+  {
    "id": "GI_Locker_01",
    "name": "Locker",
    "type": "furniture/storage/locker",
@@ -9749,11 +9514,10 @@
    "type": "furniture/storage/medicine-cabinet",
    "tags": [
     "cabinet",
-    "furniture",
+    "classic",
     "indoor",
     "medicine",
-    "new",
-    "storage"
+    "new"
    ],
    "rigged": false,
    "interactive": true,
@@ -9803,11 +9567,10 @@
    "name": "Nightstand",
    "type": "furniture/storage/nightstand",
    "tags": [
-    "furniture",
+    "classic",
     "indoor",
     "new",
-    "nightstand",
-    "storage"
+    "nightstand"
    ],
    "rigged": false,
    "interactive": true,
@@ -9872,11 +9635,10 @@
    "name": "Safe",
    "type": "furniture/storage/safe",
    "tags": [
-    "furniture",
+    "classic",
     "indoor",
     "new",
-    "safe",
-    "storage"
+    "safe"
    ],
    "rigged": false,
    "interactive": true,
@@ -9928,14 +9690,13 @@
   },
   {
    "id": "GH_Shelf_Wall_01",
-   "name": "Shelf wall",
+   "name": "Wall shelf, 1",
    "type": "furniture/storage/shelf-wall",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "shelf",
-    "storage",
     "wall"
    ],
    "rigged": false,
@@ -9971,14 +9732,13 @@
   },
   {
    "id": "GH_Shelf_Wall_02",
-   "name": "Shelf wall, style 2",
-   "type": "furniture/storage/shelf-wall-02",
+   "name": "Wall shelf, 2",
+   "type": "furniture/storage/shelf-wall",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "shelf",
-    "storage",
     "wall"
    ],
    "rigged": false,
@@ -10014,14 +9774,13 @@
   },
   {
    "id": "GH_Shelf_Wall_03",
-   "name": "Shelf wall, style 3",
-   "type": "furniture/storage/shelf-wall-03",
+   "name": "Wall shelf, 3",
+   "type": "furniture/storage/shelf-wall",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "shelf",
-    "storage",
     "wall"
    ],
    "rigged": false,
@@ -10057,14 +9816,13 @@
   },
   {
    "id": "GH_Shelf_Wall_04",
-   "name": "Shelf wall, style 4",
-   "type": "furniture/storage/shelf-wall-04",
+   "name": "Wall shelf, 4",
+   "type": "furniture/storage/shelf-wall",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "shelf",
-    "storage",
     "wall"
    ],
    "rigged": false,
@@ -10100,14 +9858,13 @@
   },
   {
    "id": "GH_Shelf_Wall_05",
-   "name": "Shelf wall, style 5",
-   "type": "furniture/storage/shelf-wall-05",
+   "name": "Wall shelf, 5",
+   "type": "furniture/storage/shelf-wall",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "shelf",
-    "storage",
     "wall"
    ],
    "rigged": false,
@@ -10146,10 +9903,9 @@
    "name": "Suitcase",
    "type": "furniture/storage/suitcase",
    "tags": [
-    "furniture",
+    "classic",
     "indoor",
     "new",
-    "storage",
     "suitcase"
    ],
    "rigged": false,
@@ -10194,6 +9950,53 @@
      "part": "Fabric mustard",
      "swatch": 57,
      "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GH_ToyBox_01",
+   "name": "Toy box",
+   "type": "furniture/storage/toy-box",
+   "tags": [
+    "box",
+    "household",
+    "indoor",
+    "new",
+    "toy"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.82,
+    0.58,
+    0.47
+   ],
+   "glb": "models/GH_ToyBox_01.glb",
+   "thumb": "thumbs/GH_ToyBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
     }
    ]
   },
@@ -10339,15 +10142,14 @@
   },
   {
    "id": "GH_Counter_Bar_01",
-   "name": "Counter bar",
+   "name": "Bar counter",
    "type": "furniture/tables/counter-bar",
    "tags": [
     "bar",
     "counter",
-    "furniture",
+    "household",
     "indoor",
-    "new",
-    "tables"
+    "new"
    ],
    "rigged": false,
    "interactive": false,
@@ -10377,15 +10179,14 @@
   },
   {
    "id": "GH_Table_Coffee_01",
-   "name": "Table coffee",
+   "name": "Coffee table",
    "type": "furniture/tables/table-coffee",
    "tags": [
     "coffee",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "table",
-    "tables"
+    "table"
    ],
    "rigged": false,
    "interactive": false,
@@ -10410,15 +10211,14 @@
   },
   {
    "id": "GH_Table_Dining_01",
-   "name": "Table dining",
+   "name": "Dining table",
    "type": "furniture/tables/table-dining",
    "tags": [
     "dining",
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "table",
-    "tables"
+    "table"
    ],
    "rigged": false,
    "interactive": false,
@@ -10448,15 +10248,14 @@
   },
   {
    "id": "GH_Table_Side_01",
-   "name": "Table side",
+   "name": "Side table",
    "type": "furniture/tables/table-side",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
     "side",
-    "table",
-    "tables"
+    "table"
    ],
    "rigged": false,
    "interactive": false,
@@ -10489,10 +10288,9 @@
    "name": "Workbench",
    "type": "furniture/tables/workbench",
    "tags": [
-    "furniture",
+    "household",
     "indoor",
     "new",
-    "tables",
     "workbench"
    ],
    "rigged": false,
