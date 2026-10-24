@@ -260,7 +260,7 @@ def copier():
             p.cyl("rubber", (sx * 0.27, sy * 0.3, 0.02), 0.03, 0.04, n=6)
     shell(p, "enamel_white", 0, w, d, 0.04, 0.68, yf, inner="office_grey")
     for z in (0.255, 0.475):
-        p.box("enamel_white", (0, yf + d / 2, z), (w - 0.04, d - 0.04, 0.02))
+        p.box("enamel_white", (0, yf + d / 2 - 0.02, z), (w - 0.04, d, 0.02))                  # flush with the tray fronts: no groove
     for k, zc in enumerate((0.14, 0.36, 0.58)):
         drawer(p, f"Tray{k + 1}", "office_grey", "office_dark", 0, zc, w - 0.04, 0.2, d, yf, 0.35, handle="black")
     p.box("office_grey", (0, 0, 0.82), (w, d, 0.2))
@@ -289,13 +289,13 @@ def printer_desktop():
     yf = -d / 2
     shell(p, "office_dark", 0, w, d, 0.0, 0.22, yf, t=0.015, inner="black")
     drawer(p, "Tray", "office_grey", "office_grey", 0, 0.045, w - 0.03, 0.07, d, yf, 0.14, handle=None)
-    p.box("office_dark", (0, yf - 0.002, 0.13), (w, 0.004, 0.12))
+    p.box("office_dark", (0, yf - 0.002, 0.145), (w, 0.004, 0.15))                       # the front panel, up to the cover: no open strip
     p.box("black", (0, yf - 0.004, 0.19), (0.3, 0.005, 0.01))
     y_back, z_top = d / 2, 0.22
     with p.part("Cover", pivot=(0, y_back, z_top), kind="hinge", axis="x", limit=-70, rest=0.0):
         p.box("office_grey", (0, y_back - 0.17, z_top + 0.015), (w, 0.34, 0.03))
-    p.box("black", (0.0, 0.06, 0.234), (0.3, 0.22, 0.004))
-    p.box("paper", (0.0, 0.1, 0.24), (0.21, 0.28, 0.004), rot=(-12, 0, 0))
+    p.box("black", (0.0, 0.06, 0.252), (0.3, 0.22, 0.004))                                # the output ramp, on top of the cover
+    p.box("paper", (0.0, 0.04, 0.2755), (0.21, 0.28, 0.004), rot=(8, 0, 0))               # a sheet on the output ramp, its low end on the cover, its far end short of the back
     p.box("screen", (0.12, yf - 0.006, 0.16), (0.1, 0.006, 0.05))
     p.box("glow_cyan", (0.12, yf - 0.0095, 0.16), (0.08, 0.002, 0.03))
     p.box("glow_green", (0.17, yf - 0.006, 0.2), (0.012, 0.006, 0.012))
@@ -371,9 +371,10 @@ def shredder():
     w, d = 0.38, 0.26
     yf = -d / 2
     shell(p, "black", 0, w, d, 0.0, 0.5, yf, inner="office_dark")
-    drawer(p, "Bin", "black", "office_dark", 0, 0.22, w - 0.04, 0.4, d, yf, 0.2, handle="office_grey")
+    drawer(p, "Bin", "black", "office_dark", 0, 0.25, w - 0.04, 0.46, d, yf, 0.2, handle="office_grey")
     p.box("office_dark", (0, 0, 0.55), (0.4, 0.28, 0.1))
     p.box("black", (0, 0.0, 0.6015), (0.3, 0.02, 0.004))
+    p.box("paper", (0.0, 0.0, 0.64), (0.21, 0.004, 0.14), rot=(0, 0, 0))                                          # a sheet going into the feed slot
     p.box("glass", (0, -0.141, 0.54), (0.2, 0.004, 0.03))
     p.box("glow_green", (0.14, -0.141, 0.58), (0.016, 0.004, 0.016))
     return p
@@ -382,11 +383,11 @@ def shredder():
 @piece("storage", "Wastebasket")
 def wastebasket():
     p = Prop("GO_Wastebasket_01")
-    lathe(p, "metal_dark", [(0.0, 0.11), (0.3, 0.15)], n=8)
-    p.cyl("metal_galv", (0, 0, 0.3), 0.158, 0.02, n=8)
-    p.cyl("black", (0, 0, 0.305), 0.14, 0.01, n=8)
-    ball(p, "paper", (0.03, 0.0, 0.33), 0.05, n=5, rings=2)
-    ball(p, "paper", (-0.04, 0.05, 0.325), 0.04, n=5, rings=2)
+    lathe(p, "metal_dark", [(0.0, 0.11), (0.28, 0.15)], n=8)
+    lathe(p, "metal_galv", [(0.28, 0.15), (0.3, 0.158), (0.3, 0.14), (0.28, 0.14)], n=8, cap=False)                # the rim, a lip round the open top
+    p.cyl("black", (0, 0, 0.281), 0.14, 0.004, n=8)                                                                # the dark inside
+    ball(p, "paper", (0.03, 0.0, 0.315), 0.05, n=5, rings=2)
+    ball(p, "paper", (-0.04, 0.05, 0.31), 0.04, n=5, rings=2)
     return p
 
 

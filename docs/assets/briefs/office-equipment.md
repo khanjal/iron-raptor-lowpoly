@@ -1,6 +1,6 @@
 # Office equipment: first audit (paper and gaps)
 
-Status: first pass. The copier, desktop printer, shredder and wastebasket (`art/scripts/office.py`) were built in Blender without exporting and looked at from four sides; sizes and positions below come from the script. Not yet looked at: the desks, cubicle kit, water cooler, filing cabinet, whiteboard, workstation and phone. US reference.
+Status: first pass; the faults in the table were fixed on 2026-10-24 (issue #37), see "Fixed" below. The copier, desktop printer, shredder and wastebasket (`art/scripts/office.py`) were built in Blender without exporting and looked at from four sides; sizes and positions below come from the script. Not yet looked at: the desks, cubicle kit, water cooler, filing cabinet, whiteboard, workstation and phone. US reference.
 
 ## Faults found
 
@@ -27,3 +27,7 @@ Common cause: `shell()` builds an open-fronted carcass and each model then cover
 ## Family members and variants to consider
 
 Laminator, hole punch, stapler, tape dispenser, paper tray / inbox, paper ream and box, multi-function printer with a document feeder, large floor copier with finisher, label printer, fax machine, binding machine, paper cutter. Variants: colour themes (white, grey, black), paper level in trays (full, half, empty), with or without a sheet in the output.
+
+## Fixed (2026-10-24, issue #37)
+
+Printer: the sheet lies on the output ramp on the lid, its low end on the cover and its far end short of the back, and the front panel now reaches the lid. Shredder: the bin reaches the top plate (the Bin pivot in `art/data/interactions.json` moved from z 0.22 to 0.25) and a sheet goes into the feed slot. Wastebasket: an open dish with a rim and the paper inside it. Copier: the tray dividers are flush with the tray fronts. Built in Blender and looked at from three sides. Not done: the audit check for uncovered `shell()` fronts and the look at the other pieces (#38).
