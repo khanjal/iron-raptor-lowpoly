@@ -209,21 +209,18 @@ def catalog_only():
 
 
 def part_names_only():
-    """Apply art/data/part_names.json to the paintable parts already in site/manifest.json and change nothing else (no GLBs, no Blender facts)."""
+    """Apply art/data/part_names.json to the paintable parts already in site/manifest.json and change nothing else (no GLBs, no Blender facts).
+    Every secondary part of a model that has an entry is first put back to its swatch's own label, so an edited or removed entry takes effect too."""
     path = ROOT / "site" / "manifest.json"
     doc = json.loads(path.read_text(encoding="utf-8"))
-    # parts still carrying a mapped swatch's own label are renamed; parts already renamed keep their name
     entries = paints_tool.palette_entries()
     names = paints_tool.part_names()
     for a in doc["assets"]:
-        mapping = names.get(a["id"])
-        if mapping:
+        if a["id"] in names and a["id"] not in catalog.PAINTS:
             for p in a.get("paintable") or []:
-                if p["part"] != "Main" and p["part"] == paints_tool.part_label(entries[p["swatch"]][0]):
-                    p["part"] = mapping.get(entries[p["swatch"]][0], p["part"])
-            labels = [p["part"] for p in a.get("paintable") or []]
-            if len(labels) != len(set(labels)):
-                raise SystemExit(f"{a['id']}: two parts called the same after part_names.json: {labels}")
+                if p["part"] != "Main":
+                    p["part"] = paints_tool.part_label(entries[p["swatch"]][0])
+    apply_part_names(doc["assets"], entries)
     path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     print("applied art/data/part_names.json to site/manifest.json")
 

@@ -1,13 +1,13 @@
 {
  "GT_Hoe_01": {
-  "metal_dark": "Blade"
+  "metal_dark": "Blade and neck"
  },
  "GT_HoseCoil_01": {
   "leaf_dark": "Alternate coils",
   "shadow": "Centre"
  },
  "GT_PruningShears_01": {
-  "metal_dark": "Frame",
+  "metal_dark": "Frame and hook blade",
   "metal_galv": "Cutting blade"
  },
  "GT_Spade_01": {
@@ -19,7 +19,7 @@
   "copper": "Hose fitting"
  },
  "GT_WateringCan_01": {
-  "metal_dark": "Handle and rose"
+  "metal_dark": "Handle, rose and lid ring"
  },
  "GT_Axe_01": {
   "metal_dark": "Head",
@@ -40,7 +40,7 @@
  },
  "GT_Screwdriver_01": {
   "metal_galv": "Shaft",
-  "black": "Ferrule",
+  "black": "End cap",
   "metal_dark": "Tip"
  },
  "GT_Sledgehammer_01": {
@@ -111,7 +111,7 @@
   "glass": "Display window"
  },
  "GH_Jukebox_01": {
-  "glass": "Display window"
+  "glass": "Display frame"
  },
  "GO_Copier_01": {
   "glass": "Scanner glass"
@@ -120,10 +120,10 @@
   "linen": "Bedding"
  },
  "GH_Bed_Child_01": {
-  "linen": "Bedding"
+  "linen": "Pillow"
  },
  "GH_Bed_Single_01": {
-  "linen": "Bedding"
+  "linen": "Mattress and pillow"
  },
  "GH_Cot_01": {
   "linen": "Bedding"
