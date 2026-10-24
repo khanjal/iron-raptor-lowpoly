@@ -55,6 +55,12 @@ BUILD = {
                          ids=["GV_Tractor_Green_01"]),
     "cars_pickup": dict(script="cars.py", globals={"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, ids=["GV_Pickup_Blue_01"]),
     "ships": dict(script="ships.py", globals={"SHIP_LIST": ["Scout", "Dart"]}, ids=["SH_Scout_01", "SH_Dart_01"]),
+    "ship_parts": dict(script="ships.py", globals={"SHIP_LIST": ["parts"]},
+                       ids=["SH_PowerCell_01", "SH_HullPanel_01", "SH_NavCrystal_01", "SH_EngineCoil_01", "SH_ThrusterNozzle_01", "SH_FuelCanister_01", "SH_ShieldEmitter_01",
+                            "SH_CommsArray_01", "SH_BlackBox_01", "SH_WarpRingSegment_01", "SH_LandingLeg_01", "SH_ConsoleModule_01", "SH_Beacon_01", "SH_SpecimenJar_01",
+                            "SH_ContainmentPod_01"]),
+    "ship_tools": dict(script="ships.py", globals={"SHIP_LIST": ["tools", "debris"]},
+                       ids=["SH_RepairTool_01", "SH_Scanner_01", "SH_Translator_01", "SH_HullShard_A_01", "SH_HullShard_B_01", "SH_CableTangle_01", "SH_ScorchedGround_01"]),
     "ships_more": dict(script="ships.py", globals={"SHIP_LIST": ["Cigar", "Triangle", "EscapePod", "ProbeDrone", "DropShip", "MIBCraft", "Mothership"]},
                        ids=["SH_Cigar_01", "SH_Triangle_01", "SH_EscapePod_01", "SH_ProbeDrone_01", "SH_DropShip_01", "SH_MIBCraft_01", "SH_Mothership_01"]),
     "ship_ufo": dict(script="ufo.py", ids=["SH_AbductionUfo_01"]),
@@ -187,6 +193,30 @@ _a("GV_Tractor_01", "Tractor", "vehicles/farm/tractor", "rural farm green red ne
 _a("GV_Pickup_01", "Farm pickup", "vehicles/farm/pickup", "rural farm truck blue new")
 _a("SH_Scout_01", "Scout ship", "vehicles/ship/scout", "sci-fi alien ship flying saucer ufo violet glow new")
 _a("SH_Dart_01", "Dart ship", "vehicles/ship/dart", "sci-fi alien ship flyer fast glow new")
+# alien tech: ship parts, devices, wreckage, the landed ship's interior and its terminals
+_a("SH_PowerCell_01", "Power cell", "alien/ship-part/power-cell", "glow cylinder energy carriable sci-fi alien ship new")
+_a("SH_HullPanel_01", "Hull panel", "alien/ship-part/hull-panel", "hull plate hexagonal grey carriable sci-fi alien ship new")
+_a("SH_NavCrystal_01", "Nav crystal", "alien/ship-part/nav-crystal", "navigation crystal glow cyan carriable sci-fi alien ship new")
+_a("SH_EngineCoil_01", "Engine coil", "alien/ship-part/engine-coil", "engine coil ring glow carriable sci-fi alien ship new")
+_a("SH_ThrusterNozzle_01", "Thruster nozzle", "alien/ship-part/thruster-nozzle", "thruster engine nozzle glow carriable sci-fi alien ship new")
+_a("SH_FuelCanister_01", "Fuel canister", "alien/ship-part/fuel-canister", "fuel canister tank carriable sci-fi alien ship new")
+_a("SH_ShieldEmitter_01", "Shield emitter", "alien/ship-part/shield-emitter", "shield emitter dish glow carriable sci-fi alien ship new")
+_a("SH_CommsArray_01", "Comms array", "alien/ship-part/comms-array", "communications antenna array carriable sci-fi alien ship new")
+_a("SH_BlackBox_01", "Black box", "alien/ship-part/black-box", "flight recorder box dark carriable sci-fi alien ship new")
+_a("SH_WarpRingSegment_01", "Warp ring segment", "alien/ship-part/warp-ring", "warp drive ring arc glow sci-fi alien ship new")
+_a("SH_LandingLeg_01", "Landing leg", "alien/ship-part/landing-leg", "landing leg strut pad sci-fi alien ship new")
+_a("SH_ConsoleModule_01", "Console module", "alien/ship-part/console-module", "console module buttons screen carriable sci-fi alien ship new")
+_a("SH_Beacon_01", "Beacon", "alien/device/beacon", "signal beacon light glow sci-fi alien ship new")
+_a("SH_SpecimenJar_01", "Specimen jar", "alien/device/specimen-jar", "specimen jar glass lab sci-fi alien ship new")
+_a("SH_ContainmentPod_01", "Containment pod", "alien/device/containment-pod", "containment pod capsule lab glow sci-fi alien ship new")
+_a("SH_RepairTool_01", "Repair tool", "alien/device/repair-tool", "repair handheld tool glow sci-fi alien ship new")
+_a("SH_Scanner_01", "Alien scanner", "alien/device/scanner", "scanner handheld screen glow sci-fi alien ship new")
+_a("SH_Translator_01", "Translator", "alien/device/translator", "translator handheld speaker glow sci-fi alien ship new")
+_a("SH_HullShard_A_01", "Hull shard, flat", "alien/debris/hull-shard", "wreckage shard hull crash broken sci-fi alien ship damaged")
+_a("SH_HullShard_B_01", "Hull shard, upright", "alien/debris/hull-shard-upright", "wreckage shard hull crash broken sci-fi alien ship damaged")
+_a("SH_CableTangle_01", "Cable tangle", "alien/debris/cable-tangle", "wreckage cables crash tangled sci-fi alien ship damaged")
+_a("SH_ScorchedGround_01", "Scorched ground", "alien/debris/scorched-ground", "crash scorch burn mark ground decal sci-fi alien ship damaged")
+
 _a("SH_Cigar_01", "Cigar ship", "vehicles/ship/cigar", "sci-fi alien ship long cylinder craft glow new")
 _a("SH_Triangle_01", "Triangle ship", "vehicles/ship/triangle", "sci-fi alien ship black triangle craft lights new")
 _a("SH_EscapePod_01", "Escape pod", "vehicles/ship/escape-pod", "sci-fi alien ship small capsule pod landing legs new")

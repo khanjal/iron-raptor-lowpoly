@@ -73,6 +73,919 @@
  },
  "assets": [
   {
+   "id": "SH_CableTangle_01",
+   "name": "Cable tangle",
+   "type": "alien/debris/cable-tangle",
+   "tags": [
+    "alien",
+    "cables",
+    "crash",
+    "damaged",
+    "sci-fi",
+    "ship",
+    "tangled",
+    "wreckage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.849,
+    0.095,
+    1.071
+   ],
+   "glb": "models/SH_CableTangle_01.glb",
+   "thumb": "thumbs/SH_CableTangle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 81,
+     "hex": "#6E4FA0"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_HullShard_A_01",
+   "name": "Hull shard, flat",
+   "type": "alien/debris/hull-shard",
+   "tags": [
+    "alien",
+    "broken",
+    "crash",
+    "damaged",
+    "hull",
+    "sci-fi",
+    "shard",
+    "ship",
+    "wreckage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    1.012,
+    0.191,
+    0.756
+   ],
+   "glb": "models/SH_HullShard_A_01.glb",
+   "thumb": "thumbs/SH_HullShard_A_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_HullShard_B_01",
+   "name": "Hull shard, upright",
+   "type": "alien/debris/hull-shard-upright",
+   "tags": [
+    "alien",
+    "broken",
+    "crash",
+    "damaged",
+    "hull",
+    "sci-fi",
+    "shard",
+    "ship",
+    "wreckage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.515,
+    0.612,
+    0.802
+   ],
+   "glb": "models/SH_HullShard_B_01.glb",
+   "thumb": "thumbs/SH_HullShard_B_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    }
+   ]
+  },
+  {
+   "id": "SH_ScorchedGround_01",
+   "name": "Scorched ground",
+   "type": "alien/debris/scorched-ground",
+   "tags": [
+    "alien",
+    "burn",
+    "crash",
+    "damaged",
+    "decal",
+    "ground",
+    "mark",
+    "sci-fi",
+    "scorch",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 136,
+   "size": [
+    3.025,
+    0.017,
+    3.025
+   ],
+   "glb": "models/SH_ScorchedGround_01.glb",
+   "thumb": "thumbs/SH_ScorchedGround_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "SH_Beacon_01",
+   "name": "Beacon",
+   "type": "alien/device/beacon",
+   "tags": [
+    "alien",
+    "beacon",
+    "glow",
+    "light",
+    "new",
+    "sci-fi",
+    "ship",
+    "signal"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 160,
+   "size": [
+    0.4,
+    1.3,
+    0.346
+   ],
+   "glb": "models/SH_Beacon_01.glb",
+   "thumb": "thumbs/SH_Beacon_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "SH_ContainmentPod_01",
+   "name": "Containment pod",
+   "type": "alien/device/containment-pod",
+   "tags": [
+    "alien",
+    "capsule",
+    "containment",
+    "glow",
+    "lab",
+    "new",
+    "pod",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 184,
+   "size": [
+    0.65,
+    1.23,
+    0.65
+   ],
+   "glb": "models/SH_ContainmentPod_01.glb",
+   "thumb": "thumbs/SH_ContainmentPod_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_RepairTool_01",
+   "name": "Repair tool",
+   "type": "alien/device/repair-tool",
+   "tags": [
+    "alien",
+    "glow",
+    "handheld",
+    "new",
+    "repair",
+    "sci-fi",
+    "ship",
+    "tool"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 64,
+   "size": [
+    0.1,
+    0.187,
+    0.435
+   ],
+   "glb": "models/SH_RepairTool_01.glb",
+   "thumb": "thumbs/SH_RepairTool_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_Scanner_01",
+   "name": "Alien scanner",
+   "type": "alien/device/scanner",
+   "tags": [
+    "alien",
+    "glow",
+    "handheld",
+    "new",
+    "scanner",
+    "sci-fi",
+    "screen",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 56,
+   "size": [
+    0.14,
+    0.28,
+    0.044
+   ],
+   "glb": "models/SH_Scanner_01.glb",
+   "thumb": "thumbs/SH_Scanner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_SpecimenJar_01",
+   "name": "Specimen jar",
+   "type": "alien/device/specimen-jar",
+   "tags": [
+    "alien",
+    "glass",
+    "jar",
+    "lab",
+    "new",
+    "sci-fi",
+    "ship",
+    "specimen"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 116,
+   "size": [
+    0.25,
+    0.325,
+    0.25
+   ],
+   "glb": "models/SH_SpecimenJar_01.glb",
+   "thumb": "thumbs/SH_SpecimenJar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien green",
+     "swatch": 82,
+     "hex": "#7FD36B"
+    }
+   ]
+  },
+  {
+   "id": "SH_Translator_01",
+   "name": "Translator",
+   "type": "alien/device/translator",
+   "tags": [
+    "alien",
+    "glow",
+    "handheld",
+    "new",
+    "sci-fi",
+    "ship",
+    "speaker",
+    "translator"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.13,
+    0.2,
+    0.113
+   ],
+   "glb": "models/SH_Translator_01.glb",
+   "thumb": "thumbs/SH_Translator_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 81,
+     "hex": "#6E4FA0"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_BlackBox_01",
+   "name": "Black box",
+   "type": "alien/ship-part/black-box",
+   "tags": [
+    "alien",
+    "box",
+    "carriable",
+    "dark",
+    "flight",
+    "new",
+    "recorder",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.34,
+    0.24,
+    0.226
+   ],
+   "glb": "models/SH_BlackBox_01.glb",
+   "thumb": "thumbs/SH_BlackBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "SH_CommsArray_01",
+   "name": "Comms array",
+   "type": "alien/ship-part/comms-array",
+   "tags": [
+    "alien",
+    "antenna",
+    "array",
+    "carriable",
+    "communications",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.52,
+    0.9,
+    0.52
+   ],
+   "glb": "models/SH_CommsArray_01.glb",
+   "thumb": "thumbs/SH_CommsArray_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_ConsoleModule_01",
+   "name": "Console module",
+   "type": "alien/ship-part/console-module",
+   "tags": [
+    "alien",
+    "buttons",
+    "carriable",
+    "console",
+    "module",
+    "new",
+    "sci-fi",
+    "screen",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.6,
+    0.549,
+    0.4
+   ],
+   "glb": "models/SH_ConsoleModule_01.glb",
+   "thumb": "thumbs/SH_ConsoleModule_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_EngineCoil_01",
+   "name": "Engine coil",
+   "type": "alien/ship-part/engine-coil",
+   "tags": [
+    "alien",
+    "carriable",
+    "coil",
+    "engine",
+    "glow",
+    "new",
+    "ring",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 344,
+   "size": [
+    0.6,
+    0.245,
+    0.55
+   ],
+   "glb": "models/SH_EngineCoil_01.glb",
+   "thumb": "thumbs/SH_EngineCoil_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_FuelCanister_01",
+   "name": "Fuel canister",
+   "type": "alien/ship-part/fuel-canister",
+   "tags": [
+    "alien",
+    "canister",
+    "carriable",
+    "fuel",
+    "new",
+    "sci-fi",
+    "ship",
+    "tank"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 188,
+   "size": [
+    0.29,
+    0.54,
+    0.29
+   ],
+   "glb": "models/SH_FuelCanister_01.glb",
+   "thumb": "thumbs/SH_FuelCanister_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien green",
+     "swatch": 82,
+     "hex": "#7FD36B"
+    }
+   ]
+  },
+  {
+   "id": "SH_HullPanel_01",
+   "name": "Hull panel",
+   "type": "alien/ship-part/hull-panel",
+   "tags": [
+    "alien",
+    "carriable",
+    "grey",
+    "hexagonal",
+    "hull",
+    "new",
+    "plate",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    0.851,
+    0.111,
+    0.505
+   ],
+   "glb": "models/SH_HullPanel_01.glb",
+   "thumb": "thumbs/SH_HullPanel_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_LandingLeg_01",
+   "name": "Landing leg",
+   "type": "alien/ship-part/landing-leg",
+   "tags": [
+    "alien",
+    "landing",
+    "leg",
+    "new",
+    "pad",
+    "sci-fi",
+    "ship",
+    "strut"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 64,
+   "size": [
+    0.43,
+    0.8,
+    0.346
+   ],
+   "glb": "models/SH_LandingLeg_01.glb",
+   "thumb": "thumbs/SH_LandingLeg_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_NavCrystal_01",
+   "name": "Nav crystal",
+   "type": "alien/ship-part/nav-crystal",
+   "tags": [
+    "alien",
+    "carriable",
+    "crystal",
+    "cyan",
+    "glow",
+    "navigation",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 144,
+   "size": [
+    0.24,
+    0.6,
+    0.214
+   ],
+   "glb": "models/SH_NavCrystal_01.glb",
+   "thumb": "thumbs/SH_NavCrystal_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 81,
+     "hex": "#6E4FA0"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_PowerCell_01",
+   "name": "Power cell",
+   "type": "alien/ship-part/power-cell",
+   "tags": [
+    "alien",
+    "carriable",
+    "cylinder",
+    "energy",
+    "glow",
+    "new",
+    "sci-fi",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 116,
+   "size": [
+    0.25,
+    0.405,
+    0.217
+   ],
+   "glb": "models/SH_PowerCell_01.glb",
+   "thumb": "thumbs/SH_PowerCell_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_ShieldEmitter_01",
+   "name": "Shield emitter",
+   "type": "alien/ship-part/shield-emitter",
+   "tags": [
+    "alien",
+    "carriable",
+    "dish",
+    "emitter",
+    "glow",
+    "new",
+    "sci-fi",
+    "shield",
+    "ship"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 148,
+   "size": [
+    0.416,
+    0.66,
+    0.48
+   ],
+   "glb": "models/SH_ShieldEmitter_01.glb",
+   "thumb": "thumbs/SH_ShieldEmitter_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "SH_ThrusterNozzle_01",
+   "name": "Thruster nozzle",
+   "type": "alien/ship-part/thruster-nozzle",
+   "tags": [
+    "alien",
+    "carriable",
+    "engine",
+    "glow",
+    "new",
+    "nozzle",
+    "sci-fi",
+    "ship",
+    "thruster"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 176,
+   "size": [
+    0.6,
+    0.54,
+    0.6
+   ],
+   "glb": "models/SH_ThrusterNozzle_01.glb",
+   "thumb": "thumbs/SH_ThrusterNozzle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Alien dark",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "SH_WarpRingSegment_01",
+   "name": "Warp ring segment",
+   "type": "alien/ship-part/warp-ring",
+   "tags": [
+    "alien",
+    "arc",
+    "drive",
+    "glow",
+    "new",
+    "ring",
+    "sci-fi",
+    "ship",
+    "warp"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 216,
+   "size": [
+    0.933,
+    0.292,
+    0.24
+   ],
+   "glb": "models/SH_WarpRingSegment_01.glb",
+   "thumb": "thumbs/SH_WarpRingSegment_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GN_Spider_01",
    "name": "Spider",
    "type": "animals/arachnid/spider",
