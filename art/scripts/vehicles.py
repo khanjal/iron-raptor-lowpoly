@@ -79,6 +79,29 @@ def mirror(p, colour, sx, x, y, z):
     p.box(colour, (sx * (x + 0.08), y, z), (0.2, 0.12, 0.13))
 
 
+def seat(p, colour, x, y, z, w, ch):
+    """One seat facing -Y standing on a floor at height z: a cushion and a back that leans a little. ch is the headroom the roof leaves."""
+    back = max(0.2, min(0.5, ch - 0.18))
+    p.box(colour, (x, y, z + 0.05), (w, 0.5, 0.1))
+    p.box(colour, (x, y + 0.24, z + 0.1 + back / 2), (w, 0.1, back), rot=(-8, 0, 0))
+
+
+def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="office_dark"):
+    """What you see through the glass of a cabin from y0 (the windscreen end) to y1 on a floor at height z, `width` wide and ch under the roof:
+    a floor mat, a dashboard, a steering wheel on the left (-X), and a row of seats for each y offset in rows (the first row is the front;
+    bench=True makes it one seat across, otherwise two seats; later rows are benches)."""
+    x = width / 2 - 0.42
+    p.box("black", (0, (y0 + y1) / 2, z + 0.01), (width - 0.1, y1 - y0 - 0.1, 0.02))                         # floor mat
+    p.box("black", (0, y0 + 0.22, z + 0.12), (width - 0.1, 0.36, 0.24))                                     # dashboard
+    p.cyl("black", (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.16, 0.03, n=6, axis="y")                      # steering wheel
+    for k, off in enumerate(rows):
+        if k == 0 and not bench:
+            for sx in (-1, 1):
+                seat(p, colour, sx * x, y0 + off, z, 0.5, ch)
+        else:
+            seat(p, colour, 0, y0 + off, z, width - 0.5, ch)
+
+
 def pickup(body="truck_blue", name="GV_Pickup_01"):
     """A farm pickup truck. A lofted hood and cab with a slanted windscreen, pillars, door seams and handles, wheel arches, an open bed with
     ribs and wheel wells, bumpers, a grille with bars, headlight and tail light housings, mirrors, running boards and four wheels."""
@@ -88,7 +111,8 @@ def pickup(body="truck_blue", name="GV_Pickup_01"):
                         (-1.05, 0.98, 0.52, 1.14, 0.06), (0.85, 0.98, 0.52, 1.12, 0.05)])   # hood, wings and the lower cab in one shell
     p.box(body, (0, -1.85, 1.15), (0.55, 0.75, 0.07))                               # hood scoop
     p.box("black", (0, -2.21, 1.14), (0.42, 0.03, 0.05))                            # its intake
-    glasshouse(p, "glass", [(-0.95, 0.87, 0.86, 1.13, 1.15), (-0.68, 0.87, 0.78, 1.13, 1.58), (0.6, 0.87, 0.78, 1.13, 1.58), (0.85, 0.87, 0.84, 1.13, 1.17)])
+    glasshouse(p, "clear_glass", [(-0.95, 0.87, 0.86, 1.13, 1.15), (-0.68, 0.87, 0.78, 1.13, 1.58), (0.6, 0.87, 0.78, 1.13, 1.58), (0.85, 0.87, 0.84, 1.13, 1.17)])
+    cab_interior(p, -0.7, 0.7, 1.13, 1.5, 0.4, rows=(0.5, 1.15), bench=True)                                           # dashboard, wheel and seats you can see
     p.box(body, (0, -0.04, 1.63), (1.64, 1.38, 0.1))                               # roof (its top where the tow truck's beacon expects it)
     for s in (-1, 1):
         props_lib.rod(p, body, (s * 0.88, -0.95, 1.13), (s * 0.8, -0.68, 1.58), 0.09)     # A pillars

@@ -1104,7 +1104,7 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 328,
+   "triangles": 424,
    "size": [
     0.33,
     1.49,
@@ -3828,7 +3828,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1716,
+   "triangles": 1808,
    "size": [
     2.16,
     1.68,
@@ -3927,7 +3927,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1576,
+   "triangles": 1668,
    "size": [
     2.12,
     2.52,
@@ -3980,7 +3980,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1596,
+   "triangles": 1688,
    "size": [
     1.92,
     1.47,
@@ -4013,7 +4013,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1560,
+   "triangles": 1652,
    "size": [
     1.92,
     1.38,
@@ -4101,11 +4101,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1140,
+   "triangles": 1220,
    "size": [
-    2.027,
-    1.445,
-    4.984
+    1.967,
+    1.457,
+    4.933
    ],
    "glb": "models/GV_Sedan_Red_Damaged_01.glb",
    "thumb": "thumbs/GV_Sedan_Red_Damaged_01.png",
@@ -4130,7 +4130,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1584,
+   "triangles": 1676,
    "size": [
     1.92,
     1.53,
@@ -4156,7 +4156,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 1528,
+   "triangles": 1620,
    "size": [
     2.12,
     2.43,
