@@ -89,6 +89,7 @@ BUILD = {
                               "FD_Grapes_Green_01", "FD_Strawberry_01"]),
     "farm": dict(script="props_farm.py", globals={"PROP_LIST": ["barrel", "wheelbarrow", "scarecrow", "hay_round", "doghouse"]},
                  ids=["GT_Barrel_01", "GT_Wheelbarrow_01", "FM_Scarecrow_01", "GT_HayBale_Round_01", "FM_DogHouse_01"]),
+    "hand_tools": dict(script="hand_tools.py", ids=['GT_Hammer_01', 'GT_Sledgehammer_01', 'GT_Axe_01', 'GT_HandSaw_01', 'GT_Wrench_01', 'GT_Screwdriver_01', 'GT_Pliers_01', 'GT_Hoe_01', 'GT_Spade_01', 'GT_WateringCan_01']),
     "bld_farmhouse": dict(script="buildings.py", globals={"BUILDING_LIST": ["farmhouse"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
                       ids=["FM_Farmhouse_White_01", "FM_Farmhouse_White_Damaged_01"]),
     "bld_barn": dict(script="buildings.py", globals={"BUILDING_LIST": ["barn"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New", "Damaged"]},
@@ -372,6 +373,16 @@ _a("FD_Hamburger_01", "Hamburger", "food/prepared/hamburger", "fast-food diner f
 _a("GT_Barrel_01", "Barrel", "farm/props/barrel", "rural wood container new")
 _a("GT_Wheelbarrow_01", "Wheelbarrow", "farm/tools/wheelbarrow", "rural tool new")
 _a("GT_HayBale_Round_01", "Round hay bale", "farm/props/hay-bale", "rural hay yellow new")
+_a("GT_Hammer_01", "Claw hammer", "tools/hand/hammer", "hammer claw steel wood new workshop garage")
+_a("GT_Sledgehammer_01", "Sledgehammer", "tools/hand/sledgehammer", "sledgehammer maul steel wood new workshop farm")
+_a("GT_Axe_01", "Axe", "tools/hand/axe", "axe felling steel wood new woodshed cabin")
+_a("GT_HandSaw_01", "Hand saw", "tools/hand/hand-saw", "saw handsaw steel wood new workshop")
+_a("GT_Wrench_01", "Wrench", "tools/hand/wrench", "wrench spanner steel new workshop garage")
+_a("GT_Screwdriver_01", "Screwdriver", "tools/hand/screwdriver", "screwdriver yellow steel new workshop")
+_a("GT_Pliers_01", "Pliers", "tools/hand/pliers", "pliers steel rubber new workshop garage")
+_a("GT_Hoe_01", "Hoe", "tools/garden/hoe", "hoe garden steel wood new farm")
+_a("GT_Spade_01", "Spade", "tools/garden/spade", "spade shovel garden steel wood new farm")
+_a("GT_WateringCan_01", "Watering can", "tools/garden/watering-can", "watering can galvanised garden new farm")
 _a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw weathered")
 _a("FM_DogHouse_01", "Doghouse", "farm/structures/doghouse", "rural wood new")
 # buildings (art/scripts/buildings.py): one skin each (the other skins are not built and have no paints yet, see docs/assets/briefs/buildings.md); the New / Damaged pairs are variants of each other
