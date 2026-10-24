@@ -42,7 +42,7 @@ BUILD = {
     "ship_props": dict(script="ship_props.py", ids=["GV_ShipLockers_01", "GV_ShipPod_01", "GV_ShipJars_01", "GV_ShipConduit_01", "GV_ShipHoloTable_01", "GV_ShipCouch_01",
                                                     "GV_ShipToolRack_01", "GV_ShipSampleRack_01", "GV_ShipHelm_01", "GV_ShipNavScreen_01", "GV_ShipRadarPost_01",
                                                     "GV_ShipCrates_01", "GV_ShipDrums_01", "GV_ShipBunk_01", "GV_ShipMess_01"]),
-    "ship_terminals": dict(script="terminals.py", ids=["GV_ShipConsole_01", "GV_ShipTerminalBank_01", "GV_ShipTerminalLaunch_01"]),
+    "ship_terminals": dict(script="terminals.py", globals={"STATE_LAMPS": False}, ids=["GV_ShipConsole_01", "GV_ShipTerminalBank_01", "GV_ShipTerminalLaunch_01"]),
     "int_fridge": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["Fridge"]},
                        ids=["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]),
     "int_fridge_dispenser": dict(script="interactive.py", globals={"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, ids=["GI_Fridge_Dispenser_01"]),
