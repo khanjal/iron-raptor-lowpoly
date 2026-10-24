@@ -51,7 +51,7 @@ def mallet():
     p = Prop("GT_Mallet_01")
     p.ox = -0.0225
     p.cyl("wood_light", (0.0, 0, 0.016), 0.016, 0.3, n=8, axis="x")                 # the handle
-    p.box("rubber", (0.16, 0, 0.035), (0.07, 0.14, 0.07))                            # the head, across the handle (Y)
+    p.box("rubber", (0.16, 0, 0.025), (0.07, 0.12, 0.05))                            # the head, across the handle (Y)
     return p
 
 
@@ -61,7 +61,7 @@ def clothes_iron():
     p = Prop("GT_ClothesIron_01")
     p.box("metal_galv", (0, 0, 0.01), (0.12, 0.27, 0.02))                            # the sole plate
     p.box("paint_white", (0, 0.0, 0.05), (0.11, 0.23, 0.06))                         # the body
-    p.box("paint_white", (0, 0.06, 0.1), (0.045, 0.1, 0.04))                         # the rise at the back the handle springs from
+    p.box("paint_white", (0, 0.05, 0.1), (0.045, 0.14, 0.04))                         # the rise at the back the handle springs from
     p.box("black", (0, 0.1, 0.135), (0.035, 0.03, 0.05))                             # handle post, back
     p.box("black", (0, -0.0, 0.135), (0.035, 0.03, 0.05))                            # handle post, front
     p.box("black", (0, 0.05, 0.165), (0.04, 0.13, 0.03))                             # the handle bar
@@ -71,7 +71,7 @@ def clothes_iron():
 
 @piece("BathroomScale")
 def bathroom_scale():
-    """A bathroom scale 0.3 m square and 0.04 m high: white glass platform on four rubber feet with a digital display."""
+    """A bathroom scale 0.3 m square and 0.045 m high: white glass platform on four rubber feet with a digital display."""
     p = Prop("GT_BathroomScale_01")
     p.box("paint_white", (0, 0, 0.025), (0.3, 0.3, 0.03))                            # the platform
     for sx in (-1, 1):
@@ -102,8 +102,8 @@ def bench_vise():
     p.oy = 0.048
     p.box("barn_red", (0, 0, 0.015), (0.16, 0.22, 0.03))                             # the base plate
     p.box("barn_red", (0, 0, 0.055), (0.12, 0.22, 0.05))                             # the body
-    p.box("barn_red", (0, 0.09, 0.12), (0.14, 0.04, 0.08))                           # the fixed jaw
-    p.box("barn_red", (0, -0.02, 0.12), (0.14, 0.04, 0.08))                          # the moving jaw
+    p.box("barn_red", (0, 0.09, 0.12), (0.1, 0.04, 0.08))                           # the fixed jaw
+    p.box("barn_red", (0, -0.02, 0.12), (0.1, 0.04, 0.08))                          # the moving jaw
     p.cyl("metal_dark", (0, -0.1, 0.1), 0.012, 0.2, n=8, axis="y")                   # the screw
     p.cyl("metal_galv", (0, -0.2, 0.1), 0.006, 0.14, n=8, axis="x")                  # the T-handle
     return p
@@ -111,10 +111,10 @@ def bench_vise():
 
 @piece("SnowShovel")
 def snow_shovel():
-    """A snow shovel lying on the floor along X: 0.9 m handle with a D grip at -X, a blue plastic scoop 0.45 m wide with side lips at +X."""
+    """A snow shovel lying on the floor along X: 0.84 m handle with a D grip at -X, a blue plastic scoop 0.45 m wide with side lips at +X."""
     p = Prop("GT_SnowShovel_01")
     p.ox = -0.1675
-    p.cyl("wood_light", (0.0, 0, HEX * 0.014), 0.014, 0.9, n=6, axis="x")
+    p.cyl("wood_light", (0.03, 0, HEX * 0.014), 0.014, 0.84, n=6, axis="x")      # from the grip's crosspiece to the socket, not through the hand hole
     p.box("wood_light", (-0.45, 0, 0.015), (0.03, 0.14, 0.03))                       # the grip bar
     for s in (-1, 1):
         p.box("wood_light", (-0.42, s * 0.058, 0.015), (0.06, 0.024, 0.03))          # the sides of the D
@@ -130,6 +130,7 @@ def snow_shovel():
 def car_battery():
     """A 12 V car battery 0.24 x 0.17 x 0.19 m: black case with a white label, two steel terminals, the positive one with a red cap."""
     p = Prop("GT_CarBattery_01")
+    p.oy = 0.0025
     p.box("black", (0, 0, 0.095), (0.24, 0.17, 0.19))                                # the case
     p.box("label_white", (0, -0.0875, 0.1), (0.14, 0.005, 0.08))                     # the label, on the front
     for s in (-1, 1):
@@ -140,7 +141,7 @@ def car_battery():
 
 @piece("BootScraper")
 def boot_scraper():
-    """A cast-iron boot scraper 0.3 m wide and 0.13 m high: a base plate, two posts and a scraping blade between them."""
+    """A cast-iron boot scraper 0.3 m wide and 0.125 m high: a base plate, two posts and a scraping blade between them."""
     p = Prop("GT_BootScraper_01")
     p.box("black", (0, 0, 0.01), (0.3, 0.12, 0.02))                                   # the base plate
     for s in (-1, 1):
@@ -156,13 +157,13 @@ def toilet_brush():
     p.cyl("paint_white", (0, 0, 0.1), 0.045, 0.2, n=10, top_radius=0.05)             # the holder
     p.cyl("black", (0, 0, 0.3), 0.01, 0.4, n=8)                                       # the handle, from inside the holder up
     p.cyl("black", (0, 0, 0.505), 0.017, 0.03, n=8)                                   # the knob
-    p.cyl("tan", (0, 0, 0.12), 0.034, 0.08, n=10)                                     # the bristles, down inside the holder
+    p.cyl("tan", (0, 0, 0.2), 0.034, 0.08, n=10)                                      # the bristles, half out of the holder so they show
     return p
 
 
 @piece("WorkLight")
 def work_light():
-    """A clip-on work light 0.2 m high: a black spring clamp on the floor, a pivot arm and a wide steel reflector pointing to -Y."""
+    """A clip-on work light 0.25 m high: a black spring clamp on the floor, a pivot arm and a wide steel reflector pointing to -Y."""
     p = Prop("GT_WorkLight_01")
     p.oy = 0.0175
     p.box("black", (0, 0, 0.02), (0.08, 0.12, 0.04))                                  # the clamp
