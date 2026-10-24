@@ -71,6 +71,22 @@
     "noisy"
    ]
   },
+  "FM_Outhouse_Weathered_01": {
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": "z",
+     "pivot": [
+      -0.6,
+      -0.94,
+      0.0
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "slots": {}
+  },
   "GD_Candle_01": {
    "parts": {},
    "slots": {},

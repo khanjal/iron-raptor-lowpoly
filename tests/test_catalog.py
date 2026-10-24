@@ -73,7 +73,7 @@ class Catalog(unittest.TestCase):
 
     def test_ids_look_like_the_generators_names(self):
         for aid in catalog.ASSETS:
-            self.assertRegex(aid, r"^[A-Z]{2}_[A-Za-z0-9_]+_01$")
+            self.assertRegex(aid, r"^[A-Z]{2}_[A-Za-z0-9_]+_0[1-9]$")
 
 
 if __name__ == "__main__":

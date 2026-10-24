@@ -1,0 +1,77 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Toaster_01",
+ "space": "blender",
+ "parts": {
+  "Lever": {
+   "kind": "slide",
+   "axis": "z",
+   "pivot": [
+    0.14,
+    0.0,
+    0.14
+   ],
+   "limit": -0.05,
+   "rest": 0.0
+  }
+ },
+ "slots": {
+  "SlotL": {
+   "position": [
+    -0.06,
+    0,
+    0.1
+   ],
+   "size": [
+    0.03,
+    0.11,
+    0.1
+   ],
+   "part": null
+  },
+  "SlotR": {
+   "position": [
+    0.06,
+    0,
+    0.1
+   ],
+   "size": [
+    0.03,
+    0.11,
+    0.1
+   ],
+   "part": null
+  }
+ },
+ "emitters": {
+  "Light_Glow": {
+   "kind": "light",
+   "position": [
+    0.0,
+    0.0,
+    0.1295
+   ],
+   "colour": "red",
+   "range": 0.5,
+   "intensity": 1.0,
+   "flicker": false,
+   "when": "on",
+   "shape": "point"
+  },
+  "Sound_Pop": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    0.0,
+    0.148
+   ],
+   "event": "toast_pop",
+   "loop": false,
+   "loudness": 0.2,
+   "when": "trigger"
+  }
+ },
+ "traits": [
+  "power"
+ ]
+}

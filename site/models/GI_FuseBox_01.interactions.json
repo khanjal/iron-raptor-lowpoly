@@ -1,0 +1,69 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_FuseBox_01",
+ "space": "blender",
+ "parts": {
+  "Door": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.2,
+    -0.0575,
+    0.0
+   ],
+   "limit": -110,
+   "rest": -0.0
+  }
+ },
+ "slots": {
+  "Inside": {
+   "position": [
+    0,
+    0.0,
+    -0.23
+   ],
+   "size": [
+    0.3,
+    0.06,
+    0.1
+   ],
+   "part": null
+  }
+ },
+ "emitters": {
+  "Sound_Clunk": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.05,
+    0.0
+   ],
+   "event": "breaker",
+   "loop": false,
+   "loudness": 0.3,
+   "when": "trigger"
+  },
+  "Switch_MainBreaker": {
+   "kind": "switch",
+   "position": [
+    0.0,
+    -0.05,
+    -0.05
+   ],
+   "controls": [
+    "power",
+    "Clunk"
+   ],
+   "action": "pull",
+   "by": [
+    "human",
+    "alien",
+    "energy_being",
+    "shadow_entity"
+   ]
+  }
+ },
+ "traits": [
+  "power"
+ ]
+}

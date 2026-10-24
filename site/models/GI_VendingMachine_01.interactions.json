@@ -1,0 +1,141 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_VendingMachine_01",
+ "space": "blender",
+ "parts": {
+  "Door": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.385,
+    -0.415,
+    1.1
+   ],
+   "limit": -100,
+   "rest": -0.0
+  },
+  "Flap": {
+   "kind": "hinge",
+   "axis": "x",
+   "pivot": [
+    -0.1,
+    -0.43,
+    0.3
+   ],
+   "limit": -60,
+   "rest": -0.0
+  }
+ },
+ "slots": {
+  "Row1": {
+   "position": [
+    -0.1,
+    0,
+    0.5575
+   ],
+   "size": [
+    0.5,
+    0.55,
+    0.27
+   ],
+   "part": null
+  },
+  "Row2": {
+   "position": [
+    -0.1,
+    0,
+    0.8575
+   ],
+   "size": [
+    0.5,
+    0.55,
+    0.27
+   ],
+   "part": null
+  },
+  "Row3": {
+   "position": [
+    -0.1,
+    0,
+    1.1575
+   ],
+   "size": [
+    0.5,
+    0.55,
+    0.27
+   ],
+   "part": null
+  },
+  "Row4": {
+   "position": [
+    -0.1,
+    0,
+    1.4575
+   ],
+   "size": [
+    0.5,
+    0.55,
+    0.27
+   ],
+   "part": null
+  },
+  "Tray": {
+   "position": [
+    -0.1,
+    -0.25,
+    0.04
+   ],
+   "size": [
+    0.3,
+    0.2,
+    0.2
+   ],
+   "part": null
+  }
+ },
+ "emitters": {
+  "Light_Panel": {
+   "kind": "light",
+   "position": [
+    -0.085,
+    -0.431,
+    1.14
+   ],
+   "colour": "cool",
+   "range": 4,
+   "intensity": 1.0,
+   "flicker": false,
+   "when": "on",
+   "shape": "point"
+  },
+  "Sound_Hum": {
+   "kind": "sound",
+   "position": [
+    0.0,
+    -0.0155,
+    0.95
+   ],
+   "event": "vending_hum",
+   "loop": true,
+   "loudness": 0.25,
+   "when": "on"
+  },
+  "Sound_Clunk": {
+   "kind": "sound",
+   "position": [
+    -0.085,
+    -0.431,
+    0.19
+   ],
+   "event": "clunk",
+   "loop": false,
+   "loudness": 0.4,
+   "when": "trigger"
+  }
+ },
+ "traits": [
+  "jam",
+  "noisy",
+  "power"
+ ]
+}

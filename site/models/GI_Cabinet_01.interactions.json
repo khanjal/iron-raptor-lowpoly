@@ -1,0 +1,92 @@
+{
+ "about": "What can be done with this model: moving parts, slots for loose items, emitters (lights, sounds, switches) and traits. Same fields as art/data/interactions.json, in Blender space (X right, Y back, Z up, front is -Y), metres; the GLB itself is glTF space (x, z, -y). Written by tools/make_manifest.py; see art/scripts/emitters.py for the fields.",
+ "id": "GI_Cabinet_01",
+ "space": "blender",
+ "parts": {
+  "DoorUL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.4,
+    -0.2025,
+    0.895
+   ],
+   "limit": -105,
+   "rest": -0.0
+  },
+  "DoorUR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.4,
+    -0.2025,
+    0.895
+   ],
+   "limit": 105,
+   "rest": 0.0
+  },
+  "DoorLL": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    -0.4,
+    -0.2025,
+    0.305
+   ],
+   "limit": -105,
+   "rest": -0.0
+  },
+  "DoorLR": {
+   "kind": "hinge",
+   "axis": "z",
+   "pivot": [
+    0.4,
+    -0.2025,
+    0.305
+   ],
+   "limit": 105,
+   "rest": 0.0
+  }
+ },
+ "slots": {
+  "ShelfUpper": {
+   "position": [
+    0,
+    0,
+    0.61
+   ],
+   "size": [
+    0.7,
+    0.3,
+    0.5
+   ],
+   "part": null
+  },
+  "ShelfLower": {
+   "position": [
+    0,
+    0,
+    0.03
+   ],
+   "size": [
+    0.7,
+    0.3,
+    0.55
+   ],
+   "part": null
+  },
+  "Top": {
+   "position": [
+    0,
+    0,
+    1.2
+   ],
+   "size": [
+    0.7,
+    0.3,
+    0.3
+   ],
+   "part": null
+  }
+ }
+}

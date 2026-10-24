@@ -1892,6 +1892,164 @@
    ]
   },
   {
+   "id": "GI_BreadBox_01",
+   "name": "Bread box",
+   "type": "appliances/kitchen/bread-box",
+   "tags": [
+    "box",
+    "bread",
+    "classic",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 96,
+   "size": [
+    0.4,
+    0.25,
+    0.255
+   ],
+   "glb": "models/GI_BreadBox_01.glb",
+   "thumb": "thumbs/GI_BreadBox_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.2,
+      -0.125
+     ],
+     "limit": -100,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_BreadBox_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GI_Counter_Kitchen_01",
+   "name": "Kitchen counter",
+   "type": "appliances/kitchen/counter-kitchen",
+   "tags": [
+    "classic",
+    "counter",
+    "indoor",
+    "kitchen",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 324,
+   "size": [
+    1.24,
+    0.91,
+    0.688
+   ],
+   "glb": "models/GI_Counter_Kitchen_01.glb",
+   "thumb": "thumbs/GI_Counter_Kitchen_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      -0.3,
+      0.74,
+      0.3
+     ],
+     "limit": -0.4,
+     "rest": -0.0
+    },
+    "Drawer2": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      -0.3,
+      0.46,
+      0.3
+     ],
+     "limit": -0.4,
+     "rest": -0.0
+    },
+    "Drawer3": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      -0.3,
+      0.2,
+      0.3
+     ],
+     "limit": -0.4,
+     "rest": -0.0
+    },
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.58,
+      0.44,
+      0.315
+     ],
+     "limit": 105,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Counter_Kitchen_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ]
+  },
+  {
    "id": "GI_Fridge_01",
    "name": "Fridge, two-door",
    "type": "appliances/kitchen/fridge",
@@ -2381,6 +2539,260 @@
    ]
   },
   {
+   "id": "GI_Stove_01",
+   "name": "Stove",
+   "type": "appliances/kitchen/stove",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "stove"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 336,
+   "size": [
+    0.6,
+    1.1,
+    0.728
+   ],
+   "glb": "models/GI_Stove_01.glb",
+   "thumb": "thumbs/GI_Stove_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.06,
+      0.345
+     ],
+     "limit": 90,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Stove_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GI_Toaster_01",
+   "name": "Toaster",
+   "type": "appliances/kitchen/toaster",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "toaster"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 72,
+   "size": [
+    0.3,
+    0.185,
+    0.16
+   ],
+   "glb": "models/GI_Toaster_01.glb",
+   "thumb": "thumbs/GI_Toaster_01.png",
+   "parts": {
+    "Lever": {
+     "kind": "slide",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.14,
+      0.14,
+      -0.0
+     ],
+     "limit": -0.05,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Toaster_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GI_Dryer_01",
+   "name": "Dryer",
+   "type": "appliances/laundry/dryer",
+   "tags": [
+    "classic",
+    "dryer",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 256,
+   "size": [
+    0.6,
+    0.9,
+    0.725
+   ],
+   "glb": "models/GI_Dryer_01.glb",
+   "thumb": "thumbs/GI_Dryer_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.26,
+      0.4,
+      0.345
+     ],
+     "limit": 110,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Dryer_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GI_Washer_01",
+   "name": "Washer",
+   "type": "appliances/laundry/washer",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "washer"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 224,
+   "size": [
+    0.6,
+    0.9,
+    0.725
+   ],
+   "glb": "models/GI_Washer_01.glb",
+   "thumb": "thumbs/GI_Washer_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.26,
+      0.4,
+      0.345
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Washer_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
    "id": "GO_Copier_01",
    "name": "Copier",
    "type": "appliances/office/copier",
@@ -2691,6 +3103,903 @@
    ]
   },
   {
+   "id": "GH_CoffeeMachine_01",
+   "name": "Coffee machine",
+   "type": "appliances/service/coffee-machine",
+   "tags": [
+    "coffee",
+    "household",
+    "indoor",
+    "machine",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.3,
+    0.43,
+    0.345
+   ],
+   "glb": "models/GH_CoffeeMachine_01.glb",
+   "thumb": "thumbs/GH_CoffeeMachine_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_CoffeeMachine_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GI_Cooler_01",
+   "name": "Cooler",
+   "type": "appliances/service/cooler",
+   "tags": [
+    "classic",
+    "cooler",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 108,
+   "size": [
+    0.78,
+    0.46,
+    0.42
+   ],
+   "glb": "models/GI_Cooler_01.glb",
+   "thumb": "thumbs/GI_Cooler_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.4,
+      -0.2
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Cooler_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GH_Jukebox_01",
+   "name": "Jukebox",
+   "type": "appliances/service/jukebox",
+   "tags": [
+    "household",
+    "indoor",
+    "jukebox",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.9,
+    1.45,
+    0.565
+   ],
+   "glb": "models/GH_Jukebox_01.glb",
+   "thumb": "thumbs/GH_Jukebox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Jukebox_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GI_VendingMachine_01",
+   "name": "Vending machine",
+   "type": "appliances/service/vending-machine",
+   "tags": [
+    "classic",
+    "indoor",
+    "machine",
+    "new",
+    "vending"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 228,
+   "size": [
+    0.85,
+    1.9,
+    0.868
+   ],
+   "glb": "models/GI_VendingMachine_01.glb",
+   "thumb": "thumbs/GI_VendingMachine_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.385,
+      1.1,
+      0.415
+     ],
+     "limit": -100,
+     "rest": -0.0
+    },
+    "Flap": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.1,
+      0.3,
+      0.43
+     ],
+     "limit": -60,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_VendingMachine_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "FM_Barn_01",
+   "name": "Barn",
+   "type": "building/farm/barn",
+   "tags": [
+    "exterior",
+    "farm",
+    "hayloft",
+    "livestock",
+    "new",
+    "red",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1128,
+   "size": [
+    27.6,
+    11.4,
+    32.6
+   ],
+   "glb": "models/FM_Barn_01.glb",
+   "thumb": "thumbs/FM_Barn_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Barn_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Barn_Red_01"
+   ]
+  },
+  {
+   "id": "FM_Barn_Damaged_01",
+   "name": "Barn, wrecked",
+   "type": "building/farm/barn",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "hayloft",
+    "livestock",
+    "ruined",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1128,
+   "size": [
+    27.6,
+    11.4,
+    32.6
+   ],
+   "glb": "models/FM_Barn_Damaged_01.glb",
+   "thumb": "thumbs/FM_Barn_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Barn_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ],
+   "aliases": [
+    "FM_Barn_Red_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_ChickenCoop_01",
+   "name": "Chicken coop",
+   "type": "building/farm/coop",
+   "tags": [
+    "chickens",
+    "exterior",
+    "farm",
+    "livestock",
+    "new",
+    "red",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1412,
+   "size": [
+    2.881,
+    2.119,
+    4.806
+   ],
+   "glb": "models/FM_ChickenCoop_01.glb",
+   "thumb": "thumbs/FM_ChickenCoop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Hay",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ],
+   "aliases": [
+    "FM_ChickenCoop_Red_01"
+   ]
+  },
+  {
+   "id": "FM_Farmhouse_01",
+   "name": "Farmhouse",
+   "type": "building/farm/farmhouse",
+   "tags": [
+    "exterior",
+    "farm",
+    "house",
+    "new",
+    "porch",
+    "rural",
+    "siding",
+    "two-storey",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 3064,
+   "size": [
+    25.4,
+    10.1,
+    22.9
+   ],
+   "glb": "models/FM_Farmhouse_01.glb",
+   "thumb": "thumbs/FM_Farmhouse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Farmhouse_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Farmhouse_White_01"
+   ]
+  },
+  {
+   "id": "FM_Farmhouse_Damaged_01",
+   "name": "Farmhouse, wrecked",
+   "type": "building/farm/farmhouse",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "house",
+    "porch",
+    "ruined",
+    "rural",
+    "two-storey"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 2816,
+   "size": [
+    25.4,
+    10.104,
+    22.9
+   ],
+   "glb": "models/FM_Farmhouse_Damaged_01.glb",
+   "thumb": "thumbs/FM_Farmhouse_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Farmhouse_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ],
+   "aliases": [
+    "FM_Farmhouse_White_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_Outhouse_01",
+   "name": "Outhouse",
+   "type": "building/farm/outhouse",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "rural",
+    "toilet",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 252,
+   "size": [
+    2.3,
+    2.95,
+    2.3
+   ],
+   "glb": "models/FM_Outhouse_01.glb",
+   "thumb": "thumbs/FM_Outhouse_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.6,
+      0.0,
+      0.94
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/FM_Outhouse_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Outhouse_Weathered_01"
+   ]
+  },
+  {
+   "id": "FM_Shed_01",
+   "name": "Shed",
+   "type": "building/farm/shed",
+   "tags": [
+    "exterior",
+    "farm",
+    "garden",
+    "new",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    3.8,
+    3.5,
+    4.6
+   ],
+   "glb": "models/FM_Shed_01.glb",
+   "thumb": "thumbs/FM_Shed_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Shed_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Shed_Weathered_01"
+   ]
+  },
+  {
+   "id": "FM_Shed_Damaged_01",
+   "name": "Shed, wrecked",
+   "type": "building/farm/shed",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "garden",
+    "ruined",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    3.8,
+    3.5,
+    4.6
+   ],
+   "glb": "models/FM_Shed_Damaged_01.glb",
+   "thumb": "thumbs/FM_Shed_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Shed_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Shed_Weathered_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_Silo_01",
+   "name": "Silo",
+   "type": "building/farm/silo",
+   "tags": [
+    "exterior",
+    "farm",
+    "grain",
+    "metal",
+    "new",
+    "rural",
+    "tower"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 614,
+   "size": [
+    5.16,
+    15.4,
+    5.14
+   ],
+   "glb": "models/FM_Silo_01.glb",
+   "thumb": "thumbs/FM_Silo_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ],
+   "aliases": [
+    "FM_Silo_Metal_01"
+   ]
+  },
+  {
+   "id": "FM_Well_01",
+   "name": "Well",
+   "type": "building/farm/well",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "rural",
+    "stone",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 392,
+   "size": [
+    2.06,
+    2.417,
+    1.741
+   ],
+   "glb": "models/FM_Well_01.glb",
+   "thumb": "thumbs/FM_Well_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 90,
+     "hex": "#8A3A2E"
+    },
+    {
+     "part": "Rock",
+     "swatch": 53,
+     "hex": "#8A8A85"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Navy",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    }
+   ],
+   "aliases": [
+    "FM_Well_Stone_01"
+   ]
+  },
+  {
+   "id": "FM_Windmill_01",
+   "name": "Windmill",
+   "type": "building/farm/windmill",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "pump",
+    "rural",
+    "tower",
+    "water",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 364,
+   "size": [
+    3.6,
+    11.682,
+    4.188
+   ],
+   "glb": "models/FM_Windmill_01.glb",
+   "thumb": "thumbs/FM_Windmill_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Windmill_White_01"
+   ]
+  },
+  {
+   "id": "FM_Workshop_01",
+   "name": "Workshop",
+   "type": "building/farm/workshop",
+   "tags": [
+    "exterior",
+    "farm",
+    "garage",
+    "metal",
+    "new",
+    "rural",
+    "tools"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 252,
+   "size": [
+    13.0,
+    5.2,
+    11.301
+   ],
+   "glb": "models/FM_Workshop_01.glb",
+   "thumb": "thumbs/FM_Workshop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Workshop_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Workshop_Metal_01"
+   ]
+  },
+  {
+   "id": "FM_Workshop_Damaged_01",
+   "name": "Workshop, wrecked",
+   "type": "building/farm/workshop",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "garage",
+    "metal",
+    "ruined",
+    "rural",
+    "tools"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 240,
+   "size": [
+    13.0,
+    5.2,
+    11.301
+   ],
+   "glb": "models/FM_Workshop_Damaged_01.glb",
+   "thumb": "thumbs/FM_Workshop_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Workshop_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Workshop_Metal_Damaged_01"
+   ]
+  },
+  {
    "id": "GK_Door_Exterior_01",
    "name": "Exterior door",
    "type": "building/kit/door",
@@ -2822,6 +4131,1149 @@
    ]
   },
   {
+   "id": "GB_Diner_01",
+   "name": "Diner",
+   "type": "building/town/diner",
+   "tags": [
+    "cream",
+    "exterior",
+    "new",
+    "restaurant",
+    "retro",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 936,
+   "size": [
+    18.6,
+    7.4,
+    8.695
+   ],
+   "glb": "models/GB_Diner_01.glb",
+   "thumb": "thumbs/GB_Diner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Diner_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 90,
+     "hex": "#8A3A2E"
+    },
+    {
+     "part": "Stucco",
+     "swatch": 93,
+     "hex": "#D9CDB5"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ],
+   "aliases": [
+    "GB_Diner_Cream_01"
+   ]
+  },
+  {
+   "id": "GB_Diner_Damaged_01",
+   "name": "Diner, wrecked",
+   "type": "building/town/diner",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "restaurant",
+    "retro",
+    "ruined",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 984,
+   "size": [
+    18.6,
+    7.4,
+    8.695
+   ],
+   "glb": "models/GB_Diner_Damaged_01.glb",
+   "thumb": "thumbs/GB_Diner_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Diner_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_Diner_Cream_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_Garage_01",
+   "name": "Garage",
+   "type": "building/town/garage",
+   "tags": [
+    "car",
+    "exterior",
+    "new",
+    "suburban",
+    "town",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 360,
+   "size": [
+    7.2,
+    4.3,
+    6.8
+   ],
+   "glb": "models/GB_Garage_01.glb",
+   "thumb": "thumbs/GB_Garage_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Garage_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ],
+   "aliases": [
+    "GB_Garage_White_01"
+   ]
+  },
+  {
+   "id": "GB_Garage_Damaged_01",
+   "name": "Garage, wrecked",
+   "type": "building/town/garage",
+   "tags": [
+    "abandoned",
+    "car",
+    "damaged",
+    "exterior",
+    "ruined",
+    "suburban",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 312,
+   "size": [
+    7.2,
+    4.3,
+    6.8
+   ],
+   "glb": "models/GB_Garage_Damaged_01.glb",
+   "thumb": "thumbs/GB_Garage_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Garage_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_Garage_White_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_TownHouse_01",
+   "name": "Town house",
+   "type": "building/town/house",
+   "tags": [
+    "brick",
+    "exterior",
+    "new",
+    "town",
+    "two-storey",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 972,
+   "size": [
+    11.0,
+    6.65,
+    10.897
+   ],
+   "glb": "models/GB_TownHouse_01.glb",
+   "thumb": "thumbs/GB_TownHouse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_TownHouse_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 67,
+     "hex": "#A8553F"
+    },
+    {
+     "part": "Shingle",
+     "swatch": 92,
+     "hex": "#5B5F66"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "aliases": [
+    "GB_TownHouse_Brick_01"
+   ]
+  },
+  {
+   "id": "GB_TownHouse_Damaged_01",
+   "name": "Town house, wrecked",
+   "type": "building/town/house",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "ruined",
+    "town",
+    "two-storey",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 936,
+   "size": [
+    11.0,
+    6.654,
+    10.7
+   ],
+   "glb": "models/GB_TownHouse_Damaged_01.glb",
+   "thumb": "thumbs/GB_TownHouse_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_TownHouse_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_TownHouse_Brick_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_Trailer_01",
+   "name": "Mobile home",
+   "type": "building/town/trailer",
+   "tags": [
+    "beige",
+    "exterior",
+    "home",
+    "new",
+    "single-wide",
+    "trailer-park"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1048,
+   "size": [
+    17.7,
+    3.95,
+    5.25
+   ],
+   "glb": "models/GB_Trailer_01.glb",
+   "thumb": "thumbs/GB_Trailer_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Trailer_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wallpaper",
+     "swatch": 60,
+     "hex": "#D9C9A8"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ],
+   "aliases": [
+    "GB_Trailer_Beige_01"
+   ]
+  },
+  {
+   "id": "GB_Trailer_Damaged_01",
+   "name": "Mobile home, wrecked",
+   "type": "building/town/trailer",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "home",
+    "ruined",
+    "single-wide",
+    "trailer-park"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1060,
+   "size": [
+    17.7,
+    3.95,
+    5.25
+   ],
+   "glb": "models/GB_Trailer_Damaged_01.glb",
+   "thumb": "thumbs/GB_Trailer_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Trailer_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ],
+   "aliases": [
+    "GB_Trailer_Beige_Damaged_01"
+   ]
+  },
+  {
+   "id": "GD_Backpack_01",
+   "name": "Backpack",
+   "type": "decor/clutter/backpack",
+   "tags": [
+    "backpack",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.3,
+    0.4,
+    0.225
+   ],
+   "glb": "models/GD_Backpack_01.glb",
+   "thumb": "thumbs/GD_Backpack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_BootsPair_01",
+   "name": "Boots pair",
+   "type": "decor/clutter/boots-pair",
+   "tags": [
+    "boots",
+    "home",
+    "indoor",
+    "new",
+    "pair"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.265,
+    0.2,
+    0.3
+   ],
+   "glb": "models/GD_BootsPair_01.glb",
+   "thumb": "thumbs/GD_BootsPair_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GD_Broom_01",
+   "name": "Broom",
+   "type": "decor/clutter/broom",
+   "tags": [
+    "broom",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.32,
+    1.35,
+    0.06
+   ],
+   "glb": "models/GD_Broom_01.glb",
+   "thumb": "thumbs/GD_Broom_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 10,
+     "hex": "#D9B957"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GD_CoatHooks_01",
+   "name": "Coat hooks",
+   "type": "decor/clutter/coat-hooks",
+   "tags": [
+    "coat",
+    "home",
+    "hooks",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    1.07,
+    0.95,
+    0.13
+   ],
+   "glb": "models/GD_CoatHooks_01.glb",
+   "thumb": "thumbs/GD_CoatHooks_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Fabric blue",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Tan",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Doormat_01",
+   "name": "Doormat",
+   "type": "decor/clutter/doormat",
+   "tags": [
+    "doormat",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.7,
+    0.024,
+    0.45
+   ],
+   "glb": "models/GD_Doormat_01.glb",
+   "thumb": "thumbs/GD_Doormat_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Fabric mustard",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GD_FireExtinguisher_01",
+   "name": "Fire extinguisher",
+   "type": "decor/clutter/fire-extinguisher",
+   "tags": [
+    "extinguisher",
+    "fire",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.215,
+    0.51,
+    0.14
+   ],
+   "glb": "models/GD_FireExtinguisher_01.glb",
+   "thumb": "thumbs/GD_FireExtinguisher_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_FirstAidKit_01",
+   "name": "First aid kit",
+   "type": "decor/clutter/first-aid-kit",
+   "tags": [
+    "aid",
+    "first",
+    "home",
+    "indoor",
+    "kit",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.26,
+    0.2,
+    0.094
+   ],
+   "glb": "models/GD_FirstAidKit_01.glb",
+   "thumb": "thumbs/GD_FirstAidKit_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GD_Flashlight_01",
+   "name": "Flashlight",
+   "type": "decor/clutter/flashlight",
+   "tags": [
+    "flashlight",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.06,
+    0.053,
+    0.245
+   ],
+   "glb": "models/GD_Flashlight_01.glb",
+   "thumb": "thumbs/GD_Flashlight_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_HandLetteredSign_01",
+   "name": "Hand-lettered sign",
+   "type": "decor/clutter/hand-lettered-sign",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "sign"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.6,
+    0.3,
+    0.034
+   ],
+   "glb": "models/GD_HandLetteredSign_01.glb",
+   "thumb": "thumbs/GD_HandLetteredSign_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GD_IroningBoard_01",
+   "name": "Ironing board",
+   "type": "decor/clutter/ironing-board",
+   "tags": [
+    "board",
+    "home",
+    "indoor",
+    "ironing",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.2,
+    0.863,
+    0.396
+   ],
+   "glb": "models/GD_IroningBoard_01.glb",
+   "thumb": "thumbs/GD_IroningBoard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GD_LaundryBasket_01",
+   "name": "Laundry basket",
+   "type": "decor/clutter/laundry-basket",
+   "tags": [
+    "basket",
+    "home",
+    "indoor",
+    "laundry",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.55,
+    0.606,
+    0.385
+   ],
+   "glb": "models/GD_LaundryBasket_01.glb",
+   "thumb": "thumbs/GD_LaundryBasket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Fabric blue",
+     "swatch": 63,
+     "hex": "#56708F"
+    }
+   ]
+  },
+  {
+   "id": "GD_Lunchbox_01",
+   "name": "Lunchbox",
+   "type": "decor/clutter/lunchbox",
+   "tags": [
+    "home",
+    "indoor",
+    "lunchbox",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.25,
+    0.24,
+    0.1
+   ],
+   "glb": "models/GD_Lunchbox_01.glb",
+   "thumb": "thumbs/GD_Lunchbox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_MopBucket_01",
+   "name": "Mop bucket",
+   "type": "decor/clutter/mop-bucket",
+   "tags": [
+    "bucket",
+    "home",
+    "indoor",
+    "mop",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.391,
+    1.346,
+    0.391
+   ],
+   "glb": "models/GD_MopBucket_01.glb",
+   "thumb": "thumbs/GD_MopBucket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GD_PicnicBasket_01",
+   "name": "Picnic basket",
+   "type": "decor/clutter/picnic-basket",
+   "tags": [
+    "basket",
+    "home",
+    "indoor",
+    "new",
+    "picnic"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.495,
+    0.37,
+    0.33
+   ],
+   "glb": "models/GD_PicnicBasket_01.glb",
+   "thumb": "thumbs/GD_PicnicBasket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Fabric red",
+     "swatch": 64,
+     "hex": "#9A3A38"
+    }
+   ]
+  },
+  {
+   "id": "GD_Suitcase_01",
+   "name": "Suitcase, standing",
+   "type": "decor/clutter/suitcase",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "suitcase"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.6,
+    0.565,
+    0.235
+   ],
+   "glb": "models/GD_Suitcase_01.glb",
+   "thumb": "thumbs/GD_Suitcase_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "GD_Thermos_01",
+   "name": "Thermos",
+   "type": "decor/clutter/thermos",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "thermos"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 56,
+   "size": [
+    0.09,
+    0.31,
+    0.09
+   ],
+   "glb": "models/GD_Thermos_01.glb",
+   "thumb": "thumbs/GD_Thermos_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_TinfoilPane_01",
+   "name": "Tinfoil pane",
+   "type": "decor/clutter/tinfoil-pane",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "pane",
+    "tinfoil"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.9,
+    1.1,
+    0.016
+   ],
+   "glb": "models/GD_TinfoilPane_01.glb",
+   "thumb": "thumbs/GD_TinfoilPane_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GD_TrashCan_01",
+   "name": "Wastebin, indoor",
+   "type": "decor/clutter/trash-can-indoor",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "wastebin"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 40,
+   "size": [
+    0.4,
+    0.42,
+    0.4
+   ],
+   "glb": "models/GD_TrashCan_01.glb",
+   "thumb": "thumbs/GD_TrashCan_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GD_UmbrellaStand_01",
+   "name": "Umbrella stand",
+   "type": "decor/clutter/umbrella-stand",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "stand",
+    "umbrella"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 64,
+   "size": [
+    0.24,
+    0.94,
+    0.24
+   ],
+   "glb": "models/GD_UmbrellaStand_01.glb",
+   "thumb": "thumbs/GD_UmbrellaStand_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Navy",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
    "id": "GO_Workstation_01",
    "name": "Monitor and keyboard",
    "type": "decor/electronics/computer",
@@ -2871,6 +5323,265 @@
    ]
   },
   {
+   "id": "GD_ComputerTower_01",
+   "name": "Computer tower",
+   "type": "decor/electronics/computer-tower",
+   "tags": [
+    "computer",
+    "home",
+    "indoor",
+    "new",
+    "tower"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.2,
+    0.44,
+    0.46
+   ],
+   "glb": "models/GD_ComputerTower_01.glb",
+   "thumb": "thumbs/GD_ComputerTower_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_ComputerTower_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GD_Intercom_01",
+   "name": "Intercom",
+   "type": "decor/electronics/intercom",
+   "tags": [
+    "home",
+    "indoor",
+    "intercom",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.12,
+    0.2,
+    0.044
+   ],
+   "glb": "models/GD_Intercom_01.glb",
+   "thumb": "thumbs/GD_Intercom_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Intercom_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GD_Keyboard_01",
+   "name": "Keyboard",
+   "type": "decor/electronics/keyboard",
+   "tags": [
+    "home",
+    "indoor",
+    "keyboard",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.44,
+    0.033,
+    0.161
+   ],
+   "glb": "models/GD_Keyboard_01.glb",
+   "thumb": "thumbs/GD_Keyboard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Laptop_01",
+   "name": "Laptop",
+   "type": "decor/electronics/laptop",
+   "tags": [
+    "home",
+    "indoor",
+    "laptop",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.34,
+    0.244,
+    0.271
+   ],
+   "glb": "models/GD_Laptop_01.glb",
+   "thumb": "thumbs/GD_Laptop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Laptop_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
+   "id": "GD_LightSwitch_01",
+   "name": "Light switch",
+   "type": "decor/electronics/light-switch",
+   "tags": [
+    "home",
+    "indoor",
+    "light",
+    "new",
+    "switch"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.08,
+    0.12,
+    0.03
+   ],
+   "glb": "models/GD_LightSwitch_01.glb",
+   "thumb": "thumbs/GD_LightSwitch_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_LightSwitch_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GD_MobilePhone_01",
+   "name": "Mobile phone",
+   "type": "decor/electronics/mobile-phone",
+   "tags": [
+    "home",
+    "indoor",
+    "mobile",
+    "new",
+    "phone"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.07,
+    0.009,
+    0.14
+   ],
+   "glb": "models/GD_MobilePhone_01.glb",
+   "thumb": "thumbs/GD_MobilePhone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_MobilePhone_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Monitor_01",
+   "name": "Monitor",
+   "type": "decor/electronics/monitor",
+   "tags": [
+    "home",
+    "indoor",
+    "monitor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.46,
+    0.46,
+    0.22
+   ],
+   "glb": "models/GD_Monitor_01.glb",
+   "thumb": "thumbs/GD_Monitor_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Monitor_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
    "id": "GO_Phone_01",
    "name": "Desk phone",
    "type": "decor/electronics/phone",
@@ -2909,6 +5620,201 @@
      "part": "Office grey",
      "swatch": 129,
      "hex": "#B8BBBE"
+    }
+   ]
+  },
+  {
+   "id": "GD_Radio_CB_01",
+   "name": "CB radio",
+   "type": "decor/electronics/radio-cb",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "radio"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 44,
+   "size": [
+    0.2,
+    0.07,
+    0.147
+   ],
+   "glb": "models/GD_Radio_CB_01.glb",
+   "thumb": "thumbs/GD_Radio_CB_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Radio_CB_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Radio_Handheld_01",
+   "name": "Radio, handheld",
+   "type": "decor/electronics/radio-handheld",
+   "tags": [
+    "handheld",
+    "home",
+    "indoor",
+    "new",
+    "radio"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.06,
+    0.34,
+    0.039
+   ],
+   "glb": "models/GD_Radio_Handheld_01.glb",
+   "thumb": "thumbs/GD_Radio_Handheld_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Radio_Handheld_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GD_Radio_Retro_01",
+   "name": "Radio, retro",
+   "type": "decor/electronics/radio-retro",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "radio",
+    "retro"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    0.4,
+    0.519,
+    0.185
+   ],
+   "glb": "models/GD_Radio_Retro_01.glb",
+   "thumb": "thumbs/GD_Radio_Retro_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Radio_Retro_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Lamp shade",
+     "swatch": 73,
+     "hex": "#E8D9A0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_RotaryPhone_01",
+   "name": "Rotary phone",
+   "type": "decor/electronics/rotary-phone",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "phone",
+    "rotary"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.27,
+    0.205,
+    0.24
+   ],
+   "glb": "models/GD_RotaryPhone_01.glb",
+   "thumb": "thumbs/GD_RotaryPhone_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_RotaryPhone_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GD_SecurityCamera_01",
+   "name": "Security camera",
+   "type": "decor/electronics/security-camera",
+   "tags": [
+    "camera",
+    "home",
+    "indoor",
+    "new",
+    "security"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.08,
+    0.095,
+    0.29
+   ],
+   "glb": "models/GD_SecurityCamera_01.glb",
+   "thumb": "thumbs/GD_SecurityCamera_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_SecurityCamera_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
     }
    ]
   },
@@ -2953,6 +5859,468 @@
      "part": "Screen",
      "swatch": 61,
      "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
+   "id": "GD_TV_CRT_01",
+   "name": "CRT TV",
+   "type": "decor/electronics/tv-crt",
+   "tags": [
+    "crt",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.6,
+    0.84,
+    0.63
+   ],
+   "glb": "models/GD_TV_CRT_01.glb",
+   "thumb": "thumbs/GD_TV_CRT_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_TV_CRT_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
+   "id": "GH_Kettle_01",
+   "name": "Kettle",
+   "type": "decor/kitchenware/kettle",
+   "tags": [
+    "household",
+    "indoor",
+    "kettle",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.302,
+    0.233,
+    0.2
+   ],
+   "glb": "models/GH_Kettle_01.glb",
+   "thumb": "thumbs/GH_Kettle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Mug_01",
+   "name": "Mug",
+   "type": "decor/kitchenware/mug",
+   "tags": [
+    "household",
+    "indoor",
+    "mug",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 40,
+   "size": [
+    0.11,
+    0.1,
+    0.08
+   ],
+   "glb": "models/GH_Mug_01.glb",
+   "thumb": "thumbs/GH_Mug_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GH_Plates_01",
+   "name": "Plates",
+   "type": "decor/kitchenware/plates",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "plates"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 180,
+   "size": [
+    0.22,
+    0.078,
+    0.209
+   ],
+   "glb": "models/GH_Plates_01.glb",
+   "thumb": "thumbs/GH_Plates_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Pot_01",
+   "name": "Pot",
+   "type": "decor/kitchenware/pot",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "pot"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 68,
+   "size": [
+    0.335,
+    0.211,
+    0.25
+   ],
+   "glb": "models/GH_Pot_01.glb",
+   "thumb": "thumbs/GH_Pot_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Candle_01",
+   "name": "Candle",
+   "type": "decor/lighting/candle",
+   "tags": [
+    "candle",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.1,
+    0.22,
+    0.1
+   ],
+   "glb": "models/GD_Candle_01.glb",
+   "thumb": "thumbs/GD_Candle_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Candle_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "GD_CeilingShade_01",
+   "name": "Ceiling shade",
+   "type": "decor/lighting/ceiling-shade",
+   "tags": [
+    "ceiling",
+    "home",
+    "indoor",
+    "new",
+    "shade"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.4,
+    0.59,
+    0.4
+   ],
+   "glb": "models/GD_CeilingShade_01.glb",
+   "thumb": "thumbs/GD_CeilingShade_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_CeilingShade_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 73,
+     "hex": "#E8D9A0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Chandelier_01",
+   "name": "Chandelier",
+   "type": "decor/lighting/chandelier",
+   "tags": [
+    "chandelier",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 242,
+   "size": [
+    0.63,
+    0.6,
+    0.55
+   ],
+   "glb": "models/GD_Chandelier_01.glb",
+   "thumb": "thumbs/GD_Chandelier_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Chandelier_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_DeskLamp_01",
+   "name": "Desk lamp",
+   "type": "decor/lighting/desk-lamp",
+   "tags": [
+    "desk",
+    "home",
+    "indoor",
+    "lamp",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.18,
+    0.407,
+    0.305
+   ],
+   "glb": "models/GD_DeskLamp_01.glb",
+   "thumb": "thumbs/GD_DeskLamp_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_DeskLamp_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "GD_FloorLamp_01",
+   "name": "Floor lamp",
+   "type": "decor/lighting/floor-lamp",
+   "tags": [
+    "floor",
+    "home",
+    "indoor",
+    "lamp",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.44,
+    1.74,
+    0.44
+   ],
+   "glb": "models/GD_FloorLamp_01.glb",
+   "thumb": "thumbs/GD_FloorLamp_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_FloorLamp_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 73,
+     "hex": "#E8D9A0"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_Fluorescent_01",
+   "name": "Fluorescent",
+   "type": "decor/lighting/fluorescent",
+   "tags": [
+    "fluorescent",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    1.25,
+    0.09,
+    0.14
+   ],
+   "glb": "models/GD_Fluorescent_01.glb",
+   "thumb": "thumbs/GD_Fluorescent_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_Fluorescent_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GD_KeroseneLamp_01",
+   "name": "Kerosene lamp",
+   "type": "decor/lighting/kerosene-lamp",
+   "tags": [
+    "home",
+    "indoor",
+    "kerosene",
+    "lamp",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.12,
+    0.325,
+    0.12
+   ],
+   "glb": "models/GD_KeroseneLamp_01.glb",
+   "thumb": "thumbs/GD_KeroseneLamp_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GD_KeroseneLamp_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 70,
+     "hex": "#B06A3B"
     }
    ]
   },
@@ -3041,6 +6409,246 @@
    ]
   },
   {
+   "id": "GD_BookStack_01",
+   "name": "Book stack",
+   "type": "decor/paper/book-stack",
+   "tags": [
+    "book",
+    "home",
+    "indoor",
+    "new",
+    "stack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.268,
+    0.14,
+    0.23
+   ],
+   "glb": "models/GD_BookStack_01.glb",
+   "thumb": "thumbs/GD_BookStack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 75,
+     "hex": "#2E4A7A"
+    },
+    {
+     "part": "Book red",
+     "swatch": 74,
+     "hex": "#8A2E2E"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Book green",
+     "swatch": 76,
+     "hex": "#2E6A4A"
+    }
+   ]
+  },
+  {
+   "id": "GD_MailPile_01",
+   "name": "Mail pile",
+   "type": "decor/paper/mail-pile",
+   "tags": [
+    "home",
+    "indoor",
+    "mail",
+    "new",
+    "pile"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.289,
+    0.023,
+    0.192
+   ],
+   "glb": "models/GD_MailPile_01.glb",
+   "thumb": "thumbs/GD_MailPile_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GD_Newspaper_01",
+   "name": "Newspaper",
+   "type": "decor/paper/newspaper",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "newspaper"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.4,
+    0.022,
+    0.3
+   ],
+   "glb": "models/GD_Newspaper_01.glb",
+   "thumb": "thumbs/GD_Newspaper_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_OpenBook_01",
+   "name": "Open book",
+   "type": "decor/paper/open-book",
+   "tags": [
+    "book",
+    "home",
+    "indoor",
+    "new",
+    "open"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.42,
+    0.026,
+    0.28
+   ],
+   "glb": "models/GD_OpenBook_01.glb",
+   "thumb": "thumbs/GD_OpenBook_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 74,
+     "hex": "#8A2E2E"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    }
+   ]
+  },
+  {
+   "id": "GD_Cactus_01",
+   "name": "Cactus",
+   "type": "decor/plants/cactus",
+   "tags": [
+    "cactus",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.215,
+    0.41,
+    0.16
+   ],
+   "glb": "models/GD_Cactus_01.glb",
+   "thumb": "thumbs/GD_Cactus_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Terracotta",
+     "swatch": 79,
+     "hex": "#C0643A"
+    }
+   ]
+  },
+  {
+   "id": "GD_HangingPlant_01",
+   "name": "Hanging plant",
+   "type": "decor/plants/hanging-plant",
+   "tags": [
+    "hanging",
+    "home",
+    "indoor",
+    "new",
+    "plant"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.26,
+    0.851,
+    0.26
+   ],
+   "glb": "models/GD_HangingPlant_01.glb",
+   "thumb": "thumbs/GD_HangingPlant_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    },
+    {
+     "part": "Terracotta",
+     "swatch": 79,
+     "hex": "#C0643A"
+    }
+   ]
+  },
+  {
    "id": "GD_PottedPlant_01",
    "name": "Potted plant",
    "type": "decor/plants/potted-plant",
@@ -3082,6 +6690,628 @@
    ]
   },
   {
+   "id": "GD_VaseFlowers_01",
+   "name": "Vase flowers",
+   "type": "decor/plants/vase-flowers",
+   "tags": [
+    "flowers",
+    "home",
+    "indoor",
+    "new",
+    "vase"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.14,
+    0.46,
+    0.14
+   ],
+   "glb": "models/GD_VaseFlowers_01.glb",
+   "thumb": "thumbs/GD_VaseFlowers_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Fabric pink",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Blanket_01",
+   "name": "Blanket",
+   "type": "decor/soft/blanket",
+   "tags": [
+    "blanket",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.7,
+    0.09,
+    0.5
+   ],
+   "glb": "models/GH_Blanket_01.glb",
+   "thumb": "thumbs/GH_Blanket_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    },
+    {
+     "part": "Fabric red",
+     "swatch": 64,
+     "hex": "#9A3A38"
+    }
+   ]
+  },
+  {
+   "id": "GH_Curtains_Closed_01",
+   "name": "Curtains, closed",
+   "type": "decor/soft/curtains-closed",
+   "tags": [
+    "closed",
+    "curtains",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 180,
+   "size": [
+    1.7,
+    2.015,
+    0.09
+   ],
+   "glb": "models/GH_Curtains_Closed_01.glb",
+   "thumb": "thumbs/GH_Curtains_Closed_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 56,
+     "hex": "#5E7F5A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Curtains_Open_01",
+   "name": "Curtains, open",
+   "type": "decor/soft/curtains-open",
+   "tags": [
+    "curtains",
+    "household",
+    "indoor",
+    "new",
+    "open"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    1.7,
+    2.015,
+    0.08
+   ],
+   "glb": "models/GH_Curtains_Open_01.glb",
+   "thumb": "thumbs/GH_Curtains_Open_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 56,
+     "hex": "#5E7F5A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Cushion_01",
+   "name": "Cushion",
+   "type": "decor/soft/cushion",
+   "tags": [
+    "cushion",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 12,
+   "size": [
+    0.4,
+    0.14,
+    0.4
+   ],
+   "glb": "models/GH_Cushion_01.glb",
+   "thumb": "thumbs/GH_Cushion_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Pillow_01",
+   "name": "Pillow",
+   "type": "decor/soft/pillow",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "pillow"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 12,
+   "size": [
+    0.5,
+    0.14,
+    0.3
+   ],
+   "glb": "models/GH_Pillow_01.glb",
+   "thumb": "thumbs/GH_Pillow_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    }
+   ]
+  },
+  {
+   "id": "GH_Rug_01",
+   "name": "Rug, rectangular",
+   "type": "decor/soft/rug",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "rectangular",
+    "rug"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    2.0,
+    0.022,
+    1.4
+   ],
+   "glb": "models/GH_Rug_01.glb",
+   "thumb": "thumbs/GH_Rug_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 64,
+     "hex": "#9A3A38"
+    },
+    {
+     "part": "Wallpaper",
+     "swatch": 60,
+     "hex": "#D9C9A8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Rug_04",
+   "name": "Rug, oval",
+   "type": "decor/soft/rug-oval",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "oval",
+    "rug"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    2.8,
+    0.024,
+    1.9
+   ],
+   "glb": "models/GH_Rug_04.glb",
+   "thumb": "thumbs/GH_Rug_04.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Fabric mustard",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Rug_03",
+   "name": "Rug, round",
+   "type": "decor/soft/rug-round",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "round",
+    "rug"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 208,
+   "size": [
+    1.6,
+    0.024,
+    1.56
+   ],
+   "glb": "models/GH_Rug_03.glb",
+   "thumb": "thumbs/GH_Rug_03.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 56,
+     "hex": "#5E7F5A"
+    },
+    {
+     "part": "Cream",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Terracotta",
+     "swatch": 79,
+     "hex": "#C0643A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Rug_02",
+   "name": "Rug, runner",
+   "type": "decor/soft/rug-runner",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "rug",
+    "runner"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    0.8,
+    0.024,
+    2.4
+   ],
+   "glb": "models/GH_Rug_02.glb",
+   "thumb": "thumbs/GH_Rug_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Cream",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    }
+   ]
+  },
+  {
+   "id": "GD_Doll_01",
+   "name": "Doll",
+   "type": "decor/toys/doll",
+   "tags": [
+    "doll",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.18,
+    0.345,
+    0.104
+   ],
+   "glb": "models/GD_Doll_01.glb",
+   "thumb": "thumbs/GD_Doll_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Skin",
+     "swatch": 11,
+     "hex": "#D9A98B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "GD_TeddyBear_01",
+   "name": "Teddy bear",
+   "type": "decor/toys/teddy-bear",
+   "tags": [
+    "bear",
+    "home",
+    "indoor",
+    "new",
+    "teddy"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.27,
+    0.37,
+    0.13
+   ],
+   "glb": "models/GD_TeddyBear_01.glb",
+   "thumb": "thumbs/GD_TeddyBear_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 80,
+     "hex": "#A9784A"
+    }
+   ]
+  },
+  {
+   "id": "GD_ToyBlocks_01",
+   "name": "Toy blocks",
+   "type": "decor/toys/toy-blocks",
+   "tags": [
+    "blocks",
+    "home",
+    "indoor",
+    "new",
+    "toy"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.2,
+    0.12,
+    0.11
+   ],
+   "glb": "models/GD_ToyBlocks_01.glb",
+   "thumb": "thumbs/GD_ToyBlocks_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Tractor green",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GD_ToyTruck_01",
+   "name": "Toy truck",
+   "type": "decor/toys/toy-truck",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "toy",
+    "truck"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    0.13,
+    0.147,
+    0.24
+   ],
+   "glb": "models/GD_ToyTruck_01.glb",
+   "thumb": "thumbs/GD_ToyTruck_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GD_BulletinBoard_01",
+   "name": "Bulletin board",
+   "type": "decor/wall/bulletin-board",
+   "tags": [
+    "board",
+    "bulletin",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 144,
+   "size": [
+    0.9,
+    0.6,
+    0.042
+   ],
+   "glb": "models/GD_BulletinBoard_01.glb",
+   "thumb": "thumbs/GD_BulletinBoard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Fabric pink",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    }
+   ]
+  },
+  {
+   "id": "GD_Calendar_01",
+   "name": "Calendar",
+   "type": "decor/wall/calendar",
+   "tags": [
+    "calendar",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    0.3,
+    0.42,
+    0.013
+   ],
+   "glb": "models/GD_Calendar_01.glb",
+   "thumb": "thumbs/GD_Calendar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
    "id": "GD_Clock_Wall_Retro_01",
    "name": "Wall clock, retro",
    "type": "decor/wall/clock",
@@ -3119,6 +7349,661 @@
      "part": "Paint white",
      "swatch": 6,
      "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GD_DeerTrophy_01",
+   "name": "Deer trophy",
+   "type": "decor/wall/deer-trophy",
+   "tags": [
+    "deer",
+    "home",
+    "indoor",
+    "new",
+    "trophy"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.384,
+    0.495,
+    0.215
+   ],
+   "glb": "models/GD_DeerTrophy_01.glb",
+   "thumb": "thumbs/GD_DeerTrophy_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Teddy",
+     "swatch": 80,
+     "hex": "#A9784A"
+    },
+    {
+     "part": "Horn cream",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    }
+   ]
+  },
+  {
+   "id": "GD_Frame_Landscape_01",
+   "name": "Picture frame, landscape",
+   "type": "decor/wall/frame-landscape",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "landscape",
+    "new",
+    "picture"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.6,
+    0.45,
+    0.036
+   ],
+   "glb": "models/GD_Frame_Landscape_01.glb",
+   "thumb": "thumbs/GD_Frame_Landscape_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_Frame_Landscape_02",
+    "GD_Frame_Landscape_03"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Tile blue",
+     "swatch": 71,
+     "hex": "#7FB3C8"
+    },
+    {
+     "part": "Grass",
+     "swatch": 8,
+     "hex": "#5E8C4A"
+    }
+   ]
+  },
+  {
+   "id": "GD_Frame_Landscape_02",
+   "name": "Picture frame, landscape 2",
+   "type": "decor/wall/frame-landscape",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "landscape",
+    "new",
+    "picture"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.6,
+    0.45,
+    0.036
+   ],
+   "glb": "models/GD_Frame_Landscape_02.glb",
+   "thumb": "thumbs/GD_Frame_Landscape_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_Frame_Landscape_01",
+    "GD_Frame_Landscape_03"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Rock",
+     "swatch": 53,
+     "hex": "#8A8A85"
+    },
+    {
+     "part": "Pine",
+     "swatch": 52,
+     "hex": "#2F5A3A"
+    }
+   ]
+  },
+  {
+   "id": "GD_Frame_Landscape_03",
+   "name": "Picture frame, landscape 3",
+   "type": "decor/wall/frame-landscape",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "landscape",
+    "new",
+    "picture"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.5,
+    0.4,
+    0.036
+   ],
+   "glb": "models/GD_Frame_Landscape_03.glb",
+   "thumb": "thumbs/GD_Frame_Landscape_03.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_Frame_Landscape_01",
+    "GD_Frame_Landscape_02"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Pink",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    },
+    {
+     "part": "Tile blue",
+     "swatch": 71,
+     "hex": "#7FB3C8"
+    }
+   ]
+  },
+  {
+   "id": "GD_Frame_Portrait_01",
+   "name": "Picture frame, portrait",
+   "type": "decor/wall/frame-portrait",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "new",
+    "picture",
+    "portrait"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.36,
+    0.5,
+    0.036
+   ],
+   "glb": "models/GD_Frame_Portrait_01.glb",
+   "thumb": "thumbs/GD_Frame_Portrait_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_Frame_Portrait_02"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wallpaper",
+     "swatch": 60,
+     "hex": "#D9C9A8"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Skin",
+     "swatch": 11,
+     "hex": "#D9A98B"
+    }
+   ]
+  },
+  {
+   "id": "GD_Frame_Portrait_02",
+   "name": "Picture frame, portrait 2",
+   "type": "decor/wall/frame-portrait",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "new",
+    "picture",
+    "portrait"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.36,
+    0.5,
+    0.038
+   ],
+   "glb": "models/GD_Frame_Portrait_02.glb",
+   "thumb": "thumbs/GD_Frame_Portrait_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_Frame_Portrait_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Hair black",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    },
+    {
+     "part": "Skin",
+     "swatch": 11,
+     "hex": "#D9A98B"
+    }
+   ]
+  },
+  {
+   "id": "GD_KidDrawing_01",
+   "name": "Child's drawing",
+   "type": "decor/wall/kid-drawing",
+   "tags": [
+    "childs",
+    "drawing",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.321,
+    0.415,
+    0.009
+   ],
+   "glb": "models/GD_KidDrawing_01.glb",
+   "thumb": "thumbs/GD_KidDrawing_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_KidDrawing_02"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GD_KidDrawing_02",
+   "name": "Child's drawing, 2",
+   "type": "decor/wall/kid-drawing",
+   "tags": [
+    "childs",
+    "drawing",
+    "home",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.321,
+    0.415,
+    0.008
+   ],
+   "glb": "models/GD_KidDrawing_02.glb",
+   "thumb": "thumbs/GD_KidDrawing_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GD_KidDrawing_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Barn red",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Grass",
+     "swatch": 8,
+     "hex": "#5E8C4A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GD_Mirror_Wall_01",
+   "name": "Mirror, wall",
+   "type": "decor/wall/mirror-wall",
+   "tags": [
+    "home",
+    "indoor",
+    "mirror",
+    "new",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.6,
+    0.9,
+    0.034
+   ],
+   "glb": "models/GD_Mirror_Wall_01.glb",
+   "thumb": "thumbs/GD_Mirror_Wall_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GD_NewspaperClippings_01",
+   "name": "Newspaper clippings",
+   "type": "decor/wall/newspaper-clippings",
+   "tags": [
+    "clippings",
+    "home",
+    "indoor",
+    "new",
+    "newspaper"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.766,
+    0.554,
+    0.007
+   ],
+   "glb": "models/GD_NewspaperClippings_01.glb",
+   "thumb": "thumbs/GD_NewspaperClippings_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GD_PhotoFrame_01",
+   "name": "Photo frame, standing",
+   "type": "decor/wall/photo-frame-standing",
+   "tags": [
+    "frame",
+    "home",
+    "indoor",
+    "new",
+    "photo",
+    "standing"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.2,
+    0.186,
+    0.107
+   ],
+   "glb": "models/GD_PhotoFrame_01.glb",
+   "thumb": "thumbs/GD_PhotoFrame_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    }
+   ]
+  },
+  {
+   "id": "GD_Poster_01",
+   "name": "Poster",
+   "type": "decor/wall/poster",
+   "tags": [
+    "home",
+    "indoor",
+    "new",
+    "poster"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 68,
+   "size": [
+    0.5,
+    0.7,
+    0.009
+   ],
+   "glb": "models/GD_Poster_01.glb",
+   "thumb": "thumbs/GD_Poster_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 40,
+     "hex": "#2F5F8F"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    }
+   ]
+  },
+  {
+   "id": "GH_LabBench_01",
+   "name": "Lab bench",
+   "type": "equipment/office/lab-bench",
+   "tags": [
+    "bench",
+    "household",
+    "indoor",
+    "lab",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 64,
+   "size": [
+    2.04,
+    1.3,
+    0.84
+   ],
+   "glb": "models/GH_LabBench_01.glb",
+   "thumb": "thumbs/GH_LabBench_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_Microscope_01",
+   "name": "Microscope",
+   "type": "equipment/office/microscope",
+   "tags": [
+    "household",
+    "indoor",
+    "microscope",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 56,
+   "size": [
+    0.18,
+    0.383,
+    0.24
+   ],
+   "glb": "models/GH_Microscope_01.glb",
+   "thumb": "thumbs/GH_Microscope_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Microscope_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_ServerRack_01",
+   "name": "Server rack",
+   "type": "equipment/office/server-rack",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "rack",
+    "server"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 252,
+   "size": [
+    0.6,
+    2.0,
+    0.825
+   ],
+   "glb": "models/GH_ServerRack_01.glb",
+   "thumb": "thumbs/GH_ServerRack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_ServerRack_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -3446,6 +8331,705 @@
      "part": "Rubber",
      "swatch": 15,
      "hex": "#2E2E32"
+    }
+   ]
+  },
+  {
+   "id": "GH_Mirror_01",
+   "name": "Mirror, framed",
+   "type": "fixtures/bath/mirror",
+   "tags": [
+    "framed",
+    "household",
+    "indoor",
+    "mirror",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 24,
+   "size": [
+    0.5,
+    0.7,
+    0.036
+   ],
+   "glb": "models/GH_Mirror_01.glb",
+   "thumb": "thumbs/GH_Mirror_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shower_01",
+   "name": "Shower",
+   "type": "fixtures/bath/shower",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shower"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 100,
+   "size": [
+    0.91,
+    2.0,
+    1.03
+   ],
+   "glb": "models/GH_Shower_01.glb",
+   "thumb": "thumbs/GH_Shower_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Shower_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 71,
+     "hex": "#7FB3C8"
+    },
+    {
+     "part": "Porcelain",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Sink_Bath_01",
+   "name": "Bathroom sink",
+   "type": "fixtures/bath/sink-bath",
+   "tags": [
+    "bathroom",
+    "household",
+    "indoor",
+    "new",
+    "sink"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 56,
+   "size": [
+    0.55,
+    1.045,
+    0.42
+   ],
+   "glb": "models/GH_Sink_Bath_01.glb",
+   "thumb": "thumbs/GH_Sink_Bath_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Sink_Bath_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_Toilet_01",
+   "name": "Toilet",
+   "type": "fixtures/bath/toilet",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "toilet"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 88,
+   "size": [
+    0.42,
+    0.65,
+    0.56
+   ],
+   "glb": "models/GH_Toilet_01.glb",
+   "thumb": "thumbs/GH_Toilet_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Toilet_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    }
+   ]
+  },
+  {
+   "id": "GH_TowelRail_01",
+   "name": "Towel rail",
+   "type": "fixtures/bath/towel-rail",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "rail",
+    "towel"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.7,
+    0.375,
+    0.12
+   ],
+   "glb": "models/GH_TowelRail_01.glb",
+   "thumb": "thumbs/GH_TowelRail_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_Tub_01",
+   "name": "Tub",
+   "type": "fixtures/bath/tub",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "tub"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    1.7,
+    0.75,
+    0.75
+   ],
+   "glb": "models/GH_Tub_01.glb",
+   "thumb": "thumbs/GH_Tub_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Tub_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 59,
+     "hex": "#EDEDE8"
+    },
+    {
+     "part": "Tile blue",
+     "swatch": 71,
+     "hex": "#7FB3C8"
+    }
+   ]
+  },
+  {
+   "id": "GH_Sink_Kitchen_01",
+   "name": "Kitchen sink",
+   "type": "fixtures/kitchen/sink",
+   "tags": [
+    "household",
+    "indoor",
+    "kitchen",
+    "new",
+    "sink"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    1.24,
+    1.12,
+    0.64
+   ],
+   "glb": "models/GH_Sink_Kitchen_01.glb",
+   "thumb": "thumbs/GH_Sink_Kitchen_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Sink_Kitchen_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GI_Dumpster_01",
+   "name": "Dumpster",
+   "type": "fixtures/outdoor/dumpster",
+   "tags": [
+    "classic",
+    "dumpster",
+    "new",
+    "outdoor"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 232,
+   "size": [
+    1.8,
+    1.08,
+    0.94
+   ],
+   "glb": "models/GI_Dumpster_01.glb",
+   "thumb": "thumbs/GI_Dumpster_01.png",
+   "parts": {
+    "LidL": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      -0.45,
+      1.04,
+      -0.47
+     ],
+     "limit": -115,
+     "rest": -0.0
+    },
+    "LidR": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.45,
+      1.04,
+      -0.47
+     ],
+     "limit": -115,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Dumpster_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 39,
+     "hex": "#3F7D3A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GI_TrashCan_01",
+   "name": "Trash can",
+   "type": "fixtures/outdoor/trash-can",
+   "tags": [
+    "can",
+    "classic",
+    "new",
+    "outdoor",
+    "trash"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 160,
+   "size": [
+    0.54,
+    0.655,
+    0.54
+   ],
+   "glb": "models/GI_TrashCan_01.glb",
+   "thumb": "thumbs/GI_TrashCan_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.6,
+      -0.26
+     ],
+     "limit": -100,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_TrashCan_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GH_AirConditioner_01",
+   "name": "Air conditioner",
+   "type": "fixtures/utilities/air-conditioner",
+   "tags": [
+    "air",
+    "conditioner",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    0.6,
+    0.4,
+    0.458
+   ],
+   "glb": "models/GH_AirConditioner_01.glb",
+   "thumb": "thumbs/GH_AirConditioner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_AirConditioner_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GH_Boiler_01",
+   "name": "Boiler",
+   "type": "fixtures/utilities/boiler",
+   "tags": [
+    "boiler",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 244,
+   "size": [
+    0.72,
+    1.927,
+    0.78
+   ],
+   "glb": "models/GH_Boiler_01.glb",
+   "thumb": "thumbs/GH_Boiler_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Boiler_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 69,
+     "hex": "#EBDDB5"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    }
+   ]
+  },
+  {
+   "id": "GH_Fireplace_01",
+   "name": "Fireplace",
+   "type": "fixtures/utilities/fireplace",
+   "tags": [
+    "fireplace",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    2.0,
+    3.2,
+    1.15
+   ],
+   "glb": "models/GH_Fireplace_01.glb",
+   "thumb": "thumbs/GH_Fireplace_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Fireplace_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 67,
+     "hex": "#A8553F"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GI_FuseBox_01",
+   "name": "Fuse box",
+   "type": "fixtures/utilities/fuse-box",
+   "tags": [
+    "box",
+    "classic",
+    "fuse",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 168,
+   "size": [
+    0.4,
+    0.5,
+    0.152
+   ],
+   "glb": "models/GI_FuseBox_01.glb",
+   "thumb": "thumbs/GI_FuseBox_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.2,
+      0.0,
+      0.0575
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_FuseBox_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Radiator_01",
+   "name": "Radiator",
+   "type": "fixtures/utilities/radiator",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "radiator"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 144,
+   "size": [
+    1.0,
+    0.63,
+    0.1
+   ],
+   "glb": "models/GH_Radiator_01.glb",
+   "thumb": "thumbs/GH_Radiator_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Radiator_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    }
+   ]
+  },
+  {
+   "id": "GH_WaterHeater_01",
+   "name": "Water heater",
+   "type": "fixtures/utilities/water-heater",
+   "tags": [
+    "heater",
+    "household",
+    "indoor",
+    "new",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 208,
+   "size": [
+    0.52,
+    1.555,
+    0.605
+   ],
+   "glb": "models/GH_WaterHeater_01.glb",
+   "thumb": "thumbs/GH_WaterHeater_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_WaterHeater_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Copper",
+     "swatch": 70,
+     "hex": "#B06A3B"
+    }
+   ]
+  },
+  {
+   "id": "GH_WoodStove_01",
+   "name": "Wood stove",
+   "type": "fixtures/utilities/wood-stove",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "stove",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    0.55,
+    1.8,
+    0.466
+   ],
+   "glb": "models/GH_WoodStove_01.glb",
+   "thumb": "thumbs/GH_WoodStove_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_WoodStove_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -3887,6 +9471,209 @@
      "part": "Fabric grey",
      "swatch": 65,
      "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bed_Bunk_01",
+   "name": "Bunk bed",
+   "type": "furniture/bedroom/bed-bunk",
+   "tags": [
+    "bed",
+    "bunk",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 144,
+   "size": [
+    1.165,
+    1.8,
+    2.0
+   ],
+   "glb": "models/GH_Bed_Bunk_01.glb",
+   "thumb": "thumbs/GH_Bed_Bunk_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bed_Child_01",
+   "name": "Child's bed",
+   "type": "furniture/bedroom/bed-child",
+   "tags": [
+    "bed",
+    "childs",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    0.84,
+    0.66,
+    1.645
+   ],
+   "glb": "models/GH_Bed_Child_01.glb",
+   "thumb": "thumbs/GH_Bed_Child_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Fabric pink",
+     "swatch": 66,
+     "hex": "#D9A0A8"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bed_Single_01",
+   "name": "Single bed",
+   "type": "furniture/bedroom/bed-single",
+   "tags": [
+    "bed",
+    "household",
+    "indoor",
+    "new",
+    "single"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    0.98,
+    0.76,
+    2.07
+   ],
+   "glb": "models/GH_Bed_Single_01.glb",
+   "thumb": "thumbs/GH_Bed_Single_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Fabric red",
+     "swatch": 64,
+     "hex": "#9A3A38"
+    }
+   ]
+  },
+  {
+   "id": "GH_Cot_01",
+   "name": "Cot",
+   "type": "furniture/bedroom/cot",
+   "tags": [
+    "cot",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 264,
+   "size": [
+    0.68,
+    0.7,
+    1.28
+   ],
+   "glb": "models/GH_Cot_01.glb",
+   "thumb": "thumbs/GH_Cot_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    }
+   ]
+  },
+  {
+   "id": "GH_Gurney_01",
+   "name": "Gurney",
+   "type": "furniture/bedroom/gurney",
+   "tags": [
+    "gurney",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 152,
+   "size": [
+    0.7,
+    0.895,
+    1.9
+   ],
+   "glb": "models/GH_Gurney_01.glb",
+   "thumb": "thumbs/GH_Gurney_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Linen",
+     "swatch": 62,
+     "hex": "#E6DFCF"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },
@@ -4656,6 +10443,48 @@
    ]
   },
   {
+   "id": "GH_Whiteboard_01",
+   "name": "Whiteboard, wall",
+   "type": "furniture/office/whiteboard-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "wall",
+    "whiteboard"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 84,
+   "size": [
+    1.5,
+    1.9,
+    0.68
+   ],
+   "glb": "models/GH_Whiteboard_01.glb",
+   "thumb": "thumbs/GH_Whiteboard_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Enamel white",
+     "swatch": 68,
+     "hex": "#F2F2EE"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GH_Armchair_Retro_01",
    "name": "Armchair, retro",
    "type": "furniture/seating/armchair",
@@ -4687,6 +10516,180 @@
      "part": "Rust dark",
      "swatch": 47,
      "hex": "#6B3A28"
+    }
+   ]
+  },
+  {
+   "id": "GH_BarStool_01",
+   "name": "Bar stool",
+   "type": "furniture/seating/bar-stool",
+   "tags": [
+    "bar",
+    "household",
+    "indoor",
+    "new",
+    "stool"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 104,
+   "size": [
+    0.44,
+    0.78,
+    0.44
+   ],
+   "glb": "models/GH_BarStool_01.glb",
+   "thumb": "thumbs/GH_BarStool_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bench_01",
+   "name": "Bench",
+   "type": "furniture/seating/bench",
+   "tags": [
+    "bench",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    1.5,
+    0.475,
+    0.4
+   ],
+   "glb": "models/GH_Bench_01.glb",
+   "thumb": "thumbs/GH_Bench_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "GH_Chair_Dining_01",
+   "name": "Dining chair",
+   "type": "furniture/seating/chair-dining",
+   "tags": [
+    "chair",
+    "dining",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.44,
+    1.04,
+    0.44
+   ],
+   "glb": "models/GH_Chair_Dining_01.glb",
+   "thumb": "thumbs/GH_Chair_Dining_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "GH_Chair_Kitchen_01",
+   "name": "Kitchen chair",
+   "type": "furniture/seating/chair-kitchen",
+   "tags": [
+    "chair",
+    "household",
+    "indoor",
+    "kitchen",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 108,
+   "size": [
+    0.44,
+    0.9,
+    0.44
+   ],
+   "glb": "models/GH_Chair_Kitchen_01.glb",
+   "thumb": "thumbs/GH_Chair_Kitchen_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "GH_RockingChair_01",
+   "name": "Rocking chair",
+   "type": "furniture/seating/rocking-chair",
+   "tags": [
+    "chair",
+    "household",
+    "indoor",
+    "new",
+    "rocking"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 156,
+   "size": [
+    0.58,
+    1.104,
+    0.95
+   ],
+   "glb": "models/GH_RockingChair_01.glb",
+   "thumb": "thumbs/GH_RockingChair_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
     }
    ]
   },
@@ -4802,6 +10805,230 @@
    ]
   },
   {
+   "id": "GH_Bookcase_02",
+   "name": "Bookcase, novels",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "bookcase",
+    "household",
+    "indoor",
+    "new",
+    "novels"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 648,
+   "size": [
+    0.84,
+    1.8,
+    0.3
+   ],
+   "glb": "models/GH_Bookcase_02.glb",
+   "thumb": "thumbs/GH_Bookcase_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Bookcase_03",
+    "GH_Bookcase_04",
+    "GH_Bookcase_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Book red",
+     "swatch": 74,
+     "hex": "#8A2E2E"
+    },
+    {
+     "part": "Cream",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Book green",
+     "swatch": 76,
+     "hex": "#2E6A4A"
+    },
+    {
+     "part": "Fabric mustard",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bookcase_03",
+   "name": "Bookcase, sparse",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "bookcase",
+    "household",
+    "indoor",
+    "new",
+    "sparse"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 448,
+   "size": [
+    0.84,
+    1.8,
+    0.3
+   ],
+   "glb": "models/GH_Bookcase_03.glb",
+   "thumb": "thumbs/GH_Bookcase_03.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Bookcase_02",
+    "GH_Bookcase_04",
+    "GH_Bookcase_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Terracotta",
+     "swatch": 79,
+     "hex": "#C0643A"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Book green",
+     "swatch": 76,
+     "hex": "#2E6A4A"
+    },
+    {
+     "part": "Paper",
+     "swatch": 77,
+     "hex": "#F0EBDD"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bookcase_04",
+   "name": "Bookcase, binders",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "binders",
+    "bookcase",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 528,
+   "size": [
+    0.84,
+    1.8,
+    0.3
+   ],
+   "glb": "models/GH_Bookcase_04.glb",
+   "thumb": "thumbs/GH_Bookcase_04.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Bookcase_02",
+    "GH_Bookcase_03",
+    "GH_Bookcase_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Navy",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    }
+   ]
+  },
+  {
+   "id": "GH_Bookcase_05",
+   "name": "Bookcase, bright",
+   "type": "furniture/storage/bookcase",
+   "tags": [
+    "bookcase",
+    "bright",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 396,
+   "size": [
+    0.84,
+    1.8,
+    0.3
+   ],
+   "glb": "models/GH_Bookcase_05.glb",
+   "thumb": "thumbs/GH_Bookcase_05.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Bookcase_02",
+    "GH_Bookcase_03",
+    "GH_Bookcase_04"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Book blue",
+     "swatch": 75,
+     "hex": "#2E4A7A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Pink",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
    "id": "GH_Bookcase_Modern_01",
    "name": "Bookcase, modern",
    "type": "furniture/storage/bookcase",
@@ -4845,6 +11072,119 @@
      "part": "Wood light",
      "swatch": 0,
      "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "GI_Cabinet_01",
+   "name": "Cabinet",
+   "type": "furniture/storage/cabinet",
+   "tags": [
+    "cabinet",
+    "classic",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 216,
+   "size": [
+    0.8,
+    1.2,
+    0.443
+   ],
+   "glb": "models/GI_Cabinet_01.glb",
+   "thumb": "thumbs/GI_Cabinet_01.png",
+   "parts": {
+    "DoorUL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.4,
+      0.895,
+      0.2025
+     ],
+     "limit": -105,
+     "rest": -0.0
+    },
+    "DoorUR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.4,
+      0.895,
+      0.2025
+     ],
+     "limit": 105,
+     "rest": 0.0
+    },
+    "DoorLL": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.4,
+      0.305,
+      0.2025
+     ],
+     "limit": -105,
+     "rest": -0.0
+    },
+    "DoorLR": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.4,
+      0.305,
+      0.2025
+     ],
+     "limit": 105,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Cabinet_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
     }
    ]
   },
@@ -4904,6 +11244,48 @@
      "part": "Metal dark",
      "swatch": 3,
      "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GH_CoatRack_01",
+   "name": "Coat rack",
+   "type": "furniture/storage/coat-rack",
+   "tags": [
+    "coat",
+    "household",
+    "indoor",
+    "new",
+    "rack"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 192,
+   "size": [
+    0.669,
+    1.86,
+    0.669
+   ],
+   "glb": "models/GH_CoatRack_01.glb",
+   "thumb": "thumbs/GH_CoatRack_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Fabric brown",
+     "swatch": 58,
+     "hex": "#7A5A44"
     }
    ]
   },
@@ -4992,6 +11374,58 @@
    ]
   },
   {
+   "id": "GH_JarShelf_01",
+   "name": "Jar shelf",
+   "type": "furniture/storage/jar-shelf",
+   "tags": [
+    "household",
+    "indoor",
+    "jar",
+    "new",
+    "shelf"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 780,
+   "size": [
+    0.905,
+    0.878,
+    0.16
+   ],
+   "glb": "models/GH_JarShelf_01.glb",
+   "thumb": "thumbs/GH_JarShelf_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Plant green",
+     "swatch": 78,
+     "hex": "#3F7A3A"
+    }
+   ]
+  },
+  {
    "id": "GI_Locker_01",
    "name": "Locker",
    "type": "furniture/storage/locker",
@@ -5047,6 +11481,496 @@
      "part": "Metal galv",
      "swatch": 2,
      "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GI_MedicineCabinet_01",
+   "name": "Medicine cabinet",
+   "type": "furniture/storage/medicine-cabinet",
+   "tags": [
+    "cabinet",
+    "classic",
+    "indoor",
+    "medicine",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 120,
+   "size": [
+    0.4,
+    0.55,
+    0.198
+   ],
+   "glb": "models/GI_MedicineCabinet_01.glb",
+   "thumb": "thumbs/GI_MedicineCabinet_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.2,
+      0.0,
+      0.08
+     ],
+     "limit": -110,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_MedicineCabinet_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ]
+  },
+  {
+   "id": "GI_Nightstand_01",
+   "name": "Nightstand",
+   "type": "furniture/storage/nightstand",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "nightstand"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 180,
+   "size": [
+    0.48,
+    0.595,
+    0.473
+   ],
+   "glb": "models/GI_Nightstand_01.glb",
+   "thumb": "thumbs/GI_Nightstand_01.png",
+   "parts": {
+    "Drawer1": {
+     "kind": "slide",
+     "axis": [
+      0,
+      0,
+      -1
+     ],
+     "pivot": [
+      0.0,
+      0.45,
+      0.2
+     ],
+     "limit": -0.3,
+     "rest": -0.0
+    },
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.21,
+      0.165,
+      0.21
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Nightstand_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GI_Safe_01",
+   "name": "Safe",
+   "type": "furniture/storage/safe",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "safe"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 112,
+   "size": [
+    0.5,
+    0.6,
+    0.585
+   ],
+   "glb": "models/GI_Safe_01.glb",
+   "thumb": "thumbs/GI_Safe_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      0.25,
+      0.3,
+      0.275
+     ],
+     "limit": 110,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Safe_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shelf_Wall_01",
+   "name": "Wall shelf, 1",
+   "type": "furniture/storage/shelf-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shelf",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    1.0,
+    0.165,
+    0.22
+   ],
+   "glb": "models/GH_Shelf_Wall_01.glb",
+   "thumb": "thumbs/GH_Shelf_Wall_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Shelf_Wall_02",
+    "GH_Shelf_Wall_03",
+    "GH_Shelf_Wall_04",
+    "GH_Shelf_Wall_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shelf_Wall_02",
+   "name": "Wall shelf, 2",
+   "type": "furniture/storage/shelf-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shelf",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.0,
+    0.158,
+    0.22
+   ],
+   "glb": "models/GH_Shelf_Wall_02.glb",
+   "thumb": "thumbs/GH_Shelf_Wall_02.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Shelf_Wall_01",
+    "GH_Shelf_Wall_03",
+    "GH_Shelf_Wall_04",
+    "GH_Shelf_Wall_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shelf_Wall_03",
+   "name": "Wall shelf, 3",
+   "type": "furniture/storage/shelf-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shelf",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 48,
+   "size": [
+    1.0,
+    0.11,
+    0.22
+   ],
+   "glb": "models/GH_Shelf_Wall_03.glb",
+   "thumb": "thumbs/GH_Shelf_Wall_03.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Shelf_Wall_01",
+    "GH_Shelf_Wall_02",
+    "GH_Shelf_Wall_04",
+    "GH_Shelf_Wall_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shelf_Wall_04",
+   "name": "Wall shelf, 4",
+   "type": "furniture/storage/shelf-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shelf",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.0,
+    0.155,
+    0.22
+   ],
+   "glb": "models/GH_Shelf_Wall_04.glb",
+   "thumb": "thumbs/GH_Shelf_Wall_04.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Shelf_Wall_01",
+    "GH_Shelf_Wall_02",
+    "GH_Shelf_Wall_03",
+    "GH_Shelf_Wall_05"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ]
+  },
+  {
+   "id": "GH_Shelf_Wall_05",
+   "name": "Wall shelf, 5",
+   "type": "furniture/storage/shelf-wall",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "shelf",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    1.0,
+    0.168,
+    0.217
+   ],
+   "glb": "models/GH_Shelf_Wall_05.glb",
+   "thumb": "thumbs/GH_Shelf_Wall_05.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GH_Shelf_Wall_01",
+    "GH_Shelf_Wall_02",
+    "GH_Shelf_Wall_03",
+    "GH_Shelf_Wall_04"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ]
+  },
+  {
+   "id": "GI_Suitcase_01",
+   "name": "Suitcase, opening",
+   "type": "furniture/storage/suitcase",
+   "tags": [
+    "classic",
+    "indoor",
+    "new",
+    "suitcase"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 120,
+   "size": [
+    0.6,
+    0.22,
+    0.425
+   ],
+   "glb": "models/GI_Suitcase_01.glb",
+   "thumb": "thumbs/GI_Suitcase_01.png",
+   "parts": {
+    "Lid": {
+     "kind": "hinge",
+     "axis": [
+      1,
+      0,
+      0
+     ],
+     "pivot": [
+      0.0,
+      0.14,
+      -0.2
+     ],
+     "limit": -115,
+     "rest": -0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GI_Suitcase_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 58,
+     "hex": "#7A5A44"
+    },
+    {
+     "part": "Fabric mustard",
+     "swatch": 57,
+     "hex": "#C9A43A"
+    }
+   ]
+  },
+  {
+   "id": "GH_ToyBox_01",
+   "name": "Toy box",
+   "type": "furniture/storage/toy-box",
+   "tags": [
+    "box",
+    "household",
+    "indoor",
+    "new",
+    "toy"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 80,
+   "size": [
+    0.82,
+    0.58,
+    0.47
+   ],
+   "glb": "models/GH_ToyBox_01.glb",
+   "thumb": "thumbs/GH_ToyBox_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 63,
+     "hex": "#56708F"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
     }
    ]
   },
@@ -5187,6 +12111,185 @@
      "part": "Wood grey",
      "swatch": 38,
      "hex": "#8B8578"
+    }
+   ]
+  },
+  {
+   "id": "GH_Counter_Bar_01",
+   "name": "Bar counter",
+   "type": "furniture/tables/counter-bar",
+   "tags": [
+    "bar",
+    "counter",
+    "household",
+    "indoor",
+    "new"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 36,
+   "size": [
+    2.7,
+    1.145,
+    0.75
+   ],
+   "glb": "models/GH_Counter_Bar_01.glb",
+   "thumb": "thumbs/GH_Counter_Bar_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Table_Coffee_01",
+   "name": "Coffee table",
+   "type": "furniture/tables/table-coffee",
+   "tags": [
+    "coffee",
+    "household",
+    "indoor",
+    "new",
+    "table"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 72,
+   "size": [
+    1.0,
+    0.44,
+    0.55
+   ],
+   "glb": "models/GH_Table_Coffee_01.glb",
+   "thumb": "thumbs/GH_Table_Coffee_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Table_Dining_01",
+   "name": "Dining table",
+   "type": "furniture/tables/table-dining",
+   "tags": [
+    "dining",
+    "household",
+    "indoor",
+    "new",
+    "table"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 60,
+   "size": [
+    1.6,
+    0.765,
+    0.9
+   ],
+   "glb": "models/GH_Table_Dining_01.glb",
+   "thumb": "thumbs/GH_Table_Dining_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Table_Side_01",
+   "name": "Side table",
+   "type": "furniture/tables/table-side",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "side",
+    "table"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 76,
+   "size": [
+    0.5,
+    0.57,
+    0.5
+   ],
+   "glb": "models/GH_Table_Side_01.glb",
+   "thumb": "thumbs/GH_Table_Side_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ]
+  },
+  {
+   "id": "GH_Workbench_01",
+   "name": "Workbench",
+   "type": "furniture/tables/workbench",
+   "tags": [
+    "household",
+    "indoor",
+    "new",
+    "workbench"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 96,
+   "size": [
+    2.0,
+    1.4,
+    0.7
+   ],
+   "glb": "models/GH_Workbench_01.glb",
+   "thumb": "thumbs/GH_Workbench_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
     }
    ]
   },
@@ -9259,6 +16362,50 @@
    ]
   },
   {
+   "id": "GV_ShipLockers_01",
+   "name": "Ship lockers",
+   "type": "vehicles/ship-interior/lockers",
+   "tags": [
+    "alien",
+    "interior",
+    "locker",
+    "new",
+    "sci-fi",
+    "ship",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 372,
+   "size": [
+    2.16,
+    2.1,
+    0.662
+   ],
+   "glb": "models/GV_ShipLockers_01.glb",
+   "thumb": "thumbs/GV_ShipLockers_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GV_ShipMess_01",
    "name": "Mess table",
    "type": "vehicles/ship-interior/mess-table",
@@ -9491,50 +16638,6 @@
      "part": "Alien grey",
      "swatch": 43,
      "hex": "#A9B5A4"
-    }
-   ]
-  },
-  {
-   "id": "GV_ShipLockers_01",
-   "name": "Ship lockers",
-   "type": "vehicles/ship-interior/lockers",
-   "tags": [
-    "alien",
-    "interior",
-    "locker",
-    "new",
-    "sci-fi",
-    "ship",
-    "wall"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 372,
-   "size": [
-    2.16,
-    2.1,
-    0.662
-   ],
-   "glb": "models/GV_ShipLockers_01.glb",
-   "thumb": "thumbs/GV_ShipLockers_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 84,
-     "hex": "#3A3F4A"
-    },
-    {
-     "part": "Alien grey",
-     "swatch": 43,
-     "hex": "#A9B5A4"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
     }
    ]
   },
