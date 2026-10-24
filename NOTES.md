@@ -126,6 +126,12 @@ The game's room kit had its generators here from the first sync (`household.py`,
 - The ids keep the game's names, including `GH_Bookcase_02` to `05`, `GH_Rug_02` to `04` and `GH_Shelf_Wall_02` to `05` (the catalog test now allows `_01` to `_09`).
 - **Not done:** the 321 room props the game never modelled (`docs/assets/room-assets-missing.md`, from the prop catalogue), the `_Modern`/`_Retro`/`_Damaged` style sets of the pieces above, and `contents.py` (the game's food and kit: 70 more pieces).
 
+## Buildings brought across (2026-10-24, branch `claude/import-buildings-ef46cd`)
+
+The game's 13 buildings (`art/scripts/buildings.py`, already here but not in the browser) are now in `tools/catalog.py`: farmhouse, barn, workshop, shed, coop, outhouse, well, silo, windmill, mobile home, garage, town house, diner; the base skin of each, plus a Damaged model for eight. 21 models, 185 in all after merging main. Other skins are meant to be paints, not models, but **no paint presets exist and the colour picker cannot reproduce them** (a base skin shares swatches between wall and trim): see the brief. The Damaged town house is the Brick skin so it matches the New one. `buildings.py` got a `SKIN_LIST` option, writes `interactions.json` (the outhouse door), and the silo's ladder now touches the wall. Brief and what is still missing: `docs/assets/briefs/buildings.md`.
+
+**Built and looked at:** all 21 in Blender 5.2.3 and in the site's viewer (thumbnail sheet, one angle each); `audit.py` on the imported GLBs (see the brief for what still floats). **Not looked at:** the outhouse door opening in the site's viewer; the damaged models from more than one angle;  `make_manifest.py` needs build facts for every model and only the buildings had them, so their entries were spliced into the manifest and `--catalog-only` rerun.
+
 ## Ant and caterpillar segments (2026-10-24, branch `fix/insect-segments`)
 - Ant rebuilt with a petiole waist, legs on the mesosoma, mandibles and elbowed antenna bones; caterpillar rebuilt with 11 overlapping segments (the real animal has 13, cut for the triangle budget), true legs on the thorax and prolegs on four abdominal segments. Not done: mandibles attach only at their back ends, the caterpillar's `paintable` order in the manifest was patched by hand, the other insects were read, not rendered.
 

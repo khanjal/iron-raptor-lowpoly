@@ -2415,6 +2415,678 @@
    ]
   },
   {
+   "id": "FM_Barn_01",
+   "name": "Barn",
+   "type": "building/farm/barn",
+   "tags": [
+    "exterior",
+    "farm",
+    "hayloft",
+    "livestock",
+    "new",
+    "red",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1128,
+   "size": [
+    27.6,
+    11.4,
+    32.6
+   ],
+   "glb": "models/FM_Barn_01.glb",
+   "thumb": "thumbs/FM_Barn_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Barn_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Barn_Red_01"
+   ]
+  },
+  {
+   "id": "FM_Barn_Damaged_01",
+   "name": "Barn, wrecked",
+   "type": "building/farm/barn",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "hayloft",
+    "livestock",
+    "ruined",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1128,
+   "size": [
+    27.6,
+    11.4,
+    32.6
+   ],
+   "glb": "models/FM_Barn_Damaged_01.glb",
+   "thumb": "thumbs/FM_Barn_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Barn_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Rust dark",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ],
+   "aliases": [
+    "FM_Barn_Red_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_ChickenCoop_01",
+   "name": "Chicken coop",
+   "type": "building/farm/coop",
+   "tags": [
+    "chickens",
+    "exterior",
+    "farm",
+    "livestock",
+    "new",
+    "red",
+    "rural"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1412,
+   "size": [
+    2.881,
+    2.119,
+    4.806
+   ],
+   "glb": "models/FM_ChickenCoop_01.glb",
+   "thumb": "thumbs/FM_ChickenCoop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 5,
+     "hex": "#8E2F2A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Hay",
+     "swatch": 45,
+     "hex": "#D8BE6A"
+    },
+    {
+     "part": "Fabric grey",
+     "swatch": 65,
+     "hex": "#8A8D91"
+    }
+   ],
+   "aliases": [
+    "FM_ChickenCoop_Red_01"
+   ]
+  },
+  {
+   "id": "FM_Farmhouse_01",
+   "name": "Farmhouse",
+   "type": "building/farm/farmhouse",
+   "tags": [
+    "exterior",
+    "farm",
+    "house",
+    "new",
+    "porch",
+    "rural",
+    "siding",
+    "two-storey",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 3064,
+   "size": [
+    25.4,
+    10.1,
+    22.9
+   ],
+   "glb": "models/FM_Farmhouse_01.glb",
+   "thumb": "thumbs/FM_Farmhouse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Farmhouse_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Farmhouse_White_01"
+   ]
+  },
+  {
+   "id": "FM_Farmhouse_Damaged_01",
+   "name": "Farmhouse, wrecked",
+   "type": "building/farm/farmhouse",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "house",
+    "porch",
+    "ruined",
+    "rural",
+    "two-storey"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 2816,
+   "size": [
+    25.4,
+    10.104,
+    22.9
+   ],
+   "glb": "models/FM_Farmhouse_Damaged_01.glb",
+   "thumb": "thumbs/FM_Farmhouse_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Farmhouse_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    }
+   ],
+   "aliases": [
+    "FM_Farmhouse_White_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_Outhouse_01",
+   "name": "Outhouse",
+   "type": "building/farm/outhouse",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "rural",
+    "toilet",
+    "wood"
+   ],
+   "rigged": false,
+   "interactive": true,
+   "triangles": 252,
+   "size": [
+    2.3,
+    2.95,
+    2.3
+   ],
+   "glb": "models/FM_Outhouse_01.glb",
+   "thumb": "thumbs/FM_Outhouse_01.png",
+   "parts": {
+    "Door": {
+     "kind": "hinge",
+     "axis": [
+      0,
+      1,
+      0
+     ],
+     "pivot": [
+      -0.6,
+      0.0,
+      0.94
+     ],
+     "limit": 100,
+     "rest": 0.0
+    }
+   },
+   "clips": [],
+   "variants": [],
+   "interactions": "models/FM_Outhouse_01.interactions.json",
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Outhouse_Weathered_01"
+   ]
+  },
+  {
+   "id": "FM_Shed_01",
+   "name": "Shed",
+   "type": "building/farm/shed",
+   "tags": [
+    "exterior",
+    "farm",
+    "garden",
+    "new",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    3.8,
+    3.5,
+    4.6
+   ],
+   "glb": "models/FM_Shed_01.glb",
+   "thumb": "thumbs/FM_Shed_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Shed_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Shed_Weathered_01"
+   ]
+  },
+  {
+   "id": "FM_Shed_Damaged_01",
+   "name": "Shed, wrecked",
+   "type": "building/farm/shed",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "garden",
+    "ruined",
+    "rural",
+    "storage"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 228,
+   "size": [
+    3.8,
+    3.5,
+    4.6
+   ],
+   "glb": "models/FM_Shed_Damaged_01.glb",
+   "thumb": "thumbs/FM_Shed_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Shed_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Shed_Weathered_Damaged_01"
+   ]
+  },
+  {
+   "id": "FM_Silo_01",
+   "name": "Silo",
+   "type": "building/farm/silo",
+   "tags": [
+    "exterior",
+    "farm",
+    "grain",
+    "metal",
+    "new",
+    "rural",
+    "tower"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 614,
+   "size": [
+    5.16,
+    15.4,
+    5.14
+   ],
+   "glb": "models/FM_Silo_01.glb",
+   "thumb": "thumbs/FM_Silo_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ],
+   "aliases": [
+    "FM_Silo_Metal_01"
+   ]
+  },
+  {
+   "id": "FM_Well_01",
+   "name": "Well",
+   "type": "building/farm/well",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "rural",
+    "stone",
+    "water"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 392,
+   "size": [
+    2.06,
+    2.417,
+    1.741
+   ],
+   "glb": "models/FM_Well_01.glb",
+   "thumb": "thumbs/FM_Well_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 90,
+     "hex": "#8A3A2E"
+    },
+    {
+     "part": "Rock",
+     "swatch": 53,
+     "hex": "#8A8A85"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    },
+    {
+     "part": "Navy",
+     "swatch": 20,
+     "hex": "#2B3A55"
+    }
+   ],
+   "aliases": [
+    "FM_Well_Stone_01"
+   ]
+  },
+  {
+   "id": "FM_Windmill_01",
+   "name": "Windmill",
+   "type": "building/farm/windmill",
+   "tags": [
+    "exterior",
+    "farm",
+    "new",
+    "pump",
+    "rural",
+    "tower",
+    "water",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 364,
+   "size": [
+    3.6,
+    11.682,
+    4.188
+   ],
+   "glb": "models/FM_Windmill_01.glb",
+   "thumb": "thumbs/FM_Windmill_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    }
+   ],
+   "aliases": [
+    "FM_Windmill_White_01"
+   ]
+  },
+  {
+   "id": "FM_Workshop_01",
+   "name": "Workshop",
+   "type": "building/farm/workshop",
+   "tags": [
+    "exterior",
+    "farm",
+    "garage",
+    "metal",
+    "new",
+    "rural",
+    "tools"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 252,
+   "size": [
+    13.0,
+    5.2,
+    11.301
+   ],
+   "glb": "models/FM_Workshop_01.glb",
+   "thumb": "thumbs/FM_Workshop_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Workshop_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Workshop_Metal_01"
+   ]
+  },
+  {
+   "id": "FM_Workshop_Damaged_01",
+   "name": "Workshop, wrecked",
+   "type": "building/farm/workshop",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "farm",
+    "garage",
+    "metal",
+    "ruined",
+    "rural",
+    "tools"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 240,
+   "size": [
+    13.0,
+    5.2,
+    11.301
+   ],
+   "glb": "models/FM_Workshop_Damaged_01.glb",
+   "thumb": "thumbs/FM_Workshop_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "FM_Workshop_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "FM_Workshop_Metal_Damaged_01"
+   ]
+  },
+  {
    "id": "GK_Door_Exterior_01",
    "name": "Exterior door",
    "type": "building/kit/door",
@@ -2543,6 +3215,414 @@
      "swatch": 6,
      "hex": "#E6E2D6"
     }
+   ]
+  },
+  {
+   "id": "GB_Diner_01",
+   "name": "Diner",
+   "type": "building/town/diner",
+   "tags": [
+    "cream",
+    "exterior",
+    "new",
+    "restaurant",
+    "retro",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 936,
+   "size": [
+    18.6,
+    7.4,
+    8.695
+   ],
+   "glb": "models/GB_Diner_01.glb",
+   "thumb": "thumbs/GB_Diner_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Diner_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 90,
+     "hex": "#8A3A2E"
+    },
+    {
+     "part": "Stucco",
+     "swatch": 93,
+     "hex": "#D9CDB5"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Glass",
+     "swatch": 41,
+     "hex": "#9FC8D8"
+    }
+   ],
+   "aliases": [
+    "GB_Diner_Cream_01"
+   ]
+  },
+  {
+   "id": "GB_Diner_Damaged_01",
+   "name": "Diner, wrecked",
+   "type": "building/town/diner",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "restaurant",
+    "retro",
+    "ruined",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 984,
+   "size": [
+    18.6,
+    7.4,
+    8.695
+   ],
+   "glb": "models/GB_Diner_Damaged_01.glb",
+   "thumb": "thumbs/GB_Diner_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Diner_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Wood grey",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_Diner_Cream_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_Garage_01",
+   "name": "Garage",
+   "type": "building/town/garage",
+   "tags": [
+    "car",
+    "exterior",
+    "new",
+    "suburban",
+    "town",
+    "white"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 360,
+   "size": [
+    7.2,
+    4.3,
+    6.8
+   ],
+   "glb": "models/GB_Garage_01.glb",
+   "thumb": "thumbs/GB_Garage_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Garage_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood dark",
+     "swatch": 1,
+     "hex": "#6B4A2E"
+    }
+   ],
+   "aliases": [
+    "GB_Garage_White_01"
+   ]
+  },
+  {
+   "id": "GB_Garage_Damaged_01",
+   "name": "Garage, wrecked",
+   "type": "building/town/garage",
+   "tags": [
+    "abandoned",
+    "car",
+    "damaged",
+    "exterior",
+    "ruined",
+    "suburban",
+    "town"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 312,
+   "size": [
+    7.2,
+    4.3,
+    6.8
+   ],
+   "glb": "models/GB_Garage_Damaged_01.glb",
+   "thumb": "thumbs/GB_Garage_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Garage_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_Garage_White_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_TownHouse_01",
+   "name": "Town house",
+   "type": "building/town/house",
+   "tags": [
+    "brick",
+    "exterior",
+    "new",
+    "town",
+    "two-storey",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 972,
+   "size": [
+    11.0,
+    6.65,
+    10.897
+   ],
+   "glb": "models/GB_TownHouse_01.glb",
+   "thumb": "thumbs/GB_TownHouse_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_TownHouse_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 67,
+     "hex": "#A8553F"
+    },
+    {
+     "part": "Shingle",
+     "swatch": 92,
+     "hex": "#5B5F66"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Wood light",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ],
+   "aliases": [
+    "GB_TownHouse_Brick_01"
+   ]
+  },
+  {
+   "id": "GB_TownHouse_Damaged_01",
+   "name": "Town house, wrecked",
+   "type": "building/town/house",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "ruined",
+    "town",
+    "two-storey",
+    "urban"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 936,
+   "size": [
+    11.0,
+    6.654,
+    10.7
+   ],
+   "glb": "models/GB_TownHouse_Damaged_01.glb",
+   "thumb": "thumbs/GB_TownHouse_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_TownHouse_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 47,
+     "hex": "#6B3A28"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    }
+   ],
+   "aliases": [
+    "GB_TownHouse_Brick_Damaged_01"
+   ]
+  },
+  {
+   "id": "GB_Trailer_01",
+   "name": "Mobile home",
+   "type": "building/town/trailer",
+   "tags": [
+    "beige",
+    "exterior",
+    "home",
+    "new",
+    "single-wide",
+    "trailer-park"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1048,
+   "size": [
+    17.7,
+    3.95,
+    5.25
+   ],
+   "glb": "models/GB_Trailer_01.glb",
+   "thumb": "thumbs/GB_Trailer_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Trailer_Damaged_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 0,
+     "hex": "#C9A06A"
+    },
+    {
+     "part": "Wallpaper",
+     "swatch": 60,
+     "hex": "#D9C9A8"
+    },
+    {
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Metal galv",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    }
+   ],
+   "aliases": [
+    "GB_Trailer_Beige_01"
+   ]
+  },
+  {
+   "id": "GB_Trailer_Damaged_01",
+   "name": "Mobile home, wrecked",
+   "type": "building/town/trailer",
+   "tags": [
+    "abandoned",
+    "damaged",
+    "exterior",
+    "home",
+    "ruined",
+    "single-wide",
+    "trailer-park"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 1060,
+   "size": [
+    17.7,
+    3.95,
+    5.25
+   ],
+   "glb": "models/GB_Trailer_Damaged_01.glb",
+   "thumb": "thumbs/GB_Trailer_Damaged_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GB_Trailer_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 38,
+     "hex": "#8B8578"
+    },
+    {
+     "part": "Concrete",
+     "swatch": 46,
+     "hex": "#9A9A94"
+    },
+    {
+     "part": "Rust",
+     "swatch": 4,
+     "hex": "#9A5A3A"
+    }
+   ],
+   "aliases": [
+    "GB_Trailer_Beige_Damaged_01"
    ]
   },
   {
@@ -14369,6 +15449,50 @@
    ]
   },
   {
+   "id": "GV_ShipLockers_01",
+   "name": "Ship lockers",
+   "type": "vehicles/ship-interior/lockers",
+   "tags": [
+    "alien",
+    "interior",
+    "locker",
+    "new",
+    "sci-fi",
+    "ship",
+    "wall"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 372,
+   "size": [
+    2.16,
+    2.1,
+    0.662
+   ],
+   "glb": "models/GV_ShipLockers_01.glb",
+   "thumb": "thumbs/GV_ShipLockers_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 84,
+     "hex": "#3A3F4A"
+    },
+    {
+     "part": "Alien grey",
+     "swatch": 43,
+     "hex": "#A9B5A4"
+    },
+    {
+     "part": "Metal dark",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
    "id": "GV_ShipMess_01",
    "name": "Mess table",
    "type": "vehicles/ship-interior/mess-table",
@@ -14601,50 +15725,6 @@
      "part": "Alien grey",
      "swatch": 43,
      "hex": "#A9B5A4"
-    }
-   ]
-  },
-  {
-   "id": "GV_ShipLockers_01",
-   "name": "Ship lockers",
-   "type": "vehicles/ship-interior/lockers",
-   "tags": [
-    "alien",
-    "interior",
-    "locker",
-    "new",
-    "sci-fi",
-    "ship",
-    "wall"
-   ],
-   "rigged": false,
-   "interactive": false,
-   "triangles": 372,
-   "size": [
-    2.16,
-    2.1,
-    0.662
-   ],
-   "glb": "models/GV_ShipLockers_01.glb",
-   "thumb": "thumbs/GV_ShipLockers_01.png",
-   "parts": {},
-   "clips": [],
-   "variants": [],
-   "paintable": [
-    {
-     "part": "Main",
-     "swatch": 84,
-     "hex": "#3A3F4A"
-    },
-    {
-     "part": "Alien grey",
-     "swatch": 43,
-     "hex": "#A9B5A4"
-    },
-    {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
     }
    ]
   },

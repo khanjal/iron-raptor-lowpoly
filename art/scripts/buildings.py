@@ -1,7 +1,7 @@
 """Buildings for the Farmstead and the towns (asset list FM-B1..B17, GK-): exterior shells in many materials and conditions.
 
 Run in Blender:  import runpy; runpy.run_path(r"<repo>/art/scripts/buildings.py", run_name="__main__")
-Optional globals: BUILDING_LIST (building names) and CONDITIONS (default New and Damaged). Exports
+Optional globals: BUILDING_LIST (building names), SKIN_LIST (only these skins) and CONDITIONS (default New and Damaged). Exports
 Assets/Art/<Farm|Global>/Buildings/<Building>/<name>.fbx, for example FM_Farmhouse_Brick_01.fbx and FM_Farmhouse_White_Damaged_01.fbx.
 
 Each building is written once with logical colours (@wall, @trim, @roof, @door, @floor, @base) and then built once per SKIN, which maps
@@ -214,9 +214,9 @@ def silo():
         p.loft_rings("@trim", [common.ring_z(z, 0, 0, 2.54, 2.54, n=n), common.ring_z(z + 0.12, 0, 0, 2.54, 2.54, n=n)])
     p.loft_rings("@roof", [common.ring_z(14.0, 0, 0, 2.5, 2.5, n=n), common.ring_z(14.7, 0, 0, 2.0, 2.0, n=n), common.ring_z(15.2, 0, 0, 1.0, 1.0, n=n), common.ring_z(15.4, 0, 0, 0.2, 0.2, n=n)])
     p.box("@door", (0, -2.55, 1.1), (1.0, 0.1, 2.0))
-    p.box("metal_dark", (2.6, 0.0, 7.0), (0.06, 0.5, 14.0))                             # the chute and ladder
+    p.box("metal_dark", (2.52, 0.0, 7.0), (0.06, 0.5, 14.0))                             # the chute and ladder
     for z in range(1, 14):
-        p.box("metal_dark", (2.65, 0, z), (0.1, 0.5, 0.05))
+        p.box("metal_dark", (2.57, 0, z), (0.1, 0.5, 0.05))
     return p
 
 
@@ -354,7 +354,7 @@ BUILDINGS = {
     "windmill": (windmill, "Farm", ["Weathered", "White", "Metal"], ["Weathered"]),
     "trailer": (trailer, "Global", ["Beige", "White", "Teal", "Yellow", "Green"], ["Beige", "White", "Teal", "Yellow", "Green"]),
     "garage": (garage, "Global", ["White", "Grey", "Brick", "Weathered"], ["Weathered", "White"]),
-    "town_house": (town_house, "Global", ["White", "Yellow", "Blue", "Brick", "Grey", "Cream"], ["White", "Grey"]),
+    "town_house": (town_house, "Global", ["White", "Yellow", "Blue", "Brick", "Grey", "Cream"], ["White", "Grey", "Brick"]),
     "diner": (diner, "Global", ["Cream", "White", "Teal"], ["Cream"]),
 }
 
@@ -362,12 +362,15 @@ BUILDINGS = {
 def run():
     names = globals().get("BUILDING_LIST") or list(BUILDINGS)
     conds = globals().get("CONDITIONS") or ["New", "Damaged"]
+    skin_only = globals().get("SKIN_LIST")
     y, count = 0.0, 0
     for key in names:
         fn, folder, new_skins, dmg_skins = BUILDINGS[key]
         x = 0.0
         for cond in conds:
             for skin in (new_skins if cond == "New" else dmg_skins):
+                if skin_only and skin not in skin_only:
+                    continue
                 theme = dict(SKINS[skin])
                 if cond == "Damaged":
                     theme = {**WRECK, **{k: WRECK.get(v, v) for k, v in theme.items()}}          # literal colours (glass, trim...) rot too
@@ -385,6 +388,7 @@ def run():
                 x += obj.dimensions.x + 6
                 count += 1
         y += 45.0
+    props_lib.write_interactions()                                                          # the outhouse door is a moving part
     print("buildings done", count)
 
 
