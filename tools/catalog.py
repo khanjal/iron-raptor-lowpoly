@@ -101,6 +101,7 @@ BUILD = {
     "hand_tools": dict(script="hand_tools.py", ids=['GT_Hammer_01', 'GT_Sledgehammer_01', 'GT_Axe_01', 'GT_HandSaw_01', 'GT_Wrench_01', 'GT_Screwdriver_01', 'GT_Pliers_01', 'GT_Hoe_01', 'GT_Spade_01', 'GT_WateringCan_01']),
     "tools_more": dict(script="tools_more.py", ids=['GT_Plunger_01', 'GT_RopeCoil_01', 'GT_Sawhorse_01', 'GT_PaintCan_01', 'GT_PruningShears_01', 'GT_FirePoker_01', 'GT_HoseCoil_01', 'GT_Sprinkler_01', 'GT_CordReel_01', 'GT_HandTruck_01']),
     "tools_extra": dict(script="tools_extra.py", ids=['GT_Mallet_01', 'GT_ClothesIron_01', 'GT_BathroomScale_01', 'GT_CordlessDrill_01', 'GT_BenchVise_01', 'GT_SnowShovel_01', 'GT_CarBattery_01', 'GT_BootScraper_01', 'GT_ToiletBrush_01', 'GT_WorkLight_01']),
+    "farm_props2": dict(script="props_farm.py", globals={"PROP_LIST": ['rake', 'shovel', 'pitchfork', 'crate', 'milk_can', 'hay_square', 'jerrycan', 'feed_sack', 'stool', 'firewood', 'firewood_triangle', 'firewood_small', 'firewood_loose', 'chopping_block', 'fence', 'gate', 'mailbox', 'bare_bulb', 'pole_lamp', 'phone', 'utility_pole', 'utility_pole_corner', 'utility_pole_transformer', 'service_entry', 'floodlight_stand', 'generator', 'trough']}, ids=['GT_Rake_01', 'GT_Shovel_01', 'GT_Pitchfork_01', 'GT_Crate_01', 'GT_MilkCan_01', 'GT_HayBale_Square_01', 'GT_Jerrycan_01', 'GT_FeedSack_01', 'GT_Stool_01', 'GT_FirewoodStack_01', 'GT_FirewoodStack_Triangle_01', 'GT_FirewoodStack_Small_01', 'GT_FirewoodPile_Loose_01', 'GT_ChoppingBlock_01', 'GI_FenceSection_01', 'GI_Gate_01', 'GT_MailboxPost_01', 'GL_BareBulb_01', 'GL_PoleLamp_01', 'GE_LandlinePhone_01', 'GL_UtilityPole_01', 'GL_UtilityPoleCorner_01', 'GL_UtilityPoleTransformer_01', 'GL_ServiceEntry_01', 'GL_FloodlightStand_01', 'FM_Generator_01', 'FM_WaterTrough_01']),
     "bld_farmhouse": dict(script="buildings.py", globals={"BUILDING_LIST": ["farmhouse"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
                       ids=["FM_Farmhouse_White_01", "FM_Farmhouse_White_Damaged_01"]),
     "bld_barn": dict(script="buildings.py", globals={"BUILDING_LIST": ["barn"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New", "Damaged"]},
@@ -488,6 +489,33 @@ _a("FD_TVDinner_01", "TV dinner", "food/prepared/tv-dinner", "frozen meal tray f
 _a("GT_Barrel_01", "Barrel", "farm/props/barrel", "rural wood container new")
 _a("GT_Wheelbarrow_01", "Wheelbarrow", "farm/tools/wheelbarrow", "rural tool new")
 _a("GT_HayBale_Round_01", "Round hay bale", "farm/props/hay-bale", "rural hay yellow new")
+_a("GT_Rake_01", "Rake", "tools/garden/rake", "rake garden steel wood new farm rural")
+_a("GT_Shovel_01", "Shovel", "tools/garden/shovel", "shovel garden steel wood new farm rural")
+_a("GT_Pitchfork_01", "Pitchfork", "tools/garden/pitchfork", "pitchfork hay steel wood new farm rural")
+_a("GT_Crate_01", "Wooden crate", "farm/props/crate", "crate wood storage new farm rural")
+_a("GT_MilkCan_01", "Milk can", "farm/props/milk-can", "milk can metal dairy new farm rural")
+_a("GT_HayBale_Square_01", "Square hay bale", "farm/props/hay-bale-square", "hay bale square yellow new farm rural")
+_a("GT_Jerrycan_01", "Jerrycan", "farm/props/jerrycan", "jerrycan fuel red metal new farm garage")
+_a("GT_FeedSack_01", "Feed sack", "farm/props/feed-sack", "feed sack grain tan new farm rural")
+_a("GT_Stool_01", "Stool", "farm/props/stool", "stool wood three-legged new farm rural")
+_a("GT_FirewoodStack_01", "Firewood stack", "farm/props/firewood-stack", "firewood stack wood new farm cabin")
+_a("GT_FirewoodStack_Triangle_01", "Firewood stack, triangular", "farm/props/firewood-stack-triangle", "firewood stack wood new farm cabin")
+_a("GT_FirewoodStack_Small_01", "Firewood stack, small", "farm/props/firewood-stack-small", "firewood stack wood small new farm cabin")
+_a("GT_FirewoodPile_Loose_01", "Firewood, loose pile", "farm/props/firewood-pile", "firewood pile wood loose new farm cabin")
+_a("GT_ChoppingBlock_01", "Chopping block", "farm/props/chopping-block", "chopping block stump wood new farm cabin")
+_a("GI_FenceSection_01", "Fence section", "farm/structures/fence-section", "fence section wood white new farm rural")
+_a("GI_Gate_01", "Gate", "farm/structures/gate", "gate fence wood white new farm rural")
+_a("GT_MailboxPost_01", "Mailbox on a post", "farm/structures/mailbox-post", "mailbox post metal new farm rural suburban")
+_a("GL_BareBulb_01", "Bare bulb", "fixtures/outdoor/bare-bulb", "bulb light lamp barn shed new farm")
+_a("GL_PoleLamp_01", "Pole lamp", "fixtures/outdoor/pole-lamp", "lamp pole light street yard new rural")
+_a("GE_LandlinePhone_01", "Landline phone", "decor/electronics/landline-phone", "phone landline telephone wall kitchen new")
+_a("GL_UtilityPole_01", "Utility pole", "fixtures/utilities/utility-pole", "utility pole power wood new rural")
+_a("GL_UtilityPoleCorner_01", "Utility pole, corner", "fixtures/utilities/utility-pole-corner", "utility pole corner power wood new rural")
+_a("GL_UtilityPoleTransformer_01", "Utility pole with transformer", "fixtures/utilities/utility-pole-transformer", "utility pole transformer power wood new rural")
+_a("GL_ServiceEntry_01", "Electric service entry", "fixtures/utilities/service-entry", "service entry meter power electric new farm house")
+_a("GL_FloodlightStand_01", "Floodlight stand", "fixtures/outdoor/floodlight-stand", "floodlight tripod light fbi new outdoor")
+_a("FM_Generator_01", "Generator", "farm/props/generator", "generator power engine metal new farm rural")
+_a("FM_WaterTrough_01", "Water trough", "farm/props/water-trough", "trough water animal metal new farm rural")
 _a("GT_Hammer_01", "Claw hammer", "tools/hand/hammer", "hammer claw steel wood new workshop garage")
 _a("GT_Sledgehammer_01", "Sledgehammer", "tools/hand/sledgehammer", "sledgehammer maul steel wood new workshop farm")
 _a("GT_Axe_01", "Axe", "tools/hand/axe", "axe felling steel wood new woodshed cabin")
