@@ -21,7 +21,7 @@ def site_id(generator_id):
 
 # ===== How to build ==============================================================================================
 # kind "static": run the art script `script` with `globals`, keep the models in `ids`.
-# kind "people" / "animals": one model at a time, then its clips; the dict maps the art script's key to the model id.
+# kind "people" / "animals" / "critters": one model at a time, then its clips; the dict maps the art script's key to the model id.
 BUILD = {
     "cars_sedan": dict(script="cars.py", globals={"CAR_LIST": ["Sedan"], "VARIANT_LIST": ["Blue", "Red"]},
                        ids=["GV_Sedan_Blue_01", "GV_Sedan_Red_Damaged_01"]),
@@ -57,7 +57,11 @@ BUILD = {
                 ids=["GK_Wall_Window_Brick_01", "GK_Wall_Window_Barn_01"]),
     "kit_door": dict(script="kit.py", globals={"KIT_LIST": ["Door_Exterior"]}, ids=["GK_Door_Exterior_01"]),
     "veg": dict(script="vegetation.py", globals={"VEG_LIST": ["oak", "pine"]}, ids=["FM_TreeOak_01", "FM_TreePine_01"]),
-    "insects": dict(script="insects.py", globals={}, ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
+    "insects": dict(kind="critters", clips=["Idle"],      # the clips come from art/scripts/insect_anim.py: Fly, Walk or Hop as well, by what the insect does
+                    critters={"Ladybug": "GN_Ladybug_01", "Beetle": "GN_Beetle_01", "Firefly": "GN_Firefly_01", "Honeybee": "GN_Honeybee_01", "Butterfly_Blue": "GN_Butterfly_Blue_01",
+                              "Moth": "GN_Moth_01", "Dragonfly": "GN_Dragonfly_01", "Ant": "GN_Ant_01", "Grasshopper": "GN_Grasshopper_01", "Caterpillar": "GN_Caterpillar_01",
+                              "Spider": "GN_Spider_01"},
+                    ids=['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01']),
     "sports_balls": dict(script="sports.py", globals={"SPORT_LIST": ["balls"]}, ids=['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']),
     "sports_nets": dict(script="sports.py", globals={"SPORT_LIST": ["nets"]}, ids=['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']),
     "sports_gear": dict(script="sports.py", globals={"SPORT_LIST": ["gear"]}, ids=['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']),
@@ -130,7 +134,7 @@ _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bi
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
 _a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby")
-# insects (not rigged: resting poses, real size in millimetres)
+# insects (rigged for the browser: wings, legs and antennae move; real size in millimetres)
 _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
 _a("GN_Firefly_01", "Firefly", "animals/insect/firefly", "wild night insect bug glow lightning-bug tiny")

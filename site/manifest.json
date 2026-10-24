@@ -85,7 +85,7 @@
     "eight-legs",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 364,
    "size": [
@@ -96,7 +96,10 @@
    "glb": "models/GN_Spider_01.glb",
    "thumb": "thumbs/GN_Spider_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -254,7 +257,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 300,
    "size": [
@@ -265,7 +268,10 @@
    "glb": "models/GN_Ant_01.glb",
    "thumb": "thumbs/GN_Ant_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -295,7 +301,7 @@
     "wild",
     "yellow"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 428,
    "size": [
@@ -306,7 +312,10 @@
    "glb": "models/GN_Honeybee_01.glb",
    "thumb": "thumbs/GN_Honeybee_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -333,7 +342,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 372,
    "size": [
@@ -344,7 +353,10 @@
    "glb": "models/GN_Beetle_01.glb",
    "thumb": "thumbs/GN_Beetle_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -377,7 +389,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 468,
    "size": [
@@ -388,7 +400,10 @@
    "glb": "models/GN_Butterfly_01.glb",
    "thumb": "thumbs/GN_Butterfly_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -428,7 +443,7 @@
     "larva",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 508,
    "size": [
@@ -439,7 +454,10 @@
    "glb": "models/GN_Caterpillar_01.glb",
    "thumb": "thumbs/GN_Caterpillar_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -476,7 +494,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 564,
    "size": [
@@ -487,7 +505,10 @@
    "glb": "models/GN_Dragonfly_01.glb",
    "thumb": "thumbs/GN_Dragonfly_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -525,7 +546,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 332,
    "size": [
@@ -536,7 +557,10 @@
    "glb": "models/GN_Firefly_01.glb",
    "thumb": "thumbs/GN_Firefly_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -569,7 +593,7 @@
     "rural",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 408,
    "size": [
@@ -580,7 +604,10 @@
    "glb": "models/GN_Grasshopper_01.glb",
    "thumb": "thumbs/GN_Grasshopper_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Hop"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -618,7 +645,7 @@
     "tiny",
     "wild"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 464,
    "size": [
@@ -629,7 +656,10 @@
    "glb": "models/GN_Ladybug_01.glb",
    "thumb": "thumbs/GN_Ladybug_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
    "variants": [],
    "paintable": [
     {
@@ -656,7 +686,7 @@
     "wild",
     "wings"
    ],
-   "rigged": false,
+   "rigged": true,
    "interactive": false,
    "triangles": 336,
    "size": [
@@ -667,7 +697,10 @@
    "glb": "models/GN_Moth_01.glb",
    "thumb": "thumbs/GN_Moth_01.png",
    "parts": {},
-   "clips": [],
+   "clips": [
+    "Idle",
+    "Fly"
+   ],
    "variants": [],
    "paintable": [
     {

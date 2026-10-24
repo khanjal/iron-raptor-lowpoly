@@ -9,7 +9,7 @@ into site/models/ and a small JSON of facts about it into out/meta/ (tools/make_
 what it built.
 
 The Blender file may be shared with other work, so a build never touches what it did not make: the static groups are built with a name prefix
-(common.configure(prefix=...)) that no other collection, object or mesh has, and deleted again by that prefix; the rigged groups (animals, people)
+(common.configure(prefix=...)) that no other collection, object or mesh has, and deleted again by that prefix; the rigged groups (animals, people, insects)
 are built under their own names, which nothing else in the file uses, and only those collections are removed. The scene's fps and frame range, the
 selection and the active object are put back.
 """
@@ -181,11 +181,33 @@ def build_animals(g):
     return done
 
 
+def build_critters(g):
+    """The insects: insect_anim.py rigs each one from the moving pieces insects.py marks and keys its clips; one model at a time under the build prefix."""
+    import insect_anim
+    importlib.reload(insect_anim)
+    done = []
+    for key, aid in g["critters"].items():
+        if ONLY and key not in ONLY:
+            continue
+        common.configure(reset=True, out=str(ROOT / "out"), glb=str(MODELS), formats="glb", only={aid}, prefix=PREFIX)
+        try:
+            with SceneGuard():
+                mesh, rig, coll, clips = insect_anim.build_rigged(key)
+                insect_anim.key_clips(rig, clips)
+                common.export_glb(coll, aid)
+                purge_collection(coll)
+        finally:
+            purge_prefix(PREFIX)
+            common.configure(reset=True)
+        done.append(aid)
+    return done
+
+
 if __name__ == "__main__":
     wanted = globals().get("GROUPS") or list(catalog.BUILD)
     for name in wanted:
         g = catalog.BUILD[name]
         kind = g.get("kind", "static")
-        ids = {"static": build_static, "people": build_people, "animals": build_animals}[kind](g)
+        ids = {"static": build_static, "people": build_people, "animals": build_animals, "critters": build_critters}[kind](g)
         ids = rename_glb.rename_group(ids, catalog.SITE_IDS)         # the generator's name -> the browser's id
         print("built", name, len(ids), "models")

@@ -359,10 +359,13 @@ def wheel(p, colour_tyre, colour_hub, x, y, z, radius, width, n=10):
 
 def rod(p, colour, a, b, w=0.06, h=None):
     """A beam between two points a and b (its ends sit exactly on them), w wide and h deep (h defaults to w)."""
-    from math import degrees
+    from math import degrees, pi
     a, b = Vector(a), Vector(b)
     d = b - a
-    e = Vector((0.0, 1.0, 0.0)).rotation_difference(d.normalized()).to_euler("XYZ")
+    if d.normalized().dot(Vector((0.0, 1.0, 0.0))) < -0.9999:                 # straight back along -Y: the quaternion's axis is arbitrary, so turn about X
+        e = Euler((pi, 0.0, 0.0))
+    else:
+        e = Vector((0.0, 1.0, 0.0)).rotation_difference(d.normalized()).to_euler("XYZ")
     p.box(colour, tuple((a + b) / 2), (w, d.length, h or w), rot=(degrees(e.x), degrees(e.y), degrees(e.z)))
 
 
