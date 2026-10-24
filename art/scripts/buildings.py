@@ -354,7 +354,7 @@ BUILDINGS = {
     "windmill": (windmill, "Farm", ["Weathered", "White", "Metal"], ["Weathered"]),
     "trailer": (trailer, "Global", ["Beige", "White", "Teal", "Yellow", "Green"], ["Beige", "White", "Teal", "Yellow", "Green"]),
     "garage": (garage, "Global", ["White", "Grey", "Brick", "Weathered"], ["Weathered", "White"]),
-    "town_house": (town_house, "Global", ["White", "Yellow", "Blue", "Brick", "Grey", "Cream"], ["White", "Grey"]),
+    "town_house": (town_house, "Global", ["White", "Yellow", "Blue", "Brick", "Grey", "Cream"], ["White", "Grey", "Brick"]),
     "diner": (diner, "Global", ["Cream", "White", "Teal"], ["Cream"]),
 }
 

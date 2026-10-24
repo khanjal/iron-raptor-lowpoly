@@ -28,7 +28,7 @@ SITE_IDS = {
     "GB_Garage_White_01": "GB_Garage_01",
     "GB_Garage_White_Damaged_01": "GB_Garage_Damaged_01",
     "GB_TownHouse_Brick_01": "GB_TownHouse_01",
-    "GB_TownHouse_White_Damaged_01": "GB_TownHouse_Damaged_01",
+    "GB_TownHouse_Brick_Damaged_01": "GB_TownHouse_Damaged_01",
     "GB_Diner_Cream_01": "GB_Diner_01",
     "GB_Diner_Cream_Damaged_01": "GB_Diner_Damaged_01",
 }
@@ -96,8 +96,8 @@ BUILD = {
                       ids=["GB_Trailer_Beige_01", "GB_Trailer_Beige_Damaged_01"]),
     "bld_garage": dict(script="buildings.py", globals={"BUILDING_LIST": ["garage"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
                       ids=["GB_Garage_White_01", "GB_Garage_White_Damaged_01"]),
-    "bld_town_house": dict(script="buildings.py", globals={"BUILDING_LIST": ["town_house"], "SKIN_LIST": ["Brick", "White"], "CONDITIONS": ["New", "Damaged"]},
-                      ids=["GB_TownHouse_Brick_01", "GB_TownHouse_White_Damaged_01"]),
+    "bld_town_house": dict(script="buildings.py", globals={"BUILDING_LIST": ["town_house"], "SKIN_LIST": ["Brick"], "CONDITIONS": ["New", "Damaged"]},
+                      ids=["GB_TownHouse_Brick_01", "GB_TownHouse_Brick_Damaged_01"]),
     "bld_diner": dict(script="buildings.py", globals={"BUILDING_LIST": ["diner"], "SKIN_LIST": ["Cream"], "CONDITIONS": ["New", "Damaged"]},
                       ids=["GB_Diner_Cream_01", "GB_Diner_Cream_Damaged_01"]),
     "kit": dict(script="kit.py", globals={"KIT_LIST": ["Wall_Window"], "SKIN_LIST": ["Brick", "Clapboard", "Barn"]},
@@ -308,26 +308,26 @@ _a("FM_Scarecrow_01", "Scarecrow", "farm/props/scarecrow", "rural field straw we
 _a("FM_DogHouse_01", "Doghouse", "farm/structures/doghouse", "rural wood new")
 # buildings (art/scripts/buildings.py): one skin each, the others are paints; the New / Damaged pairs are variants of each other
 _a("FM_Farmhouse_01", "Farmhouse", "building/farm/farmhouse", "rural farm house two-storey porch white siding exterior new", "farmhouse")
-_a("FM_Farmhouse_Damaged_01", "Farmhouse, wrecked", "building/farm/farmhouse", "rural farm house two-storey porch white siding exterior damaged abandoned ruined", "farmhouse")
+_a("FM_Farmhouse_Damaged_01", "Farmhouse, wrecked", "building/farm/farmhouse", "rural farm house two-storey porch exterior damaged abandoned ruined", "farmhouse")
 _a("FM_Barn_01", "Barn", "building/farm/barn", "rural farm red hayloft livestock storage exterior new", "barn")
-_a("FM_Barn_Damaged_01", "Barn, wrecked", "building/farm/barn", "rural farm red hayloft livestock storage exterior damaged abandoned ruined", "barn")
+_a("FM_Barn_Damaged_01", "Barn, wrecked", "building/farm/barn", "rural farm hayloft livestock storage exterior damaged abandoned ruined", "barn")
 _a("FM_Workshop_01", "Workshop", "building/farm/workshop", "rural farm garage metal tools exterior new", "workshop")
 _a("FM_Workshop_Damaged_01", "Workshop, wrecked", "building/farm/workshop", "rural farm garage metal tools exterior damaged abandoned ruined", "workshop")
 _a("FM_Shed_01", "Shed", "building/farm/shed", "rural farm garden storage weathered exterior new", "shed")
-_a("FM_Shed_Damaged_01", "Shed, wrecked", "building/farm/shed", "rural farm garden storage weathered exterior damaged abandoned ruined", "shed")
+_a("FM_Shed_Damaged_01", "Shed, wrecked", "building/farm/shed", "rural farm garden storage exterior damaged abandoned ruined", "shed")
 _a("FM_ChickenCoop_01", "Chicken coop", "building/farm/coop", "rural farm livestock chickens red exterior new")
 _a("FM_Outhouse_01", "Outhouse", "building/farm/outhouse", "rural farm toilet weathered wood exterior new")
 _a("FM_Well_01", "Well", "building/farm/well", "rural farm water stone exterior new")
 _a("FM_Silo_01", "Silo", "building/farm/silo", "rural farm grain tower metal exterior new")
 _a("FM_Windmill_01", "Windmill", "building/farm/windmill", "rural farm water pump tower white exterior new")
 _a("GB_Trailer_01", "Mobile home", "building/town/trailer", "trailer-park home single-wide beige exterior new", "trailer")
-_a("GB_Trailer_Damaged_01", "Mobile home, wrecked", "building/town/trailer", "trailer-park home single-wide beige exterior damaged abandoned ruined", "trailer")
+_a("GB_Trailer_Damaged_01", "Mobile home, wrecked", "building/town/trailer", "trailer-park home single-wide exterior damaged abandoned ruined", "trailer")
 _a("GB_Garage_01", "Garage", "building/town/garage", "suburban town car white exterior new", "garage")
-_a("GB_Garage_Damaged_01", "Garage, wrecked", "building/town/garage", "suburban town car white exterior damaged abandoned ruined", "garage")
+_a("GB_Garage_Damaged_01", "Garage, wrecked", "building/town/garage", "suburban town car exterior damaged abandoned ruined", "garage")
 _a("GB_TownHouse_01", "Town house", "building/town/house", "urban town brick two-storey exterior new", "town-house")
-_a("GB_TownHouse_Damaged_01", "Town house, wrecked", "building/town/house", "urban town brick two-storey exterior damaged abandoned ruined", "town-house")
+_a("GB_TownHouse_Damaged_01", "Town house, wrecked", "building/town/house", "urban town two-storey exterior damaged abandoned ruined", "town-house")
 _a("GB_Diner_01", "Diner", "building/town/diner", "retro town restaurant cream exterior new", "diner")
-_a("GB_Diner_Damaged_01", "Diner, wrecked", "building/town/diner", "retro town restaurant cream exterior damaged abandoned ruined", "diner")
+_a("GB_Diner_Damaged_01", "Diner, wrecked", "building/town/diner", "retro town restaurant exterior damaged abandoned ruined", "diner")
 # building kit and nature
 _a("GK_Wall_Window_Brick_01", "Window wall, brick", "building/kit/wall-window", "urban brick red new modular", "wall-window")
 _a("GK_Wall_Window_Barn_01", "Window wall, siding", "building/kit/wall-window", "rural barn red new modular", "wall-window")

@@ -600,14 +600,14 @@
      "hex": "#8DB752"
     },
     {
-     "part": "Paint yellow",
-     "swatch": 42,
-     "hex": "#E0B83A"
-    },
-    {
      "part": "Cloth red",
      "swatch": 13,
      "hex": "#B8443B"
+    },
+    {
+     "part": "Paint yellow",
+     "swatch": 42,
+     "hex": "#E0B83A"
     }
    ]
   },
@@ -1842,7 +1842,6 @@
     "farm",
     "hayloft",
     "livestock",
-    "red",
     "ruined",
     "rural",
     "storage"
@@ -2014,9 +2013,7 @@
     "porch",
     "ruined",
     "rural",
-    "siding",
-    "two-storey",
-    "white"
+    "two-storey"
    ],
    "rigged": false,
    "interactive": false,
@@ -2184,8 +2181,7 @@
     "garden",
     "ruined",
     "rural",
-    "storage",
-    "weathered"
+    "storage"
    ],
    "rigged": false,
    "interactive": false,
@@ -2240,7 +2236,7 @@
    "interactive": false,
    "triangles": 614,
    "size": [
-    5.24,
+    5.16,
     15.4,
     5.14
    ],
@@ -2649,7 +2645,6 @@
    "type": "building/town/diner",
    "tags": [
     "abandoned",
-    "cream",
     "damaged",
     "exterior",
     "restaurant",
@@ -2757,8 +2752,7 @@
     "exterior",
     "ruined",
     "suburban",
-    "town",
-    "white"
+    "town"
    ],
    "rigged": false,
    "interactive": false,
@@ -2855,7 +2849,6 @@
    "type": "building/town/house",
    "tags": [
     "abandoned",
-    "brick",
     "damaged",
     "exterior",
     "ruined",
@@ -2865,11 +2858,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 984,
+   "triangles": 936,
    "size": [
     11.0,
     6.654,
-    10.897
+    10.7
    ],
    "glb": "models/GB_TownHouse_Damaged_01.glb",
    "thumb": "thumbs/GB_TownHouse_Damaged_01.png",
@@ -2888,15 +2881,10 @@
      "part": "Concrete",
      "swatch": 46,
      "hex": "#9A9A94"
-    },
-    {
-     "part": "Wood grey",
-     "swatch": 38,
-     "hex": "#8B8578"
     }
    ],
    "aliases": [
-    "GB_TownHouse_White_Damaged_01"
+    "GB_TownHouse_Brick_Damaged_01"
    ]
   },
   {
@@ -2958,7 +2946,6 @@
    "type": "building/town/trailer",
    "tags": [
     "abandoned",
-    "beige",
     "damaged",
     "exterior",
     "home",
@@ -7462,7 +7449,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Pickup_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -7492,22 +7478,20 @@
    ],
    "aliases": [
     "GV_Pickup_Blue_01"
-   ]
+   ],
+   "interactions": "models/GV_Pickup_01.interactions.json"
   },
   {
    "id": "GV_Tractor_01",
    "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
-    "blue",
     "farm",
     "green",
     "machine",
     "new",
-    "orange",
     "red",
-    "rural",
-    "yellow"
+    "rural"
    ],
    "rigged": false,
    "interactive": true,
@@ -7613,7 +7597,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Tractor_01.interactions.json",
    "paintable": [
     {
      "part": "Body",
@@ -7659,7 +7642,8 @@
    ],
    "aliases": [
     "GV_Tractor_Green_01"
-   ]
+   ],
+   "interactions": "models/GV_Tractor_01.interactions.json"
   },
   {
    "id": "GV_Ambulance_White_01",
@@ -7823,7 +7807,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Ambulance_White_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -7831,26 +7814,27 @@
      "hex": "#E6E2D6"
     },
     {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
-    },
-    {
      "part": "Cloth red",
      "swatch": 13,
      "hex": "#B8443B"
     },
     {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     },
     {
      "part": "Metal galv",
      "swatch": 2,
      "hex": "#A9B4BC"
+    },
+    {
+     "part": "Rubber",
+     "swatch": 15,
+     "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Ambulance_White_01.interactions.json"
   },
   {
    "id": "GV_Motorcycle_01",
@@ -7907,7 +7891,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Motorcycle_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -7937,7 +7920,8 @@
    ],
    "aliases": [
     "GV_Motorcycle_Red_01"
-   ]
+   ],
+   "interactions": "models/GV_Motorcycle_01.interactions.json"
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -8117,12 +8101,11 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Police_Sheriff_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
-     "swatch": 7,
-     "hex": "#1B1B1E"
+     "swatch": 21,
+     "hex": "#B79A6A"
     },
     {
      "part": "Paint white",
@@ -8130,9 +8113,9 @@
      "hex": "#E6E2D6"
     },
     {
-     "part": "Tan uniform",
-     "swatch": 21,
-     "hex": "#B79A6A"
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     },
     {
      "part": "Metal galv",
@@ -8144,26 +8127,22 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Police_Sheriff_01.interactions.json"
   },
   {
    "id": "GV_Sedan_01",
    "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
-    "black",
     "blue",
     "car",
     "civilian",
-    "green",
-    "grey",
     "modern",
     "new",
     "red",
     "suburban",
-    "tan",
-    "urban",
-    "white"
+    "urban"
    ],
    "rigged": false,
    "interactive": true,
@@ -8331,7 +8310,6 @@
    "variants": [
     "GV_Sedan_Damaged_01"
    ],
-   "interactions": "models/GV_Sedan_01.interactions.json",
    "paintable": [
     {
      "part": "Body",
@@ -8391,7 +8369,8 @@
    ],
    "aliases": [
     "GV_Sedan_Blue_01"
-   ]
+   ],
+   "interactions": "models/GV_Sedan_01.interactions.json"
   },
   {
    "id": "GV_Sedan_Damaged_01",
@@ -8573,7 +8552,6 @@
    "variants": [
     "GV_Sedan_01"
    ],
-   "interactions": "models/GV_Sedan_Damaged_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -8598,7 +8576,8 @@
    ],
    "aliases": [
     "GV_Sedan_Red_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GV_Sedan_Damaged_01.interactions.json"
   },
   {
    "id": "GV_Taxi_Yellow_01",
@@ -8777,7 +8756,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Taxi_Yellow_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -8799,7 +8777,8 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Taxi_Yellow_01.interactions.json"
   },
   {
    "id": "GV_Van_01",
@@ -8962,7 +8941,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Van_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -8975,9 +8953,9 @@
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal dark",
-     "swatch": 3,
-     "hex": "#4A525A"
+     "part": "Paint white",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     },
     {
      "part": "Metal galv",
@@ -8992,7 +8970,8 @@
    ],
    "aliases": [
     "GV_Van_Brown_01"
-   ]
+   ],
+   "interactions": "models/GV_Van_01.interactions.json"
   },
   {
    "id": "SH_Dart_01",
