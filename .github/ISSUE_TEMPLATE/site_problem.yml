@@ -20,7 +20,7 @@ body:
     attributes:
       label: The address you were on
       description: Copy it from the address bar; it includes the model and filters.
-      placeholder: "https://khanjal.github.io/lowpoly-assets/#GV_Sedan_Blue_01"
+      placeholder: "https://khanjal.github.io/lowpoly-assets/#GV_Sedan_01"
 
   - type: input
     id: browser

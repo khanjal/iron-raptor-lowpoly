@@ -13,8 +13,8 @@ body:
     id: model
     attributes:
       label: Which model
-      description: The id shown in the asset browser (the name in the address after `#`, for example `GV_Sedan_Blue_01`), or a link to it.
-      placeholder: "GV_Sedan_Blue_01"
+      description: The id shown in the asset browser (the name in the address after `#`, for example `GV_Sedan_01`), or a link to it.
+      placeholder: "GV_Sedan_01"
     validations:
       required: true
 
