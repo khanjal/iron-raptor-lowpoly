@@ -1007,8 +1007,8 @@
    "triangles": 216,
    "size": [
     0.42,
-    0.271,
-    0.447
+    0.297,
+    0.4
    ],
    "glb": "models/GO_Printer_Desktop_01.glb",
    "thumb": "thumbs/GO_Printer_Desktop_01.png",
@@ -1061,10 +1061,10 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 180,
+   "triangles": 192,
    "size": [
     0.4,
-    0.604,
+    0.71,
     0.315
    ],
    "glb": "models/GO_Shredder_01.glb",
@@ -1079,7 +1079,7 @@
      ],
      "pivot": [
       0.0,
-      0.22,
+      0.25,
       0.13
      ],
      "limit": -0.2,
@@ -2479,10 +2479,10 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 156,
+   "triangles": 176,
    "size": [
     0.316,
-    0.38,
+    0.365,
     0.316
    ],
    "glb": "models/GO_Wastebasket_01.glb",
