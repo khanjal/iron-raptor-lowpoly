@@ -114,7 +114,7 @@
   },
   {
    "id": "SH_HullShard_A_01",
-   "name": "Hull shard, large",
+   "name": "Hull shard, flat",
    "type": "alien/debris/hull-shard",
    "tags": [
     "alien",
@@ -139,9 +139,7 @@
    "thumb": "thumbs/SH_HullShard_A_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "SH_HullShard_B_01"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -162,8 +160,8 @@
   },
   {
    "id": "SH_HullShard_B_01",
-   "name": "Hull shard, small",
-   "type": "alien/debris/hull-shard",
+   "name": "Hull shard, upright",
+   "type": "alien/debris/hull-shard-upright",
    "tags": [
     "alien",
     "broken",
@@ -187,9 +185,7 @@
    "thumb": "thumbs/SH_HullShard_B_01.png",
    "parts": {},
    "clips": [],
-   "variants": [
-    "SH_HullShard_A_01"
-   ],
+   "variants": [],
    "paintable": [
     {
      "part": "Main",
@@ -2193,11 +2189,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 300,
+   "triangles": 368,
    "size": [
     0.006,
     0.004,
-    0.011
+    0.014
    ],
    "glb": "models/GN_Ant_01.glb",
    "thumb": "thumbs/GN_Ant_01.png",
@@ -2379,11 +2375,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 508,
+   "triangles": 804,
    "size": [
+    0.005,
     0.006,
-    0.008,
-    0.033
+    0.036
    ],
    "glb": "models/GN_Caterpillar_01.glb",
    "thumb": "thumbs/GN_Caterpillar_01.png",
