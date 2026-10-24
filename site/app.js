@@ -351,7 +351,7 @@ function setupLook(a) {
   }
   $('v-theme-list').replaceChildren(...themeChips.values());
   $('v-paint-list').replaceChildren(...paintChips.values());
-  $('v-paint-parts').replaceChildren(...parts.map((part) => el('label', { class: 'paint-part' }, el('span', { text: parts.length > 1 ? part.part : 'Any colour' }), inputs.get(part.swatch))));
+  $('v-paint-parts').replaceChildren(...parts.map((part) => el('label', { class: 'paint-part' }, el('span', { text: part.part }), inputs.get(part.swatch))));
   chooseTheme(themes.some((t) => t.name === state.wantTheme) ? state.wantTheme : '');
   if (paints.length) choosePaint(paints.find((p) => p.name === state.wantPaint) || paints[0]);
   state.wantPaint = state.wantTheme = null;
