@@ -45,11 +45,11 @@ def piece(name):
 def hammer():
     """A 16 oz claw hammer lying on its side: 0.28 m hickory handle along X, the head across it, a round face to +Y and a long claw to -Y."""
     p = Prop("GT_Hammer_01")
-    p.ox = -0.01
+    p.ox = 0.026
     p.cyl("wood_light", (-0.04, 0, HEX * 0.014), 0.014, 0.28, n=6, axis="x")        # handle
     p.cyl("rubber", (-0.1, 0, HEX * 0.0165), 0.0165, 0.12, n=6, axis="x")           # grip
     p.box("metal_dark", (0.11, 0, 0.017), (0.036, 0.04, 0.034))                    # eye block, the handle passes through it
-    p.cyl("metal_galv", (0.11, 0.045, 0.0166), 0.018, 0.03, n=8, axis="y")         # the striking face, to +Y
+    p.cyl("metal_galv", (0.11, 0.035, 0.018), 0.018, 0.03, n=8, axis="y")         # the striking face, to +Y
     p.box("metal_dark", (0.11, -0.04, 0.0125), (0.03, 0.06, 0.025))                # claw, to -Y
     p.box("metal_dark", (0.11, -0.082, 0.009), (0.02, 0.03, 0.018))                # claw tip, lower
     return p
@@ -57,9 +57,9 @@ def hammer():
 
 @piece("Sledgehammer")
 def sledgehammer():
-    """A sledge of about 6 lb (a 0.16 m head with 0.06 m square faces) on a 0.9 m handle; the head runs across the handle."""
+    """A sledge of about 8 lb (a 0.16 m head with 0.06 m square faces) on a 0.9 m handle; the head runs across the handle."""
     p = Prop("GT_Sledgehammer_01")
-    p.ox = -0.02
+    p.ox = 0.0
     p.cyl("wood_light", (0, 0, HEX * 0.018), 0.018, 0.9, n=6, axis="x")
     p.cyl("rubber", (-0.38, 0, HEX * 0.021), 0.021, 0.14, n=6, axis="x")
     p.box("metal_dark", (0.42, 0, 0.03), (0.05, 0.16, 0.06))                       # head, across the handle (Y)
@@ -72,13 +72,13 @@ def sledgehammer():
 def axe():
     """A felling axe lying on its side: 0.8 m handle with a knob, the head to one side of the handle's end (poll to -Y, bit to +Y, edge parallel to the handle)."""
     p = Prop("GT_Axe_01")
-    p.ox = -0.035
+    p.ox = 0.0
     p.cyl("wood_light", (-0.02, 0, HEX * 0.017), 0.017, 0.8, n=6, axis="x")
     p.box("wood_light", (-0.4, 0, 0.018), (0.06, 0.04, 0.036))                     # the knob
     p.box("metal_dark", (0.37, 0, 0.0225), (0.06, 0.04, 0.045))                    # eye, the handle passes through it
     p.box("metal_dark", (0.37, -0.04, 0.02), (0.05, 0.04, 0.04))                   # poll, to -Y
     p.box("metal_dark", (0.375, 0.055, 0.012), (0.09, 0.07, 0.024))                # cheek, to +Y
-    p.box("metal_galv", (0.385, 0.1, 0.007), (0.1, 0.014, 0.014))                  # the cutting edge, 0.1 m
+    p.box("metal_galv", (0.385, 0.097, 0.007), (0.1, 0.014, 0.014))                  # the cutting edge, 0.1 m
     return p
 
 
@@ -150,6 +150,7 @@ def spade():
     p.box("wood_light", (-0.4, 0, 0.0125), (0.03, 0.14, 0.025))                             # grip bar
     for s in (-1, 1):                                                                     # the two sides of the D, back toward the handle
         p.box("wood_light", (-0.365, s * 0.058, 0.0125), (0.06, 0.024, 0.025))
+    p.box("wood_light", (-0.335, 0, 0.0125), (0.024, 0.14, 0.025))                          # crosspiece closing the D around the shaft
     p.box("metal_dark", (0.43, 0, 0.012), (0.08, 0.05, 0.024))                              # socket, overlapping the blade's top
     p.box("metal_galv", (0.62, 0, 0.004), (0.3, 0.2, 0.008))                                # blade
     p.box("metal_galv", (0.79, 0, 0.004), (0.06, 0.12, 0.008))                              # narrowing to the tip

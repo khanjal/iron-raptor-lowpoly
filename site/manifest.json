@@ -14262,7 +14262,7 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 92,
+   "triangles": 104,
    "size": [
     1.235,
     0.025,
@@ -14348,7 +14348,7 @@
    "size": [
     0.865,
     0.045,
-    0.167
+    0.164
    ],
    "glb": "models/GT_Axe_01.glb",
    "thumb": "thumbs/GT_Axe_01.png",
@@ -14392,7 +14392,7 @@
    "size": [
     0.308,
     0.036,
-    0.157
+    0.147
    ],
    "glb": "models/GT_Hammer_01.glb",
    "thumb": "thumbs/GT_Hammer_01.png",
