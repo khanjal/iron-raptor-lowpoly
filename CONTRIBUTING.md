@@ -4,7 +4,7 @@ Thank you for looking. There are three ways to help; reporting a problem and sug
 
 ## Report a problem or make a suggestion
 
-[Open an issue](https://github.com/khanjal/lowpoly-assets/issues/new/choose) and pick the form that fits:
+[Open an issue](https://github.com/khanjal/iron-raptor-lowpoly/issues/new/choose) and pick the form that fits:
 
 | Form | Use it when |
 |---|---|
@@ -14,7 +14,7 @@ Thank you for looking. There are three ways to help; reporting a problem and sug
 
 Tips for a report that gets fixed quickly:
 
-- Search the [asset browser](https://khanjal.github.io/lowpoly-assets/) and the open issues first.
+- Search the [asset browser](https://khanjal.github.io/iron-raptor-lowpoly/) and the open issues first.
 - Give the **model id** (the `GV_Sedan_01` in the address after `#`), what is wrong and what you expected, a screenshot, and where you saw it (the browser, or an engine and version).
 - If it is an engine import, read [Using the models in your engine](README.md#using-the-models-in-your-engine) first: most problems are import settings (axes, nearest-neighbour filtering, mipmaps), and the table says which engines have been tested.
 - Issues are public: nothing private, and no files you do not have the right to share. Reference links are fine; copyrighted images and models are not.

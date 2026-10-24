@@ -34,4 +34,4 @@ jobs:
       - name: Release
         run: |
           gh release create "$TAG" dist/*.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$TAG" \
-            --notes "GLB models (CC BY 4.0, credit khanjal / lowpoly-assets: see CREDIT.txt in each zip). lowpoly-assets-glb-all.zip has every model; the other zips are one category each. Browse them at https://khanjal.github.io/lowpoly-assets/"
+            --notes "GLB models (CC BY 4.0, credit khanjal / Iron Raptor Lowpoly: see CREDIT.txt in each zip). iron-raptor-lowpoly-glb-all.zip has every model; the other zips are one category each. Browse them at https://khanjal.github.io/iron-raptor-lowpoly/"

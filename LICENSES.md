@@ -16,7 +16,7 @@ You can use the models in any project, free or commercial: a game, a film, a web
 ## How to credit (CC BY 4.0)
 Give credit in a place a reader of your project would look: a credits screen, a README, a store page or a video description. A line like this is enough:
 
-> 3D models by khanjal, from lowpoly-assets (https://github.com/khanjal/lowpoly-assets), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+> 3D models by khanjal, from Iron Raptor Lowpoly (https://github.com/khanjal/iron-raptor-lowpoly), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 
 - Link to the project and name the licence.
 - If you changed a model, say so ("edited from ...").

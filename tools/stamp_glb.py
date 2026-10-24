@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/lowpoly-assets"
+COPYRIGHT = "CC BY 4.0, khanjal, https://github.com/khanjal/iron-raptor-lowpoly"
 JSON_CHUNK = 0x4E4F534A
 
 

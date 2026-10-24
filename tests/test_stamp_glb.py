@@ -80,13 +80,13 @@ class Zips(unittest.TestCase):
         out = Path(tempfile.mkdtemp())
         paths = {p.name: p for p in make_release_zips.build(out)}
         assets = json.loads((ROOT / "site" / "manifest.json").read_text(encoding="utf-8"))["assets"]
-        with zipfile.ZipFile(paths["lowpoly-assets-glb-all.zip"]) as z:
+        with zipfile.ZipFile(paths["iron-raptor-lowpoly-glb-all.zip"]) as z:
             names = set(z.namelist())
         self.assertEqual({n for n in names if n.endswith(".glb")}, {a["id"] + ".glb" for a in assets})
         self.assertIn("CREDIT.txt", names)
         self.assertIn("LICENSE-MODELS", names)
         for cat in {a["type"].split("/")[0] for a in assets}:
-            with zipfile.ZipFile(paths[f"lowpoly-assets-glb-{cat}.zip"]) as z:
+            with zipfile.ZipFile(paths[f"iron-raptor-lowpoly-glb-{cat}.zip"]) as z:
                 glbs = {n[:-4] for n in z.namelist() if n.endswith(".glb")}
             self.assertEqual(glbs, {a["id"] for a in assets if a["type"].startswith(cat + "/")})
 

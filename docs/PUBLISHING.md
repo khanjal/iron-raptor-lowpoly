@@ -23,7 +23,7 @@ Done on the `licence` branch: [LICENSE](../LICENSE) (MIT, code), [LICENSE-MODELS
 `CREDITS.md` lists the vendored three.js and the Quaternius skeleton layout. Before publishing: check `site/vendor/` and `art/data/` for anything else, and that no file or mesh from the reference packs (Kenney, Quaternius) was copied in.
 
 ## 4. Name
-`lowpoly-assets` is a working name. Pick the final name before the new repository is created; the site address (`<user>.github.io/<name>`) and the credit line in `LICENSES.md` carry it.
+The project is called **Iron Raptor Lowpoly** (it was `lowpoly-assets` while it was a working name; the repository was renamed to `iron-raptor-lowpoly` on 2026-10-24). The site address (`<user>.github.io/<name>`) and the credit line in `LICENSES.md` carry the name.
 
 ## 5. The site
 GitHub Pages works from a public repository on the Free plan (not from a private one). In the new repository: Settings, Pages, source "GitHub Actions"; enable the Pages workflow (it is manual-only now, see `docs/ci.md`); run it once and open the site. Add the site address to the repository's About box and the README.

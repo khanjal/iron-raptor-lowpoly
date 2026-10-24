@@ -23,7 +23,7 @@ Work on branch `claude/alien-investigation-assets-jy5lbt` (pull it first). Read 
 
 - Add `other_vehicles` (semi, bus, fire truck...) to `BUILD` and `ASSETS` in `tools/catalog.py`, with `PAINTS` for the plain colour sets.
 - The game repo has about 760 distinct models (1,270 files with variants); this repo ships about 120. `docs/from-game/art/prop-catalogue.md` and `asset-list.md` list the rest. Before building a colour or style variant as its own model, read `NOTES.md` ("Colour variants are paints") and `docs/style-audit.md`: a variant that is only a recolour should be a paint or a theme, and one that differs in design (like the fridges) stays a model.
-- Issue #48 (https://github.com/khanjal/lowpoly-assets/issues/48) has the plan for Modern/Retro styles as themes. Ask the owner before folding a style: the old generator only recoloured some pieces that the owner wants to look different.
+- Issue #48 (https://github.com/khanjal/iron-raptor-lowpoly/issues/48) has the plan for Modern/Retro styles as themes. Ask the owner before folding a style: the old generator only recoloured some pieces that the owner wants to look different.
 
 ## Facts that are easy to get wrong
 
