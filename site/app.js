@@ -309,9 +309,28 @@ function defaultHint() {
   return a && a.interactive ? 'Click a door, drawer, lid or wheel to open or spin it. Drag to orbit, scroll to zoom, right-drag to pan.' : 'Drag to orbit, scroll to zoom, right-drag to pan.';
 }
 
+// A breadcrumb click: close the viewer and show that category, opened in the tree like a click there. The filters the model passes (search, tags, features) are kept;
+// if it does not pass them (a deep link with a query, a variant that lacks the tag) they are cleared, so the grid is never empty or hiding the model.
+function jumpToCategory(a, path) {
+  if (!matches(a, { category: true })) { state.q = ''; $('search').value = ''; state.tags.clear(); state.features.clear(); }
+  state.category = path;
+  if ($('tree').querySelector(`ul[data-for="${CSS.escape(path)}"]`)) state.expanded.add(path);
+  writeUrlState();
+  render();
+  closeViewer();
+  window.scrollTo(0, 0);
+  const count = $('count');
+  count.tabIndex = -1;
+  count.focus({ preventScroll: true });   // the focused button went away with the viewer: put focus where the new list starts
+}
+
 function fillDetails(a) {
   $('v-name').textContent = a.name;
-  $('v-type').textContent = a.type.split('/').map(label).join(' › ');
+  const segs = a.type.split('/');          // the breadcrumbs: each level jumps to that category
+  $('v-type').replaceChildren(...segs.flatMap((s, i) => [
+    ...(i ? [el('span', { 'aria-hidden': 'true', text: ' › ' })] : []),
+    el('button', { class: 'crumb', type: 'button', title: 'Show all in ' + label(s), 'aria-label': 'Show all in ' + label(s), onclick: () => jumpToCategory(a, segs.slice(0, i + 1).join('/')) }, label(s)),
+  ]));
   $('v-tris').textContent = a.triangles.toLocaleString();
   $('v-size').textContent = `${fmt(a.size[0])} × ${fmt(a.size[2])} × ${fmt(a.size[1])} m (width × depth × height)`;
   $('v-id').textContent = a.id;
