@@ -463,7 +463,8 @@
   "fabric_brown": "Abdomen"
  },
  "GT_Rake_01": {
-  "metal_dark": "Head and socket"
+  "metal_dark": "Head and socket",
+  "metal_galv": "Teeth"
  },
  "GT_Shovel_01": {
   "metal_galv": "Blade",
@@ -502,11 +503,11 @@
   "wood_dark": "Alternate logs"
  },
  "GT_FirewoodPile_Loose_01": {
-  "wood_light": "Alternate logs"
+  "wood_dark": "Dark logs"
  },
  "GT_ChoppingBlock_01": {
   "wood_light": "Top face",
-  "wood_dark": "Axe handle"
+  "wood_grey": "Split logs"
  },
  "GI_FenceSection_01": {
   "$main": "Boards and posts"

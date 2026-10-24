@@ -104,7 +104,7 @@ SPECS = {
     "Microscope": ([light("Lamp", (0.5, 0.5, 0.2), range=1.0, intensity=0.5)], ("power",)),
     # ----- the farm (props_farm.py) -----
     "Generator": ([sound("Engine", (0.5, 0.5, 0.5), "generator", loop=True, loudness=0.7), switch("Pull", (0.5, 0.0, 0.7), ["Engine", "power"], action="pull")], ("noisy",)),
-    "PoleLamp": ([light("Lamp", (0.5, 0.9, 0.95), range=12, intensity=1.4)], ("power", "blackout")),
+    "PoleLamp": ([light("Lamp", (0.5, 0.17, 0.95), range=12, intensity=1.4)], ("power", "blackout")),
     "BareBulb": ([light("Bulb", (0.5, 0.5, 0.05), range=5, intensity=0.9)], ("power", "blackout")),
     "LandlinePhone": ([sound("Ring", (0.5, 0.5, 0.5), "bell_ring", loudness=0.6, when="trigger")], PHONE),
     "Mailbox": ([sound("Flag", (0.8, 0.5, 0.8), "flag_clank", loudness=0.1, when="trigger")], ()),
