@@ -314,7 +314,7 @@ function defaultHint() {
 function jumpToCategory(a, path) {
   if (!matches(a, { category: true })) { state.q = ''; $('search').value = ''; state.tags.clear(); state.features.clear(); }
   state.category = path;
-  if ($('tree').querySelector(`ul[data-for="${path}"]`)) state.expanded.add(path);
+  if ($('tree').querySelector(`ul[data-for="${CSS.escape(path)}"]`)) state.expanded.add(path);
   writeUrlState();
   render();
   closeViewer();
