@@ -655,8 +655,9 @@ GLB_FPS = 60                                                       # the frame r
 def stash_clip(rig_obj, action, clip_name, fps=24):
     """Park an action on the rig as an NLA track called clip_name, so export_glb writes it as an animation of that name, and clear the rig's active action.
     fps is the rate the action was keyed for (the clips differ: 24 or 60); the strip is scaled so every clip plays at its own speed in the GLB.
-    Any number of clips can be stashed on one rig. The track is muted until export_glb: a live track overrides the pose the next clip's first keys are set from
-    (the first keys of Walk, Run and Sit came out of the previous clip's pose, so the loop did not close)."""
+    Any number of clips can be stashed on one rig. The track is left muted: a live track overrides the pose the next clip's first keys are set from
+    (the first keys of Walk, Run and Sit came out of the previous clip's pose, so the loop did not close). The glTF exporter writes muted tracks too; to play a clip in
+    Blender, unmute its track."""
     ad = rig_obj.animation_data_create()
     action.name = f"{rig_obj.name}:{clip_name}"                      # the clip scripts replace any action of their own name, so keep this one's out of their way
     track = ad.nla_tracks.new()
@@ -766,9 +767,6 @@ def export_glb(coll, name, rigged=None, meta=True):
     for o in objs:
         o.hide_set(False)
         o.select_set(True)
-    for o in objs:                                                   # stash_clip left the tracks muted while the clips were keyed
-        for t in (o.animation_data.nla_tracks if o.animation_data else []):
-            t.mute = False
     sc = bpy.context.scene
     saved_fps = sc.render.fps
     sc.render.fps, sc.render.fps_base = GLB_FPS, 1.0
