@@ -97,7 +97,8 @@ def idle_butterfly(rig, t):
 
 
 def fly(rig, t, amp, base, bob, pitch, counter=False):
-    """A flapping cycle per loop. The body rises on the downstroke and pitches with it; the dragonfly's hind wings beat against its fore wings."""
+    """A flapping cycle per loop. bob (m, half the travel) and pitch (degrees) make the body rise on the downstroke and pitch with it: only for the slow flapping butterfly and moth,
+    and gently (a butterfly 25 mm tall moves 3 mm). A bee, wasp, fly, mosquito or dragonfly holds its body still and only the wings beat (bob = pitch = 0; issue #96). The dragonfly's hind wings beat against its fore wings."""
     w = 2 * math.pi * t
     turn(rig, "Body", x=-pitch * math.sin(w), shift=(0, 0, -bob * math.cos(w)))
     antennae(rig, w, amp=3.0)
@@ -177,10 +178,10 @@ def hop(rig, t):
 
 # motion -> clips: (name, pose, frames, fps)
 MOTIONS = {
-    "butterfly": (("Idle", idle_butterfly, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 14.0, 0.003, 5.0), 8, 24)),
-    "moth": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 34.0, 12.0, 0.002, 4.0), 6, 24)),
-    "buzz": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0012, 5.0), 4, 24)),
-    "dragonfly": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 26.0, 4.0, 0.0012, 3.0, counter=True), 6, 24)),
+    "butterfly": (("Idle", idle_butterfly, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 14.0, 0.0015, 3.0), 8, 24)),
+    "moth": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 34.0, 12.0, 0.001, 2.5), 6, 24)),
+    "buzz": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "dragonfly": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 26.0, 4.0, 0.0, 0.0, counter=True), 6, 24)),
     "walk": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24)),
     "spider": (("Idle", idle_spider, 48, 24), ("Walk", lambda r, t: walk(r, t, swing=15.0, lift=14.0), 24, 24)),
     "caterpillar": (("Idle", idle_caterpillar, 48, 24), ("Walk", walk_caterpillar, 36, 24)),
