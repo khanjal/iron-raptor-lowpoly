@@ -151,6 +151,10 @@ class AutoColours(unittest.TestCase):
     def test_the_manifest_has_the_common_colours_and_most_models_are_paintable(self):
         doc = json.loads((ROOT / "site" / "manifest.json").read_text())
         self.assertEqual([c["name"] for c in doc["palette"]["common"]], [n for n, _ in paints.COMMON])
+        names = {n for n, _ in paints.COMMON}
+        self.assertEqual(doc["palette"]["realistic"], paints.REALISTIC)
+        for cat, real in paints.REALISTIC.items():
+            self.assertTrue(real and set(real) <= names, cat)
         paintable = [a for a in doc["assets"] if a.get("paintable")]
         self.assertGreaterEqual(len(paintable), len(doc["assets"]) - 3)
 

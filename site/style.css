@@ -238,3 +238,4 @@ footer { padding: 1rem; color: var(--muted); font-size: .85rem; border-top: 1px 
   #search { order: 3; flex: 1 1 100%; max-width: none; }
   #filters { top: 6.5rem; }   /* the header is two rows tall here (about 104 px), so the Filters drawer starts below both */
 }
+.paint[hidden] { display: none; }

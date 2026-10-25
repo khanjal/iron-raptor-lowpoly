@@ -205,6 +205,7 @@ def catalog_only():
     apply_aliases(assets)
     apply_themes(doc, assets, entries)
     doc.setdefault("palette", {})["common"] = paints_tool.common_colours(entries)
+    doc["palette"]["realistic"] = paints_tool.REALISTIC
     doc["assets"] = assets
     path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     print("updated site/manifest.json from the catalog:", len(assets), "assets")
@@ -250,7 +251,7 @@ def main():
     apply_part_names(assets)
     apply_aliases(assets)
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
-    doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches(), common=paints_tool.common_colours(paints_tool.palette_entries())), assets=assets)
+    doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches(), common=paints_tool.common_colours(paints_tool.palette_entries()), realistic=paints_tool.REALISTIC), assets=assets)
     apply_themes(doc, assets, paints_tool.palette_entries())
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}

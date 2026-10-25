@@ -82,6 +82,25 @@ def resolve(spec, entries):
 # The colours every model offers when it has no presets of its own: name -> swatch name of the palette (so the colours stay the palette's)
 COMMON = [("Red", "cloth_red"), ("Orange", "basket_orange"), ("Yellow", "paint_yellow"), ("Green", "tractor_green"), ("Blue", "truck_blue"), ("Purple", "alien_violet"),
           ("Pink", "pink"), ("Brown", "fabric_brown"), ("White", "paint_white"), ("Grey", "fabric_grey"), ("Black", "black")]
+# The colours a real one of these usually comes in, by top-level category (the viewer lists these first and hides the rest behind "More colours").
+REALISTIC = {
+    "vehicles": ["White", "Black", "Grey", "Red", "Blue", "Green", "Yellow"],
+    "furniture": ["Brown", "White", "Grey", "Black", "Blue", "Red"],
+    "appliances": ["White", "Grey", "Black", "Red"],
+    "fixtures": ["White", "Grey", "Black", "Brown"],
+    "food": ["Red", "Orange", "Yellow", "Green", "Brown", "White"],
+    "animals": ["Brown", "Black", "White", "Grey", "Orange"],
+    "people": ["Black", "Brown", "White", "Grey", "Blue", "Red", "Green"],
+    "clothing": ["Blue", "Black", "Grey", "White", "Red", "Green", "Brown"],
+    "building": ["White", "Red", "Grey", "Brown", "Yellow", "Blue", "Green"],
+    "farm": ["Red", "Green", "Brown", "White", "Yellow", "Blue"],
+    "tools": ["Red", "Yellow", "Orange", "Blue", "Black", "Grey"],
+    "sports": ["Red", "Blue", "White", "Orange", "Yellow", "Black", "Green"],
+    "decor": ["Brown", "White", "Grey", "Black", "Red", "Blue", "Green"],
+    "sci-fi": ["Grey", "White", "Blue", "Black", "Green", "Purple"],
+    "nature": ["Green", "Brown", "Grey", "Yellow"],
+    "equipment": ["Grey", "Black", "Red", "Yellow", "Blue"],
+}
 MAX_PARTS = 5          # a model offers at most this many colour boxes
 MIN_SHARE = 0.03       # a swatch that covers less of the surface than this is not offered
 

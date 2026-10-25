@@ -42,6 +42,7 @@ async function init() {
   state.assets = doc.assets;
   state.glow = (doc.palette && doc.palette.glow) || [];
   state.common = (doc.palette && doc.palette.common) || [];
+  state.realistic = (doc.palette && doc.palette.realistic) || {};
   state.themes = doc.themes || {};
   for (const a of state.assets) {
     a.haystack = [a.name, a.id, ...(a.aliases || []), a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
@@ -355,6 +356,10 @@ function setupLook(a) {
   const parts = a.paintable || [], themes = a.themes || [];
   const common = a.paints || !parts.length ? null : [{ name: 'Original', hex: parts[0].hex, swap: {} }, ...state.common.map((c) => ({ name: c.name, hex: c.hex, swap: { [parts[0].swatch]: c.hex } }))];
   const paints = a.paints || common || [];
+  // Only for the common colours: the ones this kind of model really comes in are listed first, the rest wait behind "More colours".
+  const real = a.paints ? null : state.realistic[a.type.split('/')[0]];
+  const isWeird = (p) => !!real && p.name !== 'Original' && !real.includes(p.name);
+  let showWeird = false;
   $('v-themes').hidden = themes.length === 0;
   $('v-paints').hidden = paints.length === 0 && parts.length === 0;
   if (!themes.length && !paints.length && !parts.length) return;
@@ -364,14 +369,21 @@ function setupLook(a) {
   const apply = () => state.viewer.setPaint({ ...themeSwap, ...overrides });
   const syncInputs = () => { for (const part of parts) inputs.get(part.swatch).value = (overrides[part.swatch] || themeSwap[part.swatch] || part.hex).toLowerCase(); };
   const chooseTheme = (name) => { themeSwap = (name && state.themes[name]) || {}; syncInputs(); apply(); press(themeChips, name || ''); };
-  const choosePaint = (p) => { overrides = { ...p.swap }; syncInputs(); apply(); press(paintChips, p.name); };
+  const choosePaint = (p) => { if (isWeird(p) && !showWeird) { showWeird = true; syncMore(); } overrides = { ...p.swap }; syncInputs(); apply(); press(paintChips, p.name); };
   for (const t of [{ name: '' }, ...themes]) themeChips.set(t.name, el('button', { class: 'pill', type: 'button', onclick: () => chooseTheme(t.name) }, t.name || 'Classic'));
   for (const p of paints) paintChips.set(p.name, el('button', { class: 'pill paint', type: 'button', onclick: () => choosePaint(p) }, el('i', { style: 'background:' + p.hex }), p.name));
   for (const part of parts) {
     inputs.set(part.swatch, el('input', { type: 'color', value: part.hex.toLowerCase(), 'aria-label': part.part + ' colour', oninput: (e) => { overrides[part.swatch] = e.target.value.toUpperCase(); apply(); press(paintChips, ''); } }));
   }
   $('v-theme-list').replaceChildren(...themeChips.values());
-  $('v-paint-list').replaceChildren(...paintChips.values());
+  const more = el('button', { class: 'pill', type: 'button', 'aria-expanded': 'false', onclick: () => { showWeird = !showWeird; syncMore(); } });
+  const syncMore = () => {
+    for (const p of paints) paintChips.get(p.name).hidden = isWeird(p) && !showWeird;
+    more.textContent = showWeird ? 'Fewer colours' : 'More colours';
+    more.setAttribute('aria-expanded', showWeird);
+  };
+  syncMore();
+  $('v-paint-list').replaceChildren(...paintChips.values(), ...(paints.some(isWeird) ? [more] : []));
   $('v-paint-parts').replaceChildren(...parts.map((part) => el('label', { class: 'paint-part' }, el('span', { text: part.part }), inputs.get(part.swatch))));
   chooseTheme(themes.some((t) => t.name === state.wantTheme) ? state.wantTheme : '');
   if (paints.length) choosePaint(paints.find((p) => p.name === state.wantPaint) || paints[0]);
