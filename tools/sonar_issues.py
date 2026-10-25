@@ -109,8 +109,7 @@ def report_main():
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__.split("
-")[0])
+    parser = argparse.ArgumentParser(description=__doc__.split(chr(10))[0])
     parser.add_argument("pr", nargs="?", type=int)
     parser.add_argument("--head", help="the commit to check (default: the PR's current head, from GitHub)")
     parser.add_argument("--wait", action="store_true", help="wait for Sonar to analyse the PR's head")
