@@ -43,19 +43,22 @@ for _m in (common, humanoid_rig, quadruped_rig, alien_parts, builds):
 DEFAULT_OUTFIT = dict(skin="skin", shirt="cloth_red", pants="denim", shoes="rubber", hair="brown_coat", eyes="black")
 
 TORSO = [  # z, centre y, half width (x), half depth (y)
-    (0.90, 0.01, 0.170, 0.105), (1.05, 0.01, 0.160, 0.100), (1.20, 0.00, 0.150, 0.095),
-    (1.32, 0.00, 0.185, 0.110), (1.43, 0.00, 0.215, 0.108), (1.50, 0.00, 0.110, 0.080),
+    (0.90, 0.02, 0.170, 0.115), (1.05, 0.015, 0.160, 0.106), (1.20, 0.005, 0.150, 0.104),
+    (1.32, -0.005, 0.185, 0.122), (1.43, -0.005, 0.215, 0.116), (1.50, 0.00, 0.110, 0.092),
 ]
-HEAD = [(1.60, 0.0, 0.060, 0.065), (1.65, -0.002, 0.082, 0.090), (1.71, -0.004, 0.094, 0.105),
+HEAD = [(1.60, -0.010, 0.056, 0.066), (1.65, -0.004, 0.084, 0.092), (1.71, -0.004, 0.094, 0.105),
         (1.77, -0.003, 0.092, 0.104), (1.82, 0.000, 0.072, 0.085), (1.845, 0.004, 0.040, 0.050)]
 ARM = [  # |x|, centre y, centre z, half y, half z
-    (0.17, 0.060, 1.441, 0.075, 0.075), (0.25, 0.064, 1.441, 0.062, 0.064), (0.466, 0.070, 1.441, 0.052, 0.053),
+    (0.17, 0.060, 1.441, 0.080, 0.082), (0.25, 0.064, 1.441, 0.070, 0.072), (0.466, 0.070, 1.441, 0.052, 0.053),
     (0.60, 0.068, 1.441, 0.048, 0.048), (0.739, 0.065, 1.441, 0.037, 0.035), (0.80, 0.064, 1.440, 0.056, 0.022),
     (0.87, 0.064, 1.440, 0.048, 0.017),
 ]
+HAND = [  # the people's hand instead of ARM's last two rows (issue #90): knuckles, fingers and a fingertip row, 0.21 m from the wrist to the tip (a real hand is about 0.11 of the height: 0.2 m) and 0.09 m across
+    (0.785, 0.066, 1.441, 0.046, 0.025), (0.86, 0.064, 1.440, 0.045, 0.021), (0.92, 0.064, 1.440, 0.038, 0.016), (0.95, 0.064, 1.440, 0.022, 0.010),
+]
 LEG = [  # z, centre y, half x, half y
-    (0.94, 0.000, 0.095, 0.100), (0.73, 0.000, 0.086, 0.093), (0.532, 0.003, 0.065, 0.068),
-    (0.32, 0.025, 0.058, 0.062), (0.12, 0.036, 0.042, 0.046), (0.08, 0.038, 0.040, 0.043),
+    (0.94, 0.000, 0.095, 0.100), (0.73, 0.000, 0.086, 0.093), (0.532, 0.003, 0.068, 0.072),
+    (0.32, 0.025, 0.063, 0.070), (0.12, 0.036, 0.044, 0.048), (0.08, 0.038, 0.040, 0.043),
 ]
 SHOE = [  # y, centre z, half x, half z. A foot is about 15% of the height (0.29 m on the 1.9 m figure); the skeleton's foot bones run on to y = -0.27.
     # The heel stays at y 0.085: it must cover the bottom of the trouser leg (its back edge is at y 0.075-0.086, wider people further back)
@@ -133,13 +136,13 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     f_foot = rg["foot"] if rg else girth
     hipx = rg["hipSpread"] if rg else 1.0
     # arm rows (x, ...): the upper arm to the elbow, the forearm to the wrist, the hand unchanged; leg rows: thigh, knee, calf, ankle
-    arm_f = [rg["upperArm"], rg["upperArm"], 0.5 * (rg["upperArm"] + rg["forearm"]), rg["forearm"], rg["forearm"], 1.0, 1.0] if rg else [girth] * len(ARM)
+    arm_tab = ARM if hands else ARM[:5] + HAND                    # an alien keeps its fingers (alien_parts) on ARM's paddle; a person gets a hand
+    arm_f = [rg["upperArm"], rg["upperArm"], 0.5 * (rg["upperArm"] + rg["forearm"]), rg["forearm"], rg["forearm"]] + [1.0] * (len(arm_tab) - 5) if rg else [girth] * len(arm_tab)
     leg_f = [rg["thigh"], rg["thigh"], 0.5 * (rg["thigh"] + rg["calf"]), rg["calf"], 0.5 * (rg["calf"] + 1.0), 1.0] if rg else [girth] * len(LEG)
     t_rings = torso_rings(girth, BUILDS[shape], rg)
     if rg is not None:                                           # the top ring of each leg (z 0.94) stays within a few mm of the torso's side at that height: a thick thigh and wide hips must not leave a ledge
         hw_top = ring_at(t_rings, LEG[0][0], 2)
         leg_f[0] = min(leg_f[0], (hw_top + 0.004 - 0.089 * hipx) / LEG[0][2])
-    t_rings0 = torso_rings(1.0, [1.0] * 6)                                          # the neutral torso: where the tie, the collar and the badge were placed
     o = dict(DEFAULT_OUTFIT)
     o.update(outfit or {})
     common.setup_scene()
@@ -200,11 +203,17 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         def face_build(bm):
             for sx in (-1, 1):
                 common.add_box(bm, (sx * 0.036 * f_face, -0.108 + f_dy, 1.708), (0.020, 0.016, 0.016))
-                common.add_box(bm, (sx * 0.096 * f_face, 0.000, 1.70), (0.012, 0.035, 0.05))
-            common.add_box(bm, (0, -0.116 + f_dy, 1.682), (0.020, 0.026, 0.034))
+                common.add_box(bm, (sx * 0.097 * f_face, 0.005, 1.695), (0.016, 0.032, 0.062))                           # the ears
+                common.add_box(bm, (sx * 0.038 * f_face, -0.094 + f_dy, 1.733), (0.040, 0.020, 0.009), rot_deg=(0, 0, sx * 6))    # the brows (set into the brow ridge, the outer end back)
+            common.add_box(bm, (0, -0.118 + f_dy, 1.680), (0.026, 0.040, 0.046))                                         # the nose
+            if "beard" not in extras:
+                common.add_box(bm, (0, -0.092 + f_dy, 1.640), (0.050, 0.024, 0.008))                                     # the mouth
 
         def face_colour(c, n):
-            return o["eyes"] if (abs(c.x) < 0.06 and c.y < -0.10 and c.z > 1.695 and abs(c.x) > 0.02) else o["skin"]
+            u = Vector((c.x / head_scale, c.y / head_scale, pivot.z + (c.z - pivot.z) / head_scale))      # (the face is painted after the head's scale: look where it was built)
+            if u.y < -0.05 and u.z > 1.7225 and abs(u.x) > 0.012:
+                return o["hair"]
+            return o["eyes"] if (abs(u.x) < 0.065 and u.y < -0.095 and u.z > 1.69 and abs(u.x) > 0.02) else o["skin"]
         make("face", face_build, face_colour, ["Head"], sub=0, head=True)
     else:                                                        # an alien face: caps that sit on this race's skull, one part per colour
         skull = alien_parts.Skull(head_rings, n=st["head_n"])
@@ -215,11 +224,11 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     # the arm is joined to the body and not hanging a few centimetres off it
     shoulder = t_rings[4][2] * 0.8
     if rg is not None:                                           # a build always has the root row (inside the torso's shoulder edge), so every build of a person has the same vertices: shape keys can span them
-        arm_rows = [(min(shoulder, ARM[0][0] - 0.02),) + ARM[0][1:]] + ARM
+        arm_rows = [(min(shoulder, arm_tab[0][0] - 0.02),) + arm_tab[0][1:]] + arm_tab
         arm_f_rows = [arm_f[0]] + arm_f
     else:
-        arm_rows = ARM if shoulder >= ARM[0][0] else [(shoulder,) + ARM[0][1:]] + ARM
-        arm_f_rows = arm_f if arm_rows is ARM else [arm_f[0]] + arm_f
+        arm_rows = arm_tab if shoulder >= arm_tab[0][0] else [(shoulder,) + arm_tab[0][1:]] + arm_tab
+        arm_f_rows = arm_f if arm_rows is arm_tab else [arm_f[0]] + arm_f
 
     for side, tag in ((1, "l"), (-1, "r")):
         make(f"arm_{tag}",
@@ -236,7 +245,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
                  lambda c, n: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
         else:
             make(f"thumb_{tag}",
-                 lambda bm, s=side: common.add_box(bm, (s * 0.785, 0.026, 1.420), (0.05, 0.022, 0.022), rot_deg=(0, 0, s * 20)),
+                 lambda bm, s=side: common.add_box(bm, (s * 0.805, 0.030, 1.416), (0.075, 0.026, 0.026), rot_deg=(0, 0, s * 22)),
                  lambda c, n: o["skin"], [f"hand_{tag}"], sub=0)
         make(f"leg_{tag}",
              lambda bm, s=side: common.loft(bm, [common.ring_z(z, s * 0.089 * hipx, cy, hx * lf, hy * lf, n=st["limb_n"]) for (z, cy, hx, hy), lf in zip(LEG, leg_f)]),
@@ -276,21 +285,21 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     # --- extras ------------------------------------------------------------------------------------------------
     if "sunglasses" in extras:
         make("sunglasses", lambda bm: common.add_box(bm, (0, -0.112 + f_dy, 1.708), (0.150 * f_face, 0.014, 0.034)), lambda c, n: "black", ["Head"], sub=0, head=True)
-    def fwd(z):                                                  # how far this build's torso front stands in front of the neutral one at this height (negative: forward)
-        return front_y(t_rings, z) - front_y(t_rings0, z) if rg else 0.0
+    def front(z):                                                # the y of this build's torso front at this height (negative: forward)
+        return front_y(t_rings, z)
     if "tie" in extras:
         def tie_build(bm):                                       # the blade in three pieces (z 1.20-1.42), each at the torso's front at its own height: a belly bulges most at the bottom
             for zc in (1.237, 1.310, 1.383):
-                common.add_box(bm, (0, -0.108 + fwd(zc), zc), (0.034, 0.014, 0.0733))
-            common.add_box(bm, (0, -0.110 + fwd(1.44), 1.44), (0.05, 0.016, 0.04))
+                common.add_box(bm, (0, front(zc) + 0.002, zc), (0.034, 0.014, 0.0733))
+            common.add_box(bm, (0, front(1.44) - 0.001, 1.44), (0.05, 0.016, 0.04))
 
         def collar_build(bm):                                    # the same for the shirt's front (z 1.24-1.44)
             for zc in (1.273, 1.340, 1.407):
-                common.add_box(bm, (0, -0.106 + fwd(zc), zc), (0.10, 0.012, 0.0667))
+                common.add_box(bm, (0, front(zc) + 0.002, zc), (0.10, 0.012, 0.0667))
         make("tie", tie_build, lambda c, n: "black" if suit else "cloth_red", ["spine_03", "spine_02"], sub=0)
         make("collar_shirt", collar_build, lambda c, n: "paint_white", ["spine_03", "spine_02"], sub=0)
     if "badge" in extras:
-        make("badge", lambda bm: common.add_box(bm, (0.075, -0.114 + fwd(1.30), 1.30), (0.045, 0.012, 0.05), rot_deg=(0, 0, 0)), lambda c, n: "gold",
+        make("badge", lambda bm: common.add_box(bm, (0.075, front(1.30) - 0.004, 1.30), (0.045, 0.012, 0.05), rot_deg=(0, 0, 0)), lambda c, n: "gold",
              ["spine_03"], sub=0)
     if "beard" in extras:
         make("beard", lambda bm: common.loft(bm, [common.ring_z(z, 0, cy, hx * f_face, hy * f_face, n=st["neck_n"]) for z, cy, hx, hy in
@@ -301,8 +310,8 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         sk_w = [ring_at(t_rings, 1.02, 2) / ring_at(TORSO, 1.02, 2)] + [t_rings[0][2] / TORSO[0][2]] * 3 if rg else [girth] * 4
         sk_d = [ring_at(t_rings, 1.02, 3) / ring_at(TORSO, 1.02, 3)] + [t_rings[0][3] / TORSO[0][3]] * 3 if rg else [girth] * 4
         sk_y = [ring_at(t_rings, 1.02, 1) - ring_at(TORSO, 1.02, 1)] + [t_rings[0][1] - TORSO[0][1]] * 3 if rg else [0.0] * 4
-        make("skirt", lambda bm: common.loft(bm, [common.ring_z(z, 0, ky, hw * kw, hd * kd, n=st["skirt_n"], p=2.2)
-                                                   for (z, hw, hd), kw, kd, ky in zip(((1.02, 0.17, 0.105), (0.85, 0.20, 0.13), (0.66, 0.24, 0.16), (0.55, 0.255, 0.17)), sk_w, sk_d, sk_y)]),
+        make("skirt", lambda bm: common.loft(bm, [common.ring_z(z, 0, ky, hw * kw, hd * kd, n=st["skirt_n"], p=2.6)
+                                                   for (z, hw, hd), kw, kd, ky in zip(((1.02, 0.17, 0.128), (0.85, 0.20, 0.150), (0.66, 0.24, 0.16), (0.55, 0.255, 0.17)), sk_w, sk_d, sk_y)]),
              lambda c, n: o["shirt"], ["pelvis", "thigh_l", "thigh_r"])
     if "tail" in extras:                                                                                   # a thick tail that tapers to the ground, on the pelvis
         make("tail", lambda bm: common.loft(bm, [common.ring_y(y, 0.0, cz, hx, hz, n=st["limb_n"], p=2.4)

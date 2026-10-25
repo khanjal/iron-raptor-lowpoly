@@ -16032,9 +16032,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1006,
+   "triangles": 1054,
    "size": [
-    1.907,
+    2.074,
     2.108,
     0.401
    ],
@@ -16129,7 +16129,7 @@
    "size": [
     2.443,
     2.071,
-    0.358
+    0.363
    ],
    "glb": "models/GP_Shadow_01.glb",
    "thumb": "thumbs/GP_Shadow_01.png",
@@ -16165,11 +16165,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 896,
+   "triangles": 968,
    "size": [
-    1.705,
+    1.854,
     1.931,
-    0.363
+    0.369
    ],
    "glb": "models/GP_Farmer_01.glb",
    "thumb": "thumbs/GP_Farmer_01.png",
@@ -16224,9 +16224,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 896,
+   "triangles": 980,
    "size": [
-    1.553,
+    1.688,
     1.8,
     0.344
    ],
@@ -16252,14 +16252,14 @@
      "hex": "#5A5F66"
     },
     {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
-    },
-    {
      "part": "Skin pale",
      "swatch": 25,
      "hex": "#F0C9B0"
+    },
+    {
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     },
     {
      "part": "Wood dark",
@@ -16281,9 +16281,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 792,
+   "triangles": 876,
    "size": [
-    1.198,
+    1.303,
     1.382,
     0.256
    ],
@@ -16340,9 +16340,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 884,
+   "triangles": 968,
    "size": [
-    1.519,
+    1.652,
     1.69,
     0.344
    ],
@@ -16393,9 +16393,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 884,
+   "triangles": 968,
    "size": [
-    1.553,
+    1.688,
     1.728,
     0.356
    ],
@@ -16448,11 +16448,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 956,
+   "triangles": 1040,
    "size": [
-    1.654,
+    1.799,
     1.917,
-    0.344
+    0.351
    ],
    "glb": "models/GP_Worker_01.glb",
    "thumb": "thumbs/GP_Worker_01.png",
@@ -16509,11 +16509,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 804,
+   "triangles": 888,
    "size": [
-    1.654,
+    1.799,
     1.841,
-    0.335
+    0.34
    ],
    "glb": "models/GP_Deputy_01.glb",
    "thumb": "thumbs/GP_Deputy_01.png",
@@ -16569,9 +16569,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 908,
+   "triangles": 992,
    "size": [
-    1.57,
+    1.707,
     1.747,
     0.339
    ],
@@ -16626,11 +16626,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 876,
+   "triangles": 960,
    "size": [
-    1.688,
+    1.835,
     1.878,
-    0.34
+    0.345
    ],
    "glb": "models/GP_FbiAgent_01.glb",
    "thumb": "thumbs/GP_FbiAgent_01.png",
@@ -16685,11 +16685,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 888,
+   "triangles": 972,
    "size": [
-    1.688,
+    1.835,
     1.878,
-    0.34
+    0.345
    ],
    "glb": "models/GP_Mib_01.glb",
    "thumb": "thumbs/GP_Mib_01.png",
@@ -16735,9 +16735,9 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 908,
+   "triangles": 992,
    "size": [
-    1.755,
+    1.909,
     2.064,
     0.419
    ],
