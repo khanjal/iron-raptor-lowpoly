@@ -49,8 +49,11 @@ SKINS = {
 DEFAULT_SKIN = "black_tan"
 
 
-def make_farm_dog(name, skin=DEFAULT_SKIN):
-    sk = SKINS[skin]
+def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
+    """shape: optional overrides for another dog on the same builder (the husky): body, head, tail (the section lists below), front_x and hind_x (the legs' distance from the
+    middle), ears ("fold": the collie's half-folded ear, "up": an upright triangle) and ruff (the collar's width factor)."""
+    sk = SKINS[skin] if isinstance(skin, str) else skin
+    shape = shape or {}
     # ---- the body: y runs front (negative) to back, z is the height of the section's centre, then its half width and half height (metres; shoulder height 0.53)
     body = [(-0.30, 0.375, 0.078, 0.098),       # the front of the chest
             (-0.22, 0.392, 0.112, 0.138),       # the deep chest: 0.27 m from the withers to the breastbone
@@ -61,24 +64,25 @@ def make_farm_dog(name, skin=DEFAULT_SKIN):
             (0.35, 0.372, 0.055, 0.075)]
     # ---- the head: neck, skull, stop, long muzzle; y, centre height, half width, half height
     head = [(-0.24, 0.500, 0.074, 0.105),       # the base of the neck
-            (-0.31, 0.545, 0.064, 0.090),
-            (-0.37, 0.580, 0.058, 0.080),       # the back of the skull
-            (-0.42, 0.586, 0.062, 0.072),       # the widest: the cheeks
+            (-0.31, 0.545, 0.066, 0.092),
+            (-0.36, 0.580, 0.062, 0.082),       # the back of the skull
+            (-0.41, 0.588, 0.063, 0.074),       # the widest: the cheeks (the head from the cheeks to the nose is 35 % of the trunk; docs/assets/briefs/animals.md)
             (-0.47, 0.572, 0.055, 0.062),       # the stop
-            (-0.50, 0.548, 0.040, 0.045),       # the muzzle starts narrow
-            (-0.55, 0.539, 0.037, 0.041),
-            (-0.595, 0.531, 0.033, 0.036)]      # the nose
+            (-0.52, 0.552, 0.046, 0.054),       # the muzzle starts narrow
+            (-0.58, 0.541, 0.042, 0.050),
+            (-0.635, 0.533, 0.038, 0.045)]      # the nose
     # ---- the legs' profiles: the old collie's (make_dog leg=0.22)
     kz = (0.22 + 0.06) / 0.36
     fr = [(z * kz, dy, hx, hy) for z, dy, hx, hy in
-          [(0.36, 0.00, 0.04, 0.05), (0.22, 0.00, 0.03, 0.035), (0.12, 0.00, 0.024, 0.028), (0.05, 0.00, 0.025, 0.03), (0.0, -0.01, 0.03, 0.045)]]
+          [(0.36, 0.00, 0.04, 0.05), (0.22, 0.00, 0.03, 0.035), (0.12, 0.00, 0.026, 0.03), (0.05, -0.004, 0.027, 0.034), (0.0, -0.024, 0.034, 0.056)]]   # a paw that is longer than it is wide
     hn = [(z * kz, dy, hx, hy) for z, dy, hx, hy in
           [(0.38, 0.00, 0.055, 0.07), (0.26, 0.03, 0.035, 0.045), (0.17, 0.06, 0.026, 0.03), (0.09, 0.03, 0.024, 0.028),
            (0.04, 0.01, 0.025, 0.03), (0.0, 0.0, 0.03, 0.045)]]
     # ---- the tail: hangs from the rump, bushy in the middle, a hook forward at the tip (height, y, radius)
     tail = [(0.395, 0.335, 0.026), (0.325, 0.415, 0.036), (0.235, 0.475, 0.042), (0.150, 0.470, 0.027)]
-    front_leg = dict(x=0.068, y=-0.17, joints=(1, 3), profile=fr)
-    hind_leg = dict(x=0.078, y=0.22, joints=(2, 4), profile=hn)
+    body, head, tail = shape.get("body", body), shape.get("head", head), shape.get("tail", tail)
+    front_leg = dict(x=shape.get("front_x", 0.068), y=-0.17, joints=(1, 3), profile=fr)
+    hind_leg = dict(x=shape.get("hind_x", 0.078), y=0.22, joints=(2, 4), profile=hn)
     skull = head[3]
     ear_x = skull[2] * 0.85
     bodyz0, bodyz1 = 0.26, 0.53
@@ -141,6 +145,11 @@ def make_farm_dog(name, skin=DEFAULT_SKIN):
         def ears(bm):
             zb = ez + skull[3] - 0.034
             for s in (-1, 1):
+                if shape.get("ears") == "up":                         # an upright triangle, set close together
+                    cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.80, ey + 0.012, 0.036, 0.018, n=4),
+                                 cm.ring_z(zb + 0.055, s * ear_x * 0.86, ey + 0.004, 0.027, 0.013, n=4),
+                                 cm.ring_z(zb + 0.115, s * ear_x * 0.92, ey - 0.004, 0.009, 0.006, n=4)])
+                    continue
                 cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.78, ey + 0.010, 0.028, 0.015, n=4),
                              cm.ring_z(zb + 0.062, s * ear_x * 0.88, ey + 0.006, 0.025, 0.013, n=4),
                              cm.ring_z(zb + 0.105, s * ear_x * 1.00, ey - 0.020, 0.012, 0.008, n=4)])
@@ -172,11 +181,12 @@ def make_farm_dog(name, skin=DEFAULT_SKIN):
                  lambda c, n: "black", ["Head"], sub=0, smooth=False)
 
         # the ruff: a collar of fur round the base of the neck, a little proud of it
-        rings = [cm.ring_y(-0.215, 0, 0.500, 0.088, 0.118, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078, 0.104, n=8), cm.ring_y(-0.335, 0, 0.560, 0.066, 0.088, n=8)]
+        rw = shape.get("ruff", 1.0)
+        rings = [cm.ring_y(-0.215, 0, 0.500, 0.088 * rw, 0.118 * rw, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078 * rw, 0.104 * rw, n=8), cm.ring_y(-0.335, 0, 0.560, 0.072 * rw, 0.095 * rw, n=8)]
         ctx.make("ruff", lambda bm: cm.loft(bm, rings), lambda c, n: sk["ruff"], ["Chest", "Neck1", "Neck2"], sub=0, smooth=False)
 
         # the eyes: dark, set into the front of the skull and looking forward, each with a small highlight
-        y = -0.452
+        y = head[4][0] + 0.018
         z, w, h = qb._head_at(head, y)
         r = 0.0145
         cz = z + 0.30 * h
@@ -190,7 +200,8 @@ def make_farm_dog(name, skin=DEFAULT_SKIN):
 
         # the lip line: a thin dark line along each side of the muzzle, from the nose back to under the eye
         def lips(bm):
-            for yy0, yy1 in ((-0.595, -0.56), (-0.56, -0.525), (-0.525, -0.49)):
+            n0, n1 = head[-1][0], head[5][0] + 0.03
+            for yy0, yy1 in ((n0 + (n1 - n0) * i / 3, n0 + (n1 - n0) * (i + 1) / 3) for i in range(3)):
                 ym = 0.5 * (yy0 + yy1)
                 zz, ww, hh = qb._head_at(head, ym)
                 for s in (-1, 1):
@@ -213,3 +224,21 @@ def make_farm_dog(name, skin=DEFAULT_SKIN):
         coat=coat, head_coat=head_coat, tail_coat=tail_coat,
         body_n=8, head_n=8, tail_n=6, uv_jitter=True,                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
         extras=extras)
+
+
+# ---- the husky: the same builder with its own numbers. A compact northern dog, 0.55 m at the shoulder: the same deep chest as the farm dog but broader (a thick coat), a head
+# a little broader, with a fuller, blunter muzzle, small erect triangular ears set close, a full ruff and a brush tail curled over the back. Its coat is grey above and white below,
+# with a white mask (muzzle, jaw, blaze and brows). Docs/assets/briefs/animals.md.
+HUSKY_SKIN = dict(body="grey_cat", under=W, legs=W, sock=W, ruff="grey_cat", chest=W, muzzle=W, jaw=W, ears="black", tip=None, tail_under=W,
+                  blaze=W, brows=W, pattern="plain", label="a grey and white husky")
+HUSKY_SHAPE = dict(
+    body=[(-0.30, 0.380, 0.084, 0.100), (-0.22, 0.396, 0.120, 0.140), (-0.10, 0.398, 0.120, 0.140), (0.03, 0.405, 0.100, 0.104),
+          (0.17, 0.398, 0.104, 0.115), (0.28, 0.385, 0.088, 0.100), (0.32, 0.375, 0.060, 0.076)],
+    head=[(-0.24, 0.500, 0.084, 0.108), (-0.31, 0.545, 0.074, 0.094), (-0.36, 0.578, 0.070, 0.082), (-0.41, 0.585, 0.071, 0.076),
+          (-0.46, 0.570, 0.064, 0.066), (-0.50, 0.548, 0.054, 0.060), (-0.565, 0.538, 0.050, 0.055), (-0.625, 0.530, 0.045, 0.050)],
+    tail=[(0.395, 0.310, 0.034), (0.470, 0.385, 0.050), (0.545, 0.365, 0.050), (0.580, 0.290, 0.038)],           # up and over the back
+    front_x=0.076, hind_x=0.086, ears="up", ruff=1.12)
+
+
+def make_husky(name="DogHusky"):
+    return make_farm_dog(name, HUSKY_SKIN, HUSKY_SHAPE)

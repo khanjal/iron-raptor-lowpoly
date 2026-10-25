@@ -23,6 +23,10 @@ It builds every species in species.py (no export: it audits the parts the builde
    - the back height, the head-and-body length and (for the wildlife) the tail length are within the real animal's range (with a little slack): a model
      that is 40% too tall or too long looks wrong beside a person or a cow
 
+ PROPORTIONS (docs/assets/briefs/animals.md; animal_proportions.py has the ranges)
+   - the cat, collie and husky (animal_proportions.ENFORCED) fail when a ratio (trunk length to height, body width and depth, chest height, head length and
+     width, head carriage, leg width, paw length) is outside the brief's range; the farm animals' misses are only printed (WARN) until each is rebuilt
+
 Prints one line per species and the problems. Fix the species (species.py, species_pets.py, species_wild.py) or the builder (quadruped_builder.py), run again, and look at the
 animal too: the audit does not see a mane that is the wrong colour or a horn that curves the wrong way.
 """
@@ -39,11 +43,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common
 import quadruped_rig
 import quadruped_builder
+import animal_proportions
 import species_farm_dog
 import species_pets
 import species                       # first: it imports species_wild, which imports it back
 import species_wild
-for _m in (common, quadruped_rig, species_farm_dog, species_pets, species_wild, species, quadruped_builder):
+for _m in (common, animal_proportions, quadruped_rig, species_farm_dog, species_pets, species_wild, species, quadruped_builder):
     importlib.reload(_m)
 
 REQUIRED = {                        # the parts a species must have besides the common ones
@@ -65,6 +70,9 @@ REFERENCE = {
     "deer_buck": ((0.90, 1.05), (1.30, 2.00), (0.10, 0.36)),
     "deer_fawn": ((0.40, 0.65), (0.70, 1.10), (0.08, 0.22)),
     "bear": ((0.75, 1.05), (1.20, 2.00), (0.08, 0.14)),
+    # the cat and the husky (docs/assets/briefs/animals.md): back height, head-and-body length, tail not checked
+    "cat_tabby": ((0.23, 0.30), (0.40, 0.60), None),
+    "dog_husky": ((0.51, 0.62), (0.80, 1.10), None),
     "cow": ((1.30, 1.55), (1.80, 2.60), None),
     "horse": ((1.40, 1.70), (2.00, 2.60), None),
     "sheep": ((0.60, 0.95), (0.90, 1.40), None),
@@ -179,6 +187,15 @@ def audit(key):
             tl = max((a - b).length for a in tv for b in tv) * k
             if not (tail[0] * 0.85 <= tl <= tail[1] * 1.15):
                 problems.append(f"the tail is {tl:.2f} m long: a {key}'s is {tail[0]:.2f}-{tail[1]:.2f} m")
+    # --- proportions against the brief ---------------------------------------------------------------------------------------
+    row = animal_proportions.KEYS.get(key)
+    if row:
+        misses = animal_proportions.check(row, sp)
+        if row in animal_proportions.ENFORCED:
+            problems += [f"proportions: {m}" for m in misses]
+        else:
+            for m in misses:
+                print(f"    WARN {key}: proportions: {m}")
     return problems, parts
 
 

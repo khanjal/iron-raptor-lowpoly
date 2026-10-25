@@ -1570,11 +1570,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 660,
+   "triangles": 676,
    "size": [
-    0.161,
-    0.46,
-    0.656
+    0.164,
+    0.37,
+    0.614
    ],
    "glb": "models/GN_CatTabby_faceted_01.glb",
    "thumb": "thumbs/GN_CatTabby_faceted_01.png",
@@ -1615,8 +1615,8 @@
    "triangles": 1048,
    "size": [
     0.266,
-    0.729,
-    1.126
+    0.733,
+    1.166
    ],
    "glb": "models/GN_DogCollie_faceted_01.glb",
    "thumb": "thumbs/GN_DogCollie_faceted_01.png",
@@ -1656,11 +1656,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 660,
+   "triangles": 1048,
    "size": [
-    0.315,
-    0.65,
-    0.985
+    0.282,
+    0.742,
+    1.073
    ],
    "glb": "models/GN_DogHusky_faceted_01.glb",
    "thumb": "thumbs/GN_DogHusky_faceted_01.png",
@@ -1675,13 +1675,18 @@
    "paintable": [
     {
      "part": "Main",
+     "swatch": 37,
+     "hex": "#7C8088"
+    },
+    {
+     "part": "Paint white",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
     {
-     "part": "Grey cat",
-     "swatch": 37,
-     "hex": "#7C8088"
+     "part": "Black",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     }
    ]
   },
