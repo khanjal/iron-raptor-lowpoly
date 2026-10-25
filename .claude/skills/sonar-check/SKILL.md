@@ -34,7 +34,7 @@ python tools/sonar_issues.py <pr-number> --wait   # the same, polling until Sona
 python tools/sonar_issues.py                      # main only, after a merge
 ```
 
-It exits 1 when the PR has an open issue or Sonar has not analysed the current head (a stale count reads as current). Report the real count. Fix each issue on
+In CI the job runs once per push. Marking an issue Accepted or False positive in SonarCloud makes no new commit, so the job does not re-run by itself: use "Re-run jobs" on the failed run (the same for a run that gave up waiting for Sonar). It exits 1 when the PR has an open issue or Sonar has not analysed the current head (a stale count reads as current). Report the real count. Fix each issue on
 the PR, or, when one is a false positive, mark it **Accept**/**False positive** in SonarCloud with the reason and say so in the PR description. Do not silence
 a rule with `# NOSONAR` to make the check green without that reason.
 

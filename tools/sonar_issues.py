@@ -11,6 +11,7 @@ issues on its new code only. Used by .github/workflows/sonar.yml and described i
 """
 
 import argparse
+import http.client
 import json
 import sys
 import time
@@ -20,6 +21,7 @@ import urllib.request
 PROJECT = "khanjal_iron-raptor-lowpoly"
 API = "https://sonarcloud.io/api"
 PAGE = 500
+FAILURES = (OSError, http.client.HTTPException, KeyError, ValueError)
 
 
 def fetch(url):
@@ -28,7 +30,7 @@ def fetch(url):
         try:
             with urllib.request.urlopen(url, timeout=30) as response:
                 return json.load(response)
-        except OSError:
+        except (OSError, http.client.HTTPException):
             if attempt == 2:
                 raise
             time.sleep(5 * (attempt + 1))
@@ -52,7 +54,7 @@ def issues(pr=None):
     if pr is not None:
         params["pullRequest"] = pr
     data = get("issues/search", **params)
-    rules = next(f["values"] for f in data["facets"] if f["property"] == "rules")
+    rules = next((f["values"] for f in data["facets"] if f["property"] == "rules"), [])
     return data["total"], data["issues"], {v["val"]: v["count"] for v in rules}
 
 
@@ -62,7 +64,7 @@ def by_rule(counts):
 
 def describe(i):
     name = i["component"].split(":", 1)[-1]
-    return f"  {i['rule']} {i['severity']} {name}:{i.get('line')} | {i['message'][:100]}"
+    return f"  {i['rule']} {i['severity']} {name}:{i.get('line') or '-'} | {i['message'][:100]}"
 
 
 def wait_for_head(pr, head, minutes=10):
@@ -114,16 +116,18 @@ def main(argv=None):
     parser.add_argument("--head", help="the commit to check (default: the PR's current head, from GitHub)")
     parser.add_argument("--wait", action="store_true", help="wait for Sonar to analyse the PR's head")
     args = parser.parse_args(argv)
+    if args.pr is None and (args.head or args.wait):
+        parser.error("--head and --wait need a pull request number")
     status = 0
     try:
         if args.pr is not None:
             status = report_pr(args)
-    except (OSError, KeyError, ValueError) as error:
+    except FAILURES as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
     try:
         report_main()
-    except (OSError, KeyError, ValueError) as error:
+    except FAILURES as error:
         # Informational: a failure here says nothing about the PR.
         print(f"main's issues could not be read: {error}", file=sys.stderr)
         if args.pr is None:
