@@ -98,7 +98,7 @@ def idle_butterfly(rig, t):
 
 def fly(rig, t, amp, base, bob, pitch, counter=False):
     """A flapping cycle per loop. bob (m, half the travel) and pitch (degrees) make the body rise on the downstroke and pitch with it: only for the slow flapping butterfly and moth,
-    and gently (a 25 mm butterfly moves 3 mm). A bee, wasp, fly, mosquito or dragonfly holds its body still and only the wings beat (bob = pitch = 0; issue #96). The dragonfly's hind wings beat against its fore wings."""
+    and gently (a butterfly 25 mm tall moves 3 mm). A bee, wasp, fly, mosquito or dragonfly holds its body still and only the wings beat (bob = pitch = 0; issue #96). The dragonfly's hind wings beat against its fore wings."""
     w = 2 * math.pi * t
     turn(rig, "Body", x=-pitch * math.sin(w), shift=(0, 0, -bob * math.cos(w)))
     antennae(rig, w, amp=3.0)
