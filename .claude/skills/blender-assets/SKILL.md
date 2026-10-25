@@ -51,6 +51,28 @@ Reference pictures: describe what you learned in words; never trace, copy or com
 3. Re-import one exported file into Blender to check hierarchy and pivots survive (the FBX importer adds a 90 degree X rotation to the root; that is normal).
 4. Look at it in the site's viewer (below). Things fine in Blender can be wrong in glTF (axes, pivots of moving parts).
 
+## Parts, fit and clipping (every model)
+
+Write the parts down before any code, as a short table in the brief or the script's docstring: **part, size (w x d x h, m), centre or origin, what it sits on or attaches to**. Sizes come from the real object (the brief) and positions from the parts they touch, not from numbers typed twice:
+
+- Derive a position from its neighbour (`top = base_z + base_h`, `x = wall_x - t / 2`), so changing one size moves everything that depends on it. A literal that has to equal another literal is a gap or a clip waiting for the next edit.
+- **No gaps.** Parts that should touch must touch or overlap slightly (a leg into the seat, a handle into the door, a neck into the head, a roof into the walls). A visible sliver of background between two parts is a bug even when each part is right.
+- **No visible clipping.** Faces that are coplanar (flush boxes, a decal at the same depth, a lid exactly on a rim) z-fight; a part that pokes out through a surface shows as a spike or a hole. Overlap that is hidden inside another part is fine and is how things are joined; overlap that shows is not. Sink a joint by its own thickness, offset a decal by a millimetre, and give every thin plate its own depth.
+- Check it with numbers first (`audit.py` and the other `audit_*.py`, or a bounding-box check of the parts against each other: touching, inside, intersecting), then with `look`: four angles, a close view of every joint and a view from below and behind. What is small in the full view is what shows at the joints.
+- Moving parts get the same check at **both ends of their travel** (a door open as well as shut, a lid up, a drawer out): they clear the body, do not pass through a neighbour, and stay attached to their hinge.
+
+## Animation (every clip)
+
+The same rules hold in motion, and a clip has its own ways to go wrong:
+
+- **The loop closes.** The last key equals the first, in the GLB, not only in the Blender action (`tests/test_glb_clips.py` fails otherwise). Key every clip on a rig with no other clip live (`stash_clip` mutes its track, `export_glb` unmutes it): a live track overrides the pose the next clip's keys are read from (issue #95).
+- Reset every pose property (location, rotation **and scale**) between frames: setting a bone's matrix leaves a little scale behind that adds up over a loop (Sit's pelvis ended 4 mm from where it began).
+- **No clipping at the extremes.** Pose the rig at each key and at the extreme of each swing (a stride at full reach, an arm fully raised, a wing at the top and the bottom of its stroke) and look: limbs do not pass through the body or each other, a foot does not sink into the floor or hover, a wing does not go through the thorax. Look at three or more frames of the loop, not only the first.
+- **Joints stay joined.** At every frame the parts that touch at rest still touch (no gap opening at the shoulder, hip, neck or wing root). Measure the distance between the two pivots across the loop when in doubt.
+- **Ground and travel.** Planted feet do not slide (the walk scripts report the drift; read it), the body keeps its height above the ground, and the clip's speed matches the model's size.
+- **Motion is the right size.** A bob or sway is measured against the model, not the world: millimetres on a small insect look huge once the viewer frames it (issue #96). A body that real animals hold still stays still.
+- Check the exported GLB, not only the Blender scene: open it in the site's viewer and watch the loop wrap several times. Say which clips you watched.
+
 ## Markers and `interactions.json`
 
 `Prop.part()` (moving parts), `Prop.slot()` (where items go), `Prop.emit()` / `Prop.trait()` (lights, sounds, switches; `emitters.py` has a table per prop) export marker empties (`Slot_`, `Light_`, `Sound_`, `Switch_`) and entries in `art/data/interactions.json` (and the per-model interactions files). The marker empties are not in the GLBs. Add a prop's markers to `emitters.SPECS` (position as a fraction of its bounding box), not inside every style's function.
