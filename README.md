@@ -15,7 +15,9 @@ Status: **extraction in progress.** The scripts under `art/` are a copy of the g
 
 AI disclosure: the Python scripts were written with the help of Claude Code (Anthropic). The models themselves are not made by a text-to-3D or image generator: each one is built by a script from boxes, cylinders and lofted cross-sections, and you can read how.
 
-What it can make today (the file list is in [art/README.md](art/README.md)): quadruped animals from a description (any species, dog breeds, cat coats), people on a shared humanoid rig with clips, road vehicles in paint jobs and New / Damaged variants, furniture, appliances with doors and drawers that open, a modular building kit, vegetation, ships, produce in several colours, insects, sports gear (balls, goals and nets, bats, rackets, a helmet) and office gear (desks, a cubicle kit on a 1.5 m module, a copier, a water cooler).
+What is in it today is the [asset browser](#the-asset-browser) (search, categories and tags; the count is in the badge above); how each group is made is in [art/README.md](art/README.md). What is planned is the [open issues](https://github.com/khanjal/iron-raptor-lowpoly/issues), one per group, so this page does not list every category.
+
+Scope: generic things in the shared style, of any kind: objects, vehicles, animals (living, extinct and fantasy), people, buildings, tools, weapons (medieval and modern, generic by type), clutter and garbage. Not in scope: brands and trademarked designs, characters from other works, scanned or realistic models, and sexually explicit content. See [CONTRIBUTING.md](CONTRIBUTING.md#suggest-a-model).
 
 Contents: [How a model is made](#how-a-model-is-made) · [Categories and tags](#categories-and-tags) · [The asset browser](#the-asset-browser) · [Rebuilding](#rebuilding-the-assets) · [Using the models in your engine](#using-the-models-in-your-engine) · [Tests and CI](#tests-and-ci) · [Licence](#licence) · [Report a problem or suggest a model](CONTRIBUTING.md)
 
