@@ -70,6 +70,9 @@ REFERENCE = {
     "deer_buck": ((0.90, 1.05), (1.30, 2.00), (0.10, 0.36)),
     "deer_fawn": ((0.40, 0.65), (0.70, 1.10), (0.08, 0.22)),
     "bear": ((0.75, 1.05), (1.20, 2.00), (0.08, 0.14)),
+    # the cat and the husky (docs/assets/briefs/animals.md): back height, head-and-body length, tail not checked
+    "cat_tabby": ((0.23, 0.30), (0.40, 0.60), None),
+    "dog_husky": ((0.51, 0.62), (0.80, 1.10), None),
     "cow": ((1.30, 1.55), (1.80, 2.60), None),
     "horse": ((1.40, 1.70), (2.00, 2.60), None),
     "sheep": ((0.60, 0.95), (0.90, 1.40), None),

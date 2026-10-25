@@ -23,14 +23,14 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | `width`, `depth` | widest and deepest body section, full size, / H |
 | `elbow` | lowest point of the chest / H (what is left under the chest for the legs: leg length as a share of height) |
 | `head` | head length (nose to the skull, where the ears sit) / L |
-| `head_w` | skull width / head length |
+| `head_w` | head width at its widest (skull and cheeks) / head length |
 | `carry` | top of the skull / H (the neck lifts the head above the back) |
 | `leg_top`, `leg_low` | front leg width at the top ring and at the ankle / H |
 | `paw` | front foot length / H |
 
 ## Per species: real measurements
 
-| Species | Shoulder height | Trunk length (shoulder to rump) | Chest width / depth | Elbow height (legs) | Head length / trunk | Neck | Feet |
+| Species | Shoulder height | Trunk length (chest front to rump: point of shoulder to buttock) | Chest width / depth | Elbow height (legs) | Head length / trunk | Neck | Feet |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cat, domestic shorthair (4-5 kg) | 0.23-0.28 m | 0.30-0.38 m | 0.12-0.15 / 0.12-0.15 m | about 45 % of H | 0.09-0.11 m, 30-35 % | short; the head rides just above the back; head a round wedge, 0.07-0.08 m wide | small oval paws, 0.045-0.055 m long |
 | Collie / farm dog (Border Collie; 14-25 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
@@ -48,9 +48,9 @@ These are the ranges in `animal_proportions.RANGES` (the test checks that the sc
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| cat | 1.05-1.65 | 0.46-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.75-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
-| collie | 0.95-1.35 | 0.34-0.50 | 0.44-0.58 | 0.44-0.54 | 0.34-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
-| husky | 0.95-1.30 | 0.36-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| cat | 1.05-1.65 | 0.43-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.64-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
+| collie | 0.95-1.35 | 0.30-0.50 | 0.44-0.58 | 0.44-0.54 | 0.31-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| husky | 0.95-1.30 | 0.32-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | cow | 1.10-1.45 | 0.34-0.54 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
 | horse | 1.00-1.25 | 0.26-0.38 | 0.50-0.64 | 0.50-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
 | pig | 1.30-1.70 | 0.55-0.78 | 0.60-0.80 | 0.28-0.40 | 0.28-0.38 | 0.55-0.75 | 0.85-1.05 | 0.12-0.20 | 0.07-0.12 | 0.08-0.14 |
