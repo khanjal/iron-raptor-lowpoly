@@ -82,8 +82,35 @@ def pr_head(pr):
     return fetch(url)["head"]["sha"]
 
 
+def report_pr(args):
+    """Print the PR's verdict; 0 when its head was analysed and it has no open issues, else 1."""
+    head = args.head or pr_head(args.pr)
+    if args.wait:
+        wait_for_head(args.pr, head)
+    seen = analysed_head(args.pr)
+    status = 0
+    if seen == head:
+        print(f"PR #{args.pr}: Sonar analysed the head ({head[:8]})")
+    else:
+        print(f"PR #{args.pr}: Sonar has NOT analysed the head yet (head {head[:8]}, analysed {seen[:8] or 'nothing'}); wait and rerun, and if it never does, check that Sonar's analysis of pull requests is on")
+        status = 1
+    total, found, rules = issues(args.pr)
+    print(f"PR #{args.pr} open issues: {total}")
+    print(f"  by rule: {by_rule(rules)}")
+    for i in found:
+        print(describe(i))
+    return 1 if total else status
+
+
+def report_main():
+    total, _, rules = issues()
+    print(f"main open issues: {total} (a rise since the last look is for the rule and file list, not the bare count)")
+    print(f"  by rule: {by_rule(rules)}")
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser = argparse.ArgumentParser(description=__doc__.split("
+")[0])
     parser.add_argument("pr", nargs="?", type=int)
     parser.add_argument("--head", help="the commit to check (default: the PR's current head, from GitHub)")
     parser.add_argument("--wait", action="store_true", help="wait for Sonar to analyse the PR's head")
@@ -91,29 +118,12 @@ def main(argv=None):
     status = 0
     try:
         if args.pr is not None:
-            head = args.head or pr_head(args.pr)
-            if args.wait:
-                wait_for_head(args.pr, head)
-            seen = analysed_head(args.pr)
-            if seen == head:
-                print(f"PR #{args.pr}: Sonar analysed the head ({head[:8]})")
-            else:
-                print(f"PR #{args.pr}: Sonar has NOT analysed the head yet (head {head[:8]}, analysed {seen[:8] or 'nothing'}); wait and rerun, and if it never does, check that Sonar's analysis of pull requests is on")
-                status = 1
-            total, found, rules = issues(args.pr)
-            print(f"PR #{args.pr} open issues: {total}")
-            print(f"  by rule: {by_rule(rules)}")
-            for i in found:
-                print(describe(i))
-            if total:
-                status = 1
+            status = report_pr(args)
     except (OSError, KeyError, ValueError) as error:
         print(f"error: {error}", file=sys.stderr)
         return 2
     try:
-        total, _, rules = issues()
-        print(f"main open issues: {total} (a rise since the last look is for the rule and file list, not the bare count)")
-        print(f"  by rule: {by_rule(rules)}")
+        report_main()
     except (OSError, KeyError, ValueError) as error:
         # Informational: a failure here says nothing about the PR.
         print(f"main's issues could not be read: {error}", file=sys.stderr)
