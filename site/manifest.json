@@ -397,11 +397,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 658,
+   "triangles": 930,
    "size": [
     0.259,
     0.442,
-    0.442
+    0.468
    ],
    "glb": "models/GN_ChickenHen_faceted_01.glb",
    "thumb": "thumbs/GN_ChickenHen_faceted_01.png",

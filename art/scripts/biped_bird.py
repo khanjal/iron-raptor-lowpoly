@@ -155,6 +155,35 @@ def _chicken_extras(ctx):
     ctx.make("comb", comb, lambda c_, n: "cloth_red", ["Head"], sub=0, smooth=False)
 
     _bird_eyes(ctx, CHICKEN_HEN)
+    _hen_tail(ctx)
+
+
+def _hen_tail(ctx, count=7, apart=13.0, length=0.27, root=(0.15, 0.335)):
+    """A raised, curved fan of tapering, pointed tail feathers: `count` of them `apart` degrees apart, the middle one the longest, each rising from the rump at 36 degrees and
+    curling up to 60 at the tip, rooted inside the body (root = y, z). A feather is a flat leaf (a diamond ring that is wide and thin, five stations from the root to the tip)."""
+    import math
+    from mathutils import Vector
+    c = ctx.common
+    half = count // 2
+
+    def feather(bm, k):
+        yaw = math.radians(k * apart)
+        ln = length * (1.0 - 0.14 * (abs(k) / max(half, 1)) ** 2)
+        p = Vector((0.0, root[0], root[1]))
+        rings = []
+        for i in range(6):
+            t = i / 5
+            rise = math.radians(36 + 24 * t)
+            d = Vector((math.sin(yaw) * math.cos(rise), math.cos(yaw) * math.cos(rise), math.sin(rise)))
+            u = Vector((math.cos(yaw), -math.sin(yaw), 0.0))               # across the feather
+            n = d.cross(u).normalized()                                    # through it
+            width = (0.014, 0.034, 0.042, 0.034, 0.018, 0.002)[i]
+            thick = 0.007 if i < 5 else 0.0015
+            rings.append([p + u * width, p + n * thick, p - u * width, p - n * thick])
+            p = p + d * (ln / 5)
+        c.loft(bm, rings)
+
+    ctx.make("tail_feathers", lambda bm: [feather(bm, k) for k in range(-half, half + 1)], lambda c_, n: "black", ["Tail1", "Tail2"], sub=0, smooth=False)
 
 
 CHICKEN_HEN = dict(
@@ -171,7 +200,7 @@ CHICKEN_HEN = dict(
     leg=dict(x=0.055, joints=(1, 2), toe=0.085,
              profile=[(0.24, 0.02, 0.034, 0.034), (0.13, 0.00, 0.02, 0.02), (0.06, 0.03, 0.015, 0.015), (0.0, 0.03, 0.015, 0.015)]),
     leg_colour="straw",
-    tail=[(0.36, 0.20), (0.43, 0.25), (0.48, 0.29)], tail_spread=0.04, tail_rise=32,
+    tail=[(0.40, 0.19), (0.46, 0.23), (0.51, 0.265)], tail_boxes=False,
     coat=lambda c, n: "brown_coat",
     tail_coat=lambda c, n: "black",
     neck_coat=lambda c, n: "brown_coat" if c.z < 0.44 else "brown_coat",
