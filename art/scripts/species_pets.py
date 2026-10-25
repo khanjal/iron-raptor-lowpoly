@@ -129,8 +129,7 @@ DOGS = {
                               ear="rose", tail="stub", pattern="solid", c1="cream", thick=1.35),
     "dog_dachshund": make_dog("DogDachshund", length=1.5, width=0.8, depth=0.78, leg=0.08, head=0.85, snout=1.15, ear="long",
                               tail="down", pattern="solid", c1="dark_brown", thick=0.75),
-    "dog_husky":     make_dog("DogHusky", width=1.05, leg=0.22, snout=0.9, ear="upright", tail="curl", pattern="mask",
-                              c1="grey_cat", c2="paint_white"),
+    "dog_husky":     species_farm_dog.make_husky("DogHusky"),                                     # built on the farm dog's builder with its own numbers (issue #87)
     "dog_shepherd":  make_dog("DogShepherd", length=1.2, width=1.1, depth=1.1, leg=0.26, head=1.1, snout=1.1, ear="upright",
                               tail="down", pattern="saddle", c1="black", c3="tan", thick=1.1),
     "dog_stray":     make_dog("DogStray", length=0.9, width=0.9, depth=0.95, leg=0.17, ear="floppy", tail="down",
@@ -148,21 +147,20 @@ DOG_SKINS = {
 
 # ===== Cats ====================================================================================================
 def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white", c3="dark_brown", tail_len=1.0, fluff=1.0):
-    """A house cat, about 0.25 m at the shoulder. Patterns: solid, tabby, tuxedo, calico, siamese."""
+    """A house cat, 0.27 m to the back (about 0.25 at the shoulder). Patterns: solid, tabby, tuxedo, calico, siamese."""
     k = size
-    leg = 0.14 * k
-    cz0 = leg + 0.07 * k
+    cz0 = 0.19 * k                                         # the centre line of the barrel; the back is 0.27 m, the chest hangs to 0.115 m (docs/assets/briefs/animals.md)
     body = [(yy * k, cz0 + dz * k, ww * k * fluff, hh * k * fluff) for yy, dz, ww, hh in
-            [(-0.20, -0.01, 0.05, 0.065), (-0.11, 0.0, 0.065, 0.085), (0.0, 0.0, 0.07, 0.085), (0.11, 0.01, 0.06, 0.075), (0.20, 0.0, 0.045, 0.06)]]
-    head = [(yy * k, cz0 + dz * k, hw * k, hh * k) for yy, dz, hw, hh in
-            [(-0.19, 0.04, 0.05, 0.062), (-0.225, 0.075, 0.056, 0.066), (-0.255, 0.088, 0.064, 0.068), (-0.285, 0.080, 0.062, 0.064),
-             (-0.305, 0.064, 0.050, 0.050), (-0.318, 0.054, 0.040, 0.040), (-0.326, 0.050, 0.032, 0.032), (-0.332, 0.049, 0.026, 0.026)]]
-    kz = 0.88
-    fr = [(z * k * kz, dy * k, hx * k, hy * k) for z, dy, hx, hy in
-          [(0.20, 0, 0.032, 0.038), (0.12, 0, 0.022, 0.025), (0.06, 0, 0.018, 0.02), (0.025, 0, 0.02, 0.022), (0.0, -0.01, 0.022, 0.03)]]
-    hn = [(z * k * kz, dy * k, hx * k, hy * k) for z, dy, hx, hy in
-          [(0.22, 0, 0.045, 0.055), (0.15, 0.03, 0.028, 0.034), (0.10, 0.05, 0.022, 0.025), (0.05, 0.03, 0.019, 0.022), (0.02, 0.01, 0.019, 0.022), (0.0, 0, 0.022, 0.032)]]
-    tl = [(cz0 + dz * k, y * k * tail_len, 0.018 * k) for dz, y in ((0.03, 0.20), (0.10, 0.27), (0.18, 0.30), (0.25, 0.30))]
+            [(-0.17, -0.005, 0.045, 0.055), (-0.12, 0.0, 0.068, 0.075), (-0.02, 0.005, 0.075, 0.075), (0.07, 0.003, 0.063, 0.068),
+             (0.15, 0.014, 0.066, 0.072), (0.19, -0.01, 0.045, 0.058)]]
+    head = [(yy * k, dz * k, hw * k, hh * k) for yy, dz, hw, hh in                 # neck root first; the skull (ring 2) carries the ears, the cheeks (3) are the widest
+            [(-0.13, 0.215, 0.060, 0.070), (-0.18, 0.255, 0.054, 0.064), (-0.222, 0.272, 0.052, 0.058), (-0.250, 0.270, 0.057, 0.058),
+             (-0.285, 0.256, 0.052, 0.050), (-0.312, 0.245, 0.040, 0.038), (-0.326, 0.240, 0.030, 0.030), (-0.332, 0.237, 0.024, 0.024)]]
+    fr = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
+          [(0.20, 0, 0.028, 0.036), (0.12, 0, 0.021, 0.026), (0.06, 0, 0.017, 0.021), (0.03, 0, 0.015, 0.02), (0.0, -0.014, 0.024, 0.03)]]
+    hn = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
+          [(0.215, 0, 0.040, 0.055), (0.14, 0.03, 0.026, 0.034), (0.09, 0.045, 0.02, 0.024), (0.05, 0.03, 0.016, 0.02), (0.02, 0.01, 0.015, 0.02), (0.0, -0.01, 0.024, 0.03)]]
+    tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.20, 0.17, 0.020), (0.25, 0.235, 0.018), (0.31, 0.26, 0.016), (0.37, 0.245, 0.014))]
     skull = head[2]
 
     def coat(c, n):
@@ -178,14 +176,14 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
             u = _blobs(c, [(-0.05 * k, -0.1 * k, cz0 + 0.05 * k, 0.06 * k), (0.05 * k, 0.17 * k, cz0 + 0.02 * k, 0.05 * k)])
             return c1 if t > 0.5 else (c3 if u > 0.5 else c2)
         if pattern == "siamese":                           # pale body, dark points
-            return c3 if (c.z < 0.07 * k or c.y < -0.30 * k) else c1
+            return c3 if (c.z < 0.07 * k or c.y < -0.28 * k) else c1
         return c1
 
     def head_coat(c, n):
         if pattern == "siamese":
-            return c3 if c.y < -0.29 * k else c1
+            return c3 if c.y < -0.27 * k else c1
         if pattern == "tuxedo":
-            return c2 if (c.y < -0.32 * k and c.z < head[4][1] + 0.01) else c1
+            return c2 if (c.y < -0.28 * k and c.z < head[4][1] + 0.01) else c1
         if pattern == "tabby":
             return c3 if (abs(c.x) < 0.012 * k and n.z > 0.3) else c1
         return coat(c, n)
@@ -195,7 +193,7 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
 
         def ears(bm):
             for s in (-1, 1):
-                cm.add_box(bm, (s * skull[2] * 0.7, skull[0] + 0.005 * k, skull[1] + skull[3] * 0.95), (0.03 * k, 0.012 * k, 0.045 * k),
+                cm.add_box(bm, (s * skull[2] * 0.7, skull[0] + 0.005 * k, skull[1] + skull[3] * 0.85), (0.045 * k, 0.016 * k, 0.06 * k),
                            taper=0.2, rot_deg=(0, s * 10, 0))
 
         ctx.make("ears", ears, lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1, ["Ear_L", "Ear_R"], sub=0, smooth=False)
@@ -203,8 +201,8 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
                  lambda c, n: "pink", ["Head"], sub=0, smooth=False)
 
     return dict(name=name, body=body, head=head,
-                front=dict(x=0.04 * k, y=-0.14 * k, joints=(1, 3), profile=fr),
-                hind=dict(x=0.04 * k, y=0.15 * k, joints=(2, 4), profile=hn),
+                front=dict(x=0.046 * k, y=-0.12 * k, joints=(1, 3), profile=fr),
+                hind=dict(x=0.046 * k, y=0.14 * k, joints=(2, 4), profile=hn),
                 tail=tl, ear_x=skull[2] * 0.7, ear_y=skull[0], ear_z=skull[1] + skull[3] * 0.9,
                 coat=coat, head_coat=head_coat,
                 tail_coat=lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1,
