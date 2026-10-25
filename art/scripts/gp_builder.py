@@ -44,7 +44,7 @@ DEFAULT_OUTFIT = dict(skin="skin", shirt="cloth_red", pants="denim", shoes="rubb
 
 TORSO = [  # z, centre y, half width (x), half depth (y)
     (0.90, 0.02, 0.170, 0.115), (1.05, 0.015, 0.160, 0.106), (1.20, 0.005, 0.150, 0.104),
-    (1.32, -0.005, 0.185, 0.122), (1.43, -0.005, 0.215, 0.116), (1.50, 0.00, 0.128, 0.092),
+    (1.32, -0.005, 0.185, 0.122), (1.43, -0.005, 0.215, 0.116), (1.50, 0.00, 0.110, 0.092),
 ]
 HEAD = [(1.60, -0.010, 0.056, 0.066), (1.65, -0.004, 0.084, 0.092), (1.71, -0.004, 0.094, 0.105),
         (1.77, -0.003, 0.092, 0.104), (1.82, 0.000, 0.072, 0.085), (1.845, 0.004, 0.040, 0.050)]
@@ -143,7 +143,6 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     if rg is not None:                                           # the top ring of each leg (z 0.94) stays within a few mm of the torso's side at that height: a thick thigh and wide hips must not leave a ledge
         hw_top = ring_at(t_rings, LEG[0][0], 2)
         leg_f[0] = min(leg_f[0], (hw_top + 0.004 - 0.089 * hipx) / LEG[0][2])
-    t_rings0 = torso_rings(1.0, [1.0] * 6)                                          # the neutral torso: where the tie, the collar and the badge were placed
     o = dict(DEFAULT_OUTFIT)
     o.update(outfit or {})
     common.setup_scene()
@@ -205,12 +204,14 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
             for sx in (-1, 1):
                 common.add_box(bm, (sx * 0.036 * f_face, -0.108 + f_dy, 1.708), (0.020, 0.016, 0.016))
                 common.add_box(bm, (sx * 0.097 * f_face, 0.005, 1.695), (0.016, 0.032, 0.062))                           # the ears
-                common.add_box(bm, (sx * 0.038 * f_face, -0.109 + f_dy, 1.733), (0.040, 0.014, 0.009), rot_deg=(0, 0, sx * -6))   # the brows
+                common.add_box(bm, (sx * 0.038 * f_face, -0.094 + f_dy, 1.733), (0.040, 0.020, 0.009), rot_deg=(0, 0, sx * 6))    # the brows (set into the brow ridge, the outer end back)
             common.add_box(bm, (0, -0.121 + f_dy, 1.680), (0.026, 0.034, 0.046))                                         # the nose
-            common.add_box(bm, (0, -0.106 + f_dy, 1.640), (0.050, 0.012, 0.008))                                         # the mouth
+            if "beard" not in extras:
+                common.add_box(bm, (0, -0.106 + f_dy, 1.640), (0.050, 0.012, 0.008))                                     # the mouth
 
         def face_colour(c, n):
-            if c.y < -0.10 and c.z > 1.725 and abs(c.x) > 0.012:
+            u = Vector((c.x / head_scale, c.y / head_scale, pivot.z + (c.z - pivot.z) / head_scale))      # (the face is painted after the head's scale: look where it was built)
+            if u.y < -0.09 and u.z > 1.7225 and abs(u.x) > 0.012:
                 return o["hair"]
             return o["eyes"] if (abs(c.x) < 0.06 and c.y < -0.10 and c.z > 1.695 and abs(c.x) > 0.02) else o["skin"]
         make("face", face_build, face_colour, ["Head"], sub=0, head=True)
@@ -284,21 +285,21 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     # --- extras ------------------------------------------------------------------------------------------------
     if "sunglasses" in extras:
         make("sunglasses", lambda bm: common.add_box(bm, (0, -0.112 + f_dy, 1.708), (0.150 * f_face, 0.014, 0.034)), lambda c, n: "black", ["Head"], sub=0, head=True)
-    def fwd(z):                                                  # how far this build's torso front stands in front of the neutral one at this height (negative: forward)
-        return front_y(t_rings, z) - front_y(t_rings0, z) if rg else 0.0
+    def front(z):                                                # the y of this build's torso front at this height (negative: forward)
+        return front_y(t_rings, z)
     if "tie" in extras:
         def tie_build(bm):                                       # the blade in three pieces (z 1.20-1.42), each at the torso's front at its own height: a belly bulges most at the bottom
             for zc in (1.237, 1.310, 1.383):
-                common.add_box(bm, (0, -0.108 + fwd(zc), zc), (0.034, 0.014, 0.0733))
-            common.add_box(bm, (0, -0.110 + fwd(1.44), 1.44), (0.05, 0.016, 0.04))
+                common.add_box(bm, (0, front(zc) + 0.002, zc), (0.034, 0.014, 0.0733))
+            common.add_box(bm, (0, front(1.44) - 0.001, 1.44), (0.05, 0.016, 0.04))
 
         def collar_build(bm):                                    # the same for the shirt's front (z 1.24-1.44)
             for zc in (1.273, 1.340, 1.407):
-                common.add_box(bm, (0, -0.106 + fwd(zc), zc), (0.10, 0.012, 0.0667))
+                common.add_box(bm, (0, front(zc) + 0.002, zc), (0.10, 0.012, 0.0667))
         make("tie", tie_build, lambda c, n: "black" if suit else "cloth_red", ["spine_03", "spine_02"], sub=0)
         make("collar_shirt", collar_build, lambda c, n: "paint_white", ["spine_03", "spine_02"], sub=0)
     if "badge" in extras:
-        make("badge", lambda bm: common.add_box(bm, (0.075, -0.114 + fwd(1.30), 1.30), (0.045, 0.012, 0.05), rot_deg=(0, 0, 0)), lambda c, n: "gold",
+        make("badge", lambda bm: common.add_box(bm, (0.075, front(1.30) - 0.004, 1.30), (0.045, 0.012, 0.05), rot_deg=(0, 0, 0)), lambda c, n: "gold",
              ["spine_03"], sub=0)
     if "beard" in extras:
         make("beard", lambda bm: common.loft(bm, [common.ring_z(z, 0, cy, hx * f_face, hy * f_face, n=st["neck_n"]) for z, cy, hx, hy in
@@ -310,7 +311,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         sk_d = [ring_at(t_rings, 1.02, 3) / ring_at(TORSO, 1.02, 3)] + [t_rings[0][3] / TORSO[0][3]] * 3 if rg else [girth] * 4
         sk_y = [ring_at(t_rings, 1.02, 1) - ring_at(TORSO, 1.02, 1)] + [t_rings[0][1] - TORSO[0][1]] * 3 if rg else [0.0] * 4
         make("skirt", lambda bm: common.loft(bm, [common.ring_z(z, 0, ky, hw * kw, hd * kd, n=st["skirt_n"], p=2.2)
-                                                   for (z, hw, hd), kw, kd, ky in zip(((1.02, 0.17, 0.105), (0.85, 0.20, 0.13), (0.66, 0.24, 0.16), (0.55, 0.255, 0.17)), sk_w, sk_d, sk_y)]),
+                                                   for (z, hw, hd), kw, kd, ky in zip(((1.02, 0.17, 0.128), (0.85, 0.20, 0.150), (0.66, 0.24, 0.16), (0.55, 0.255, 0.17)), sk_w, sk_d, sk_y)]),
              lambda c, n: o["shirt"], ["pelvis", "thigh_l", "thigh_r"])
     if "tail" in extras:                                                                                   # a thick tail that tapers to the ground, on the pelvis
         make("tail", lambda bm: common.loft(bm, [common.ring_y(y, 0.0, cz, hx, hz, n=st["limb_n"], p=2.4)

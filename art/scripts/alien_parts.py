@@ -300,12 +300,12 @@ def pelvis_rings(girth, n):
     """The hip block: rings (z, centre y, half x, half y) from below the hip joints (z 0.932, x +-0.089) to inside the torso's first ring (z 0.90-1.05),
     as wide as the outer edge of the legs, so a leg swinging at the hip still meets something."""
     reach = 0.089 + 0.095 * girth                      # the outer edge of the leg's top
-    return [(0.842, 0.004, reach * 0.86, 0.084 * girth + 0.020), (0.905, 0.004, reach, 0.100 * girth + 0.022),
-            (0.965, 0.004, reach * 0.96, 0.098 * girth + 0.020), (1.030, 0.006, reach * 0.55, 0.060 * girth)]
+    return [(0.842, 0.010, reach * 0.86, 0.092 * girth + 0.020), (0.905, 0.012, reach, 0.112 * girth + 0.026),
+            (0.965, 0.012, reach * 0.96, 0.108 * girth + 0.024), (1.030, 0.010, reach * 0.55, 0.066 * girth)]
 
 
 def shoulder_ball(bm, side, girth):
     """A ball on the shoulder joint (the arm's pivot at |x| 0.192, y 0.065, z 1.441) a little larger than the top of the arm, so the arm swings inside it."""
-    r = 0.075 * girth * 1.12 + 0.003
+    r = 0.082 * girth * 1.12 + 0.003
     res = bmesh.ops.create_uvsphere(bm, u_segments=6, v_segments=4, radius=r)
     bmesh.ops.translate(bm, verts=res["verts"], vec=(side * 0.192, 0.065, 1.441))

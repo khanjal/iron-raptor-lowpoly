@@ -5,9 +5,10 @@ No Blender needed: measure() reads the literal tables TORSO, HEAD, ARM, HAND, LE
 (tests/test_people_proportions.py) and audit_bodies.py (which prints the result before it audits the exported figures) use the same code. Every ratio is a share
 of the figure's height H, the 1.84 m of the rig at scale 1 (hats and hair do not count), so it holds at any scale; a child differs through head_scale, not here.
 
-    shoulder   the torso's widest ring, full width                          chest_d   the torso's deepest ring, full depth
+    shoulder   the torso's widest ring, full width (bone to bone)           chest_d   the torso's deepest ring, full depth
+    seat       the torso's lowest ring (the hips and buttocks), full depth
     thigh      the leg's top ring, full width                               calf      the leg's ring at the calf, full width
-    upper_arm  the upper arm's ring at the elbow's side, full height        wrist     the wrist's ring, full width
+    upper_arm  the arm's ring at the elbow, full height (the deltoid rows are not measured)        wrist     the wrist's ring, full width
     hand       the hand's length from the wrist to the fingertip            hand_w    the hand's width at the knuckles
     foot_w     the shoe's widest ring / the shoe's length (not of H)        head_w    the skull's widest ring / its height (not of H)
 """
@@ -20,8 +21,8 @@ SOURCE = Path(__file__).resolve().parent / "gp_builder.py"
 
 # (low, high) from the brief: the real spread (adult women to adult men, rounded) with a little slack for the faceted shapes
 RANGES = {
-    "shoulder": (0.205, 0.265), "chest_d": (0.115, 0.155), "thigh": (0.088, 0.118), "calf": (0.055, 0.082),
-    "upper_arm": (0.045, 0.068), "wrist": (0.030, 0.046), "hand": (0.095, 0.125), "hand_w": (0.040, 0.058),
+    "shoulder": (0.205, 0.265), "chest_d": (0.125, 0.155), "seat": (0.118, 0.150), "thigh": (0.088, 0.118), "calf": (0.065, 0.080),
+    "upper_arm": (0.045, 0.068), "wrist": (0.030, 0.042), "hand": (0.095, 0.125), "hand_w": (0.040, 0.058),
     "foot_w": (0.34, 0.45), "head_w": (0.60, 0.85),
 }
 # hand_w and wrist are measured on the width (y) of the ARM rings: the ring is flat in the hand's plane
@@ -51,6 +52,7 @@ def measure(t=None):
     return dict(
         shoulder=2 * max(r[2] for r in torso) / HEIGHT,
         chest_d=2 * max(r[3] for r in torso) / HEIGHT,
+        seat=2 * torso[0][3] / HEIGHT,
         thigh=2 * leg[0][2] / HEIGHT,
         calf=2 * leg[3][2] / HEIGHT,
         upper_arm=2 * arm[2][4] / HEIGHT,

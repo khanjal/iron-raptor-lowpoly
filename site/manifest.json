@@ -16129,7 +16129,7 @@
    "size": [
     2.443,
     2.071,
-    0.358
+    0.363
    ],
    "glb": "models/GP_Shadow_01.glb",
    "thumb": "thumbs/GP_Shadow_01.png",
@@ -16165,7 +16165,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 980,
+   "triangles": 968,
    "size": [
     1.854,
     1.931,

@@ -57,13 +57,13 @@ HUMAN = {
 CHILD = {"head": (0.15, 0.21), "neck": (0.02, 0.085), "foot": (0.13, 0.18)}
 
 HUMAN_BUILD = {   # the mass factor (the build's anchors of builds.json) -> measure -> (lowest, highest) as a ratio of the figure's height; between the anchors it is interpolated.
-    # neckbase_w and ribs_d were raised 10% for the people rebuild (issue #90: a sloped neck base and a deeper chest and back, docs/assets/briefs/people.md).
+    # ribs_d was raised 10% for the people rebuild (issue #90: a deeper chest and back, docs/assets/briefs/people.md).
     # Written from the first pictures and measurements (the 10 adults at each anchor, all shapes and sexes together) with 7% slack each way: a deviation is a model that stopped looking like its build.
-    0.8: {"hip_w": (0.152, 0.203), "waist_w": (0.125, 0.157), "ribs_w": (0.118, 0.157), "chest_w": (0.155, 0.21), "shoulder_w": (0.176, 0.254), "neckbase_w": (0.105, 0.127), "waist_d": (0.078, 0.094), "ribs_d": (0.083, 0.102), "waist_f": (0.034, 0.041), "ribs_f": (0.038, 0.046), "thigh_w": (0.075, 0.086), "upper_arm_t": (0.041, 0.047), "neck_t": (0.053, 0.061)},
-    1.0: {"hip_w": (0.165, 0.221), "waist_w": (0.146, 0.182), "ribs_w": (0.134, 0.178), "chest_w": (0.169, 0.228), "shoulder_w": (0.183, 0.265), "neckbase_w": (0.114, 0.138), "waist_d": (0.095, 0.114), "ribs_d": (0.098, 0.122), "waist_f": (0.043, 0.051), "ribs_f": (0.045, 0.055), "thigh_w": (0.085, 0.098), "upper_arm_t": (0.045, 0.052), "neck_t": (0.057, 0.066)},
-    1.2: {"hip_w": (0.178, 0.239), "waist_w": (0.16, 0.201), "ribs_w": (0.143, 0.19), "chest_w": (0.175, 0.237), "shoulder_w": (0.189, 0.273), "neckbase_w": (0.125, 0.152), "waist_d": (0.116, 0.139), "ribs_d": (0.118, 0.146), "waist_f": (0.058, 0.07), "ribs_f": (0.058, 0.071), "thigh_w": (0.094, 0.108), "upper_arm_t": (0.048, 0.055), "neck_t": (0.063, 0.073)},
-    1.45: {"hip_w": (0.191, 0.256), "waist_w": (0.172, 0.215), "ribs_w": (0.15, 0.199), "chest_w": (0.179, 0.241), "shoulder_w": (0.192, 0.278), "neckbase_w": (0.139, 0.168), "waist_d": (0.143, 0.171), "ribs_d": (0.140, 0.173), "waist_f": (0.084, 0.1), "ribs_f": (0.078, 0.096), "thigh_w": (0.109, 0.126), "upper_arm_t": (0.053, 0.061), "neck_t": (0.07, 0.081)},
-    1.6: {"hip_w": (0.198, 0.265), "waist_w": (0.181, 0.226), "ribs_w": (0.155, 0.206), "chest_w": (0.181, 0.244), "shoulder_w": (0.194, 0.281), "neckbase_w": (0.149, 0.179), "waist_d": (0.158, 0.189), "ribs_d": (0.154, 0.189), "waist_f": (0.099, 0.117), "ribs_f": (0.091, 0.11), "thigh_w": (0.114, 0.131), "upper_arm_t": (0.055, 0.063), "neck_t": (0.075, 0.086)},
+    0.8: {"hip_w": (0.152, 0.203), "waist_w": (0.125, 0.157), "ribs_w": (0.118, 0.157), "chest_w": (0.155, 0.21), "shoulder_w": (0.176, 0.254), "neckbase_w": (0.095, 0.115), "waist_d": (0.078, 0.094), "ribs_d": (0.083, 0.102), "waist_f": (0.034, 0.041), "ribs_f": (0.038, 0.046), "thigh_w": (0.075, 0.086), "upper_arm_t": (0.041, 0.047), "neck_t": (0.053, 0.061)},
+    1.0: {"hip_w": (0.165, 0.221), "waist_w": (0.146, 0.182), "ribs_w": (0.134, 0.178), "chest_w": (0.169, 0.228), "shoulder_w": (0.183, 0.265), "neckbase_w": (0.104, 0.125), "waist_d": (0.095, 0.114), "ribs_d": (0.098, 0.122), "waist_f": (0.043, 0.051), "ribs_f": (0.045, 0.055), "thigh_w": (0.085, 0.098), "upper_arm_t": (0.045, 0.052), "neck_t": (0.057, 0.066)},
+    1.2: {"hip_w": (0.178, 0.239), "waist_w": (0.16, 0.201), "ribs_w": (0.143, 0.19), "chest_w": (0.175, 0.237), "shoulder_w": (0.189, 0.273), "neckbase_w": (0.114, 0.138), "waist_d": (0.116, 0.139), "ribs_d": (0.118, 0.146), "waist_f": (0.058, 0.07), "ribs_f": (0.058, 0.071), "thigh_w": (0.094, 0.108), "upper_arm_t": (0.048, 0.055), "neck_t": (0.063, 0.073)},
+    1.45: {"hip_w": (0.191, 0.256), "waist_w": (0.172, 0.215), "ribs_w": (0.15, 0.199), "chest_w": (0.179, 0.241), "shoulder_w": (0.192, 0.278), "neckbase_w": (0.126, 0.153), "waist_d": (0.143, 0.171), "ribs_d": (0.140, 0.173), "waist_f": (0.084, 0.1), "ribs_f": (0.078, 0.096), "thigh_w": (0.109, 0.126), "upper_arm_t": (0.053, 0.061), "neck_t": (0.07, 0.081)},
+    1.6: {"hip_w": (0.198, 0.265), "waist_w": (0.181, 0.226), "ribs_w": (0.155, 0.206), "chest_w": (0.181, 0.244), "shoulder_w": (0.194, 0.281), "neckbase_w": (0.135, 0.163), "waist_d": (0.158, 0.189), "ribs_d": (0.154, 0.189), "waist_f": (0.099, 0.117), "ribs_f": (0.091, 0.11), "thigh_w": (0.114, 0.131), "upper_arm_t": (0.055, 0.063), "neck_t": (0.075, 0.086)},
 }
 CHILD_BUILD_SLACK = 0.08           # a child's build measures sit within the adults' ranges widened by this much each way
 ARM_CLEARANCE = 0.04               # a build may push the arms this much (metres) deeper into the torso than the NEUTRAL body of the same person does (the reference, built at mf 1.0): the neutral body already has 3-6.5 cm of arm
@@ -543,14 +543,14 @@ def main():
     for folder in folders:
         files += sorted(glob.glob(str(Path(folder) / "G[PA]_*_01.fbx")))
     import people_proportions
-    bad = 0
+    table_bad = 0
     for p in people_proportions.check():                       # the shared body's tables against the brief (docs/assets/briefs/people.md)
         print("    PROBLEM (body tables):", p)
-        bad += 1
+        table_bad += 1
     print("people_proportions: " + " ".join(f"{k} {v:.3f}" for k, v in people_proportions.measure().items()))
     data = builds.load()
     by_model = {r["model"]: (n, r) for n, r in data["roles"].items()}
-    checked = 0
+    bad = checked = 0
     ref_dir = None
     _REF.clear()                                   # (the references are built once per run)
     for f in files:
@@ -584,6 +584,7 @@ def main():
         import shutil
         shutil.rmtree(ref_dir, ignore_errors=True)
     print(f"audit_bodies: {checked} models, {bad} with problems")
+    bad += table_bad
     if globals().get("BUILDS", True):
         bad += _builds_audit(only)
     return bad

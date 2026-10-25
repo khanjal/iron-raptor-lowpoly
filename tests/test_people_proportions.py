@@ -40,6 +40,16 @@ class Ranges(unittest.TestCase):
         problems = P.check(P.measure(t))
         self.assertTrue(any(p.startswith("hand ") for p in problems), problems)
 
+    def test_check_reports_the_old_stick_figure(self):
+        t = P.tables()
+        t["TORSO"] = [(0.90, 0.01, 0.170, 0.105), (1.05, 0.01, 0.160, 0.100), (1.20, 0.00, 0.150, 0.095),
+                      (1.32, 0.00, 0.185, 0.110), (1.43, 0.00, 0.215, 0.108), (1.50, 0.00, 0.110, 0.080)]
+        t["LEG"] = [list(r) for r in t["LEG"]]
+        t["LEG"][3][2] = 0.058                                                    # the old calf
+        problems = " ".join(P.check(P.measure(t)))
+        for name in ("chest_d", "seat", "calf"):
+            self.assertIn(name + " ", problems)
+
     def test_the_builder_uses_the_hand_table(self):
         self.assertIn("ARM[:5] + HAND", P.SOURCE.read_text(encoding="utf-8"))
 
