@@ -36,7 +36,7 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | Collie / farm dog (Border Collie; 14-25 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
 | Husky (Siberian; 16-27 kg) | 0.51-0.60 m | 0.55-0.66 m | 0.19-0.24 / 0.25-0.29 m | about 50 % of H | 0.21-0.24 m, 36 % | strong, 0.15-0.2 m | large oval paws, 0.10-0.11 m |
 | Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 43-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
-| Horse (riding, 15 hands = 1.52 m) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.58 / 0.75-0.95 m | 50-55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
+| Horse (riding, 15-15.2 hands = 1.52-1.57 m) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.58 / 0.75-0.95 m | 49-55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
 | Pig (domestic, market) | 0.75-1.0 m | 1.05-1.4 m | 0.50-0.65 / 0.50-0.65 m | 33 % | 0.36-0.45 m, 30-35 % | short and thick; jowl; ham at the rear | small cloven hooves |
 | Sheep (adult ewe) | 0.65-0.85 m | 0.75-1.0 m | 0.30-0.40 / 0.40-0.50 m (wool adds 8 cm a side) | 40-45 % | 0.22-0.28 m, 28-33 % | short | small cloven hooves |
 | Goat (dairy) | 0.70-0.90 m | 0.80-1.0 m | 0.28-0.35 / 0.40-0.50 m | 50 % | 0.22-0.28 m, 28-33 % | medium, raised | hooves, 0.07 m |

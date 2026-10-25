@@ -71,7 +71,7 @@ def _cow_head(c, n):
 
 def _cow_extras(ctx):
     c = ctx.common
-    # the top ring is inside the belly (the belly's underside is at z 0.71 here), so the udder grows out of the body and does not hang under it
+    # the top ring is inside the belly (the belly's underside is at z 0.73 here), so the udder grows out of the body and does not hang under it
     ctx.make("udder", lambda bm: c.loft(bm, [c.ring_z(0.80, 0, 0.64, 0.12, 0.15, n=8), c.ring_z(0.62, 0, 0.64, 0.14, 0.17, n=8),
                                               c.ring_z(0.50, 0, 0.64, 0.12, 0.14, n=8), c.ring_z(0.43, 0, 0.64, 0.07, 0.08, n=8)]), lambda c_, n: K, ["Hips"])
 
