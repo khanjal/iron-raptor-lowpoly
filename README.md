@@ -15,9 +15,9 @@ Status: **extraction in progress.** The scripts under `art/` are a copy of the g
 
 AI disclosure: the Python scripts were written with the help of Claude Code (Anthropic). The models themselves are not made by a text-to-3D or image generator: each one is built by a script from boxes, cylinders and lofted cross-sections, and you can read how.
 
-What is in it today is the [asset browser](#the-asset-browser) (search, categories and tags; the count is in the badge above); how each group is made is in [art/README.md](art/README.md). What is planned is the [open issues](https://github.com/khanjal/iron-raptor-lowpoly/issues), one per group, so this page does not list every category.
+The models that exist today are in the [asset browser](#the-asset-browser) (animals and people with clips, vehicles, furniture with doors that open, tools, food and more; search, categories and tags; the count is in the badge above); how each group is made is in [art/README.md](art/README.md). What is planned is in the [open issues](https://github.com/khanjal/iron-raptor-lowpoly/issues) (mostly one per group), so this page does not list every category.
 
-Scope: generic things in the shared style, of any kind: objects, vehicles, animals (living, extinct and fantasy), people, buildings, tools, weapons (medieval and modern, generic by type), clutter and garbage. Not in scope: brands and trademarked designs, characters from other works, scanned or realistic models, and sexually explicit content. See [CONTRIBUTING.md](CONTRIBUTING.md#suggest-a-model).
+Scope: generic things in the shared style, of any kind: objects, vehicles, animals (living, extinct and fantasy), people, buildings, tools, weapons and military vehicles (medieval and modern, generic by type, never a named make or model), clutter and garbage. Not in scope: brands and trademarked designs, characters from other works, scanned or realistic models, and sexually explicit content. See [CONTRIBUTING.md](CONTRIBUTING.md#suggest-a-model).
 
 Contents: [How a model is made](#how-a-model-is-made) · [Categories and tags](#categories-and-tags) · [The asset browser](#the-asset-browser) · [Rebuilding](#rebuilding-the-assets) · [Using the models in your engine](#using-the-models-in-your-engine) · [Tests and CI](#tests-and-ci) · [Licence](#licence) · [Report a problem or suggest a model](CONTRIBUTING.md)
 
