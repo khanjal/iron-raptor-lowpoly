@@ -53,6 +53,7 @@ def reset(rig):
         pb.rotation_mode = "QUATERNION"
         pb.rotation_quaternion = (1, 0, 0, 0)
         pb.location = (0, 0, 0)
+        pb.scale = (1, 1, 1)                       # turn() sets the matrix, which leaves a little scale behind; without this it adds up over a loop
     bpy.context.view_layer.update()
 
 
