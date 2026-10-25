@@ -24,8 +24,9 @@ It builds every species in species.py (no export: it audits the parts the builde
      that is 40% too tall or too long looks wrong beside a person or a cow
 
  PROPORTIONS (docs/assets/briefs/animals.md; animal_proportions.py has the ranges)
-   - the cat, collie and husky (animal_proportions.ENFORCED) fail when a ratio (trunk length to height, body width and depth, chest height, head length and
-     width, head carriage, leg width, paw length) is outside the brief's range; the farm animals' misses are only printed (WARN) until each is rebuilt
+   - every four-legged species (animal_proportions.ENFORCED) fails when a ratio (trunk length to height, body width and depth, chest height, head length and
+     width, head carriage, leg width, paw length) is outside the brief's range; the hen (biped_bird.CHICKEN_HEN, not a species of species.py) is checked against
+     animal_proportions.HEN at the end
 
 Prints one line per species and the problems. Fix the species (species.py, species_pets.py, species_wild.py) or the builder (quadruped_builder.py), run again, and look at the
 animal too: the audit does not see a mane that is the wrong colour or a horn that curves the wrong way.
@@ -209,6 +210,13 @@ def main():
         for p in problems:
             print("    PROBLEM:", p)
         bad += bool(problems)
+    if not only or "chicken_hen" in only:
+        import biped_bird
+        misses = animal_proportions.check_bird(biped_bird.CHICKEN_HEN)
+        print(f"chicken_hen {'FAIL' if misses else 'ok  '} (proportions)")
+        for m in misses:
+            print("    PROBLEM: proportions:", m)
+        bad += bool(misses)
     print(f"audit_animals: {len(keys)} species, {bad} with problems")
     return bad
 

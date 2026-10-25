@@ -305,11 +305,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 924,
+   "triangles": 1000,
    "size": [
-    0.7,
-    1.417,
-    2.666
+    0.672,
+    1.55,
+    2.626
    ],
    "glb": "models/GN_Cow_faceted_01.glb",
    "thumb": "thumbs/GN_Cow_faceted_01.png",
@@ -351,11 +351,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 796,
+   "triangles": 848,
    "size": [
-    0.361,
-    1.156,
-    1.466
+    0.351,
+    1.186,
+    1.416
    ],
    "glb": "models/GN_Goat_faceted_01.glb",
    "thumb": "thumbs/GN_Goat_faceted_01.png",
@@ -399,9 +399,9 @@
    "interactive": false,
    "triangles": 658,
    "size": [
-    0.245,
-    0.436,
-    0.474
+    0.259,
+    0.442,
+    0.442
    ],
    "glb": "models/GN_ChickenHen_faceted_01.glb",
    "thumb": "thumbs/GN_ChickenHen_faceted_01.png",
@@ -440,11 +440,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 796,
+   "triangles": 872,
    "size": [
-    0.54,
-    2.161,
-    2.646
+    0.56,
+    2.201,
+    2.596
    ],
    "glb": "models/GN_Horse_faceted_01.glb",
    "thumb": "thumbs/GN_Horse_faceted_01.png",
@@ -481,11 +481,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 672,
+   "triangles": 744,
    "size": [
     0.6,
-    0.87,
-    1.634
+    0.81,
+    1.851
    ],
    "glb": "models/GN_Pig_faceted_01.glb",
    "thumb": "thumbs/GN_Pig_faceted_01.png",
@@ -523,11 +523,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 672,
+   "triangles": 736,
    "size": [
-    0.56,
-    0.85,
-    1.311
+    0.44,
+    0.86,
+    1.306
    ],
    "glb": "models/GN_Sheep_faceted_01.glb",
    "thumb": "thumbs/GN_Sheep_faceted_01.png",

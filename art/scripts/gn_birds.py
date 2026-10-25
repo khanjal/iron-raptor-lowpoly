@@ -16,7 +16,7 @@ for m in (common, quadruped_rig, biped_bird):
     importlib.reload(m)
 
 SPECIES = {"chicken_hen": biped_bird.CHICKEN_HEN, "turkey_tom": biped_bird.TURKEY_TOM, "turkey_hen": biped_bird.TURKEY_HEN}
-SIZE = {"chicken_hen": 0.85}          # a hen is about 0.4 m tall to the comb; a tom turkey is about 1.0 m to the top of its head
+SIZE = {"chicken_hen": 0.8}           # a hen is about 0.4 m tall to the comb (0.55 drawn to the comb tip, times 0.8); a tom turkey is about 1.0 m to the top of its head
 names = globals().get("SPECIES_LIST") or list(SPECIES)
 styles = globals().get("STYLES_LIST") or ["faceted"]
 for r, style in enumerate(styles):
