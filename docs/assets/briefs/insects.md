@@ -12,3 +12,6 @@ Budget: ant 368 (a 14 mm insect with antennae, under the animal class floor on p
 Source: general entomology references (ant: head, mesosoma, petiole, gaster; caterpillar: head, 3 thoracic and 10 abdominal segments); no images were copied. Variants and family members: none added here (colour variants such as a red fire ant or other caterpillar colours are a later batch).
 
 Other insects (read in the script, not rendered): ladybug, beetle, firefly, honeybee, moth, dragonfly, spider each have a body that overlaps its neighbours and legs on the thorax, so nothing else needed changing here.
+
+## Fly clips: still bodies (issue #96)
+A bee, wasp, housefly, mosquito or dragonfly beats its wings hundreds of times a second and its body does not visibly bob, so their Fly clips move only the wings (and the dragonfly's hind wings against its fore wings); the body bone does not move. A butterfly or moth flaps slowly and does rise and fall, but gently: 3 mm of a 25 mm butterfly (was 6 mm) and 2 mm for the moth (was 4 mm), pitching 3 and 2.5 degrees. The wing beat is a stylised 3 to 4 Hz (4 to 8 frames at 24 fps), not the real rate, which aliases at 60 fps; the wings blur in the viewer anyway.
