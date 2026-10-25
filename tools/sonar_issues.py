@@ -3,6 +3,7 @@
     python tools/sonar_issues.py <pr-number>   the PR's issues, whether Sonar analysed its head, and main's total
     python tools/sonar_issues.py               main's issues only (use after a merge)
     python tools/sonar_issues.py <pr> --wait   keep polling (up to 10 minutes) until Sonar has analysed the PR's head
+    python tools/sonar_issues.py <pr> --head <sha>   check that commit instead of asking GitHub for the PR's current head (CI does this)
 
 Exits 1 when the PR has open issues or Sonar has not analysed the PR's current head (a stale count reads as current), 2 when a call fails.
 Standard library only; the project is public, so no token is needed. Main's older issues are never counted against a PR: Sonar reports a PR's
@@ -13,7 +14,6 @@ import argparse
 import json
 import sys
 import time
-import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -22,10 +22,20 @@ API = "https://sonarcloud.io/api"
 PAGE = 500
 
 
+def fetch(url):
+    """Read JSON from a URL, trying three times: one blip from either API must not fail a PR that has nothing wrong with it."""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as response:
+                return json.load(response)
+        except OSError:
+            if attempt == 2:
+                raise
+            time.sleep(5 * (attempt + 1))
+
+
 def get(path, **params):
-    url = f"{API}/{path}?{urllib.parse.urlencode(params)}"
-    with urllib.request.urlopen(url, timeout=30) as response:
-        return json.load(response)
+    return fetch(f"{API}/{path}?{urllib.parse.urlencode(params)}")
 
 
 def analysed_head(pr):
@@ -69,26 +79,26 @@ def wait_for_head(pr, head, minutes=10):
 def pr_head(pr):
     """The PR's head commit, from GitHub (public repository, no token)."""
     url = f"https://api.github.com/repos/khanjal/iron-raptor-lowpoly/pulls/{pr}"
-    with urllib.request.urlopen(url, timeout=30) as response:
-        return json.load(response)["head"]["sha"]
+    return fetch(url)["head"]["sha"]
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("pr", nargs="?", type=int)
+    parser.add_argument("--head", help="the commit to check (default: the PR's current head, from GitHub)")
     parser.add_argument("--wait", action="store_true", help="wait for Sonar to analyse the PR's head")
     args = parser.parse_args(argv)
     status = 0
     try:
         if args.pr is not None:
-            head = pr_head(args.pr)
+            head = args.head or pr_head(args.pr)
             if args.wait:
                 wait_for_head(args.pr, head)
             seen = analysed_head(args.pr)
             if seen == head:
                 print(f"PR #{args.pr}: Sonar analysed the head ({head[:8]})")
             else:
-                print(f"PR #{args.pr}: Sonar has NOT analysed the head yet (head {head[:8]}, analysed {seen[:8] or 'nothing'}); wait and rerun")
+                print(f"PR #{args.pr}: Sonar has NOT analysed the head yet (head {head[:8]}, analysed {seen[:8] or 'nothing'}); wait and rerun, and if it never does, check that Sonar's analysis of pull requests is on")
                 status = 1
             total, found, rules = issues(args.pr)
             print(f"PR #{args.pr} open issues: {total}")
@@ -97,12 +107,18 @@ def main(argv=None):
                 print(describe(i))
             if total:
                 status = 1
+    except (OSError, KeyError, ValueError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    try:
         total, _, rules = issues()
         print(f"main open issues: {total} (a rise since the last look is for the rule and file list, not the bare count)")
         print(f"  by rule: {by_rule(rules)}")
-    except (urllib.error.URLError, KeyError, ValueError) as error:
-        print(f"error: {error}", file=sys.stderr)
-        return 2
+    except (OSError, KeyError, ValueError) as error:
+        # Informational: a failure here says nothing about the PR.
+        print(f"main's issues could not be read: {error}", file=sys.stderr)
+        if args.pr is None:
+            return 2
     return status
 
 

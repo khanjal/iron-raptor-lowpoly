@@ -153,7 +153,7 @@ Besides the mesh, an FBX can carry **empties** that mark places, and `art/data/i
 
 ## Tests and CI
 
-`python -m unittest discover -s tests -t .` runs the unit tests (axis conversion of the moving parts, the manifest builder, the catalog's type and tag rules) and the site checks; `python tools/check_site.py` checks that every manifest entry has its GLB and thumbnail, that fields are valid and ids unique, and that every moving part names a node that exists in its GLB at the right pivot. `.github/workflows/tests.yml` runs both on every pull request, on every push to `main` and by hand (the repository is public, so Actions on the standard runners are free). A proposal for a Blender job (rebuild a few generators, fail on floating parts or a triangle regression) and for a browser smoke test is in [docs/ci.md](docs/ci.md).
+`python -m unittest discover -s tests -t .` runs the unit tests (axis conversion of the moving parts, the manifest builder, the catalog's type and tag rules) and the site checks; `python tools/check_site.py` checks that every manifest entry has its GLB and thumbnail, that fields are valid and ids unique, and that every moving part names a node that exists in its GLB at the right pivot. `.github/workflows/tests.yml` runs both on every pull request, on every push to `main` and by hand (the repository is public, so Actions on the standard runners are free). `.github/workflows/sonar.yml` fails a pull request that adds an open SonarCloud issue on its new code (`tools/sonar_issues.py`, see `.claude/skills/sonar-check`). A proposal for a Blender job (rebuild a few generators, fail on floating parts or a triangle regression) and for a browser smoke test is in [docs/ci.md](docs/ci.md).
 
 ## Licence
 
