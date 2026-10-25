@@ -205,15 +205,15 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
                 common.add_box(bm, (sx * 0.036 * f_face, -0.108 + f_dy, 1.708), (0.020, 0.016, 0.016))
                 common.add_box(bm, (sx * 0.097 * f_face, 0.005, 1.695), (0.016, 0.032, 0.062))                           # the ears
                 common.add_box(bm, (sx * 0.038 * f_face, -0.094 + f_dy, 1.733), (0.040, 0.020, 0.009), rot_deg=(0, 0, sx * 6))    # the brows (set into the brow ridge, the outer end back)
-            common.add_box(bm, (0, -0.121 + f_dy, 1.680), (0.026, 0.034, 0.046))                                         # the nose
+            common.add_box(bm, (0, -0.118 + f_dy, 1.680), (0.026, 0.040, 0.046))                                         # the nose
             if "beard" not in extras:
-                common.add_box(bm, (0, -0.106 + f_dy, 1.640), (0.050, 0.012, 0.008))                                     # the mouth
+                common.add_box(bm, (0, -0.092 + f_dy, 1.640), (0.050, 0.024, 0.008))                                     # the mouth
 
         def face_colour(c, n):
             u = Vector((c.x / head_scale, c.y / head_scale, pivot.z + (c.z - pivot.z) / head_scale))      # (the face is painted after the head's scale: look where it was built)
-            if u.y < -0.09 and u.z > 1.7225 and abs(u.x) > 0.012:
+            if u.y < -0.05 and u.z > 1.7225 and abs(u.x) > 0.012:
                 return o["hair"]
-            return o["eyes"] if (abs(c.x) < 0.06 and c.y < -0.10 and c.z > 1.695 and abs(c.x) > 0.02) else o["skin"]
+            return o["eyes"] if (abs(u.x) < 0.065 and u.y < -0.095 and u.z > 1.69 and abs(u.x) > 0.02) else o["skin"]
         make("face", face_build, face_colour, ["Head"], sub=0, head=True)
     else:                                                        # an alien face: caps that sit on this race's skull, one part per colour
         skull = alien_parts.Skull(head_rings, n=st["head_n"])
@@ -310,7 +310,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         sk_w = [ring_at(t_rings, 1.02, 2) / ring_at(TORSO, 1.02, 2)] + [t_rings[0][2] / TORSO[0][2]] * 3 if rg else [girth] * 4
         sk_d = [ring_at(t_rings, 1.02, 3) / ring_at(TORSO, 1.02, 3)] + [t_rings[0][3] / TORSO[0][3]] * 3 if rg else [girth] * 4
         sk_y = [ring_at(t_rings, 1.02, 1) - ring_at(TORSO, 1.02, 1)] + [t_rings[0][1] - TORSO[0][1]] * 3 if rg else [0.0] * 4
-        make("skirt", lambda bm: common.loft(bm, [common.ring_z(z, 0, ky, hw * kw, hd * kd, n=st["skirt_n"], p=2.2)
+        make("skirt", lambda bm: common.loft(bm, [common.ring_z(z, 0, ky, hw * kw, hd * kd, n=st["skirt_n"], p=2.6)
                                                    for (z, hw, hd), kw, kd, ky in zip(((1.02, 0.17, 0.128), (0.85, 0.20, 0.150), (0.66, 0.24, 0.16), (0.55, 0.255, 0.17)), sk_w, sk_d, sk_y)]),
              lambda c, n: o["shirt"], ["pelvis", "thigh_l", "thigh_r"])
     if "tail" in extras:                                                                                   # a thick tail that tapers to the ground, on the pelvis

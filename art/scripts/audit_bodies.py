@@ -583,8 +583,8 @@ def main():
     if ref_dir:
         import shutil
         shutil.rmtree(ref_dir, ignore_errors=True)
-    print(f"audit_bodies: {checked} models, {bad} with problems")
     bad += table_bad
+    print(f"audit_bodies: {checked} models, {bad} with problems")
     if globals().get("BUILDS", True):
         bad += _builds_audit(only)
     return bad
