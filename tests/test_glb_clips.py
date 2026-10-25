@@ -21,7 +21,8 @@ def read(path):
 
 def values(doc, binary, index):
     acc = doc["accessors"][index]
-    assert acc["componentType"] == 5126 and not acc.get("normalized") and "sparse" not in acc, "this test reads plain float accessors"
+    if acc["componentType"] != 5126 or acc.get("normalized") or "sparse" in acc:
+        raise AssertionError("this test reads plain float accessors")
     view = doc["bufferViews"][acc["bufferView"]]
     width = {"SCALAR": 1, "VEC3": 3, "VEC4": 4}[acc["type"]]
     flat = struct.unpack_from("<%df" % (acc["count"] * width), binary, view.get("byteOffset", 0) + acc.get("byteOffset", 0))
@@ -44,7 +45,8 @@ class ClipLoops(unittest.TestCase):
                     if ch["target"]["path"] not in ("rotation", "translation"):
                         continue
                     sampler = anim["samplers"][ch["sampler"]]
-                    assert sampler.get("interpolation", "LINEAR") in ("LINEAR", "STEP"), f"{glb.name} {anim['name']}: first and last values are not the ends of a cubic spline"
+                    if sampler.get("interpolation", "LINEAR") not in ("LINEAR", "STEP"):
+                        raise AssertionError(f"{glb.name} {anim['name']}: first and last values are not the ends of a cubic spline")
                     out = values(doc, binary, sampler["output"])
                     checked += 1
                     gap = mismatch(ch["target"]["path"], out[0], out[-1])
