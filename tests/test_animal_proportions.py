@@ -77,7 +77,10 @@ class Rebuilt(unittest.TestCase):
         text = (ROOT / "docs" / "assets" / "briefs" / "animals.md").read_text(encoding="utf-8")
         row = [l for l in text.splitlines() if l.startswith("| hen |")][0]
         cells = [c.strip() for c in row.strip().strip("|").split("|")]
-        self.assertEqual({n: tuple(float(x) for x in c.split("-")) for n, c in zip(A.HEN, cells[1:])}, A.HEN)
+        head = [l for l in text.splitlines() if l.startswith("| | LH | width | depth | legs")][0]
+        names = [c.strip() for c in head.strip().strip("|").split("|")][1:]
+        self.assertEqual(names, list(A.HEN))
+        self.assertEqual({n: tuple(float(x) for x in c.split("-")) for n, c in zip(names, cells[1:])}, A.HEN)
 
     def test_farm_animals_are_all_enforced(self):
         self.assertEqual(A.ENFORCED, set(A.RANGES))

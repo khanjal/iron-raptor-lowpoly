@@ -212,12 +212,13 @@ def main():
         bad += bool(problems)
     if not only or "chicken_hen" in only:
         import biped_bird
+        importlib.reload(biped_bird)
         misses = animal_proportions.check_bird(biped_bird.CHICKEN_HEN)
         print(f"chicken_hen {'FAIL' if misses else 'ok  '} (proportions)")
         for m in misses:
             print("    PROBLEM: proportions:", m)
         bad += bool(misses)
-    print(f"audit_animals: {len(keys)} species, {bad} with problems")
+    print(f"audit_animals: {len(keys)} species{' and the hen' if not only or 'chicken_hen' in only else ''}, {bad} with problems")
     return bad
 
 

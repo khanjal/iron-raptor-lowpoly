@@ -160,8 +160,8 @@ def _chicken_extras(ctx):
 CHICKEN_HEN = dict(
     name="ChickenHen",
     # a laying hen (2-2.5 kg): an egg-shaped body with a full, low breast and a tail raised behind, a thick neck that rises into a small round head, legs a
-    # third of the height, a drumstick over a shank with four toes. Drawn at 0.5 m to the top of the head (and 0.85 of it when exported: gn_birds.SIZE)
-    body=[(-0.17, 0.30, 0.06, 0.09), (-0.09, 0.28, 0.115, 0.135), (0.00, 0.28, 0.125, 0.145), (0.10, 0.30, 0.105, 0.125),
+    # third of the height, a drumstick over a shank with four toes. Drawn 0.52 m to the top of the head, 0.55 to the comb tip (and 0.8 of that when exported: gn_birds.SIZE)
+    body=[(-0.17, 0.30, 0.06, 0.09), (-0.09, 0.28, 0.105, 0.135), (0.00, 0.28, 0.112, 0.145), (0.10, 0.30, 0.095, 0.125),
           (0.19, 0.345, 0.06, 0.08)],
     neck=[(0.32, -0.12, 0.062, 0.065), (0.39, -0.155, 0.045, 0.048), (0.45, -0.175, 0.036, 0.04), (0.485, -0.19, 0.04, 0.044),
           (0.52, -0.195, 0.034, 0.038)],

@@ -308,7 +308,7 @@
    "triangles": 1000,
    "size": [
     0.672,
-    1.55,
+    1.49,
     2.626
    ],
    "glb": "models/GN_Cow_faceted_01.glb",
@@ -442,7 +442,7 @@
    "interactive": false,
    "triangles": 872,
    "size": [
-    0.56,
+    0.54,
     2.201,
     2.596
    ],
@@ -485,7 +485,7 @@
    "size": [
     0.6,
     0.81,
-    1.851
+    1.861
    ],
    "glb": "models/GN_Pig_faceted_01.glb",
    "thumb": "thumbs/GN_Pig_faceted_01.png",
@@ -526,7 +526,7 @@
    "triangles": 736,
    "size": [
     0.44,
-    0.86,
+    0.887,
     1.306
    ],
    "glb": "models/GN_Sheep_faceted_01.glb",

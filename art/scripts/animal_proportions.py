@@ -79,7 +79,7 @@ HEN = dict(LH=(0.60, 0.90), width=(0.34, 0.52), depth=(0.45, 0.65), legs=(0.22, 
 def measure_bird(sp):
     """The ratios of a bird species dict (see HEN), H being the top of the head."""
     body, neck, leg = sp["body"], sp["neck"], sp["leg"]
-    H = max(z + ry for z, _, _, ry in neck)
+    H = max(z for z, *_ in neck)                       # the neck rings are horizontal (z, y, rx, ry): the last one is at the top of the head
     back = max(z + h for _, z, _, h in body)
     ys = [y for y, *_ in body]
     return dict(H=H, LH=(max(ys) - min(ys)) / H, width=2 * max(w for _, _, w, _ in body) / H, depth=2 * max(h for *_, h in body) / H,
