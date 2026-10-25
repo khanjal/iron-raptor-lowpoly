@@ -22,7 +22,7 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | `LH` | trunk length / back height |
 | `width`, `depth` | widest and deepest body section, full size, / H |
 | `elbow` | lowest point of the chest / H (what is left under the chest for the legs: leg length as a share of height) |
-| `head` | head length (nose to the skull, where the ears sit) / L |
+| `head` | head length along its slope (nose to the skull, where the ears sit; a horse's head is tipped 45 degrees, so its length counts, not its shadow on the floor) / L |
 | `head_w` | head width at its widest (skull and cheeks) / head length |
 | `carry` | top of the skull / H (the neck lifts the head above the back) |
 | `leg_top`, `leg_low` | front leg width at the top ring and at the ankle / H |
@@ -35,16 +35,16 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | Cat, domestic shorthair (4-5 kg) | 0.23-0.28 m | 0.30-0.38 m | 0.12-0.15 / 0.12-0.15 m | about 45 % of H | 0.09-0.11 m, 30-35 % | short; the head rides just above the back; head a round wedge, 0.07-0.08 m wide | small oval paws, 0.045-0.055 m long |
 | Collie / farm dog (Border Collie; 14-25 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
 | Husky (Siberian; 16-27 kg) | 0.51-0.60 m | 0.55-0.66 m | 0.19-0.24 / 0.25-0.29 m | about 50 % of H | 0.21-0.24 m, 36 % | strong, 0.15-0.2 m | large oval paws, 0.10-0.11 m |
-| Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 45-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
-| Horse (riding, 15 hands) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.55 / 0.75-0.95 m | 55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
-| Pig (domestic, market) | 0.75-1.0 m | 1.1-1.4 m | 0.50-0.65 / 0.50-0.65 m | 33 % | 0.40-0.45 m, 30-33 % | none to see; jowl; ham at the rear | small cloven hooves |
-| Sheep (adult ewe) | 0.65-0.85 m | 0.75-1.0 m | 0.30-0.40 / 0.40-0.50 m (wool adds 8 cm a side) | 40-45 % | 0.22-0.26 m, 28-30 % | short | small cloven hooves |
-| Goat (dairy) | 0.70-0.90 m | 0.80-1.0 m | 0.28-0.35 / 0.40-0.50 m | 50 % | 0.22-0.27 m, 28-30 % | medium, raised | hooves, 0.07 m |
+| Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 43-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
+| Horse (riding, 15-15.2 hands = 1.52-1.57 m) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.58 / 0.75-0.95 m | 49-55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
+| Pig (domestic, market) | 0.75-1.0 m | 1.05-1.4 m | 0.50-0.65 / 0.50-0.65 m | 33 % | 0.36-0.45 m, 30-35 % | short and thick; jowl; ham at the rear | small cloven hooves |
+| Sheep (adult ewe) | 0.65-0.85 m | 0.75-1.0 m | 0.30-0.40 / 0.40-0.50 m (wool adds 8 cm a side) | 40-45 % | 0.22-0.28 m, 28-33 % | short | small cloven hooves |
+| Goat (dairy) | 0.70-0.90 m | 0.80-1.0 m | 0.28-0.35 / 0.40-0.50 m | 50 % | 0.22-0.28 m, 28-33 % | medium, raised | hooves, 0.07 m |
 | Hen (laying hen, 2-2.5 kg) | 0.35-0.45 m high | a bird: body 0.25-0.32 m | 0.14-0.18 m wide | legs 30 % of height | head 0.06-0.08 m | upright S-neck, 0.12-0.15 m | four toes, 0.08-0.10 m span |
 
 ## Proportion table: the audit's ranges
 
-These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Cat, collie and husky fail the audit outside them from this PR; the farm animals are reported and enforced in their own PRs (cow, horse, pig, sheep, goat, hen). The hen is a biped and is not in the table: it gets its own check when it is rebuilt.
+These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The hen is a biped and has its own table below.
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -52,17 +52,33 @@ These are the ranges in `animal_proportions.RANGES` (the test checks that the sc
 | collie | 0.95-1.35 | 0.30-0.50 | 0.44-0.58 | 0.44-0.54 | 0.31-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | husky | 0.95-1.30 | 0.32-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | cow | 1.10-1.45 | 0.34-0.54 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
-| horse | 1.00-1.25 | 0.26-0.38 | 0.50-0.64 | 0.50-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
+| horse | 1.00-1.25 | 0.26-0.38 | 0.48-0.64 | 0.47-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
 | pig | 1.30-1.70 | 0.55-0.78 | 0.60-0.80 | 0.28-0.40 | 0.28-0.38 | 0.55-0.75 | 0.85-1.05 | 0.12-0.20 | 0.07-0.12 | 0.08-0.14 |
 | sheep | 1.00-1.30 | 0.40-0.58 | 0.50-0.68 | 0.38-0.48 | 0.26-0.36 | 0.38-0.55 | 1.00-1.25 | 0.09-0.15 | 0.05-0.09 | 0.07-0.12 |
 | goat | 1.05-1.35 | 0.34-0.50 | 0.50-0.66 | 0.44-0.54 | 0.26-0.36 | 0.38-0.55 | 1.00-1.30 | 0.09-0.15 | 0.05-0.09 | 0.07-0.12 |
+
+### The hen's ranges (`animal_proportions.HEN`)
+
+Measured by `measure_bird` on `biped_bird.CHICKEN_HEN`: H is the top of the head, the body is the egg-shaped trunk. A laying hen (Rhode Island Red, 2-2.5 kg) is about 0.40 m to the top of the head, her body 0.25-0.32 m from breast to tail root, 0.14-0.18 m wide, the shank (the bare leg) about 1.5-2.5 cm wide and 10 cm long with a feathered thigh above it, the toes 6-8 cm. Extension-service poultry guides and the American Poultry Association's standard give the same shape: a deep, full breast, a back that slopes up to a raised tail, and a short, thick neck that rises to a small round head.
+
+| | LH | width | depth | legs | carry | shank | toe | tail |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| hen | 0.60-0.90 | 0.34-0.52 | 0.45-0.65 | 0.22-0.38 | 1.15-1.45 | 0.04-0.08 | 0.14-0.24 | 0.95-1.25 |
+
+(LH body length / H; width, depth the body's, / H; legs the underside of the body / H; carry the top of the head / the top of the back; shank the leg's width at the ankle / H; toe the toes' length / H; tail the top of the tail / the top of the back.)
 
 ## Recognisable features (kept, faked, dropped)
 
 - **Cat**: round head with a short muzzle, two upright triangular ears set wide (kept); eyes large and forward (kept); whisker pads (faked: a lighter muzzle); a long tail carried up with a curve (kept); the arched, tucked back and the rounded rump (kept: the body sections rise at the hips); toe splits (dropped; the paw is a flat oval).
 - **Collie / farm dog**: long narrow head with a stop and a muzzle as long as the skull, half-folded ears, a ruff at the neck (the farm dog of #275, already there), a deep chest with a tucked waist, a tail with a hook (kept); feathered legs (faked with a colour).
 - **Husky**: wolf-like head with a blunt, full muzzle and a pale mask, erect triangular ears set close, a thick coat that makes the body look broad and the neck full, a tail carried in a sickle curve over the back (kept); the face mask in white (kept as a coat colour); eyes ice-blue or brown (a variant, below).
-- **Feet** (all): a visible foot that is wider and longer than the leg above it, in the coat colour or a darker or lighter sock, never a dark stub; a hoof for the farm animals (a separate dark shape).
+- **Cow**: a deep barrel, a broad head carried level and tipped down with a wide muzzle, the knee halfway down the leg, a hoof (the bottom of the leg flared and dark), an udder, two horns and the Holstein patches (kept); the cloven split of the hoof (dropped).
+- **Horse**: a long arched neck, a long head tipped 45 degrees, a body as deep as the legs are long, a mane and a full tail, tall ears (kept); the hoof is round and dark (kept as the dark flared foot).
+- **Pig**: a long barrel as deep as it is wide, short legs, a big wedge head with jowls ending in a flat snout, floppy ears over the eyes, a curly tail (kept); the cloven hoof (dropped).
+- **Sheep**: a woolly barrel wider than the legs are apart, thin dark legs, a narrow dark face with ears out to the sides, a tuft on the crown (kept); the fleece's texture (dropped).
+- **Goat**: a slim straight-backed body, a narrow head with a beard and a pair of scimitar horns, ears out to the sides, a short tail up (kept); wattles and teats (dropped).
+- **Hen**: an egg-shaped body, a raised tail, a comb and wattle, four toes (kept); feathers (dropped).
+- **Feet** (all): a visible foot that is wider and longer than the leg above it, in the coat colour or a darker or lighter sock, never a dark stub; a hoof for the farm animals (the bottom of the leg flares into a dark foot: a separate shape would cost triangles for a detail nobody sees at 10 m).
 
 ## Variants as paints (see #48)
 
@@ -102,8 +118,8 @@ The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class
 
 | Model | Verdict | Reason |
 | --- | --- | --- |
-| Cat | rebuild (this PR) | head too small, slab body, long thin legs |
-| Collie | rebuild (this PR) | head short and wide, no shoulder, stub feet |
-| Husky | rebuild (this PR) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
-| Cow, horse, pig, sheep, goat | rebuild, one per PR | same causes (issue #87) |
-| Hen | rebuild, own check | a bird: the body is egg-shaped, the tail and wing shapes matter |
+| Cat | rebuilt (#88) | head too small, slab body, long thin legs |
+| Collie | rebuilt (#88) | head short and wide, no shoulder, stub feet |
+| Husky | rebuilt (#88) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
+| Cow, horse, pig, sheep, goat | rebuild (done) | same causes (issue #87): bodies 8-sided slabs, thin legs with the knee too high, small wedge heads |
+| Hen | rebuild (done), own check | a bird: the body is egg-shaped, the tail and wing shapes matter; it has its own table (`HEN`) |

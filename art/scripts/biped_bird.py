@@ -119,7 +119,7 @@ def build(sp, style="smooth", scale=1.0):
              sp.get("wing_coat", sp["coat"]), [f"Wing1_{tag}", f"Wing2_{tag}", "Spine"])
     if sp.get("tail_boxes", True):
         make("tail", lambda bm: [common.add_box(bm, (sx * sp["tail_spread"], sp["tail"][0][1] + 0.03, sp["tail"][0][0] + 0.07),
-                                                 (0.012, 0.14, 0.14), rot_deg=(25, 0, sx * 28), taper=1.0) for sx in (-1, 0, 1)],
+                                                 (0.014, 0.10, 0.13), rot_deg=(sp.get("tail_rise", 25), 0, sx * 28), taper=1.0) for sx in (-1, 0, 1)],
              sp.get("tail_coat", sp["coat"]), ["Tail1", "Tail2"], sub=0, smooth=False)
     if "extras" in sp:
         sp["extras"](type("Ctx", (), dict(make=staticmethod(make), common=common, sp=sp))())
@@ -146,30 +146,61 @@ def _chicken_extras(ctx):
     c = ctx.common
 
     def head_bits(bm):
-        c.add_box(bm, (0, -0.212, 0.44), (0.022, 0.045, 0.018))                                         # beak
+        c.add_box(bm, (0, -0.222, 0.47), (0.024, 0.048, 0.02), taper=0.55)                              # beak
     ctx.make("beak", head_bits, lambda c_, n: "straw", ["Head"], sub=0, smooth=False)
 
     def comb(bm):
-        c.add_box(bm, (0, -0.185, 0.495), (0.012, 0.075, 0.035))                                         # comb
-        c.add_box(bm, (0, -0.225, 0.405), (0.014, 0.014, 0.04))                                          # wattle
+        c.add_box(bm, (0, -0.195, 0.532), (0.013, 0.07, 0.04))                                           # comb
+        c.add_box(bm, (0, -0.232, 0.435), (0.015, 0.015, 0.045))                                         # wattle
     ctx.make("comb", comb, lambda c_, n: "cloth_red", ["Head"], sub=0, smooth=False)
 
     _bird_eyes(ctx, CHICKEN_HEN)
+    _hen_tail(ctx)
+
+
+def _hen_tail(ctx, count=7, apart=13.0, length=0.27, root=(0.15, 0.335)):
+    """A raised, curved fan of tapering, pointed tail feathers: `count` of them `apart` degrees apart, the middle one the longest, each rising from the rump at 36 degrees and
+    curling up to 60 at the tip, rooted inside the body (root = y, z). A feather is a flat leaf (a diamond ring that is wide and thin, five stations from the root to the tip)."""
+    import math
+    from mathutils import Vector
+    c = ctx.common
+    half = count // 2
+
+    def feather(bm, k):
+        yaw = math.radians(k * apart)
+        ln = length * (1.0 - 0.14 * (abs(k) / max(half, 1)) ** 2)
+        p = Vector((0.0, root[0], root[1]))
+        rings = []
+        for i in range(6):
+            t = i / 5
+            rise = math.radians(36 + 24 * t)
+            d = Vector((math.sin(yaw) * math.cos(rise), math.cos(yaw) * math.cos(rise), math.sin(rise)))
+            u = Vector((math.cos(yaw), -math.sin(yaw), 0.0))               # across the feather
+            n = d.cross(u).normalized()                                    # through it
+            width = (0.014, 0.034, 0.042, 0.034, 0.018, 0.002)[i]
+            thick = 0.007 if i < 5 else 0.0015
+            rings.append([p + u * width, p + n * thick, p - u * width, p - n * thick])
+            p = p + d * (ln / 5)
+        c.loft(bm, rings)
+
+    ctx.make("tail_feathers", lambda bm: [feather(bm, k) for k in range(-half, half + 1)], lambda c_, n: "black", ["Tail1", "Tail2"], sub=0, smooth=False)
 
 
 CHICKEN_HEN = dict(
     name="ChickenHen",
-    body=[(-0.16, 0.27, 0.05, 0.08), (-0.08, 0.26, 0.10, 0.12), (0.02, 0.25, 0.12, 0.13), (0.12, 0.26, 0.10, 0.11),
-          (0.21, 0.29, 0.05, 0.07)],
-    neck=[(0.28, -0.12, 0.05, 0.055), (0.35, -0.15, 0.036, 0.04), (0.41, -0.17, 0.03, 0.034), (0.45, -0.185, 0.034, 0.038),
-          (0.49, -0.19, 0.03, 0.034)],
+    # a laying hen (2-2.5 kg): an egg-shaped body with a full, low breast and a tail raised behind, a thick neck that rises into a small round head, legs a
+    # third of the height, a drumstick over a shank with four toes. Drawn 0.52 m to the top of the head, 0.55 to the comb tip (and 0.8 of that when exported: gn_birds.SIZE)
+    body=[(-0.17, 0.30, 0.06, 0.09), (-0.09, 0.28, 0.105, 0.135), (0.00, 0.28, 0.112, 0.145), (0.10, 0.30, 0.095, 0.125),
+          (0.19, 0.345, 0.06, 0.08)],
+    neck=[(0.32, -0.12, 0.062, 0.065), (0.39, -0.155, 0.045, 0.048), (0.45, -0.175, 0.036, 0.04), (0.485, -0.19, 0.04, 0.044),
+          (0.52, -0.195, 0.034, 0.038)],
     beak=0.03,
-    wing=[(-0.06, 0.112, 0.26, 0.018, 0.05), (0.02, 0.122, 0.25, 0.022, 0.07), (0.11, 0.115, 0.245, 0.016, 0.06), (0.17, 0.10, 0.235, 0.01, 0.03)],
-    wing_x=0.115, wing_y=(0.0, 0.06, 0.15), wing_z=0.27,
-    leg=dict(x=0.05, joints=(1, 2), toe=0.07,
-             profile=[(0.19, 0.02, 0.026, 0.026), (0.11, 0.00, 0.017, 0.017), (0.05, 0.03, 0.011, 0.011), (0.0, 0.03, 0.011, 0.011)]),
+    wing=[(-0.06, 0.125, 0.30, 0.022, 0.07), (0.02, 0.136, 0.29, 0.026, 0.09), (0.11, 0.127, 0.285, 0.02, 0.075), (0.18, 0.108, 0.275, 0.012, 0.04)],
+    wing_x=0.125, wing_y=(0.0, 0.06, 0.15), wing_z=0.30,
+    leg=dict(x=0.055, joints=(1, 2), toe=0.085,
+             profile=[(0.24, 0.02, 0.034, 0.034), (0.13, 0.00, 0.02, 0.02), (0.06, 0.03, 0.015, 0.015), (0.0, 0.03, 0.015, 0.015)]),
     leg_colour="straw",
-    tail=[(0.30, 0.20), (0.36, 0.25), (0.40, 0.29)], tail_spread=0.035,
+    tail=[(0.40, 0.19), (0.46, 0.23), (0.51, 0.265)], tail_boxes=False,
     coat=lambda c, n: "brown_coat",
     tail_coat=lambda c, n: "black",
     neck_coat=lambda c, n: "brown_coat" if c.z < 0.44 else "brown_coat",
