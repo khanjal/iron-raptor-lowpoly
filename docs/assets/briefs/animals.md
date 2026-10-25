@@ -2,13 +2,13 @@
 
 Issue [#87](https://github.com/khanjal/iron-raptor-lowpoly/issues/87). Written with the `asset-brief` skill before any rebuild. United States reference (the animals of a US farm and household); style stays the faceted low-poly of `quadruped_builder.py` on the shared palette and the shared rig.
 
-Sizes are rounded from the breed standards of the American Kennel Club (Border Collie, Siberian Husky) and the Cat Fanciers' Association (domestic shorthair, the tabby), and from veterinary anatomy and extension-service texts for the farm animals. A range is the real spread widened by about 10 %: a model inside it reads as the animal, one outside it reads wrong whatever its colour.
+Heights and weights are rounded from the American Kennel Club breed standards (Border Collie, Siberian Husky); the cat is a typical non-pedigree house cat (the Cat Fanciers' Association does not register it, so its numbers come from veterinary anatomy references); chest, head and paw sizes of every species are estimates from veterinary anatomy and extension-service texts and photographs, not from breed standards. A range is the real spread (the table below divided by the height) with a little slack, widened where a real animal's numbers fall outside it: a model inside it reads as the animal, one outside it reads wrong whatever its colour.
 
 ## What was wrong (the thumbnails, issue #87)
 
 | Seen | Cause in the numbers |
 | --- | --- |
-| head is a small wedge on a slab | the cat's head was 19 % of its trunk length (real 30-35 %) and as wide as long; the collie's 27 % (real 38 %) |
+| head is a small wedge on a slab | the cat's head was 19 % of its trunk length (real 30-35 %) and much wider than long (1.66 times); the collie's 27 % (real 38 %) |
 | no neck or shoulder | the head rings start at the back and run level with the spine; no shoulder blade or withers |
 | narrow flat-sided body | the cat's 8-sided body section was a rectangle; no barrel (rib cage) and no tuck-up at the flank |
 | thin legs, stub feet | straight tubes from elbow to ground, the foot a dark stub with no toes; the husky's legs were short and its chest too wide (the husky was 0.54 m tall with an elbow at 35 % of the height, real 50 %) |
@@ -32,8 +32,8 @@ All shares are of the back height **H** (top of the body over the withers) or th
 
 | Species | Shoulder height | Trunk length (shoulder to rump) | Chest width / depth | Elbow height (legs) | Head length / trunk | Neck | Feet |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cat, domestic shorthair (4-5 kg) | 0.23-0.28 m | 0.30-0.38 m | 0.12-0.15 / 0.12-0.15 m | about 45 % of H | 0.09-0.11 m, 30-35 % | short, held at back height; head a round wedge, 0.07-0.08 m wide | small oval paws, 0.045-0.055 m long |
-| Collie / farm dog (Border Collie; 14-20 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
+| Cat, domestic shorthair (4-5 kg) | 0.23-0.28 m | 0.30-0.38 m | 0.12-0.15 / 0.12-0.15 m | about 45 % of H | 0.09-0.11 m, 30-35 % | short; the head rides just above the back; head a round wedge, 0.07-0.08 m wide | small oval paws, 0.045-0.055 m long |
+| Collie / farm dog (Border Collie; 14-25 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
 | Husky (Siberian; 16-27 kg) | 0.51-0.60 m | 0.55-0.66 m | 0.19-0.24 / 0.25-0.29 m | about 50 % of H | 0.21-0.24 m, 36 % | strong, 0.15-0.2 m | large oval paws, 0.10-0.11 m |
 | Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 45-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
 | Horse (riding, 15 hands) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.55 / 0.75-0.95 m | 55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
@@ -48,11 +48,11 @@ These are the ranges in `animal_proportions.RANGES` (the test checks that the sc
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| cat | 1.15-1.55 | 0.46-0.66 | 0.46-0.66 | 0.40-0.52 | 0.28-0.40 | 0.75-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
-| collie | 1.05-1.30 | 0.34-0.50 | 0.44-0.58 | 0.44-0.54 | 0.34-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
-| husky | 1.05-1.30 | 0.36-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
-| cow | 1.10-1.45 | 0.34-0.50 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
-| horse | 1.00-1.25 | 0.26-0.38 | 0.50-0.64 | 0.50-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.09 |
+| cat | 1.05-1.65 | 0.46-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.75-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
+| collie | 0.95-1.35 | 0.34-0.50 | 0.44-0.58 | 0.44-0.54 | 0.34-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| husky | 0.95-1.30 | 0.36-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| cow | 1.10-1.45 | 0.34-0.54 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
+| horse | 1.00-1.25 | 0.26-0.38 | 0.50-0.64 | 0.50-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
 | pig | 1.30-1.70 | 0.55-0.78 | 0.60-0.80 | 0.28-0.40 | 0.28-0.38 | 0.55-0.75 | 0.85-1.05 | 0.12-0.20 | 0.07-0.12 | 0.08-0.14 |
 | sheep | 1.00-1.30 | 0.40-0.58 | 0.50-0.68 | 0.38-0.48 | 0.26-0.36 | 0.38-0.55 | 1.00-1.25 | 0.09-0.15 | 0.05-0.09 | 0.07-0.12 |
 | goat | 1.05-1.35 | 0.34-0.50 | 0.50-0.66 | 0.44-0.54 | 0.26-0.36 | 0.38-0.55 | 1.00-1.30 | 0.09-0.15 | 0.05-0.09 | 0.07-0.12 |
@@ -96,7 +96,7 @@ For every rebuilt animal, in Blender with `look` (mode `angles`) and again in th
 
 ## Budget and markers
 
-The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class table); the rebuild may add up to about 30 % for the head, chest and paws. No hinge, slide, light or sound markers: the animals are rigged (`quadruped_rig.py`), not marked.
+The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class table); the rebuild may add up to about 30 % for the head, chest and paws. The husky is the exception: it moved from the simple dog builder (660 triangles) to the farm dog's builder (1048 triangles, the same as the collie), for the shoulders, haunches, ruff, lips and eye highlights that make a dog read as a dog. No hinge, slide, light or sound markers: the animals are rigged (`quadruped_rig.py`), not marked.
 
 ## Verdicts
 
@@ -104,6 +104,6 @@ The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class
 | --- | --- | --- |
 | Cat | rebuild (this PR) | head too small, slab body, long thin legs |
 | Collie | rebuild (this PR) | head short and wide, no shoulder, stub feet |
-| Husky | rebuild (this PR) | short and broad, elbows too high |
+| Husky | rebuild (this PR) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
 | Cow, horse, pig, sheep, goat | rebuild, one per PR | same causes (issue #87) |
 | Hen | rebuild, own check | a bird: the body is egg-shaped, the tail and wing shapes matter |

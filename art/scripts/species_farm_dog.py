@@ -66,7 +66,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     head = [(-0.24, 0.500, 0.074, 0.105),       # the base of the neck
             (-0.31, 0.545, 0.066, 0.092),
             (-0.36, 0.580, 0.062, 0.082),       # the back of the skull
-            (-0.41, 0.588, 0.063, 0.074),       # the widest: the cheeks (a head as long as 38 % of the trunk, docs/assets/briefs/animals.md)
+            (-0.41, 0.588, 0.063, 0.074),       # the widest: the cheeks (the head from the cheeks to the nose is 35 % of the trunk; docs/assets/briefs/animals.md)
             (-0.47, 0.572, 0.055, 0.062),       # the stop
             (-0.52, 0.552, 0.046, 0.054),       # the muzzle starts narrow
             (-0.58, 0.541, 0.042, 0.050),
@@ -182,7 +182,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
 
         # the ruff: a collar of fur round the base of the neck, a little proud of it
         rw = shape.get("ruff", 1.0)
-        rings = [cm.ring_y(-0.215, 0, 0.500, 0.088 * rw, 0.118 * rw, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078 * rw, 0.104 * rw, n=8), cm.ring_y(-0.335, 0, 0.560, 0.066 * rw, 0.088 * rw, n=8)]
+        rings = [cm.ring_y(-0.215, 0, 0.500, 0.088 * rw, 0.118 * rw, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078 * rw, 0.104 * rw, n=8), cm.ring_y(-0.335, 0, 0.560, 0.072 * rw, 0.095 * rw, n=8)]
         ctx.make("ruff", lambda bm: cm.loft(bm, rings), lambda c, n: sk["ruff"], ["Chest", "Neck1", "Neck2"], sub=0, smooth=False)
 
         # the eyes: dark, set into the front of the skull and looking forward, each with a small highlight
