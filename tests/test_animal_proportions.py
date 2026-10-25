@@ -7,11 +7,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "art" / "scripts"))
+import types
 import animal_proportions as A
 import species_pets
 
+# species.py and biped_bird.py import Blender modules at the top but only use them inside functions: import them with stand-ins, then take the stand-ins away again
+_stubs = [n for n in ("bpy", "bmesh", "common", "quadruped_rig") if n not in sys.modules]
+for _n in _stubs:
+    sys.modules[_n] = types.ModuleType(_n)
+try:
+    import species
+    import biped_bird
+finally:
+    for _n in _stubs:
+        del sys.modules[_n]
+
 NAMES = ("LH", "width", "depth", "elbow", "head", "head_w", "carry", "leg_top", "leg_low", "paw")
-SPECIES = {"cat": species_pets.CATS["cat_tabby"], "collie": species_pets.DOGS["dog_collie"], "husky": species_pets.DOGS["dog_husky"]}
+SPECIES = {"cat": species_pets.CATS["cat_tabby"], "collie": species_pets.DOGS["dog_collie"], "husky": species_pets.DOGS["dog_husky"],
+           **{k: species.SPECIES[k] for k in ("cow", "horse", "pig", "sheep", "goat")}}
 
 
 def brief_rows():
@@ -56,10 +69,28 @@ class Rebuilt(unittest.TestCase):
         for row in sorted(A.ENFORCED):
             self.assertEqual(A.check(row, SPECIES[row]), [], row)
 
+    def test_the_hen_is_within_its_ranges(self):
+        self.assertEqual(A.check_bird(biped_bird.CHICKEN_HEN), [])
+        self.assertEqual(set(A.HEN), set(A.measure_bird(biped_bird.CHICKEN_HEN)) - {"H"})
+
+    def test_the_brief_has_the_hens_ranges(self):
+        text = (ROOT / "docs" / "assets" / "briefs" / "animals.md").read_text(encoding="utf-8")
+        row = [l for l in text.splitlines() if l.startswith("| hen |")][0]
+        cells = [c.strip() for c in row.strip().strip("|").split("|")]
+        head = [l for l in text.splitlines() if l.startswith("| | LH | width | depth | legs")][0]
+        names = [c.strip() for c in head.strip().strip("|").split("|")][1:]
+        self.assertEqual(names, list(A.HEN))
+        self.assertEqual({n: tuple(float(x) for x in c.split("-")) for n, c in zip(names, cells[1:])}, A.HEN)
+
+    def test_farm_animals_are_all_enforced(self):
+        self.assertEqual(A.ENFORCED, set(A.RANGES))
+
     def test_real_sizes(self):
         self.assertTrue(0.22 <= A.measure(SPECIES["cat"])["H"] <= 0.32)
         self.assertTrue(0.46 <= A.measure(SPECIES["collie"])["H"] <= 0.62)
         self.assertTrue(0.50 <= A.measure(SPECIES["husky"])["H"] <= 0.62)
+        for row, (lo, hi) in {"cow": (1.30, 1.55), "horse": (1.45, 1.65), "pig": (0.75, 1.0), "sheep": (0.65, 0.85), "goat": (0.70, 0.90)}.items():
+            self.assertTrue(lo <= A.measure(SPECIES[row])["H"] <= hi, row)
 
 
 if __name__ == "__main__":
