@@ -24,7 +24,7 @@ Style: **better-made low-poly** with the shared palette and the Blender generato
 For every new or reworked model, write down before any code (use the `asset-brief` skill; the brief goes in `docs/assets/briefs/<category>.md`, and the PR description links it):
 
 1. **Which real object, which variant**, and why (a wedge or a wheel of cheese; a Type I or Type II ambulance). **An existing id keeps its variant, name and file name.**
-2. **Real size** in metres.
+2. **Real size** in metres. For a fantasy or sci-fi thing with no real counterpart, the size is the project's choice: pick it from a real animal or object it resembles and write the reason in the brief.
 3. **3-5 features that make it recognisable.**
 4. **Colours** as palette names (`common.PALETTE`), never RGB.
 5. **Pivot and use**: where the origin goes decides how people place it.
