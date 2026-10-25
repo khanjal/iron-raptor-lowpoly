@@ -109,25 +109,40 @@
   "rust": "Bumpers and trim"
  },
  "GI_Microwave_01": {
-  "glass": "Door window"
+  "glass": "Door window",
+  "metal_dark": "Inside and window frame",
+  "fabric_grey": "Control panel"
  },
  "GI_Washer_01": {
-  "glass": "Door window"
+  "glass": "Door window",
+  "metal_dark": "Inside",
+  "paint_white": "Door"
  },
  "GI_Dryer_01": {
-  "glass": "Door window"
+  "glass": "Door window",
+  "metal_dark": "Inside",
+  "paint_white": "Door"
  },
  "GI_Stove_01": {
-  "glass": "Oven window"
+  "glass": "Oven window",
+  "metal_dark": "Burner rings and oven inside",
+  "black": "Hob top, knobs and window frame",
+  "metal_galv": "Oven rack"
  },
  "GI_VendingMachine_01": {
-  "glass": "Display window"
+  "glass": "Display window",
+  "metal_galv": "Shelves and handle",
+  "metal_dark": "Inside"
  },
  "GH_Jukebox_01": {
-  "glass": "Display frame"
+  "glass": "Display frame",
+  "cloth_red": "Top dome",
+  "metal_galv": "Lower front panel"
  },
  "GO_Copier_01": {
-  "glass": "Scanner glass"
+  "glass": "Scanner glass",
+  "office_grey": "Trays, scanner deck and output tray",
+  "office_dark": "Tray insides and control panel"
  },
  "GH_Bed_Bunk_01": {
   "linen": "Bedding"
@@ -556,5 +571,56 @@
  "FM_WaterTrough_01": {
   "glass": "Water",
   "wood_dark": "Legs"
+ },
+ "GI_BreadBox_01": {
+  "paint_white": "Inside"
+ },
+ "GI_Counter_Kitchen_01": {
+  "wood_dark": "Drawer and door fronts, inside",
+  "concrete": "Worktop"
+ },
+ "GI_Fridge_01": {
+  "paint_white": "Inside",
+  "metal_dark": "Base"
+ },
+ "GI_Fridge_Damaged_01": {
+  "concrete": "Inside",
+  "rust_dark": "Base"
+ },
+ "GI_Fridge_Dispenser_01": {
+  "paint_white": "Inside",
+  "black": "Base, handles and dispenser recess"
+ },
+ "GI_Fridge_Modern_01": {
+  "paint_white": "Inside",
+  "black": "Base and handles"
+ },
+ "GI_Fridge_Retro_01": {
+  "cream": "Inside",
+  "metal_galv": "Handle, trim and feet"
+ },
+ "GI_Toaster_01": {
+  "metal_dark": "Base plate",
+  "black": "Slots and lever"
+ },
+ "GI_Cooler_01": {
+  "paint_white": "Lid and inside"
+ },
+ "GO_Printer_Desktop_01": {
+  "office_grey": "Tray and top cover",
+  "black": "Inside and output ramp",
+  "paper": "Printed sheet"
+ },
+ "GO_Shredder_01": {
+  "black": "Cabinet and bin"
+ },
+ "GO_WaterCooler_01": {
+  "office_grey": "Door and inside",
+  "office_dark": "Base, top plate and tap panel",
+  "label_white": "Jug label"
+ },
+ "GH_CoffeeMachine_01": {
+  "metal_dark": "Top plate",
+  "fabric_grey": "Back panel"
  }
 }

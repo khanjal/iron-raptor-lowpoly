@@ -1866,7 +1866,7 @@
      "hex": "#EBDDB5"
     },
     {
-     "part": "Paint white",
+     "part": "Inside",
      "swatch": 6,
      "hex": "#E6E2D6"
     }
@@ -1965,12 +1965,12 @@
      "hex": "#C9A06A"
     },
     {
-     "part": "Wood dark",
+     "part": "Drawer and door fronts, inside",
      "swatch": 1,
      "hex": "#6B4A2E"
     },
     {
-     "part": "Concrete",
+     "part": "Worktop",
      "swatch": 46,
      "hex": "#9A9A94"
     }
@@ -2047,12 +2047,12 @@
      "hex": "#EBDDB5"
     },
     {
-     "part": "Paint white",
+     "part": "Inside",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
     {
-     "part": "Metal dark",
+     "part": "Base",
      "swatch": 3,
      "hex": "#4A525A"
     }
@@ -2126,12 +2126,12 @@
      "hex": "#8B8578"
     },
     {
-     "part": "Concrete",
+     "part": "Inside",
      "swatch": 46,
      "hex": "#9A9A94"
     },
     {
-     "part": "Rust dark",
+     "part": "Base",
      "swatch": 47,
      "hex": "#6B3A28"
     }
@@ -2226,12 +2226,12 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Paint white",
+     "part": "Inside",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
     {
-     "part": "Black",
+     "part": "Base, handles and dispenser recess",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -2324,12 +2324,12 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Paint white",
+     "part": "Inside",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
     {
-     "part": "Black",
+     "part": "Base and handles",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -2391,12 +2391,12 @@
      "hex": "#EBDDB5"
     },
     {
-     "part": "Cream",
+     "part": "Inside",
      "swatch": 33,
      "hex": "#E9DCC0"
     },
     {
-     "part": "Metal galv",
+     "part": "Handle, trim and feet",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -2449,7 +2449,7 @@
      "hex": "#F2F2EE"
     },
     {
-     "part": "Metal dark",
+     "part": "Inside and window frame",
      "swatch": 3,
      "hex": "#4A525A"
     },
@@ -2459,7 +2459,7 @@
      "hex": "#9FC8D8"
     },
     {
-     "part": "Fabric grey",
+     "part": "Control panel",
      "swatch": 65,
      "hex": "#8A8D91"
     }
@@ -2513,17 +2513,17 @@
      "hex": "#F2F2EE"
     },
     {
-     "part": "Metal dark",
+     "part": "Burner rings and oven inside",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Black",
+     "part": "Hob top, knobs and window frame",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal galv",
+     "part": "Oven rack",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
@@ -2582,12 +2582,12 @@
      "hex": "#A9B4BC"
     },
     {
-     "part": "Metal dark",
+     "part": "Base plate",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Black",
+     "part": "Slots and lever",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -2640,12 +2640,12 @@
      "hex": "#EBDDB5"
     },
     {
-     "part": "Metal dark",
+     "part": "Inside",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Paint white",
+     "part": "Door",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
@@ -2703,12 +2703,12 @@
      "hex": "#F2F2EE"
     },
     {
-     "part": "Metal dark",
+     "part": "Inside",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Paint white",
+     "part": "Door",
      "swatch": 6,
      "hex": "#E6E2D6"
     },
@@ -2814,12 +2814,12 @@
      "hex": "#F2F2EE"
     },
     {
-     "part": "Office dark",
+     "part": "Tray insides and control panel",
      "swatch": 130,
      "hex": "#5C6066"
     },
     {
-     "part": "Office grey",
+     "part": "Trays, scanner deck and output tray",
      "swatch": 129,
      "hex": "#B8BBBE"
     },
@@ -2894,17 +2894,17 @@
      "hex": "#5C6066"
     },
     {
-     "part": "Office grey",
+     "part": "Tray and top cover",
      "swatch": 129,
      "hex": "#B8BBBE"
     },
     {
-     "part": "Black",
+     "part": "Inside and output ramp",
      "swatch": 7,
      "hex": "#1B1B1E"
     },
     {
-     "part": "Paper",
+     "part": "Printed sheet",
      "swatch": 77,
      "hex": "#F0EBDD"
     }
@@ -2958,7 +2958,7 @@
      "hex": "#5C6066"
     },
     {
-     "part": "Black",
+     "part": "Cabinet and bin",
      "swatch": 7,
      "hex": "#1B1B1E"
     }
@@ -3013,17 +3013,17 @@
      "hex": "#F2F2EE"
     },
     {
-     "part": "Office grey",
+     "part": "Door and inside",
      "swatch": 129,
      "hex": "#B8BBBE"
     },
     {
-     "part": "Office dark",
+     "part": "Base, top plate and tap panel",
      "swatch": 130,
      "hex": "#5C6066"
     },
     {
-     "part": "Label white",
+     "part": "Jug label",
      "swatch": 104,
      "hex": "#F0EFE8"
     }
@@ -3062,12 +3062,12 @@
      "hex": "#1B1B1E"
     },
     {
-     "part": "Metal dark",
+     "part": "Top plate",
      "swatch": 3,
      "hex": "#4A525A"
     },
     {
-     "part": "Fabric grey",
+     "part": "Back panel",
      "swatch": 65,
      "hex": "#8A8D91"
     }
@@ -3120,7 +3120,7 @@
      "hex": "#2F5F8F"
     },
     {
-     "part": "Paint white",
+     "part": "Lid and inside",
      "swatch": 6,
      "hex": "#E6E2D6"
     }
@@ -3158,7 +3158,7 @@
      "hex": "#6B4A2E"
     },
     {
-     "part": "Cloth red",
+     "part": "Top dome",
      "swatch": 13,
      "hex": "#B8443B"
     },
@@ -3168,7 +3168,7 @@
      "hex": "#9FC8D8"
     },
     {
-     "part": "Metal galv",
+     "part": "Lower front panel",
      "swatch": 2,
      "hex": "#A9B4BC"
     }
@@ -3238,12 +3238,12 @@
      "hex": "#B8443B"
     },
     {
-     "part": "Metal galv",
+     "part": "Shelves and handle",
      "swatch": 2,
      "hex": "#A9B4BC"
     },
     {
-     "part": "Metal dark",
+     "part": "Inside",
      "swatch": 3,
      "hex": "#4A525A"
     },
