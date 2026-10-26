@@ -45,7 +45,7 @@ Co-Authored-By: <the model that wrote it> <noreply@anthropic.com>
 
 Pushing a branch and opening a PR publish to GitHub: do it when the user has asked for it or agreed to it. Then:
 
-1. `git fetch origin` and check the branch is on top of its base (`origin/main`, or the parent branch of a stacked PR; do not rebase a stacked branch onto `main`).
+1. `git fetch origin` and check the branch is on top of its base (`origin/main`, or the parent branch of a stacked PR; do not rebase a stacked branch onto `main` while its parent is open; after the parent is squash-merged, `pr-review` step 5 says how).
 2. First model review by a *different* model (`pr-review`), findings handled.
 3. `git push -u origin <branch>`; open the PR (a draft if it is unfinished) with the body from `.github/pull_request_template.md` filled in (tools that take a body do not apply the template), `Closes #<issue>` when it closes one, and labels (`area:generators`, `area:site`, `area:ci`, `area:docs`).
 4. The Tests workflow runs on every PR (about half a minute, free on a public repository). Read the result on the head commit. The Sonar workflow also runs and fails the PR if it adds any open SonarCloud issue: run `python tools/sonar_issues.py <pr> --wait`, report the count and fix what it lists (`sonar-check`).
@@ -55,4 +55,4 @@ Models that came from a request in an issue: say in the PR who asked (by issue l
 
 ## 7. After merge
 
-Switch to `main` and pull. Delete the branch only if the user asks. A merge that changes `site/` deploys the site (Pages workflow); a `v*` tag builds the release zips (`release.yml`) and is the owner's call.
+Switch to `main` and pull. Delete the branch only if the user asks (after a squash `git branch -d` refuses, the commits are not in `main`: that is not a failed merge, use `-D`). A merge that changes `site/` deploys the site (Pages workflow); a `v*` tag builds the release zips (`release.yml`) and is the owner's call.
