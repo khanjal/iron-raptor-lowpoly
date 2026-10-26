@@ -2,12 +2,15 @@
 
 [![Tests](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/tests.yml/badge.svg)](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/tests.yml)
 [![Pages](https://github.com/khanjal/iron-raptor-lowpoly/actions/workflows/pages.yml/badge.svg)](https://khanjal.github.io/iron-raptor-lowpoly/)
+[![Release](https://img.shields.io/github/v/release/khanjal/iron-raptor-lowpoly?include_prereleases)](https://github.com/khanjal/iron-raptor-lowpoly/releases)
+
 [![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=khanjal_iron-raptor-lowpoly&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=khanjal_iron-raptor-lowpoly)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=khanjal_iron-raptor-lowpoly&metric=bugs)](https://sonarcloud.io/summary/overall?id=khanjal_iron-raptor-lowpoly)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=khanjal_iron-raptor-lowpoly&metric=vulnerabilities)](https://sonarcloud.io/summary/overall?id=khanjal_iron-raptor-lowpoly)
-[![Release](https://img.shields.io/github/v/release/khanjal/iron-raptor-lowpoly?include_prereleases)](https://github.com/khanjal/iron-raptor-lowpoly/releases)
+
 [![Code: MIT](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
 [![Models: CC BY 4.0](https://img.shields.io/badge/models-CC%20BY%204.0-green)](LICENSE-MODELS)
+
 ![Made with Blender](https://img.shields.io/badge/made%20with-Blender%20%2B%20Python-orange?logo=blender&logoColor=white)
 ![Built with Claude Code](https://img.shields.io/badge/built%20with-Claude%20Code-8A63D2)
 ![Models](https://img.shields.io/badge/models-481%20in%20the%20browser-lightgrey)
