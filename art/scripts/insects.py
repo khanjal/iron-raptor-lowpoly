@@ -90,17 +90,23 @@ def ball_at(p, colour, c, r, n=5):
     props_lib.ball(p, colour, c, r, n=n, rings=2)
 
 
-def legs(p, colour, x, ys, z_hip, out, knee_up, w, dy=0.0, move=True):
+def legs(p, colour, x, ys, z_hip, out, knee_up, w, dy=0.0, move=True, shins=False):
     """Three-jointed legs on both sides: hip under the body at (±x, y, z_hip), knee out and up, foot on the ground. Each is a moving piece
-    Leg_<L|R><n> (n counts from the head) pivoting at its hip, unless move is False (legs tucked up in flight)."""
+    Leg_<L|R><n> (n counts from the head) pivoting at its hip, unless move is False (legs tucked up in flight). With shins the thigh is Leg_<L|R><n>
+    and the shin its own piece Shin_<L|R><n> pivoting at the knee, so a clip can swing the thigh and let the shin hang."""
     for s in (-1, 1):
         for i, y in enumerate(ys):
             hip = (s * x, y, z_hip)
             knee = (s * (x + out * 0.7), y + dy * 0.5, z_hip + knee_up)
             foot = (s * (x + out), y + dy, 0.0)
-            with _maybe(p, move, f"Leg_{'L' if s > 0 else 'R'}{i}", hip):
+            side = 'L' if s > 0 else 'R'
+            with _maybe(p, move, f"Leg_{side}{i}", hip):
                 rod(p, colour, hip, knee, w)
-                rod(p, colour, knee, foot, w)
+                if not shins:
+                    rod(p, colour, knee, foot, w)
+            if shins:
+                with _maybe(p, move, f"Shin_{side}{i}", knee):
+                    rod(p, colour, knee, foot, w)
 
 
 def _maybe(p, move, role, pivot):
@@ -447,8 +453,8 @@ def housefly():
     blob(p, "black", (0, -2.4, 2.0), (1.05, 0.8, 1.0), n=6, rings=1)                        # head
     for s in (-1, 1):
         ball_at(p, "cloth_red", (s * 0.8, -2.55, 2.3), 0.7, n=5)                            # the compound eyes
-        with flap(p, "Wing", s, (s * 0.57, -0.3, 3.2)):                                       # the root is on the thorax's side, 0.24 inside it, and the wing is centred on the pivot
-            wing(p, "clear_glass", None, ellipse_pts(0.6 + 2.3, -0.3, 2.3, 1.0), 3.015, tilt=18, side=s, thick=0.1)
+        with flap(p, "Wing", s, (s * 0.48, -0.3, 3.2)):                                       # the root is on the thorax's side, inside the faceted loft, and the wing is centred on the pivot
+            wing(p, "clear_glass", None, ellipse_pts(0.5 + 2.3, -0.3, 2.3, 1.0), 3.045, tilt=18, side=s, thick=0.1)
     legs(p, "black", 0.8, (-1.3, -0.3, 1.0), 1.5, 0.9, 0.65, 0.2, dy=0.3, move=False)
     return p
 
@@ -463,10 +469,10 @@ def mosquito():
     blob(p, "black", (0, -1.8, 2.3), (0.42, 0.42, 0.42), n=6, rings=1)                      # head
     rod(p, "black", (0, -2.1, 2.2), (0, -4.1, 1.9), 0.12)                                   # the proboscis
     for s in (-1, 1):
-        with flap(p, "Wing", s, (s * 0.34, -0.6, 2.65)):                                      # root on the thorax's side, 0.14 inside it; the wing is centred on the pivot
-            wing(p, "clear_glass", None, ellipse_pts(0.35 + 1.6, -0.6, 1.6, 0.5), 2.56, tilt=15, side=s, thick=0.06)
+        with flap(p, "Wing", s, (s * 0.24, -0.2, 2.65)):                                      # root on the thorax's side, inside the faceted loft; the wing is centred on the pivot
+            wing(p, "clear_glass", None, ellipse_pts(0.25 + 1.6, -0.2, 1.6, 0.5), 2.585, tilt=15, side=s, thick=0.06)
     antennae(p, "black", (0.2, -1.9, 2.5), (0.6, -3.2, 3.0), 0.07)
-    legs(p, "black", 0.36, (-1.1, -0.2, 0.8), 2.0, 2.1, 1.8, 0.09, dy=0.6)
+    legs(p, "black", 0.36, (-1.1, -0.2, 0.8), 2.0, 2.1, 1.8, 0.09, dy=0.6, shins=True)
     return p
 
 
