@@ -55,4 +55,4 @@ Models that came from a request in an issue: say in the PR who asked (by issue l
 
 ## 7. After merge
 
-Switch to `main` and pull. Delete the branch only if the user asks. A merge that changes `site/` deploys the site (Pages workflow); a `v*` tag builds the release zips (`release.yml`) and is the owner's call.
+Switch to `main` and pull. Delete the branch only if the user asks (after a squash `git branch -d` refuses, the commits are not in `main`: that is not a failed merge, use `-D`). A merge that changes `site/` deploys the site (Pages workflow); a `v*` tag builds the release zips (`release.yml`) and is the owner's call.
