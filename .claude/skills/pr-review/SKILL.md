@@ -40,7 +40,7 @@ Run it in the background. When it returns: check each finding against the code b
 
 ## 2. CI
 
-The Tests workflow (`.github/workflows/tests.yml`) runs on every PR and on pushes to `main`: unit tests and `check_site.py`, standard library only, about half a minute. The repository is public, so minutes are not the constraint; still, fix everything you can find locally, read a failed run's whole log before touching anything, push the fixes together, and stop and ask after two failed fix attempts on the same check. Read the result on the head commit, not an earlier one. A skipped job is not a pass. There is no Blender CI (`docs/ci.md` proposes one): say in the PR what you rebuilt and looked at.
+The Tests workflow (`.github/workflows/tests.yml`) runs on every PR and on pushes to `main`: unit tests and `check_site.py`, standard library only, about half a minute. The repository is public, so minutes are not the constraint; still, fix everything you can find locally, read a failed run's whole log before touching anything, push the fixes together, and stop and ask after two failed fix attempts on the same check. Read the result on the head commit, not an earlier one. A skipped job is not a pass. The Sonar workflow (`.github/workflows/sonar.yml`) fails the PR while SonarCloud reports any open issue on its new code; see `sonar-check`. There is no Blender CI (`docs/ci.md` proposes one): say in the PR what you rebuilt and looked at.
 
 ## 3. The final model review of the finished PR
 

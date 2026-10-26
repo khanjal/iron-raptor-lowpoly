@@ -260,3 +260,6 @@ Walk, Run, Sit and Trot hitched at the loop point because the first keys of ever
 
 ## Scope (2026-10-25)
 Decided by the owner: the library takes generic things of any kind, including extinct and fantasy animals and creatures, weapons and military vehicles of any era (medieval, modern, sci-fi; always generic by type and low-poly, never a named make or model, no trademarked designs), and garbage and junk. Out: brands and trademarked designs, characters from other works, scanned or realistic models, and sexually explicit content (adult material, if wanted, is a separate project, not this public repository). The game's catalogue (`docs/from-game/art/prop-catalogue.md`) says real weapons are not catalogued; that was the game's rule and no longer applies here. The groups are tracked as issues (#117 to #148); the README no longer lists them.
+
+## No new SonarCloud issues per PR (2026-10-25)
+SonarCloud (`khanjal_iron-raptor-lowpoly`, automatic analysis) found about 800 issues on `main`, mostly Python style rules. The `Sonar` workflow fails a PR that adds any open issue on its new code and does not count the backlog; the backlog is worked down in its own PRs (`.claude/skills/sonar-check`). Not done: the check is not yet a required status check in the branch protection settings. It ran on its own PR (153) and caught a real `S3776` there.

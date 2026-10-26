@@ -48,7 +48,7 @@ Pushing a branch and opening a PR publish to GitHub: do it when the user has ask
 1. `git fetch origin` and check the branch is on top of its base (`origin/main`, or the parent branch of a stacked PR; do not rebase a stacked branch onto `main`).
 2. First model review by a *different* model (`pr-review`), findings handled.
 3. `git push -u origin <branch>`; open the PR (a draft if it is unfinished) with the body from `.github/pull_request_template.md` filled in (tools that take a body do not apply the template), `Closes #<issue>` when it closes one, and labels (`area:generators`, `area:site`, `area:ci`, `area:docs`).
-4. The Tests workflow runs on every PR (about half a minute, free on a public repository). Read the result on the head commit.
+4. The Tests workflow runs on every PR (about half a minute, free on a public repository). Read the result on the head commit. The Sonar workflow also runs and fails the PR if it adds any open SonarCloud issue: run `python tools/sonar_issues.py <pr> --wait`, report the count and fix what it lists (`sonar-check`).
 5. The final review as `pr-review` describes. Merge only when the user says to.
 
 Models that came from a request in an issue: say in the PR who asked (by issue link), and thank them in the issue when it closes.

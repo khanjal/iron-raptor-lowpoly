@@ -12,6 +12,7 @@
 ## What was checked, and what was not
 - [ ] `python -m unittest discover -s tests -t .`
 - [ ] `python tools/check_site.py`
+- [ ] `python tools/sonar_issues.py <pr>`: no open Sonar issues on this PR (count: )
 - [ ] Opened the changed models in the local site: size, facing, moving parts, clips
 - [ ] Not checked (say what):
 

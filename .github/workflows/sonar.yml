@@ -1,0 +1,30 @@
+# A pull request fails while SonarCloud reports any open issue on its new code. The backlog on main is not counted: Sonar reports a PR's issues against
+# the new code only, so this stops the count from growing without asking for the backlog to be cleared first.
+#
+# SonarCloud analyses the PR itself (automatic analysis, no scanner here, no token); this job waits for that analysis of the PR's head commit and reads
+# the result from the public API through tools/sonar_issues.py. The job uses no secrets and has read-only permissions, so it also runs on a fork's PR; if Sonar
+# does not analyse that PR the job fails with a message saying so, rather than skipping and showing green. It only blocks a merge once it is a required check
+# in the branch protection settings (NOTES.md). The quality gate is not what is read: it weighs coverage, which this project does not measure.
+name: Sonar
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sonar-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  new-issues:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1 (2026-07-20)
+      - name: No new Sonar issues
+        run: python3 tools/sonar_issues.py "$PR" --head "$HEAD" --wait
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
