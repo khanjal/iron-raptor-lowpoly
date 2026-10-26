@@ -447,8 +447,8 @@ def housefly():
     blob(p, "black", (0, -2.4, 2.0), (1.05, 0.8, 1.0), n=6, rings=1)                        # head
     for s in (-1, 1):
         ball_at(p, "cloth_red", (s * 0.8, -2.55, 2.3), 0.7, n=5)                            # the compound eyes
-        with flap(p, "Wing", s, (s * 0.5, -0.3, 3.2)):
-            wing(p, "clear_glass", None, ellipse_pts(2.3, 0.7, 2.3, 1.0), 3.2, tilt=18, side=s, thick=0.1)
+        with flap(p, "Wing", s, (s * 0.57, -0.3, 3.2)):                                       # the root is on the thorax's side, 0.24 inside it, and the wing is centred on the pivot
+            wing(p, "clear_glass", None, ellipse_pts(0.6 + 2.3, -0.3, 2.3, 1.0), 3.015, tilt=18, side=s, thick=0.1)
     legs(p, "black", 0.8, (-1.3, -0.3, 1.0), 1.5, 0.9, 0.65, 0.2, dy=0.3, move=False)
     return p
 
@@ -463,8 +463,8 @@ def mosquito():
     blob(p, "black", (0, -1.8, 2.3), (0.42, 0.42, 0.42), n=6, rings=1)                      # head
     rod(p, "black", (0, -2.1, 2.2), (0, -4.1, 1.9), 0.12)                                   # the proboscis
     for s in (-1, 1):
-        with flap(p, "Wing", s, (s * 0.25, 0.4, 2.6)):                                      # at the wing's root, so the folded wing turns about it (the flap axis is lengthwise: y does not matter)
-            wing(p, "clear_glass", None, ellipse_pts(1.6, 0.4, 1.6, 0.5), 2.7, tilt=15, side=s, thick=0.06)
+        with flap(p, "Wing", s, (s * 0.34, -0.6, 2.65)):                                      # root on the thorax's side, 0.14 inside it; the wing is centred on the pivot
+            wing(p, "clear_glass", None, ellipse_pts(0.35 + 1.6, -0.6, 1.6, 0.5), 2.56, tilt=15, side=s, thick=0.06)
     antennae(p, "black", (0.2, -1.9, 2.5), (0.6, -3.2, 3.0), 0.07)
     legs(p, "black", 0.36, (-1.1, -0.2, 0.8), 2.0, 2.1, 1.8, 0.09, dy=0.6)
     return p
