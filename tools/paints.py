@@ -60,8 +60,8 @@ def resolve(spec, entries):
     for part, swatch in spec["parts"].items():
         if swatch not in names:
             raise ValueError(f"part {part}: no swatch named {swatch}")
-        parts.append(dict(part=part, swatch=names.index(swatch), hex=entries[names.index(swatch)][1]))
-    out = [dict(name=spec["base"], hex=parts[0]["hex"], swap={})]
+        parts.append({"part": part, "swatch": names.index(swatch), "hex": entries[names.index(swatch)][1]})
+    out = [{"name": spec["base"], "hex": parts[0]["hex"], "swap": {}}]
     for name, p in spec["presets"].items():
         swap = {}
         for part, value in p["set"].items():
@@ -72,7 +72,7 @@ def resolve(spec, entries):
         if not swap:
             raise ValueError(f"preset {name} sets nothing")
         chip = swap.get(str(parts[0]["swatch"]), parts[0]["hex"])
-        entry = dict(name=name, hex=chip, swap=swap)
+        entry = {"name": name, "hex": chip, "swap": swap}
         if p.get("was"):
             entry["was"] = p["was"]
         out.append(entry)
@@ -107,7 +107,7 @@ MIN_SHARE = 0.03       # a swatch that covers less of the surface than this is n
 
 def common_colours(entries):
     """[{name, hex}] of COMMON, for the manifest's palette.common."""
-    return [dict(name=n, hex=colour(sw, entries)) for n, sw in COMMON]
+    return [{"name": n, "hex": colour(sw, entries)} for n, sw in COMMON]
 
 
 def neutral(hex_):
@@ -144,7 +144,7 @@ def surface_by_swatch(path):
             raise ValueError(f"{path.name}: accessor {i} is sparse, normalized or empty; only plain accessors are read")
         bv = doc["bufferViews"][a["bufferView"]]
         vals = array(kinds[a["componentType"]])
-        n = dict(SCALAR=1, VEC2=2, VEC3=3)[a["type"]]
+        n = {"SCALAR": 1, "VEC2": 2, "VEC3": 3}[a["type"]]
         start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
         size = n * vals.itemsize
         stride = bv.get("byteStride") or size                       # interleaved buffers step by more than one element
@@ -186,7 +186,7 @@ def auto_parts(path, entries):
     body = [r for r in rows if not entries[r[0]][0].startswith(("skin", "hair"))] or rows      # a person's main colour is their clothes, not their skin
     main = next((r for r in body if not neutral(entries[r[0]][1]) and r[1] >= body[0][1] / 2), body[0])
     rows = ([main] + [r for r in rows if r is not main])[:MAX_PARTS]
-    parts = [dict(part="Main" if i == 0 else part_label(entries[sw][0]), swatch=sw, hex=entries[sw][1]) for i, (sw, _) in enumerate(rows)]
+    parts = [{"part": "Main" if i == 0 else part_label(entries[sw][0]), "swatch": sw, "hex": entries[sw][1]} for i, (sw, _) in enumerate(rows)]
     return parts
 
 

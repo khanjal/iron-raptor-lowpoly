@@ -49,19 +49,19 @@ def measure(t=None):
     wrist = arm[4]
     shoe_len = max(y for y, *_ in shoe) - min(y for y, *_ in shoe)
     head_h = head[-1][0] - head[0][0]
-    return dict(
-        shoulder=2 * max(r[2] for r in torso) / HEIGHT,
-        chest_d=2 * max(r[3] for r in torso) / HEIGHT,
-        seat=2 * torso[0][3] / HEIGHT,
-        thigh=2 * leg[0][2] / HEIGHT,
-        calf=2 * leg[3][2] / HEIGHT,
-        upper_arm=2 * arm[2][4] / HEIGHT,
-        wrist=2 * wrist[3] / HEIGHT,
-        hand=(max(r[0] for r in hand) - wrist[0]) / HEIGHT,
-        hand_w=2 * max(r[3] for r in hand) / HEIGHT,
-        foot_w=2 * max(r[2] for r in shoe) / shoe_len,
-        head_w=2 * max(r[2] for r in head) / head_h,
-    )
+    return {
+        "shoulder": 2 * max(r[2] for r in torso) / HEIGHT,
+        "chest_d": 2 * max(r[3] for r in torso) / HEIGHT,
+        "seat": 2 * torso[0][3] / HEIGHT,
+        "thigh": 2 * leg[0][2] / HEIGHT,
+        "calf": 2 * leg[3][2] / HEIGHT,
+        "upper_arm": 2 * arm[2][4] / HEIGHT,
+        "wrist": 2 * wrist[3] / HEIGHT,
+        "hand": (max(r[0] for r in hand) - wrist[0]) / HEIGHT,
+        "hand_w": 2 * max(r[3] for r in hand) / HEIGHT,
+        "foot_w": 2 * max(r[2] for r in shoe) / shoe_len,
+        "head_w": 2 * max(r[2] for r in head) / head_h,
+    }
 
 
 def check(m=None):

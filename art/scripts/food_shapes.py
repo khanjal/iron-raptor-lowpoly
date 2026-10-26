@@ -173,7 +173,7 @@ def corn(p):
 EGG_RINGS = ((0.0, 0.0045), (0.016, 0.0150), (0.032, 0.0215), (0.046, 0.0175), (0.0577, 0.0040))      # (height from the point, radius): point down
 EGG_COLOURS = ("egg_white", "egg_brown", "egg_white", "egg_white", "egg_brown", "egg_white",
                "egg_brown", "egg_white", "egg_blue", "egg_brown", "egg_blue", "egg_white")
-CARTON = dict(hx=0.152, hy=0.053, wall=0.003, floor=0.004, top=0.034)     # outside half length and width of the tray, its walls, the rim height
+CARTON = {"hx": 0.152, "hy": 0.053, "wall": 0.003, "floor": 0.004, "top": 0.034}     # outside half length and width of the tray, its walls, the rim height
 CUP_BOTTOM, CUP_TOP, CUP_RIM = 0.0135, 0.0215, 0.030                       # cup radius at the floor and at the rim, rim height
 
 

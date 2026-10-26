@@ -51,12 +51,12 @@ STRIDE_LENGTH = globals().get("STRIDE_LENGTH")            # metres each planted 
 BODY_DROP = globals().get("BODY_DROP")                      # the standing legs are near straight, so a walking body sits lower; default scales with leg length
 
 GAITS = {
-    "walk": dict(fps=24, offset={"HindUpper_L": 0.0, "FrontUpper_L": 0.25, "HindUpper_R": 0.5, "FrontUpper_R": 0.75},
-                 stance={"Front": 0.6, "Hind": 0.6}, flex={"Front": 42.0, "Hind": 38.0}, linear_stance=False, max_cadence=None, slide=0.0),
-    "trot": dict(fps=60, offset={"HindUpper_L": 0.0, "FrontUpper_R": 0.0, "HindUpper_R": 0.5, "FrontUpper_L": 0.5},
-                 stance={"Front": 0.46, "Hind": 0.46}, flex={"Front": 58.0, "Hind": 52.0}, linear_stance=True, max_cadence=2.7, slide=0.45),
-    "run": dict(fps=60, offset={"HindUpper_L": 0.0, "HindUpper_R": 0.08, "FrontUpper_L": 0.40, "FrontUpper_R": 0.48},
-                stance={"Front": 0.20, "Hind": 0.22}, flex={"Front": 75.0, "Hind": 70.0}, linear_stance=True, max_cadence=3.3, slide=0.55),
+    "walk": {"fps": 24, "offset": {"HindUpper_L": 0.0, "FrontUpper_L": 0.25, "HindUpper_R": 0.5, "FrontUpper_R": 0.75},
+                 "stance": {"Front": 0.6, "Hind": 0.6}, "flex": {"Front": 42.0, "Hind": 38.0}, "linear_stance": False, "max_cadence": None, "slide": 0.0},
+    "trot": {"fps": 60, "offset": {"HindUpper_L": 0.0, "FrontUpper_R": 0.0, "HindUpper_R": 0.5, "FrontUpper_L": 0.5},
+                 "stance": {"Front": 0.46, "Hind": 0.46}, "flex": {"Front": 58.0, "Hind": 52.0}, "linear_stance": True, "max_cadence": 2.7, "slide": 0.45},
+    "run": {"fps": 60, "offset": {"HindUpper_L": 0.0, "HindUpper_R": 0.08, "FrontUpper_L": 0.40, "FrontUpper_R": 0.48},
+                "stance": {"Front": 0.20, "Hind": 0.22}, "flex": {"Front": 75.0, "Hind": 70.0}, "linear_stance": True, "max_cadence": 3.3, "slide": 0.55},
 }
 CFG = dict(GAITS[GAIT])
 if GAIT == "walk" and globals().get("SHOULDER_SLIDE"):
@@ -428,8 +428,8 @@ print(f"{GAIT}: ground speed {speed_measured:.2f} m/s (feet {', '.join(f'{k.repl
 print(f"{GAIT}: foot slide: planted hoof drifts at most {worst_drift:.1f} cm from its line, {worst_height:.1f} cm off the ground"
       f" (leg {LEG_LENGTH * 100:.0f} cm; stride {STRIDE_LENGTH * 100:.0f} cm)")
 if REPORT is not None:
-    REPORT[ANIM_PREFIX + "@" + GAIT] = dict(speed=round(speed_measured, 3), drift_cm=round(worst_drift, 2), height_cm=round(worst_height, 2),
-                                           frames=STRIDE_FRAMES, fps=FPS, stride_m=round(STRIDE_LENGTH, 3), leg_m=round(LEG_LENGTH, 3))
+    REPORT[ANIM_PREFIX + "@" + GAIT] = {"speed": round(speed_measured, 3), "drift_cm": round(worst_drift, 2), "height_cm": round(worst_height, 2),
+                                           "frames": STRIDE_FRAMES, "fps": FPS, "stride_m": round(STRIDE_LENGTH, 3), "leg_m": round(LEG_LENGTH, 3)}
 
 bpy.context.scene.frame_set(1)
 if EXPORT:

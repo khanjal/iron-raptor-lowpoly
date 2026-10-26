@@ -61,7 +61,7 @@ class Prop:
 
         @contextmanager
         def _ctx():
-            g = self.groups.setdefault(role, dict(parts={}, pivot=Vector(pivot), kind=kind, axis=axis, limit=limit, rest=rest))
+            g = self.groups.setdefault(role, {"parts": {}, "pivot": Vector(pivot), "kind": kind, "axis": axis, "limit": limit, "rest": rest})
             prev, self._cur = self._cur, g
             try:
                 yield
@@ -301,7 +301,7 @@ class Prop:
                     e = list(part_obj.rotation_euler); e[idx] = radians(g["rest"]); part_obj.rotation_euler = e
                 else:
                     loc = list(part_obj.location); loc[idx] += g["rest"]; part_obj.location = loc
-            reg["parts"][role] = dict(kind=g["kind"], axis=g["axis"], pivot=[round(v, 4) for v in piv], limit=g["limit"], rest=g["rest"])
+            reg["parts"][role] = {"kind": g["kind"], "axis": g["axis"], "pivot": [round(v, 4) for v in piv], "limit": g["limit"], "rest": g["rest"]}
         for name, (pos, size, on_part) in self.slots.items():
             stale = bpy.data.objects.get(f"{pre}Slot_{name}")
             if stale is not None:
@@ -320,7 +320,7 @@ class Prop:
                     where = g["pivot"] + (Matrix.Rotation(radians(g["rest"]), 3, g["axis"].upper()) @ (where - g["pivot"]))
             e.parent = obj                                          # hung off the body: a parent chain would not survive the FBX axis bake
             e.location = where                                      # where the part's contents are in the exported pose
-            reg["slots"][name] = dict(position=[round(v, 4) for v in pos], size=[round(v, 4) for v in size], part=on_part)
+            reg["slots"][name] = {"position": [round(v, 4) for v in pos], "size": [round(v, 4) for v in size], "part": on_part}
         if self.emitters:
             reg["emitters"] = {}
             lo = [min(v.co[i] for v in obj.data.vertices) for i in range(3)]

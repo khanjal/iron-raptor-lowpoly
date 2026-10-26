@@ -27,7 +27,7 @@ import stamp_glb  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 TYPE_RE = re.compile(r"^[a-z0-9-]+(/[a-z0-9-]+)+$")
 TAG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-FIELDS = dict(id=str, name=str, type=str, tags=list, rigged=bool, interactive=bool, triangles=int, size=list, glb=str, thumb=str, parts=dict, clips=list, variants=list)
+FIELDS = {"id": str, "name": str, "type": str, "tags": list, "rigged": bool, "interactive": bool, "triangles": int, "size": list, "glb": str, "thumb": str, "parts": dict, "clips": list, "variants": list}
 GLASS_MATERIAL = "GlobalPaletteGlass"   # art/scripts/common.py GLASS_MATERIAL_NAME
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 

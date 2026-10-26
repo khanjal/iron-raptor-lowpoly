@@ -712,7 +712,7 @@ def describe(coll):
     for o in meshes:
         if o.parent is not None and o.parent.type == "MESH":
             parts[plain(o.name)] = [round(v, 4) for v in o.location]
-    return dict(triangles=tris, bbox_min=[round(v, 4) for v in lo], bbox_max=[round(v, 4) for v in hi], rigged=bool(rigs), clips=clips, part_nodes=parts)
+    return {"triangles": tris, "bbox_min": [round(v, 4) for v in lo], "bbox_max": [round(v, 4) for v in hi], "rigged": bool(rigs), "clips": clips, "part_nodes": parts}
 
 
 def _strip_prefix(path):
@@ -771,10 +771,10 @@ def export_glb(coll, name, rigged=None, meta=True):
     saved_fps = sc.render.fps
     sc.render.fps, sc.render.fps_base = GLB_FPS, 1.0
     props = bpy.ops.export_scene.gltf.get_rna_type().properties
-    want = dict(filepath=str(out), export_format="GLB", use_selection=True, export_apply=not rigged, export_yup=True,
-                export_cameras=False, export_lights=False, export_extras=False, export_animations=bool(info["clips"]),
-                export_animation_mode="NLA_TRACKS", export_force_sampling=True, export_optimize_animation_size=True,
-                export_morph=False, export_skins=rigged, export_texcoords=True, export_normals=True, export_copyright=GLB_COPYRIGHT)
+    want = {"filepath": str(out), "export_format": "GLB", "use_selection": True, "export_apply": not rigged, "export_yup": True,
+                "export_cameras": False, "export_lights": False, "export_extras": False, "export_animations": bool(info["clips"]),
+                "export_animation_mode": "NLA_TRACKS", "export_force_sampling": True, "export_optimize_animation_size": True,
+                "export_morph": False, "export_skins": rigged, "export_texcoords": True, "export_normals": True, "export_copyright": GLB_COPYRIGHT}
     try:
         bpy.ops.export_scene.gltf(**{k: v for k, v in want.items() if k in props})
     finally:

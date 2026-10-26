@@ -25,8 +25,8 @@ import quadruped_rig
 LAST_PARTS = {}                  # the parts of the last animal built (see the end of build)
 
 STYLES = {
-    "faceted": dict(body_n=8, head_n=6, leg_n=5, tail_n=4, sub_body=0, sub=0, smooth=False),
-    "smooth": dict(body_n=12, head_n=10, leg_n=6, tail_n=5, sub_body=2, sub=1, smooth=True),
+    "faceted": {"body_n": 8, "head_n": 6, "leg_n": 5, "tail_n": 4, "sub_body": 0, "sub": 0, "smooth": False},
+    "smooth": {"body_n": 12, "head_n": 10, "leg_n": 6, "tail_n": 5, "sub_body": 2, "sub": 1, "smooth": True},
 }
 
 
@@ -104,8 +104,8 @@ def _ball(bm, centre, radius, n=6):
 # where the eyes sit: behind the nose by `gap` of the head's length from the ears (the head runs neck to nose, the ears are at sp["ear_y"]), `inset` how far
 # the eyeball's centre is set into the head, as a fraction of the eyeball's radius, below the head's measured surface (0.55: a bit under half the ball shows), `up` a fraction of its half height above its centre, `forward` how much they look forward rather than
 # sideways, `size` the eyeball's radius as a fraction of the head's half height: a prey animal's are on the sides of the head, a predator's face forward
-EYES_SIDE = dict(gap=0.14, inset=0.55, up=0.32, forward=0.15, size=0.16)
-EYES_FRONT = dict(gap=0.20, inset=0.55, up=0.34, forward=0.80, size=0.16)
+EYES_SIDE = {"gap": 0.14, "inset": 0.55, "up": 0.32, "forward": 0.15, "size": 0.16}
+EYES_FRONT = {"gap": 0.20, "inset": 0.55, "up": 0.34, "forward": 0.80, "size": 0.16}
 
 
 def _head_at(head, y):

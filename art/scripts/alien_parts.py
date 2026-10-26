@@ -214,7 +214,7 @@ def _nordic(skull, o):
 
 
 def _reptilian(skull, o):
-    eye = dict(cx=0.066, cz=1.740, hw=0.024, hh=0.024, bulge=0.019)
+    eye = {"cx": 0.066, "cz": 1.740, "hw": 0.024, "hh": 0.024, "bulge": 0.019}
     bulge_fn = bulb(eye["cx"], eye["cz"], eye["hw"], eye["hh"], eye["bulge"], rim=0.004)
 
     def snout(bm):                                    # the upper jaw: broad at the face and tapering to the nostrils, a ridge down its top
@@ -264,12 +264,12 @@ def face_parts(face, skull, o):
 # ----------------------------------------------------------------------------------------------------------------------
 
 HANDS = {   # fingers: (offset y from the arm's centre line, length, half thickness at the base, droop in metres at the tip); thumb: (unused, length, half thickness, droop)
-    "grey": dict(fingers=[(-0.018, 0.16, 0.0105, 0.030), (0.0, 0.18, 0.0105, 0.032), (0.018, 0.15, 0.0100, 0.028)],
-                 thumb=(0.15, 0.10, 0.0105, -0.045)),
-    "shadow": dict(fingers=[(-0.016, 0.24, 0.0075, 0.060), (0.0, 0.27, 0.0075, 0.064), (0.016, 0.22, 0.0075, 0.058)],
-                   thumb=(0.15, 0.13, 0.0075, -0.050)),
-    "reptilian": dict(fingers=[(-0.030, 0.10, 0.015, 0.020), (0.0, 0.11, 0.015, 0.022), (0.030, 0.095, 0.015, 0.020)],
-                      thumb=(0.15, 0.07, 0.015, -0.045), claws=True),
+    "grey": {"fingers": [(-0.018, 0.16, 0.0105, 0.030), (0.0, 0.18, 0.0105, 0.032), (0.018, 0.15, 0.0100, 0.028)],
+                 "thumb": (0.15, 0.10, 0.0105, -0.045)},
+    "shadow": {"fingers": [(-0.016, 0.24, 0.0075, 0.060), (0.0, 0.27, 0.0075, 0.064), (0.016, 0.22, 0.0075, 0.058)],
+                   "thumb": (0.15, 0.13, 0.0075, -0.050)},
+    "reptilian": {"fingers": [(-0.030, 0.10, 0.015, 0.020), (0.0, 0.11, 0.015, 0.022), (0.030, 0.095, 0.015, 0.020)],
+                      "thumb": (0.15, 0.07, 0.015, -0.045), "claws": True},
 }
 
 

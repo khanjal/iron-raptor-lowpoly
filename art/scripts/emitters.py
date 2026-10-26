@@ -31,15 +31,15 @@ W = "switch"
 
 
 def light(name, frac, colour="warm", range=4.0, intensity=1.0, flicker=False, when="on", shape="point"):
-    return (L, name, frac, dict(colour=colour, range=range, intensity=intensity, flicker=flicker, when=when, shape=shape))
+    return (L, name, frac, {"colour": colour, "range": range, "intensity": intensity, "flicker": flicker, "when": when, "shape": shape})
 
 
 def sound(name, frac, event, loop=False, loudness=0.3, when="on"):
-    return (S, name, frac, dict(event=event, loop=loop, loudness=loudness, when=when))
+    return (S, name, frac, {"event": event, "loop": loop, "loudness": loudness, "when": when})
 
 
 def switch(name, frac, controls, action="toggle", by=("human", "alien")):
-    return (W, name, frac, dict(controls=list(controls), action=action, by=list(by)))
+    return (W, name, frac, {"controls": list(controls), "action": action, "by": list(by)})
 
 
 LAMP = ("power", "blackout")
