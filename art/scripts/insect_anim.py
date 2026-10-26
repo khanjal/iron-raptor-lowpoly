@@ -105,23 +105,18 @@ def idle_folded(rig, t, back=72.0, down=14.0, spread=0.0, lift=0.0, gap=0.0):
     fold_wings(rig, back=back + 2.0 * math.sin(w), down=down, spread=spread, lift=lift, gap=gap)
 
 
-def hang_legs(rig, droop=126.0, trail=15.0):
+def hang_legs(rig, droop=126.0, trail=15.0, raise_by=0.0012):
     """Legs dangling in flight, nearly straight down: each thigh (Leg_) swings down about Y from the hip by `droop` degrees (the rest knee is 51 degrees up, so 126 leaves it
-    75 degrees below the hip) and back about X by `trail`; the shin (Shin_) keeps its own rest direction, which is already down, and only follows the knee. The
-    body is raised (a constant, not a bob) so the feet hang above the origin instead of below it."""
-    bones = rig.data.bones
-    legs = []
+    75 degrees below the hip) and back about X by `trail`; the shin (Shin_, a child of its thigh, so the knee stays closed in any blend between clips) is turned back by
+    the same angles, so it keeps its own rest direction, which is already down. The body is raised `raise_by` metres for the whole clip (a constant, not a bob) so the
+    clip fills the viewer's frame, which is fitted to the resting pose, about as well as the Idle does."""
+    turn(rig, "Body", shift=(0, 0, raise_by))
     for name, s in sides(rig, "Leg"):
         shin = "Shin" + name[3:]
-        hip, knee = Vector(bones[name].head_local), Vector(bones[shin].head_local)
-        rot = Matrix.Rotation(radians(trail), 3, "X") @ Matrix.Rotation(radians(s * droop), 3, "Y")
-        legs.append((name, shin, s, hip, knee, rot, rot @ (knee - hip) + hip - knee))
-    foot_z = min(d.z for *_, d in legs)                                  # the rest feet are at z = 0, a shin moves with its knee
-    turn(rig, "Body", shift=(0, 0, -foot_z + 0.0002))
-    for name, shin, s, hip, knee, rot, delta in legs:
         turn(rig, name, y=s * droop)
         turn(rig, name, x=trail)
-        turn(rig, shin, shift=tuple(delta))
+        turn(rig, shin, x=-trail)
+        turn(rig, shin, y=-s * droop)
 
 
 def fly_hanging_legs(rig, t, amp, base):
@@ -255,6 +250,9 @@ def build_armature(coll, name, body_head, bones):
         eb.head = Vector(pivot) * MM
         eb.tail = eb.head + up
         eb.parent = body
+    for role in bones:
+        if role.startswith("Shin_"):                                   # a shin follows its thigh (the knee stays closed whatever the clips blend)
+            arm.edit_bones[role].parent = arm.edit_bones["Leg_" + role[5:]]
     bpy.ops.object.mode_set(mode="OBJECT")
     for b in arm.bones:
         b.use_deform = True
