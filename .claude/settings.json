@@ -2,9 +2,9 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell",
         "hooks": [
-          { "type": "command", "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree_location.py\"" }
+          { "type": "command", "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree_location.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"" }
         ]
       }
     ]
