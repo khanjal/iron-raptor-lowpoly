@@ -27,8 +27,8 @@ HIERARCHY = {
 }
 
 STYLES = {
-    "faceted": dict(body_n=8, neck_n=5, leg_n=4, sub=0, sub_body=0, smooth=False),
-    "smooth": dict(body_n=12, neck_n=8, leg_n=6, sub=1, sub_body=2, smooth=True),
+    "faceted": {"body_n": 8, "neck_n": 5, "leg_n": 4, "sub": 0, "sub_body": 0, "smooth": False},
+    "smooth": {"body_n": 12, "neck_n": 8, "leg_n": 6, "sub": 1, "sub_body": 2, "smooth": True},
 }
 
 
@@ -45,8 +45,8 @@ def feather_specs(sp):
         a = math.radians(k * fan["rest"])
         d = (math.sin(a), math.cos(a), -0.03)
         n = math.sqrt(sum(v * v for v in d))
-        out.append(dict(k=k, bone=f"TailF{k + half}", base=tuple(fan["base"]), dir=tuple(v / n for v in d), angle=k * fan["rest"],
-                        length=fan["length"] * (1.0 - 0.18 * (abs(k) / max(half, 1)) ** 2), width=fan["width"]))
+        out.append({"k": k, "bone": f"TailF{k + half}", "base": tuple(fan["base"]), "dir": tuple(v / n for v in d), "angle": k * fan["rest"],
+                        "length": fan["length"] * (1.0 - 0.18 * (abs(k) / max(half, 1)) ** 2), "width": fan["width"]})
     return out
 
 
@@ -122,7 +122,7 @@ def build(sp, style="smooth", scale=1.0):
                                                  (0.014, 0.10, 0.13), rot_deg=(sp.get("tail_rise", 25), 0, sx * 28), taper=1.0) for sx in (-1, 0, 1)],
              sp.get("tail_coat", sp["coat"]), ["Tail1", "Tail2"], sub=0, smooth=False)
     if "extras" in sp:
-        sp["extras"](type("Ctx", (), dict(make=staticmethod(make), common=common, sp=sp))())
+        sp["extras"](type("Ctx", (), {"make": staticmethod(make), "common": common, "sp": sp})())
     mesh = common.join(parts, name)
     mesh.location = (0, 0, 0)
     quadruped_rig.bind(mesh, rig)
@@ -186,26 +186,26 @@ def _hen_tail(ctx, count=7, apart=13.0, length=0.27, root=(0.15, 0.335)):
     ctx.make("tail_feathers", lambda bm: [feather(bm, k) for k in range(-half, half + 1)], lambda c_, n: "black", ["Tail1", "Tail2"], sub=0, smooth=False)
 
 
-CHICKEN_HEN = dict(
-    name="ChickenHen",
+CHICKEN_HEN = {
+    "name": "ChickenHen",
     # a laying hen (2-2.5 kg): an egg-shaped body with a full, low breast and a tail raised behind, a thick neck that rises into a small round head, legs a
     # third of the height, a drumstick over a shank with four toes. Drawn 0.52 m to the top of the head, 0.55 to the comb tip (and 0.8 of that when exported: gn_birds.SIZE)
-    body=[(-0.17, 0.30, 0.06, 0.09), (-0.09, 0.28, 0.105, 0.135), (0.00, 0.28, 0.112, 0.145), (0.10, 0.30, 0.095, 0.125),
+    "body": [(-0.17, 0.30, 0.06, 0.09), (-0.09, 0.28, 0.105, 0.135), (0.00, 0.28, 0.112, 0.145), (0.10, 0.30, 0.095, 0.125),
           (0.19, 0.345, 0.06, 0.08)],
-    neck=[(0.32, -0.12, 0.062, 0.065), (0.39, -0.155, 0.045, 0.048), (0.45, -0.175, 0.036, 0.04), (0.485, -0.19, 0.04, 0.044),
+    "neck": [(0.32, -0.12, 0.062, 0.065), (0.39, -0.155, 0.045, 0.048), (0.45, -0.175, 0.036, 0.04), (0.485, -0.19, 0.04, 0.044),
           (0.52, -0.195, 0.034, 0.038)],
-    beak=0.03,
-    wing=[(-0.06, 0.125, 0.30, 0.022, 0.07), (0.02, 0.136, 0.29, 0.026, 0.09), (0.11, 0.127, 0.285, 0.02, 0.075), (0.18, 0.108, 0.275, 0.012, 0.04)],
-    wing_x=0.125, wing_y=(0.0, 0.06, 0.15), wing_z=0.30,
-    leg=dict(x=0.055, joints=(1, 2), toe=0.085,
-             profile=[(0.24, 0.02, 0.034, 0.034), (0.13, 0.00, 0.02, 0.02), (0.06, 0.03, 0.015, 0.015), (0.0, 0.03, 0.015, 0.015)]),
-    leg_colour="straw",
-    tail=[(0.40, 0.19), (0.46, 0.23), (0.51, 0.265)], tail_boxes=False,
-    coat=lambda c, n: "brown_coat",
-    tail_coat=lambda c, n: "black",
-    neck_coat=lambda c, n: "brown_coat" if c.z < 0.44 else "brown_coat",
-    extras=_chicken_extras,
-)
+    "beak": 0.03,
+    "wing": [(-0.06, 0.125, 0.30, 0.022, 0.07), (0.02, 0.136, 0.29, 0.026, 0.09), (0.11, 0.127, 0.285, 0.02, 0.075), (0.18, 0.108, 0.275, 0.012, 0.04)],
+    "wing_x": 0.125, "wing_y": (0.0, 0.06, 0.15), "wing_z": 0.30,
+    "leg": {"x": 0.055, "joints": (1, 2), "toe": 0.085,
+             "profile": [(0.24, 0.02, 0.034, 0.034), (0.13, 0.00, 0.02, 0.02), (0.06, 0.03, 0.015, 0.015), (0.0, 0.03, 0.015, 0.015)]},
+    "leg_colour": "straw",
+    "tail": [(0.40, 0.19), (0.46, 0.23), (0.51, 0.265)], "tail_boxes": False,
+    "coat": lambda c, n: "brown_coat",
+    "tail_coat": lambda c, n: "black",
+    "neck_coat": lambda c, n: "brown_coat" if c.z < 0.44 else "brown_coat",
+    "extras": _chicken_extras,
+}
 
 
 def _turkey_extras(ctx):
@@ -248,24 +248,24 @@ def _turkey_fan(ctx):
                  lambda c_, n: "tan", [spec["bone"]], sub=0, smooth=False)
 
 
-TURKEY_TOM = dict(
-    name="TurkeyTom", tom=True,
-    body=[(-0.30, 0.55, 0.10, 0.14), (-0.15, 0.58, 0.18, 0.22), (0.05, 0.58, 0.22, 0.26), (0.25, 0.60, 0.18, 0.22), (0.40, 0.62, 0.09, 0.12)],
-    neck=[(0.72, -0.26, 0.085, 0.09), (0.84, -0.32, 0.055, 0.06), (0.93, -0.35, 0.042, 0.047), (0.99, -0.36, 0.042, 0.047), (1.02, -0.37, 0.036, 0.04)],
-    beak=0.05,
-    wing=[(-0.15, 0.21, 0.58, 0.04, 0.12), (0.05, 0.24, 0.58, 0.05, 0.16), (0.28, 0.23, 0.56, 0.04, 0.14), (0.42, 0.19, 0.54, 0.025, 0.07)],
-    wing_x=0.25, wing_y=(0.0, 0.15, 0.38), wing_z=0.58,
-    leg=dict(x=0.09, joints=(1, 2), toe=0.13,
-             profile=[(0.40, 0.02, 0.045, 0.045), (0.22, 0.0, 0.03, 0.03), (0.09, 0.04, 0.022, 0.022), (0.0, 0.04, 0.022, 0.022)]),
-    leg_colour="pink",
-    tail=[(0.58, 0.38), (0.54, 0.50), (0.50, 0.62)], tail_spread=0.0, tail_boxes=False,
-    tail_fan=dict(count=11, rest=3.0, open=13.0, length=0.48, width=0.098, base=(0.0, 0.40, 0.58)),         # 11 feathers: 3 degrees apart folded, 13 apart in the display
-    coat=lambda c, n: "dark_brown" if c.z < 0.9 else "brown_coat",
-    wing_coat=lambda c, n: "brown_coat",
-    tail_coat=lambda c, n: "dark_brown",
-    neck_coat=lambda c, n: "fabric_blue" if c.z > 0.88 else "dark_brown",           # the bare blue head and upper neck
-    extras=_turkey_extras,
-)
+TURKEY_TOM = {
+    "name": "TurkeyTom", "tom": True,
+    "body": [(-0.30, 0.55, 0.10, 0.14), (-0.15, 0.58, 0.18, 0.22), (0.05, 0.58, 0.22, 0.26), (0.25, 0.60, 0.18, 0.22), (0.40, 0.62, 0.09, 0.12)],
+    "neck": [(0.72, -0.26, 0.085, 0.09), (0.84, -0.32, 0.055, 0.06), (0.93, -0.35, 0.042, 0.047), (0.99, -0.36, 0.042, 0.047), (1.02, -0.37, 0.036, 0.04)],
+    "beak": 0.05,
+    "wing": [(-0.15, 0.21, 0.58, 0.04, 0.12), (0.05, 0.24, 0.58, 0.05, 0.16), (0.28, 0.23, 0.56, 0.04, 0.14), (0.42, 0.19, 0.54, 0.025, 0.07)],
+    "wing_x": 0.25, "wing_y": (0.0, 0.15, 0.38), "wing_z": 0.58,
+    "leg": {"x": 0.09, "joints": (1, 2), "toe": 0.13,
+             "profile": [(0.40, 0.02, 0.045, 0.045), (0.22, 0.0, 0.03, 0.03), (0.09, 0.04, 0.022, 0.022), (0.0, 0.04, 0.022, 0.022)]},
+    "leg_colour": "pink",
+    "tail": [(0.58, 0.38), (0.54, 0.50), (0.50, 0.62)], "tail_spread": 0.0, "tail_boxes": False,
+    "tail_fan": {"count": 11, "rest": 3.0, "open": 13.0, "length": 0.48, "width": 0.098, "base": (0.0, 0.40, 0.58)},         # 11 feathers: 3 degrees apart folded, 13 apart in the display
+    "coat": lambda c, n: "dark_brown" if c.z < 0.9 else "brown_coat",
+    "wing_coat": lambda c, n: "brown_coat",
+    "tail_coat": lambda c, n: "dark_brown",
+    "neck_coat": lambda c, n: "fabric_blue" if c.z > 0.88 else "dark_brown",           # the bare blue head and upper neck
+    "extras": _turkey_extras,
+}
 
 TURKEY_HEN = dict(
     TURKEY_TOM, name="TurkeyHen", tom=False,
@@ -274,10 +274,10 @@ TURKEY_HEN = dict(
     beak=0.04,
     wing=[(-0.12, 0.17, 0.48, 0.032, 0.10), (0.04, 0.19, 0.48, 0.04, 0.13), (0.22, 0.18, 0.46, 0.032, 0.11), (0.34, 0.15, 0.44, 0.02, 0.06)],
     wing_x=0.20, wing_y=(0.0, 0.12, 0.30), wing_z=0.48,
-    leg=dict(x=0.07, joints=(1, 2), toe=0.10,
-             profile=[(0.32, 0.02, 0.036, 0.036), (0.18, 0.0, 0.024, 0.024), (0.07, 0.03, 0.018, 0.018), (0.0, 0.03, 0.018, 0.018)]),
+    leg={"x": 0.07, "joints": (1, 2), "toe": 0.10,
+             "profile": [(0.32, 0.02, 0.036, 0.036), (0.18, 0.0, 0.024, 0.024), (0.07, 0.03, 0.018, 0.018), (0.0, 0.03, 0.018, 0.018)]},
     tail=[(0.48, 0.30), (0.45, 0.40), (0.42, 0.50)], tail_boxes=False,
-    tail_fan=dict(count=7, rest=3.0, open=3.0, length=0.32, width=0.085, base=(0.0, 0.32, 0.48)),          # the hen's tail does not open
+    tail_fan={"count": 7, "rest": 3.0, "open": 3.0, "length": 0.32, "width": 0.085, "base": (0.0, 0.32, 0.48)},          # the hen's tail does not open
     coat=lambda c, n: "brown_coat",
     neck_coat=lambda c, n: "fur_grey" if c.z > 0.74 else "brown_coat",               # a dull grey-brown head
 )

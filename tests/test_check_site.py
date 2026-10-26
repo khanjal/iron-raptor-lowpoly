@@ -72,7 +72,7 @@ class Damage(unittest.TestCase):
         a = self.entry("GI_Dresser_01")
         doc, _ = check_site.read_glb(self.tmp / a["glb"])
         for name, mode, bad in (("GlobalPaletteGlass", "BLEND", False), ("GlobalPalette", "BLEND", True), ("GlobalPaletteGlass", "OPAQUE", True)):
-            doc["materials"] = [dict(name=name, alphaMode=mode)]
+            doc["materials"] = [{"name": name, "alphaMode": mode}]
             errs = []
             check_site.check_against_glb(a, doc, errs.append)
             self.assertEqual(any("blended" in e or "opaque" in e for e in errs), bad, (name, mode))

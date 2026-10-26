@@ -111,12 +111,12 @@ def stump(name="FM_Stump_01"):
 # The corn plants. Each kind is one plant: how tall, how many ears (and where on the stalk), how the leaves hang, how far it leans, its colours.
 # `ears`: (height of the node, which side it grows out of, size 0.7-1.2); `droop` 0 (leaves held up) to 1 (hanging); `reach` the leaf length
 CORN_KINDS = {
-    "two":    dict(height=2.35, ears=[(1.00, 1, 1.0), (1.42, -1, 0.9)], droop=0.6, reach=0.50, lean=0.0),                # a heavy plant: two ears
-    "one":    dict(height=2.30, ears=[(1.12, -1, 1.0)], droop=0.5, reach=0.46, lean=0.0),
-    "one_hi": dict(height=2.40, ears=[(1.35, 1, 1.1)], droop=0.7, reach=0.52, lean=0.0),                                 # a tall plant with its ear high up
-    "young":  dict(height=1.85, ears=[], droop=0.1, reach=0.32, lean=0.0),                                               # not yet in ear: short, leaves held up
-    "lean":   dict(height=2.25, ears=[(1.05, 1, 0.9)], droop=0.6, reach=0.46, lean=0.5),                                 # leaning over from the wind
-    "dry":    dict(height=2.20, ears=[(0.95, 1, 1.2), (1.30, -1, 1.1)], droop=1.0, reach=0.40, lean=0.15, dry=True),    # gone brown, ears fat and hanging
+    "two":    {"height": 2.35, "ears": [(1.00, 1, 1.0), (1.42, -1, 0.9)], "droop": 0.6, "reach": 0.50, "lean": 0.0},                # a heavy plant: two ears
+    "one":    {"height": 2.30, "ears": [(1.12, -1, 1.0)], "droop": 0.5, "reach": 0.46, "lean": 0.0},
+    "one_hi": {"height": 2.40, "ears": [(1.35, 1, 1.1)], "droop": 0.7, "reach": 0.52, "lean": 0.0},                                 # a tall plant with its ear high up
+    "young":  {"height": 1.85, "ears": [], "droop": 0.1, "reach": 0.32, "lean": 0.0},                                               # not yet in ear: short, leaves held up
+    "lean":   {"height": 2.25, "ears": [(1.05, 1, 0.9)], "droop": 0.6, "reach": 0.46, "lean": 0.5},                                 # leaning over from the wind
+    "dry":    {"height": 2.20, "ears": [(0.95, 1, 1.2), (1.30, -1, 1.1)], "droop": 1.0, "reach": 0.40, "lean": 0.15, "dry": True},    # gone brown, ears fat and hanging
 }
 
 

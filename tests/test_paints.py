@@ -41,11 +41,11 @@ class Paints(unittest.TestCase):
 
     def test_unknown_swatch_part_or_colour_is_an_error(self):
         with self.assertRaises(ValueError):
-            paints.resolve(dict(base="A", parts={"Body": "no_such_swatch"}, presets={}), ENTRIES)
+            paints.resolve({"base": "A", "parts": {"Body": "no_such_swatch"}, "presets": {}}, ENTRIES)
         with self.assertRaises(ValueError):
-            paints.resolve(dict(base="A", parts={"Body": "cloth_red"}, presets={"B": dict(set={"Roof": "#000000"})}), ENTRIES)
+            paints.resolve({"base": "A", "parts": {"Body": "cloth_red"}, "presets": {"B": {"set": {"Roof": "#000000"}}}}, ENTRIES)
         with self.assertRaises(ValueError):
-            paints.resolve(dict(base="A", parts={"Body": "cloth_red"}, presets={"B": dict(set={"Body": "purple-ish"})}), ENTRIES)
+            paints.resolve({"base": "A", "parts": {"Body": "cloth_red"}, "presets": {"B": {"set": {"Body": "purple-ish"}}}}, ENTRIES)
 
     def test_a_part_swatch_is_not_shared_with_another_part(self):
         for base, spec in catalog.PAINTS.items():
@@ -72,12 +72,12 @@ class Paints(unittest.TestCase):
 
     def test_apply_themes_lists_the_styles_on_the_model_and_defines_them_once(self):
         from unittest import mock
-        assets = [dict(id="A", variants=["A_Modern", "B"], tags=["x"]), dict(id="B", variants=["A"], tags=[])]
+        assets = [{"id": "A", "variants": ["A_Modern", "B"], "tags": ["x"]}, {"id": "B", "variants": ["A"], "tags": []}]
         doc = {}
         with mock.patch.object(catalog, "THEMED", {"A": {"Modern": "A_Modern"}}):
             mm.apply_themes(doc, assets, ENTRIES)
         self.assertEqual(set(doc["themes"]), {"Modern"})
-        self.assertEqual(assets[0]["themes"], [dict(name="Modern", was="A_Modern")])
+        self.assertEqual(assets[0]["themes"], [{"name": "Modern", "was": "A_Modern"}])
         self.assertEqual(assets[0]["variants"], ["B"])
         self.assertEqual(assets[0]["tags"], ["modern", "x"])
         self.assertNotIn("themes", assets[1])
@@ -105,8 +105,8 @@ class Paints(unittest.TestCase):
         self.assertFalse(any(a["id"] == "FD_Apple_Green_01" for a in doc["assets"]))
 
     def test_apply_paints_drops_variant_links_to_folded_models_and_adds_tags(self):
-        assets = [dict(id="A", variants=["B", "GONE"], tags=["x"]), dict(id="B", variants=["A"], tags=[])]
-        spec = dict(base="One", parts={"Body": "cloth_red"}, presets={"Two Tone": dict(set={"Body": "#112233"})})
+        assets = [{"id": "A", "variants": ["B", "GONE"], "tags": ["x"]}, {"id": "B", "variants": ["A"], "tags": []}]
+        spec = {"base": "One", "parts": {"Body": "cloth_red"}, "presets": {"Two Tone": {"set": {"Body": "#112233"}}}}
         mm.apply_paints(assets, {"A": spec}, ENTRIES)
         self.assertEqual(assets[0]["variants"], ["B"])
         self.assertEqual([p["name"] for p in assets[0]["paints"]], ["One", "Two Tone"])
@@ -115,11 +115,11 @@ class Paints(unittest.TestCase):
 
     def test_checker_rejects_bad_paints(self):
         errs = []
-        part = dict(part="Body", swatch=3, hex="#000000")
-        check_site.check_paints(dict(paintable=[part], paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"9": "#FFFFFF"})]), errs.append)
+        part = {"part": "Body", "swatch": 3, "hex": "#000000"}
+        check_site.check_paints({"paintable": [part], "paints": [{"name": "A", "hex": "#000000", "swap": {}}, {"name": "B", "hex": "#111111", "swap": {"9": "#FFFFFF"}}]}, errs.append)
         self.assertTrue(errs)          # swatch 9 is not a paintable part
         errs.clear()
-        check_site.check_paints(dict(paintable=[part], paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"3": "#FFFFFF"})]), errs.append)
+        check_site.check_paints({"paintable": [part], "paints": [{"name": "A", "hex": "#000000", "swap": {}}, {"name": "B", "hex": "#111111", "swap": {"3": "#FFFFFF"}}]}, errs.append)
         self.assertEqual(errs, [])
 
 
@@ -142,7 +142,7 @@ class AutoColours(unittest.TestCase):
                 self.assertLessEqual(len(a["paintable"]), paints.MAX_PARTS, a["id"])
 
     def test_a_model_without_presets_gets_parts_only(self):
-        assets = [dict(id="GV_Taxi_Yellow_01", variants=[], tags=[]), dict(id="NO_SUCH_MODEL", variants=[], tags=[])]
+        assets = [{"id": "GV_Taxi_Yellow_01", "variants": [], "tags": []}, {"id": "NO_SUCH_MODEL", "variants": [], "tags": []}]
         mm.apply_paints(assets, {}, ENTRIES, MODELS)
         self.assertEqual(assets[0]["paintable"][0]["part"], "Main")
         self.assertNotIn("paints", assets[0])
@@ -160,9 +160,9 @@ class AutoColours(unittest.TestCase):
 
     def test_the_checker_accepts_parts_without_presets_and_rejects_presets_without_parts(self):
         errs = []
-        check_site.check_paints(dict(paintable=[dict(part="Main", swatch=3, hex="#000000")]), errs.append)
+        check_site.check_paints({"paintable": [{"part": "Main", "swatch": 3, "hex": "#000000"}]}, errs.append)
         self.assertEqual(errs, [])
-        check_site.check_paints(dict(paints=[dict(name="A", hex="#000000", swap={}), dict(name="B", hex="#111111", swap={"3": "#FFFFFF"})]), errs.append)
+        check_site.check_paints({"paints": [{"name": "A", "hex": "#000000", "swap": {}}, {"name": "B", "hex": "#111111", "swap": {"3": "#FFFFFF"}}]}, errs.append)
         self.assertTrue(errs)
 
 

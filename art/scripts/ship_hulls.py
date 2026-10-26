@@ -67,9 +67,9 @@ HULL_PHASE = 4.5                                             # turned so a face 
 
 THEMES = {
     # wall panels, the dark band round them, the glow colour, the seats' colour, the colour of the power core's caps
-    "saucer": dict(wall="alien_grey", band="alien_dark", glow="glow_cyan", seat="alien_dark", cap="alien_dark", floor="alien_grey"),
-    "egg": dict(wall="alien_gold", band="alien_violet", glow="glow_green", seat="alien_violet", cap="alien_dark", floor="alien_dark"),
-    "freighter": dict(wall="concrete", band="metal_dark", glow="glow_amber", seat="rust", cap="metal_dark", floor="metal_galv"),
+    "saucer": {"wall": "alien_grey", "band": "alien_dark", "glow": "glow_cyan", "seat": "alien_dark", "cap": "alien_dark", "floor": "alien_grey"},
+    "egg": {"wall": "alien_gold", "band": "alien_violet", "glow": "glow_green", "seat": "alien_violet", "cap": "alien_dark", "floor": "alien_dark"},
+    "freighter": {"wall": "concrete", "band": "metal_dark", "glow": "glow_amber", "seat": "rust", "cap": "metal_dark", "floor": "metal_galv"},
 }
 
 

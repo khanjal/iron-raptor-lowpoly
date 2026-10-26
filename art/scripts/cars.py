@@ -44,11 +44,11 @@ WRECK = {   # the Damaged colour remap: paint faded, rusted, lights and glass go
 }
 
 KINDS = {   # length, width, hood, cabin, body height, cabin height, wheel radius, windscreen run, rear window run, solid (no glass behind the front doors)
-    "sedan": dict(L=4.6, W=1.8, hood=1.35, cabin=1.9, bh=0.55, ch=0.5, wr=0.33, rf=0.5, rr=0.45),
-    "wagon": dict(L=4.8, W=1.85, hood=1.3, cabin=3.0, bh=0.55, ch=0.58, wr=0.33, rf=0.5, rr=0.2),
-    "suv": dict(L=4.7, W=1.95, hood=1.25, cabin=3.0, bh=0.72, ch=0.62, wr=0.4, rf=0.45, rr=0.2),
-    "minivan": dict(L=5.0, W=1.9, hood=1.0, cabin=3.6, bh=0.62, ch=0.78, wr=0.34, rf=0.7, rr=0.15),
-    "van": dict(L=5.4, W=2.0, hood=0.7, cabin=4.8, bh=0.8, ch=1.3, wr=0.36, rf=0.3, rr=0.0, solid=True, tail=0.1),
+    "sedan": {"L": 4.6, "W": 1.8, "hood": 1.35, "cabin": 1.9, "bh": 0.55, "ch": 0.5, "wr": 0.33, "rf": 0.5, "rr": 0.45},
+    "wagon": {"L": 4.8, "W": 1.85, "hood": 1.3, "cabin": 3.0, "bh": 0.55, "ch": 0.58, "wr": 0.33, "rf": 0.5, "rr": 0.2},
+    "suv": {"L": 4.7, "W": 1.95, "hood": 1.25, "cabin": 3.0, "bh": 0.72, "ch": 0.62, "wr": 0.4, "rf": 0.45, "rr": 0.2},
+    "minivan": {"L": 5.0, "W": 1.9, "hood": 1.0, "cabin": 3.6, "bh": 0.62, "ch": 0.78, "wr": 0.34, "rf": 0.7, "rr": 0.15},
+    "van": {"L": 5.4, "W": 2.0, "hood": 0.7, "cabin": 4.8, "bh": 0.8, "ch": 1.3, "wr": 0.36, "rf": 0.3, "rr": 0.0, "solid": True, "tail": 0.1},
 }
 
 
@@ -264,35 +264,35 @@ def tow_truck(body="paint_yellow", name="GV_TowTruck_01"):
 
 # family -> list of (variant name, builder, kwargs)
 def families():
-    P = lambda body, label: (label, "pickup", dict(body=body))
+    P = lambda body, label: (label, "pickup", {"body": body})
     f = {}
-    f["Pickup"] = [(NAMES[c], "pickup", dict(body=c)) for c in ("truck_blue", "cloth_red", "paint_white", "tractor_green", "tan", "black")]
-    f["Tractor"] = [(n, "tractor", dict(body=c)) for n, c in (("Green", "tractor_green"), ("Red", "cloth_red"), ("Orange", "orange_cat"), ("Blue", "truck_blue"), ("Yellow", "paint_yellow"))]
-    f["Sedan"] = [(NAMES[c], "sedan", dict(body=c)) for c in ("truck_blue", "cloth_red", "paint_white", "tan", "fabric_grey", "tractor_green", "black")]
-    f["Wagon"] = [(NAMES[c], "wagon", dict(body=c)) for c in ("fabric_green", "paint_white", "tan", "truck_blue")]
-    f["SUV"] = [(NAMES[c], "suv", dict(body=c)) for c in ("black", "paint_white", "fabric_grey", "cloth_red", "navy")]
-    f["Minivan"] = [(NAMES[c], "minivan", dict(body=c)) for c in ("truck_blue", "paint_white", "cloth_red", "fabric_grey")]
-    f["Van"] = [(n, "van", dict(body=c, extras=ex)) for n, c, ex in (("White", "paint_white", ()), ("Brown", "fabric_brown", ("deliverysign",)), ("Blue", "truck_blue", ()), ("Mail", "paint_white", ("deliverysign",)))]
-    f["Taxi"] = [("Yellow", "sedan", dict(body="paint_yellow", extras=("taxi",))), ("Checker", "sedan", dict(body="paint_yellow", stripe="black", extras=("taxi",)))]
+    f["Pickup"] = [(NAMES[c], "pickup", {"body": c}) for c in ("truck_blue", "cloth_red", "paint_white", "tractor_green", "tan", "black")]
+    f["Tractor"] = [(n, "tractor", {"body": c}) for n, c in (("Green", "tractor_green"), ("Red", "cloth_red"), ("Orange", "orange_cat"), ("Blue", "truck_blue"), ("Yellow", "paint_yellow"))]
+    f["Sedan"] = [(NAMES[c], "sedan", {"body": c}) for c in ("truck_blue", "cloth_red", "paint_white", "tan", "fabric_grey", "tractor_green", "black")]
+    f["Wagon"] = [(NAMES[c], "wagon", {"body": c}) for c in ("fabric_green", "paint_white", "tan", "truck_blue")]
+    f["SUV"] = [(NAMES[c], "suv", {"body": c}) for c in ("black", "paint_white", "fabric_grey", "cloth_red", "navy")]
+    f["Minivan"] = [(NAMES[c], "minivan", {"body": c}) for c in ("truck_blue", "paint_white", "cloth_red", "fabric_grey")]
+    f["Van"] = [(n, "van", {"body": c, "extras": ex}) for n, c, ex in (("White", "paint_white", ()), ("Brown", "fabric_brown", ("deliverysign",)), ("Blue", "truck_blue", ()), ("Mail", "paint_white", ("deliverysign",)))]
+    f["Taxi"] = [("Yellow", "sedan", {"body": "paint_yellow", "extras": ("taxi",)}), ("Checker", "sedan", {"body": "paint_yellow", "stripe": "black", "extras": ("taxi",)})]
     f["Police"] = [
-        ("Sheriff", "sedan", dict(body="paint_white", stripe="tan_uniform", extras=("lightbar",))),
-        ("Deputy", "suv", dict(body="paint_white", stripe="tan_uniform", extras=("lightbar",))),
-        ("StatePolice", "sedan", dict(body="navy", stripe="paint_white", extras=("lightbar",))),
-        ("FBI_SUV", "suv", dict(body="black", glass="black", extras=("antenna",))),
-        ("FBI_Van", "van", dict(body="black", glass="black", trim="black", extras=("antenna", "roofrack"))),   # the FBI's van (#19): black, dark glass, an antenna and a rack on the roof
-        ("MIB_Sedan", "sedan", dict(body="black", glass="black", trim="black")),
+        ("Sheriff", "sedan", {"body": "paint_white", "stripe": "tan_uniform", "extras": ("lightbar",)}),
+        ("Deputy", "suv", {"body": "paint_white", "stripe": "tan_uniform", "extras": ("lightbar",)}),
+        ("StatePolice", "sedan", {"body": "navy", "stripe": "paint_white", "extras": ("lightbar",)}),
+        ("FBI_SUV", "suv", {"body": "black", "glass": "black", "extras": ("antenna",)}),
+        ("FBI_Van", "van", {"body": "black", "glass": "black", "trim": "black", "extras": ("antenna", "roofrack")}),   # the FBI's van (#19): black, dark glass, an antenna and a rack on the roof
+        ("MIB_Sedan", "sedan", {"body": "black", "glass": "black", "trim": "black"}),
     ]
-    f["Ambulance"] = [("White", "van", dict(body="paint_white", stripe="cloth_red", extras=("cross", "lightbar")))]
-    f["TowTruck"] = [("Yellow", "special", dict(fn="tow"))]
-    f["ATV"] = [(n, "special", dict(fn="atv", body=c)) for n, c in (("Red", "cloth_red"), ("Green", "tractor_green"), ("Yellow", "paint_yellow"))]
-    f["Motorcycle"] = [(n, "special", dict(fn="moto", body=c)) for n, c in (("Red", "cloth_red"), ("Black", "black"), ("Blue", "truck_blue"))]
-    f["Jeep"] = [(n, "special", dict(fn="jeep", body=c)) for n, c in (("Olive", "tractor_green"), ("Tan", "tan"))]
-    f["Trailer"] = [("Flatbed", "special", dict(fn="flatbed"))]
-    f["Semi"] = [(n, "special", dict(fn="semi", body=c)) for n, c in (("Red", "cloth_red"), ("Blue", "truck_blue"), ("White", "paint_white"), ("Black", "black"))]
-    f["SemiTrailer"] = [("Box_White", "special", dict(fn="boxtrailer", body="paint_white")), ("Box_Blue", "special", dict(fn="boxtrailer", body="truck_blue")),
-                        ("Tanker_Silver", "special", dict(fn="tanker"))]
-    f["Bus"] = [("School", "special", dict(fn="bus"))]
-    f["FireTruck"] = [("Red", "special", dict(fn="fire"))]
+    f["Ambulance"] = [("White", "van", {"body": "paint_white", "stripe": "cloth_red", "extras": ("cross", "lightbar")})]
+    f["TowTruck"] = [("Yellow", "special", {"fn": "tow"})]
+    f["ATV"] = [(n, "special", {"fn": "atv", "body": c}) for n, c in (("Red", "cloth_red"), ("Green", "tractor_green"), ("Yellow", "paint_yellow"))]
+    f["Motorcycle"] = [(n, "special", {"fn": "moto", "body": c}) for n, c in (("Red", "cloth_red"), ("Black", "black"), ("Blue", "truck_blue"))]
+    f["Jeep"] = [(n, "special", {"fn": "jeep", "body": c}) for n, c in (("Olive", "tractor_green"), ("Tan", "tan"))]
+    f["Trailer"] = [("Flatbed", "special", {"fn": "flatbed"})]
+    f["Semi"] = [(n, "special", {"fn": "semi", "body": c}) for n, c in (("Red", "cloth_red"), ("Blue", "truck_blue"), ("White", "paint_white"), ("Black", "black"))]
+    f["SemiTrailer"] = [("Box_White", "special", {"fn": "boxtrailer", "body": "paint_white"}), ("Box_Blue", "special", {"fn": "boxtrailer", "body": "truck_blue"}),
+                        ("Tanker_Silver", "special", {"fn": "tanker"})]
+    f["Bus"] = [("School", "special", {"fn": "bus"})]
+    f["FireTruck"] = [("Red", "special", {"fn": "fire"})]
     return f
 
 

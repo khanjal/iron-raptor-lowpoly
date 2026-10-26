@@ -55,14 +55,14 @@ class AxisConversion(unittest.TestCase):
         self.assertEqual(to_gltf_vec([0, -0.38, 0]), [0, 0, 0.38])
 
     def test_convert_part(self):
-        p = mm.convert_part(dict(kind="hinge", axis="z", pivot=[0.35, -0.37, 0.645], limit=100, rest=0.0))
-        self.assertEqual(p, dict(kind="hinge", axis=[0, 1, 0], pivot=[0.35, 0.645, 0.37], limit=100, rest=0.0))
+        p = mm.convert_part({"kind": "hinge", "axis": "z", "pivot": [0.35, -0.37, 0.645], "limit": 100, "rest": 0.0})
+        self.assertEqual(p, {"kind": "hinge", "axis": [0, 1, 0], "pivot": [0.35, 0.645, 0.37], "limit": 100, "rest": 0.0})
 
 
 class Entries(unittest.TestCase):
-    meta = dict(triangles=180, bbox_min=[-0.35, -0.4275, 0.0], bbox_max=[0.35, 0.35, 1.8], rigged=False, clips=[], part_nodes={"Door": [0.35, -0.37, 0.645]})
-    cat = dict(name="Fridge", type="appliances/kitchen/fridge", tags=["white", "kitchen", "white"], group="fridge")
-    inter = dict(parts={"Door": dict(kind="hinge", axis="z", pivot=[0.35, -0.37, 0.645], limit=100, rest=0.0)})
+    meta = {"triangles": 180, "bbox_min": [-0.35, -0.4275, 0.0], "bbox_max": [0.35, 0.35, 1.8], "rigged": False, "clips": [], "part_nodes": {"Door": [0.35, -0.37, 0.645]}}
+    cat = {"name": "Fridge", "type": "appliances/kitchen/fridge", "tags": ["white", "kitchen", "white"], "group": "fridge"}
+    inter = {"parts": {"Door": {"kind": "hinge", "axis": "z", "pivot": [0.35, -0.37, 0.645], "limit": 100, "rest": 0.0}}}
 
     def test_size_is_width_height_depth(self):
         self.assertEqual(mm.size_of(self.meta), [0.7, 1.8, 0.777])
@@ -92,15 +92,15 @@ class Entries(unittest.TestCase):
         self.assertEqual((e["parts"], e["variants"]), ({}, []))
 
     def test_variant_groups(self):
-        g = mm.variant_groups({"a": dict(group="g"), "b": dict(group="g"), "c": dict(group=None)})
+        g = mm.variant_groups({"a": {"group": "g"}, "b": {"group": "g"}, "c": {"group": None}})
         self.assertEqual(g, {"g": ["a", "b"]})
 
 
 class Interactions(unittest.TestCase):
-    cat = dict(name="X", type="furniture/x", tags=["x"], group=None)
-    meta = dict(rigged=False, triangles=10, bbox_min=[0, 0, 0], bbox_max=[1, 1, 1], part_nodes={}, clips=[])
-    lamp = dict(emitters={"Light_Bulb": dict(kind="light", position=[0, 0, 1]), "Light_Dead": dict(kind="light", working=False),
-                          "Sound_Buzz": dict(kind="sound")})
+    cat = {"name": "X", "type": "furniture/x", "tags": ["x"], "group": None}
+    meta = {"rigged": False, "triangles": 10, "bbox_min": [0, 0, 0], "bbox_max": [1, 1, 1], "part_nodes": {}, "clips": []}
+    lamp = {"emitters": {"Light_Bulb": {"kind": "light", "position": [0, 0, 1]}, "Light_Dead": {"kind": "light", "working": False},
+                          "Sound_Buzz": {"kind": "sound"}}}
 
     def test_a_model_with_an_entry_points_at_its_file_and_counts_working_lights(self):
         e = mm.build_entry("X", self.cat, self.meta, self.lamp, {})

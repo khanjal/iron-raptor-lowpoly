@@ -63,7 +63,7 @@ def box_building(p, wall, w, d, floors, floor_h, front=(), back=(), left=(), rig
     for f in range(floors):
         z = base + f * floor_h
         oc = (front, back, left, right) if f == 0 else (upper or ((), (), (), ()))
-        kw = dict(trim=trim, door_colour=door)
+        kw = {"trim": trim, "door_colour": door}
         wall_run(p, wall, (x0, y0), (x1, y0), z, floor_h, oc[0], **kw)
         wall_run(p, wall, (x1, y1), (x0, y1), z, floor_h, oc[1], **kw)                # the back wall runs the other way round
         wall_run(p, wall, (x0, y1), (x0, y0), z, floor_h, oc[2], **kw)
@@ -103,7 +103,7 @@ def barn():
     box_building(p, "@wall", w, d, 1, 5.0, [(w / 2 - 4.0, 8.0, 0, 5.0)], [(w / 2 - 1.0, 2.0, 0, 3.0)],
                  [(5.0, 1.0, 1.6, 1.2), (12.0, 1.0, 1.6, 1.2), (19.0, 1.0, 1.6, 1.2), (25.0, 1.0, 1.6, 1.2)],
                  [(5.0, 1.0, 1.6, 1.2), (12.0, 1.0, 1.6, 1.2), (19.0, 1.0, 1.6, 1.2), (25.0, 1.0, 1.6, 1.2)])
-    kw = dict(trim="@trim", door_colour="@door")
+    kw = {"trim": "@trim", "door_colour": "@door"}
     wall_run(p, "@wall", (-w / 2, -d / 2), (w / 2, -d / 2), 5.0, 2.2, [(w / 2 - 1.0, 2.0, 0, 2.0)], **kw)
     wall_run(p, "@wall", (w / 2, d / 2), (-w / 2, d / 2), 5.0, 2.2, **kw)
     wall_run(p, "@wall", (-w / 2, d / 2), (-w / 2, -d / 2), 5.0, 2.2, **kw)

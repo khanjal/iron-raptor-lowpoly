@@ -107,15 +107,15 @@ def make_dog(name, length=1.0, width=1.0, depth=1.0, leg=0.30, head=1.0, head_w=
         ctx.make("nose", lambda bm: cm.add_box(bm, (0, hd[-1][0] - 0.005, hd[-1][1] + 0.005), (0.03 * head, 0.02, 0.025 * head)),
                  lambda c, n: "black", ["Head"], sub=0, smooth=False)
 
-    return dict(
-        name=name, body=body, head=hd,
-        front=dict(x=0.065 * sx, y=-0.18 * sy, joints=(1, 3), profile=fr),
-        hind=dict(x=0.065 * sx, y=0.20 * sy, joints=(2, 4), profile=hn),
-        tail=tl, ear_x=ear_x, ear_y=skull[0], ear_z=skull[1] + skull[3] * 0.5,
-        coat=coat, head_coat=head_coat,
-        tail_coat=lambda c, n: (c2 if pattern == "bicolor" and c.z < cz0 - 0.1 else (c3 if pattern == "tri" else c1)),
-        eyes=dict(gap=0.20, inset=0.55, up=0.34, forward=0.80, size=0.19),                  # a dog's eyes face forward, towards the nose
-        extras=extras)
+    return {
+        "name": name, "body": body, "head": hd,
+        "front": {"x": 0.065 * sx, "y": -0.18 * sy, "joints": (1, 3), "profile": fr},
+        "hind": {"x": 0.065 * sx, "y": 0.20 * sy, "joints": (2, 4), "profile": hn},
+        "tail": tl, "ear_x": ear_x, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.5,
+        "coat": coat, "head_coat": head_coat,
+        "tail_coat": lambda c, n: (c2 if pattern == "bicolor" and c.z < cz0 - 0.1 else (c3 if pattern == "tri" else c1)),
+        "eyes": {"gap": 0.20, "inset": 0.55, "up": 0.34, "forward": 0.80, "size": 0.19},                  # a dog's eyes face forward, towards the nose
+        "extras": extras}
 
 
 # Shoulder heights in metres: collie 0.53, retriever 0.58, beagle 0.38, bulldog 0.42, dachshund 0.28, husky 0.55, shepherd 0.60, stray 0.46
@@ -200,14 +200,14 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
         ctx.make("nose", lambda bm: cm.add_box(bm, (0, head[-1][0], head[-1][1] + 0.004), (0.014 * k, 0.012 * k, 0.012 * k)),
                  lambda c, n: "pink", ["Head"], sub=0, smooth=False)
 
-    return dict(name=name, body=body, head=head,
-                front=dict(x=0.046 * k, y=-0.12 * k, joints=(1, 3), profile=fr),
-                hind=dict(x=0.046 * k, y=0.14 * k, joints=(2, 4), profile=hn),
-                tail=tl, ear_x=skull[2] * 0.7, ear_y=skull[0], ear_z=skull[1] + skull[3] * 0.9,
-                coat=coat, head_coat=head_coat,
-                tail_coat=lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1,
-                eyes=dict(gap=0.22, inset=0.55, up=0.34, forward=0.85, size=0.24), eye_colour="paint_yellow",     # round, golden, looking ahead
-                extras=extras)
+    return {"name": name, "body": body, "head": head,
+                "front": {"x": 0.046 * k, "y": -0.12 * k, "joints": (1, 3), "profile": fr},
+                "hind": {"x": 0.046 * k, "y": 0.14 * k, "joints": (2, 4), "profile": hn},
+                "tail": tl, "ear_x": skull[2] * 0.7, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.9,
+                "coat": coat, "head_coat": head_coat,
+                "tail_coat": lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1,
+                "eyes": {"gap": 0.22, "inset": 0.55, "up": 0.34, "forward": 0.85, "size": 0.24}, "eye_colour": "paint_yellow",     # round, golden, looking ahead
+                "extras": extras}
 
 
 CATS = {

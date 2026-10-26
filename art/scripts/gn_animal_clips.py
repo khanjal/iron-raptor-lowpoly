@@ -64,8 +64,8 @@ if report and export:
         species_name = prefix.split("_")[0]
         if gait == "walk" and not species_name.startswith("Dog"):
             continue                                       # only the dogs' walk is fitted to a speed: the other animals' walks are the old shuffle
-        entries[(species_name, gait.capitalize())] = dict(species=species_name, gait=gait.capitalize(), speed=r["speed"], strideSeconds=round(r["frames"] / r["fps"], 4),
-                                                         footSlideCm=r["drift_cm"], legMetres=r["leg_m"])
+        entries[(species_name, gait.capitalize())] = {"species": species_name, "gait": gait.capitalize(), "speed": r["speed"], "strideSeconds": round(r["frames"] / r["fps"], 4),
+                                                         "footSlideCm": r["drift_cm"], "legMetres": r["leg_m"]}
     ordered = [entries[k] for k in sorted(entries)]
     SPEED_FILE.write_text(json.dumps({"clips": ordered}, indent=2) + "\n", encoding="utf-8")
     print("wrote", SPEED_FILE)

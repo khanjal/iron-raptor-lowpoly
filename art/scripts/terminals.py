@@ -237,8 +237,8 @@ def ship_console(name="GV_ShipConsole_01"):
 
 PALETTES = {
     # housing, light housing, glow, lit-edge
-    "bank": dict(housing="plant_green", light="alien_green", glow="glow_green"),
-    "launch": dict(housing="barn_red", light="label_red", glow="glow_red"),
+    "bank": {"housing": "plant_green", "light": "alien_green", "glow": "glow_green"},
+    "launch": {"housing": "barn_red", "light": "label_red", "glow": "glow_red"},
 }
 
 
@@ -308,7 +308,7 @@ def bank_terminal(name="GV_ShipTerminalBank_01"):
     # lamps' rail is on the screen's top (sp, v 0.535): nothing more to build; cables from the back to the console top
     for x in (-0.35, 0.0, 0.35):
         cable(p, [(x, 0.28, 0.30), (x + 0.04, 0.36, 0.12), (x + 0.06, 0.42, 0.02)], w=0.04)
-    return p, dict(plane=sp, v=0.535, h=0.05, us=(-0.12, 0.0, 0.12))
+    return p, {"plane": sp, "v": 0.535, "h": 0.05, "us": (-0.12, 0.0, 0.12)}
 
 
 def launch_terminal(name="GV_ShipTerminalLaunch_01"):
@@ -351,7 +351,7 @@ def launch_terminal(name="GV_ShipTerminalLaunch_01"):
     holo_rings(p, G, 0.0, 0.0, 0.62, (0.15, 0.10), 0.07, base_z=0.43)
     for x in (-0.35, 0.0, 0.35):
         cable(p, [(x, 0.28, 0.30), (x - 0.04, 0.36, 0.12), (x - 0.06, 0.42, 0.02)], w=0.04)
-    return p, dict(plane=sp, v=0.535, h=0.05, us=(-0.12, 0.0, 0.12))
+    return p, {"plane": sp, "v": 0.535, "h": 0.05, "us": (-0.12, 0.0, 0.12)}
 
 
 # ===== Build and export ==========================================================================================================

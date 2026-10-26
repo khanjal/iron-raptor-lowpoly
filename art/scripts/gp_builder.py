@@ -40,7 +40,7 @@ import quadruped_rig
 for _m in (common, humanoid_rig, quadruped_rig, alien_parts, builds):
     importlib.reload(_m)
 
-DEFAULT_OUTFIT = dict(skin="skin", shirt="cloth_red", pants="denim", shoes="rubber", hair="brown_coat", eyes="black")
+DEFAULT_OUTFIT = {"skin": "skin", "shirt": "cloth_red", "pants": "denim", "shoes": "rubber", "hair": "brown_coat", "eyes": "black"}
 
 TORSO = [  # z, centre y, half width (x), half depth (y)
     (0.90, 0.02, 0.170, 0.115), (1.05, 0.015, 0.160, 0.106), (1.20, 0.005, 0.150, 0.104),
@@ -73,8 +73,8 @@ def _disk(bm, z, cx, cy, rx, ry, thick, n=12):
 
 
 STYLES = {   # faceted is the house style (the flat look of the Quaternius packs); smooth rounds it with subdivision
-    "faceted": dict(sub=0, smooth=False, torso_n=8, neck_n=6, head_n=8, limb_n=6, shoe_n=6, skirt_n=8),
-    "smooth": dict(sub=1, smooth=True, torso_n=10, neck_n=8, head_n=10, limb_n=8, shoe_n=8, skirt_n=12),
+    "faceted": {"sub": 0, "smooth": False, "torso_n": 8, "neck_n": 6, "head_n": 8, "limb_n": 6, "shoe_n": 6, "skirt_n": 8},
+    "smooth": {"sub": 1, "smooth": True, "torso_n": 10, "neck_n": 8, "head_n": 10, "limb_n": 8, "shoe_n": 8, "skirt_n": 12},
 }
 
 BUILDS = {  # torso ring multipliers (hips, waist, ribs, chest, shoulders, neck base) so the silhouettes differ

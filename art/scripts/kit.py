@@ -30,12 +30,12 @@ wall_run = props_lib.wall_run
 W, H = 3.0, 2.7                                       # module length and wall height
 
 SKINS = {   # wall colour, trim colour, roof colour, thickness, floor colour
-    "Clapboard": dict(wall="paint_white", trim="paint_white", roof="metal_dark", thick=0.25, floor="wood_light"),
-    "Barn": dict(wall="barn_red", trim="paint_white", roof="metal_galv", thick=0.25, floor="wood_grey"),
-    "Corrugated": dict(wall="metal_galv", trim="metal_dark", roof="metal_galv", thick=0.2, floor="concrete"),
-    "Brick": dict(wall="brick", trim="paint_white", roof="metal_dark", thick=0.3, floor="concrete"),
-    "Concrete": dict(wall="concrete", trim="metal_dark", roof="concrete", thick=0.3, floor="concrete"),
-    "Interior": dict(wall="wallpaper", trim="wood_dark", roof="wallpaper", thick=0.12, floor="wood_light"),
+    "Clapboard": {"wall": "paint_white", "trim": "paint_white", "roof": "metal_dark", "thick": 0.25, "floor": "wood_light"},
+    "Barn": {"wall": "barn_red", "trim": "paint_white", "roof": "metal_galv", "thick": 0.25, "floor": "wood_grey"},
+    "Corrugated": {"wall": "metal_galv", "trim": "metal_dark", "roof": "metal_galv", "thick": 0.2, "floor": "concrete"},
+    "Brick": {"wall": "brick", "trim": "paint_white", "roof": "metal_dark", "thick": 0.3, "floor": "concrete"},
+    "Concrete": {"wall": "concrete", "trim": "metal_dark", "roof": "concrete", "thick": 0.3, "floor": "concrete"},
+    "Interior": {"wall": "wallpaper", "trim": "wood_dark", "roof": "wallpaper", "thick": 0.12, "floor": "wood_light"},
 }
 
 SKINNED = {}      # name -> (fn(skin) -> Prop, group)

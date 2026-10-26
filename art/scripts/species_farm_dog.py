@@ -35,16 +35,16 @@ W = "paint_white"
 #   tail_under  the underside of the tail                     blaze    a stripe up the forehead and muzzle       brows  two spots over the eyes (a part of its own, None = none)
 # pattern: "plain", "stripes" (brindle) or "merle" (dark blotches)
 SKINS = {
-    "black_tan":   dict(body="black", under="tan", legs="tan", sock="tan", ruff="black", chest="tan", muzzle="tan", jaw="tan", ears="black", tip=None, tail_under="tan",
-                        blaze=None, brows="tan", pattern="plain", label="a black and tan shepherd cross"),
-    "brown_white": dict(body="brown_coat", under=W, legs=W, sock=W, ruff=W, chest=W, muzzle="brown_coat", jaw=W, ears="brown_coat", tip=W, tail_under="brown_coat",
-                        blaze=W, brows=None, pattern="plain", label="a brown and white collie"),
-    "grey_merle":  dict(body="grey_cat", under=W, legs="grey_cat", sock=W, ruff=W, chest=W, muzzle="grey_cat", jaw=W, ears="black", tip=W, tail_under="grey_cat",
-                        blaze=W, brows="tan", pattern="merle", label="a blue merle collie"),
-    "yellow":      dict(body="golden", under="cream", legs="golden", sock="cream", ruff="golden", chest="cream", muzzle="golden", jaw="cream", ears="tan", tip=None,
-                        tail_under="cream", blaze=None, brows=None, pattern="plain", label="a plain yellow farm dog"),
-    "brindle":     dict(body="tan", under="cream", legs="tan", sock=W, ruff="tan", chest=W, muzzle="dark_brown", jaw="dark_brown", ears="dark_brown", tip=None,
-                        tail_under="tan", blaze=None, brows=None, pattern="stripes", label="a brindle cattle dog"),
+    "black_tan":   {"body": "black", "under": "tan", "legs": "tan", "sock": "tan", "ruff": "black", "chest": "tan", "muzzle": "tan", "jaw": "tan", "ears": "black", "tip": None, "tail_under": "tan",
+                        "blaze": None, "brows": "tan", "pattern": "plain", "label": "a black and tan shepherd cross"},
+    "brown_white": {"body": "brown_coat", "under": W, "legs": W, "sock": W, "ruff": W, "chest": W, "muzzle": "brown_coat", "jaw": W, "ears": "brown_coat", "tip": W, "tail_under": "brown_coat",
+                        "blaze": W, "brows": None, "pattern": "plain", "label": "a brown and white collie"},
+    "grey_merle":  {"body": "grey_cat", "under": W, "legs": "grey_cat", "sock": W, "ruff": W, "chest": W, "muzzle": "grey_cat", "jaw": W, "ears": "black", "tip": W, "tail_under": "grey_cat",
+                        "blaze": W, "brows": "tan", "pattern": "merle", "label": "a blue merle collie"},
+    "yellow":      {"body": "golden", "under": "cream", "legs": "golden", "sock": "cream", "ruff": "golden", "chest": "cream", "muzzle": "golden", "jaw": "cream", "ears": "tan", "tip": None,
+                        "tail_under": "cream", "blaze": None, "brows": None, "pattern": "plain", "label": "a plain yellow farm dog"},
+    "brindle":     {"body": "tan", "under": "cream", "legs": "tan", "sock": W, "ruff": "tan", "chest": W, "muzzle": "dark_brown", "jaw": "dark_brown", "ears": "dark_brown", "tip": None,
+                        "tail_under": "tan", "blaze": None, "brows": None, "pattern": "stripes", "label": "a brindle cattle dog"},
 }
 DEFAULT_SKIN = "black_tan"
 
@@ -81,8 +81,8 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     # ---- the tail: hangs from the rump, bushy in the middle, a hook forward at the tip (height, y, radius)
     tail = [(0.395, 0.335, 0.026), (0.325, 0.415, 0.036), (0.235, 0.475, 0.042), (0.150, 0.470, 0.027)]
     body, head, tail = shape.get("body", body), shape.get("head", head), shape.get("tail", tail)
-    front_leg = dict(x=shape.get("front_x", 0.068), y=-0.17, joints=(1, 3), profile=fr)
-    hind_leg = dict(x=shape.get("hind_x", 0.078), y=0.22, joints=(2, 4), profile=hn)
+    front_leg = {"x": shape.get("front_x", 0.068), "y": -0.17, "joints": (1, 3), "profile": fr}
+    hind_leg = {"x": shape.get("hind_x", 0.078), "y": 0.22, "joints": (2, 4), "profile": hn}
     skull = head[3]
     ear_x = skull[2] * 0.85
     bodyz0, bodyz1 = 0.26, 0.53
@@ -217,27 +217,27 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
                 cm.add_box(bm, (s * xs, y - 0.004, cz + 1.9 * r), (0.008, 0.018, 0.012))
         ctx.make("brows", brows, lambda c, n: sk["brows"] or sk["body"], ["Head"], sub=0, smooth=False)
 
-    return dict(
-        name=name, body=body, head=head,
-        front=front_leg, hind=hind_leg,
-        tail=tail, ear_x=ear_x, ear_y=skull[0], ear_z=skull[1] + skull[3] * 0.72,
-        coat=coat, head_coat=head_coat, tail_coat=tail_coat,
-        body_n=8, head_n=8, tail_n=6, uv_jitter=True,                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
-        extras=extras)
+    return {
+        "name": name, "body": body, "head": head,
+        "front": front_leg, "hind": hind_leg,
+        "tail": tail, "ear_x": ear_x, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.72,
+        "coat": coat, "head_coat": head_coat, "tail_coat": tail_coat,
+        "body_n": 8, "head_n": 8, "tail_n": 6, "uv_jitter": True,                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
+        "extras": extras}
 
 
 # ---- the husky: the same builder with its own numbers. A compact northern dog, 0.55 m at the shoulder: the same deep chest as the farm dog but broader (a thick coat), a head
 # a little broader, with a fuller, blunter muzzle, small erect triangular ears set close, a full ruff and a brush tail curled over the back. Its coat is grey above and white below,
 # with a white mask (muzzle, jaw, blaze and brows). Docs/assets/briefs/animals.md.
-HUSKY_SKIN = dict(body="grey_cat", under=W, legs=W, sock=W, ruff="grey_cat", chest=W, muzzle=W, jaw=W, ears="black", tip=None, tail_under=W,
-                  blaze=W, brows=W, pattern="plain", label="a grey and white husky")
-HUSKY_SHAPE = dict(
-    body=[(-0.30, 0.380, 0.084, 0.100), (-0.22, 0.396, 0.120, 0.140), (-0.10, 0.398, 0.120, 0.140), (0.03, 0.405, 0.100, 0.104),
+HUSKY_SKIN = {"body": "grey_cat", "under": W, "legs": W, "sock": W, "ruff": "grey_cat", "chest": W, "muzzle": W, "jaw": W, "ears": "black", "tip": None, "tail_under": W,
+                  "blaze": W, "brows": W, "pattern": "plain", "label": "a grey and white husky"}
+HUSKY_SHAPE = {
+    "body": [(-0.30, 0.380, 0.084, 0.100), (-0.22, 0.396, 0.120, 0.140), (-0.10, 0.398, 0.120, 0.140), (0.03, 0.405, 0.100, 0.104),
           (0.17, 0.398, 0.104, 0.115), (0.28, 0.385, 0.088, 0.100), (0.32, 0.375, 0.060, 0.076)],
-    head=[(-0.24, 0.500, 0.084, 0.108), (-0.31, 0.545, 0.074, 0.094), (-0.36, 0.578, 0.070, 0.082), (-0.41, 0.585, 0.071, 0.076),
+    "head": [(-0.24, 0.500, 0.084, 0.108), (-0.31, 0.545, 0.074, 0.094), (-0.36, 0.578, 0.070, 0.082), (-0.41, 0.585, 0.071, 0.076),
           (-0.46, 0.570, 0.064, 0.066), (-0.50, 0.548, 0.054, 0.060), (-0.565, 0.538, 0.050, 0.055), (-0.625, 0.530, 0.045, 0.050)],
-    tail=[(0.395, 0.310, 0.034), (0.470, 0.385, 0.050), (0.545, 0.365, 0.050), (0.580, 0.290, 0.038)],           # up and over the back
-    front_x=0.076, hind_x=0.086, ears="up", ruff=1.12)
+    "tail": [(0.395, 0.310, 0.034), (0.470, 0.385, 0.050), (0.545, 0.365, 0.050), (0.580, 0.290, 0.038)],           # up and over the back
+    "front_x": 0.076, "hind_x": 0.086, "ears": "up", "ruff": 1.12}
 
 
 def make_husky(name="DogHusky"):

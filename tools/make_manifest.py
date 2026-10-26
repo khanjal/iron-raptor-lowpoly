@@ -38,13 +38,13 @@ def glow_swatches():
     out = []
     for i, m in enumerate(re.finditer(r'\("([a-z0-9_]+)",\s*"([0-9A-Fa-f]{6})"\)', body)):
         if m.group(1).startswith("glow_"):
-            out.append(dict(name=m.group(1), index=i, hex="#" + m.group(2).upper()))
+            out.append({"name": m.group(1), "index": i, "hex": "#" + m.group(2).upper()})
     return out
 
 
 def convert_part(p):
     """One part of art/data/interactions.json (Blender space) as the manifest stores it (glTF space)."""
-    return dict(kind=p["kind"], axis=AXES[p["axis"]], pivot=to_gltf(p["pivot"]), limit=p["limit"], rest=p["rest"])
+    return {"kind": p["kind"], "axis": AXES[p["axis"]], "pivot": to_gltf(p["pivot"]), "limit": p["limit"], "rest": p["rest"]}
 
 
 def size_of(meta):
@@ -89,13 +89,13 @@ def build_entry(aid, a, meta, inter, groups):
     for role in meta["part_nodes"]:
         if role not in parts:
             raise ValueError(f"{aid}: node {role} is a child mesh but interactions.json has no part for it")
-    entry = dict(
-        id=aid, name=a["name"], type=a["type"], tags=sorted(set(a["tags"])),
-        rigged=meta["rigged"], interactive=bool(parts), triangles=meta["triangles"], size=size_of(meta),
-        glb=f"models/{aid}.glb", thumb=f"thumbs/{aid}.png",
-        parts=parts, clips=list(meta["clips"]),
-        variants=[v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
-    )
+    entry = {
+        "id": aid, "name": a["name"], "type": a["type"], "tags": sorted(set(a["tags"])),
+        "rigged": meta["rigged"], "interactive": bool(parts), "triangles": meta["triangles"], "size": size_of(meta),
+        "glb": f"models/{aid}.glb", "thumb": f"thumbs/{aid}.png",
+        "parts": parts, "clips": list(meta["clips"]),
+        "variants": [v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
+    }
     if inter:
         entry["interactions"] = f"models/{sidecar_name(aid)}"   # the model's own file: parts, slots, emitters, traits
         lights = sum(1 for e in (inter.get("emitters") or {}).values() if e.get("kind") == "light" and e.get("working", True))
@@ -168,7 +168,7 @@ def apply_themes(doc, assets, entries):
         styles = catalog.THEMED.get(a["id"])
         if not styles:
             continue
-        a["themes"] = [dict(name=t, was=was) for t, was in styles.items()]
+        a["themes"] = [{"name": t, "was": was} for t, was in styles.items()]
         a["tags"] = sorted(set(a["tags"]) | {t.lower() for t in styles})
         a["variants"] = [v for v in a["variants"] if v not in styles.values()]
 
@@ -251,7 +251,7 @@ def main():
     apply_part_names(assets)
     apply_aliases(assets)
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
-    doc = dict(version=1, generated_from="tools/make_manifest.py", palette=dict(glow=glow_swatches(), common=paints_tool.common_colours(paints_tool.palette_entries()), realistic=paints_tool.REALISTIC), assets=assets)
+    doc = {"version": 1, "generated_from": "tools/make_manifest.py", "palette": {"glow": glow_swatches(), "common": paints_tool.common_colours(paints_tool.palette_entries()), "realistic": paints_tool.REALISTIC}, "assets": assets}
     apply_themes(doc, assets, paints_tool.palette_entries())
     (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}

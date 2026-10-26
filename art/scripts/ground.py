@@ -383,7 +383,7 @@ def run():
             continue
         rng = np.random.default_rng(sum(ord(c) * (i + 1) for i, c in enumerate(name)))
         save_png(fn(rng), OUT / f"Tex_{name}.png")
-        rows_out.append(dict(name=name, file=f"Tex_{name}.png", tile_metres=tile, footstep=step, note=note))
+        rows_out.append({"name": name, "file": f"Tex_{name}.png", "tile_metres": tile, "footstep": step, "note": note})
     for name, fn in DECALS.items():
         if only and f"Decal_{name}" not in only:
             continue
