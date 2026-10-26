@@ -23,3 +23,6 @@ __pycache__/
 
 # Release zips (tools/make_release_zips.py)
 /dist/
+
+# Git worktrees (CLAUDE.md)
+/.claude/worktrees/

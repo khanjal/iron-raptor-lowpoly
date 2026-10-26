@@ -280,3 +280,6 @@ Decided by the owner: the library takes generic things of any kind, including ex
 
 ## No new SonarCloud issues per PR (2026-10-25)
 SonarCloud (`khanjal_iron-raptor-lowpoly`, automatic analysis) found about 800 issues on `main`, mostly Python style rules. The `Sonar` workflow fails a PR that adds any open issue on its new code and does not count the backlog; the backlog is worked down in its own PRs (`.claude/skills/sonar-check`). Not done: the check is not yet a required status check in the branch protection settings. It ran on its own PR (153) and caught a real `S3776` there.
+
+## Branches and worktrees (2026-10-26)
+The repo setting "Automatically delete head branches" is on, so a merged PR's branch is deleted; the 47 old remote branches were removed by hand. Worktrees live in `.claude/worktrees/<name>` (CLAUDE.md); `.claude/hooks/worktree_location.py`, registered in `.claude/settings.json`, refuses a Claude session's `git worktree add` anywhere else. Not done: the hook does not cover a worktree made by hand in a terminal or in a cloud session (the CLAUDE.md rule does).

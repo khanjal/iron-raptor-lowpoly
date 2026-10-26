@@ -12,6 +12,7 @@ Use them; they hold the project's standard procedures, adapted from the owner's 
 - `sonar-check`: the Sonar rule below and how to check it.
 
 ## Rules
+- **Worktrees live in `.claude/worktrees/<name>`**, never beside the project or elsewhere (a `PreToolUse` hook in `.claude/settings.json` refuses a worktree created anywhere else). Remove the worktree and its local branch once its PR has merged (`git worktree remove`, `git branch -D`, `git fetch --prune`); the repo deletes the remote branch itself.
 - **Never commit to `main`.** Work on a branch; push, open a PR and merge only when the user says to. Stage files by name; there may be uncommitted work of the user's in the tree.
 - Checks to run and report with real results (SKIPPED is not a pass):
   `python -m unittest discover -s tests -t .` and `python tools/check_site.py`. Nothing in CI builds the Blender scripts: say what you rebuilt and looked at.
