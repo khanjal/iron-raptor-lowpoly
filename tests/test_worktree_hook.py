@@ -38,6 +38,11 @@ class WorktreeLocation(unittest.TestCase):
         self.assertFalse(self.refused('git commit -m "docs: git worktree add goes under .claude"'))
         self.assertFalse(self.refused('git commit -m "a; git worktree add ../y"'))
 
+    def test_paths_the_shell_expands_are_not_read(self):
+        for path in ('"$PWD/.claude/worktrees/x"', "~/x/.claude/worktrees/y", "$x", "%TEMP%/x"):
+            with self.subTest(path=path):
+                self.assertFalse(self.refused(f"git worktree add {path}"))
+
     def test_msys_drive_paths_are_read_as_windows_paths(self):
         if sys.platform != "win32":
             self.skipTest("only Windows reads /c/... as a drive")

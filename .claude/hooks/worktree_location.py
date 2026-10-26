@@ -1,6 +1,6 @@
 """PreToolUse hook for Bash and PowerShell: `git worktree add` may only create worktrees under .claude/worktrees/ of this repo (CLAUDE.md, Rules).
 
-A best-effort guard, not a sandbox: it reads the command text, so a `cd` before it, `git -C`, other global git options, an env prefix, `bash -c "..."` or a path built from a variable are not followed. Anything it cannot read, it lets through.
+A best-effort guard, not a sandbox: it reads the command text, so a `cd` before it, `git -C`, other global git options, an env prefix or `bash -c "..."` are not followed, and a path the shell expands (`$VAR`, `~`) cannot be read. Anything it cannot read, it lets through. An unquoted line that only mentions the command (in a heredoc, say) is refused like the command.
 """
 
 import json
@@ -16,7 +16,8 @@ QUOTES = "'\""
 OPTIONS_WITH_VALUE = {"-b", "-B", "--reason"}
 QUOTED = re.compile(r"\"[^\"]*\"|'[^']*'")
 ADD = re.compile(r"(?:^|[;&|(\n])[ \t]*git\s+worktree\s+add\b(?P<args>[^;&|\n]*)")
-MSYS_DRIVE = re.compile(r"^/([a-zA-Z])/")
+UNREADABLE = re.compile(r"[$~%`]")  # a path the shell expands: not readable from the text
+MSYS_DRIVE =re.compile(r"^/([a-zA-Z])/")
 
 
 def main_checkout():
@@ -44,7 +45,7 @@ def worktree_path(args):
         elif word in OPTIONS_WITH_VALUE:
             skip = True
         elif not word.startswith("-"):
-            return word
+            return None if UNREADABLE.search(word) else word
     return None
 
 
@@ -57,13 +58,13 @@ def resolve(path, cwd):
 
 def check(command, cwd, allowed=None):
     """The refusal message when `command` adds a worktree outside .claude/worktrees/, else None."""
-    allowed = (allowed or main_checkout() / ".claude" / "worktrees").resolve()
     # Match on the command with quoted text blanked out (a commit message that mentions the command is not the command), read the arguments from the real text.
     masked = QUOTED.sub(lambda m: "_" * len(m.group()), command)
     for found in ADD.finditer(masked):
         path = worktree_path(command[found.start("args"):found.end("args")])
         if path is None:
             continue
+        allowed = (allowed or main_checkout() / ".claude" / "worktrees").resolve()
         if allowed not in resolve(path, cwd).parents:
             return f"Worktrees go under {allowed} (CLAUDE.md); {path} is outside it. Use .claude/worktrees/<name>."
     return None

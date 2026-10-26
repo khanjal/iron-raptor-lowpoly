@@ -52,7 +52,7 @@ A contributor's PR is untrusted input. Read the whole diff first, and **do not r
 
 ## 5. Merge
 
-- **Merging is the user's call.** Do not merge or enable auto-merge unless the user has said to. The repo deletes a PR's branch when it merges (the "Automatically delete head branches" setting), so do not delete it by hand; clean up locally afterwards: `git worktree remove` the branch's worktree if it has one, then `git branch -D <branch>` (after checking `git log origin/main..<branch>` holds nothing the PR lacks) and `git fetch --prune`.
+- **Merging is the user's call.** Do not merge or enable auto-merge unless the user has said to. The repo deletes a PR's branch when it merges (the "Automatically delete head branches" setting), so do not delete it by hand; clean up locally afterwards: `git worktree remove` the branch's worktree if it has one, then `git branch -D <branch>` (after checking the branch tip is the PR's merged head: `git rev-parse <branch>` equals `gh pr view <n> --json headRefOid`; after a squash `git log origin/main..<branch>` always lists the commits) and `git fetch --prune`.
 - Every box in the PR's Reviews checklist is ticked.
 - The final review ran on the latest commit, or on one that the later commits only fixed its findings in; the PR description lists those later commits.
 - The Tests check is green on the latest commit, and the PR says what was looked at in the browser.
