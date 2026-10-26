@@ -143,7 +143,7 @@ def wing(p, edge, fill, pts, z0, tilt=25.0, side=1, thick=0.5, inset=0.8):
 
 
 def flap(p, role, side, pivot):
-    """The wings added inside are one moving piece (Wing_L / Wing_R, or `role` + _L / _R) that flaps about the body line through `pivot`."""
+    """The wings added inside are one moving piece (Wing_L / Wing_R, or `role` + _L / _R) that flaps about the lengthwise line through `pivot`. A model with two wing pieces a side (WingF, WingH) must give both the same pivot x and z, or the two turn about different lines and their planes cross during the beat."""
     return moving(p, f"{role}_{'L' if side > 0 else 'R'}", pivot)
 
 
@@ -265,10 +265,10 @@ def honeybee():
     blob(p, "golden", (0, -2.2, 4.4), (2.7, 2.4, 2.5), n=6)
     blob(p, "black", (0, -5.2, 4.0), (1.8, 1.3, 1.7), n=6, rings=1)
     for s in (-1, 1):
-        with flap(p, "WingF", s, (s * 0.41, -1.5, 6.2)):                                      # each wing is rooted on the thorax's side and turns about its own root
+        with flap(p, "WingF", s, (s * 0.41, -1.5, 5.95)):                                      # each wing is rooted on the thorax's side and turns about its own root
             wing(p, "clear_glass", None, ellipse_pts(0.5 + 4.5, -1.5, 4.5, 2.0), 5.91, tilt=35, side=s, thick=0.2)
-        with flap(p, "WingH", s, (s * 0.41, -0.5, 5.7)):
-            wing(p, "clear_glass", None, ellipse_pts(0.5 + 3.2, -0.5, 3.2, 1.5), 5.41, tilt=35, side=s, thick=0.2)
+        with flap(p, "WingH", s, (s * 0.41, -1.0, 5.95)):
+            wing(p, "clear_glass", None, ellipse_pts(0.5 + 3.2, -1.0, 3.2, 1.5), 5.41, tilt=35, side=s, thick=0.2)
     legs(p, "black", 1.6, (-3.0, -1.6, -0.2), 3.0, 2.0, 0.8, 0.4, dy=0.8, move=False)
     antennae(p, "black", (0.6, -6.2, 4.6), (1.6, -8.5, 6.0), 0.3)
     return p
@@ -490,7 +490,7 @@ def wasp():
         ball_at(p, "black", (s * 1.5, -6.3, 4.8), 0.8, n=5)                                 # the eyes
         with flap(p, "WingF", s, (s * 0.45, -2.6, 6.15)):                                     # each wing is rooted on the thorax's side and turns about its own root
             wing(p, "clear_glass", None, ellipse_pts(0.5 + 6.0, -2.6, 6.0, 1.8), 5.94, tilt=25, side=s, thick=0.18)
-        with flap(p, "WingH", s, (s * 0.45, -1.0, 5.8)):                                      # 0.35 mm under the fore wing (0.18 thick each), so they never share a plane
+        with flap(p, "WingH", s, (s * 0.45, -1.0, 6.15)):                                      # same flap line as the fore wing (z), 0.35 mm under it (0.18 thick each)
             wing(p, "clear_glass", None, ellipse_pts(0.5 + 4.2, -1.0, 4.2, 1.3), 5.59, tilt=25, side=s, thick=0.18)
     legs(p, "paint_yellow", 1.4, (-3.8, -2.4, -1.0), 3.0, 3.0, 1.6, 0.4, dy=0.5, move=False)
     antennae(p, "black", (0.6, -6.7, 4.8), (1.6, -11.0, 6.8), 0.3)

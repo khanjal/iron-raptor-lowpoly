@@ -97,13 +97,13 @@ def fold_wings(rig, prefix="Wing", back=72.0, down=14.0, spread=0.0, lift=0.0, g
         turn(rig, name, x=-down)
 
 
-def idle_folded(rig, t, back=72.0, down=14.0, spread=0.0, lift=0.0, gap=0.0, prefixes=("Wing",), hind_lift=0.0):
+def idle_folded(rig, t, back=72.0, down=14.0, spread=0.0, lift=0.0, gap=0.0, prefixes=("Wing",)):
     """Landed: wings folded back over the abdomen (a small shiver), the antennae feel about (a housefly has none). prefixes names the wing bones: a bee or wasp has WingF and WingH."""
     w = 2 * math.pi * t
     turn(rig, "Body", x=1.2 * math.sin(w))
     antennae(rig, w)
-    for prefix in prefixes:                                             # hind_lift: the hind wings go this much lower (the roots are at different y, so the turn changes their spacing)
-        fold_wings(rig, prefix, back=back + 2.0 * math.sin(w), down=down, spread=spread, lift=lift + (hind_lift if prefix == "WingH" else 0.0), gap=gap)
+    for prefix in prefixes:
+        fold_wings(rig, prefix, back=back + 2.0 * math.sin(w), down=down, spread=spread, lift=lift, gap=gap)
 
 
 def hang_legs(rig, droop=126.0, trail=15.0, raise_by=0.0012):
@@ -217,8 +217,8 @@ def hop(rig, t):
 MOTIONS = {
     "butterfly": (("Idle", idle_butterfly, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 14.0, 0.0015, 3.0), 8, 24)),
     "moth": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 34.0, 12.0, 0.001, 2.5), 6, 24)),
-    "bee": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=35.0, spread=-0.41, lift=0.6, gap=1.05, prefixes=("WingF", "WingH")), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
-    "wasp": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=25.0, spread=-0.45, lift=0.5, gap=1.0, prefixes=("WingF", "WingH"), hind_lift=-0.25), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "bee": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=35.0, spread=-0.41, lift=-0.2, gap=1.0, prefixes=("WingF", "WingH")), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "wasp": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=25.0, spread=-0.45, lift=-0.2, gap=0.8, prefixes=("WingF", "WingH")), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
     "fold": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=22.0, spread=-0.48, lift=-0.15, gap=0.25), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
     "mosquito": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=15.0, spread=-0.24, gap=0.12), 48, 24), ("Fly", lambda r, t: fly_hanging_legs(r, t, 38.0, 12.0), 4, 24)),
     "dragonfly": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 26.0, 4.0, 0.0, 0.0, counter=True), 6, 24)),
