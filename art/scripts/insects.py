@@ -267,8 +267,8 @@ def honeybee():
     for s in (-1, 1):
         with flap(p, "WingF", s, (s * 0.41, -1.5, 5.95)):                                      # each wing is rooted on the thorax's side and turns about its own root
             wing(p, "clear_glass", None, ellipse_pts(0.5 + 4.5, -1.5, 4.5, 2.0), 5.91, tilt=35, side=s, thick=0.2)
-        with flap(p, "WingH", s, (s * 0.41, -1.0, 5.95)):
-            wing(p, "clear_glass", None, ellipse_pts(0.5 + 3.2, -1.0, 3.2, 1.5), 5.41, tilt=35, side=s, thick=0.2)
+        with flap(p, "WingH", s, (s * 0.41, 0.0, 5.95)):
+            wing(p, "clear_glass", None, ellipse_pts(0.5 + 3.2, 0.0, 3.2, 1.5), 5.41, tilt=35, side=s, thick=0.2)
     legs(p, "black", 1.6, (-3.0, -1.6, -0.2), 3.0, 2.0, 0.8, 0.4, dy=0.8, move=False)
     antennae(p, "black", (0.6, -6.2, 4.6), (1.6, -8.5, 6.0), 0.3)
     return p
