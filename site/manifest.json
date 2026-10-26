@@ -784,7 +784,7 @@
    "interactive": false,
    "triangles": 428,
    "size": [
-    0.015,
+    0.016,
     0.012,
     0.016
    ],
@@ -1614,8 +1614,8 @@
    "interactive": false,
    "triangles": 532,
    "size": [
-    0.022,
-    0.012,
+    0.023,
+    0.011,
     0.021
    ],
    "glb": "models/GN_Wasp_01.glb",
