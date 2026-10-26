@@ -97,19 +97,26 @@ def fold_wings(rig, prefix="Wing", back=72.0, down=14.0, spread=0.0, lift=0.0, g
         turn(rig, name, x=-down)
 
 
-def idle_folded(rig, t, down=14.0, spread=0.0, lift=0.0, gap=0.0):
+def idle_folded(rig, t, back=72.0, down=14.0, spread=0.0, lift=0.0, gap=0.0):
     """Landed: wings folded back over the abdomen (a small shiver), the antennae feel about (a housefly has none)."""
     w = 2 * math.pi * t
     turn(rig, "Body", x=1.2 * math.sin(w))
     antennae(rig, w)
-    fold_wings(rig, back=72.0 + 2.0 * math.sin(w), down=down, spread=spread, lift=lift, gap=gap)
+    fold_wings(rig, back=back + 2.0 * math.sin(w), down=down, spread=spread, lift=lift, gap=gap)
 
 
-def hang_legs(rig, x=70.0, droop=50.0):
-    """Legs dangling in flight: each swung down about Y from the hip and trailing back about X, so the high knees fall below the wings' stroke."""
+def hang_legs(rig, droop=126.0, trail=15.0, raise_by=0.0012):
+    """Legs dangling in flight, nearly straight down: each thigh (Leg_) swings down about Y from the hip by `droop` degrees (the rest knee is 51 degrees up, so 126 leaves it
+    75 degrees below the hip) and back about X by `trail`; the shin (Shin_, a child of its thigh, so the knee stays closed in any blend between clips) is turned back by
+    the same angles, so it keeps its own rest direction, which is already down. The body is raised `raise_by` metres for the whole clip (a constant, not a bob) so the
+    clip fills the viewer's frame, which is fitted to the resting pose, about as well as the Idle does."""
+    turn(rig, "Body", shift=(0, 0, raise_by))
     for name, s in sides(rig, "Leg"):
+        shin = "Shin" + name[3:]
         turn(rig, name, y=s * droop)
-        turn(rig, name, x=x)
+        turn(rig, name, x=trail)
+        turn(rig, shin, x=-trail)
+        turn(rig, shin, y=-s * droop)
 
 
 def fly_hanging_legs(rig, t, amp, base):
@@ -210,8 +217,8 @@ MOTIONS = {
     "butterfly": (("Idle", idle_butterfly, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 14.0, 0.0015, 3.0), 8, 24)),
     "moth": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 34.0, 12.0, 0.001, 2.5), 6, 24)),
     "buzz": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
-    "fold": (("Idle", lambda r, t: idle_folded(r, t, down=34.0, gap=0.5), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
-    "mosquito": (("Idle", lambda r, t: idle_folded(r, t, down=24.0, gap=0.12), 48, 24), ("Fly", lambda r, t: fly_hanging_legs(r, t, 38.0, 12.0), 4, 24)),
+    "fold": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=22.0, spread=-0.48, lift=-0.15, gap=0.25), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "mosquito": (("Idle", lambda r, t: idle_folded(r, t, back=86.0, down=15.0, spread=-0.24, gap=0.12), 48, 24), ("Fly", lambda r, t: fly_hanging_legs(r, t, 38.0, 12.0), 4, 24)),
     "dragonfly": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 26.0, 4.0, 0.0, 0.0, counter=True), 6, 24)),
     "walk": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24)),
     "spider": (("Idle", idle_spider, 48, 24), ("Walk", lambda r, t: walk(r, t, swing=15.0, lift=14.0), 24, 24)),
@@ -243,6 +250,9 @@ def build_armature(coll, name, body_head, bones):
         eb.head = Vector(pivot) * MM
         eb.tail = eb.head + up
         eb.parent = body
+    for role in bones:
+        if role.startswith("Shin_"):                                   # a shin follows its thigh (the knee stays closed whatever the clips blend)
+            arm.edit_bones[role].parent = arm.edit_bones["Leg_" + role[5:]]
     bpy.ops.object.mode_set(mode="OBJECT")
     for b in arm.bones:
         b.use_deform = True
