@@ -26,7 +26,7 @@ The list comes from the creatures of the game Grounded and Grounded 2 (see the c
 | Jumping spider (`GN_JumpingSpider_01`) | about 8 mm: stocky black cephalothorax, two huge front eyes, brown abdomen with a chevron, short legs | Idle, Walk (eight legs) |
 
 ## Known limits
-Plain blobs and rods (flat faceted style); the scorpion's tail and the weevil's snout are static (only the weevil's antennae move), the arachnids' idle moves only the front pair of legs; the flyers' legs do not move, the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
+Plain blobs and rods (flat faceted style); the scorpion's tail and the weevil's snout are static (only the weevil's antennae move), the arachnids' idle moves only the front pair of legs; the housefly's legs do not move (the mosquito's trail in its Fly clip), the walkers' legs are three simple jointed rods, the mantis's raptorial forelegs are static (the walk clip moves its two pairs of walking legs), the fly and mosquito wings are single flat ellipses and the wasp has two ellipses a side. Sizes were taken from the usual field-guide lengths, not measured on a specimen.
 
 ## Still to do from #80
 Tick, centipede, millipede, grub, snail, bumblebee, hornet, gnat, black widow, tarantula; variants (black and red ants, more butterflies) as paints.

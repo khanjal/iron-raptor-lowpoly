@@ -463,7 +463,7 @@ def mosquito():
     blob(p, "black", (0, -1.8, 2.3), (0.42, 0.42, 0.42), n=6, rings=1)                      # head
     rod(p, "black", (0, -2.1, 2.2), (0, -4.1, 1.9), 0.12)                                   # the proboscis
     for s in (-1, 1):
-        with flap(p, "Wing", s, (s * 0.25, -0.6, 2.6)):
+        with flap(p, "Wing", s, (s * 0.25, 0.4, 2.6)):                                      # at the wing's root, so the folded wing turns about it (the flap axis is lengthwise: y does not matter)
             wing(p, "clear_glass", None, ellipse_pts(1.6, 0.4, 1.6, 0.5), 2.7, tilt=15, side=s, thick=0.06)
     antennae(p, "black", (0.2, -1.9, 2.5), (0.6, -3.2, 3.0), 0.07)
     legs(p, "black", 0.36, (-1.1, -0.2, 0.8), 2.0, 2.1, 1.8, 0.09, dy=0.6)
