@@ -88,6 +88,35 @@ def idle_flyer(rig, t, rest=6.0, fan=4.0):
     wings(rig, "WingH", fan * math.sin(w + 0.8))
 
 
+def fold_wings(rig, prefix="Wing", back=72.0, down=14.0, spread=0.0, lift=0.0, gap=0.0):
+    """Wings laid back along the body, as a fly or mosquito holds them when landed: swung back about Z, then the tail end dropped about X to follow the back.
+    The two folded wings overlap over the abdomen like a landed fly's, so they never share a plane: the right one is `gap` mm above the left one. `down` is how far
+    the tail end drops (follow the abdomen's slope); `spread` moves each wing outward (mm) and `lift` raises both, if one is needed."""
+    for name, s in sides(rig, prefix):
+        turn(rig, name, z=s * back, shift=(s * spread * MM, 0, (lift + (gap if s < 0 else 0.0)) * MM))
+        turn(rig, name, x=-down)
+
+
+def idle_folded(rig, t, down=14.0, spread=0.0, lift=0.0, gap=0.0):
+    """Landed: wings folded back over the abdomen (a small shiver), the antennae feel about (a housefly has none)."""
+    w = 2 * math.pi * t
+    turn(rig, "Body", x=1.2 * math.sin(w))
+    antennae(rig, w)
+    fold_wings(rig, back=72.0 + 2.0 * math.sin(w), down=down, spread=spread, lift=lift, gap=gap)
+
+
+def hang_legs(rig, x=70.0, droop=50.0):
+    """Legs dangling in flight: each swung down about Y from the hip and trailing back about X, so the high knees fall below the wings' stroke."""
+    for name, s in sides(rig, "Leg"):
+        turn(rig, name, y=s * droop)
+        turn(rig, name, x=x)
+
+
+def fly_hanging_legs(rig, t, amp, base):
+    fly(rig, t, amp, base, 0.0, 0.0)
+    hang_legs(rig)
+
+
 def idle_butterfly(rig, t):
     """Wings opening and closing slowly, like a butterfly sunning itself."""
     w = 2 * math.pi * t
@@ -181,6 +210,8 @@ MOTIONS = {
     "butterfly": (("Idle", idle_butterfly, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 14.0, 0.0015, 3.0), 8, 24)),
     "moth": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 34.0, 12.0, 0.001, 2.5), 6, 24)),
     "buzz": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "fold": (("Idle", lambda r, t: idle_folded(r, t, down=34.0, gap=0.5), 48, 24), ("Fly", lambda r, t: fly(r, t, 38.0, 12.0, 0.0, 0.0), 4, 24)),
+    "mosquito": (("Idle", lambda r, t: idle_folded(r, t, down=24.0, gap=0.12), 48, 24), ("Fly", lambda r, t: fly_hanging_legs(r, t, 38.0, 12.0), 4, 24)),
     "dragonfly": (("Idle", idle_flyer, 48, 24), ("Fly", lambda r, t: fly(r, t, 26.0, 4.0, 0.0, 0.0, counter=True), 6, 24)),
     "walk": (("Idle", idle_walker, 48, 24), ("Walk", walk, 24, 24)),
     "spider": (("Idle", idle_spider, 48, 24), ("Walk", lambda r, t: walk(r, t, swing=15.0, lift=14.0), 24, 24)),
