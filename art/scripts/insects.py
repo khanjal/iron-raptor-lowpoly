@@ -439,7 +439,7 @@ def stink_bug():
 
 @critter("flyers", "Housefly")
 def housefly():
-    """A housefly (about 7 mm): a grey thorax and abdomen, big red eyes, two clear wings held out over the back, bristly black legs."""
+    """A housefly (about 7 mm): a grey thorax and abdomen, big red eyes, two clear wings held out over the back (folded back along it when landed in the rigged Idle clip), bristly black legs."""
     p = new("GN_Housefly_01")
     p.motion = "fold"
     blob(p, "fabric_grey", (0, 1.9, 2.0), (1.4, 2.1, 1.2), n=6, rings=2)                    # abdomen
