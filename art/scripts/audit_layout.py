@@ -796,10 +796,10 @@ def test_rooms(L):
     return out
 
 
-def test_twins(L):
+def test_twins(layout):
     """Twins: two things of the same kind on the same spot (z-fighting duplicates)."""
     out = []
-    items = [i for i in L.items if i.category in ("prop", "person", "animal")]
+    items = [i for i in layout.items if i.category in ("prop", "person", "animal")]
     for ai, a in enumerate(items):
         for b in items[ai + 1:]:
             if a.kind != b.kind or a.building != b.building:
@@ -810,11 +810,11 @@ def test_twins(L):
     return out
 
 
-def test_variety(L):
+def test_variety(layout):
     """Variety: a kind that should vary is not all one model."""
     out = []
     by = defaultdict(list)
-    for it in L.items:
+    for it in layout.items:
         if it.building and it.category == "prop":
             by[(it.building, it.kind)].append(it)
     for (building, kind), items in sorted(by.items()):

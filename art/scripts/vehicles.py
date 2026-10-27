@@ -35,7 +35,7 @@ Prop = props_lib.Prop
 wheel = props_lib.wheel
 
 
-def V(x, y, z):
+def vec3(x, y, z):
     return Vector((x, y, z))
 
 
@@ -104,7 +104,7 @@ def body_loft(p, colour, stations, shoulder=0.8):
     rings = []
     for y, hw, zb, zt, tuck in stations:
         zs = zb + (zt - zb) * shoulder
-        rings.append([V(-hw + 0.04, y, zb), V(hw - 0.04, y, zb), V(hw, y, zs), V(hw - tuck, y, zt), V(-hw + tuck, y, zt), V(-hw, y, zs)])
+        rings.append([vec3(-hw + 0.04, y, zb), vec3(hw - 0.04, y, zb), vec3(hw, y, zs), vec3(hw - tuck, y, zt), vec3(-hw + tuck, y, zt), vec3(-hw, y, zs)])
     p.loft_rings(colour, rings)
 
 
@@ -124,7 +124,7 @@ def low_loft(p, colour, stations, drop):
     for st in stations:
         y, hw, zb, _, _ = st
         zc, xc, _ = _cut(st, drop)
-        rings.append([V(-(hw - 0.04), y, zb), V(hw - 0.04, y, zb), V(xc, y, zc), V(-xc, y, zc)])
+        rings.append([vec3(-(hw - 0.04), y, zb), vec3(hw - 0.04, y, zb), vec3(xc, y, zc), vec3(-xc, y, zc)])
     p.loft_rings(colour, rings)
 
 
@@ -134,7 +134,7 @@ def lid_loft(p, colour, stations, drop):
     for st in stations:
         y, hw, _, zt, tuck = st
         zc, xc, zs = _cut(st, drop)
-        rings.append([V(-xc, y, zc), V(xc, y, zc), V(hw, y, zs), V(hw - tuck, y, zt), V(-(hw - tuck), y, zt), V(-hw, y, zs)])
+        rings.append([vec3(-xc, y, zc), vec3(xc, y, zc), vec3(hw, y, zs), vec3(hw - tuck, y, zt), vec3(-(hw - tuck), y, zt), vec3(-hw, y, zs)])
     p.loft_rings(colour, rings)
 
 
@@ -152,8 +152,8 @@ def core_loft(p, colour, stations, thick):
     rings = []
     for y, hw, zb, zt, tuck in stations:
         zs = zb + (zt - zb) * 0.8
-        rings.append([V(-(hw - 0.04 - thick), y, zb), V(hw - 0.04 - thick, y, zb), V(hw - thick, y, zs), V(hw, y, zs), V(hw - tuck, y, zt),
-                      V(-(hw - tuck), y, zt), V(-hw, y, zs), V(-(hw - thick), y, zs)])
+        rings.append([vec3(-(hw - 0.04 - thick), y, zb), vec3(hw - 0.04 - thick, y, zb), vec3(hw - thick, y, zs), vec3(hw, y, zs), vec3(hw - tuck, y, zt),
+                      vec3(-(hw - tuck), y, zt), vec3(-hw, y, zs), vec3(-(hw - thick), y, zs)])
     p.loft_rings(colour, rings)
 
 
@@ -162,13 +162,13 @@ def panel_loft(p, colour, stations, sx, thick):
     rings = []
     for y, hw, zb, zt, tuck in stations:
         zs = zb + (zt - zb) * 0.8
-        rings.append([V(sx * (hw - 0.04), y, zb), V(sx * hw, y, zs), V(sx * (hw - thick), y, zs), V(sx * (hw - 0.04 - thick), y, zb)])
+        rings.append([vec3(sx * (hw - 0.04), y, zb), vec3(sx * hw, y, zs), vec3(sx * (hw - thick), y, zs), vec3(sx * (hw - 0.04 - thick), y, zb)])
     p.loft_rings(colour, rings)
 
 
 def glasshouse(p, colour, stations):
     """The cabin skinned from (y, half_width_base, half_width_top, z_base, z_top): slanted windscreen, side windows leaning in, rear window."""
-    p.loft_rings(colour, [[V(-hb, y, zb), V(hb, y, zb), V(ht, y, zt), V(-ht, y, zt)] for y, hb, ht, zb, zt in stations])
+    p.loft_rings(colour, [[vec3(-hb, y, zb), vec3(hb, y, zb), vec3(ht, y, zt), vec3(-ht, y, zt)] for y, hb, ht, zb, zt in stations])
 
 
 def mirror(p, colour, sx, x, y, z):

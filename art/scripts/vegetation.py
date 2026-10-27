@@ -136,14 +136,14 @@ def _plant(p, kind, yaw_deg, y):
     def bend(z):                                                  # how far the stalk has leaned sideways by height z
         return k["lean"] * 0.35 * (z / height) ** 2
 
-    def P(x, z):                                                  # a point in the card's plane, rotated about the vertical axis
+    def plane_point(x, z):                                                  # a point in the card's plane, rotated about the vertical axis
         return Vector(((x + bend(z)) * ca, y + (x + bend(z)) * sa, z))
 
     def poly(bm, pts):
-        vs = [bm.verts.new(P(*pt)) for pt in pts]
+        vs = [bm.verts.new(plane_point(*pt)) for pt in pts]
         bm.faces.new(vs)                                          # front
         off = Vector((-sa * 0.003, ca * 0.003, 0))                # the back face on its own vertices, a hair behind, so the
-        vb = [bm.verts.new(P(*pt) + off) for pt in pts]           # card shows from both sides and the weld in finish() keeps it
+        vb = [bm.verts.new(plane_point(*pt) + off) for pt in pts]           # card shows from both sides and the weld in finish() keeps it
         bm.faces.new(vb[::-1])
 
     # the stalk: thick at the foot, thin at the top, in two pieces so it can lean

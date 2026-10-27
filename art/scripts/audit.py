@@ -104,17 +104,17 @@ def _straddles(verts, tri, other, n):
     return max(d) > 1e-4 and min(d) < -1e-4
 
 
-def _sink(P, Q, verts):
-    """How far the corners of part P are inside the solid part Q: (deepest in metres, share of the corners inside).
+def _sink(part, solid, verts):
+    """How far the corners of `part` are inside the solid part `solid`: (deepest in metres, share of the corners inside).
     Corners only: the end caps of a label inside a can are hidden faces, not a glitch."""
-    if not Q["closed"]:
+    if not solid["closed"]:
         return 0.0, 0.0
-    pts = [verts[i] for i in P["idx"]]
+    pts = [verts[i] for i in part["idx"]]
     deepest, inside = 0.0, 0
     for pt in pts:
-        if _inside(Q["tree"], pt):
+        if _inside(solid["tree"], pt):
             inside += 1
-            deepest = max(deepest, Q["tree"].find_nearest(pt)[3])
+            deepest = max(deepest, solid["tree"].find_nearest(pt)[3])
     return deepest, inside / len(pts)
 
 

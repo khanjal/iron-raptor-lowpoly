@@ -152,8 +152,8 @@ def carrying_one(rig, t):
     ground(rig)
 
 
-def gait(rig, t, A, K, arm_swing, elbow, lean, yaw):
-    """A walking or running cycle (one full stride of both legs per loop): A is the thigh swing in degrees each way, K the knee bend,
+def gait(rig, t, thigh_swing, knee_bend, arm_swing, elbow, lean, yaw):
+    """A walking or running cycle (one full stride of both legs per loop): thigh_swing is the thigh swing in degrees each way, knee_bend the knee bend,
     arm_swing the arm swing, elbow the elbow bend, lean the forward lean of the spine, yaw the hip twist. The hips rise and fall by
     themselves: ground() keeps the lowest foot on the floor."""
     w = 2 * math.pi * t
@@ -164,8 +164,8 @@ def gait(rig, t, A, K, arm_swing, elbow, lean, yaw):
     turn(rig, "Head", x=-lean * 0.8, z=-yaw * 0.5 * math.sin(w))
     for side, sgn, phase in (("l", 1, 0.0), ("r", -1, math.pi)):
         psi = w + phase
-        thigh = -A * math.sin(psi)                                    # forward is negative x
-        knee = K * max(0.0, math.cos(psi + 0.8)) ** 2                 # straight from heel strike to mid-stance, bending from there through the swing (a wide bend
+        thigh = -thigh_swing * math.sin(psi)                                    # forward is negative x
+        knee = knee_bend * max(0.0, math.cos(psi + 0.8)) ** 2                 # straight from heel strike to mid-stance, bending from there through the swing (a wide bend
                                                                       # lifted the foot long before the thigh was forward and the planted foot slid on the floor)
         turn(rig, f"thigh_{side}", x=thigh)
         turn(rig, f"calf_{side}", x=knee)
@@ -177,11 +177,11 @@ def gait(rig, t, A, K, arm_swing, elbow, lean, yaw):
 
 
 def walking(rig, t):
-    gait(rig, t, A=26, K=50, arm_swing=24, elbow=-22, lean=2, yaw=4)
+    gait(rig, t, thigh_swing=26, knee_bend=50, arm_swing=24, elbow=-22, lean=2, yaw=4)
 
 
 def running(rig, t):
-    gait(rig, t, A=50, K=100, arm_swing=50, elbow=-85, lean=10, yaw=7)
+    gait(rig, t, thigh_swing=50, knee_bend=100, arm_swing=50, elbow=-85, lean=10, yaw=7)
 
 
 CLIPS = {"Idle": (standing, 96), "Sit": (seated, 96), "Walk": (walking, 24), "Run": (running, 16),
