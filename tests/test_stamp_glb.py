@@ -23,6 +23,12 @@ def tiny_glb(doc, binary=b"\x01\x02\x03\x04"):
 
 
 class Stamp(unittest.TestCase):
+    def test_project_path_resolves_inside_and_refuses_outside(self):
+        root = Path(tempfile.mkdtemp()).resolve()
+        self.assertEqual(stamp_glb.project_path(root / "a" / ".." / "t.glb", root=root), root / "t.glb")
+        with self.assertRaises(ValueError):
+            stamp_glb.project_path(root.parent / "x.glb", root=root)
+
     def test_adds_the_line_and_keeps_the_rest(self):
         raw = tiny_glb({"asset": {"version": "2.0"}, "nodes": [{"name": "A"}]})
         new = stamp_glb.stamp_bytes(raw)
@@ -73,6 +79,15 @@ class Rename(unittest.TestCase):
         self.assertEqual(sorted(p.name for p in root.rglob("*") if p.is_file()), ["A_01.glb", "A_01.interactions.json", "A_01.json", "A_01.png"])
         self.assertEqual(json.loads((root / "site/models/A_01.interactions.json").read_text())["id"], "A_01")
         self.assertEqual(rename_glb.rename_model("A_Red_01", "A_01", root), [])  # already moved: nothing to do
+
+    def test_rename_model_refuses_ids_that_are_not_plain_names(self):
+        root = Path(tempfile.mkdtemp())
+        (root / "site/models").mkdir(parents=True)
+        (root / "site/models/A_Red_01.glb").write_bytes(b"x")
+        for old, new in (("../x", "A_01"), ("A_Red_01", "a/b")):
+            with self.assertRaises(ValueError):
+                rename_glb.rename_model(old, new, root)
+        self.assertEqual([p.name for p in root.rglob("*") if p.is_file()], ["A_Red_01.glb"])
 
 
 class Zips(unittest.TestCase):

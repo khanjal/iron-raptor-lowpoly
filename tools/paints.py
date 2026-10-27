@@ -23,6 +23,8 @@ from array import array
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+MODEL_ID = re.compile(r"[A-Za-z0-9_]+")
+REFUSED = "no:"
 sys.path.insert(0, str(ROOT / "tools"))
 GRID = 16
 
@@ -316,17 +318,39 @@ def check(models=None):
     return bad
 
 
+def model_glb(models, model_id):
+    """The GLB of `model_id` in `models`, resolved; ValueError when the id is not a plain name or the file would be outside `models`."""
+    if not MODEL_ID.fullmatch(model_id):
+        raise ValueError(f"not a model id: {model_id!r}")
+    path = (Path(models) / f"{model_id}.glb").resolve()
+    if not path.is_relative_to(Path(models).resolve()):
+        raise ValueError(f"not a model id: {model_id!r}")
+    return path
+
+
 def main(argv):
     models = ROOT / "site" / "models"
     if argv and argv[0] == "check":
-        return 1 if check(argv[1] if len(argv) > 1 else None) else 0
+        folder = None
+        if len(argv) > 1:
+            folder = Path(argv[1]).resolve()
+            if not folder.is_relative_to(ROOT):
+                print(REFUSED, f"outside the project: {argv[1]}")
+                return 2
+        return 1 if check(folder) else 0
     if len(argv) != 2:
         print(__doc__)
         return 2
     try:
-        print(json.dumps(derive(models / f"{argv[0]}.glb", models / f"{argv[1]}.glb", palette())))
+        a = model_glb(models, argv[0])
+        b = model_glb(models, argv[1])
     except ValueError as e:
-        print("no:", e)
+        print(REFUSED, e)
+        return 2
+    try:
+        print(json.dumps(derive(a, b, palette())))
+    except ValueError as e:
+        print(REFUSED, e)
         return 1
     return 0
 
