@@ -240,7 +240,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
                  lambda c, n: o["shirt"] if 0.192 < sleeve else o["skin"], [f"clavicle_{tag}", f"upperarm_{tag}"], sub=0)
         if hands:
             spec = alien_parts.HANDS[hands]
-            make(f"fingers_{tag}", lambda bm, s=side: alien_parts.fingers(bm, s, spec),
+            make(f"fingers_{tag}", lambda bm, s=side, sp=spec: alien_parts.fingers(bm, s, sp),
                  lambda c, n: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
         else:
             make(f"thumb_{tag}",
