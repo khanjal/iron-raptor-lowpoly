@@ -104,10 +104,11 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
 
 ## Suppressing what we will not fix
 
-Our analysis is SonarCloud's automatic analysis, which ignores `sonar-project.properties` (and reads only a few keys of `.sonarcloud.properties`, none for ignoring issues), so there is no ignore file in the repository. Two ways, in this order:
+Our analysis is SonarCloud's automatic analysis, which ignores `sonar-project.properties` (`.sonarcloud.properties` takes only source, test, exclusion, encoding and language-version keys, none that ignores an issue), so there is no ignore file for issues. In this order:
 
-1. **On the line**: a bare `# NOSONAR` in Python (S7632 rejects text after it; put the reason on the line above) and `// NOSONAR: reason` in JS. A NOSONAR hides every rule on its line, so on a `def` line it also hides `S3776` for that function: split the function first, then mark only what is left (the `S107` of `door` and `dome` is the example). We have not seen it honoured inside an HTML file (`tools/thumbs.html` keeps three `S9382` findings), so a script that needs a mark belongs in a `.js` file.
-2. **In SonarCloud**, with the owner's login: the issue's menu, Accept or False positive, with a comment; or, for a whole rule on a whole file, Project Settings > Analysis Scope > "Ignore Issues on Multiple Criteria" (rule key, file path). Nothing in the repository records it, so say it in the PR description. A rule that the check keeps failing on is cleared this way, then re-run the `Sonar` job.
+1. **On the line**: `# NOSONAR` in Python, bare, with the reason on the line above (what the repository does throughout), and `// NOSONAR: reason` in JS, which also works for a script inside an HTML file (tried on the three awaits of `tools/thumbs.html`, PR #182: the issues are gone). A bare NOSONAR hides every rule on its line, so on a `def` line it also hides `S3776` for that function: split the function first, then mark only what is left (the `S107` of `door` and `dome` is the example). The Python analyzer also documents `# NOSONAR(S107)`, which hides one rule only; it has not been tried here, so try it on one line before relying on it.
+2. **In SonarCloud**, with the owner's login: the issue's status control, Accept or False positive, with a comment; or, for a rule in a file pattern, Administration > General Settings > Analysis Scope > Issues > "Ignore Issues on Multiple Criteria" (both the rule pattern and the file pattern are required: a blank one fails the analysis). Nothing in the repository records it, so say it in the PR description; then re-run the `Sonar` job.
+3. To stop analysing a file altogether (a dev-only helper), `sonar.exclusions` in a `.sonarcloud.properties` at the repository root is read by automatic analysis. That also hides real findings in the file, so it is the last resort.
 
 ## Working the backlog
 
