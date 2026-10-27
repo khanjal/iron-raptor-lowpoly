@@ -622,5 +622,18 @@
  "GH_CoffeeMachine_01": {
   "metal_dark": "Top plate",
   "fabric_grey": "Back panel"
+ },
+ "GN_CatTuxedo_faceted_01": {
+  "paint_white": "Chest, belly and paws"
+ },
+ "GN_CatCalico_faceted_01": {
+  "orange_cat": "Orange patches",
+  "black": "Black patches"
+ },
+ "GN_CatSiamese_faceted_01": {
+  "dark_brown": "Points"
+ },
+ "GN_CatKitten_faceted_01": {
+  "tan": "Stripes"
  }
 }

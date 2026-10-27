@@ -86,11 +86,11 @@ A variant is a recolour (the paint system, `tools/paints.py`), not a second mode
 
 | Model | Coats (paints) |
 | --- | --- |
-| `GN_CatTabby_faceted_01` | orange tabby (default), grey tabby, black, tuxedo, calico, siamese (the other cats in `species_pets.CATS` stay as their own models) |
+| `GN_CatTabby_faceted_01` | orange tabby (default), grey tabby, orange, black, grey (declared in `catalog.PAINTS`, issue #125). Tuxedo, calico and Siamese put their colours on other faces, so they are models of their own (variants of the tabby), as is the kitten |
 | `GN_DogCollie_faceted_01` | black and tan (default), brown and white, blue merle, yellow, brindle (the farm dog's coats, already in `DOG_SKINS`) |
 | `GN_DogHusky_faceted_01` | grey and white (default), black and white, red and white, all white; eyes blue or brown |
 
-Breed variants of other families (retriever, beagle, shepherd, bulldog, dachshund, stray, kitten) are separate species of `species_pets` that are not in the site yet; they are rebuilt to the same ranges when they are added.
+The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 m to the back (estimated from photographs and growth charts: 0.13-0.18 m at that age), its head 1.15 times the adult's (37 % of the trunk; a kitten's head is larger for its body than a cat's, estimated 35-45 %) and its eyes larger; it passes the adult cat's ranges. Breed variants of the dogs (retriever, beagle, shepherd, bulldog, dachshund, stray) are separate species of `species_pets` that are not in the site yet; they are rebuilt to the same ranges when they are added.
 
 ## Views to check
 

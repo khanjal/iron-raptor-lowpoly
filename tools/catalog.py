@@ -166,6 +166,8 @@ BUILD = {
     "animals": {"kind": "animals", "clips": ["Idle", "Walk"], "dog_clips": ["Trot", "Run"],
                     "animals": {"cow": "GN_Cow_faceted_01", "horse": "GN_Horse_faceted_01", "dog_collie": "GN_DogCollie_faceted_01",
                              "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01",
+                             "cat_tuxedo": "GN_CatTuxedo_faceted_01", "cat_calico": "GN_CatCalico_faceted_01", "cat_siamese": "GN_CatSiamese_faceted_01",
+                             "cat_kitten": "GN_CatKitten_faceted_01",
                              "sheep": "GN_Sheep_faceted_01", "pig": "GN_Pig_faceted_01", "goat": "GN_Goat_faceted_01"}},
     "birds": {"kind": "animals", "birds": True, "clips": [], "animals": {"chicken_hen": "GN_ChickenHen_faceted_01"}},
 }
@@ -219,6 +221,10 @@ PAINTS = {
     "FD_Grapes_01": {"base": "Green", "parts": {"Fruit": "grape_green"}, "presets": {"Purple": {"was": "FD_Grapes_Purple_01", "set": {"Fruit": "#5A2E6B"}}}},
     "GN_Butterfly_01": {"base": "Blue", "parts": {"Wings": "wing_blue"}, "presets": {"Monarch": {"was": "GN_Butterfly_Monarch_01", "set": {"Wings": "#E8922A"}}}},
     "GK_Wall_Window_Barn_01": {"base": "Barn red", "parts": {"Siding": "barn_red"}, "presets": {"Clapboard": {"was": "GK_Wall_Window_Clapboard_01", "set": {"Siding": "#E6E2D6"}}}},
+    # the solid cats of species_pets.CATS (black, orange, grey) are the tabby's mesh with the stripes in the coat's colour; tuxedo, calico, siamese and the kitten are models of their own
+    "GN_CatTabby_faceted_01": {"base": "Orange tabby", "parts": {"Coat": "orange_cat", "Stripes": "rust"}, "presets": {
+        "Grey tabby": {"set": {"Coat": "grey_cat", "Stripes": "grey_suit"}}, "Orange": {"set": {"Stripes": "orange_cat"}},
+        "Black": {"set": {"Coat": "black", "Stripes": "black"}}, "Grey": {"set": {"Coat": "grey_cat", "Stripes": "grey_cat"}}}},
     "GS_BaseballBat_Metal_01": {"base": "Metal", "parts": {"Barrel": "truck_blue", "Grip": "rubber"}, "presets": {
         "Wood": {"was": "GS_BaseballBat_Wood_01", "set": {"Barrel": "#C9A06A", "Grip": "#1B1B1E"}}}},
 }
@@ -307,7 +313,11 @@ _a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horn
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
-_a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby")
+_a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby orange grey black", "cat")
+_a("GN_CatTuxedo_faceted_01", "Cat, tuxedo", "animals/pet/cat", "pet cat animal quadruped tuxedo black white", "cat")
+_a("GN_CatCalico_faceted_01", "Cat, calico", "animals/pet/cat", "pet cat animal quadruped calico orange black white", "cat")
+_a("GN_CatSiamese_faceted_01", "Cat, Siamese", "animals/pet/cat", "pet cat animal quadruped siamese cream brown points", "cat")
+_a("GN_CatKitten_faceted_01", "Kitten", "animals/pet/cat", "pet cat animal quadruped kitten young small cream tabby")
 # insects (rigged for the browser: wings, legs and antennae move; real size in millimetres)
 _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")

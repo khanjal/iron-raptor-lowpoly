@@ -1686,12 +1686,160 @@
    ]
   },
   {
+   "id": "GN_CatCalico_faceted_01",
+   "name": "Cat, calico",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "black",
+    "calico",
+    "cat",
+    "orange",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 676,
+   "size": [
+    0.164,
+    0.37,
+    0.614
+   ],
+   "glb": "models/GN_CatCalico_faceted_01.glb",
+   "thumb": "thumbs/GN_CatCalico_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Orange patches",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Black patches",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_CatKitten_faceted_01",
+   "name": "Kitten",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "cat",
+    "cream",
+    "kitten",
+    "pet",
+    "quadruped",
+    "small",
+    "tabby",
+    "young"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 676,
+   "size": [
+    0.09,
+    0.203,
+    0.34
+   ],
+   "glb": "models/GN_CatKitten_faceted_01.glb",
+   "thumb": "thumbs/GN_CatKitten_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Stripes",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
+   "id": "GN_CatSiamese_faceted_01",
+   "name": "Cat, Siamese",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "brown",
+    "cat",
+    "cream",
+    "pet",
+    "points",
+    "quadruped",
+    "siamese"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 676,
+   "size": [
+    0.173,
+    0.389,
+    0.645
+   ],
+   "glb": "models/GN_CatSiamese_faceted_01.glb",
+   "thumb": "thumbs/GN_CatSiamese_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatCalico_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Points",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
    "id": "GN_CatTabby_faceted_01",
    "name": "Cat, tabby",
    "type": "animals/pet/cat",
    "tags": [
     "animal",
+    "black",
     "cat",
+    "grey",
+    "grey-tabby",
+    "orange",
+    "orange-tabby",
     "pet",
     "quadruped",
     "tabby"
@@ -1711,17 +1859,105 @@
     "Idle",
     "Walk"
    ],
-   "variants": [],
+   "variants": [
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatCalico_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Coat",
      "swatch": 32,
      "hex": "#E08A3C"
     },
     {
-     "part": "Rust",
+     "part": "Stripes",
      "swatch": 4,
      "hex": "#9A5A3A"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Orange tabby",
+     "hex": "#E08A3C",
+     "swap": {}
+    },
+    {
+     "name": "Grey tabby",
+     "hex": "#7C8088",
+     "swap": {
+      "32": "#7C8088",
+      "4": "#5A5F66"
+     }
+    },
+    {
+     "name": "Orange",
+     "hex": "#E08A3C",
+     "swap": {
+      "4": "#E08A3C"
+     }
+    },
+    {
+     "name": "Black",
+     "hex": "#1B1B1E",
+     "swap": {
+      "32": "#1B1B1E",
+      "4": "#1B1B1E"
+     }
+    },
+    {
+     "name": "Grey",
+     "hex": "#7C8088",
+     "swap": {
+      "32": "#7C8088",
+      "4": "#7C8088"
+     }
+    }
+   ]
+  },
+  {
+   "id": "GN_CatTuxedo_faceted_01",
+   "name": "Cat, tuxedo",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "black",
+    "cat",
+    "pet",
+    "quadruped",
+    "tuxedo",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 676,
+   "size": [
+    0.164,
+    0.37,
+    0.614
+   ],
+   "glb": "models/GN_CatTuxedo_faceted_01.glb",
+   "thumb": "thumbs/GN_CatTuxedo_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatCalico_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Chest, belly and paws",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     }
    ]
   },
@@ -20421,6 +20657,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Pickup_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -20450,8 +20687,7 @@
    ],
    "aliases": [
     "GV_Pickup_Blue_01"
-   ],
-   "interactions": "models/GV_Pickup_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Tractor_01",
@@ -20779,6 +21015,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Ambulance_White_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -20805,8 +21042,7 @@
      "swatch": 2,
      "hex": "#A9B4BC"
     }
-   ],
-   "interactions": "models/GV_Ambulance_White_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Motorcycle_01",
@@ -20863,6 +21099,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Motorcycle_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -20892,8 +21129,7 @@
    ],
    "aliases": [
     "GV_Motorcycle_Red_01"
-   ],
-   "interactions": "models/GV_Motorcycle_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -21073,6 +21309,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Police_Sheriff_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21099,8 +21336,7 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ],
-   "interactions": "models/GV_Police_Sheriff_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Sedan_01",
@@ -21524,6 +21760,7 @@
    "variants": [
     "GV_Sedan_01"
    ],
+   "interactions": "models/GV_Sedan_Damaged_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21548,8 +21785,7 @@
    ],
    "aliases": [
     "GV_Sedan_Red_Damaged_01"
-   ],
-   "interactions": "models/GV_Sedan_Damaged_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Taxi_Yellow_01",
@@ -21728,6 +21964,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Taxi_Yellow_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21749,8 +21986,7 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ],
-   "interactions": "models/GV_Taxi_Yellow_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Van_01",
@@ -21913,6 +22149,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Van_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21942,8 +22179,7 @@
    ],
    "aliases": [
     "GV_Van_Brown_01"
-   ],
-   "interactions": "models/GV_Van_01.interactions.json"
+   ]
   },
   {
    "id": "GV_ShipBunk_01",
