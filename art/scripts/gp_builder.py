@@ -217,59 +217,56 @@ def _person_hair(b):
              lambda c, n: o["hair"], ["Head"] + (["neck_01"] if hair == "long" else []), head=True)
 
 
-def _person_face(b):
-    """The human face, or an alien race's caps."""
+def _human_face(b):
+    """The human face: a nose, brows, ears and a mouth, painted by where they sit on the head."""
     extras = b.extras
     f_face = b.f_face
-    face = b.face
-    head_rings = b.head_rings
     head_scale = b.head_scale
     make = b.make
     o = b.o
     pivot = b.pivot
-    st = b.st
-    if face == "human":
-        f_dy = -0.105 * (f_face - 1.0)                           # a fuller face's front stands this far further forward (the head ring's half depth 0.105 at the eyes)
+    f_dy = -0.105 * (f_face - 1.0)                           # a fuller face's front stands this far further forward (the head ring's half depth 0.105 at the eyes)
 
-        def face_build(bm):
-            for sx in (-1, 1):
-                common.add_box(bm, (sx * 0.036 * f_face, -0.108 + f_dy, 1.708), (0.020, 0.016, 0.016))
-                common.add_box(bm, (sx * 0.097 * f_face, 0.005, 1.695), (0.016, 0.032, 0.062))                           # the ears
-                common.add_box(bm, (sx * 0.038 * f_face, -0.094 + f_dy, 1.733), (0.040, 0.020, 0.009), rot_deg=(0, 0, sx * 6))    # the brows (set into the brow ridge, the outer end back)
-            common.add_box(bm, (0, -0.118 + f_dy, 1.680), (0.026, 0.040, 0.046))                                         # the nose
-            if "beard" not in extras:
-                common.add_box(bm, (0, -0.092 + f_dy, 1.640), (0.050, 0.024, 0.008))                                     # the mouth
+    def face_build(bm):
+        for sx in (-1, 1):
+            common.add_box(bm, (sx * 0.036 * f_face, -0.108 + f_dy, 1.708), (0.020, 0.016, 0.016))
+            common.add_box(bm, (sx * 0.097 * f_face, 0.005, 1.695), (0.016, 0.032, 0.062))                           # the ears
+            common.add_box(bm, (sx * 0.038 * f_face, -0.094 + f_dy, 1.733), (0.040, 0.020, 0.009), rot_deg=(0, 0, sx * 6))    # the brows (set into the brow ridge, the outer end back)
+        common.add_box(bm, (0, -0.118 + f_dy, 1.680), (0.026, 0.040, 0.046))                                         # the nose
+        if "beard" not in extras:
+            common.add_box(bm, (0, -0.092 + f_dy, 1.640), (0.050, 0.024, 0.008))                                     # the mouth
 
-        def face_colour(c, n):
-            u = Vector((c.x / head_scale, c.y / head_scale, pivot.z + (c.z - pivot.z) / head_scale))      # (the face is painted after the head's scale: look where it was built)
-            if u.y < -0.05 and u.z > 1.7225 and abs(u.x) > 0.012:
-                return o["hair"]
-            return o["eyes"] if (abs(u.x) < 0.065 and u.y < -0.095 and u.z > 1.69 and abs(u.x) > 0.02) else o["skin"]
-        make("face", face_build, face_colour, ["Head"], sub=0, head=True)
-    else:                                                        # an alien face: caps that sit on this race's skull, one part per colour
-        skull = alien_parts.Skull(head_rings, n=st["head_n"])
-        for part, build_fn, colour in alien_parts.face_parts(face, skull, o):
-            make(f"face_{part}", build_fn, lambda c, n, colour=colour: colour, ["Head"], sub=0, head=True)
-    if face == "human":
-        b.f_dy = f_dy
+    def face_colour(c, n):
+        u = Vector((c.x / head_scale, c.y / head_scale, pivot.z + (c.z - pivot.z) / head_scale))      # (the face is painted after the head's scale: look where it was built)
+        if u.y < -0.05 and u.z > 1.7225 and abs(u.x) > 0.012:
+            return o["hair"]
+        return o["eyes"] if (abs(u.x) < 0.065 and u.y < -0.095 and u.z > 1.69 and abs(u.x) > 0.02) else o["skin"]
+    make("face", face_build, face_colour, ["Head"], sub=0, head=True)
+    b.f_dy = f_dy
 
 
-def _person_limbs(b):
-    """The arms, hands, legs and shoes, left and right."""
-    arm_f = b.arm_f
-    arm_tab = b.arm_tab
-    f_foot = b.f_foot
-    girth = b.girth
-    hands = b.hands
-    hipx = b.hipx
-    joints = b.joints
-    leg_f = b.leg_f
+def _alien_face(b):
+    """An alien face: caps that sit on this race's skull, one part per colour."""
+    face = b.face
+    head_rings = b.head_rings
     make = b.make
     o = b.o
-    rg = b.rg
-    sleeve = b.sleeve
     st = b.st
-    t_rings = b.t_rings
+    skull = alien_parts.Skull(head_rings, n=st["head_n"])
+    for part, build_fn, colour in alien_parts.face_parts(face, skull, o):
+        make(f"face_{part}", build_fn, lambda c, n, colour=colour: colour, ["Head"], sub=0, head=True)
+
+
+def _person_face(b):
+    """The human face, or an alien race's caps."""
+    if b.face == "human":
+        _human_face(b)
+    else:
+        _alien_face(b)
+
+
+def _arm_rows(t_rings, arm_tab, arm_f, rg):
+    """The rows of the arm and the matching girth factors, starting inside the torso's shoulder edge."""
     # A narrow torso (the Grey, the Shadow Entity) ends short of where the arm starts: start the arm inside it, at the torso's shoulder edge, so
     # the arm is joined to the body and not hanging a few centimetres off it
     shoulder = t_rings[4][2] * 0.8
@@ -279,30 +276,50 @@ def _person_limbs(b):
     else:
         arm_rows = arm_tab if shoulder >= arm_tab[0][0] else [(shoulder,) + arm_tab[0][1:]] + arm_tab
         arm_f_rows = arm_f if arm_rows is arm_tab else [arm_f[0]] + arm_f
+    return arm_rows, arm_f_rows
 
+
+def _person_side(b, side, tag, arm_rows, arm_f_rows):
+    """The arm, shoulder ball, hand, leg and shoe of one side of the person."""
+    f_foot = b.f_foot
+    girth = b.girth
+    hands = b.hands
+    hipx = b.hipx
+    joints = b.joints
+    leg_f = b.leg_f
+    make = b.make
+    o = b.o
+    sleeve = b.sleeve
+    st = b.st
+    make(f"arm_{tag}",
+         lambda bm, s=side: common.loft(bm, [common.ring_x(s * x, cy, cz, hy * af, hz * af, n=st["limb_n"])
+                                              for (x, cy, cz, hy, hz), af in zip(arm_rows, arm_f_rows)]),
+         lambda c, n: o["shirt"] if abs(c.x) < sleeve else o["skin"],
+         [f"clavicle_{tag}", f"upperarm_{tag}", f"lowerarm_{tag}", f"hand_{tag}"])
+    if joints:                                               # a ball over the shoulder's pivot: the arm swings inside it (the shirt's colour, as the sleeve is)
+        make(f"shoulder_{tag}", lambda bm, s=side: alien_parts.shoulder_ball(bm, s, girth),
+             lambda c, n: o["shirt"] if 0.192 < sleeve else o["skin"], [f"clavicle_{tag}", f"upperarm_{tag}"], sub=0)
+    if hands:
+        spec = alien_parts.HANDS[hands]
+        make(f"fingers_{tag}", lambda bm, s=side, sp=spec: alien_parts.fingers(bm, s, sp),
+             lambda c, n, spec=spec: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
+    else:
+        make(f"thumb_{tag}",
+             lambda bm, s=side: common.add_box(bm, (s * 0.805, 0.030, 1.416), (0.075, 0.026, 0.026), rot_deg=(0, 0, s * 22)),
+             lambda c, n: o["skin"], [f"hand_{tag}"], sub=0)
+    make(f"leg_{tag}",
+         lambda bm, s=side: common.loft(bm, [common.ring_z(z, s * 0.089 * hipx, cy, hx * lf, hy * lf, n=st["limb_n"]) for (z, cy, hx, hy), lf in zip(LEG, leg_f)]),
+         lambda c, n: o["pants"], ["pelvis", f"thigh_{tag}", f"calf_{tag}", f"foot_{tag}"])
+    make(f"shoe_{tag}",
+         lambda bm, s=side: common.loft(bm, [common.ring_y(y, s * 0.089 * hipx, cz, hx * f_foot, hz, n=st["shoe_n"], p=2.6) for y, cz, hx, hz in SHOE]),
+         lambda c, n: o["shoes"], [f"calf_{tag}", f"foot_{tag}", f"ball_{tag}"])
+
+
+def _person_limbs(b):
+    """The arms, hands, legs and shoes, left and right."""
+    arm_rows, arm_f_rows = _arm_rows(b.t_rings, b.arm_tab, b.arm_f, b.rg)
     for side, tag in ((1, "l"), (-1, "r")):
-        make(f"arm_{tag}",
-             lambda bm, s=side: common.loft(bm, [common.ring_x(s * x, cy, cz, hy * af, hz * af, n=st["limb_n"])
-                                                  for (x, cy, cz, hy, hz), af in zip(arm_rows, arm_f_rows)]),
-             lambda c, n: o["shirt"] if abs(c.x) < sleeve else o["skin"],
-             [f"clavicle_{tag}", f"upperarm_{tag}", f"lowerarm_{tag}", f"hand_{tag}"])
-        if joints:                                               # a ball over the shoulder's pivot: the arm swings inside it (the shirt's colour, as the sleeve is)
-            make(f"shoulder_{tag}", lambda bm, s=side: alien_parts.shoulder_ball(bm, s, girth),
-                 lambda c, n: o["shirt"] if 0.192 < sleeve else o["skin"], [f"clavicle_{tag}", f"upperarm_{tag}"], sub=0)
-        if hands:
-            spec = alien_parts.HANDS[hands]
-            make(f"fingers_{tag}", lambda bm, s=side, sp=spec: alien_parts.fingers(bm, s, sp),
-                 lambda c, n, spec=spec: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
-        else:
-            make(f"thumb_{tag}",
-                 lambda bm, s=side: common.add_box(bm, (s * 0.805, 0.030, 1.416), (0.075, 0.026, 0.026), rot_deg=(0, 0, s * 22)),
-                 lambda c, n: o["skin"], [f"hand_{tag}"], sub=0)
-        make(f"leg_{tag}",
-             lambda bm, s=side: common.loft(bm, [common.ring_z(z, s * 0.089 * hipx, cy, hx * lf, hy * lf, n=st["limb_n"]) for (z, cy, hx, hy), lf in zip(LEG, leg_f)]),
-             lambda c, n: o["pants"], ["pelvis", f"thigh_{tag}", f"calf_{tag}", f"foot_{tag}"])
-        make(f"shoe_{tag}",
-             lambda bm, s=side: common.loft(bm, [common.ring_y(y, s * 0.089 * hipx, cz, hx * f_foot, hz, n=st["shoe_n"], p=2.6) for y, cz, hx, hz in SHOE]),
-             lambda c, n: o["shoes"], [f"calf_{tag}", f"foot_{tag}", f"ball_{tag}"])
+        _person_side(b, side, tag, arm_rows, arm_f_rows)
 
 
 def _person_hat(b):
