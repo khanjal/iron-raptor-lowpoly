@@ -7,7 +7,7 @@ Run in Blender (the MCP), from the checkout you want audited:
     # optional globals (init_globals=): ONLY=["GT_Rake_01", "Washer"] (names or short names), WRITE=True (also write art/data/prop_geometry.json),
     # SCRIPTS=r"<other folder>" (audit the scripts in another folder, for example a scratch copy of an older props_farm.py), QUIET=True (problems only)
 
-It builds every prop in props_farm.py, household.py, decor.py, interactive.py, ship_props.py and ship_hulls.py the way the export does, but does NOT call Prop.finish(): nothing is added to the
+It builds every prop in props_farm.py, household.py, decor.py, interactive.py, office.py, ship_props.py and ship_hulls.py, and the bespoke variants of home_styles.py, the way the export does, but does NOT call Prop.finish(): nothing is added to the
 Blender scene, no collection is cleared and nothing is exported, so it is safe in a Blender file other sessions are using. The scripts are imported from the
 folder given (modules of the same names that are loaded already are put aside while it runs and put back after). A recorder wraps the builder, so every
 box, cylinder and loft is kept as a part of its own (the builder joins them into one mesh), with the line of the prop's script that made it.
@@ -22,6 +22,12 @@ Tests (one line per problem, "FAIL <test> <prop>: <what>"; the problem count is 
             (a handle through the head bar, a beam through a tray). A rod that ends inside the part it joins is fine. THROUGH_OK lists the ones that are meant (a rail through
             its posts), each with a reason.
   hinge     (reported under `front`) a door or lid whose pivot is not on the edge of the part it turns (the washer's door).
+  coplanar  two parts of different colours with faces in the same plane, facing the same way and overlapping where it can be seen: they flicker (z-fight) in a
+            viewer. A face whose overlap is buried in a third part is not seen and not reported.
+  gap       parts that the floating test counts as joined (within 1 cm) but that do not touch (more than 1 mm apart): a sliver of background between a drawer and
+            its carcass, a handle off its door, a top off its legs.
+  reveal    a door, drawer or lid (a moving part) that leaves an open slot round its edge: a ring of points just outside the part, looked at from the front (from
+            above for a lid), sees into the carcass more than 1 cm behind the back of the door leaf or drawer front.
   pipes     a pipe, cable or duct part (copper, or a script line that says pipe, cable, duct, hose, wire) has both ends in another part; a free end is listed and must be declared
             in audit_layout.CONNECTED (the layout audit then checks that it reaches a wall, the ceiling or the floor).
 
@@ -70,6 +76,11 @@ PIPE_ASPECT = 1.5       # a pipe stub is at least this much longer than it is th
 ROD_ASPECT = 2.5        # a part is rod-like when its length is this many times its thickness
 PIERCE_FACE_DOT = -0.85 # the faces a rod leaves through are opposite (their normals dot below this)
 TOP_AREA = 0.02         # m2: a horizontal top this big can carry things
+PLANE_EPS = 5e-4        # m: faces this close along their normal are in one plane
+CONTACT = 0.001         # m: parts closer than this touch; between this and TOUCH they leave a gap
+REVEAL_OFFSET = 0.002   # m: the ring of sight lines is this far outside a moving part's edge
+REVEAL_STEP = 0.02      # m: and this far apart along the edge
+REVEAL_DEPTH = 0.01     # m: a sight line that goes this far behind the back of the door leaf or drawer front sees into a slot
 
 # Short names (GH_Chair_Kitchen_01 -> Chair_Kitchen) whose origin is the middle of a wall mount or a ceiling fixing, not the floor. Taken from audit_layout.
 # Kinds that are loose items by design (several separate objects in one model): floating parts are not reported.
@@ -118,7 +129,7 @@ SEAT = re.compile(r"^(Chair_|Stool|Bench|Armchair|RockingChair|Sofa)")
 # Loading the scripts without disturbing the session
 # =====================================================================================================================
 
-MODULES = ("common", "emitters", "props_lib", "household", "decor", "interactive", "home_styles", "ship_props", "ship_hulls")
+MODULES = ("common", "emitters", "props_lib", "household", "decor", "interactive", "office", "home_styles", "ship_props", "ship_hulls")
 
 
 @contextmanager
@@ -282,7 +293,7 @@ def build_all(scripts):
     scripts = Path(scripts)
     with isolated(scripts):
         import common, props_lib
-        import household, decor, interactive, ship_props, ship_hulls
+        import household, decor, interactive, office, home_styles, ship_props, ship_hulls
         sources = []
         farm = scripts / "props_farm.py"
         if farm.exists():
@@ -292,6 +303,8 @@ def build_all(scripts):
             ("household", [fn for fn, _g in household.PIECES.values()]),
             ("decor", [fn for fn, _g in decor.PIECES.values()]),
             ("interactive", [fn for fn, _g in interactive.ITEMS.values()]),
+            ("office", [fn for fn, _g in office.PIECES.values()]),
+            ("home_styles", list(home_styles.VARIANTS.values())),                     # the bespoke shapes; the colour themes reuse household's and decor's
             ("ship_props", list(ship_props.SHIP_PROPS.values())),                       # the ship's set dressing (issue #212)
             ("ship_hulls", [fn for fn, _area in ship_hulls.HULLS.values()]),            # and the new hulls (the saucer is vehicles.py)
         ])
@@ -306,7 +319,8 @@ def build_all(scripts):
                 except Exception as e:                         # a prop that does not build is its own problem
                     out[f"{module}.{fn.__name__}"] = (module, None, [], repr(e))
                     continue
-                out[prop.name] = (module, prop, rec.parts, None)
+                key = prop.name if prop.name not in out else f"{prop.name}@{module}"
+                out[key] = (module, prop, rec.parts, None)
     return out
 
 
@@ -339,12 +353,13 @@ def distance_to_part(part, p):
     return hit[3] if hit[0] is not None else 1e9
 
 
-def touching(a, b):
-    """Parts overlap, share a face or are within TOUCH of each other."""
-    pad = TOUCH
+def touching(a, b, pad=TOUCH):
+    """Parts overlap, share a face or are within `pad` of each other (one inside the other counts)."""
     if any(a.lo[i] - pad > b.hi[i] or b.lo[i] - pad > a.hi[i] for i in range(3)):
         return False
     if a.tree.overlap(b.tree):
+        return True
+    if inside([b], a.verts[0]) or inside([a], b.verts[0]):
         return True
     if any(distance_to_part(b, v) <= pad for v in a.verts):
         return True
@@ -458,10 +473,8 @@ def test_front(name, prop, parts, mounted, lo, hi):
     return out
 
 
-def test_floating(name, prop, parts, mounted, lo, hi):
-    s = short(name)
-    if re.search(LOOSE, s) or len(parts) < 2:
-        return []
+def joined_groups(parts, pad):
+    """The parts in groups that touch within `pad` (indices), biggest group first."""
     n = len(parts)
     parent = list(range(n))
 
@@ -472,14 +485,21 @@ def test_floating(name, prop, parts, mounted, lo, hi):
         return i
     for i in range(n):
         for j in range(i + 1, n):
-            if find(i) != find(j) and touching(parts[i], parts[j]):
+            if find(i) != find(j) and touching(parts[i], parts[j], pad):
                 parent[find(i)] = find(j)
     groups = {}
     for i in range(n):
         groups.setdefault(find(i), []).append(i)
-    if len(groups) < 2:
+    return sorted(groups.values(), key=len, reverse=True)
+
+
+def test_floating(name, prop, parts, mounted, lo, hi):
+    s = short(name)
+    if re.search(LOOSE, s) or len(parts) < 2:
         return []
-    ordered = sorted(groups.values(), key=len, reverse=True)
+    ordered = joined_groups(parts, TOUCH)
+    if len(ordered) < 2:
+        return []
     out = []
     for grp in ordered[1:]:
         # how far from the nearest other part
@@ -552,6 +572,171 @@ def test_through(name, prop, parts, mounted, lo, hi):
     return [msg + (f" (and {n - 1} more like it)" if n > 1 else "") for msg, n in seen.values()]
 
 
+def _group_gap(grp, rest, parts):
+    """The smallest distance (m) between the parts in grp and the parts in rest, corner to surface both ways."""
+    there = min((distance_to_part(parts[k], v) for i in grp for k in rest for v in parts[i].verts), default=1e9)
+    back = min((distance_to_part(parts[i], v) for i in grp for k in rest for v in parts[k].verts), default=1e9)
+    return min(there, back)
+
+
+def test_gap(name, prop, parts, mounted, lo, hi):
+    """Parts the floating test counts as joined (within TOUCH) that do not touch (more than CONTACT apart): a visible sliver between them."""
+    if re.search(LOOSE, short(name)) or len(parts) < 2:
+        return []
+    loose = {i for grp in joined_groups(parts, TOUCH)[1:] for i in grp}            # the floating test reports these
+    ordered = joined_groups(parts, CONTACT)
+    out = []
+    for grp in ordered[1:]:
+        if loose.intersection(grp):
+            continue
+        rest = [k for g in ordered if g is not grp for k in g]
+        gap = _group_gap(grp, rest, parts)
+        if gap > CONTACT:
+            p = parts[grp[0]]
+            out.append(f"{len(grp)} part(s) stand {gap * 1000:.1f} mm off the rest (a visible gap): {p.label()}")
+    return out
+
+
+def _tris(part):
+    """The part's faces as triangles (fans), with the face normal: [(a, b, c, n)]."""
+    out = []
+    for poly, n in zip(part.polys, part.normals):
+        vs = [part.verts[i] for i in poly]
+        out.extend((vs[0], vs[k], vs[k + 1], n) for k in range(1, len(vs) - 1))
+    return out
+
+
+def _flat(pts, n):
+    """The points dropped onto the plane of the axis that n is most along (2D)."""
+    drop = max(range(3), key=lambda k: abs(n[k]))
+    keep = [k for k in range(3) if k != drop]
+    return [Vector((q[keep[0]], q[keep[1]])) for q in pts]
+
+
+def _shrunk(tri, f=0.9):
+    cen = (tri[0] + tri[1] + tri[2]) / 3
+    return [cen + (q - cen) * f for q in tri[:3]]
+
+
+def _overlap_point(ta, tb):
+    """A point where the two coplanar triangles (shrunk by 10% so a shared edge does not count) overlap, or None."""
+    from mathutils.geometry import intersect_point_tri_2d, intersect_tri_tri_2d
+    n = ta[3]
+    sa, sb = _shrunk(ta), _shrunk(tb)
+    fa, fb = _flat(sa, n), _flat(sb, n)
+    if not intersect_tri_tri_2d(*fa, *fb):
+        return None
+    for q3, q2 in zip(sa + sb + [sum(sa, Vector()) / 3, sum(sb, Vector()) / 3], fa + fb + [sum(fa, Vector((0, 0))) / 3, sum(fb, Vector((0, 0))) / 3]):
+        if intersect_point_tri_2d(q2, *fa) and intersect_point_tri_2d(q2, *fb):
+            return q3
+    return (sum(sa, Vector()) + sum(sb, Vector())) / 6                               # they overlap but no corner is in both: take the middle
+
+
+def _coplanar_hits(a, b, others):
+    """How many face pairs of a and b lie in one plane, face the same way and overlap where it can be seen."""
+    hits = 0
+    for ta in _tris(a):
+        for tb in _tris(b):
+            n = ta[3]
+            if n.dot(tb[3]) < 0.999 or abs(n.dot(tb[0] - ta[0])) > PLANE_EPS:
+                continue
+            q = _overlap_point(ta, tb)
+            if q is not None and not inside(others, q + n * 0.002):
+                hits += 1
+    return hits
+
+
+def _boxes_meet(a, b, pad):
+    return not any(a.lo[i] - pad > b.hi[i] or b.lo[i] - pad > a.hi[i] for i in range(3))
+
+
+def test_coplanar(name, prop, parts, mounted, lo, hi):
+    """Faces of two parts of different colours in one plane, facing the same way and overlapping where it can be seen: they z-fight."""
+    seen = {}
+    for i, a in enumerate(parts):
+        for b in parts[i + 1:]:
+            if a.colour == b.colour or not _boxes_meet(a, b, PLANE_EPS):
+                continue
+            hits = _coplanar_hits(a, b, [o for o in parts if o is not a and o is not b])
+            if hits:
+                key = (a.src, b.src)                        # a loop makes many copies of the same pair: report the lines once
+                if key not in seen:
+                    seen[key] = [f"{a.label()} and {b.label()} share a face plane ({hits} face pair(s))", 0]
+                seen[key][1] += 1
+    return [msg + (f" (and {n - 1} more like it)" if n > 1 else "") for msg, n in seen.values()]
+
+
+def _facing(role, g, mine):
+    """Which way the moving part faces when shut: 'top' for a lid that lies flat, else 'front' (-Y)."""
+    d = Vector((max(p.hi.x for p in mine) - min(p.lo.x for p in mine), max(p.hi.y for p in mine) - min(p.lo.y for p in mine),
+                max(p.hi.z for p in mine) - min(p.lo.z for p in mine)))
+    return "top" if role.startswith("Lid") or (g["axis"] != "z" and d.z < min(d.x, d.y)) else "front"
+
+
+def _ring(lo2, hi2):
+    """Points REVEAL_OFFSET outside the rectangle lo2..hi2, every REVEAL_STEP along each edge."""
+    o = REVEAL_OFFSET
+    pts = []
+    for u0, u1, v in ((lo2[0], hi2[0], lo2[1] - o), (lo2[0], hi2[0], hi2[1] + o)):
+        k = max(1, int((u1 - u0) / REVEAL_STEP))
+        pts.extend((u0 + (u1 - u0) * (j + 0.5) / k, v) for j in range(k))
+    for v0, v1, u in ((lo2[1], hi2[1], lo2[0] - o), (lo2[1], hi2[1], hi2[0] + o)):
+        k = max(1, int((v1 - v0) / REVEAL_STEP))
+        pts.extend((u, v0 + (v1 - v0) * (j + 0.5) / k) for j in range(k))
+    return pts
+
+
+def _sight(rest, origin, direction):
+    """The nearest hit point along the ray among the parts in rest, or None."""
+    best = None
+    for p in rest:
+        hit = p.tree.ray_cast(origin, direction)
+        if hit[0] is not None and (best is None or hit[3] < best[1]):
+            best = (hit[0], hit[3])
+    return best[0] if best else None
+
+
+def _reveal_of(role, g, parts):
+    """(sight lines that see into a slot, sight lines that hit the model, the deepest in m) round the moving part `role`."""
+    mine = [p for p in parts if p.role == role]
+    rest = [p for p in parts if p.role != role]
+    if not mine or not rest:
+        return 0, 0, 0.0
+    top = _facing(role, g, mine) == "top"
+    ax = (0, 1) if top else (0, 2)                                    # the plane the part's face lies in
+    lo2 = [min(p.lo[k] for p in mine) for k in ax]
+    hi2 = [max(p.hi[k] for p in mine) for k in ax]
+    panel = max(mine, key=lambda p: (p.hi[ax[0]] - p.lo[ax[0]]) * (p.hi[ax[1]] - p.lo[ax[1]]))   # the door leaf or drawer front, not its handle
+    face = panel.lo.z if top else panel.hi.y                         # the back of the panel: a door laid over the carcass meets it there
+    direction = Vector((0, 0, -1)) if top else Vector((0, 1, 0))
+    bad, looked, deepest = 0, 0, 0.0
+    for u, v in _ring(lo2, hi2):
+        origin = Vector((u, v, face + 1.0)) if top else Vector((u, face - 1.0, v))
+        hit = _sight(rest, origin, direction)
+        if hit is None:
+            continue                                                  # outside the model's outline
+        looked += 1
+        depth = (face - hit.z) if top else (hit.y - face)
+        if depth > REVEAL_DEPTH:
+            bad += 1
+            deepest = max(deepest, depth)
+    return bad, looked, deepest
+
+
+def test_reveal(name, prop, parts, mounted, lo, hi):
+    """A door, drawer or lid that leaves an open slot round its edge (the sight line next to it goes deep into the body)."""
+    if HULL.search(short(name)):
+        return []                                                     # a hull's ramp and legs are skins the recorder does not see round
+    out = []
+    for role, g in prop.groups.items():
+        if g["kind"] not in ("hinge", "slide"):
+            continue
+        bad, looked, deepest = _reveal_of(role, g, parts)
+        if bad:
+            out.append(f"{role}: {bad} of {looked} sight lines just outside its edge see {deepest * 100:.0f} cm into the body (an open slot round it)")
+    return out
+
+
 def test_pipes(name, prop, parts, mounted, lo, hi):
     """Free ends of pipe-like parts. Returns (problems, free ends)."""
     out, free = [], []
@@ -611,6 +796,9 @@ def _prop_findings(name, prop, parts, mounted, lo, hi, table, declared):
     found += [("front", m) for m in test_front(name, prop, parts, mounted, lo, hi)]
     found += [("floating", m) for m in test_floating(name, prop, parts, mounted, lo, hi)]
     found += [("through", m) for m in test_through(name, prop, parts, mounted, lo, hi)]
+    found += [("gap", m) for m in test_gap(name, prop, parts, mounted, lo, hi)]
+    found += [("coplanar", m) for m in test_coplanar(name, prop, parts, mounted, lo, hi)]
+    found += [("reveal", m) for m in test_reveal(name, prop, parts, mounted, lo, hi)]
     found += _pipe_findings(name, prop, parts, mounted, lo, hi, declared)
     return found
 
