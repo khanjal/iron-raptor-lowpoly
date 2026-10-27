@@ -456,4 +456,4 @@ $('play').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) { if (state.max) setMax(false); else closeViewer(); } });
 
 try { state.max = localStorage.getItem('lowpoly-max') === '1'; } catch (e) { /* no storage: not maximised */ }
-init().catch((e) => { $('count').textContent = 'Could not start the browser: ' + e.message; console.error(e); });
+try { await init(); } catch (e) { $('count').textContent = 'Could not start the browser: ' + e.message; console.error(e); }
