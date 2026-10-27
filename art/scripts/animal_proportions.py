@@ -105,8 +105,8 @@ def check(row, sp):
 #   root      how far the top of the neck's root stands above the withers (a dog's or a cat's neck leaves the chest forward; it must not rise out of the top of the back)
 SHAPE_NAMES = ("tuck", "front_in", "hind_in", "stifle", "hock", "root")       # the measures; every limit is a minimum but the root's, a maximum
 SHAPE_DEFAULT = dict(zip(SHAPE_NAMES, (0.0, 0.10, 0.10, 0.03, 0.06, 0.08)))
-SHAPE = {**dict.fromkeys(("cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund"), {**SHAPE_DEFAULT, "tuck": 0.08}),
-         **dict.fromkeys(("horse", "cow", "fox", "deer"), {**SHAPE_DEFAULT, "tuck": 0.03})}
+SHAPE = {**{row: {**SHAPE_DEFAULT, "tuck": 0.08} for row in ("cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund")},
+         **{row: {**SHAPE_DEFAULT, "tuck": 0.03} for row in ("horse", "cow", "fox", "deer")}}
 
 
 def _bottom_at(body, y):
