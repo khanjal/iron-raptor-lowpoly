@@ -10,6 +10,20 @@ const loader = new GLTFLoader();
 // emitter colour names (art/scripts/emitters.py) -> light colours
 const LIGHT_COLOURS = { warm: 0xffc97a, cool: 0xcfe4ff, flame: 0xff9a3c, red: 0xff3b30, green: 0x4cff7a, pink: 0xff6fb5 };
 
+// A copy of the palette texture `base` with every swatch in `swap` ({index: '#rrggbb'}) painted over: a new texture, so whatever uses it is a new material
+// to the renderer (stress.js shows what that does to batching).
+export function paintedTexture(base, swap) {
+  const img = base.image, w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const g = c.getContext('2d');
+  g.drawImage(img, 0, 0);
+  for (const [k, hex] of Object.entries(swap)) { const i = Number(k); g.fillStyle = hex; g.fillRect((i % GRID) * cell, Math.floor(i / GRID) * cell, cell, cell); }
+  const t = new THREE.CanvasTexture(c);
+  t.flipY = base.flipY; t.colorSpace = base.colorSpace; t.magFilter = base.magFilter; t.minFilter = base.minFilter; t.generateMipmaps = base.generateMipmaps;
+  return t;
+}
+
 export class Viewer {
   constructor(canvas, { glow = [], transparent = true } = {}) {
     this.canvas = canvas;
@@ -155,17 +169,7 @@ export class Viewer {
       if (!m.userData.basePalette) m.userData.basePalette = m.map;
       const base = m.userData.basePalette;
       if (m.map !== base) { m.map.dispose(); m.map = base; }
-      if (entries.length) {
-        const img = base.image, w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));
-        const c = document.createElement('canvas');
-        c.width = w; c.height = h;
-        const g = c.getContext('2d');
-        g.drawImage(img, 0, 0);
-        for (const [i, hex] of entries) { g.fillStyle = hex; g.fillRect((i % GRID) * cell, Math.floor(i / GRID) * cell, cell, cell); }
-        const t = new THREE.CanvasTexture(c);
-        t.flipY = base.flipY; t.colorSpace = base.colorSpace; t.magFilter = base.magFilter; t.minFilter = base.minFilter; t.generateMipmaps = base.generateMipmaps;
-        m.map = t;
-      }
+      if (entries.length) m.map = paintedTexture(base, swap);
       m.needsUpdate = true;
     });
   }

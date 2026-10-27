@@ -289,3 +289,34 @@ Every issue, open or closed, is in one of 11 GitHub milestones, grouped by theme
 
 ## Planning on Opus, coding on Sonnet (2026-10-27)
 A session can plan a change and hand a written plan to the `implementer` agent (`.claude/agents/implementer.md`, runs on Sonnet), which edits and runs the checks but does not stage, commit or push. The code then counts as Sonnet's: reviews by Opus then Fable, neither briefed with the plan; fixes go back through the implementer; the session commits with both models' trailers and does the rest of `ship-it` (`pr-review`). First used on the Sonar backlog PR for `tools/` and `tests/` (#164). Not done: the agent has not yet driven Blender, and its tool denylist does not stop `git push` or `gh` through the shell.
+
+## Stress test page and instancing notes (2026-10-27, issue #145 steps 1 and 3)
+`site/stress.html` (script `site/stress.js`) draws 100, 1,000 or 10,000 copies of one model as separate meshes or as one `InstancedMesh` per mesh of the model, with the frame rate, draw calls and triangles; README "Stress test" and "Instancing and batching". Instanced copies of a rigged model are its skinned mesh baked once into the first frame of Idle (an `InstancedMesh` is not skinned in three.js r160), so the clip plays only on separate meshes. `check_site.py` now checks `stress.html` and its script the way it checks `index.html`. The viewer's palette repaint is now `paintedTexture` in `site/viewer.js`, shared with the stress page; the viewer's colour picker was tried on the sedan after the move.
+
+**Measured** in the desktop app's built-in browser (Chromium 152, WebGL through ANGLE / Direct3D 11) on a laptop with an Intel Core i9-14900HX, an NVIDIA GeForce RTX 4070 Laptop GPU and 64 GB, Windows 11, an 800 x 600 canvas at device pixel ratio 1. The browser pane was hidden, which holds `requestAnimationFrame` to about one frame a second, so the page's FPS counter read 0.2 to 1 and is **not** what is below: each figure is the page's *Time frames* button with 60 frames (frames rendered back to back, each waiting for the GPU by reading a pixel back), as milliseconds a frame and the uncapped FPS that gives. Draw calls are three.js's count for one frame (separate copies outside the view are culled, so a little under one per copy). One run each, so the small figures (under about 3 ms) are noise.
+
+| Model (triangles) | Copies | Separate meshes: ms (FPS), draw calls | InstancedMesh: ms (FPS), draw calls |
+|---|---|---|---|
+| Apple (132, static, 1 mesh) | 100 | 1.2 (830), 96 | 3.2 (noise), 1 |
+| | 1,000 | 4.8 (210), 941 | 1.3 (800), 1 |
+| | 10,000 | 33.8 (30), 9,296 | 2.4 (420), 1 |
+| Sedan (2,052, 16 meshes, so 16 draws a copy) | 100 | 8.4 (120), 1,496 | 1.3 (800), 16 |
+| | 1,000 | 72.6 (14), 14,901 | 2.4 (420), 16 |
+| | 10,000 | 781 (1.3), 147,096 | 8.4 (120), 16 |
+| Ant (368, rigged), clip paused | 100 | 8.9 (110), 96 | 0.9 (noise), 1 |
+| | 1,000 | 43.1 (23), 938 | 0.9 (noise), 1 |
+| | 10,000 | 287 (3.5), 9,230 | 2.6 (380), 1 |
+| Ant, Walk playing | 100 | 8.2 (120), 96 | (not possible) |
+| | 1,000 | 52.3 (19), 938 | |
+| | 10,000 | 421 (2.4), 9,230 | |
+| Grey alien (978, rigged), paused | 100 | 15.4 (65), 96 | |
+| | 1,000 | 100 (10), 937 | 1.7 (590), 1 |
+| | 10,000 | not run | 4.9 (200), 1 |
+| Grey alien, Walk playing | 100 | 19.0 (53), 96 | (not possible) |
+| | 1,000 | 145 (6.9), 937 | |
+
+*Repaint half* (every other copy with a second paint) doubled the instanced draw calls: 10,000 ants 1 to 2, 10,000 sedans 16 to 32 (8.5 ms, about the same time); separate meshes stayed at one draw per mesh (1,000 ants: 938 calls, 44 ms). Building the field took up to 2 s for 10,000 separate skinned ants and 4.7 s for 10,000 separate sedans, under 0.1 s for any instanced field.
+
+What it says: triangles are not the limit (10,000 instanced Grey aliens are 9.8 million triangles in 5 ms); draw calls are (3.5 to 5 µs each for static meshes here), and a skinned mesh costs about ten times a static one even with its clip paused, because three.js updates and uploads every skeleton each frame. Instanced, 10,000 of any model tried stays above 100 FPS on this machine.
+
+**Not done:** a phone and a mid-range laptop (issue #145 step 5 asks for both); the FPS counter with the pane visible (it is capped by the display anyway); 10,000 separate Grey aliens (not run: 1,000 already took 1.2 s to build and 100 ms a frame). Steps 2 (LODs) and 4 (vertex-animation textures) are left as notes on the issue.

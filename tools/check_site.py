@@ -11,7 +11,8 @@ What it checks:
   interactions  an entry's `interactions` file exists, is the model's own and agrees with `parts` and `lights`
   materials  only GlobalPaletteGlass is blended (see-through), and anything blended is called that
   variants   name existing ids, and are symmetric
-  page       index.html: every script, stylesheet and import-map target exists; every id app.js looks up exists in index.html; app.js imports a file that exists
+  pages      index.html and stress.html: every script, stylesheet and import-map target exists; every id the page's own script (app.js, stress.js) looks up
+             exists in the page; the scripts import files that exist
 """
 
 import json
@@ -273,8 +274,12 @@ def check_against_glb(a, doc, err):
     check_part_nodes(a, doc, err)
 
 
+# page -> (its own script, whose element lookups must all be in the page; every script of the page, whose imports must exist)
+PAGES = {"index.html": ("app.js", ("app.js", "viewer.js")), "stress.html": ("stress.js", ("stress.js",))}
+
+
 def page_refs(html):
-    """Every src and href of index.html and every target of its import map."""
+    """Every src and href of a page and every target of its import map."""
     refs = re.findall(r'(?:src|href)="([^"#?:]+)"', html)
     importmap = re.search(r'<script type="importmap">(.*?)</script>', html, re.S)
     if importmap:
@@ -282,34 +287,35 @@ def page_refs(html):
     return refs
 
 
-def check_script(site, js, ids, errors):
-    """One script exists, app.js only looks up ids index.html has, and what it imports exists."""
+def check_script(site, js, page, ids, errors):
+    """One script exists, the page's own script only looks up ids the page has (`ids` is None for the others), and what it imports exists."""
     path = site / js
     if not path.is_file():
         errors.append(f"{js} does not exist")
         return
     text = path.read_text(encoding="utf-8")
-    if js == "app.js":
+    if ids is not None:
         for m in re.findall(r"\$\('([^']+)'\)", text) + re.findall(r"getElementById\('([^']+)'\)", text):
             if m not in ids:
-                errors.append(f"app.js looks up #{m}, which index.html does not have")
+                errors.append(f"{js} looks up #{m}, which {page} does not have")
     for imp in re.findall(r"from '(\.[^']+)'", text):
         if not (site / imp).exists():
             errors.append(f"{js} imports {imp}, which does not exist")
 
 
-def check_page(site, errors):
-    html_path = site / "index.html"
+def check_page(site, page, errors):
+    html_path = site / page
     if not html_path.is_file():
-        errors.append("index.html does not exist")
+        errors.append(f"{page} does not exist")
         return
     html = html_path.read_text(encoding="utf-8")
     for r in page_refs(html):
         if not (site / r).exists():
-            errors.append(f"index.html refers to {r}, which does not exist")
+            errors.append(f"{page} refers to {r}, which does not exist")
     ids = set(re.findall(r'id="([^"]+)"', html))
-    for js in ("app.js", "viewer.js"):
-        check_script(site, js, ids, errors)
+    own, scripts = PAGES[page]
+    for js in scripts:
+        check_script(site, js, page, ids if js == own else None, errors)
 
 
 def check_aliases(assets, byid, errors):
@@ -381,7 +387,8 @@ def check(site=None):
         check_variants(a, byid, errors)
     check_manifest_themes(doc, assets, errors)
     check_palette(doc, assets, errors)
-    check_page(site, errors)
+    for page in PAGES:
+        check_page(site, page, errors)
     return errors
 
 

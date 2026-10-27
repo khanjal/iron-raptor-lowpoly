@@ -35,7 +35,7 @@ class Damage(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
-        for name in ("index.html", "app.js", "viewer.js", "style.css"):
+        for name in ("index.html", "app.js", "viewer.js", "style.css", "stress.html", "stress.js"):
             shutil.copy(SITE / name, self.tmp / name)
         (self.tmp / "vendor").mkdir()
         shutil.copytree(SITE / "vendor" / "three", self.tmp / "vendor" / "three")
@@ -150,6 +150,15 @@ class Damage(unittest.TestCase):
         html = (self.tmp / "index.html").read_text(encoding="utf-8").replace('id="search"', 'id="searchbox"')
         (self.tmp / "index.html").write_text(html, encoding="utf-8")
         self.assertTrue(any("#search" in p for p in self.problems()))
+
+    def test_stress_page_missing_an_element_its_script_needs(self):
+        html = (self.tmp / "stress.html").read_text(encoding="utf-8").replace('id="calls"', 'id="draws"')
+        (self.tmp / "stress.html").write_text(html, encoding="utf-8")
+        self.assertTrue(any("stress.js looks up #calls" in p for p in self.problems()))
+
+    def test_stress_page_missing(self):
+        (self.tmp / "stress.js").unlink()
+        self.assertTrue(any("stress.js" in p for p in self.problems()))
 
     def test_unparsable_manifest(self):
         (self.tmp / "manifest.json").write_text("{", encoding="utf-8")
