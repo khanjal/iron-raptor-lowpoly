@@ -50,7 +50,7 @@ Every model in the browser has one **type**, a three-level lowercase path, `cate
 
 ## The asset browser
 
-`site/` is a static page (no build step, no framework; three.js is vendored under `site/vendor/three`, MIT) that browses 501 of the models: search as you type, a category tree, tag chips that filter together, a thumbnail grid and a 3D viewer with orbit / zoom / pan, a variant switcher, doors / drawers / lids you click to open (and an "Open all" button) and, for animals and people, a clip dropdown (Idle, Walk, Trot, Run, Sit) with a speed slider. `#GV_Sedan_01` in the URL opens a model; the filters are in the query string. It works at phone width.
+`site/` is a static page (no build step, no framework; three.js is vendored under `site/vendor/three`, MIT) that browses 501 of the models: search as you type, a category tree, tag chips that filter together, a thumbnail grid and a 3D viewer with orbit / zoom / pan, a variant switcher, doors / drawers / lids you click to open (and an "Open all" button) and, for animals and people, a clip dropdown (Idle, Walk, Trot, Run, Sit; the tom turkey's Display) with a speed slider. `#GV_Sedan_01` in the URL opens a model; the filters are in the query string. It works at phone width.
 
 Run it locally:
 
