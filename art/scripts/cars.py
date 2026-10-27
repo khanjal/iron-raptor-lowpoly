@@ -295,8 +295,7 @@ def families():
     return f
 
 
-# one of the build functions the family tables call with this signature, so `condition` stays
-def build(family, label, kind, kw, condition):  # NOSONAR
+def build(family, label, kind, kw):
     name = f"GV_{family}_{label}_01"
     if kind == "special":
         kw = dict(kw)
@@ -414,7 +413,7 @@ def run():
             for cond in conds:
                 props_lib.THEME = WRECK if cond == "Damaged" else {}
                 try:
-                    prop = build(family, label, kind, kw, cond)
+                    prop = build(family, label, kind, kw)
                 finally:
                     props_lib.THEME = {}
                 if cond == "Damaged":
