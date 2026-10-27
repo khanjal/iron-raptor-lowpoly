@@ -81,10 +81,9 @@ def skeleton(sp):
     }
     for kind, leg in (("Front", sp["front"]), ("Hind", sp["hind"])):
         p, (knee, ankle), x, y0 = leg["profile"], leg["joints"], leg["x"], leg["y"]
-        pt = lambda i: (x + _leg_dx(p[i]), y0 + p[i][1], p[i][0])
-        bones[f"{kind}Upper_L"] = (pt(0), pt(knee))
-        bones[f"{kind}Lower_L"] = (pt(knee), pt(ankle))
-        bones[f"{kind}Foot_L"] = (pt(ankle), (x, y0 + p[-1][1], 0.0))
+        bones[f"{kind}Upper_L"] = (_leg_point(leg, 0), _leg_point(leg, knee))
+        bones[f"{kind}Lower_L"] = (_leg_point(leg, knee), _leg_point(leg, ankle))
+        bones[f"{kind}Foot_L"] = (_leg_point(leg, ankle), (x, y0 + p[-1][1], 0.0))
     t = [(0, y, z) for z, y, _ in tail]
     a, b = len(t) // 3, 2 * len(t) // 3
     bones["Tail1"] = (t[0], t[a])
@@ -96,6 +95,20 @@ def skeleton(sp):
 def _leg_dx(ring):
     """A leg ring's sideways offset from the leg's x: a profile ring is (z, dy, hx, hy) or (z, dy, hx, hy, dx) (dx > 0 is outwards, so a top ring with dx < 0 sits inside the body)."""
     return ring[4] if len(ring) > 4 else 0.0
+
+
+def _leg_point(leg, i):
+    """The left leg's ring i as a bone end: (x, y, z)."""
+    r = leg["profile"][i]
+    return (leg["x"] + _leg_dx(r), leg["y"] + r[1], r[0])
+
+
+def gait_leg(sp):
+    """The leg length the gait clips are fitted to (quadruped_walk.py's LEG_LENGTH): sp["gait_leg"], else the height of the front leg's first ring that is not set
+    into the body (a ring with a dx is the shoulder joint inside the chest: measuring from it would make every gait longer and faster than the leg)."""
+    if "gait_leg" in sp:
+        return sp["gait_leg"]
+    return next(r[0] for r in sp["front"]["profile"] if not _leg_dx(r))
 
 
 def _section(y, z, w, h, keel, n):
@@ -110,6 +123,8 @@ def _section(y, z, w, h, keel, n):
 def _sections(sp, key, n):
     """The rings of sp[key] ("body" or "head"), with sp[key + "_keel"] (one factor per ring) when the species gives one."""
     keel = sp.get(key + "_keel") or [0.0] * len(sp[key])
+    if len(keel) != len(sp[key]):
+        raise ValueError(f"{sp['name']}: {len(keel)} {key}_keel factors for {len(sp[key])} {key} sections")
     return [_section(y, z, w, h, k, n) for (y, z, w, h), k in zip(sp[key], keel)]
 
 
@@ -205,6 +220,7 @@ def build(sp, style="smooth", rig_name=None):
     common.setup_scene()
     coll = common.fresh_collection(name)
     rig = quadruped_rig.build(rig_name or f"{name}_Rig", skeleton(sp), coll)
+    rig["gait_leg"] = gait_leg(sp)                                   # read by quadruped_walk.py
     parts = []
     ctx = Context(name, coll, rig, st, parts)
     side = lambda s: "R" if s < 0 else "L"

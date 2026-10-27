@@ -155,6 +155,7 @@ HORSE = {
     "head": [(-0.55, 1.30, 0.19, 0.27), (-0.78, 1.64, 0.15, 0.24), (-0.94, 1.76, 0.125, 0.21), (-1.04, 1.82, 0.11, 0.19),
           (-1.14, 1.75, 0.115, 0.17), (-1.30, 1.55, 0.10, 0.14), (-1.43, 1.42, 0.09, 0.115), (-1.49, 1.38, 0.095, 0.095), (-1.52, 1.36, 0.085, 0.085)],
     # the legs start inside the barrel at the shoulder and the hip (set in by dx), the forearm's and the gaskin's muscle above the knee and the hock, the stifle forward
+    "gait_leg": 1.00,                                              # the gait's leg length as before the rework (the leg's top under the barrel)
     "front": {"x": 0.15, "y": -0.50, "joints": (2, 4),
                "profile": [(1.12, 0.0, 0.085, 0.14, -0.05), (0.92, 0.0, 0.092, 0.13), (0.50, 0.00, 0.064, 0.08), (0.30, 0.00, 0.050, 0.058),
                         (0.13, 0.00, 0.054, 0.062), (0.0, 0.00, 0.064, 0.076)]},
