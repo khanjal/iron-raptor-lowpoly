@@ -8,7 +8,7 @@ byte-identical, or different. A GLB that differs is looked at again, because Ble
 two builds from the very same code (the four humanoid aliens GP_Grey, GP_Nordic, GP_Reptilian and GP_Shadow vary). It counts as the same geometry when the JSON
 structure is equal and so are, in any order of vertices and triangles: every triangle with its winding and the full attributes of its three corners (position,
 normal, UV, joints, weights, ...), every accessor that is not a primitive's (animation times and values, inverse bind matrices), and every buffer view that no
-accessor reads (embedded images). Anything else that differs, a model in only one build, or a missing or empty folder makes the exit status 1 (2 for a wrong call).
+accessor reads (embedded images). Not read: vertices that no triangle uses and an index count that is not a multiple of 3 (Blender's exporter makes neither). Anything else that differs, a model in only one build, or a missing or empty folder makes the exit status 1 (2 for a wrong call).
 The procedure is in .claude/skills/sonar-check.
 """
 
@@ -73,16 +73,16 @@ def canonical_triangle(corners):
 
 
 def triangle_set(doc, buf):
-    """The triangles of a GLB as a multiset: (mesh name, primitive material, canonical corners), each corner the tuple of all its attribute values."""
+    """The triangles of a GLB as a multiset: (mesh index, primitive index, canonical corners), each corner the tuple of all its attribute values."""
     triangles = collections.Counter()
-    for mesh in doc["meshes"]:
-        for prim in mesh["primitives"]:
+    for mesh_index, mesh in enumerate(doc["meshes"]):
+        for prim_index, prim in enumerate(mesh["primitives"]):
             attributes = {name: read_accessor(doc, buf, index) for name, index in sorted(prim["attributes"].items())}
             vertices = list(zip(*attributes.values()))
             indices = [i[0] for i in read_accessor(doc, buf, prim["indices"])] if "indices" in prim else list(range(len(vertices)))
             for n in range(0, len(indices) - 2, 3):
                 corners = [vertices[indices[n + k]] for k in range(3)]
-                triangles[(mesh.get("name"), prim.get("material"), canonical_triangle(corners))] += 1
+                triangles[(mesh_index, prim_index, canonical_triangle(corners))] += 1
     return triangles
 
 
@@ -146,10 +146,11 @@ def report(label, result):
 
 
 def interactions_agree(first, second):
-    """art/data/interactions.json (written by the build, not part of any GLB) is the same in both trees; a file missing from both counts as agreeing."""
+    """art/data/interactions.json (written by the build, not part of any GLB) is there and the same in both trees. Missing from both is a failure too: delete it before the
+    builds (the build merges into an existing file), so a missing one means the interactive groups did not run."""
     a, b = first / "art" / "data" / "interactions.json", second / "art" / "data" / "interactions.json"
-    agree = a.exists() == b.exists() and (not a.exists() or digest(a) == digest(b))
-    print("art/data/interactions.json:", "identical" if agree else "DIFFERENT or missing in one build")
+    agree = a.exists() and b.exists() and digest(a) == digest(b)
+    print("art/data/interactions.json:", "identical" if agree else "DIFFERENT or missing in a build (delete it before the builds, then build the interactive groups)")
     return agree
 
 
@@ -164,9 +165,10 @@ def main(argv):
         return 2
     models = compare_folder(first / "site" / "models", second / "site" / "models", "*.glb", same_geometry)
     meta = compare_folder(first / "out" / "meta", second / "out" / "meta", "*.json")
-    if not compared(models):
-        print(f"no GLBs to compare in {first / 'site' / 'models'} and {second / 'site' / 'models'}: was the build run in both trees?", file=sys.stderr)
-        return 2
+    for label, result, folder in (("GLBs", models, Path("site") / "models"), ("meta files", meta, Path("out") / "meta")):
+        if not compared(result):
+            print(f"no {label} to compare in {first / folder} and {second / folder}: was the build run in both trees?", file=sys.stderr)
+            return 2
     checks = [report("site/models", models), report("out/meta", meta), interactions_agree(first, second)]
     return 0 if all(checks) else 1
 

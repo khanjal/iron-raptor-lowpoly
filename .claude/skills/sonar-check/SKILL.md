@@ -47,8 +47,8 @@ removes only what it made, so the default scene is fine, a scene with someone's 
 and compare the files. It takes a few minutes a tree for all 89 catalog groups (481 models).
 
 1. **Two scratch worktrees under `.claude/worktrees/`** (the hook refuses other places), made with `git worktree add --detach` so there is no branch to delete:
-   `verify-old` (the base, or `main` with the change reverted) and `verify-new` (the branch). Delete `site/models/*.glb` in both, so every file compared was built from
-   that tree's scripts. **Never do this in your own checkout**: the builds delete and rewrite the tracked `site/models/*.glb` and write `art/data/interactions.json`.
+   `verify-old` (the base, or `main` with the change reverted) and `verify-new` (the branch). Delete `site/models/*.glb` and `art/data/interactions.json` in both (the build
+   merges into an existing file), so every file compared was built from that tree's scripts. **Never do this in your own checkout**: the builds delete and rewrite the tracked `site/models/*.glb` and write `art/data/interactions.json`.
 2. **Build every group of `tools/catalog.py` in each tree** with `tools/build_site_assets.py` (it writes into its own tree's `site/models/`, `out/meta/` and
    `art/data/`). One group per `runpy` call, a time budget per Blender call (a call that runs a minute or more can lose its reply while Blender carries on, see
    `blender-assets`: ask for the progress with a short call, do not start it again), and drop every module loaded from the repository's `art/scripts` or `tools` before each
@@ -69,7 +69,7 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
                del sys.modules[name]
        sys.path.insert(0, tree + "/tools")
        sys.path.insert(0, tree + "/art/scripts")
-   # bpy.app.driver_namespace.pop("verify_" + LABEL, None)      # <- once, before the first call of a new run
+   # bpy.app.driver_namespace.pop("verify_" + LABEL, None)      # <- uncomment for the first call of a run only, then comment it out again
    state = bpy.app.driver_namespace.setdefault("verify_" + LABEL, {"idx": 0, "failed": {}, "names": None})
    switch_tree(TREE)
    if state["names"] is None:
@@ -90,7 +90,7 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
 
 3. **Compare**: `python tools/compare_builds.py .claude/worktrees/verify-old .claude/worktrees/verify-new` (from the checkout that holds both). It reports byte-identical,
    same data in another order, different, and in one build only for `site/models/*.glb` and `out/meta/*.json`, and compares `art/data/interactions.json` (hinge pivots,
-   axes and limits, which are not in a GLB). Exit 1 if anything differs, 2 if a build is missing or empty (nothing built is not a pass). Expect 477 of 481 GLBs
+   axes and limits, which are not in a GLB). Exit 1 if anything differs (or `interactions.json` is missing), 2 if a build's GLBs or meta files are missing or empty (nothing built is not a pass); `failed` in the driver's state must be `{}` before the `interactions.json` line means anything. Expect 477 of 481 GLBs
    byte-identical: `GP_Grey_01`, `GP_Nordic_01`, `GP_Reptilian_01` and `GP_Shadow_01` come out with their vertices and index buffer in another order between any two
    builds, even from the same code, so the tool counts the same JSON, the same triangles (winding included) with the same full attributes at each corner (position,
    normal, UV, joints, weights), the same animation and inverse-bind data and the same embedded images as the same. To see that the noise is real the first time, build the
@@ -106,6 +106,6 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
 
 The backlog gets its own PRs, one rule or one file at a time, never mixed into a PR about a model or the site. Take `python tools/sonar_issues.py` for the
 rule list and `https://sonarcloud.io/project/issues?id=khanjal_iron-raptor-lowpoly&resolved=false&rules=<rule>` for the sites. Rebuilding a Blender script
-changes models, so a refactor of `art/scripts/` must prove the output is unchanged: rebuild and compare the models before and after, as the next section
+changes models, so a refactor of `art/scripts/` must prove the output is unchanged: rebuild and compare the models before and after, as the section above
 describes (`tools/glbinfo.py` shows only sizes, nodes and clips, so matching output from it proves little about geometry or colour), and say which models you compared. Read each `S3776` refactor with the script open; cognitive complexity is where a reshape silently changes behaviour.
 Counts in this file are not kept: regenerate them from the script.

@@ -136,6 +136,8 @@ class Main(unittest.TestCase):
             (side / "site" / "models").mkdir(parents=True)
             (side / "out" / "meta").mkdir(parents=True)
             (side / "out" / "meta" / "M.json").write_text('{"triangles": 1}', encoding="utf-8")      # a build writes these beside the GLBs
+            (side / "art" / "data").mkdir(parents=True)
+            (side / "art" / "data" / "interactions.json").write_text('{"door": {"limit": 90}}', encoding="utf-8")
 
     def run_main(self, first, second):
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
@@ -159,11 +161,18 @@ class Main(unittest.TestCase):
     def test_interactions_json_is_compared_too(self):
         for side in (self.a, self.b):
             (side / "site" / "models" / "M.glb").write_bytes(make_glb(SQUARE, [0, 1, 2]))
-            (side / "art" / "data").mkdir(parents=True)
-            (side / "art" / "data" / "interactions.json").write_text('{"door": {"limit": 90}}', encoding="utf-8")
         self.assertEqual(self.run_main(self.a, self.b), 0)
         (self.b / "art" / "data" / "interactions.json").write_text('{"door": {"limit": 100}}', encoding="utf-8")
         self.assertEqual(self.run_main(self.a, self.b), 1)
+        for side in (self.a, self.b):
+            (side / "art" / "data" / "interactions.json").unlink()
+        self.assertEqual(self.run_main(self.a, self.b), 1)                  # missing from both: the interactive groups did not run
+
+    def test_an_empty_meta_folder_is_not_a_pass(self):
+        for side in (self.a, self.b):
+            (side / "site" / "models" / "M.glb").write_bytes(make_glb(SQUARE, [0, 1, 2]))
+            (side / "out" / "meta" / "M.json").unlink()
+        self.assertEqual(self.run_main(self.a, self.b), 2)
 
 
 if __name__ == "__main__":
