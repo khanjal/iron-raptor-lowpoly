@@ -16,6 +16,7 @@ FRIDGE_TYPE = "appliances/kitchen/fridge"
 SOFA_TYPE = "furniture/seating/sofa"
 CAT_TYPE = "animals/pet/cat"
 DOG_TYPE = "animals/pet/dog"
+DEER_TYPE = "animals/wild/deer"
 
 
 # ===== Ids ===========================================================================================================
@@ -173,6 +174,9 @@ BUILD = {
                              "dog_retriever": "GN_DogRetriever_faceted_01", "dog_shepherd": "GN_DogShepherd_faceted_01", "dog_beagle": "GN_DogBeagle_faceted_01",
                              "dog_bulldog": "GN_DogBulldog_faceted_01", "dog_dachshund": "GN_DogDachshund_faceted_01", "dog_stray": "GN_DogStray_faceted_01",
                              "sheep": "GN_Sheep_faceted_01", "pig": "GN_Pig_faceted_01", "goat": "GN_Goat_faceted_01"}},
+    "wildlife": {"kind": "animals", "clips": ["Idle", "Walk"],
+                     "animals": {"raccoon": "GN_Raccoon_faceted_01", "opossum": "GN_Opossum_faceted_01", "skunk": "GN_Skunk_faceted_01", "fox": "GN_Fox_faceted_01",
+                              "deer_doe": "GN_DeerDoe_faceted_01", "deer_buck": "GN_DeerBuck_faceted_01", "deer_fawn": "GN_DeerFawn_faceted_01", "bear": "GN_Bear_faceted_01"}},
     "birds": {"kind": "animals", "birds": True, "clips": [], "animals": {"chicken_hen": "GN_ChickenHen_faceted_01"}},
 }
 
@@ -329,6 +333,14 @@ _a("GN_CatCalico_faceted_01", "Cat, calico", CAT_TYPE, "pet cat animal quadruped
 _a("GN_CatSiamese_faceted_01", "Cat, Siamese", CAT_TYPE, "pet cat animal quadruped siamese cream brown points", "cat")
 _a("GN_CatKitten_faceted_01", "Kitten", CAT_TYPE, "pet cat animal quadruped kitten young small cream tabby")
 # insects (rigged for the browser: wings, legs and antennae move; real size in millimetres)
+_a("GN_Raccoon_faceted_01", "Raccoon", "animals/wild/raccoon", "wild woodland suburban raccoon mask grey ringed-tail animal quadruped")
+_a("GN_Opossum_faceted_01", "Opossum", "animals/wild/opossum", "wild woodland suburban opossum possum grey white pink animal quadruped")
+_a("GN_Skunk_faceted_01", "Skunk", "animals/wild/skunk", "wild woodland suburban skunk black white striped animal quadruped")
+_a("GN_Fox_faceted_01", "Red fox", "animals/wild/fox", "wild woodland rural fox red orange animal quadruped")
+_a("GN_DeerDoe_faceted_01", "White-tailed deer, doe", DEER_TYPE, "wild woodland rural deer doe tan animal quadruped", "deer")
+_a("GN_DeerBuck_faceted_01", "White-tailed deer, buck", DEER_TYPE, "wild woodland rural deer buck stag antlers tan animal quadruped", "deer")
+_a("GN_DeerFawn_faceted_01", "White-tailed deer, fawn", DEER_TYPE, "wild woodland rural deer fawn young spotted small tan animal quadruped", "deer")
+_a("GN_Bear_faceted_01", "Black bear", "animals/wild/bear", "wild woodland mountain bear black big animal quadruped")
 _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
 _a("GN_Firefly_01", "Firefly", "animals/insect/firefly", "wild night insect bug glow lightning-bug tiny")

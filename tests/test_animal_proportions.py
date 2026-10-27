@@ -25,7 +25,7 @@ finally:
 NAMES = ("LH", "width", "depth", "elbow", "head", "head_w", "carry", "leg_top", "leg_low", "paw")
 SPECIES = {"cat": species_pets.CATS["cat_tabby"], "collie": species_pets.DOGS["dog_collie"], "husky": species_pets.DOGS["dog_husky"],
            **{k: species_pets.DOGS["dog_" + k] for k in ("retriever", "shepherd", "beagle", "bulldog", "dachshund")},
-           **{k: species.SPECIES[k] for k in ("cow", "horse", "pig", "sheep", "goat")}}
+           **{k: species.SPECIES[k] for k in ("cow", "horse", "pig", "sheep", "goat", "raccoon", "opossum", "skunk", "fox", "bear")}, "deer": species.SPECIES["deer_doe"]}
 
 
 def brief_rows():

@@ -655,5 +655,36 @@
  "GN_DogStray_faceted_01": {
   "cream": "Chest, belly, socks and tail tip",
   "dark_brown": "Patches and ears"
+ },
+ "GN_Bear_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DeerDoe_faceted_01": {
+  "cream": "Belly, throat and muzzle",
+  "black": "Nose and hooves"
+ },
+ "GN_DeerBuck_faceted_01": {
+  "cream": "Belly, throat and muzzle",
+  "horn_cream": "Antlers",
+  "black": "Nose and hooves"
+ },
+ "GN_DeerFawn_faceted_01": {
+  "paint_white": "Spots and tail",
+  "cream": "Belly, throat and muzzle",
+  "black": "Nose and hooves"
+ },
+ "GN_Fox_faceted_01": {
+  "paint_white": "Chest, cheeks and tail tip",
+  "black": "Stockings, ear tips and nose"
+ },
+ "GN_Opossum_faceted_01": {
+  "paint_white": "Face",
+  "pink": "Nose, feet and tail"
+ },
+ "GN_Raccoon_faceted_01": {
+  "black": "Mask, feet and tail rings"
+ },
+ "GN_Skunk_faceted_01": {
+  "paint_white": "Stripes, blaze and tail"
  }
 }

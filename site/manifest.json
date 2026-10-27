@@ -2328,6 +2328,398 @@
    ]
   },
   {
+   "id": "GN_Bear_faceted_01",
+   "name": "Black bear",
+   "type": "animals/wild/bear",
+   "tags": [
+    "animal",
+    "bear",
+    "big",
+    "black",
+    "mountain",
+    "quadruped",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 736,
+   "size": [
+    0.653,
+    0.989,
+    1.928
+   ],
+   "glb": "models/GN_Bear_faceted_01.glb",
+   "thumb": "thumbs/GN_Bear_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerBuck_faceted_01",
+   "name": "White-tailed deer, buck",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "antlers",
+    "buck",
+    "deer",
+    "quadruped",
+    "rural",
+    "stag",
+    "tan",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1016,
+   "size": [
+    0.361,
+    1.806,
+    1.76
+   ],
+   "glb": "models/GN_DeerBuck_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerBuck_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerDoe_faceted_01",
+    "GN_DeerFawn_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Antlers",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    },
+    {
+     "part": "Nose and hooves",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerDoe_faceted_01",
+   "name": "White-tailed deer, doe",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "deer",
+    "doe",
+    "quadruped",
+    "rural",
+    "tan",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 764,
+   "size": [
+    0.316,
+    1.47,
+    1.678
+   ],
+   "glb": "models/GN_DeerDoe_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerDoe_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerBuck_faceted_01",
+    "GN_DeerFawn_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Nose and hooves",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerFawn_faceted_01",
+   "name": "White-tailed deer, fawn",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "deer",
+    "fawn",
+    "quadruped",
+    "rural",
+    "small",
+    "spotted",
+    "tan",
+    "wild",
+    "woodland",
+    "young"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 764,
+   "size": [
+    0.193,
+    0.896,
+    1.023
+   ],
+   "glb": "models/GN_DeerFawn_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerFawn_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerDoe_faceted_01",
+    "GN_DeerBuck_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Spots and tail",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Nose and hooves",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Fox_faceted_01",
+   "name": "Red fox",
+   "type": "animals/wild/fox",
+   "tags": [
+    "animal",
+    "fox",
+    "orange",
+    "quadruped",
+    "red",
+    "rural",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 756,
+   "size": [
+    0.194,
+    0.603,
+    1.255
+   ],
+   "glb": "models/GN_Fox_faceted_01.glb",
+   "thumb": "thumbs/GN_Fox_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Chest, cheeks and tail tip",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Stockings, ear tips and nose",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Opossum_faceted_01",
+   "name": "Opossum",
+   "type": "animals/wild/opossum",
+   "tags": [
+    "animal",
+    "grey",
+    "opossum",
+    "pink",
+    "possum",
+    "quadruped",
+    "suburban",
+    "white",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 732,
+   "size": [
+    0.136,
+    0.214,
+    0.696
+   ],
+   "glb": "models/GN_Opossum_faceted_01.glb",
+   "thumb": "thumbs/GN_Opossum_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 37,
+     "hex": "#7C8088"
+    },
+    {
+     "part": "Face",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Nose, feet and tail",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
+   "id": "GN_Raccoon_faceted_01",
+   "name": "Raccoon",
+   "type": "animals/wild/raccoon",
+   "tags": [
+    "animal",
+    "grey",
+    "mask",
+    "quadruped",
+    "raccoon",
+    "ringed-tail",
+    "suburban",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 732,
+   "size": [
+    0.216,
+    0.313,
+    0.803
+   ],
+   "glb": "models/GN_Raccoon_faceted_01.glb",
+   "thumb": "thumbs/GN_Raccoon_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 19,
+     "hex": "#8C8C88"
+    },
+    {
+     "part": "Mask, feet and tail rings",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Skunk_faceted_01",
+   "name": "Skunk",
+   "type": "animals/wild/skunk",
+   "tags": [
+    "animal",
+    "black",
+    "quadruped",
+    "skunk",
+    "striped",
+    "suburban",
+    "white",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 744,
+   "size": [
+    0.16,
+    0.384,
+    0.621
+   ],
+   "glb": "models/GN_Skunk_faceted_01.glb",
+   "thumb": "thumbs/GN_Skunk_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Stripes, blaze and tail",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
    "id": "GI_BreadBox_01",
    "name": "Bread box",
    "type": "appliances/kitchen/bread-box",
