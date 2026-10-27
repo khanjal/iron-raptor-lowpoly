@@ -247,7 +247,9 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     head = [(yy * k, dz * k, hw * k, hh * k) for yy, dz, hw, hh in                 # neck root first; the skull (ring 2) carries the ears, the cheeks (3) are the widest
             [(-0.13, 0.215, 0.060, 0.070), (-0.18, 0.255, 0.054, 0.064), (-0.222, 0.272, 0.052, 0.058), (-0.250, 0.270, 0.053, 0.058),
              (-0.285, 0.256, 0.052, 0.050), (-0.312, 0.245, 0.040, 0.038), (-0.326, 0.240, 0.030, 0.030), (-0.332, 0.237, 0.024, 0.024)]]
-    head = [(head[0][0] + (y - head[0][0]) * head_k, head[0][1] + (z - head[0][1]) * head_k, w * head_k, h * head_k) for y, z, w, h in head]
+    if head_k != 1.0:                                      # the neck root (ring 0) stays inside the shoulders; the rest grows about it
+        y0, z0 = head[0][:2]
+        head = head[:1] + [(y0 + (y - y0) * head_k, z0 + (z - z0) * head_k, w * head_k, h * head_k) for y, z, w, h in head[1:]]
     fr = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
           [(0.20, 0, 0.028, 0.036), (0.12, 0, 0.021, 0.026), (0.06, 0, 0.017, 0.021), (0.03, 0, 0.015, 0.02), (0.0, -0.014, 0.024, 0.03)]]
     hn = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in

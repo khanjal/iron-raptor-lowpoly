@@ -90,7 +90,7 @@ A variant is a recolour (the paint system, `tools/paints.py`), not a second mode
 | `GN_DogCollie_faceted_01` | black and tan (default), brown and white, blue merle, yellow, brindle (the farm dog's coats, already in `DOG_SKINS`) |
 | `GN_DogHusky_faceted_01` | grey and white (default), black and white, red and white, all white; eyes blue or brown |
 
-The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 m to the back (estimated from photographs and growth charts: 0.13-0.18 m at that age), its head 1.15 times the adult's (37 % of the trunk; a kitten's head is larger for its body than a cat's, estimated 35-45 %) and its eyes larger; it passes the adult cat's ranges. Breed variants of the dogs (retriever, beagle, shepherd, bulldog, dachshund, stray) are separate species of `species_pets` that are not in the site yet; they are rebuilt to the same ranges when they are added.
+The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 m to the back (estimated from photographs and growth charts: 0.13-0.18 m at that age), its head 1.15 times the adult's (37 % of the trunk; a kitten's head is larger for its body than a cat's, estimated 35-45 %) and its eyes about 1.44 times the adult's; it is checked against the adult cat's ranges, which it passes, but a head above 40 % of the trunk would need a kitten row of its own in `animal_proportions.RANGES`. Breed variants of the dogs (retriever, beagle, shepherd, bulldog, dachshund, stray) are separate species of `species_pets` that are not in the site yet; they are rebuilt to the same ranges when they are added.
 
 ## Views to check
 

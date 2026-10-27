@@ -1866,25 +1866,25 @@
    ],
    "paintable": [
     {
-     "part": "Coat",
-     "swatch": 32,
-     "hex": "#E08A3C"
-    },
-    {
      "part": "Stripes",
      "swatch": 4,
      "hex": "#9A5A3A"
+    },
+    {
+     "part": "Coat",
+     "swatch": 32,
+     "hex": "#E08A3C"
     }
    ],
    "paints": [
     {
      "name": "Orange tabby",
-     "hex": "#E08A3C",
+     "hex": "#9A5A3A",
      "swap": {}
     },
     {
      "name": "Grey tabby",
-     "hex": "#7C8088",
+     "hex": "#5A5F66",
      "swap": {
       "32": "#7C8088",
       "4": "#5A5F66"
@@ -20657,7 +20657,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Pickup_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -20687,7 +20686,8 @@
    ],
    "aliases": [
     "GV_Pickup_Blue_01"
-   ]
+   ],
+   "interactions": "models/GV_Pickup_01.interactions.json"
   },
   {
    "id": "GV_Tractor_01",
@@ -21015,7 +21015,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Ambulance_White_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21042,7 +21041,8 @@
      "swatch": 2,
      "hex": "#A9B4BC"
     }
-   ]
+   ],
+   "interactions": "models/GV_Ambulance_White_01.interactions.json"
   },
   {
    "id": "GV_Motorcycle_01",
@@ -21099,7 +21099,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Motorcycle_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21129,7 +21128,8 @@
    ],
    "aliases": [
     "GV_Motorcycle_Red_01"
-   ]
+   ],
+   "interactions": "models/GV_Motorcycle_01.interactions.json"
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -21309,7 +21309,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Police_Sheriff_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21336,7 +21335,8 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Police_Sheriff_01.interactions.json"
   },
   {
    "id": "GV_Sedan_01",
@@ -21760,7 +21760,6 @@
    "variants": [
     "GV_Sedan_01"
    ],
-   "interactions": "models/GV_Sedan_Damaged_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21785,7 +21784,8 @@
    ],
    "aliases": [
     "GV_Sedan_Red_Damaged_01"
-   ]
+   ],
+   "interactions": "models/GV_Sedan_Damaged_01.interactions.json"
   },
   {
    "id": "GV_Taxi_Yellow_01",
@@ -21964,7 +21964,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Taxi_Yellow_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21986,7 +21985,8 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ]
+   ],
+   "interactions": "models/GV_Taxi_Yellow_01.interactions.json"
   },
   {
    "id": "GV_Van_01",
@@ -22149,7 +22149,6 @@
    },
    "clips": [],
    "variants": [],
-   "interactions": "models/GV_Van_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -22179,7 +22178,8 @@
    ],
    "aliases": [
     "GV_Van_Brown_01"
-   ]
+   ],
+   "interactions": "models/GV_Van_01.interactions.json"
   },
   {
    "id": "GV_ShipBunk_01",
