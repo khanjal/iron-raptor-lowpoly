@@ -27,7 +27,21 @@ Generic things in the shared style fit, whatever they are: a wheelbarrow, a park
 
 ## Milestones
 
-Every issue belongs to a milestone, a theme or goal rather than a release (there are no version numbers yet): Trustworthy base, Browser and exports, Clear glass and openings, Animals (part 1: real and farm; part 2: past and fantasy), People and animation, Vehicles and transport, Buildings, props and tools, Food and everyday goods, Themed packs, and Decisions (policy questions to settle before the work they affect). See the [milestones](../../milestones) for what is in each. A new issue is placed in the closest one when it is triaged.
+The maintainer places each issue in a milestone when it is triaged. Reporters cannot set one and do not need to. A milestone is a theme or goal, not a release (there are no version numbers yet). The 11 milestones are:
+
+- Trustworthy base
+- Browser and exports
+- Clear glass and openings
+- Animals, part 1: real and farm
+- Animals, part 2: past and fantasy
+- People and animation
+- Vehicles and transport
+- Buildings, props and tools
+- Food and everyday goods
+- Themed packs
+- Decisions (policy questions to settle before the work they affect)
+
+See the [milestones](https://github.com/khanjal/iron-raptor-lowpoly/milestones) for what is in each.
 
 ## Send a change
 
