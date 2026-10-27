@@ -27,6 +27,14 @@ INTERACTIONS = ROOT / "art" / "data" / "interactions.json"
 DEV_WORLD = ROOT / "Logs" / "dev_world_inventory.json"
 OUT = ROOT / "docs" / "assets" / "inventory.md"
 
+
+def project_path(arg):
+    """`arg` as a resolved path; ValueError when it is not inside the project."""
+    path = Path(arg).resolve()
+    if not path.is_relative_to(ROOT.resolve()):
+        raise ValueError(f"outside the project: {arg}")
+    return path
+
 STYLES = ("Classic", "Modern", "Retro", "Damaged")
 STYLE_GROUPS = ("Household", "Decor", "Interactive")   # their style folders are a column of the parent's table, not tables
 ANIM_MARK = "@"                                     # the at sign of a clip file, `GP_Humanoid@Idle.fbx`
@@ -102,7 +110,7 @@ def collect(art=ART, interactions=INTERACTIONS):
 
 def load_dev_world(path=DEV_WORLD):
     """{id: {"tris", "materials"}} from the dev test world's file; empty when the file is missing or unreadable."""
-    path = Path(path)
+    path = project_path(path)
     if not path.exists():
         return {}
     try:
@@ -206,10 +214,14 @@ def main(argv=None):
     ap.add_argument("--check", action="store_true", help="write nothing; exit 1 if the file differs from what would be written")
     args = ap.parse_args(argv)
 
+    try:
+        out = project_path(args.out)
+        dev_world = load_dev_world(args.dev_world) if args.dev_world else {}
+    except ValueError as e:
+        print(f"inventory: {e}", file=sys.stderr)
+        return 2
     models = collect()
-    dev_world = load_dev_world(args.dev_world) if args.dev_world else {}
     text = render(models, dev_world)
-    out = Path(args.out)
     if args.check:
         same = out.exists() and out.read_text(encoding="utf-8") == text
         print("inventory: up to date" if same else f"inventory: {out} is out of date, run art/scripts/inventory.py")

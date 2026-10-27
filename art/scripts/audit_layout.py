@@ -25,6 +25,15 @@ from collections import defaultdict
 from pathlib import Path
 
 DEFAULT_JSON = "Logs/farmstead_layout.json"
+ROOT = Path(__file__).resolve().parent.parent.parent
+
+
+def layout_path(arg):
+    """The layout dump to read (the default in the repository when `arg` is None); ValueError when it is not inside the project."""
+    path = (Path(arg) if arg else ROOT / DEFAULT_JSON).resolve()
+    if not path.is_relative_to(ROOT.resolve()):
+        raise ValueError(f"outside the project: {arg}")
+    return path
 GEOMETRY_JSON = Path(__file__).resolve().parent.parent / "data" / "prop_geometry.json"   # written by audit_props.py (WRITE=True)
 
 # =====================================================================================================================
@@ -927,7 +936,11 @@ def main(argv=None):
             print(f"{name:10} {fn.__doc__.strip().splitlines()[0]}")
         return 0
 
-    path = Path(args.json) if args.json else Path(__file__).resolve().parent.parent.parent / DEFAULT_JSON
+    try:
+        path = layout_path(args.json)
+    except ValueError as e:
+        print(f"layout audit: {e}", file=sys.stderr)
+        return 2
     if not path.exists():
         print(f"layout audit: {path} not found: run FarmsteadLayoutDump.Run (see the layout-audit skill)", file=sys.stderr)
         return 2

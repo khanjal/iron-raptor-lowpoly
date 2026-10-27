@@ -52,8 +52,8 @@ def stamp_bytes(raw, copyright=COPYRIGHT):
 
 
 def stamp(path, copyright=COPYRIGHT):
-    """Stamp one file in place; True if it changed."""
-    path = Path(path)
+    """Stamp one file in place; True if it changed. ValueError when the file is not inside the project."""
+    path = project_path(path)
     raw = path.read_bytes()
     new = stamp_bytes(raw, copyright)
     if new == raw:

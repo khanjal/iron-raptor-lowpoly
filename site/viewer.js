@@ -216,7 +216,7 @@ export class Viewer {
       light.position.set(x, z, -y);
       if (spot) { light.target.position.set(x, z - 1, -y); root.add(light.target); }
       root.add(light);
-      this.lights.push({ light, base: light.intensity, flicker: !!e.flicker, when: e.when || 'on', phase: Math.random() * 10 });
+      this.lights.push({ light, base: light.intensity, flicker: !!e.flicker, when: e.when || 'on', phase: Math.random() * 10 }); // NOSONAR: visual flicker phase, not security
     }
   }
 

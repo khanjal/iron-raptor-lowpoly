@@ -283,7 +283,7 @@ def firewood_loose():
             a = rng.uniform(0, 360)
             d = rng.uniform(0, spread)
             x, y = d * math.cos(math.radians(a)), d * math.sin(math.radians(a))
-            p.cyl("wood_dark" if rng.random() < 0.5 else "wood_light", (x, y, z), 0.075, rng.uniform(0.4, 0.55), n=6, axis="y",
+            p.cyl("wood_dark" if rng.random() < 0.5 else "wood_light", (x, y, z), 0.075, rng.uniform(0.4, 0.55), n=6, axis="y",  # NOSONAR: seeded modelling variation, not security
                   rot=(0, 0, rng.uniform(0, 180)))
     return p
 
