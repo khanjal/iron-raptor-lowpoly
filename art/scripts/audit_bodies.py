@@ -365,6 +365,11 @@ def audit(path, mf=None, ref=None):
             bpy.data.objects.remove(o, do_unlink=True)
 
 
+def _is_floating(i, p, pieces, surface):
+    """Whether piece p (number i) touches no other piece: by its surface when `surface`, else by its box."""
+    return not any(_meets(p, q) and (touches(p, q) if surface else True) for j, q in enumerate(pieces) if j != i)
+
+
 def _floating_problems(stem, pieces, problems, notes):
     """Pieces that touch no other piece: a person's float is a fault, an alien's judged by the surface, a few models may float on purpose."""
     # --- floating pieces ---------------------------------------------------------------------------------------------------------
@@ -373,7 +378,7 @@ def _floating_problems(stem, pieces, problems, notes):
     else:
         surface = stem in ALIENS or stem in OTHER_ALIENS      # the people's face boxes still float a few millimetres off the skin (#183): the box test for them
         for i, p in enumerate(pieces):
-            if not any(_meets(p, q) and (touches(p, q) if surface else True) for j, q in enumerate(pieces) if j != i):
+            if _is_floating(i, p, pieces, surface):
                 problems.append(f"floating piece ({p.group}, z {p.z0:.2f}-{p.z1:.2f}, x {p.x0:+.2f}..{p.x1:+.2f}): " + ("its surface touches no other piece's" if surface else "its box meets no other piece's"))
 
 
@@ -414,22 +419,25 @@ def _alien_skull_eyes(pieces, skull, problems):
     _eyes(cands, [skull], problems, "skull")
 
 
-def _join_problems(parts, neck, problems):
-    """Neck to skull and torso, arms to the torso, legs to the pelvis, shoes to the legs."""
-    skull, torso, arms, legs, shoes = parts.skull, parts.torso, parts.arms, parts.legs, parts.shoes
-    if neck.z1 - skull.z0 < 0.004:
-        problems.append(f"the neck does not reach the skull ({neck.z1 - skull.z0:+.3f} m into it)")
-    if torso.z1 - neck.z0 < 0.004:
-        problems.append(f"the neck does not reach the torso ({torso.z1 - neck.z0:+.3f} m into it)")
+def _arm_join_problems(torso, arms, problems):
+    """Each arm starts inside the torso's edge at its height."""
     for a in arms:
         near = [v for v in torso.pts if abs(v.z - (a.z0 + a.z1) * 0.5) < 0.08]
         reach = max((abs(v.x) for v in near), default=0.0)
         inner = min(abs(a.x0), abs(a.x1))
         if inner > reach + 0.005:
             problems.append(f"an arm starts outside the torso (its inner end at |x| {inner:.3f}, the torso's edge at {reach:.3f})")
+
+
+def _leg_join_problems(torso, legs, problems):
+    """Each leg reaches into the pelvis."""
     for leg in legs:
         if leg.z1 < torso.z0 + 0.01:
             problems.append(f"a leg does not reach into the pelvis (its top z {leg.z1:.3f}, the pelvis's bottom {torso.z0:.3f})")
+
+
+def _shoe_join_problems(legs, shoes, problems):
+    """Each shoe reaches its leg and its heel covers the leg's back edge."""
     for s in shoes:
         near = [l for l in legs if abs((l.x0 + l.x1) * 0.5 - (s.x0 + s.x1) * 0.5) < 0.1]
         if near and s.z1 < near[0].z0 - 0.002:
@@ -438,6 +446,18 @@ def _join_problems(parts, neck, problems):
             back = max((p.y for p in near[0].pts if p.z < near[0].z0 + 0.03), default=None)
             if back is not None and s.y1 < back - 0.004:
                 problems.append(f"the back of a leg overhangs its shoe (the leg's bottom edge at y {back:.3f}, the heel ends at {s.y1:.3f})")
+
+
+def _join_problems(parts, neck, problems):
+    """Neck to skull and torso, arms to the torso, legs to the pelvis, shoes to the legs."""
+    skull, torso = parts.skull, parts.torso
+    if neck.z1 - skull.z0 < 0.004:
+        problems.append(f"the neck does not reach the skull ({neck.z1 - skull.z0:+.3f} m into it)")
+    if torso.z1 - neck.z0 < 0.004:
+        problems.append(f"the neck does not reach the torso ({torso.z1 - neck.z0:+.3f} m into it)")
+    _arm_join_problems(torso, parts.arms, problems)
+    _leg_join_problems(torso, parts.legs, problems)
+    _shoe_join_problems(parts.legs, parts.shoes, problems)
 
 
 def _basic_measures(parts, neck, measures):
