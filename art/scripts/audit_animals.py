@@ -23,7 +23,8 @@ It builds every species in species.py (no export: it audits the parts the builde
    - the back height, the head-and-body length and (for the wildlife) the tail length are within the real animal's range (with a little slack): a model
      that is 40% too tall or too long looks wrong beside a person or a cow
 
- PROPORTIONS (docs/assets/briefs/animals.md; animal_proportions.py has the ranges)
+ PROPORTIONS AND SHAPE (docs/assets/briefs/animals.md; animal_proportions.py has the ranges and the shape limits: the belly's tuck, legs that start inside the
+ body, the hind leg's angle at the stifle and hock, a neck that leaves the chest rather than the top of the back)
    - every four-legged species (animal_proportions.ENFORCED) fails when a ratio (trunk length to height, body width and depth, chest height, head length and
      width, head carriage, leg width, paw length) is outside the brief's range; the hen (biped_bird.CHICKEN_HEN, not a species of species.py) is checked against
      animal_proportions.HEN at the end
@@ -231,7 +232,7 @@ def _proportion_problems(key, sp):
     problems = []
     row = animal_proportions.KEYS.get(key)
     if row:
-        misses = animal_proportions.check(row, sp)
+        misses = animal_proportions.check(row, sp) + [f"shape: {m}" for m in animal_proportions.check_shape(row, sp)]
         if row in animal_proportions.ENFORCED:
             problems += [f"proportions: {m}" for m in misses]
         else:
