@@ -35,6 +35,12 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | Cat, domestic shorthair (4-5 kg) | 0.23-0.28 m | 0.30-0.38 m | 0.12-0.15 / 0.12-0.15 m | about 45 % of H | 0.09-0.11 m, 30-35 % | short; the head rides just above the back; head a round wedge, 0.07-0.08 m wide | small oval paws, 0.045-0.055 m long |
 | Collie / farm dog (Border Collie; 14-25 kg) | 0.46-0.56 m | 0.52-0.62 m | 0.17-0.22 / 0.23-0.27 m | about 50 % of H | 0.19-0.23 m, 38 % | 0.15-0.2 m, raises the head 10-20 % above the withers | oval paws 0.09-0.10 m long |
 | Husky (Siberian; 16-27 kg) | 0.51-0.60 m | 0.55-0.66 m | 0.19-0.24 / 0.25-0.29 m | about 50 % of H | 0.21-0.24 m, 36 % | strong, 0.15-0.2 m | large oval paws, 0.10-0.11 m |
+| Golden retriever (25-34 kg) | 0.55-0.61 m | 0.60-0.70 m | 0.22-0.28 / 0.27-0.31 m | about 50 % of H | 0.22-0.25 m, 35 % | strong, medium; head carried a little above the back | round paws, 0.10-0.11 m |
+| German shepherd (22-40 kg) | 0.55-0.66 m | 0.65-0.78 m (longer than tall, about 10 : 8.5) | 0.20-0.26 / 0.27-0.32 m | about 50 % of H | 0.24-0.27 m, 36 % | long, muscular, carried forward | oval paws, 0.10-0.12 m |
+| Beagle (9-11 kg; the 15-inch variety) | 0.33-0.38 m | 0.40-0.48 m | 0.16-0.20 / 0.18-0.22 m | about 45 % of H | 0.17-0.20 m, 40 % | medium, clean; head carried up | round paws, 0.06-0.07 m |
+| Bulldog (English; 18-23 kg) | 0.31-0.38 m | 0.40-0.50 m | 0.28-0.35 / 0.22-0.27 m | 30-40 % of H (a low, deep brisket) | 0.12-0.15 m to the skull, a muzzle of only 3-5 cm | very short and thick: the head sits on the shoulders | broad, thick paws, 0.08-0.10 m |
+| Dachshund (standard; 7-15 kg) | 0.20-0.23 m | 0.38-0.46 m (about twice the height) | 0.11-0.14 / 0.13-0.16 m | about a third of H (the ground clearance) | 0.16-0.19 m, 40 % | long, carried up | large front paws for its size, 0.06-0.07 m |
+| Stray (a medium mixed breed) | 0.40-0.55 m | about the collie's | as the collie | about 50 % | as the collie | as the collie | as the collie |
 | Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 43-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
 | Horse (riding, 15-15.2 hands = 1.52-1.57 m) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.58 / 0.75-0.95 m | 49-55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
 | Pig (domestic, market) | 0.75-1.0 m | 1.05-1.4 m | 0.50-0.65 / 0.50-0.65 m | 33 % | 0.36-0.45 m, 30-35 % | short and thick; jowl; ham at the rear | small cloven hooves |
@@ -44,13 +50,18 @@ All shares are of the back height **H** (top of the body over the withers) or th
 
 ## Proportion table: the audit's ranges
 
-These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The hen is a biped and has its own table below.
+These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The breeds' rows (#125) are estimates from the American Kennel Club standards' heights and photographs, like the collie's; the stray is checked against the collie's row. The hen is a biped and has its own table below.
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | cat | 1.05-1.65 | 0.43-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.64-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
 | collie | 0.95-1.35 | 0.30-0.50 | 0.44-0.58 | 0.44-0.54 | 0.31-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | husky | 0.95-1.30 | 0.32-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| retriever | 1.00-1.35 | 0.34-0.54 | 0.44-0.58 | 0.44-0.54 | 0.31-0.42 | 0.52-0.70 | 1.05-1.30 | 0.13-0.19 | 0.08-0.12 | 0.16-0.25 |
+| shepherd | 1.05-1.35 | 0.32-0.50 | 0.44-0.58 | 0.44-0.54 | 0.32-0.44 | 0.44-0.60 | 1.05-1.35 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
+| beagle | 1.00-1.35 | 0.36-0.54 | 0.46-0.60 | 0.42-0.52 | 0.32-0.44 | 0.48-0.66 | 1.05-1.35 | 0.13-0.19 | 0.08-0.12 | 0.16-0.25 |
+| bulldog | 1.05-1.35 | 0.65-0.95 | 0.55-0.75 | 0.28-0.42 | 0.22-0.34 | 1.15-1.60 | 1.00-1.30 | 0.20-0.30 | 0.13-0.20 | 0.26-0.40 |
+| dachshund | 1.65-2.20 | 0.45-0.70 | 0.58-0.78 | 0.25-0.38 | 0.32-0.46 | 0.38-0.56 | 1.20-1.55 | 0.18-0.30 | 0.11-0.19 | 0.24-0.38 |
 | cow | 1.10-1.45 | 0.34-0.54 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
 | horse | 1.00-1.25 | 0.26-0.38 | 0.48-0.64 | 0.47-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
 | pig | 1.30-1.70 | 0.55-0.78 | 0.60-0.80 | 0.28-0.40 | 0.28-0.38 | 0.55-0.75 | 0.85-1.05 | 0.12-0.20 | 0.07-0.12 | 0.08-0.14 |
@@ -72,6 +83,12 @@ Measured by `measure_bird` on `biped_bird.CHICKEN_HEN`: H is the top of the head
 - **Cat**: round head with a short muzzle, two upright triangular ears set wide (kept); eyes large and forward (kept); whisker pads (faked: a lighter muzzle); a long tail carried up with a curve (kept); the arched, tucked back and the rounded rump (kept: the body sections rise at the hips); toe splits (dropped; the paw is a flat oval).
 - **Collie / farm dog**: long narrow head with a stop and a muzzle as long as the skull, half-folded ears, a ruff at the neck (the farm dog of #275, already there), a deep chest with a tucked waist, a tail with a hook (kept); feathered legs (faked with a colour).
 - **Husky**: wolf-like head with a blunt, full muzzle and a pale mask, erect triangular ears set close, a thick coat that makes the body look broad and the neck full, a tail carried in a sickle curve over the back (kept); the face mask in white (kept as a coat colour); eyes ice-blue or brown (a variant, below).
+- **Golden retriever** (#125): a broad skull and a strong muzzle, drop ears hanging beside the cheeks, a golden coat with lighter feathering under the tail, a straight tail carried level or low (kept); the feathering on the legs and chest (faked with the tail's underside only).
+- **German shepherd** (#125): large upright ears, a long muzzle with a black mask, a tan dog with a black saddle down its back and sides, a bushy tail hanging in a sabre curve (kept); the sloping topline (dropped: the shared rig's body is level).
+- **Beagle** (#125): a hound's head with long drop ears to the muzzle, a white muzzle and blaze, tan with a black saddle and white legs and belly, a tail carried up with a white tip (kept).
+- **Bulldog** (#125): a huge broad head on almost no neck, a very short muzzle, small rose ears, a wide chest on short, thick, wide-set legs and narrow hips, a stub of a tail, white with fawn patches (kept); the undershot jaw and the wrinkles (dropped).
+- **Dachshund** (#125): a long low body with about a third of its height under the chest, short thick legs, a long head with long ears, a tail carried in line with the back (kept); the dark chocolate coat is the palette's `dark_brown`.
+- **Stray** (#125): the farm dog's build at 0.88 of its size with a medium coat, folded ears and dark patches on tan: a dog with no breed in particular.
 - **Cow**: a deep barrel, a broad head carried level and tipped down with a wide muzzle, the knee halfway down the leg, a hoof (the bottom of the leg flared and dark), an udder, two horns and the Holstein patches (kept); the cloven split of the hoof (dropped).
 - **Horse**: a long arched neck, a long head tipped 45 degrees, a body as deep as the legs are long, a mane and a full tail, tall ears (kept); the hoof is round and dark (kept as the dark flared foot).
 - **Pig**: a long barrel as deep as it is wide, short legs, a big wedge head with jowls ending in a flat snout, floppy ears over the eyes, a curly tail (kept); the cloven hoof (dropped).
@@ -90,7 +107,7 @@ A variant is a recolour (the paint system, `tools/paints.py`), not a second mode
 | `GN_DogCollie_faceted_01` | black and tan (default), brown and white, blue merle, yellow, brindle (the farm dog's coats, already in `DOG_SKINS`) |
 | `GN_DogHusky_faceted_01` | grey and white (default), black and white, red and white, all white; eyes blue or brown |
 
-The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 m to the back (estimated from photographs and growth charts: 0.13-0.18 m at that age), its head 1.15 times the adult's (37 % of the trunk; a kitten's head is larger for its body than a cat's, estimated 35-45 %) and its eyes about 1.44 times the adult's; it is checked against the adult cat's ranges, which it passes, but a head above 40 % of the trunk would need a kitten row of its own in `animal_proportions.RANGES`. Breed variants of the dogs (retriever, beagle, shepherd, bulldog, dachshund, stray) are separate species of `species_pets` that are not in the site yet; they are rebuilt to the same ranges when they are added.
+The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 m to the back (estimated from photographs and growth charts: 0.13-0.18 m at that age), its head 1.15 times the adult's (37 % of the trunk; a kitten's head is larger for its body than a cat's, estimated 35-45 %) and its eyes about 1.44 times the adult's; it is checked against the adult cat's ranges, which it passes, but a head above 40 % of the trunk would need a kitten row of its own in `animal_proportions.RANGES`. The other dogs (retriever, shepherd, beagle, bulldog, dachshund, stray; issue #125) are models of their own, not paints: their shapes differ. They are built on the farm dog's builder by `species_farm_dog.make_breed` (the collie's sections moved and scaled, the rig scaled to the breed's height); the old `make_dog` failed nearly every ratio (a retriever 0.58 wide for its height and 0.35 to the elbow, a dachshund 2.5 times as long as tall) and was removed.
 
 ## Views to check
 
@@ -120,6 +137,7 @@ The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class
 | --- | --- | --- |
 | Cat | rebuilt (#88) | head too small, slab body, long thin legs |
 | Collie | rebuilt (#88) | head short and wide, no shoulder, stub feet |
+| Retriever, shepherd, beagle, bulldog, dachshund, stray | rebuilt (#125) on the farm dog's builder | the old `make_dog` failed width, depth, elbow and head width on all six (and the length on the beagle and dachshund) |
 | Husky | rebuilt (#88) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
 | Cow, horse, pig, sheep, goat | rebuild (done) | same causes (issue #87): bodies 8-sided slabs, thin legs with the knee too high, small wedge heads |
 | Hen | rebuild (done), own check | a bird: the body is egg-shaped, the tail and wing shapes matter; it has its own table (`HEN`) |

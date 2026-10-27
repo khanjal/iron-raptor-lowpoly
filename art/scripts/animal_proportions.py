@@ -27,6 +27,17 @@ RANGES = {
                    "carry": (1.05, 1.30), "leg_top": (0.12, 0.18), "leg_low": (0.07, 0.11), "paw": (0.15, 0.24)},
     "husky": {"LH": (0.95, 1.30), "width": (0.32, 0.52), "depth": (0.44, 0.58), "elbow": (0.44, 0.54), "head": (0.32, 0.42), "head_w": (0.50, 0.68),
                   "carry": (1.05, 1.30), "leg_top": (0.12, 0.18), "leg_low": (0.07, 0.11), "paw": (0.15, 0.24)},
+    # the other dog breeds (issue #125)
+    "retriever": {"LH": (1.00, 1.35), "width": (0.34, 0.54), "depth": (0.44, 0.58), "elbow": (0.44, 0.54), "head": (0.31, 0.42), "head_w": (0.52, 0.70),
+                      "carry": (1.05, 1.30), "leg_top": (0.13, 0.19), "leg_low": (0.08, 0.12), "paw": (0.16, 0.25)},
+    "shepherd": {"LH": (1.05, 1.35), "width": (0.32, 0.50), "depth": (0.44, 0.58), "elbow": (0.44, 0.54), "head": (0.32, 0.44), "head_w": (0.44, 0.60),
+                     "carry": (1.05, 1.35), "leg_top": (0.12, 0.18), "leg_low": (0.07, 0.11), "paw": (0.15, 0.24)},
+    "beagle": {"LH": (1.00, 1.35), "width": (0.36, 0.54), "depth": (0.46, 0.60), "elbow": (0.42, 0.52), "head": (0.32, 0.44), "head_w": (0.48, 0.66),
+                   "carry": (1.05, 1.35), "leg_top": (0.13, 0.19), "leg_low": (0.08, 0.12), "paw": (0.16, 0.25)},
+    "bulldog": {"LH": (1.05, 1.35), "width": (0.65, 0.95), "depth": (0.55, 0.75), "elbow": (0.28, 0.42), "head": (0.22, 0.34), "head_w": (1.15, 1.60),
+                    "carry": (1.00, 1.30), "leg_top": (0.20, 0.30), "leg_low": (0.13, 0.20), "paw": (0.26, 0.40)},
+    "dachshund": {"LH": (1.65, 2.20), "width": (0.45, 0.70), "depth": (0.58, 0.78), "elbow": (0.25, 0.38), "head": (0.32, 0.46), "head_w": (0.38, 0.56),
+                      "carry": (1.20, 1.55), "leg_top": (0.18, 0.30), "leg_low": (0.11, 0.19), "paw": (0.24, 0.38)},
     # the farm animals
     "cow": {"LH": (1.10, 1.45), "width": (0.34, 0.54), "depth": (0.50, 0.66), "elbow": (0.42, 0.52), "head": (0.27, 0.36), "head_w": (0.40, 0.55),
                 "carry": (0.95, 1.20), "leg_top": (0.10, 0.16), "leg_low": (0.05, 0.09), "paw": (0.07, 0.12)},
@@ -40,8 +51,9 @@ RANGES = {
                  "carry": (1.00, 1.30), "leg_top": (0.09, 0.15), "leg_low": (0.05, 0.09), "paw": (0.07, 0.12)},
 }
 # the species keys of species.SPECIES that each range row applies to
-KEYS = {**dict.fromkeys(("cat_tabby", "cat_black", "cat_orange", "cat_tuxedo", "cat_calico", "cat_siamese", "cat_grey", "cat_kitten"), "cat"), "dog_collie": "collie", **{f"dog_collie_{c}": "collie" for c in ("brown_white", "grey_merle", "yellow", "brindle")}, "dog_husky": "husky", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
-ENFORCED = {"cat", "collie", "husky", "cow", "horse", "pig", "sheep", "goat"}          # every four-legged species is rebuilt to the brief: a miss fails the audit
+KEYS = {**dict.fromkeys(("cat_tabby", "cat_black", "cat_orange", "cat_tuxedo", "cat_calico", "cat_siamese", "cat_grey", "cat_kitten"), "cat"), "dog_collie": "collie", **{f"dog_collie_{c}": "collie" for c in ("brown_white", "grey_merle", "yellow", "brindle")}, "dog_husky": "husky", "dog_retriever": "retriever", "dog_shepherd": "shepherd", "dog_beagle": "beagle", "dog_bulldog": "bulldog",
+        "dog_dachshund": "dachshund", "dog_stray": "collie", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
+ENFORCED = {"cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund", "cow", "horse", "pig", "sheep", "goat"}          # every four-legged species is rebuilt to the brief: a miss fails the audit
 
 
 def measure(sp):

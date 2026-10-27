@@ -635,5 +635,25 @@
  },
  "GN_CatKitten_faceted_01": {
   "tan": "Stripes"
+ },
+ "GN_DogRetriever_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DogDachshund_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DogBeagle_faceted_01": {
+  "paint_white": "White markings",
+  "black": "Saddle"
+ },
+ "GN_DogBulldog_faceted_01": {
+  "tan": "Patches and ears"
+ },
+ "GN_DogShepherd_faceted_01": {
+  "black": "Saddle, mask and ears"
+ },
+ "GN_DogStray_faceted_01": {
+  "cream": "Chest, socks and tail tip",
+  "dark_brown": "Patches and ears"
  }
 }

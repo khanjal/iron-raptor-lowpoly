@@ -1962,6 +1962,102 @@
    ]
   },
   {
+   "id": "GN_DogBeagle_faceted_01",
+   "name": "Dog, beagle",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "beagle",
+    "black",
+    "dog",
+    "hound",
+    "pet",
+    "quadruped",
+    "tan",
+    "tricolour",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1020,
+   "size": [
+    0.21,
+    0.485,
+    0.795
+   ],
+   "glb": "models/GN_DogBeagle_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBeagle_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "White markings",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Saddle",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogBulldog_faceted_01",
+   "name": "Dog, bulldog",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "bulldog",
+    "dog",
+    "fawn",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1004,
+   "size": [
+    0.33,
+    0.454,
+    0.714
+   ],
+   "glb": "models/GN_DogBulldog_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBulldog_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
    "id": "GN_DogCollie_faceted_01",
    "name": "Dog, collie",
    "type": "animals/pet/dog",
@@ -2002,6 +2098,46 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogDachshund_faceted_01",
+   "name": "Dog, dachshund",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dachshund",
+    "dog",
+    "pet",
+    "quadruped",
+    "sausage-dog",
+    "small"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1020,
+   "size": [
+    0.156,
+    0.302,
+    0.786
+   ],
+   "glb": "models/GN_DogDachshund_faceted_01.glb",
+   "thumb": "thumbs/GN_DogDachshund_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 36,
+     "hex": "#4A3322"
     }
    ]
   },
@@ -2051,6 +2187,143 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogRetriever_faceted_01",
+   "name": "Dog, golden retriever",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "dog",
+    "golden",
+    "pet",
+    "quadruped",
+    "retriever",
+    "yellow"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1020,
+   "size": [
+    0.322,
+    0.727,
+    1.268
+   ],
+   "glb": "models/GN_DogRetriever_faceted_01.glb",
+   "thumb": "thumbs/GN_DogRetriever_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 34,
+     "hex": "#D9A441"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogShepherd_faceted_01",
+   "name": "Dog, German shepherd",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "black",
+    "dog",
+    "guard",
+    "pet",
+    "police",
+    "quadruped",
+    "shepherd",
+    "tan"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1048,
+   "size": [
+    0.31,
+    0.922,
+    1.402
+   ],
+   "glb": "models/GN_DogShepherd_faceted_01.glb",
+   "thumb": "thumbs/GN_DogShepherd_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Saddle, mask and ears",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogStray_faceted_01",
+   "name": "Dog, stray",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dog",
+    "mongrel",
+    "mutt",
+    "quadruped",
+    "rural",
+    "stray",
+    "tan",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1004,
+   "size": [
+    0.234,
+    0.645,
+    1.026
+   ],
+   "glb": "models/GN_DogStray_faceted_01.glb",
+   "thumb": "thumbs/GN_DogStray_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Chest, socks and tail tip",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 36,
+     "hex": "#4A3322"
     }
    ]
   },

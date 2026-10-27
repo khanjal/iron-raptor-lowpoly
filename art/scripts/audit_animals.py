@@ -74,6 +74,13 @@ REFERENCE = {
     # the cat and the husky (docs/assets/briefs/animals.md): back height, head-and-body length, tail not checked
     "cat_tabby": ((0.23, 0.30), (0.40, 0.60), None),
     "dog_husky": ((0.51, 0.62), (0.80, 1.10), None),
+    # the other breeds (issue #125; docs/assets/briefs/animals.md): shoulder height and head-and-body length
+    "dog_retriever": ((0.55, 0.61), (0.85, 1.15), None),
+    "dog_shepherd": ((0.55, 0.66), (0.90, 1.20), None),
+    "dog_beagle": ((0.33, 0.41), (0.55, 0.78), None),
+    "dog_bulldog": ((0.31, 0.40), (0.50, 0.72), None),
+    "dog_dachshund": ((0.20, 0.25), (0.50, 0.72), None),
+    "dog_stray": ((0.40, 0.55), (0.70, 1.00), None),
     "cow": ((1.30, 1.55), (1.80, 2.60), None),
     "horse": ((1.40, 1.70), (2.00, 2.60), None),
     "sheep": ((0.60, 0.95), (0.90, 1.40), None),
