@@ -23,6 +23,7 @@ let done = 0;
 for (const a of doc.assets) {
   if (only && !only.split(',').includes(a.id)) continue;
   const asset = { ...a, glb: '../site/' + a.glb };
+  // one canvas, so the models are rendered, saved and replaced one at a time
   await v.load(asset);
   v.setPlaying(false);
   if (v.mixer) v.mixer.update(0); // the Idle pose at time 0

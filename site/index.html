@@ -26,14 +26,14 @@
   <aside id="filters" aria-label="Filters">
     <section>
       <h2>Categories</h2>
-      <nav id="tree"></nav>
+      <nav id="tree" aria-label="Category tree"></nav>
     </section>
     <section id="chips"></section>
     <button id="clear" class="btn small" hidden>Clear all filters</button>
   </aside>
 
   <main>
-    <p id="count" class="count" role="status"></p>
+    <output id="count" class="count" aria-live="polite"></output>
     <ul id="grid" class="grid"></ul>
     <p id="empty" class="empty" hidden>Nothing matches. Try fewer filters.</p>
   </main>
@@ -42,17 +42,17 @@
     <div class="stage">
       <canvas id="canvas"></canvas>
       <div class="stage-bar">
-        <button id="close" class="btn" aria-label="Close the viewer">&larr; Back</button>
+        <button id="close" class="btn" aria-label="Back (close the viewer)">&larr; Back</button>
         <span class="spacer"></span>
         <button id="maximize" class="btn"title="Make the preview bigger (Esc shrinks it)">Expand</button>
         <button id="reset-view" class="btn" title="Reset the camera">Reset view</button>
       </div>
       <p id="hint" class="hint" hidden></p>
-      <p id="status" class="status" role="status"></p>
+      <output id="status" class="status" aria-live="polite"></output>
     </div>
 
     <div class="panel">
-      <h2 id="v-name"></h2>
+      <h2 id="v-name">Model</h2>
       <nav id="v-type" class="muted" aria-label="Category"></nav>
 
       <div id="v-themes" class="row" hidden>
