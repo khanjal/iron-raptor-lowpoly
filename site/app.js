@@ -29,16 +29,20 @@ const state = {
 };
 
 // ---- data -------------------------------------------------------------------------------------------------------------------------------
-async function init() {
-  let doc;
+// The manifest, or null (with the reason on the page) when it cannot be loaded.
+async function loadManifest() {
   try {
     const r = await fetch('manifest.json');
     if (!r.ok) throw new Error(r.status);
-    doc = await r.json();
+    return await r.json();
   } catch (e) {
     $('count').textContent = 'Could not load manifest.json (' + e.message + '). Run tools/make_manifest.py, or serve the site folder over http.';
-    return;
+    return null;
   }
+}
+
+// Take the manifest into the state: the palettes, the themes, each asset's search text and the old ids that still open it.
+function indexManifest(doc) {
   state.assets = doc.assets;
   state.glow = doc.palette?.glow || [];
   state.common = doc.palette?.common || [];
@@ -51,6 +55,12 @@ async function init() {
     for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour or a style keeps its old link
     for (const t of a.themes || []) if (t.was) state.was.set(t.was, { asset: a, theme: t.name });
   }
+}
+
+async function init() {
+  const doc = await loadManifest();
+  if (!doc) return;
+  indexManifest(doc);
   readUrlState();
   if ((new URLSearchParams(location.search).get('cat') || '') !== state.category) writeUrlState();   // an old ?cat=alien link is rewritten to sci-fi, as an old #id is
   buildTree();
@@ -61,11 +71,18 @@ async function init() {
 }
 
 // ---- filtering --------------------------------------------------------------------------------------------------------------------------
+function matchesQuery(a) {
+  for (const t of state.q.toLowerCase().split(/\s+/).filter(Boolean)) if (!a.haystack.includes(t)) return false;
+  return true;
+}
+
+function inCategory(a) {
+  return a.type === state.category || a.type.startsWith(state.category + '/');
+}
+
 function matches(a, skip = {}) {
-  if (!skip.q && state.q) {
-    for (const t of state.q.toLowerCase().split(/\s+/).filter(Boolean)) if (!a.haystack.includes(t)) return false;
-  }
-  if (!skip.category && state.category && !(a.type === state.category || a.type.startsWith(state.category + '/'))) return false;
+  if (!skip.q && state.q && !matchesQuery(a)) return false;
+  if (!skip.category && state.category && !inCategory(a)) return false;
   for (const t of state.tags) if (skip.tag !== t && !a.tags.includes(t)) return false;
   for (const f of state.features) if (skip.feature !== f && !FEATURES.find((x) => x[0] === f)[2](a)) return false;
   return true;
@@ -137,8 +154,8 @@ function toggleExpand(path, force) {
   updateTree();
 }
 
-function updateTree() {
-  // counts follow the other filters, so the tree shows where the current search has results
+// How many models each category path holds under the other filters (so the tree shows where the current search has results).
+function categoryCounts() {
   const counts = new Map();
   for (const a of state.assets) {
     if (!matches(a, { category: true })) continue;
@@ -146,16 +163,29 @@ function updateTree() {
     for (let i = 1; i <= parts.length; i++) { const p = parts.slice(0, i).join('/'); counts.set(p, (counts.get(p) || 0) + 1); }
     counts.set('', (counts.get('') || 0) + 1);
   }
-  // keep the chosen category's ancestors open
-  if (state.category) { const parts = state.category.split('/'); for (let i = 1; i < parts.length; i++) state.expanded.add(parts.slice(0, i).join('/')); }
-  for (const b of $('tree').querySelectorAll('.node')) {
-    const p = b.dataset.path;
-    b.querySelector('.n').textContent = counts.get(p) || 0;
-    b.setAttribute('aria-current', p === state.category ? 'true' : 'false');
-    b.style.opacity = counts.get(p) ? '' : '.45';
-    const caret = b.querySelector('.caret');
-    if (caret.textContent) caret.textContent = state.expanded.has(p) ? '▾' : '▸';
-  }
+  return counts;
+}
+
+// Keep the chosen category's ancestors open.
+function expandAncestors() {
+  if (!state.category) return;
+  const parts = state.category.split('/');
+  for (let i = 1; i < parts.length; i++) state.expanded.add(parts.slice(0, i).join('/'));
+}
+
+function updateNode(b, counts) {
+  const p = b.dataset.path;
+  b.querySelector('.n').textContent = counts.get(p) || 0;
+  b.setAttribute('aria-current', p === state.category ? 'true' : 'false');
+  b.style.opacity = counts.get(p) ? '' : '.45';
+  const caret = b.querySelector('.caret');
+  if (caret.textContent) caret.textContent = state.expanded.has(p) ? '▾' : '▸';
+}
+
+function updateTree() {
+  const counts = categoryCounts();
+  expandAncestors();
+  for (const b of $('tree').querySelectorAll('.node')) updateNode(b, counts);
   for (const ul of $('tree').querySelectorAll('ul[data-for]')) ul.hidden = !state.expanded.has(ul.dataset.for);
 }
 
