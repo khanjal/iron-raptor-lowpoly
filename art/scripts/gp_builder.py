@@ -152,14 +152,14 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
 
     pivot = Vector((0, 0, 1.58))                      # where the neck meets the head
     head_rings = alien_parts.HEADS.get(face, HEAD)    # an alien race has its own skull; the Nordic keeps the human one
-    if f_face != 1.0:                                 # a fuller face (a heavier build): the cheeks and the jaw grow; the first ring (where the neck enters) stays
+    if not math.isclose(f_face, 1.0):                                 # a fuller face (a heavier build): the cheeks and the jaw grow; the first ring (where the neck enters) stays
         head_rings = [head_rings[0]] + [(z, cy, hx * f_face, hy * f_face) for z, cy, hx, hy in head_rings[1:]]
     hair_rings = [(z, cy, hx * f_face, hy * f_face) for z, cy, hx, hy in HEAD]
 
     def make(part, build_fn, colour, bones, sub=None, smooth=True, head=False):
         bm = bmesh.new()
         build_fn(bm)
-        if head and head_scale != 1.0:
+        if head and not math.isclose(head_scale, 1.0):
             for v in bm.verts:
                 v.co = pivot + (v.co - pivot) * head_scale
         obj = common.new_mesh_object(f"{name}_{part}", bm, coll, "paint_white")
@@ -330,7 +330,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     body = common.join(parts, name)
     body.location = (0, 0, 0)
     quadruped_rig.bind(body, rig)
-    if scale != 1.0:
+    if not math.isclose(scale, 1.0):
         rig.scale = (scale, scale, scale)
     if export:
         common.export_fbx(coll, export, rigged=True)

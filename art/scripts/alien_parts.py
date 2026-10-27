@@ -12,7 +12,7 @@ top, so a face made here sits on the head at any head_scale). The skeleton is th
                                     gap against the torso when they swing (the limbs hinge at the skeleton's joints, which are outside the narrow torsos)
 """
 
-from math import cos, radians, sin, sqrt
+from math import cos, isclose, radians, sin, sqrt
 
 import bmesh
 from mathutils import Vector
@@ -72,7 +72,7 @@ class Skull:
         """The surface point at (x, z), moved out along the normal by off (negative is into the skull)."""
         x = self.clamp_x(x, z)
         y = self.front_y(x, z)
-        if off == 0.0:
+        if isclose(off, 0.0, abs_tol=1e-9):
             return Vector((x, y, z))
         n = self.normal(x, z)
         return Vector((x, y, z)) + n * off

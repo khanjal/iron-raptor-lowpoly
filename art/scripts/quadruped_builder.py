@@ -15,6 +15,7 @@ Styles, from studying the Quaternius farm pack (about 300-400 verts, quads, hard
 """
 
 import importlib
+import math
 
 import bmesh
 import bpy
@@ -220,6 +221,6 @@ def build(sp, style="smooth", rig_name=None):
     if sp.get("uv_jitter"):
         _jitter_uvs(mesh)
     quadruped_rig.bind(mesh, rig)
-    if sp.get("scale", 1.0) != 1.0:                                 # the drawn animal scaled to its real size (the wildlife, the fawn)
+    if not math.isclose(sp.get("scale", 1.0), 1.0):                                 # the drawn animal scaled to its real size (the wildlife, the fawn)
         rig.scale = (sp["scale"],) * 3
     return mesh, rig, coll
