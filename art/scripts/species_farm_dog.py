@@ -20,6 +20,7 @@ same bones) with the faces painted differently, so the game can swap one for ano
 """
 
 import math
+from types import SimpleNamespace
 
 
 def _blobs(c, blobs):
@@ -47,6 +48,173 @@ SKINS = {
                         "tail_under": "tan", "blaze": None, "brows": None, "pattern": "stripes", "label": "a brindle cattle dog"},
 }
 DEFAULT_SKIN = "black_tan"
+
+
+_BODY_Z0 = 0.26
+
+
+def _blotches(c):
+    return _blobs(c, [(0.06, -0.12, 0.42, 0.05), (-0.07, 0.0, 0.43, 0.06), (0.07, 0.10, 0.40, 0.05), (-0.06, 0.24, 0.40, 0.05),
+                      (0.0, -0.02, 0.46, 0.04), (-0.04, 0.32, 0.38, 0.04), (0.08, -0.20, 0.40, 0.04)]) > 0.45
+
+
+def _stripes(c):
+    return math.sin((c.y * 62.0 + c.z * 40.0 + abs(c.x) * 25.0)) > 0.35
+
+
+def _farm_coat(sk, c, n):
+    if c.z < 0.075:
+        return sk["sock"]
+    if c.z < _BODY_Z0 - 0.01:                                       # a leg
+        return sk["legs"]
+    low = c.z - (0.40 if c.y < -0.05 else 0.39)                   # how far below the centre line the face is
+    if c.y < -0.16 and abs(c.x) < 0.075 and ((low < -0.04 and n.y < -0.2) or (c.y < -0.28 and n.y < -0.9)):
+        return sk["chest"]                                       # the front of the chest: its underside and the breast (the body's front cap)
+    if n.z < -0.45 or low < -0.085:
+        return sk["under"]
+    if sk["pattern"] == "stripes" and _stripes(c):
+        return "dark_brown"
+    if sk["pattern"] == "merle" and _blotches(c):
+        return "black"
+    return sk["body"]
+
+
+def _farm_head_coat(sk, head, c, n):
+    if c.y > -0.30:                                               # the neck
+        return _farm_coat(sk, c, n)
+    if c.y < head[-1][0] + 0.03 and n.y < -0.4:
+        return "black"                                            # the nose
+    if sk["blaze"] and abs(c.x) < 0.03 and n.z > 0.7 and c.y < -0.40:
+        return sk["blaze"]                                        # a blaze up the forehead and the muzzle (the two faces on the crown: the head's top vertex is on its middle line, so their centres are off it)
+    if c.y < head[4][0] and (n.z < -0.30 or c.z < head[5][1] - 0.012):
+        return sk["jaw"]                                          # the lower jaw: a lighter line along the underside of the muzzle
+    if c.y < head[4][0] - 0.01:
+        return sk["muzzle"]
+    if sk["pattern"] == "merle" and _blotches(c):
+        return "black"
+    if sk["pattern"] == "stripes" and c.y > -0.44 and _stripes(c):
+        return "dark_brown"
+    return sk["body"]
+
+
+def _farm_tail_coat(sk, c, n):
+    if sk["tip"] and c.z < 0.21:
+        return sk["tip"]
+    if n.z < -0.25 or n.y < -0.4:
+        return sk["tail_under"]
+    if sk["pattern"] == "stripes" and _stripes(c):
+        return "dark_brown"
+    return sk["body"]
+
+
+def _farm_ears(ctx, st):
+    """The ears: lofted up from inside the sides of the crown."""
+    cm, shape, skull, ear_x, sk = ctx.common, st.shape, st.skull, st.ear_x, st.sk
+    ey, ez = skull[0], skull[1]
+    # ears: lofted up from inside the sides of the crown, upright for most of their height and then tipped forward (a collie's half-folded ear)
+    def ears(bm):
+        zb = ez + skull[3] - 0.034
+        for s in (-1, 1):
+            if shape.get("ears") == "up":                         # an upright triangle, set close together
+                cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.80, ey + 0.012, 0.036, 0.018, n=4),
+                             cm.ring_z(zb + 0.055, s * ear_x * 0.86, ey + 0.004, 0.027, 0.013, n=4),
+                             cm.ring_z(zb + 0.115, s * ear_x * 0.92, ey - 0.004, 0.009, 0.006, n=4)])
+                continue
+            cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.78, ey + 0.010, 0.028, 0.015, n=4),
+                         cm.ring_z(zb + 0.062, s * ear_x * 0.88, ey + 0.006, 0.025, 0.013, n=4),
+                         cm.ring_z(zb + 0.105, s * ear_x * 1.00, ey - 0.020, 0.012, 0.008, n=4)])
+    ctx.make("ears", ears, lambda c, n: sk["ears"], ["Ear_L", "Ear_R"], sub=0, smooth=False)
+
+
+def _farm_haunches(ctx, st):
+    """A haunch over each hind leg and a shoulder over each front leg."""
+    cm, hind_leg, front_leg, sk = ctx.common, st.hind_leg, st.front_leg, st.sk
+    # a haunch over the top of each hind leg and a shoulder over each front leg: the legs' top rings are the old collie's, and the body above them is slimmer, so a blob
+    # lofted from inside the body down to the leg's own top ring fills the join (skinned to the body bone and the leg's upper bone: the clips slide the upper bones along the body, and the top of the blob must stay with the body while its bottom follows the leg)
+    for kind, leg_, top, wide, inset in (("hind", hind_leg, 0.385, 0.038, 0.026), ("front", front_leg, 0.375, 0.05, 0.008)):
+        for s in (-1, 1):
+            side = "R" if s < 0 else "L"
+            ring0 = leg_["profile"][0]
+            rings = [cm.ring_z(top, s * (leg_["x"] - inset), leg_["y"] - 0.005, wide, ring0[3] + 0.015, n=6),
+                     cm.ring_z(ring0[0], s * leg_["x"], leg_["y"] + ring0[1], ring0[2], ring0[3], n=6)]
+            blob = ctx.make(f"{'haunch' if kind == 'hind' else 'shoulder'}_{side.lower()}", lambda bm, r=rings: cm.loft(bm, r), lambda c, n: sk["body"],
+                            ["Hips" if kind == "hind" else "Chest", f"{kind.capitalize()}Upper_{side}"], sub=0, smooth=False)
+            # the weights by height, not by distance: the top of the blob (inside the body) is the body bone's alone and the bottom (the leg's own top ring) the leg's alone, with a
+            # smooth blend between, so a clip that slides the leg's upper bone along the body (the dogs' walk, trot and run) drags the bottom of the blob and not its top
+            body_bone, leg_bone = blob.vertex_groups[0].name, blob.vertex_groups[1].name
+            z0 = ring0[0]
+            for v in blob.data.vertices:
+                t = min(max((v.co.z - z0) / (top - z0), 0.0), 1.0)
+                t = t * t * (3.0 - 2.0 * t)
+                blob.vertex_groups[body_bone].add([v.index], t, "REPLACE")
+                blob.vertex_groups[leg_bone].add([v.index], 1.0 - t, "REPLACE")
+
+
+def _farm_nose_and_ruff(ctx, st):
+    """The nose pad at the tip of the muzzle and the ruff of fur round the neck."""
+    cm, head, shape, sk = ctx.common, st.head, st.shape, st.sk
+    # the nose: a black pad at the tip
+    tip = head[-1]
+    ctx.make("nose", lambda bm: cm.add_box(bm, (0, tip[0] - 0.004, tip[1] + 0.004), (0.050, 0.032, 0.036), taper=0.9),
+             lambda c, n: "black", ["Head"], sub=0, smooth=False)
+
+    # the ruff: a collar of fur round the base of the neck, a little proud of it
+    rw = shape.get("ruff", 1.0)
+    rings = [cm.ring_y(-0.215, 0, 0.500, 0.088 * rw, 0.118 * rw, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078 * rw, 0.104 * rw, n=8), cm.ring_y(-0.335, 0, 0.560, 0.072 * rw, 0.095 * rw, n=8)]
+    ctx.make("ruff", lambda bm: cm.loft(bm, rings), lambda c, n: sk["ruff"], ["Chest", "Neck1", "Neck2"], sub=0, smooth=False)
+
+
+def _farm_eyes(ctx, st):
+    """The eyes, pupils and glints; returns (y, cz, r, w) for the brows."""
+    import quadruped_builder as qb
+    head = st.head
+    # the eyes: dark, set into the front of the skull and looking forward, each with a small highlight
+    y = head[4][0] + 0.018
+    z, w, h = qb._head_at(head, y)
+    r = 0.0145
+    cz = z + 0.30 * h
+    cx = qb._surface_x(ctx, y, cz, 0.8 * w) - 0.50 * r
+    dx, dy = 0.55, 0.83                                           # the way they look: forward and a little out
+    ctx.make("eyes", lambda bm: [qb._ball(bm, (s * cx, y, cz), r, n=6) for s in (-1, 1)], lambda c, n: "dark_brown", ["Head"], sub=0, smooth=False)
+    ctx.make("pupils", lambda bm: [qb._ball(bm, (s * (cx + dx * 0.55 * r), y - dy * 0.55 * r, cz), 0.62 * r, n=6) for s in (-1, 1)],
+             lambda c, n: "black", ["Head"], sub=0, smooth=False)
+    ctx.make("glints", lambda bm: [qb._ball(bm, (s * (cx + dx * 0.95 * r), y - dy * 0.55 * r - 0.003, cz + 0.45 * r), 0.22 * r, n=4) for s in (-1, 1)],
+             lambda c, n: W, ["Head"], sub=0, smooth=False)
+
+    return y, cz, r, w
+
+
+def _farm_lips_and_brows(ctx, st, y, cz, r, w):
+    """The lip line along the muzzle and the two spots over the eyes."""
+    import quadruped_builder as qb
+    cm, head, sk = ctx.common, st.head, st.sk
+    # the lip line: a thin dark line along each side of the muzzle, from the nose back to under the eye
+    def lips(bm):
+        n0, n1 = head[-1][0], head[5][0] + 0.03
+        for yy0, yy1 in ((n0 + (n1 - n0) * i / 3, n0 + (n1 - n0) * (i + 1) / 3) for i in range(3)):
+            ym = 0.5 * (yy0 + yy1)
+            zz, ww, hh = qb._head_at(head, ym)
+            for s in (-1, 1):
+                xs = qb._surface_x(ctx, ym, zz - 0.18 * hh, ww) - 0.002
+                cm.add_box(bm, (s * xs, ym, zz - 0.18 * hh), (0.006, abs(yy1 - yy0) + 0.003, 0.004))
+    ctx.make("lips", lips, lambda c, n: "black", ["Head"], sub=0, smooth=False)
+
+
+    # two small spots over the eyes (a black and tan dog's "eyebrows"). Every coat has the part, in the head's own colour when it has no spots, so that all the coats are
+    # one mesh (the same vertices and bones) and the game can swap one for another
+    def brows(bm):
+        for s in (-1, 1):
+            xs = qb._surface_x(ctx, y - 0.005, cz + 1.9 * r, w) - 0.003
+            cm.add_box(bm, (s * xs, y - 0.004, cz + 1.9 * r), (0.008, 0.018, 0.012))
+    ctx.make("brows", brows, lambda c, n: sk["brows"] or sk["body"], ["Head"], sub=0, smooth=False)
+
+
+def _farm_extras(st, ctx):
+    _farm_ears(ctx, st)
+    _farm_haunches(ctx, st)
+    _farm_nose_and_ruff(ctx, st)
+    y, cz, r, w = _farm_eyes(ctx, st)
+    _farm_lips_and_brows(ctx, st, y, cz, r, w)
 
 
 def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
@@ -85,145 +253,16 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     hind_leg = {"x": shape.get("hind_x", 0.078), "y": 0.22, "joints": (2, 4), "profile": hn}
     skull = head[3]
     ear_x = skull[2] * 0.85
-    bodyz0 = 0.26
-
-    def blotches(c):
-        return _blobs(c, [(0.06, -0.12, 0.42, 0.05), (-0.07, 0.0, 0.43, 0.06), (0.07, 0.10, 0.40, 0.05), (-0.06, 0.24, 0.40, 0.05),
-                          (0.0, -0.02, 0.46, 0.04), (-0.04, 0.32, 0.38, 0.04), (0.08, -0.20, 0.40, 0.04)]) > 0.45
-
-    def stripes(c):
-        return math.sin((c.y * 62.0 + c.z * 40.0 + abs(c.x) * 25.0)) > 0.35
-
-    def coat(c, n):
-        if c.z < 0.075:
-            return sk["sock"]
-        if c.z < bodyz0 - 0.01:                                       # a leg
-            return sk["legs"]
-        low = c.z - (0.40 if c.y < -0.05 else 0.39)                   # how far below the centre line the face is
-        if c.y < -0.16 and abs(c.x) < 0.075 and ((low < -0.04 and n.y < -0.2) or (c.y < -0.28 and n.y < -0.9)):
-            return sk["chest"]                                       # the front of the chest: its underside and the breast (the body's front cap)
-        if n.z < -0.45 or low < -0.085:
-            return sk["under"]
-        if sk["pattern"] == "stripes" and stripes(c):
-            return "dark_brown"
-        if sk["pattern"] == "merle" and blotches(c):
-            return "black"
-        return sk["body"]
-
-    def head_coat(c, n):
-        if c.y > -0.30:                                               # the neck
-            return coat(c, n)
-        if c.y < head[-1][0] + 0.03 and n.y < -0.4:
-            return "black"                                            # the nose
-        if sk["blaze"] and abs(c.x) < 0.03 and n.z > 0.7 and c.y < -0.40:
-            return sk["blaze"]                                        # a blaze up the forehead and the muzzle (the two faces on the crown: the head's top vertex is on its middle line, so their centres are off it)
-        if c.y < head[4][0] and (n.z < -0.30 or c.z < head[5][1] - 0.012):
-            return sk["jaw"]                                          # the lower jaw: a lighter line along the underside of the muzzle
-        if c.y < head[4][0] - 0.01:
-            return sk["muzzle"]
-        if sk["pattern"] == "merle" and blotches(c):
-            return "black"
-        if sk["pattern"] == "stripes" and c.y > -0.44 and stripes(c):
-            return "dark_brown"
-        return sk["body"]
-
-    def tail_coat(c, n):
-        if sk["tip"] and c.z < 0.21:
-            return sk["tip"]
-        if n.z < -0.25 or n.y < -0.4:
-            return sk["tail_under"]
-        if sk["pattern"] == "stripes" and stripes(c):
-            return "dark_brown"
-        return sk["body"]
-
-    def extras(ctx):
-        import quadruped_builder as qb
-        cm = ctx.common
-        ey, ez = skull[0], skull[1]
-
-        # ears: lofted up from inside the sides of the crown, upright for most of their height and then tipped forward (a collie's half-folded ear)
-        def ears(bm):
-            zb = ez + skull[3] - 0.034
-            for s in (-1, 1):
-                if shape.get("ears") == "up":                         # an upright triangle, set close together
-                    cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.80, ey + 0.012, 0.036, 0.018, n=4),
-                                 cm.ring_z(zb + 0.055, s * ear_x * 0.86, ey + 0.004, 0.027, 0.013, n=4),
-                                 cm.ring_z(zb + 0.115, s * ear_x * 0.92, ey - 0.004, 0.009, 0.006, n=4)])
-                    continue
-                cm.loft(bm, [cm.ring_z(zb, s * ear_x * 0.78, ey + 0.010, 0.028, 0.015, n=4),
-                             cm.ring_z(zb + 0.062, s * ear_x * 0.88, ey + 0.006, 0.025, 0.013, n=4),
-                             cm.ring_z(zb + 0.105, s * ear_x * 1.00, ey - 0.020, 0.012, 0.008, n=4)])
-        ctx.make("ears", ears, lambda c, n: sk["ears"], ["Ear_L", "Ear_R"], sub=0, smooth=False)
-
-        # a haunch over the top of each hind leg and a shoulder over each front leg: the legs' top rings are the old collie's, and the body above them is slimmer, so a blob
-        # lofted from inside the body down to the leg's own top ring fills the join (skinned to the body bone and the leg's upper bone: the clips slide the upper bones along the body, and the top of the blob must stay with the body while its bottom follows the leg)
-        for kind, leg_, top, wide, inset in (("hind", hind_leg, 0.385, 0.038, 0.026), ("front", front_leg, 0.375, 0.05, 0.008)):
-            for s in (-1, 1):
-                side = "R" if s < 0 else "L"
-                ring0 = leg_["profile"][0]
-                rings = [cm.ring_z(top, s * (leg_["x"] - inset), leg_["y"] - 0.005, wide, ring0[3] + 0.015, n=6),
-                         cm.ring_z(ring0[0], s * leg_["x"], leg_["y"] + ring0[1], ring0[2], ring0[3], n=6)]
-                blob = ctx.make(f"{'haunch' if kind == 'hind' else 'shoulder'}_{side.lower()}", lambda bm, r=rings: cm.loft(bm, r), lambda c, n: sk["body"],
-                                ["Hips" if kind == "hind" else "Chest", f"{kind.capitalize()}Upper_{side}"], sub=0, smooth=False)
-                # the weights by height, not by distance: the top of the blob (inside the body) is the body bone's alone and the bottom (the leg's own top ring) the leg's alone, with a
-                # smooth blend between, so a clip that slides the leg's upper bone along the body (the dogs' walk, trot and run) drags the bottom of the blob and not its top
-                body_bone, leg_bone = blob.vertex_groups[0].name, blob.vertex_groups[1].name
-                z0 = ring0[0]
-                for v in blob.data.vertices:
-                    t = min(max((v.co.z - z0) / (top - z0), 0.0), 1.0)
-                    t = t * t * (3.0 - 2.0 * t)
-                    blob.vertex_groups[body_bone].add([v.index], t, "REPLACE")
-                    blob.vertex_groups[leg_bone].add([v.index], 1.0 - t, "REPLACE")
-
-        # the nose: a black pad at the tip
-        tip = head[-1]
-        ctx.make("nose", lambda bm: cm.add_box(bm, (0, tip[0] - 0.004, tip[1] + 0.004), (0.050, 0.032, 0.036), taper=0.9),
-                 lambda c, n: "black", ["Head"], sub=0, smooth=False)
-
-        # the ruff: a collar of fur round the base of the neck, a little proud of it
-        rw = shape.get("ruff", 1.0)
-        rings = [cm.ring_y(-0.215, 0, 0.500, 0.088 * rw, 0.118 * rw, n=8), cm.ring_y(-0.275, 0, 0.525, 0.078 * rw, 0.104 * rw, n=8), cm.ring_y(-0.335, 0, 0.560, 0.072 * rw, 0.095 * rw, n=8)]
-        ctx.make("ruff", lambda bm: cm.loft(bm, rings), lambda c, n: sk["ruff"], ["Chest", "Neck1", "Neck2"], sub=0, smooth=False)
-
-        # the eyes: dark, set into the front of the skull and looking forward, each with a small highlight
-        y = head[4][0] + 0.018
-        z, w, h = qb._head_at(head, y)
-        r = 0.0145
-        cz = z + 0.30 * h
-        cx = qb._surface_x(ctx, y, cz, 0.8 * w) - 0.50 * r
-        dx, dy = 0.55, 0.83                                           # the way they look: forward and a little out
-        ctx.make("eyes", lambda bm: [qb._ball(bm, (s * cx, y, cz), r, n=6) for s in (-1, 1)], lambda c, n: "dark_brown", ["Head"], sub=0, smooth=False)
-        ctx.make("pupils", lambda bm: [qb._ball(bm, (s * (cx + dx * 0.55 * r), y - dy * 0.55 * r, cz), 0.62 * r, n=6) for s in (-1, 1)],
-                 lambda c, n: "black", ["Head"], sub=0, smooth=False)
-        ctx.make("glints", lambda bm: [qb._ball(bm, (s * (cx + dx * 0.95 * r), y - dy * 0.55 * r - 0.003, cz + 0.45 * r), 0.22 * r, n=4) for s in (-1, 1)],
-                 lambda c, n: W, ["Head"], sub=0, smooth=False)
-
-        # the lip line: a thin dark line along each side of the muzzle, from the nose back to under the eye
-        def lips(bm):
-            n0, n1 = head[-1][0], head[5][0] + 0.03
-            for yy0, yy1 in ((n0 + (n1 - n0) * i / 3, n0 + (n1 - n0) * (i + 1) / 3) for i in range(3)):
-                ym = 0.5 * (yy0 + yy1)
-                zz, ww, hh = qb._head_at(head, ym)
-                for s in (-1, 1):
-                    xs = qb._surface_x(ctx, ym, zz - 0.18 * hh, ww) - 0.002
-                    cm.add_box(bm, (s * xs, ym, zz - 0.18 * hh), (0.006, abs(yy1 - yy0) + 0.003, 0.004))
-        ctx.make("lips", lips, lambda c, n: "black", ["Head"], sub=0, smooth=False)
-
-        # two small spots over the eyes (a black and tan dog's "eyebrows"). Every coat has the part, in the head's own colour when it has no spots, so that all the coats are
-        # one mesh (the same vertices and bones) and the game can swap one for another
-        def brows(bm):
-            for s in (-1, 1):
-                xs = qb._surface_x(ctx, y - 0.005, cz + 1.9 * r, w) - 0.003
-                cm.add_box(bm, (s * xs, y - 0.004, cz + 1.9 * r), (0.008, 0.018, 0.012))
-        ctx.make("brows", brows, lambda c, n: sk["brows"] or sk["body"], ["Head"], sub=0, smooth=False)
+    st = SimpleNamespace(sk=sk, shape=shape, head=head, skull=skull, ear_x=ear_x, front_leg=front_leg, hind_leg=hind_leg)
 
     return {
         "name": name, "body": body, "head": head,
         "front": front_leg, "hind": hind_leg,
         "tail": tail, "ear_x": ear_x, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.72,
-        "coat": coat, "head_coat": head_coat, "tail_coat": tail_coat,
+        "coat": lambda c, n: _farm_coat(sk, c, n), "head_coat": lambda c, n: _farm_head_coat(sk, head, c, n),
+        "tail_coat": lambda c, n: _farm_tail_coat(sk, c, n),
         "body_n": 8, "head_n": 8, "tail_n": 6, "uv_jitter": True,                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
-        "extras": extras}
+        "extras": lambda ctx: _farm_extras(st, ctx)}
 
 
 # ---- the husky: the same builder with its own numbers. A compact northern dog, 0.55 m at the shoulder: the same deep chest as the farm dog but broader (a thick coat), a head
