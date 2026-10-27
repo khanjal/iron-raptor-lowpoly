@@ -623,8 +623,10 @@ def run():
         if group != row:
             if row is None:
                 y = 0.0
+            elif group == "ships":
+                y += 90.0
             else:
-                y += 90.0 if group == "ships" else 3.0
+                y += 3.0
             row, x = group, 0.0
         prop = fn()
         obj, coll = prop.finish()
