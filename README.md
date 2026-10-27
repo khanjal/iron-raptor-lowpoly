@@ -97,6 +97,7 @@ To rebuild the browser's slice:
 | thumbnails | `python tools/thumb_server.py`, then open `http://localhost:8766/tools/thumbs.html` in a browser (it renders every model with the site's own viewer and saves `site/thumbs/<id>.png`; `?only=ID,ID` for some) |
 | credit line | `python tools/stamp_glb.py` (writes the CC BY 4.0 credit into `asset.copyright` of every `site/models/*.glb` that lacks it; Blender's exporter does it for new builds, `check_site.py` fails without it) |
 | check | `python tools/check_site.py` |
+| compare two builds | `python tools/compare_builds.py <worktree> <worktree>`: the GLBs, `out/meta` and `art/data/interactions.json` of two builds (how to prove an `art/scripts/` change changed nothing: `.claude/skills/sonar-check`) |
 
 ## Using the models in your engine
 

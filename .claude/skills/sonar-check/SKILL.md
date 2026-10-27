@@ -42,31 +42,34 @@ The workflow also runs on a fork's PR. If Sonar does not analyse that PR the job
 
 ## Proving an `art/scripts/` change did not change the models
 
-Reading a diff, a syntax-tree comparison and a test with stand-ins are good evidence, but with Blender connected (the Blender MCP; check `get_scene_info` first: the
-build removes only what it made, so the default scene is fine, a scene with someone's work is not) the real proof is cheap: rebuild every model from the old and the
-new code and compare the files. It takes about four minutes a tree for all 89 groups (481 models).
+Reading a diff, a syntax-tree comparison and a test with stand-ins are good evidence, but with Blender connected (the Blender MCP; check `get_scene_info` first: a build
+removes only what it made, so the default scene is fine, a scene with someone's work is not) the real proof is cheap: rebuild every model from the old and the new code
+and compare the files. It takes a few minutes a tree for all 89 catalog groups (481 models).
 
-1. **Two scratch worktrees under `.claude/worktrees/`** (the hook refuses other places): `verify-old` (the base, or `main` with the change reverted) and `verify-new`
-   (the branch). Delete `site/models/*.glb` in both, so every file compared was built from that tree's scripts. They are scratch: `git worktree remove --force` them
-   afterwards.
-2. **Build every group of `tools/catalog.py` in each tree** with `tools/build_site_assets.py` (it writes into its own tree's `site/models/` and `out/meta/`, never into
-   your checkout). One group per `runpy` call, a time budget per Blender call (a call that runs about two minutes loses its reply, though Blender carries on: ask for
-   the progress with a short call), and clear the other tree's modules from `sys.path` and `sys.modules` before each group, or one tree's code leaks into the other's
-   build. Forward slashes work in the paths on Windows:
+1. **Two scratch worktrees under `.claude/worktrees/`** (the hook refuses other places), made with `git worktree add --detach` so there is no branch to delete:
+   `verify-old` (the base, or `main` with the change reverted) and `verify-new` (the branch). Delete `site/models/*.glb` in both, so every file compared was built from
+   that tree's scripts. **Never do this in your own checkout**: the builds delete and rewrite the tracked `site/models/*.glb` and write `art/data/interactions.json`.
+2. **Build every group of `tools/catalog.py` in each tree** with `tools/build_site_assets.py` (it writes into its own tree's `site/models/`, `out/meta/` and
+   `art/data/`). One group per `runpy` call, a time budget per Blender call (a call that runs a minute or more can lose its reply while Blender carries on, see
+   `blender-assets`: ask for the progress with a short call, do not start it again), and drop every module loaded from the repository's `art/scripts` or `tools` before each
+   group, or one tree's code leaks into the other's build (the build reloads `common` and `catalog`, which would find the first tree's files). Forward slashes work in the
+   paths on Windows. Start each run with a clean state, or the second run does nothing and says "89 of 89":
 
    ```python
    import sys, runpy, time, bpy, io, contextlib
-   LABEL, TREE = "new", "C:/path/to/repo/.claude/worktrees/verify-new"
+   REPO, LABEL = "C:/path/to/repo", "new"                       # LABEL: one per build; the tree is REPO/.claude/worktrees/verify-<LABEL>
+   TREE = REPO + "/.claude/worktrees/verify-" + LABEL
    def switch_tree(tree):
        for p in list(sys.path):
-           if "lowpoly-assets" in p and (p.endswith("scripts") or p.endswith("tools")):
+           if p.replace("\\", "/").startswith(REPO) and p.replace("\\", "/").endswith(("/art/scripts", "/tools")):
                sys.path.remove(p)
        for name, m in list(sys.modules.items()):
            f = (getattr(m, "__file__", None) or "").replace("\\", "/")
-           if "lowpoly-assets" in f and ("/art/scripts/" in f or "/tools/" in f):
+           if f.startswith(REPO) and ("/art/scripts/" in f or "/tools/" in f):
                del sys.modules[name]
        sys.path.insert(0, tree + "/tools")
        sys.path.insert(0, tree + "/art/scripts")
+   # bpy.app.driver_namespace.pop("verify_" + LABEL, None)      # <- once, before the first call of a new run
    state = bpy.app.driver_namespace.setdefault("verify_" + LABEL, {"idx": 0, "failed": {}, "names": None})
    switch_tree(TREE)
    if state["names"] is None:
@@ -82,19 +85,22 @@ new code and compare the files. It takes about four minutes a tree for all 89 gr
            state["failed"][group] = repr(error)[:200]
        state["idx"] += 1
        switch_tree(TREE)
-   print(state["idx"], "of", len(state["names"]), state["failed"])
+   print(state["idx"], "of", len(state["names"]), state["failed"])    # done when idx equals len(names); failed must be {}
    ```
 
-3. **Compare**: `python tools/compare_builds.py .claude/worktrees/verify-old .claude/worktrees/verify-new` (byte-identical, same geometry, different, in one build
-   only; exit 1 if anything differs). Expect 477 of 481 byte-identical: `GP_Grey_01`, `GP_Nordic_01`, `GP_Reptilian_01` and `GP_Shadow_01` come out with their index
-   buffer in a different order between any two builds, even from the same code, so the tool counts the same JSON structure and the same set of triangles (by vertex
-   positions) as the same geometry. Every other model, and every `out/meta` file, should be byte-identical. Rebuild the base twice the first time, to see that for
-   yourself.
-4. **Say it in the PR**: that you rebuilt every group, how many models were byte-identical, and which differed (and why that is order only). Models built outside
+3. **Compare**: `python tools/compare_builds.py .claude/worktrees/verify-old .claude/worktrees/verify-new` (from the checkout that holds both). It reports byte-identical,
+   same data in another order, different, and in one build only for `site/models/*.glb` and `out/meta/*.json`, and compares `art/data/interactions.json` (hinge pivots,
+   axes and limits, which are not in a GLB). Exit 1 if anything differs, 2 if a build is missing or empty (nothing built is not a pass). Expect 477 of 481 GLBs
+   byte-identical: `GP_Grey_01`, `GP_Nordic_01`, `GP_Reptilian_01` and `GP_Shadow_01` come out with their vertices and index buffer in another order between any two
+   builds, even from the same code, so the tool counts the same JSON, the same triangles (winding included) with the same full attributes at each corner (position,
+   normal, UV, joints, weights), the same animation and inverse-bind data and the same embedded images as the same. To see that the noise is real the first time, build the
+   base a second time into another worktree (`verify-old2`, its own `LABEL`) and compare the two bases: the same four, order only.
+4. **Say it in the PR**: that you rebuilt every group, how many models were byte-identical, which differed and that it was order only. Models built outside
    `tools/catalog.py` (the FBX-only builds of `build_all.py`) are not covered.
-
-If a build stops with `expected sequence size 0`, a folder the palette image pointed to was deleted during the session: remove the `GlobalPalette.png` image
-datablock (`bpy.data.images.remove`) and run again. After the builds the scene should be back to what it was (`get_scene_info`).
+5. **Clean up** in this order: `git worktree remove --force` the scratch trees, then in Blender remove the `GlobalPalette.png` image datablock
+   (`bpy.data.images.remove`), which still points into the deleted folder and makes the next ordinary build stop with `expected sequence size 0`, and check
+   `get_scene_info`. If a build failed halfway, remove only the objects and collections it made by name, never Blender's own `Collection` (with the Cube, Light and
+   Camera), and make the Cube the active object again.
 
 ## Working the backlog
 
