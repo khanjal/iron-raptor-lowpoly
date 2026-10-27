@@ -22,23 +22,23 @@ def _blobs(c, blobs):
 # ===== Dogs ====================================================================================================
 # The collie and the husky are species_farm_dog's farm dog and husky; the other breeds are species_farm_dog.make_breed on the same builder (issue #125: the old
 # simple dog generator, make_dog, failed every proportion of the brief).
-# Back heights in metres (docs/assets/briefs/animals.md): collie 0.53, retriever 0.58, beagle 0.38, bulldog 0.39, dachshund 0.22, husky 0.54, shepherd 0.62, stray 0.47
+# Back heights in metres (docs/assets/briefs/animals.md): collie 0.53, retriever 0.58, beagle 0.38, bulldog 0.38, dachshund 0.22, husky 0.54, shepherd 0.62, stray 0.47
 DOGS = {
     "dog_collie":    species_farm_dog.make_farm_dog("DogCollie", species_farm_dog.DEFAULT_SKIN),   # the farm dog (issue #275): its own shape and coats, see species_farm_dog.py
-    "dog_retriever": species_farm_dog.make_breed("DogRetriever", species_farm_dog.BREED_SKINS["retriever"], size=1.09, length=1.05, width=1.12, head=1.03,
+    "dog_retriever": species_farm_dog.make_breed("DogRetriever", species_farm_dog.BREED_SKINS["retriever"], size=1.09, length=0.95, width=1.12, head=0.97,
                                                  head_w=1.12, snout=0.95, neck_w=1.1, thick=1.1, ear_k=1.1,
                                                  tail=[(0.395, 0.335, 0.030), (0.330, 0.400, 0.036), (0.250, 0.440, 0.032), (0.170, 0.455, 0.020)]),
     "dog_beagle":    species_farm_dog.make_breed("DogBeagle", species_farm_dog.BREED_SKINS["beagle"], size=0.74, leg=0.20, width=1.08, head=1.08,
                                                  snout=0.9, thick=1.05, ears="long",
                                                  tail=[(0.400, 0.335, 0.024), (0.470, 0.370, 0.026), (0.550, 0.385, 0.024), (0.620, 0.375, 0.018)], tip_at=(0.375, 0.62, 0.05)),
-    "dog_bulldog":   species_farm_dog.make_breed("DogBulldog", species_farm_dog.BREED_SKINS["bulldog"], size=0.88, leg=0.12, length=0.82, width=1.45, depth=1.05,
+    "dog_bulldog":   species_farm_dog.make_breed("DogBulldog", species_farm_dog.BREED_SKINS["bulldog"], size=0.86, leg=0.12, length=0.84, width=1.45, depth=1.05,
                                                  body_w=(1.15, 1.1, 1.05, 1.0, 0.85, 0.8, 0.8), head=1.15, head_w=1.45, snout=0.35, neck_w=1.4, thick=1.35, neck_len=0.3, head_low=0.07, nose_k=0.8,
                                                  ears="rose", ear_k=1.1, tail=[(0.385, 0.335, 0.030), (0.370, 0.360, 0.030), (0.350, 0.375, 0.025), (0.330, 0.380, 0.015)]),
     "dog_dachshund": species_farm_dog.make_breed("DogDachshund", species_farm_dog.BREED_SKINS["dachshund"], size=0.58, leg=0.07, length=1.1, width=0.95,
                                                  depth=0.92, head=1.05, snout=1.25, thick=1.1, ears="long",
                                                  tail=[(0.380, 0.335, 0.028), (0.370, 0.420, 0.026), (0.340, 0.500, 0.020), (0.300, 0.560, 0.013)]),
     "dog_husky":     species_farm_dog.make_husky("DogHusky"),                                     # built on the farm dog's builder with its own numbers (issue #87)
-    "dog_shepherd":  species_farm_dog.make_breed("DogShepherd", species_farm_dog.BREED_SKINS["shepherd"], size=1.165, length=1.05, head=1.05, head_w=0.98,
+    "dog_shepherd":  species_farm_dog.make_breed("DogShepherd", species_farm_dog.BREED_SKINS["shepherd"], size=1.165, length=0.97, head=0.93, head_w=1.02,
                                                  snout=1.1, ears="up", ear_k=1.35, ruff=0.95,
                                                  tail=[(0.395, 0.335, 0.030), (0.310, 0.400, 0.042), (0.210, 0.440, 0.045), (0.130, 0.450, 0.030)]),
     "dog_stray":     species_farm_dog.make_breed("DogStray", species_farm_dog.BREED_SKINS["stray"], size=0.88, ears="fold"),
