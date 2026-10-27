@@ -192,7 +192,7 @@ def build_critters(g):
         common.configure(reset=True, out=str(ROOT / "out"), glb=str(MODELS), formats="glb", only={aid}, prefix=PREFIX)
         try:
             with SceneGuard():
-                mesh, rig, coll, clips = insect_anim.build_rigged(key)
+                _, rig, coll, clips = insect_anim.build_rigged(key)
                 insect_anim.key_clips(rig, clips)
                 common.export_glb(coll, aid)
                 purge_collection(coll)

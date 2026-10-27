@@ -8,10 +8,12 @@ with its `id`, site/thumbs/OLD.png and out/meta/OLD.json (its `id`). tools/build
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+MODEL_ID = re.compile(r"\w+", re.ASCII)
 sys.path.insert(0, str(ROOT / "tools"))
 import stamp_glb  # noqa: E402
 
@@ -36,8 +38,16 @@ def _move_json(src, dst):
     src.unlink()
 
 
+def _model_id(x):
+    if not MODEL_ID.fullmatch(x):
+        raise ValueError(f"not a model id: {x!r}")
+    return x
+
+
 def rename_model(old, new, root=ROOT):
     """Move one model's files to its new id; returns the names of the files moved (nothing for a model that is not there under its old id)."""
+    old = _model_id(old)
+    new = _model_id(new)
     root = Path(root)
     moved = []
     glb = root / "site" / "models" / f"{old}.glb"
@@ -70,7 +80,11 @@ def rename_group(ids, site_ids, root=ROOT):
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
-        print(rename_model(sys.argv[1], sys.argv[2]))
+        try:
+            print(rename_model(sys.argv[1], sys.argv[2]))
+        except ValueError as e:
+            print(e, file=sys.stderr)
+            sys.exit(2)
     else:
         import catalog
         for gen, new in catalog.SITE_IDS.items():
