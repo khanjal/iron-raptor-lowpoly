@@ -295,7 +295,8 @@ def families():
     return f
 
 
-def build(family, label, kind, kw, condition):
+# one of the build functions the family tables call with this signature, so `condition` stays
+def build(family, label, kind, kw, condition):  # NOSONAR
     name = f"GV_{family}_{label}_01"
     if kind == "special":
         kw = dict(kw)

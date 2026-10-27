@@ -208,7 +208,8 @@ CARRY_UPPER = (-10.0, 5.0)   # degrees: about X (negative lifts it forward; the 
 CARRY_FORE = (45.0, 5.0)
 
 
-def gait(rig, t, thigh, knee, lean, abdomen, arms, hop):
+# called through the clip table with this signature, so `hop` stays
+def gait(rig, t, thigh, knee, lean, abdomen, arms, hop):  # NOSONAR
     """One stride of both legs per loop. The leg that is forward has a bent knee; the abdomen counterweights (it rises as the body leans)."""
     w = 2 * math.pi * t
     turn(rig, "Hips", z=-4.0 * math.sin(w))
@@ -304,7 +305,8 @@ def build_all():
     return joined, rig, coll
 
 
-def export(coll, rig):
+# called through the clip table with this signature, so `rig` stays
+def export(coll, rig):  # NOSONAR
     out = common.out_dir() / "Assets" / "Art" / "Global" / "Aliens" / f"{NAME}.fbx"
     bpy.ops.object.select_all(action="DESELECT")
     bpy.ops.export_scene.fbx(

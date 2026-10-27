@@ -118,7 +118,8 @@ def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handl
             extra()
 
 
-def drawer(p, role, col, inner, cx, zc, w, h, d, yf, a, travel=0.35, thick=0.025, handle="metal_galv", pull="bar"):
+# the options of a drawer, all but the first 11 with defaults and passed by keyword; a parameter object would change every caller
+def drawer(p, role, col, inner, cx, zc, w, h, d, yf, a, travel=0.35, thick=0.025, handle="metal_galv", pull="bar"):  # NOSONAR
     """A drawer whose front sits flush with a body front at y = yf and runs back d metres; slides out towards -Y by `travel`."""
     depth = d - 0.06
     with p.part(role, pivot=(cx, yf, zc), kind="slide", axis="y", limit=-travel, rest=-travel * _ajar(role) * a):

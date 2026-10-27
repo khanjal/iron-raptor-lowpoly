@@ -170,7 +170,8 @@ def bulb(cx, cz, hw, hh, bulge, tilt=0.0, rim=0.003, rings=(1.0, 0.6)):
 # Faces
 # ----------------------------------------------------------------------------------------------------------------------
 
-def _grey(skull, o):
+# one of four builders called through a table with the same signature, so `o` stays
+def _grey(skull, o):  # NOSONAR
     def eyes(bm):
         for sx in (-1, 1):
             dome(bm, skull, 0.050, 1.703, 0.042, 0.034, sx, ALMOND, tilt=20, bulge=0.006, rim=0.003)
