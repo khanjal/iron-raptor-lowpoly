@@ -1757,7 +1757,7 @@
    "triangles": 676,
    "size": [
     0.09,
-    0.203,
+    0.205,
     0.34
    ],
    "glb": "models/GN_CatKitten_faceted_01.glb",
@@ -1955,7 +1955,7 @@
      "hex": "#1B1B1E"
     },
     {
-     "part": "Chest, belly and paws",
+     "part": "Chest, belly, paws and muzzle",
      "swatch": 6,
      "hex": "#E6E2D6"
     }

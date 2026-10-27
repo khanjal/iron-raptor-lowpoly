@@ -225,7 +225,7 @@ def _cat_head_coat(d, c, n):
 def _cat_ears(cm, d, bm):
     skull = d.skull
     for s in (-1, 1):
-        cm.add_box(bm, (s * skull[2] * 0.7, skull[0] + 0.005 * d.k, skull[1] + skull[3] * 0.85), (0.045 * d.k, 0.016 * d.k, 0.06 * d.k),
+        cm.add_box(bm, (s * skull[2] * 0.7, skull[0] + 0.005 * d.k, skull[1] + skull[3] * 0.85), (0.045 * d.k * d.hk, 0.016 * d.k * d.hk, 0.06 * d.k * d.hk),
                    taper=0.2, rot_deg=(0, s * 10, 0))
 
 
@@ -247,7 +247,7 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     head = [(yy * k, dz * k, hw * k, hh * k) for yy, dz, hw, hh in                 # neck root first; the skull (ring 2) carries the ears, the cheeks (3) are the widest
             [(-0.13, 0.215, 0.060, 0.070), (-0.18, 0.255, 0.054, 0.064), (-0.222, 0.272, 0.052, 0.058), (-0.250, 0.270, 0.053, 0.058),
              (-0.285, 0.256, 0.052, 0.050), (-0.312, 0.245, 0.040, 0.038), (-0.326, 0.240, 0.030, 0.030), (-0.332, 0.237, 0.024, 0.024)]]
-    if head_k != 1.0:                                      # the neck root (ring 0) stays inside the shoulders; the rest grows about it
+    if not math.isclose(head_k, 1.0):                                      # the neck root (ring 0) stays inside the shoulders; the rest grows about it
         y0, z0 = head[0][:2]
         head = head[:1] + [(y0 + (y - y0) * head_k, z0 + (z - z0) * head_k, w * head_k, h * head_k) for y, z, w, h in head[1:]]
     fr = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
@@ -256,7 +256,7 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
           [(0.215, 0, 0.040, 0.055), (0.14, 0.03, 0.026, 0.034), (0.09, 0.045, 0.02, 0.024), (0.05, 0.03, 0.016, 0.02), (0.02, 0.01, 0.015, 0.02), (0.0, -0.01, 0.024, 0.03)]]
     tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.20, 0.17, 0.020), (0.25, 0.235, 0.018), (0.31, 0.26, 0.016), (0.37, 0.245, 0.014))]
     skull = head[2]
-    d = SimpleNamespace(k=k, cz0=cz0, pattern=pattern, c1=c1, c2=c2, c3=c3, head=head, skull=skull)
+    d = SimpleNamespace(k=k, hk=head_k, cz0=cz0, pattern=pattern, c1=c1, c2=c2, c3=c3, head=head, skull=skull)
 
     return {"name": name, "body": body, "head": head,
                 "front": {"x": 0.046 * k, "y": -0.12 * k, "joints": (1, 3), "profile": fr},
