@@ -284,7 +284,7 @@ def bank_terminal(name="GV_ShipTerminalBank_01"):
     p = Prop(name)
     pal = PALETTES["bank"]
     cf, sp, cur = _terminal_body(p, pal)
-    G, L = pal["glow"], pal["light"]
+    G = pal["glow"]
     # the screen: a ledger. Bars on the left (the banked items), lines of text on the right, a header bar
     _screen_lines(p, cur, [(2, 20, 0.395, 0.425)])
     for k, top in enumerate((0.20, 0.27, 0.15, 0.32, 0.24)):
@@ -316,7 +316,7 @@ def launch_terminal(name="GV_ShipTerminalLaunch_01"):
     p = Prop(name)
     pal = PALETTES["launch"]
     cf, sp, cur = _terminal_body(p, pal)
-    G, L = pal["glow"], pal["light"]
+    G = pal["glow"]
     # the screen: header, a stack of segment bars (a countdown) on the left, a big "!" on the right
     _screen_lines(p, cur, [(2, 20, 0.395, 0.425)])
     for k in range(6):

@@ -85,7 +85,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     hind_leg = {"x": shape.get("hind_x", 0.078), "y": 0.22, "joints": (2, 4), "profile": hn}
     skull = head[3]
     ear_x = skull[2] * 0.85
-    bodyz0, bodyz1 = 0.26, 0.53
+    bodyz0 = 0.26
 
     def blotches(c):
         return _blobs(c, [(0.06, -0.12, 0.42, 0.05), (-0.07, 0.0, 0.43, 0.06), (0.07, 0.10, 0.40, 0.05), (-0.06, 0.24, 0.40, 0.05),

@@ -279,7 +279,7 @@ def firewood_loose():
     p = Prop("GT_FirewoodPile_Loose_01")
     layers = ((7, 0.32, 0.0665), (5, 0.24, 0.16), (3, 0.14, 0.25), (1, 0.0, 0.33))
     for count, spread, z in layers:
-        for k in range(count):
+        for _ in range(count):
             a = rng.uniform(0, 360)
             d = rng.uniform(0, spread)
             x, y = d * math.cos(math.radians(a)), d * math.sin(math.radians(a))

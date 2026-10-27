@@ -492,7 +492,7 @@ def test_facing(L):
             if walls:
                 ok = any(angle_between(front, n) <= FACING_TOLERANCE for gap, piece, n in walls[:2])
                 if not ok:
-                    gap, piece, n = walls[0]
+                    gap, _, n = walls[0]
                     out.append((it.where(), f"stands {gap * 100:.0f} cm from the {compass((-n[0], -n[1]))} wall but its front points {compass(front)}: "
                                             f"{angle_between(front, n):.0f} degrees off pointing away from it"))
         # moving parts (doors and drawers the importer split off) are on the side the front points to

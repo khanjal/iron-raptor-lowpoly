@@ -211,7 +211,7 @@ CHICKEN_HEN = {
 
 def _turkey_extras(ctx):
     c = ctx.common
-    z, y, rx, ry = ctx.sp["neck"][3]
+    z, y, _, _ = ctx.sp["neck"][3]
 
     def beak(bm):
         c.add_box(bm, (0, y - 0.045, z - 0.012), (0.028, 0.06, 0.026), taper=0.5)                       # a short, pointed beak

@@ -264,7 +264,6 @@ def tow_truck(body="paint_yellow", name="GV_TowTruck_01"):
 
 # family -> list of (variant name, builder, kwargs)
 def families():
-    P = lambda body, label: (label, "pickup", {"body": body})
     f = {}
     f["Pickup"] = [(NAMES[c], "pickup", {"body": c}) for c in ("truck_blue", "cloth_red", "paint_white", "tractor_green", "tan", "black")]
     f["Tractor"] = [(n, "tractor", {"body": c}) for n, c in (("Green", "tractor_green"), ("Red", "cloth_red"), ("Orange", "orange_cat"), ("Blue", "truck_blue"), ("Yellow", "paint_yellow"))]
@@ -358,8 +357,8 @@ def prune_floating(prop, margin=0.01):
         return a
 
     def touch(i, j):
-        bi, vi, loi, hii, ti, ci = isl[i]
-        bj, vj, loj, hij, tj, cj = isl[j]
+        _, vi, _, _, ti, _ = isl[i]
+        _, vj, _, _, tj, _ = isl[j]
         if ti is None or tj is None:
             return False
         if ti.overlap(tj):

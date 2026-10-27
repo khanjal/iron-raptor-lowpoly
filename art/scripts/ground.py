@@ -60,7 +60,7 @@ def voronoi_labels(rng, n):
     return lab
 
 
-def patches(rng, colours, n, specks=0.0, speck_colours=None, stretch=1.0):
+def patches(rng, colours, n, specks=0.0, speck_colours=None):
     """Hard-edged Voronoi patches in the given colours, with optional single-pixel specks."""
     lab = voronoi_labels(rng, n)
     cols = np.array([hexrgb(c) for c in colours])
@@ -90,7 +90,7 @@ def cracks(img, rng, colour, count, length=60, width=1):
             stamp(img, x, y, c, width, width)
 
 
-def rows(img, rng, light, dark, pitch=32, ridge=12):
+def rows(img, light, dark, pitch=32, ridge=12):
     ys = np.arange(SIZE)
     band = ((ys % pitch) < ridge)
     img[band] = hexrgb(dark)
@@ -110,15 +110,15 @@ def _mud(r): return patches(r, ["#4F3A28", "#5A4331", "#46321F", "#634A35"], 40,
 def _sand(r): return patches(r, ["#D8C48A", "#CDB87C", "#E2D096", "#C4AE72"], 70, 0.03, ["#B49A5E", "#EFE2B0"])
 def _snow(r): return patches(r, ["#F2F6F8", "#E4ECF1", "#FFFFFF", "#D6E2EA"], 60, 0.02, ["#C2D2DE", "#FFFFFF"])
 def _tilled(r):
-    img = patches(r, ["#5E4630", "#6A5038", "#54402B"], 60, 0.02, ["#3A2A1C", "#7E6248"]); return rows(img, r, "#6A5038", "#3F2E1F")
+    img = patches(r, ["#5E4630", "#6A5038", "#54402B"], 60, 0.02, ["#3A2A1C", "#7E6248"]); return rows(img, "#6A5038", "#3F2E1F")
 def _crop_green(r):
     """A green crop in rows (corn, beans): leafy plants in rows 8 per tile, bare soil between, for the far fields (FarmsteadSurroundings)."""
     img = patches(r, ["#4F7A32", "#5E8C4A", "#436A2B", "#6A9A52"], 70, 0.05, ["#2F5A22", "#8DBB6E"])
-    return rows(img, r, "#5E8C4A", "#33291C", pitch=32, ridge=9)
+    return rows(img, "#5E8C4A", "#33291C", pitch=32, ridge=9)
 def _crop_gold(r):
     """A ripe crop in rows (wheat, barley): gold plants in rows, soil between."""
     img = patches(r, ["#C9B35A", "#BFA84E", "#D2BC66", "#B89C46"], 70, 0.05, ["#8A7438", "#E6D58C"])
-    return rows(img, r, "#C9B35A", "#3E301E", pitch=32, ridge=9)
+    return rows(img, "#C9B35A", "#3E301E", pitch=32, ridge=9)
 def _asphalt(r): return patches(r, ["#3A3C40", "#34363A", "#404246", "#2E3034"], 120, 0.05, ["#5C5E62", "#232427"])
 def _asphalt_cracked(r):
     img = patches(r, ["#3A3C40", "#34363A", "#404246", "#2E3034"], 120, 0.05, ["#5C5E62", "#232427"]); cracks(img, r, "#17181A", 9, 70); return img
@@ -223,7 +223,7 @@ def decal_parking():
     _fill(img, 6, 0, 16, SIZE, "#E6E2D6"); _fill(img, 240, 0, 250, SIZE, "#E6E2D6"); return img
 
 
-def _disc(img, cx, cy, rx, ry, colour, a, rng=None, wobble=0.0):
+def _disc(img, cx, cy, rx, ry, colour, a, wobble=0.0):
     ys, xs = np.mgrid[0:SIZE, 0:SIZE]
     ang = np.arctan2(ys - cy, xs - cx)
     w = 1.0 + wobble * (np.sin(ang * 3 + 1) + 0.6 * np.cos(ang * 5 + 2))
