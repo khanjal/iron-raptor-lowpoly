@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 HEX_COLOUR_RE = r"^#[0-9A-F]{6}$"
+HEX_RE = re.compile(HEX_COLOUR_RE)
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -71,11 +72,33 @@ def png_size(path):
     return struct.unpack(">II", raw[16:24])
 
 
+def paintable_entries_ok(parts, err):
+    """Every paintable entry is {part, swatch, hex}; reports the first bad one and says False."""
+    for i, p in enumerate(parts):
+        if not (isinstance(p, dict) and isinstance(p.get("part"), str) and p["part"].strip() and isinstance(p.get("swatch"), int) and 0 <= p["swatch"] < 256 and HEX_RE.match(str(p.get("hex")))):
+            err(f"paintable[{i}] should be {{part, swatch, hex '#RRGGBB'}}")
+            return False
+    return True
+
+
+def paint_entries_ok(ps, swatches, err):
+    """Every paint is {name, hex, swap} and only the first has an empty swap; reports the first malformed one and says False."""
+    for i, p in enumerate(ps):
+        if not (isinstance(p, dict) and isinstance(p.get("name"), str) and p["name"].strip() and HEX_RE.match(str(p.get("hex"))) and isinstance(p.get("swap"), dict)):
+            err(f"paints[{i}] should be {{name, hex '#RRGGBB', swap}}")
+            return False
+        if bool(p["swap"]) == (i == 0):
+            err(f"paints[{i}]: only the first paint (the model as exported) has an empty swap")
+        for k, v in p["swap"].items():
+            if k not in swatches or not HEX_RE.match(str(v)):
+                err(f"paints[{i}]: swap entry {k!r}: {v!r} should be a paintable swatch index and '#RRGGBB'")
+    return True
+
+
 def check_paints(a, err):
     """paintable: [{part, swatch, hex}] (the parts a person can colour); paints: [{name, hex, swap {swatch index: hex}, was?}], the first the model as exported
     (empty swap), the others each swapping only swatches that are paintable parts; names and chip colours all different.
     `paints` may be missing: the model then offers palette.common for its first part."""
-    hexre = re.compile(HEX_COLOUR_RE)
     parts, ps = a.get("paintable"), a.get("paints")
     if not (isinstance(parts, list) and parts):
         err("paints needs paintable: at least one part")
@@ -85,23 +108,12 @@ def check_paints(a, err):
     elif not (isinstance(ps, list) and len(ps) >= 2):
         err("paints: the model's own paint and at least one more")
         return
-    for i, p in enumerate(parts):
-        if not (isinstance(p, dict) and isinstance(p.get("part"), str) and p["part"].strip() and isinstance(p.get("swatch"), int) and 0 <= p["swatch"] < 256 and hexre.match(str(p.get("hex")))):
-            err(f"paintable[{i}] should be {{part, swatch, hex '#RRGGBB'}}")
-            return
+    if not paintable_entries_ok(parts, err):
+        return
     if len({p["swatch"] for p in parts}) != len(parts) or len({p["part"] for p in parts}) != len(parts):
         err("paintable: parts and swatches should all differ")
     swatches = {str(p["swatch"]) for p in parts}
-    for i, p in enumerate(ps or []):
-        if not (isinstance(p, dict) and isinstance(p.get("name"), str) and p["name"].strip() and hexre.match(str(p.get("hex"))) and isinstance(p.get("swap"), dict)):
-            err(f"paints[{i}] should be {{name, hex '#RRGGBB', swap}}")
-            return
-        if bool(p["swap"]) == (i == 0):
-            err(f"paints[{i}]: only the first paint (the model as exported) has an empty swap")
-        for k, v in p["swap"].items():
-            if k not in swatches or not hexre.match(str(v)):
-                err(f"paints[{i}]: swap entry {k!r}: {v!r} should be a paintable swatch index and '#RRGGBB'")
-    if ps and len({p["name"] for p in ps}) != len(ps):
+    if paint_entries_ok(ps or [], swatches, err) and ps and len({p["name"] for p in ps}) != len(ps):
         err("paints: names should all differ")
 
 
@@ -114,16 +126,18 @@ def check_themes(a, err):
         err("themes: names should all differ")
 
 
-def check_entry(a, site, errors):
-    where = a.get("id", "?")
-    err = lambda m: errors.append(f"{where}: {m}")
+def check_fields(a, err):
+    """Every field is there with the right type; False when one is missing (the other checks need them all)."""
     for k, t in FIELDS.items():
         if k not in a:
             err(f"missing field {k}")
         elif not isinstance(a[k], t) or (t is int and isinstance(a[k], bool)):
             err(f"field {k} should be {t.__name__}")
-    if any(k not in a for k in FIELDS):
-        return
+    return all(k in a for k in FIELDS)
+
+
+def check_values(a, err):
+    """name, type, tags, size, triangles and interactive."""
     if not a["name"].strip():
         err("empty name")
     if not TYPE_RE.match(a["type"]):
@@ -141,6 +155,10 @@ def check_entry(a, site, errors):
         err("triangles should be positive")
     if a["interactive"] != bool(a["parts"]):
         err("interactive does not match parts")
+
+
+def check_parts(a, err):
+    """Every moving part has a kind, a unit axis, a pivot, a limit and a rest."""
     for role, p in a["parts"].items():
         if p.get("kind") not in ("hinge", "slide", "spin"):
             err(f"part {role}: kind {p.get('kind')!r}")
@@ -153,12 +171,18 @@ def check_entry(a, site, errors):
         if "rest" not in p:
             err(f"part {role}: rest missing")
 
-    if "paints" in a or "paintable" in a:
-        check_paints(a, err)
-    if "themes" in a:
-        check_themes(a, err)
-    if "interactions" in a:
-        check_interactions(a, site, err)
+
+def check_swatches_used(a, glb, err):
+    """Every paintable swatch is one the GLB uses."""
+    if a.get("paintable") and isinstance(a["paintable"], list):
+        used = paints.used_swatches(glb)
+        for p in a["paintable"]:
+            if isinstance(p, dict) and p.get("swatch") not in used:
+                err(f"paintable {p.get('part')}: swatch {p.get('swatch')} is not used by the GLB")
+
+
+def check_files(a, site, err):
+    """The entry's GLB (valid, and agreeing with the entry) and its thumbnail."""
     glb, thumb = site / a["glb"], site / a["thumb"]
     if not glb.is_file():
         err(f"{a['glb']} does not exist")
@@ -168,15 +192,27 @@ def check_entry(a, site, errors):
             err(f"{a['glb']}: {e}")
         else:
             check_against_glb(a, doc, err)
-            if a.get("paintable") and isinstance(a["paintable"], list):
-                used = paints.used_swatches(glb)
-                for p in a["paintable"]:
-                    if isinstance(p, dict) and p.get("swatch") not in used:
-                        err(f"paintable {p.get('part')}: swatch {p.get('swatch')} is not used by the GLB")
+            check_swatches_used(a, glb, err)
     if not thumb.is_file():
         err(f"{a['thumb']} does not exist")
     elif png_size(thumb) != (256, 256):
         err(f"{a['thumb']} is not a 256 x 256 PNG (got {png_size(thumb)})")
+
+
+def check_entry(a, site, errors):
+    where = a.get("id", "?")
+    err = lambda m: errors.append(f"{where}: {m}")
+    if not check_fields(a, err):
+        return
+    check_values(a, err)
+    check_parts(a, err)
+    if "paints" in a or "paintable" in a:
+        check_paints(a, err)
+    if "themes" in a:
+        check_themes(a, err)
+    if "interactions" in a:
+        check_interactions(a, site, err)
+    check_files(a, site, err)
 
 
 def check_interactions(a, site, err):
@@ -199,21 +235,16 @@ def check_interactions(a, site, err):
         err(f"{rel} has {lights} working lights, the manifest says {a.get('lights', 0)}")
 
 
-def check_against_glb(a, doc, err):
-    if doc.get("asset", {}).get("copyright") != stamp_glb.COPYRIGHT:
-        err("the GLB has no credit line in asset.copyright (run tools/stamp_glb.py)")
-    for m in doc.get("materials", []):                                  # only the glass twin of the palette is see-through
+def check_materials(doc, err):
+    """Only the glass twin of the palette is see-through."""
+    for m in doc.get("materials", []):
         blended = m.get("alphaMode") == "BLEND"
         if blended != (m.get("name") == GLASS_MATERIAL):
             err(f"material {m.get('name')!r} is {'blended' if blended else 'opaque'}; only {GLASS_MATERIAL} should be blended")
-    t = triangles(doc)
-    if t != a["triangles"]:
-        err(f"manifest says {a['triangles']} triangles, the GLB has {t}")
-    if bool(doc.get("skins")) != a["rigged"]:
-        err(f"rigged is {a['rigged']} but the GLB has {len(doc.get('skins', []))} skins")
-    names = [x.get("name") for x in doc.get("animations", [])]
-    if sorted(names) != sorted(a["clips"]):
-        err(f"clips {a['clips']} differ from the GLB's animations {names}")
+
+
+def check_part_nodes(a, doc, err):
+    """Every part names a node of the GLB, and the node sits at the part's pivot."""
     nodes = {n.get("name"): n for n in doc.get("nodes", [])}
     for role, p in a["parts"].items():
         n = nodes.get(role)
@@ -227,32 +258,106 @@ def check_against_glb(a, doc, err):
             err(f"part {role}: pivot {p['pivot']} is not where the GLB node is ({pos})")
 
 
+def check_against_glb(a, doc, err):
+    if doc.get("asset", {}).get("copyright") != stamp_glb.COPYRIGHT:
+        err("the GLB has no credit line in asset.copyright (run tools/stamp_glb.py)")
+    check_materials(doc, err)
+    t = triangles(doc)
+    if t != a["triangles"]:
+        err(f"manifest says {a['triangles']} triangles, the GLB has {t}")
+    if bool(doc.get("skins")) != a["rigged"]:
+        err(f"rigged is {a['rigged']} but the GLB has {len(doc.get('skins', []))} skins")
+    names = [x.get("name") for x in doc.get("animations", [])]
+    if sorted(names) != sorted(a["clips"]):
+        err(f"clips {a['clips']} differ from the GLB's animations {names}")
+    check_part_nodes(a, doc, err)
+
+
+def page_refs(html):
+    """Every src and href of index.html and every target of its import map."""
+    refs = re.findall(r'(?:src|href)="([^"#?:]+)"', html)
+    importmap = re.search(r'<script type="importmap">(.*?)</script>', html, re.S)
+    if importmap:
+        refs += list(json.loads(importmap.group(1))["imports"].values())
+    return refs
+
+
+def check_script(site, js, ids, errors):
+    """One script exists, app.js only looks up ids index.html has, and what it imports exists."""
+    path = site / js
+    if not path.is_file():
+        errors.append(f"{js} does not exist")
+        return
+    text = path.read_text(encoding="utf-8")
+    if js == "app.js":
+        for m in re.findall(r"\$\('([^']+)'\)", text) + re.findall(r"getElementById\('([^']+)'\)", text):
+            if m not in ids:
+                errors.append(f"app.js looks up #{m}, which index.html does not have")
+    for imp in re.findall(r"from '(\.[^']+)'", text):
+        if not (site / imp).exists():
+            errors.append(f"{js} imports {imp}, which does not exist")
+
+
 def check_page(site, errors):
     html_path = site / "index.html"
     if not html_path.is_file():
         errors.append("index.html does not exist")
         return
     html = html_path.read_text(encoding="utf-8")
-    refs = re.findall(r'(?:src|href)="([^"#?:]+)"', html)
-    importmap = re.search(r'<script type="importmap">(.*?)</script>', html, re.S)
-    if importmap:
-        refs += list(json.loads(importmap.group(1))["imports"].values())
-    for r in refs:
+    for r in page_refs(html):
         if not (site / r).exists():
             errors.append(f"index.html refers to {r}, which does not exist")
     ids = set(re.findall(r'id="([^"]+)"', html))
     for js in ("app.js", "viewer.js"):
-        path = site / js
-        if not path.is_file():
-            errors.append(f"{js} does not exist")
+        check_script(site, js, ids, errors)
+
+
+def check_aliases(assets, byid, errors):
+    """aliases are lists of ids that are nobody else's id and are claimed by one model only."""
+    seen_alias = {}
+    for a in assets:
+        al = a.get("aliases", [])
+        if not (isinstance(al, list) and all(isinstance(x, str) and x for x in al)):
+            errors.append(f"{a.get('id')}: aliases should be a list of ids")
             continue
-        text = path.read_text(encoding="utf-8")
-        for m in re.findall(r"\$\('([^']+)'\)", text) + re.findall(r"getElementById\('([^']+)'\)", text):
-            if js == "app.js" and m not in ids:
-                errors.append(f"app.js looks up #{m}, which index.html does not have")
-        for imp in re.findall(r"from '(\.[^']+)'", text):
-            if not (site / imp).exists():
-                errors.append(f"{js} imports {imp}, which does not exist")
+        for x in al:
+            if x in byid:
+                errors.append(f"{a.get('id')}: alias {x} is the id of another model")
+            if seen_alias.setdefault(x, a.get("id")) != a.get("id"):
+                errors.append(f"alias {x} is claimed by {seen_alias[x]} and {a.get('id')}")
+
+
+def check_variants(a, byid, errors):
+    """The variants of an entry exist and list it back."""
+    for v in a.get("variants", []):
+        if v not in byid:
+            errors.append(f"{a.get('id')}: variant {v} is not in the manifest")
+        elif a.get("id") not in byid[v].get("variants", []):
+            errors.append(f"{a.get('id')}: variant {v} does not list it back")
+
+
+def check_manifest_themes(doc, assets, errors):
+    """The manifest's themes are {name: {swatch index: '#RRGGBB'}} and every theme an entry names is one of them."""
+    themes = doc.get("themes", {})
+    if not isinstance(themes, dict) or not all(isinstance(t, dict) and t and all(k.isdigit() and int(k) < 256 and HEX_RE.match(str(v)) for k, v in t.items()) for t in themes.values()):
+        errors.append("themes should be {name: {swatch index: '#RRGGBB'}}")
+        themes = {}
+    for a in assets:
+        for t in a.get("themes", []) if isinstance(a.get("themes"), list) else []:
+            if isinstance(t, dict) and t.get("name") not in themes:
+                errors.append(f"{a.get('id')}: theme {t.get('name')!r} is not defined in the manifest's themes")
+
+
+def check_palette(doc, assets, errors):
+    """palette.glow and palette.common have '#RRGGBB' colours, and common is not empty when a model needs it."""
+    for g in doc.get("palette", {}).get("glow", []):
+        if not re.match(HEX_COLOUR_RE, g.get("hex", "")):
+            errors.append(f"palette glow {g.get('name')}: bad hex")
+    common = doc.get("palette", {}).get("common", [])
+    if not (isinstance(common, list) and all(isinstance(c, dict) and isinstance(c.get("name"), str) and re.match(HEX_COLOUR_RE, str(c.get("hex"))) for c in common)):
+        errors.append("palette.common should be a list of {name, hex '#RRGGBB'}")
+    elif any(a.get("paintable") and "paints" not in a for a in assets) and not common:
+        errors.append("models offer common colours but palette.common is empty")
 
 
 def check(site=None):
@@ -270,41 +375,12 @@ def check(site=None):
     for i in {x for x in ids if ids.count(x) > 1}:
         errors.append(f"duplicate id {i}")
     byid = {a.get("id"): a for a in assets}
-    seen_alias = {}
-    for a in assets:
-        al = a.get("aliases", [])
-        if not (isinstance(al, list) and all(isinstance(x, str) and x for x in al)):
-            errors.append(f"{a.get('id')}: aliases should be a list of ids")
-            continue
-        for x in al:
-            if x in byid:
-                errors.append(f"{a.get('id')}: alias {x} is the id of another model")
-            if seen_alias.setdefault(x, a.get("id")) != a.get("id"):
-                errors.append(f"alias {x} is claimed by {seen_alias[x]} and {a.get('id')}")
+    check_aliases(assets, byid, errors)
     for a in assets:
         check_entry(a, site, errors)
-        for v in a.get("variants", []):
-            if v not in byid:
-                errors.append(f"{a.get('id')}: variant {v} is not in the manifest")
-            elif a.get("id") not in byid[v].get("variants", []):
-                errors.append(f"{a.get('id')}: variant {v} does not list it back")
-    themes = doc.get("themes", {})
-    hexre = re.compile(HEX_COLOUR_RE)
-    if not isinstance(themes, dict) or not all(isinstance(t, dict) and t and all(k.isdigit() and int(k) < 256 and hexre.match(str(v)) for k, v in t.items()) for t in themes.values()):
-        errors.append("themes should be {name: {swatch index: '#RRGGBB'}}")
-        themes = {}
-    for a in assets:
-        for t in a.get("themes", []) if isinstance(a.get("themes"), list) else []:
-            if isinstance(t, dict) and t.get("name") not in themes:
-                errors.append(f"{a.get('id')}: theme {t.get('name')!r} is not defined in the manifest's themes")
-    for g in doc.get("palette", {}).get("glow", []):
-        if not re.match(HEX_COLOUR_RE, g.get("hex", "")):
-            errors.append(f"palette glow {g.get('name')}: bad hex")
-    common = doc.get("palette", {}).get("common", [])
-    if not (isinstance(common, list) and all(isinstance(c, dict) and isinstance(c.get("name"), str) and re.match(HEX_COLOUR_RE, str(c.get("hex"))) for c in common)):
-        errors.append("palette.common should be a list of {name, hex '#RRGGBB'}")
-    elif any(a.get("paintable") and "paints" not in a for a in assets) and not common:
-        errors.append("models offer common colours but palette.common is empty")
+        check_variants(a, byid, errors)
+    check_manifest_themes(doc, assets, errors)
+    check_palette(doc, assets, errors)
     check_page(site, errors)
     return errors
 
