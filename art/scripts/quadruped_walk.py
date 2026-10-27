@@ -148,7 +148,11 @@ def _straight_angle(kind):
         return joint_offset(kind)
 
     rest = side_at(0.0)
-    found = next((unfold * (step - 1) for step in range(1, 91) if side_at(unfold * step) * rest <= 0), None)
+    found = None
+    for step in range(1, 91):
+        if side_at(unfold * step) * rest <= 0:
+            found = unfold * (step - 1)
+            break
     set_rot(lo, x=0.0)
     set_rot(ft, x=0.0)
     bpy.context.view_layer.update()
@@ -156,6 +160,7 @@ def _straight_angle(kind):
 
 
 STRAIGHT = {"Front": None, "Hind": _straight_angle("Hind")}       # a front leg stands nearly straight and may straighten a little in the stance
+REST_SIDE = {kind: joint_offset(kind) for kind in ("Front", "Hind")}  # the side each leg's middle joint is on at rest: the clip must keep it
 
 
 def solve_lower(kind, side, upper_deg, target_z=0.0):
@@ -481,7 +486,8 @@ worst_height = max(v[2] for v in slide.values())
 
 
 def joint_side(kind):
-    """joint_offset over the clip: (least, most). A joint that crosses the line mid-clip bends the wrong way (issue #125)."""
+    """joint_offset over the clip: (least, most). A joint that crosses the line mid-clip, or stays on the other side of it from the rest pose, bends the wrong
+    way (issue #125); the clip then fails with a RuntimeError and leaves the rig as it is (tools/build_site_assets.py's SceneGuard restores the scene's settings)."""
     seen = []
     for frame in range(bpy.context.scene.frame_start, bpy.context.scene.frame_end + 1):
         bpy.context.scene.frame_set(frame)
@@ -491,9 +497,13 @@ def joint_side(kind):
 
 for kind in ("Front", "Hind"):
     lo_side, hi_side = joint_side(kind)
-    tolerance = (0.10 if kind == "Front" else 0.05) * LEG_LENGTH   # a straight leg stands a little either side of it (a front leg locks a little past straight under load)
+    # a straight leg stands a little either side of the line (a front leg locks a little past straight under load); the offsets are in world units, so is this
+    tolerance = (0.10 if kind == "Front" else 0.05) * LEG_LENGTH * rig.matrix_world.to_scale().x
+    rest_side = REST_SIDE[kind]
     if lo_side < -tolerance < tolerance < hi_side:
         raise RuntimeError(f"{GAIT}: the {kind.lower()} leg's middle joint crosses its top-to-ankle line ({lo_side:+.3f} to {hi_side:+.3f} m): it bends the wrong way")
+    if abs(rest_side) > tolerance and rest_side * (lo_side + hi_side) < 0:
+        raise RuntimeError(f"{GAIT}: the {kind.lower()} leg's middle joint is on the other side of its line from the rest pose ({rest_side:+.3f} m at rest)")
     print(f"{GAIT}: {kind.lower()} leg's middle joint {'in front of' if lo_side + hi_side > 0 else 'behind'} the line throughout ({lo_side:+.3f} to {hi_side:+.3f} m)")
 print(f"{GAIT}: ground speed {speed_measured:.2f} m/s (feet {', '.join(f'{k.replace("Foot_", "")} {v[0]:.2f}' for k, v in slide.items())}); {STRIDE_FRAMES} frames at {FPS} fps"
       f" = {1 / stride_seconds:.2f} strides/s")

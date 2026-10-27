@@ -68,7 +68,7 @@ The ratios above held, and the animals still looked like a straight tube on four
 | `tuck` | how far the underline rises from the deepest point of the chest to the loin | at least 0.08 for the cats and dogs, 0.03 for the horse, cow, fox and deer, 0 for the rest |
 | `front_in`, `hind_in` | how far the top of each leg is inside the body above its underside | at least 0.10 |
 | `stifle` | how far the stifle (the most forward hind ring above 30 % of H) is in front of the hip | at least 0.03 |
-| `hock` | how far the hock (the rearmost hind ring below 30 % of H) is behind the stifle | at least 0.06 |
+| `hock` | how far the hock (the rearmost hind ring below the stifle) is behind the stifle | at least 0.06 |
 | `root` | how far the top of the neck's root stands above the withers | at most 0.08 |
 
 A straight tube on posts fails all of the first five (the test builds one from the collie). The farm animals of #87 had legs that started at the barrel's underside and a stifle that barely came forward; they got a shoulder and a thigh ring and a keel too. Triangles: dogs 1060-1164 (were about 1000-1050), cats 900 (676), farm animals 776-1040 (up by 40 each), within the budget below.

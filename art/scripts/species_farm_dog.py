@@ -275,9 +275,8 @@ def _legs(profile, ref, drop, thick):
 
 
 def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
-    """shape: optional overrides for another dog on the same builder (the husky, the breeds of make_breed): body, head, tail (the section lists: _COLLIE_BODY, _COLLIE_HEAD, _COLLIE_TAIL above), front_x and hind_x (the
-    legs' distance from the middle), ears ("fold": the collie's half-folded ear, "up": an upright triangle, "drop", "long": hanging flaps, "rose": a small flap folded back) and
-    ear_k (their size), ruff (the collar's width factor, None for none), leg (the legs' height to the elbow, 0.22), length and width (factors on the legs' positions), thick (on
+    """shape: optional overrides for another dog on the same builder (the husky, the breeds of make_breed): body, head, tail (the section lists: _COLLIE_BODY, _COLLIE_HEAD, _COLLIE_TAIL above), ears ("fold": the collie's half-folded ear, "up": an upright triangle, "drop", "long": hanging flaps, "rose": a small flap folded back) and
+    ear_k (their size), ruff (the collar's width factor, None for none), leg (the legs' height to the elbow, _ELBOW = 0.25), length and width (factors on the legs' positions), thick (on
     the legs' girth), neck ((y, z, scale, width) of the head's root, for the ruff), tip_at (see _farm_tail_coat) and size (the rig's scale: the whole dog drawn at the
     collie's size and scaled to the breed's)."""
     sk = SKINS[skin] if isinstance(skin, str) else skin
@@ -291,7 +290,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     ear_x = skull[2] * 0.85
     st = SimpleNamespace(sk=sk, shape=shape, head=head, skull=skull, ear_x=ear_x, front_leg=front_leg, hind_leg=hind_leg, drop=drop, thick=thick,
                          neck=shape.get("neck", (*_NECK_ROOT, 1.0, 1.0)))
-    if drop or ly != 1.0 or wx != 1.0:                            # a breed: its coat is worked out where the point would be on the collie
+    if drop or not (math.isclose(ly, 1.0) and math.isclose(wx, 1.0)):       # a breed: its coat is worked out where the point would be on the collie
         def to_collie(c):
             z = c.z * _ELBOW / leg if c.z < leg else c.z + drop   # below the elbow the leg is squashed, above it the body is lowered
             return SimpleNamespace(x=c.x / wx, y=c.y / ly, z=z)

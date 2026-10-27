@@ -132,7 +132,8 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     if not math.isclose(head_k, 1.0):                                      # the neck root (ring 0) stays inside the shoulders; the rest grows about it
         y0, z0 = head[0][:2]
         head = head[:1] + [(y0 + (y - y0) * head_k, z0 + (z - z0) * head_k, w * head_k, h * head_k) for y, z, w, h in head[1:]]
-    # the legs (z, dy, half width, half depth, dx): the front from the shoulder inside the chest down a straight slim leg under it (the elbow at 2, the wrist at 4); the hind
+    # the legs (z, dy, half width, half depth, dx): the front from the shoulder inside the chest down a straight slim leg under it (the elbow at 2, the wrist at 3, the paw's
+    # heel at 4); the hind
     # from the hip through the thigh, the stifle forward (2), the shin back to a high hock (4) and the long foot to the paw
     fr = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
           [(0.21, 0.012, 0.028, 0.038, -0.012), (0.16, 0.010, 0.026, 0.034, 0.0), (0.11, 0.004, 0.019, 0.023, 0.0), (0.06, 0.0, 0.016, 0.020, 0.0),
