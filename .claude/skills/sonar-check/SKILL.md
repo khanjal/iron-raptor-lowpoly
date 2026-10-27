@@ -104,11 +104,10 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
 
 ## Suppressing what we will not fix
 
-Three places, in this order of preference:
+Our analysis is SonarCloud's automatic analysis, which ignores `sonar-project.properties` (and reads only a few keys of `.sonarcloud.properties`, none for ignoring issues), so there is no ignore file in the repository. Two ways, in this order:
 
-1. **On the line**: `# NOSONAR` in Python (bare, nothing after it: S7632 rejects trailing text) and `// NOSONAR: reason` in JS, with the reason on the line above. A NOSONAR hides every rule on its line, so on a `def` line it also hides `S3776` for that function: split the function first, then mark only what is left (the `S107` of `door` and `dome` is the example). It is not read inside HTML.
-2. **`sonar-project.properties`** (repository root; `sonar.issue.ignore.multicriteria`, one entry per rule and file with its reason in a comment): for what NOSONAR cannot reach, such as `tools/thumbs.html`. Whether SonarCloud's automatic analysis honours the file is checked by the issue disappearing from `python tools/sonar_issues.py` after the next analysis of `main`; if it does not, use 3.
-3. **In SonarCloud** (the owner's login, the issue's menu: Accept or False positive, with a comment): the fallback for any single issue. Nothing in the repository records it, so say it in the PR description.
+1. **On the line**: a bare `# NOSONAR` in Python (S7632 rejects text after it; put the reason on the line above) and `// NOSONAR: reason` in JS. A NOSONAR hides every rule on its line, so on a `def` line it also hides `S3776` for that function: split the function first, then mark only what is left (the `S107` of `door` and `dome` is the example). We have not seen it honoured inside an HTML file (`tools/thumbs.html` keeps three `S9382` findings), so a script that needs a mark belongs in a `.js` file.
+2. **In SonarCloud**, with the owner's login: the issue's menu, Accept or False positive, with a comment; or, for a whole rule on a whole file, Project Settings > Analysis Scope > "Ignore Issues on Multiple Criteria" (rule key, file path). Nothing in the repository records it, so say it in the PR description. A rule that the check keeps failing on is cleared this way, then re-run the `Sonar` job.
 
 ## Working the backlog
 
