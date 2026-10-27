@@ -217,7 +217,6 @@ def _deer_extras(ctx):
 
 def _buck_extras(ctx):
     _deer_ears(ctx)
-    c = ctx.common
 
     def antlers(bm):                                                   # a main beam sweeping up and forward from each side, with four tines
         for s in (-1, 1):

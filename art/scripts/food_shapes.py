@@ -147,7 +147,7 @@ COB_RADIUS = ((0.03, 0.012), (0.06, 0.027), (0.12, 0.030), (0.17, 0.026), (0.20,
 def corn(p):
     p.cyl("corn_green", (0, 0, 0.015), 0.0165, 0.03, n=8)
     props_lib.lathe(p, "corn_cob", [(z, r) for z, r in COB_RADIUS], n=8)
-    nrow, ncol = 5, 4
+    nrow = 5
     for k in range(6):
         outer = k % 2
         colour = "corn_green" if outer else "corn_leaf"

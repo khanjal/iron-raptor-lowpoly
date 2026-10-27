@@ -105,7 +105,7 @@ def body_loft(p, colour, stations, shoulder=0.8):
 def _cut(st, drop):
     """For one body station (y, half_width, z_bottom, z_top, tuck): the points of the cut `drop` below its top, as body_loft's ring is built:
     (z of the cut, x of the side at that height, z of the shoulder)."""
-    y, hw, zb, zt, tuck = st
+    _, hw, zb, zt, _ = st
     zs = zb + (zt - zb) * 0.8
     zc = zt - drop
     assert zc < zs and zc > zb, (st, drop)
@@ -116,8 +116,8 @@ def low_loft(p, colour, stations, drop):
     """The part of body_loft's shell that stays put under a lid (a hood, a boot lid, a tailgate): everything up to `drop` below the top."""
     rings = []
     for st in stations:
-        y, hw, zb, zt, tuck = st
-        zc, xc, zs = _cut(st, drop)
+        y, hw, zb, _, _ = st
+        zc, xc, _ = _cut(st, drop)
         rings.append([V(-(hw - 0.04), y, zb), V(hw - 0.04, y, zb), V(xc, y, zc), V(-xc, y, zc)])
     p.loft_rings(colour, rings)
 
@@ -126,7 +126,7 @@ def lid_loft(p, colour, stations, drop):
     """The lid that goes with low_loft: the top `drop` of the same shell, a solid piece (whatever sits under it, an engine or a spare wheel, is inside it while it is shut)."""
     rings = []
     for st in stations:
-        y, hw, zb, zt, tuck = st
+        y, hw, _, zt, tuck = st
         zc, xc, zs = _cut(st, drop)
         rings.append([V(-xc, y, zc), V(xc, y, zc), V(hw, y, zs), V(hw - tuck, y, zt), V(-(hw - tuck), y, zt), V(-hw, y, zs)])
     p.loft_rings(colour, rings)
@@ -438,9 +438,7 @@ def crashed_ship(name="GV_CrashedShip_01"):
     a power core (the console is a separate model: terminals.py), belly thrusters, swept tail fins, a bent antenna and a torn patch. Level on purpose: the floor has to be walkable (the colliders
     are the cylinders and panels of FarmsteadBuilder.BuildLandedShip, under the skin). Front is -Y (the ramp), origin at the centre on the ground."""
     p = Prop(name)
-    r_in, t, deck, ceil = SHIP_INNER_RADIUS, SHIP_WALL, SHIP_DECK, SHIP_CEILING
-    side = 2 * r_in * math.tan(math.radians(180 / SHIP_PANELS)) + 0.06
-    ph = 180 / SHIP_PANELS
+    r_in = SHIP_INNER_RADIUS
     # the three hull faces round the front (-Y, 270 degrees). Face k is the quad between ring points k and k + 1, which sit at 360 * k / HULL_N + HULL_PHASE
     # degrees, so the face centred on 270 is k = 29 and the doorway is 28, 29, 30. (It was 29, 30, 31: centred on 279 degrees, a doorway 0.9 m off the
     # glow posts, the ramp and the wall panel that is the doorway in the colliders.)

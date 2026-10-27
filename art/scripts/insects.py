@@ -713,7 +713,7 @@ def run():
     chosen = [k for k, (fn, g) in CRITTERS.items() if not names or k in names or g in names]
     x = 0.0
     for key in chosen:
-        fn, group = CRITTERS[key]
+        fn, _ = CRITTERS[key]
         prop = fn()
         obj, coll = prop.finish()
         common.export_fbx(coll, f"Assets/Art/Global/Animals/Insects/{prop.name}.fbx")
