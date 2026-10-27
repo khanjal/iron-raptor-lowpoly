@@ -14,6 +14,8 @@ clips play on all of them. Birds face -Y, Z up, feet on z = 0.
                 +-- LegUpper_L - LegLower_L - Foot_L, and _R
 """
 
+import math
+
 import bmesh
 
 import common
@@ -126,7 +128,7 @@ def build(sp, style="smooth", scale=1.0):
     mesh = common.join(parts, name)
     mesh.location = (0, 0, 0)
     quadruped_rig.bind(mesh, rig)
-    if scale != 1.0:
+    if not math.isclose(scale, 1.0):
         rig.scale = (scale, scale, scale)
     return mesh, rig, coll
 
@@ -203,7 +205,7 @@ CHICKEN_HEN = {
     "tail": [(0.40, 0.19), (0.46, 0.23), (0.51, 0.265)], "tail_boxes": False,
     "coat": lambda c, n: "brown_coat",
     "tail_coat": lambda c, n: "black",
-    "neck_coat": lambda c, n: "brown_coat" if c.z < 0.44 else "brown_coat",
+    "neck_coat": lambda c, n: "brown_coat",
     "extras": _chicken_extras,
 }
 

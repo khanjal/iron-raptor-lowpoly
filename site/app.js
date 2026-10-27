@@ -186,7 +186,7 @@ function buildChips() {
     present.forEach((t) => used.add(t));
     if (present.length) box.append(group(title, present));
   }
-  const rest = [...all.keys()].filter((t) => !used.has(t)).sort();
+  const rest = [...all.keys()].filter((t) => !used.has(t)).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
   const det = el('details', { class: 'more' }, el('summary', { text: `More tags (${rest.length})` }));
   const chips = el('div', { class: 'chips' });
   for (const t of rest) chips.append(tagChip(t));
@@ -252,7 +252,7 @@ function syncFromHash() {
   let a = state.byId.get(id);
   if (!a && state.was.has(id)) { const w = state.was.get(id); a = w.asset; state.wantPaint = w.paint; state.wantTheme = w.theme; history.replaceState(null, '', location.pathname + location.search + '#' + a.id); }
   if (!a) { closeViewer(false); return; }
-  showAsset(a);
+  showAsset(a).catch((e) => { $('status').textContent = 'Could not open ' + a.name + ': ' + e.message; console.error(e); });
 }
 
 // Maximised: the viewer covers the page and the stage fills it (css .viewer.max). The choice is remembered for the next model and visit.
@@ -456,4 +456,4 @@ $('play').addEventListener('click', () => {
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.current) { if (state.max) setMax(false); else closeViewer(); } });
 
 try { state.max = localStorage.getItem('lowpoly-max') === '1'; } catch (e) { /* no storage: not maximised */ }
-init();
+init().catch((e) => { $('count').textContent = 'Could not start the browser: ' + e.message; console.error(e); });

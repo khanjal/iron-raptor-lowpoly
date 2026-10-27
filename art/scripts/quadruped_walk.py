@@ -286,7 +286,7 @@ for kind in ("Front", "Hind"):
     reach[kind] = best
 max_travel = 0.97 * min(t for _, t in reach.values())
 
-if GAIT == "walk" and CFG["slide"] == 0.0:
+if GAIT == "walk" and math.isclose(CFG["slide"], 0.0, abs_tol=1e-9):
     STRIDE_FRAMES = STRIDE_FRAMES or max(16, round(36 * (LEG_LENGTH / 0.92) ** 0.5))   # small animals step faster
     if STRIDE_LENGTH is None:
         STRIDE_LENGTH = round(0.57 * LEG_LENGTH, 3)         # 0.52 m for the cow (leg 0.92 m)
