@@ -786,38 +786,53 @@ def _named(prop, theme):
     return prop
 
 
+def _styled_piece(name, fn, folder, theme):
+    """One household or decor piece in one theme, exported as FBX; returns its object."""
+    var = VARIANTS.get((name, theme))
+    props_lib.THEME = {} if var else THEMES[theme]
+    try:
+        prop = var() if var else fn()
+    finally:
+        props_lib.THEME = {}
+    if not var:
+        prop = _named(prop, theme)
+        if theme == "Damaged":
+            prop.damage(seed=sum(ord(c) * (i + 1) for i, c in enumerate(name)) % 1000)
+    obj, coll = prop.finish()
+    common.export_fbx(coll, f"Assets/Art/Global/{folder}/{theme}/{prop.name}.fbx")
+    return obj
+
+
+def _themes_for(name, themes):
+    """The themes to build a piece in: all but the retro radio's Retro, which has no plain variant."""
+    return [t for t in themes if not (name == "Radio_Retro" and t == "Retro" and (name, t) not in VARIANTS)]
+
+
+def _chosen_pieces(module, only):
+    """(name, builder) of the module's pieces that STYLE_PIECES names (all of them without it)."""
+    return [(name, fn) for name, (fn, _group) in module.PIECES.items() if not only or name in only]
+
+
+def _wants_boarded_window(only, themes):
+    return (not only or "Window" in only) and "Damaged" in themes
+
+
 def run():
     themes = globals().get("THEME_LIST") or list(THEMES)
     only = globals().get("STYLE_PIECES")
     count = 0
     y = 0.0
     for module, folder in ((household, "Household"), (decor, "Decor")):
-        for name, (fn, group) in module.PIECES.items():
-            if only and name not in only:
-                continue
+        for name, fn in _chosen_pieces(module, only):
             x = 0.0
-            for theme in themes:
-                key = (name, theme)
-                if name == "Radio_Retro" and theme == "Retro" and key not in VARIANTS:
-                    continue
-                var = VARIANTS.get(key)
-                props_lib.THEME = {} if var else THEMES[theme]
-                try:
-                    prop = var() if var else fn()
-                finally:
-                    props_lib.THEME = {}
-                if not var:
-                    prop = _named(prop, theme)
-                    if theme == "Damaged":
-                        prop.damage(seed=sum(ord(c) * (i + 1) for i, c in enumerate(name)) % 1000)
-                obj, coll = prop.finish()
-                common.export_fbx(coll, f"Assets/Art/Global/{folder}/{theme}/{prop.name}.fbx")
+            for theme in _themes_for(name, themes):
+                obj = _styled_piece(name, fn, folder, theme)
                 obj.location = (x, y, 0)
                 x += max(1.2, obj.dimensions.x + 0.4)
                 count += 1
             y += 2.5
     # the boarded window belongs with the kit
-    if (not only or "Window" in only) and "Damaged" in themes:
+    if _wants_boarded_window(only, themes):
         prop = window_boarded()
         obj, coll = prop.finish()
         common.export_fbx(coll, f"Assets/Art/Global/Kit/{prop.name}.fbx")

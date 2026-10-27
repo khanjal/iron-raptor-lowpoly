@@ -545,28 +545,44 @@ ROTTEN = {"banana_yellow": "fabric_brown", "corn_green": "mould", "lettuce_heart
 FRESH_GROUPS = ("produce", "bakery", "dairy", "prepared")
 
 
+def _make_item(fn, group, folder, rotten):
+    """Build one item (the rotten version through the ROTTEN colours), export it as FBX unless EXPORT is off, and return its object."""
+    props_lib.THEME = ROTTEN if rotten else {}
+    try:
+        prop = fn()
+    finally:
+        props_lib.THEME = {}
+    if rotten:
+        prop.name = prop.name[:-3] + "_Rotten_01"
+    obj, coll = prop.finish()
+    sub = "" if group == "clothes" else f"{group.title()}/"
+    if globals().get("EXPORT", True):
+        common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
+    return obj
+
+
+def _versions(group):
+    """Whether to build the plain item, and the rotten one too for a fresh-food group."""
+    return [False, True] if group in FRESH_GROUPS else [False]
+
+
+def _wanted(key, group, names):
+    """Whether CONTENT_LIST (None for all) names the item or its group."""
+    return not names or key in names or group in names
+
+
 def run():
     props_lib.INTERACTIONS.clear()
     names = globals().get("CONTENT_LIST")
     count, x, y, row = 0, 0.0, 0.0, None
     for key, (fn, group) in ITEMS.items():
-        if names and key not in names and group not in names:
+        if not _wanted(key, group, names):
             continue
         folder = "Clothes" if group == "clothes" else "Food"
         if group != row:
             row, x, y = group, 0.0, (y + 1.2 if row is not None else 0.0)
-        for rotten in ([False, True] if group in FRESH_GROUPS else [False]):
-            props_lib.THEME = ROTTEN if rotten else {}
-            try:
-                prop = fn()
-            finally:
-                props_lib.THEME = {}
-            if rotten:
-                prop.name = prop.name[:-3] + "_Rotten_01"
-            obj, coll = prop.finish()
-            sub = "" if group == "clothes" else f"{group.title()}/"
-            if globals().get("EXPORT", True):
-                common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
+        for rotten in _versions(group):
+            obj = _make_item(fn, group, folder, rotten)
             obj.location = (x, y + (0.6 if rotten else 0.0), 0)
             count += 1
         x += max(0.3, obj.dimensions.x + 0.1)

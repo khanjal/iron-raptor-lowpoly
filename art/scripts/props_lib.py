@@ -27,6 +27,27 @@ INTERACTIONS = {}   # prop name -> {"parts": {...}, "slots": {...}}, filled by P
 THEME = {}     # colour remap applied to every part added while set: {"wood_dark": "black", ...} (see home_styles.py)
 
 
+def _island_verts(bm):
+    """The vertices of every connected island of a mesh, one list per island."""
+    bm.verts.ensure_lookup_table()
+    bm.verts.index_update()
+    parent = list(range(len(bm.verts)))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for e in bm.edges:
+        a, b = find(e.verts[0].index), find(e.verts[1].index)
+        if a != b:
+            parent[a] = b
+    islands = {}
+    for v in bm.verts:
+        islands.setdefault(find(v.index), []).append(v)
+    return list(islands.values())
+
+
 class Prop:
     def __init__(self, name):
         self.name = name
@@ -181,45 +202,30 @@ class Prop:
         bm.normal_update()
         self._orient([f], facing, away_from, toward)
 
-    def damage(self, seed=0, drop=0.2, tilt=5.0, grime=2, max_part=0.0015, grime_scale=1.0):
-        """Make the prop look broken and neglected: drop some small parts, tilt and sag the whole thing, and splash dark grime on it.
+    def _doomed(self, verts, rng, drop, max_part):
+        """The verts of one island if it is a small loose part that goes missing, else none."""
+        xs = [v.co.x for v in verts]; ys = [v.co.y for v in verts]; zs = [v.co.z for v in verts]
+        vol = (max(xs) - min(xs)) * (max(ys) - min(ys)) * (max(zs) - min(zs))
+        if vol < max_part:
+            kept = self._kept(xs, ys, zs)
+            if kept == "new":
+                return []                                     # no draw: the random sequence of every other part stays what it was
+            # seeded modelling variation, not security
+            if rng.random() < drop and kept is None:  # NOSONAR
+                return verts
+        return []
 
-        Deterministic for a given seed. Parts are the loose boxes and cylinders a prop is built from; the small ones (loose handles,
-        knobs, books, rungs) each have a chance `drop` of going missing, the big ones never do; max_part is the bounding-box volume in m3
-        below which a part counts as small (raise it for vehicles and buildings, whose loose parts are bigger). `post` is set so finish() tilts the
-        result by up to `tilt` degrees and re-seats it on the floor."""
-        import random
-        rng = random.Random(seed)
+    def _drop_small_parts(self, rng, drop, max_part):
+        """The first half of damage(): each small loose part has a chance `drop` of going missing."""
         for colour, bm in self.parts.items():
-            bm.verts.ensure_lookup_table()
-            bm.verts.index_update()
-            parent = list(range(len(bm.verts)))
-
-            def find(i):
-                while parent[i] != i:
-                    parent[i] = parent[parent[i]]
-                    i = parent[i]
-                return i
-            for e in bm.edges:
-                a, b = find(e.verts[0].index), find(e.verts[1].index)
-                if a != b:
-                    parent[a] = b
-            islands = {}
-            for v in bm.verts:
-                islands.setdefault(find(v.index), []).append(v)
             kill = []
-            for verts in islands.values():
-                xs = [v.co.x for v in verts]; ys = [v.co.y for v in verts]; zs = [v.co.z for v in verts]
-                vol = (max(xs) - min(xs)) * (max(ys) - min(ys)) * (max(zs) - min(zs))
-                if vol < max_part:
-                    kept = self._kept(xs, ys, zs)
-                    if kept == "new":
-                        continue                                  # no draw: the random sequence of every other part stays what it was
-                    # seeded modelling variation, not security
-                    if rng.random() < drop and kept is None:  # NOSONAR
-                        kill.extend(verts)
+            for verts in _island_verts(bm):
+                kill.extend(self._doomed(verts, rng, drop, max_part))
             if kill:
                 bmesh.ops.delete(bm, geom=kill, context="VERTS")
+
+    def _splash_grime(self, rng, grime, grime_scale):
+        """The second half of damage(): `grime` dark patches on the flat upward-facing surfaces nothing covers."""
         # grime: dark flat patches lying on flat upward-facing surfaces that nothing covers (never floating, buried or hidden)
         from mathutils.bvhtree import BVHTree
         trees = [BVHTree.FromBMesh(bm) for bm in self.parts.values() if len(bm.faces)]
@@ -243,6 +249,8 @@ class Prop:
                 cx = rng.uniform(x0 + sx / 2, x1 - sx / 2); cy = rng.uniform(y0 + sy / 2, y1 - sy / 2)
                 self.box("rust_dark", (cx, cy, z + 0.002), (sx, sy, 0.004))
 
+    def _settler(self, rng, tilt):
+        """The `post` step of a damaged prop: tilt it by up to `tilt` degrees and re-seat it on the floor."""
         def settle(obj):
             import bpy
             obj.rotation_euler = (radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)), radians(rng.uniform(-tilt, tilt)))
@@ -258,58 +266,64 @@ class Prop:
             for v in obj.data.vertices:
                 v.co.z -= low
             self.settled = (rot, low)
-        if tilt:
-            self.post = settle
+        return settle
 
-    def finish(self, collection_name=None):
-        emitters.apply(self)
-        coll = common.fresh_collection(collection_name or self.name)
-        common.setup_scene()
-        objs = []
-        for colour, bm in self.parts.items():
-            bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
-            objs.append(common.new_mesh_object(f"{self.name}_{colour}", bm, coll, colour, flat=True))
-        obj = common.join(objs, self.name)
-        obj.location = (0, 0, 0)
-        if self.post is not None:
-            self.post(obj)
-        # moving parts: one object per role, its origin on the pivot, parented to the body
-        pre = common.name_prefix()                                   # (set while building in a shared Blender file: see common.configure)
+    def damage(self, seed=0, drop=0.2, tilt=5.0, grime=2, max_part=0.0015, grime_scale=1.0):
+        """Make the prop look broken and neglected: drop some small parts, tilt and sag the whole thing, and splash dark grime on it.
+
+        Deterministic for a given seed. Parts are the loose boxes and cylinders a prop is built from; the small ones (loose handles,
+        knobs, books, rungs) each have a chance `drop` of going missing, the big ones never do; max_part is the bounding-box volume in m3
+        below which a part counts as small (raise it for vehicles and buildings, whose loose parts are bigger). `post` is set so finish() tilts the
+        result by up to `tilt` degrees and re-seats it on the floor."""
+        import random
+        rng = random.Random(seed)
+        self._drop_small_parts(rng, drop, max_part)
+        self._splash_grime(rng, grime, grime_scale)
+        if tilt:
+            self.post = self._settler(rng, tilt)
+
+    def _retire_stale_roles(self, pre):
+        """Rename what an earlier build of a prop with these moving parts left in the Blender file, to free the names."""
         for role in [o.name for o in bpy.data.objects if o.name in {pre + r for r in self.groups}]:
             stale = bpy.data.objects[role]
             stale.name = f"{role}__old"                              # free the plain role names for this prop
             if stale.data is not None:
                 stale.data.name = f"{role}__old"                     # and the mesh names, so new meshes are not called Door.101
-        reg = {"parts": {}, "slots": {}}
-        for role, g in self.groups.items():
-            gobjs = []
-            if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (the axis stays world x, y or z, so a wrecked door or wheel is a few degrees off its true hinge line)
-                rot, low = self.settled
-                m = rot.to_4x4()
-                for bm in g["parts"].values():
-                    bmesh.ops.transform(bm, matrix=m, verts=bm.verts)
-                    for v in bm.verts:
-                        v.co.z -= low
-                g["pivot"] = m @ g["pivot"]
-                g["pivot"].z -= low
-            for colour, bm in g["parts"].items():
-                bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
-                gobjs.append(common.new_mesh_object(f"{self.name}_{role}_{colour}", bm, coll, colour, flat=True))
-            if not gobjs:
-                continue
-            part_obj = common.join(gobjs, role)
-            piv = g["pivot"]
-            for v in part_obj.data.vertices:
-                v.co -= piv
-            part_obj.location = piv
-            part_obj.parent = obj
-            idx = {"x": 0, "y": 1, "z": 2}[g["axis"]]
-            if g["rest"]:
-                if g["kind"] == "hinge":
-                    e = list(part_obj.rotation_euler); e[idx] = radians(g["rest"]); part_obj.rotation_euler = e
-                else:
-                    loc = list(part_obj.location); loc[idx] += g["rest"]; part_obj.location = loc
-            reg["parts"][role] = {"kind": g["kind"], "axis": g["axis"], "pivot": [round(v, 4) for v in piv], "limit": g["limit"], "rest": g["rest"]}
+
+    def _build_part(self, role, g, obj, coll):
+        """One moving part of finish(): its meshes joined, its origin on the pivot, parented to the body, set to its rest pose;
+        returns its entry for the interactions file, or None when it has no geometry."""
+        gobjs = []
+        if self.settled is not None:                             # a tilted body: tilt the part with it, pivot and all (the axis stays world x, y or z, so a wrecked door or wheel is a few degrees off its true hinge line)
+            rot, low = self.settled
+            m = rot.to_4x4()
+            for bm in g["parts"].values():
+                bmesh.ops.transform(bm, matrix=m, verts=bm.verts)
+                for v in bm.verts:
+                    v.co.z -= low
+            g["pivot"] = m @ g["pivot"]
+            g["pivot"].z -= low
+        for colour, bm in g["parts"].items():
+            bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
+            gobjs.append(common.new_mesh_object(f"{self.name}_{role}_{colour}", bm, coll, colour, flat=True))
+        if not gobjs:
+            return None
+        part_obj = common.join(gobjs, role)
+        piv = g["pivot"]
+        for v in part_obj.data.vertices:
+            v.co -= piv
+        part_obj.location = piv
+        part_obj.parent = obj
+        idx = {"x": 0, "y": 1, "z": 2}[g["axis"]]
+        if g["rest"]:
+            if g["kind"] == "hinge":
+                e = list(part_obj.rotation_euler); e[idx] = radians(g["rest"]); part_obj.rotation_euler = e
+            else:
+                loc = list(part_obj.location); loc[idx] += g["rest"]; part_obj.location = loc
+        return {"kind": g["kind"], "axis": g["axis"], "pivot": [round(v, 4) for v in piv], "limit": g["limit"], "rest": g["rest"]}
+
+    def _place_slots(self, obj, coll, pre, reg):
+        """The slot empties of a prop, hung off the body, and their entries in `reg`."""
         for name, (pos, size, on_part) in self.slots.items():
             stale = bpy.data.objects.get(f"{pre}Slot_{name}")
             if stale is not None:
@@ -329,23 +343,49 @@ class Prop:
             e.parent = obj                                          # hung off the body: a parent chain would not survive the FBX axis bake
             e.location = where                                      # where the part's contents are in the exported pose
             reg["slots"][name] = {"position": [round(v, 4) for v in pos], "size": [round(v, 4) for v in size], "part": on_part}
+
+    def _place_emitters(self, obj, coll, pre, reg):
+        """The light, sound and switch empties of a prop, and their entries in `reg`."""
+        reg["emitters"] = {}
+        lo = [min(v.co[i] for v in obj.data.vertices) for i in range(3)]
+        hi = [max(v.co[i] for v in obj.data.vertices) for i in range(3)]
+        for kind, name, pos, frac, info in self.emitters:
+            where = Vector(pos) if pos is not None else Vector([lo[i] + (hi[i] - lo[i]) * frac[i] for i in range(3)])
+            label = f"{kind.capitalize()}_{name}"
+            stale = bpy.data.objects.get(pre + label)
+            if stale is not None:
+                stale.name = f"{pre}{label}__old"
+            e = bpy.data.objects.new(pre + label, None)
+            e.empty_display_type = {"light": "SPHERE", "sound": "CIRCLE", "switch": "CUBE"}.get(kind, "PLAIN_AXES")
+            e.empty_display_size = 0.06
+            coll.objects.link(e)
+            e.parent = obj
+            e.location = where
+            reg["emitters"][label] = dict(kind=kind, position=[round(v, 4) for v in where], **info)
+
+    def finish(self, collection_name=None):
+        emitters.apply(self)
+        coll = common.fresh_collection(collection_name or self.name)
+        common.setup_scene()
+        objs = []
+        for colour, bm in self.parts.items():
+            bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=1e-5)
+            objs.append(common.new_mesh_object(f"{self.name}_{colour}", bm, coll, colour, flat=True))
+        obj = common.join(objs, self.name)
+        obj.location = (0, 0, 0)
+        if self.post is not None:
+            self.post(obj)
+        # moving parts: one object per role, its origin on the pivot, parented to the body
+        pre = common.name_prefix()                                   # (set while building in a shared Blender file: see common.configure)
+        self._retire_stale_roles(pre)
+        reg = {"parts": {}, "slots": {}}
+        for role, g in self.groups.items():
+            entry = self._build_part(role, g, obj, coll)
+            if entry is not None:
+                reg["parts"][role] = entry
+        self._place_slots(obj, coll, pre, reg)
         if self.emitters:
-            reg["emitters"] = {}
-            lo = [min(v.co[i] for v in obj.data.vertices) for i in range(3)]
-            hi = [max(v.co[i] for v in obj.data.vertices) for i in range(3)]
-            for kind, name, pos, frac, info in self.emitters:
-                where = Vector(pos) if pos is not None else Vector([lo[i] + (hi[i] - lo[i]) * frac[i] for i in range(3)])
-                label = f"{kind.capitalize()}_{name}"
-                stale = bpy.data.objects.get(pre + label)
-                if stale is not None:
-                    stale.name = f"{pre}{label}__old"
-                e = bpy.data.objects.new(pre + label, None)
-                e.empty_display_type = {"light": "SPHERE", "sound": "CIRCLE", "switch": "CUBE"}.get(kind, "PLAIN_AXES")
-                e.empty_display_size = 0.06
-                coll.objects.link(e)
-                e.parent = obj
-                e.location = where
-                reg["emitters"][label] = dict(kind=kind, position=[round(v, 4) for v in where], **info)
+            self._place_emitters(obj, coll, pre, reg)
         if self.traits:
             reg["traits"] = sorted(self.traits)
         if reg["parts"] or reg["slots"] or self.emitters or self.traits:
