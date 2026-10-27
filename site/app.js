@@ -186,7 +186,7 @@ function buildChips() {
     present.forEach((t) => used.add(t));
     if (present.length) box.append(group(title, present));
   }
-  const rest = [...all.keys()].filter((t) => !used.has(t)).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+  const rest = [...all.keys()].filter((t) => !used.has(t)).sort((a, b) => (a > b) - (a < b));
   const det = el('details', { class: 'more' }, el('summary', { text: `More tags (${rest.length})` }));
   const chips = el('div', { class: 'chips' });
   for (const t of rest) chips.append(tagChip(t));

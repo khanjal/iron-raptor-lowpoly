@@ -14,8 +14,6 @@ clips play on all of them. Birds face -Y, Z up, feet on z = 0.
                 +-- LegUpper_L - LegLower_L - Foot_L, and _R
 """
 
-import math
-
 import bmesh
 
 import common
@@ -81,6 +79,7 @@ def skeleton(sp):
 
 
 def build(sp, style="smooth", scale=1.0):
+    import math
     st = STYLES[style]
     name = f"GN_{sp['name']}_{style}"
     common.setup_scene()
