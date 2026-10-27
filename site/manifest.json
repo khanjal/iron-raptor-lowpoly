@@ -2378,7 +2378,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1016,
+   "triangles": 1056,
    "size": [
     0.361,
     1.806,
@@ -2410,11 +2410,6 @@
      "part": "Antlers",
      "swatch": 17,
      "hex": "#E8DDBE"
-    },
-    {
-     "part": "Nose and hooves",
-     "swatch": 7,
-     "hex": "#1B1B1E"
     }
    ]
   },
@@ -2434,7 +2429,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 764,
+   "triangles": 804,
    "size": [
     0.316,
     1.47,
@@ -2488,7 +2483,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 764,
+   "triangles": 804,
    "size": [
     0.193,
     0.896,
@@ -2512,14 +2507,14 @@
      "hex": "#C49A5E"
     },
     {
-     "part": "Spots and tail",
-     "swatch": 6,
-     "hex": "#E6E2D6"
-    },
-    {
      "part": "Belly, throat and muzzle",
      "swatch": 33,
      "hex": "#E9DCC0"
+    },
+    {
+     "part": "Spots and tail",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     },
     {
      "part": "Nose and hooves",
@@ -2544,7 +2539,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 756,
+   "triangles": 796,
    "size": [
     0.194,
     0.603,
@@ -2594,7 +2589,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 732,
+   "triangles": 752,
    "size": [
     0.136,
     0.214,

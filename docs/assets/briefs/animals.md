@@ -180,7 +180,7 @@ The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class
 | --- | --- | --- |
 | Cat | rebuilt (#88) | head too small, slab body, long thin legs |
 | Collie | rebuilt (#88) | head short and wide, no shoulder, stub feet |
-| Raccoon, opossum, skunk, fox, deer (doe, buck, fawn), bear | rebuilt (#125) | 8-sided slab bodies and 6-sided heads (now 10 and 8, as the farm animals'); the deer's trunk was shorter than it was tall, its chest shallow and its head carried low (LH 0.89, depth 0.38, carry 1.18), now a longer, deeper body, a long neck and big ears; the others were within their new ranges |
+| Raccoon, opossum, skunk, fox, deer (doe, buck, fawn), bear | rebuilt (#125) | 8-sided slab bodies and 6-sided heads (now 10 and 8, as the farm animals'); the deer's trunk was shorter than it was tall, its chest shallow and its head carried low (LH 0.89, depth 0.38, carry 1.18), now a longer, deeper body, a long neck and big ears; the others were within their new ranges; then all eight got the shape rework's keels, legs that start inside the body and a bent hind leg |
 | Retriever, shepherd, beagle, bulldog, dachshund, stray | rebuilt (#125) on the farm dog's builder | the old `make_dog` failed width, depth, elbow and head width on all six (and the length on the beagle and dachshund) |
 | Husky | rebuilt (#88) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
 | Cow, horse, pig, sheep, goat | rebuild (done) | same causes (issue #87): bodies 8-sided slabs, thin legs with the knee too high, small wedge heads |
