@@ -52,7 +52,8 @@ def purge_collection(coll):
     for r in rigs:
         common.clear_clips(r)
     datas = [o.data for o in coll.all_objects if o.data is not None]
-    for o in list(coll.all_objects):
+    # the loop removes from the live collection, so it iterates a copy
+    for o in list(coll.all_objects):  # NOSONAR
         bpy.data.objects.remove(o, do_unlink=True)
     bpy.data.collections.remove(coll)
     for d in datas:

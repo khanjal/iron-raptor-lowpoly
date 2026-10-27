@@ -448,7 +448,7 @@ def _audit_imported(stem, made, mf=None, ref=None):
                     if not lo <= measures[k] <= hi:
                         problems.append(f"{k} {measures[k]:.3f} is outside {lo:.3f}-{hi:.3f} for a build of {mf:.2f}")
     ranges = _ranges(stem)
-    for k, v in list(measures.items()):
+    for k, v in measures.items():
         if k not in ranges:
             continue
         lo, hi = ranges[k]
@@ -488,7 +488,8 @@ def _make_person(key, mf, folder):
     finally:                                                    # the build's objects go even if it or the export raised
         coll = bpy.data.collections.get("B269_audit_" + key)
         if coll is not None:
-            for o in list(coll.objects):
+            # the loop removes from the live collection, so it iterates a copy
+            for o in list(coll.objects):  # NOSONAR
                 bpy.data.objects.remove(o, do_unlink=True)
             bpy.data.collections.remove(coll)
     return path

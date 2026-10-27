@@ -149,7 +149,8 @@ def fresh_action(rig_obj, name):
     rig_obj.animation_data_create()
     old = rig_obj.animation_data.action
     rig_obj.animation_data.action = None
-    for a in list(bpy.data.actions):
+    # the loop removes from the live collection, so it iterates a copy
+    for a in list(bpy.data.actions):  # NOSONAR
         if a is old or a.users == 0:
             bpy.data.actions.remove(a)
     action = bpy.data.actions.new(name)

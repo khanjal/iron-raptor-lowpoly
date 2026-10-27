@@ -55,7 +55,7 @@ class Ranges(unittest.TestCase):
     def test_keys_point_at_rows(self):
         for key, row in A.KEYS.items():
             self.assertIn(row, A.RANGES, key)
-        self.assertTrue(A.ENFORCED <= set(A.RANGES))
+        self.assertLessEqual(A.ENFORCED, set(A.RANGES))
 
     def test_check_reports_a_miss(self):
         sp = dict(SPECIES["collie"])

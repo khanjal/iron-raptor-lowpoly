@@ -68,7 +68,7 @@ def classify(rel_parts):
     category = "/".join(folders[:2])
     rest = folders[2:]
     style, group = "", ""
-    if len(folders) >= 2 and folders[1] in STYLE_GROUPS:
+    if folders[1:2] and folders[1] in STYLE_GROUPS:
         style = rest[0] if rest and rest[0] in STYLES else "base"
         rest = rest[1:] if rest and rest[0] in STYLES else rest
     group = "/".join(rest)

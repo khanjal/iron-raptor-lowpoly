@@ -285,11 +285,13 @@ def build_all(scripts):
         if farm.exists():
             ns = load_props_farm(farm)
             sources.append(("props_farm", [fn for fn, _area in ns["PROPS"].values()]))
-        sources.append(("household", [fn for fn, _g in household.PIECES.values()]))
-        sources.append(("decor", [fn for fn, _g in decor.PIECES.values()]))
-        sources.append(("interactive", [fn for fn, _g in interactive.ITEMS.values()]))
-        sources.append(("ship_props", list(ship_props.SHIP_PROPS.values())))                       # the ship's set dressing (issue #212)
-        sources.append(("ship_hulls", [fn for fn, _area in ship_hulls.HULLS.values()]))            # and the new hulls (the saucer is vehicles.py)
+        sources.extend([
+            ("household", [fn for fn, _g in household.PIECES.values()]),
+            ("decor", [fn for fn, _g in decor.PIECES.values()]),
+            ("interactive", [fn for fn, _g in interactive.ITEMS.values()]),
+            ("ship_props", list(ship_props.SHIP_PROPS.values())),                       # the ship's set dressing (issue #212)
+            ("ship_hulls", [fn for fn, _area in ship_hulls.HULLS.values()]),            # and the new hulls (the saucer is vehicles.py)
+        ])
         rec = Recorder()
         install(common, props_lib, rec)
 
