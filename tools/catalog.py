@@ -14,6 +14,7 @@ INSECT_BROWN_TAGS = "wild garden insect bug brown tiny"
 CUBICLE_PANEL_TYPE = "furniture/cubicle/panel"
 FRIDGE_TYPE = "appliances/kitchen/fridge"
 SOFA_TYPE = "furniture/seating/sofa"
+CAT_TYPE = "animals/pet/cat"
 
 
 # ===== Ids ===========================================================================================================
@@ -313,11 +314,11 @@ _a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horn
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
 _a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
-_a("GN_CatTabby_faceted_01", "Cat, tabby", "animals/pet/cat", "pet cat animal quadruped tabby orange grey black", "cat")
-_a("GN_CatTuxedo_faceted_01", "Cat, tuxedo", "animals/pet/cat", "pet cat animal quadruped tuxedo black white", "cat")
-_a("GN_CatCalico_faceted_01", "Cat, calico", "animals/pet/cat", "pet cat animal quadruped calico orange black white", "cat")
-_a("GN_CatSiamese_faceted_01", "Cat, Siamese", "animals/pet/cat", "pet cat animal quadruped siamese cream brown points", "cat")
-_a("GN_CatKitten_faceted_01", "Kitten", "animals/pet/cat", "pet cat animal quadruped kitten young small cream tabby")
+_a("GN_CatTabby_faceted_01", "Cat, tabby", CAT_TYPE, "pet cat animal quadruped tabby orange grey black", "cat")
+_a("GN_CatTuxedo_faceted_01", "Cat, tuxedo", CAT_TYPE, "pet cat animal quadruped tuxedo black white", "cat")
+_a("GN_CatCalico_faceted_01", "Cat, calico", CAT_TYPE, "pet cat animal quadruped calico orange black white", "cat")
+_a("GN_CatSiamese_faceted_01", "Cat, Siamese", CAT_TYPE, "pet cat animal quadruped siamese cream brown points", "cat")
+_a("GN_CatKitten_faceted_01", "Kitten", CAT_TYPE, "pet cat animal quadruped kitten young small cream tabby")
 # insects (rigged for the browser: wings, legs and antennae move; real size in millimetres)
 _a("GN_Ladybug_01", "Ladybug", "animals/insect/ladybug", "wild garden insect bug beetle red tiny")
 _a("GN_Beetle_01", "Beetle", "animals/insect/beetle", "wild garden insect bug green tiny")
