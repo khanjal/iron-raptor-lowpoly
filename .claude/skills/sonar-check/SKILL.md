@@ -102,6 +102,14 @@ and compare the files. It takes a few minutes a tree for all 89 catalog groups (
    `get_scene_info`. If a build failed halfway, remove only the objects and collections it made by name, never Blender's own `Collection` (with the Cube, Light and
    Camera), and make the Cube the active object again.
 
+## Suppressing what we will not fix
+
+Three places, in this order of preference:
+
+1. **On the line**: `# NOSONAR` in Python (bare, nothing after it: S7632 rejects trailing text) and `// NOSONAR: reason` in JS, with the reason on the line above. A NOSONAR hides every rule on its line, so on a `def` line it also hides `S3776` for that function: split the function first, then mark only what is left (the `S107` of `door` and `dome` is the example). It is not read inside HTML.
+2. **`sonar-project.properties`** (repository root; `sonar.issue.ignore.multicriteria`, one entry per rule and file with its reason in a comment): for what NOSONAR cannot reach, such as `tools/thumbs.html`. Whether SonarCloud's automatic analysis honours the file is checked by the issue disappearing from `python tools/sonar_issues.py` after the next analysis of `main`; if it does not, use 3.
+3. **In SonarCloud** (the owner's login, the issue's menu: Accept or False positive, with a comment): the fallback for any single issue. Nothing in the repository records it, so say it in the PR description.
+
 ## Working the backlog
 
 The backlog gets its own PRs, one rule or one file at a time, never mixed into a PR about a model or the site. Take `python tools/sonar_issues.py` for the
