@@ -656,6 +656,9 @@
   "cream": "Chest, belly, socks and tail tip",
   "dark_brown": "Patches and ears"
  },
+ "GN_Pig_faceted_01": {
+  "$main": "Skin"
+ },
  "GN_Bear_faceted_01": {
   "$main": "Coat"
  },

@@ -27,20 +27,20 @@ DOGS = {
     "dog_collie":    species_farm_dog.make_farm_dog("DogCollie", species_farm_dog.DEFAULT_SKIN),   # the farm dog (issue #275): its own shape and coats, see species_farm_dog.py
     "dog_retriever": species_farm_dog.make_breed("DogRetriever", species_farm_dog.BREED_SKINS["retriever"], size=1.09, length=0.95, width=1.12, head=0.97,
                                                  head_w=1.12, snout=0.95, neck_w=1.1, thick=1.1, ear_k=1.1,
-                                                 tail=[(0.395, 0.335, 0.030), (0.330, 0.400, 0.036), (0.250, 0.440, 0.032), (0.170, 0.455, 0.020)]),
-    "dog_beagle":    species_farm_dog.make_breed("DogBeagle", species_farm_dog.BREED_SKINS["beagle"], size=0.74, leg=0.20, width=1.08, head=1.08,
+                                                 tail=[(0.455, 0.285, 0.030), (0.390, 0.350, 0.036), (0.310, 0.390, 0.032), (0.230, 0.405, 0.020)]),
+    "dog_beagle":    species_farm_dog.make_breed("DogBeagle", species_farm_dog.BREED_SKINS["beagle"], size=0.74, leg=0.23, width=1.08, head=1.08,
                                                  snout=0.9, thick=1.05, ears="long",
-                                                 tail=[(0.400, 0.335, 0.024), (0.470, 0.370, 0.026), (0.550, 0.385, 0.024), (0.620, 0.375, 0.018)], tip_at=(0.375, 0.62, 0.05)),
-    "dog_bulldog":   species_farm_dog.make_breed("DogBulldog", species_farm_dog.BREED_SKINS["bulldog"], size=0.86, leg=0.12, length=0.84, width=1.45, depth=1.05,
-                                                 body_w=(1.15, 1.1, 1.05, 1.0, 0.85, 0.8, 0.8), head=1.15, head_w=1.45, snout=0.35, neck_w=1.4, thick=1.35, neck_len=0.3, head_low=0.07, nose_k=0.8,
-                                                 ears="rose", ear_k=1.1, tail=[(0.385, 0.335, 0.030), (0.370, 0.360, 0.030), (0.350, 0.375, 0.025), (0.330, 0.380, 0.015)]),
-    "dog_dachshund": species_farm_dog.make_breed("DogDachshund", species_farm_dog.BREED_SKINS["dachshund"], size=0.58, leg=0.07, length=1.1, width=0.95,
+                                                 tail=[(0.460, 0.285, 0.024), (0.530, 0.320, 0.026), (0.610, 0.335, 0.024), (0.680, 0.325, 0.018)], tip_at=(0.325, 0.68, 0.05)),
+    "dog_bulldog":   species_farm_dog.make_breed("DogBulldog", species_farm_dog.BREED_SKINS["bulldog"], size=0.86, leg=0.15, length=1.08, width=1.45, depth=1.05,
+                                                 body_w=(1.15, 1.1, 1.05, 1.0, 0.85, 0.8, 0.8), head=1.0, head_w=1.55, snout=0.35, neck_w=1.4, thick=1.35, neck_len=0.3, head_low=0.07, nose_k=0.8,
+                                                 ears="rose", ear_k=1.1, tail=[(0.425, 0.255, 0.030), (0.410, 0.280, 0.030), (0.390, 0.295, 0.025), (0.370, 0.300, 0.015)]),
+    "dog_dachshund": species_farm_dog.make_breed("DogDachshund", species_farm_dog.BREED_SKINS["dachshund"], size=0.58, leg=0.10, length=1.1, width=0.95,
                                                  depth=0.92, head=1.05, snout=1.25, thick=1.1, ears="long",
-                                                 tail=[(0.380, 0.335, 0.028), (0.370, 0.420, 0.026), (0.340, 0.500, 0.020), (0.300, 0.560, 0.013)]),
+                                                 tail=[(0.440, 0.285, 0.028), (0.430, 0.370, 0.026), (0.400, 0.450, 0.020), (0.360, 0.510, 0.013)]),
     "dog_husky":     species_farm_dog.make_husky("DogHusky"),                                     # built on the farm dog's builder with its own numbers (issue #87)
     "dog_shepherd":  species_farm_dog.make_breed("DogShepherd", species_farm_dog.BREED_SKINS["shepherd"], size=1.165, length=0.97, head=0.93, head_w=1.02,
                                                  snout=1.1, ears="up", ear_k=1.35, ruff=0.95,
-                                                 tail=[(0.395, 0.335, 0.030), (0.310, 0.400, 0.042), (0.210, 0.440, 0.045), (0.130, 0.450, 0.030)]),
+                                                 tail=[(0.455, 0.285, 0.030), (0.370, 0.350, 0.042), (0.270, 0.390, 0.045), (0.190, 0.400, 0.030)]),
     "dog_stray":     species_farm_dog.make_breed("DogStray", species_farm_dog.BREED_SKINS["stray"], size=0.88, ears="fold"),
 }
 
@@ -81,8 +81,8 @@ _CAT_COATS = {"tabby": _cat_tabby, "tuxedo": _cat_tuxedo, "calico": _cat_calico,
 
 # the head's own colouring for the patterns that have one (the rest use the body's)
 _CAT_HEAD_COATS = {
-    "siamese": lambda d, c, n: d.c3 if c.y < -0.27 * d.k else d.c1,
-    "tuxedo": lambda d, c, n: d.c2 if (c.y < -0.28 * d.k and c.z < d.head[4][1] + 0.01) else d.c1,
+    "siamese": lambda d, c, n: d.c3 if c.y < -0.245 * d.k else d.c1,
+    "tuxedo": lambda d, c, n: d.c2 if (c.y < -0.25 * d.k and c.z < d.head[4][1] + 0.01) else d.c1,
     "tabby": lambda d, c, n: d.c3 if (abs(c.x) < 0.012 * d.k and n.z > 0.3) else d.c1,
 }
 
@@ -99,10 +99,12 @@ def _cat_head_coat(d, c, n):
 
 
 def _cat_ears(cm, d, bm):
+    """Large upright ears, wide at the base and set wide on the crown, tipped a little outwards."""
     skull = d.skull
+    e = d.k * d.hk
     for s in (-1, 1):
-        cm.add_box(bm, (s * skull[2] * 0.7, skull[0] + 0.005 * d.k, skull[1] + skull[3] * 0.85), (0.045 * d.k * d.hk, 0.016 * d.k * d.hk, 0.06 * d.k * d.hk),
-                   taper=0.2, rot_deg=(0, s * 10, 0))
+        cm.add_box(bm, (s * skull[2] * 0.62, skull[0] - 0.004 * d.k, skull[1] + skull[3] * 0.80), (0.050 * e, 0.030 * e, 0.060 * e),
+                   taper=0.12, rot_deg=(0, s * 14, 0))
 
 
 def _cat_extras(d, ctx):
@@ -117,30 +119,40 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     head_k scales the head about the root of the neck (a kitten's head is large for its body), eye is the eyes' size factor."""
     k = size
     cz0 = 0.19 * k                                         # the centre line of the barrel; the back is 0.27 m, the chest hangs to 0.115 m (docs/assets/briefs/animals.md)
-    body = [(yy * k, cz0 + dz * k, ww * k * fluff, hh * k * fluff) for yy, dz, ww, hh in
-            [(-0.17, -0.005, 0.045, 0.055), (-0.12, 0.0, 0.068, 0.075), (-0.02, 0.005, 0.075, 0.075), (0.07, 0.003, 0.063, 0.068),
-             (0.15, 0.014, 0.066, 0.072), (0.19, -0.01, 0.045, 0.058)]]
-    head = [(yy * k, dz * k, hw * k, hh * k) for yy, dz, hw, hh in                 # neck root first; the skull (ring 2) carries the ears, the cheeks (3) are the widest
-            [(-0.13, 0.215, 0.060, 0.070), (-0.18, 0.255, 0.054, 0.064), (-0.222, 0.272, 0.052, 0.058), (-0.250, 0.270, 0.053, 0.058),
-             (-0.285, 0.256, 0.052, 0.050), (-0.312, 0.245, 0.040, 0.038), (-0.326, 0.240, 0.030, 0.030), (-0.332, 0.237, 0.024, 0.024)]]
+    # a house cat's side profile (issue #125's rework): the back a shallow curve a little higher over the hips, a deep chest with a keel, the belly's loose skin low at the
+    # back, the rump rounding down to the tail; y, top, bottom, half width
+    body = [(yy * k, (top + bot) / 2 * k, ww * k * fluff, (top - bot) / 2 * k * fluff) for yy, top, bot, ww in
+            [(-0.153, 0.235, 0.150, 0.040), (-0.126, 0.255, 0.125, 0.058), (-0.081, 0.265, 0.115, 0.068), (-0.018, 0.262, 0.118, 0.072),
+             (0.045, 0.262, 0.125, 0.068), (0.099, 0.268, 0.120, 0.066), (0.144, 0.272, 0.130, 0.066), (0.180, 0.262, 0.150, 0.056), (0.2025, 0.245, 0.175, 0.035)]]
+    # a short neck forward out of the chest, a round domed skull (ring 2 carries the ears, the cheeks, ring 4, are the widest), a steep short nose and whisker pads
+    head = [(yy * k, (top + bot) / 2 * k, hw * k, (top - bot) / 2 * k) for yy, top, bot, hw in
+            [(-0.12, 0.265, 0.165, 0.055), (-0.155, 0.290, 0.200, 0.052), (-0.185, 0.322, 0.222, 0.048), (-0.21, 0.335, 0.222, 0.050),
+             (-0.235, 0.328, 0.218, 0.050), (-0.255, 0.312, 0.218, 0.046), (-0.27, 0.288, 0.222, 0.037), (-0.28, 0.272, 0.222, 0.029),
+             (-0.287, 0.262, 0.228, 0.020)]]
     if not math.isclose(head_k, 1.0):                                      # the neck root (ring 0) stays inside the shoulders; the rest grows about it
         y0, z0 = head[0][:2]
         head = head[:1] + [(y0 + (y - y0) * head_k, z0 + (z - z0) * head_k, w * head_k, h * head_k) for y, z, w, h in head[1:]]
-    fr = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
-          [(0.20, 0, 0.028, 0.036), (0.12, 0, 0.021, 0.026), (0.06, 0, 0.017, 0.021), (0.03, 0, 0.015, 0.02), (0.0, -0.014, 0.024, 0.03)]]
-    hn = [(z * k, dy * k, hx * k, hy * k) for z, dy, hx, hy in
-          [(0.215, 0, 0.040, 0.055), (0.14, 0.03, 0.026, 0.034), (0.09, 0.045, 0.02, 0.024), (0.05, 0.03, 0.016, 0.02), (0.02, 0.01, 0.015, 0.02), (0.0, -0.01, 0.024, 0.03)]]
-    tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.20, 0.17, 0.020), (0.25, 0.235, 0.018), (0.31, 0.26, 0.016), (0.37, 0.245, 0.014))]
+    # the legs (z, dy, half width, half depth, dx): the front from the shoulder inside the chest down a straight slim leg under it (the elbow at 2, the wrist at 4); the hind
+    # from the hip through the thigh, the stifle forward (2), the shin back to a high hock (4) and the long foot to the paw
+    fr = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
+          [(0.21, 0.012, 0.028, 0.038, -0.012), (0.16, 0.010, 0.026, 0.034, 0.0), (0.11, 0.004, 0.019, 0.023, 0.0), (0.06, 0.0, 0.016, 0.020, 0.0),
+           (0.025, -0.003, 0.015, 0.019, 0.0), (0.0, -0.014, 0.022, 0.030, 0.0)]]
+    hn = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
+          [(0.23, 0.0, 0.030, 0.045, -0.012), (0.17, -0.005, 0.034, 0.050, 0.0), (0.115, -0.030, 0.022, 0.030, 0.0), (0.09, 0.012, 0.018, 0.022, 0.0),
+           (0.06, 0.040, 0.016, 0.020, 0.0), (0.02, 0.025, 0.015, 0.019, 0.0), (0.0, 0.020, 0.022, 0.030, 0.0)]]
+    tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.215, 0.195, 0.020), (0.25, 0.24, 0.018), (0.31, 0.262, 0.016), (0.37, 0.25, 0.014))]
     skull = head[2]
     d = SimpleNamespace(k=k, hk=head_k, cz0=cz0, pattern=pattern, c1=c1, c2=c2, c3=c3, head=head, skull=skull)
 
     return {"name": name, "body": body, "head": head,
-                "front": {"x": 0.046 * k, "y": -0.12 * k, "joints": (1, 3), "profile": fr},
-                "hind": {"x": 0.046 * k, "y": 0.14 * k, "joints": (2, 4), "profile": hn},
+                "front": {"x": 0.040 * k, "y": -0.09 * k, "joints": (2, 4), "profile": fr},
+                "hind": {"x": 0.042 * k, "y": 0.135 * k, "joints": (2, 4), "profile": hn},
+                "body_keel": [0.20, 0.30, 0.40, 0.40, 0.35, 0.20, 0.15, 0.10, 0.0], "head_keel": [0.20, 0.20, 0.15, 0.15, 0.15, 0.20, 0.25, 0.20, 0.10],
+                "body_n": 10, "head_n": 8, "leg_n": 6,
                 "tail": tl, "ear_x": skull[2] * 0.7, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.9,
                 "coat": lambda c, n: _cat_coat(d, c), "head_coat": lambda c, n: _cat_head_coat(d, c, n),
                 "tail_coat": lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1,
-                "eyes": {"gap": 0.22, "inset": 0.55, "up": 0.34, "forward": 0.85, "size": eye}, "eye_colour": "paint_yellow",     # round, golden, looking ahead
+                "eyes": {"gap": 0.40, "inset": 0.55, "up": 0.30, "forward": 0.85, "size": eye}, "eye_colour": "paint_yellow",     # round, golden, looking ahead
                 "extras": lambda ctx: _cat_extras(d, ctx)}
 
 

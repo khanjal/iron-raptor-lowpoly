@@ -12,7 +12,7 @@ over the withers) or of the trunk length L (the body from the front of the chest
     head     the head's length along its slope (the nose to the skull ring, the one the ears sit on: sp["ear_y"]) as a share of L
     head_w   the head's full width at its widest ring from the skull forward, as a share of the head's length
     carry    the height of the top of the skull ring, as a share of H (the neck raises it above the back)
-    leg_top  the full width of the front leg's top ring (the forearm with its muscle), as a share of H
+    leg_top  the full width of the front leg's widest ring above the elbow (the upper arm with its muscle), as a share of H
     leg_low  the full width of the front leg at the ankle ring (the cannon bone and pastern: where a leg looks like a stick), as a share of H
     paw      the length of the front foot (its last ring's full depth), as a share of H
 """
@@ -82,7 +82,7 @@ def measure(sp):
     nose = head[-1][0]
     head_len = math.hypot(skull[0] - nose, skull[1] - head[-1][1])      # along the head's slope (a horse's is tipped)
     foot = front["profile"][-1]
-    fore = front["profile"][0]
+    fore = max(front["profile"][:front["joints"][0] + 1], key=lambda r: r[2])      # the widest ring above the elbow (the upper arm's muscle)
     return {"H": H * k, "L": L * k, "LH": L / H,
                 "width": 2 * max(w for _, _, w, _ in body) / H, "depth": 2 * max(h for *_, h in body) / H,
                 "elbow": min(z - h for y, z, _, h in body if y <= mid) / H,
@@ -94,6 +94,55 @@ def check(row, sp):
     """The problems of a species against RANGES[row]: a list of strings, empty when it is within them."""
     m = measure(sp)
     return [f"{name} {m[name]:.2f} is outside {lo:.2f}-{hi:.2f}" for name, (lo, hi) in RANGES[row].items() if not lo <= m[name] <= hi]
+
+
+# ---- the shape (issue #125): what made the old animals read as a tube on four posts, measured on the same numbers. Shares of H:
+#   tuck      how far the underline rises from the deepest point of the chest to the loin (a dog's or a cat's belly tucks up; a pig's or a sheep's does not)
+#   front_in, hind_in   how far the top of each leg (its first ring) is inside the body above the body's underside there: a leg that starts at the shoulder or the hip,
+#             not a post stuck on under the barrel
+#   stifle    how far the stifle (the most forward ring of the hind leg between 30 % of H and the hip) is in front of the hip
+#   hock      how far the hock (the rearmost ring below 30 % of H) is behind the stifle: together, the angle of a hind leg
+#   root      how far the top of the neck's root stands above the withers (a dog's or a cat's neck leaves the chest forward; it must not rise out of the top of the back)
+SHAPE_DEFAULT = {"tuck": 0.0, "front_in": 0.10, "hind_in": 0.10, "stifle": 0.03, "hock": 0.06, "root_max": 0.08}
+SHAPE = {**dict.fromkeys(("cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund"), {**SHAPE_DEFAULT, "tuck": 0.08}),
+         **dict.fromkeys(("horse", "cow", "fox", "deer"), {**SHAPE_DEFAULT, "tuck": 0.03})}
+
+
+def _bottom_at(body, y):
+    """The height of the body's underside at y (its sections' centre less half height, interpolated)."""
+    for a, b in zip(body, body[1:]):
+        if a[0] <= y <= b[0]:
+            t = (y - a[0]) / (b[0] - a[0]) if b[0] != a[0] else 0.0
+            return (a[1] - a[3]) + ((b[1] - b[3]) - (a[1] - a[3])) * t
+    end = body[0] if y < body[0][0] else body[-1]
+    return end[1] - end[3]
+
+
+def measure_shape(sp):
+    """The shape measures of a species dict (see SHAPE), as shares of the back height H."""
+    body, front, hind = sp["body"], sp["front"], sp["hind"]
+    H = max(z + h for _, z, _, h in body)
+    ys = [y for y, *_ in body]
+    mid = min(ys) + 0.5 * (max(ys) - min(ys))
+    chest = min(z - h for y, z, _, h in body if y <= mid)
+    loin = max(z - h for y, z, _, h in body if mid < y < max(ys))
+    inside = {kind: (leg["profile"][0][0] - _bottom_at(body, leg["y"] + leg["profile"][0][1])) / H for kind, leg in (("front", front), ("hind", hind))}
+    p = hind["profile"]
+    stifle = min((r for r in p[1:] if r[0] >= 0.30 * H), key=lambda r: r[1], default=p[0])
+    hock = max((r for r in p if r[0] < 0.30 * H), key=lambda r: r[1], default=p[-1])
+    root = sp["head"][0]
+    withers = max(z + h for y, z, _, h in body if y <= mid)
+    return {"tuck": (loin - chest) / H, "front_in": inside["front"], "hind_in": inside["hind"], "stifle": (p[0][1] - stifle[1]) / H,
+            "hock": (hock[1] - stifle[1]) / H, "root": (root[1] + root[3] - withers) / H}
+
+
+def check_shape(row, sp):
+    """The shape problems of a species (a list of strings, empty when it passes SHAPE[row], or SHAPE_DEFAULT for a row with none of its own)."""
+    lim, m = SHAPE.get(row, SHAPE_DEFAULT), measure_shape(sp)
+    out = [f"{name} {m[name]:.2f} is below {lim[name]:.2f}" for name in ("tuck", "front_in", "hind_in", "stifle", "hock") if m[name] < lim[name]]
+    if m["root"] > lim["root_max"]:
+        out.append(f"root {m['root']:.2f} is above {lim['root_max']:.2f} (the neck rises out of the back)")
+    return out
 
 
 # ---- the hen: a biped (biped_bird.py's format: body rings (y, z, half width, half height), neck rings (z, y, rx, ry) from the shoulders to the beak, a leg, a tail) -------------

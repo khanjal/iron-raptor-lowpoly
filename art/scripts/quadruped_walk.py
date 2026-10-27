@@ -67,7 +67,6 @@ OFFSET = CFG["offset"]
 STANCE = CFG["stance"]
 FLEX = CFG["flex"]
 SWING_ANGLE = {"Front": 22.0, "Hind": 21.0}     # degrees each side of upright (replaced by the fitted angle below)
-FLEX_SIGN = {"Front": 1.0, "Hind": -1.0}       # knees fold the foot back, hocks fold it forward
 
 rig = bpy.data.objects[RIG_NAME]
 saved_active = bpy.context.view_layer.objects.active
@@ -105,6 +104,26 @@ def foot_tip(side_name):
     return rig.matrix_world @ pb[side_name].tail
 
 
+def _raise_sign(kind):
+    """+1 when turning the lower leg by a positive angle (the foot kept flat) lifts the foot from the rest pose, else -1. A straight leg folds its foot back and
+    the old hind legs (the 'knee' bone at the hock) forward, the hardcoded FLEX_SIGN; an angled hind leg with the stifle forward and the hock back (the dogs' and
+    cats', issue #125) folds the other way, so the sign is measured on the rig."""
+    lo, ft = f"{kind}Lower_L", f"{kind}Foot_L"
+    heights = []
+    for m in (4.0, -4.0):
+        set_rot(lo, x=m)
+        set_rot(ft, x=-m)
+        bpy.context.view_layer.update()
+        heights.append(foot_tip(ft).z)
+    set_rot(lo, x=0.0)
+    set_rot(ft, x=0.0)
+    bpy.context.view_layer.update()
+    return 1.0 if heights[0] > heights[1] else -1.0
+
+
+FLEX_SIGN = {kind: _raise_sign(kind) for kind in ("Front", "Hind")}
+
+
 def solve_lower(kind, side, upper_deg, target_z=0.0):
     """Lower-leg angle (degrees) that puts the hoof tip on the ground for this upper-leg angle, hoof kept flat."""
     up, lo, ft = f"{kind}Upper_{side}", f"{kind}Lower_{side}", f"{kind}Foot_{side}"
@@ -116,7 +135,7 @@ def solve_lower(kind, side, upper_deg, target_z=0.0):
         bpy.context.view_layer.update()
         return foot_tip(ft).z - target_z
 
-    a, b = -20.0, 60.0                                       # slight hyperextension up to a deep fold
+    a, b = -30.0, 85.0                                       # some hyperextension up to a deep fold (an angled hind leg, a dog's or a cat's, needs more than 60 degrees)
     sgn = FLEX_SIGN[kind]
     # flexing in this leg's direction raises the hoof, so height() rises with m*sgn
     lo_m, hi_m = (a, b) if sgn > 0 else (-b, -a)

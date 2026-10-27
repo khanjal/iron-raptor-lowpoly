@@ -54,6 +54,31 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | Goat (dairy) | 0.70-0.90 m | 0.80-1.0 m | 0.28-0.35 / 0.40-0.50 m | 50 % | 0.22-0.28 m, 28-33 % | medium, raised | hooves, 0.07 m |
 | Hen (laying hen, 2-2.5 kg) | 0.35-0.45 m high | a bird: body 0.25-0.32 m | 0.14-0.18 m wide | legs 30 % of height | head 0.06-0.08 m | upright S-neck, 0.12-0.15 m | four toes, 0.08-0.10 m span |
 
+## The shape: what made them read wrong after #87 (issue #125)
+
+The ratios above held, and the animals still looked like a straight tube on four posts with a horse's neck. The causes, and what the builder (`quadruped_builder.py`) and the species now do:
+
+| Seen | Cause | Now |
+| --- | --- | --- |
+| the back and the belly two parallel lines | every body section a rounded box at about the same height | sections traced from the animal's side profile (top and bottom set apart: the withers high, the croup falling, the chest deep and forward of the front legs, the belly tucked up behind the ribs) |
+| a box of a chest | the sections symmetric top and bottom | `body_keel` / `head_keel`: each section's lower half narrows towards the bottom (a rib cage's keel, a throat, a jaw) |
+| legs stuck on under the body | each leg's first ring at the underside, straight down | the first ring inside the body at the shoulder or the hip (a profile ring may carry a fifth number, dx, to set it in), the upper arm and the thigh a little proud of the body |
+| straight hind legs | the rings stacked vertically | the stifle forward of the hip and the hock behind it (the dogs' and cats' hind legs fold the other way from the old ones, so the gait solver measures each leg's folding direction on the rig) |
+| a horse's neck on a dog | the neck's root on top of the back, rising steeply | the root inside the top of the chest, the neck forward and up at about 45 degrees (the horse's and the deer's still rise: theirs do) |
+| a dog's face on a cat | a long sloping muzzle | a round domed skull, a steep short nose bridge, wide-based ears |
+
+`animal_proportions.check_shape` measures these on the species numbers, and `audit_animals.py` and `tests/test_animal_proportions.py` fail an enforced species that misses them (shares of the back height H):
+
+| Measure | Meaning | Limit |
+| --- | --- | --- |
+| `tuck` | how far the underline rises from the deepest point of the chest to the loin | at least 0.08 for the cats and dogs, 0.03 for the horse, cow, fox and deer, 0 for the rest |
+| `front_in`, `hind_in` | how far the top of each leg is inside the body above its underside | at least 0.10 |
+| `stifle` | how far the stifle (the most forward hind ring above 30 % of H) is in front of the hip | at least 0.03 |
+| `hock` | how far the hock (the rearmost hind ring below 30 % of H) is behind the stifle | at least 0.06 |
+| `root` | how far the top of the neck's root stands above the withers | at most 0.08 |
+
+A straight tube on posts fails all of the first five (the test builds one from the collie). The farm animals of #87 had legs that started at the barrel's underside and a stifle that barely came forward; they got a shoulder and a thigh ring and a keel too. Triangles: dogs 1060-1164 (were about 1000-1050), cats 900 (676), farm animals 776-1040 (up by 40 each), within the budget below.
+
 ## Proportion table: the audit's ranges
 
 These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The wildlife's rows (#125) are estimates from wildlife references and photographs, like the dogs'; the fawn is checked against the deer's row. The breeds' rows (#125) are estimates from the American Kennel Club standards' heights and photographs, like the collie's; the stray is checked against the collie's row. The hen is a biped and has its own table below.
