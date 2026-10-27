@@ -134,12 +134,8 @@ def cell(value):
     return "" if value is None else str(value)
 
 
-def render(models, dev_world=None):
-    dev_world = dev_world or {}
-    by_category = {}
-    for m in models:
-        by_category.setdefault(m["category"], []).append(m)
-
+def _intro():
+    """The title, the notes and the head of the summary table."""
     out = [
         "# Asset inventory",
         "",
@@ -163,13 +159,24 @@ def render(models, dev_world=None):
         "| Category | Models | With an entry | With emitters | With parts | Bytes |",
         "|---|---:|---:|---:|---:|---:|",
     ]
+    return out
+
+
+def _summary_rows(models, by_category):
+    """The summary table: a row for each category and a total."""
+    out = []
     for category in sorted(by_category):
         ms = by_category[category]
         out.append(f"| [{category}](#{anchor(category)}) | {len(ms)} | {sum(m['entry'] is not None for m in ms)} | "
                    f"{sum(has(m, 'emitters') for m in ms)} | {sum(has(m, 'parts') for m in ms)} | {sum(m['size'] for m in ms)} |")
     out.append(f"| **Total** | {len(models)} | {sum(m['entry'] is not None for m in models)} | "
                f"{sum(has(m, 'emitters') for m in models)} | {sum(has(m, 'parts') for m in models)} | {sum(m['size'] for m in models)} |")
+    return out
 
+
+def _vehicle_rows(models):
+    """The vehicles table: a row for each group, how many have an entry."""
+    out = []
     vehicles = [m for m in models if m["category"] == "Global/Vehicles"]
     if vehicles:
         out += ["", "## Vehicles with no `interactions.json` entry", "",
@@ -182,25 +189,42 @@ def render(models, dev_world=None):
         for g in sorted(groups):
             with_entry = sum(m["entry"] is not None for m in groups[g])
             out.append(f"| {g} | {len(groups[g])} | {with_entry} | {len(groups[g]) - with_entry} |")
+    return out
 
+
+def _category_rows(category, ms, dev_world):
+    """The section of one category: its heading and a row for each model."""
+    out = []
+    show_style = any(m["style"] for m in ms)
+    show_group = any(m["group"] for m in ms)
+    head = ["Id"] + (["Style"] if show_style else []) + (["Group"] if show_group else []) + \
+           ["Bytes", "Light", "Sound", "Switch", "Parts", "Traits", "Tris", "Mats"]
+    out += ["", f"## {category}", "", f"{len(ms)} models.", "",
+            "| " + " | ".join(head) + " |",
+            "|" + "|".join("---" if h in ("Id", "Style", "Group", "Traits") else "---:" for h in head) + "|"]
+    for m in ms:
+        e, d = m["entry"], dev_world.get(m["id"], {})
+        row = [f"`{m['id']}`"] + ([m["style"]] if show_style else []) + ([m["group"]] if show_group else []) + [str(m["size"])]
+        if e is None:
+            row += ["–"] * 5
+        else:
+            row += [str(e["light"]), str(e["sound"]), str(e["switch"]), str(e["parts"]), ", ".join(e["traits"])]
+        row += [cell(d.get("tris")), cell(d.get("materials"))]
+        out.append("| " + " | ".join(row) + " |")
+    return out
+
+
+def render(models, dev_world=None):
+    dev_world = dev_world or {}
+    by_category = {}
+    for m in models:
+        by_category.setdefault(m["category"], []).append(m)
+
+    out = _intro()
+    out += _summary_rows(models, by_category)
+    out += _vehicle_rows(models)
     for category in sorted(by_category):
-        ms = by_category[category]
-        show_style = any(m["style"] for m in ms)
-        show_group = any(m["group"] for m in ms)
-        head = ["Id"] + (["Style"] if show_style else []) + (["Group"] if show_group else []) + \
-               ["Bytes", "Light", "Sound", "Switch", "Parts", "Traits", "Tris", "Mats"]
-        out += ["", f"## {category}", "", f"{len(ms)} models.", "",
-                "| " + " | ".join(head) + " |",
-                "|" + "|".join("---" if h in ("Id", "Style", "Group", "Traits") else "---:" for h in head) + "|"]
-        for m in ms:
-            e, d = m["entry"], dev_world.get(m["id"], {})
-            row = [f"`{m['id']}`"] + ([m["style"]] if show_style else []) + ([m["group"]] if show_group else []) + [str(m["size"])]
-            if e is None:
-                row += ["–"] * 5
-            else:
-                row += [str(e["light"]), str(e["sound"]), str(e["switch"]), str(e["parts"]), ", ".join(e["traits"])]
-            row += [cell(d.get("tris")), cell(d.get("materials"))]
-            out.append("| " + " | ".join(row) + " |")
+        out += _category_rows(category, by_category[category], dev_world)
     return "\n".join(out) + "\n"
 
 
