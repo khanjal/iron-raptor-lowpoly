@@ -24,6 +24,8 @@ Always. The model that wrote the code shares its own wrong assumptions. Run it a
 | Fable | Sonnet | Opus |
 | Haiku, or anything else | Sonnet | Fable |
 
+"Written by" is the model that wrote the code, not the one that planned it. When the session plans on Opus and hands the coding to the `implementer` agent (`.claude/agents/implementer.md`, Sonnet), the code is Sonnet's: the first review is Opus and the final one Fable, as in the table. Run that Opus review as a fresh sub-agent briefed with what the change is meant to do, not as the planning session and not with the plan as its brief, since the plan's wrong assumptions are the ones it should catch. The commits carry Sonnet's `Co-Authored-By` trailer (and the planner's too if it changed the code after the implementer), so the PR's "Written by" line and the squash merge's trailers name both.
+
 Brief the reviewer with: the repo path; the diff range as `origin/<base>...<commit>` after a `git fetch` (`<base>` is the PR's base branch: `main`, or the parent branch of a stacked PR), never a bare `main...`; that it is read-only (no edits, commits or GitHub posts); what the change is meant to do; and to hunt for bugs with a concrete failure scenario each, including in unchanged code whose assumptions the change broke. Ask for at most 15 findings with file:line and a confidence, and for it to say plainly if it finds nothing.
 
 Point it at what matters most in this project:

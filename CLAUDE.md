@@ -11,6 +11,9 @@ Use them; they hold the project's standard procedures, adapted from the owner's 
 - `triage-issues`: reading and answering the issues people open through the templates.
 - `sonar-check`: the Sonar rule below and how to check it.
 
+## Agents (`.claude/agents/`)
+- `implementer`: Sonnet carries out a plan the session (usually Opus) wrote; it does not commit. Who reviews its code is in `pr-review`.
+
 ## Rules
 - **Worktrees live in `.claude/worktrees/<name>`**, never beside the project or elsewhere (a `PreToolUse` hook in `.claude/settings.json` refuses a `git worktree add` to any other path from the Bash or PowerShell tool). Remove the worktree and its local branch once its PR has merged (`git worktree remove`, `git branch -D`, `git fetch --prune`); the repo deletes the remote branch itself.
 - **Never commit to `main`.** Work on a branch; push, open a PR and merge only when the user says to. Stage files by name; there may be uncommitted work of the user's in the tree.
