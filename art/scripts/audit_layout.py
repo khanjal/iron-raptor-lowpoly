@@ -561,24 +561,32 @@ def _part_side_faults(it, front, out):
             out.append((it.where(), f"its {part['name']} is on the {compass((-front[0], -front[1]))} side but the item faces {compass(front)}: the front is the wrong way round"))
 
 
+def _nearest_seat_target(layout, it):
+    """(the nearest table, desk or TV on the seat's floor within SEAT_NEAR, its gap), or (None, SEAT_NEAR)."""
+    best, best_gap = None, SEAT_NEAR
+    for other in layout.indoor():
+        if other is it or other.building != it.building or other.floor != it.floor or not match(SEAT_TARGETS, other.s):
+            continue
+        g = rect_gap(it.rect, other.rect)
+        if g <= best_gap:
+            best, best_gap = other, g
+    return best, best_gap
+
+
 def _seat_facing_fault(layout, it, front, out):
     """A seat near a table, desk or TV faces it."""
-    if match(SEATS, it.s) and not match(SEAT_FACING_EXEMPT, it.s):
-        best, best_gap = None, SEAT_NEAR
-        for other in layout.indoor():
-            if other is it or other.building != it.building or other.floor != it.floor or not match(SEAT_TARGETS, other.s):
-                continue
-            g = rect_gap(it.rect, other.rect)
-            if g <= best_gap:
-                best, best_gap = other, g
-        if best is not None:
-            cx, cz = it.centre
-            tx, tz = best.centre
-            to = (tx - cx, tz - cz)
-            n = math.hypot(*to) or 1.0
-            a = angle_between(front, (to[0] / n, to[1] / n))
-            if a > SEAT_TOLERANCE:
-                out.append((it.where(), f"is {best_gap * 100:.0f} cm from {best.name} but faces {compass(front)}, {a:.0f} degrees off it"))
+    if not match(SEATS, it.s) or match(SEAT_FACING_EXEMPT, it.s):
+        return
+    best, best_gap = _nearest_seat_target(layout, it)
+    if best is None:
+        return
+    cx, cz = it.centre
+    tx, tz = best.centre
+    to = (tx - cx, tz - cz)
+    n = math.hypot(*to) or 1.0
+    a = angle_between(front, (to[0] / n, to[1] / n))
+    if a > SEAT_TOLERANCE:
+        out.append((it.where(), f"is {best_gap * 100:.0f} cm from {best.name} but faces {compass(front)}, {a:.0f} degrees off it"))
 
 
 def _tv_facing_fault(layout, it, front, out):
@@ -854,17 +862,21 @@ def _blocks_opening(layout, building, w, it, zone):
     return ox > 0.03 and oz > 0.03
 
 
+def _opening_faults(layout, building, w, o, out):
+    """Nothing solid stands in the zone in front of the opening o of wall w."""
+    zone, depth = _opening_zone(o)
+    for it in layout.items:
+        if _blocks_opening(layout, building, w, it, zone):
+            out.append((it.where(), f"stands in front of {o['name']} on the {w.floor} floor (keep {depth:.2f} m clear)"))
+
+
 def _approach_faults(layout, out):
     # the approach to every doorway and archway: DOOR_APPROACH_NO_LEAF m in front (a leaf's width plus a margin when it has one), as wide as the opening
     for building in layout.buildings:
         for w in layout.walls.get(building, []):
             for o in w.openings:
-                if o["kind"] == "Window":
-                    continue
-                zone, depth = _opening_zone(o)
-                for it in layout.items:
-                    if _blocks_opening(layout, building, w, it, zone):
-                        out.append((it.where(), f"stands in front of {o['name']} on the {w.floor} floor (keep {depth:.2f} m clear)"))
+                if o["kind"] != "Window":
+                    _opening_faults(layout, building, w, o, out)
 
 
 def _hinge_distances(layout, d):
