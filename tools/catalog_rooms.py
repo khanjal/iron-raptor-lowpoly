@@ -7,11 +7,11 @@ Pieces that exist in another form already (the styled sofas, the fridges, the of
 HOUSEHOLD_PY = "household.py"
 DECOR_PY = "decor.py"
 INTERACTIVE_PY = "interactive.py"
-BOOKCASE = "furniture/storage/bookcase"
+BOOKCASE_TYPE = "furniture/storage/bookcase"
 SHELF_WALL_TAGS = "indoor new wall shelf household"
-SHELF_WALL = "furniture/storage/shelf-wall"
+SHELF_WALL_TYPE = "furniture/storage/shelf-wall"
 FRAME_LANDSCAPE_TAGS = "indoor new picture frame landscape home"
-FRAME_LANDSCAPE = "decor/wall/frame-landscape"
+FRAME_LANDSCAPE_TYPE = "decor/wall/frame-landscape"
 
 
 BUILD_ROOMS = {
@@ -79,15 +79,15 @@ ASSETS_ROOMS = {
     "GH_Bed_Child_01": {"name": "Child's bed", "type": "furniture/bedroom/bed-child", "tags": "indoor new childs bed household", "group": None},
     "GH_Cot_01": {"name": 'Cot', "type": "furniture/bedroom/cot", "tags": "indoor new cot household", "group": None},
     "GH_Gurney_01": {"name": 'Gurney', "type": "furniture/bedroom/gurney", "tags": "indoor new gurney household", "group": None},
-    "GH_Bookcase_02": {"name": 'Bookcase, novels', "type": BOOKCASE, "tags": "indoor new bookcase novels household", "group": 'bookcase'},
-    "GH_Bookcase_03": {"name": 'Bookcase, sparse', "type": BOOKCASE, "tags": "indoor new bookcase sparse household", "group": 'bookcase'},
-    "GH_Bookcase_04": {"name": 'Bookcase, binders', "type": BOOKCASE, "tags": "indoor new bookcase binders household", "group": 'bookcase'},
-    "GH_Bookcase_05": {"name": 'Bookcase, bright', "type": BOOKCASE, "tags": "indoor new bookcase bright household", "group": 'bookcase'},
-    "GH_Shelf_Wall_01": {"name": 'Wall shelf, 1', "type": SHELF_WALL, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
-    "GH_Shelf_Wall_02": {"name": 'Wall shelf, 2', "type": SHELF_WALL, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
-    "GH_Shelf_Wall_03": {"name": 'Wall shelf, 3', "type": SHELF_WALL, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
-    "GH_Shelf_Wall_04": {"name": 'Wall shelf, 4', "type": SHELF_WALL, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
-    "GH_Shelf_Wall_05": {"name": 'Wall shelf, 5', "type": SHELF_WALL, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
+    "GH_Bookcase_02": {"name": 'Bookcase, novels', "type": BOOKCASE_TYPE, "tags": "indoor new bookcase novels household", "group": 'bookcase'},
+    "GH_Bookcase_03": {"name": 'Bookcase, sparse', "type": BOOKCASE_TYPE, "tags": "indoor new bookcase sparse household", "group": 'bookcase'},
+    "GH_Bookcase_04": {"name": 'Bookcase, binders', "type": BOOKCASE_TYPE, "tags": "indoor new bookcase binders household", "group": 'bookcase'},
+    "GH_Bookcase_05": {"name": 'Bookcase, bright', "type": BOOKCASE_TYPE, "tags": "indoor new bookcase bright household", "group": 'bookcase'},
+    "GH_Shelf_Wall_01": {"name": 'Wall shelf, 1', "type": SHELF_WALL_TYPE, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
+    "GH_Shelf_Wall_02": {"name": 'Wall shelf, 2', "type": SHELF_WALL_TYPE, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
+    "GH_Shelf_Wall_03": {"name": 'Wall shelf, 3', "type": SHELF_WALL_TYPE, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
+    "GH_Shelf_Wall_04": {"name": 'Wall shelf, 4', "type": SHELF_WALL_TYPE, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
+    "GH_Shelf_Wall_05": {"name": 'Wall shelf, 5', "type": SHELF_WALL_TYPE, "tags": SHELF_WALL_TAGS, "group": 'shelf-wall'},
     "GH_Sink_Kitchen_01": {"name": 'Kitchen sink', "type": "fixtures/kitchen/sink", "tags": "indoor new kitchen sink household", "group": None},
     "GH_Kettle_01": {"name": 'Kettle', "type": "decor/kitchenware/kettle", "tags": "indoor new kettle household", "group": None},
     "GH_Pot_01": {"name": 'Pot', "type": "decor/kitchenware/pot", "tags": "indoor new pot household", "group": None},
@@ -143,10 +143,10 @@ ASSETS_ROOMS = {
     "GD_ComputerTower_01": {"name": 'Computer tower', "type": "decor/electronics/computer-tower", "tags": "indoor new computer tower home", "group": None},
     "GD_Laptop_01": {"name": 'Laptop', "type": "decor/electronics/laptop", "tags": "indoor new laptop home", "group": None},
     "GD_Intercom_01": {"name": 'Intercom', "type": "decor/electronics/intercom", "tags": "indoor new intercom home", "group": None},
-    "GD_Frame_Landscape_01": {"name": 'Picture frame, landscape', "type": FRAME_LANDSCAPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
+    "GD_Frame_Landscape_01": {"name": 'Picture frame, landscape', "type": FRAME_LANDSCAPE_TYPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
     "GD_Frame_Portrait_01": {"name": 'Picture frame, portrait', "type": "decor/wall/frame-portrait", "tags": "indoor new picture frame portrait home", "group": 'frame-portrait'},
-    "GD_Frame_Landscape_02": {"name": 'Picture frame, landscape 2', "type": FRAME_LANDSCAPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
-    "GD_Frame_Landscape_03": {"name": 'Picture frame, landscape 3', "type": FRAME_LANDSCAPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
+    "GD_Frame_Landscape_02": {"name": 'Picture frame, landscape 2', "type": FRAME_LANDSCAPE_TYPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
+    "GD_Frame_Landscape_03": {"name": 'Picture frame, landscape 3', "type": FRAME_LANDSCAPE_TYPE, "tags": FRAME_LANDSCAPE_TAGS, "group": 'frame-landscape'},
     "GD_Frame_Portrait_02": {"name": 'Picture frame, portrait 2', "type": "decor/wall/frame-portrait", "tags": "indoor new picture frame portrait home", "group": 'frame-portrait'},
     "GD_KidDrawing_02": {"name": "Child's drawing, 2", "type": "decor/wall/kid-drawing", "tags": "indoor new childs drawing home", "group": 'kid-drawing'},
     "GD_PhotoFrame_01": {"name": 'Photo frame, standing', "type": "decor/wall/photo-frame-standing", "tags": "indoor new photo frame standing home", "group": None},

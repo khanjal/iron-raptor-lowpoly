@@ -11,9 +11,9 @@ BUILDINGS_PY = "buildings.py"
 SPORTS_PY = "sports.py"
 OFFICE_PY = "office.py"
 INSECT_BROWN_TAGS = "wild garden insect bug brown tiny"
-CUBICLE_PANEL = "furniture/cubicle/panel"
-FRIDGE = "appliances/kitchen/fridge"
-SOFA = "furniture/seating/sofa"
+CUBICLE_PANEL_TYPE = "furniture/cubicle/panel"
+FRIDGE_TYPE = "appliances/kitchen/fridge"
+SOFA_TYPE = "furniture/seating/sofa"
 
 
 # ===== Ids ===========================================================================================================
@@ -371,9 +371,9 @@ _a("GO_ConferenceTable_01", "Conference table", "furniture/office/conference-tab
 _a("GO_Chair_Office_01", "Office chair", "furniture/office/chair", "office swivel casters seat new")
 _a("GO_FilingCabinet_01", "Filing cabinet", "furniture/office/filing-cabinet", "office steel grey drawers storage new")
 _a("GO_Whiteboard_Stand_01", "Whiteboard on stand", "furniture/office/whiteboard", "office meeting board wheels new")
-_a("GO_Cubicle_Panel_Low_01", "Cubicle panel, low", CUBICLE_PANEL, "office cubicle partition modular fabric new", "cubicle-panel")
-_a("GO_Cubicle_Panel_High_01", "Cubicle panel, high", CUBICLE_PANEL, "office cubicle partition modular fabric new", "cubicle-panel")
-_a("GO_Cubicle_Panel_Glass_01", "Cubicle panel, glass top", CUBICLE_PANEL, "office cubicle partition modular glass new", "cubicle-panel")
+_a("GO_Cubicle_Panel_Low_01", "Cubicle panel, low", CUBICLE_PANEL_TYPE, "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_High_01", "Cubicle panel, high", CUBICLE_PANEL_TYPE, "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_Glass_01", "Cubicle panel, glass top", CUBICLE_PANEL_TYPE, "office cubicle partition modular glass new", "cubicle-panel")
 _a("GO_Cubicle_Worksurface_01", "Cubicle worksurface", "furniture/cubicle/worksurface", "office cubicle desk modular corner new")
 _a("GO_Cubicle_OverheadBin_01", "Cubicle overhead bin", "furniture/cubicle/overhead-bin", "office cubicle storage modular flap new")
 _a("GO_Cubicle_Pod_01", "Cubicle, assembled", "furniture/cubicle/pod", "office cubicle desk partition drawers new")
@@ -401,11 +401,11 @@ _a("GP_Nordic_01", "Nordic alien", "people/alien/nordic", "sci-fi alien tall pal
 _a("GP_Shadow_01", "Shadow entity", "people/alien/shadow", "sci-fi alien tall dark glow horror humanoid")
 _a("GP_Reptilian_01", "Reptilian alien", "people/alien/reptilian", "sci-fi alien green scaled tail crest humanoid")
 # appliances and storage that open
-_a("GI_Fridge_01", "Fridge, two-door", FRIDGE, "classic kitchen white new cold two-door freezer-top", "fridge")
-_a("GI_Fridge_Modern_01", "Fridge, French door", FRIDGE, "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
-_a("GI_Fridge_Dispenser_01", "Fridge, ice and water dispenser", FRIDGE, "modern kitchen steel new cold french-door bottom-freezer drawer ice water dispenser", "fridge")
-_a("GI_Fridge_Retro_01", "Fridge, retro", FRIDGE, "retro kitchen cream rounded new cold single-door", "fridge")
-_a("GI_Fridge_Damaged_01", "Fridge, rusty", FRIDGE, "kitchen rusty damaged abandoned cold", "fridge")
+_a("GI_Fridge_01", "Fridge, two-door", FRIDGE_TYPE, "classic kitchen white new cold two-door freezer-top", "fridge")
+_a("GI_Fridge_Modern_01", "Fridge, French door", FRIDGE_TYPE, "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
+_a("GI_Fridge_Dispenser_01", "Fridge, ice and water dispenser", FRIDGE_TYPE, "modern kitchen steel new cold french-door bottom-freezer drawer ice water dispenser", "fridge")
+_a("GI_Fridge_Retro_01", "Fridge, retro", FRIDGE_TYPE, "retro kitchen cream rounded new cold single-door", "fridge")
+_a("GI_Fridge_Damaged_01", "Fridge, rusty", FRIDGE_TYPE, "kitchen rusty damaged abandoned cold", "fridge")
 _a("GI_Microwave_01", "Microwave", "appliances/kitchen/microwave", "classic kitchen new")
 _a("GI_Wardrobe_01", "Wardrobe", "furniture/storage/wardrobe", "classic bedroom wood new", "wardrobe")
 _a("GI_Wardrobe_Damaged_01", "Wardrobe, ruined", "furniture/storage/wardrobe", "bedroom wood damaged abandoned", "wardrobe")
@@ -415,9 +415,9 @@ _a("GI_Locker_01", "Locker", "furniture/storage/locker", "classic metal new scho
 _a("GI_Toolbox_01", "Toolbox", "farm/tools/toolbox", "rural workshop red metal new lid")
 _a("GI_Mailbox_01", "Mailbox", "farm/structures/mailbox", "rural outdoor post new flap")
 # furniture and decor in their styles
-_a("GH_Sofa_Modern_01", "Sofa, modern", SOFA, "modern living-room grey new", "sofa")
-_a("GH_Sofa_Retro_01", "Sofa, retro", SOFA, "retro living-room tufted new", "sofa")
-_a("GH_Sofa_Damaged_01", "Sofa, slashed", SOFA, "living-room damaged abandoned", "sofa")
+_a("GH_Sofa_Modern_01", "Sofa, modern", SOFA_TYPE, "modern living-room grey new", "sofa")
+_a("GH_Sofa_Retro_01", "Sofa, retro", SOFA_TYPE, "retro living-room tufted new", "sofa")
+_a("GH_Sofa_Damaged_01", "Sofa, slashed", SOFA_TYPE, "living-room damaged abandoned", "sofa")
 _a("GH_Armchair_Retro_01", "Armchair, retro", "furniture/seating/armchair", "retro living-room new")
 _a("GH_Bed_Double_Modern_01", "Double bed, modern", "furniture/bedroom/bed", "modern bedroom new")
 _a("GH_Bookcase_Modern_01", "Bookcase, modern", "furniture/storage/bookcase", "modern living-room shelves books new")
