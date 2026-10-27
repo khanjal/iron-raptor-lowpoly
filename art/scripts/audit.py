@@ -199,7 +199,7 @@ def _coplanar(parts, verts):
                 (pa, ta, na), (pb, tb, nb) = items[x], items[y]
                 if pa == pb or na.dot(nb) < 0.999:
                     continue
-                drop = max(range(3), key=lambda k: abs(na[k]))
+                drop = max(range(3), key=lambda k, na=na: abs(na[k]))
                 keep = [k for k in range(3) if k != drop]
 
                 def shrink(t):
