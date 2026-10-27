@@ -39,7 +39,7 @@ Small, focused commits. Subject: a short imperative line (what and why, not how)
 Co-Authored-By: <the model that wrote it> <noreply@anthropic.com>
 ```
 
-("Written by" in the PR checklist is read off this trailer.) The repository is public: no private paths, tokens, personal data or other people's files in a commit.
+("Written by" in the PR checklist is read off the trailers of the models that wrote the code; a session that only planned and committed work the `implementer` agent wrote is not one of them, see `pr-review`.) The repository is public: no private paths, tokens, personal data or other people's files in a commit.
 
 ## 6. Push and open the PR
 
