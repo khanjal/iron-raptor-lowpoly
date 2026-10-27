@@ -38,7 +38,7 @@ class FeatherBox(unittest.TestCase):
         self.assertEqual(c.calls, [("BM", (1.0 + 0.1 * 0.5, 2.0 + 0.2 * 0.5, 3.0 + 0.3 * 0.5), (0.05, 0.27, 0.02), (-6, 0, -20.0))])
 
     def test_each_feather_keeps_its_own_values(self):
-        # what the loop's lambdas got wrong in principle: two feathers built after the loop moved on must still use their own spec
+        # partial binds its values when it is made, so a second feather made afterwards does not change what the first one builds
         other = {"base": (0.0, 0.0, 0.0), "dir": (1.0, 0.0, 0.0), "width": 0.1, "angle": 5.0}
         c = Recorder()
         first = partial(biped_bird._feather_box, c, self.SPEC, 0.5, 0.27, 0.02)
