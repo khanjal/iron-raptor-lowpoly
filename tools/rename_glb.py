@@ -80,7 +80,11 @@ def rename_group(ids, site_ids, root=ROOT):
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
-        print(rename_model(sys.argv[1], sys.argv[2]))
+        try:
+            print(rename_model(sys.argv[1], sys.argv[2]))
+        except ValueError as e:
+            print(e, file=sys.stderr)
+            sys.exit(2)
     else:
         import catalog
         for gen, new in catalog.SITE_IDS.items():

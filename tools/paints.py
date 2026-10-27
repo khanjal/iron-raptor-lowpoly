@@ -12,7 +12,7 @@ tools/catalog.PAINTS declares, per model, its paintable parts (a part = a palett
 
 `was` is the id of the model that used to be built for the preset (old links keep working); `set` gives a swatch name or a hex per part.
 
-    python tools/paints.py check [DIR]  # (DIR = a folder of GLBs instead of site/models) every preset with a `was` whose GLB is still around must equal the swap worked out from the two GLBs
+    python tools/paints.py check [DIR]  # (DIR = a folder of GLBs instead of site/models; it must be inside the project) every preset with a `was` whose GLB is still around must equal the swap worked out from the two GLBs
     python tools/paints.py A B        # print the swap that turns GLB A into GLB B, or say why it is not a pure recolour
 """
 import json

@@ -214,6 +214,7 @@ class PartNames(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(paints.main(["../x", "GV_Sedan_01"]), 2)
             self.assertEqual(paints.main(["check", "/"]), 2)
+            self.assertEqual(paints.main(["GV_Sedan_01", "../x"]), 2)
 
 
 if __name__ == "__main__":
