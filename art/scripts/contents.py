@@ -545,6 +545,22 @@ ROTTEN = {"banana_yellow": "fabric_brown", "corn_green": "mould", "lettuce_heart
 FRESH_GROUPS = ("produce", "bakery", "dairy", "prepared")
 
 
+def _make_item(fn, group, folder, rotten):
+    """Build one item (the rotten version through the ROTTEN colours), export it as FBX unless EXPORT is off, and return its object."""
+    props_lib.THEME = ROTTEN if rotten else {}
+    try:
+        prop = fn()
+    finally:
+        props_lib.THEME = {}
+    if rotten:
+        prop.name = prop.name[:-3] + "_Rotten_01"
+    obj, coll = prop.finish()
+    sub = "" if group == "clothes" else f"{group.title()}/"
+    if globals().get("EXPORT", True):
+        common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
+    return obj
+
+
 def run():
     props_lib.INTERACTIONS.clear()
     names = globals().get("CONTENT_LIST")
@@ -556,17 +572,7 @@ def run():
         if group != row:
             row, x, y = group, 0.0, (y + 1.2 if row is not None else 0.0)
         for rotten in ([False, True] if group in FRESH_GROUPS else [False]):
-            props_lib.THEME = ROTTEN if rotten else {}
-            try:
-                prop = fn()
-            finally:
-                props_lib.THEME = {}
-            if rotten:
-                prop.name = prop.name[:-3] + "_Rotten_01"
-            obj, coll = prop.finish()
-            sub = "" if group == "clothes" else f"{group.title()}/"
-            if globals().get("EXPORT", True):
-                common.export_fbx(coll, f"Assets/Art/Global/{folder}/{sub}{prop.name}.fbx")
+            obj = _make_item(fn, group, folder, rotten)
             obj.location = (x, y + (0.6 if rotten else 0.0), 0)
             count += 1
         x += max(0.3, obj.dimensions.x + 0.1)

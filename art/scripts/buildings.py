@@ -368,6 +368,24 @@ BUILDINGS = {
 }
 
 
+def _build_skin(key, fn, folder, cond, skin):
+    """Build one building in one skin and condition, export it as FBX and return its object."""
+    theme = dict(SKINS[skin])
+    if cond == "Damaged":
+        theme = {**WRECK, **{k: WRECK.get(v, v) for k, v in theme.items()}}          # literal colours (glass, trim...) rot too
+    props_lib.THEME = theme
+    try:
+        prop = fn()
+    finally:
+        props_lib.THEME = {}
+    prop.name = f"{prop.name}_{skin}" + ("" if cond == "New" else "_Damaged") + "_01"
+    if cond == "Damaged":
+        prop.damage(seed=sum(ord(c) for c in prop.name) % 1000, drop=0.10, tilt=0.0, grime=8, max_part=12.0, grime_scale=4.0)
+    obj, coll = prop.finish()
+    common.export_fbx(coll, f"Assets/Art/{folder}/Buildings/{key.title().replace('_', '')}/{prop.name}.fbx")
+    return obj
+
+
 def run():
     names = globals().get("BUILDING_LIST") or list(BUILDINGS)
     conds = globals().get("CONDITIONS") or ["New", "Damaged"]
@@ -380,19 +398,7 @@ def run():
             for skin in (new_skins if cond == "New" else dmg_skins):
                 if skin_only and skin not in skin_only:
                     continue
-                theme = dict(SKINS[skin])
-                if cond == "Damaged":
-                    theme = {**WRECK, **{k: WRECK.get(v, v) for k, v in theme.items()}}          # literal colours (glass, trim...) rot too
-                props_lib.THEME = theme
-                try:
-                    prop = fn()
-                finally:
-                    props_lib.THEME = {}
-                prop.name = f"{prop.name}_{skin}" + ("" if cond == "New" else "_Damaged") + "_01"
-                if cond == "Damaged":
-                    prop.damage(seed=sum(ord(c) for c in prop.name) % 1000, drop=0.10, tilt=0.0, grime=8, max_part=12.0, grime_scale=4.0)
-                obj, coll = prop.finish()
-                common.export_fbx(coll, f"Assets/Art/{folder}/Buildings/{key.title().replace('_', '')}/{prop.name}.fbx")
+                obj = _build_skin(key, fn, folder, cond, skin)
                 obj.location = (x, y, 0)
                 x += obj.dimensions.x + 6
                 count += 1

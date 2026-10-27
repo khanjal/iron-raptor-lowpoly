@@ -316,37 +316,37 @@ def build(family, label, kind, kw):
 OTHER_FAMILIES = {"ATV", "Motorcycle", "Jeep", "Trailer", "Semi", "SemiTrailer", "Bus", "FireTruck"}   # the families of #357: only these get the length-scaled tilt and prune_floating, so a rebuild leaves the Damaged cars of #344 as exported
 
 
-def prune_floating(prop, margin=0.01):
-    """After Prop.damage() has dropped small parts at random, drop what is left with nothing to touch (a mirror head whose arm went, a lens whose bezel went,
-    a handlebar whose clamp went). Two parts touch when their surfaces overlap or come within `margin` metres; whatever is not connected to the biggest
-    group of parts is removed (the same test as the contact check the art PRs report). Returns how many parts went."""
-    import bmesh
+def _islands(bm, colour):
+    """Every connected island of a mesh as (bm, its verts, lowest corner, highest corner, a BVH tree of its faces or None, colour)."""
     from mathutils.bvhtree import BVHTree
     isl = []
-    pieces = list(prop.parts.items()) + [("__part__", bm) for g in prop.groups.values() for bm in g["parts"].values()]      # a wheel or a door is something to touch, and is never dropped
-    for colour, bm in pieces:
-        bm.verts.ensure_lookup_table()
-        bm.verts.index_update()                                   # the grime boxes damage() added since its own index_update() have index -1
-        seen = set()
-        for v in bm.verts:
-            if v.index in seen:
-                continue
-            stack, vs = [v], []
-            seen.add(v.index)
-            while stack:
-                a = stack.pop()
-                vs.append(a)
-                for e in a.link_edges:
-                    o = e.other_vert(a)
-                    if o.index not in seen:
-                        seen.add(o.index)
-                        stack.append(o)
-            local = {a.index: k for k, a in enumerate(vs)}
-            faces = {f for a in vs for f in a.link_faces}
-            tree = BVHTree.FromPolygons([a.co.copy() for a in vs], [tuple(local[x.index] for x in f.verts) for f in faces], epsilon=0.0) if faces else None
-            lo = [min(a.co[i] for a in vs) for i in range(3)]
-            hi = [max(a.co[i] for a in vs) for i in range(3)]
-            isl.append((bm, vs, lo, hi, tree, colour))
+    bm.verts.ensure_lookup_table()
+    bm.verts.index_update()                                   # the grime boxes damage() added since its own index_update() have index -1
+    seen = set()
+    for v in bm.verts:
+        if v.index in seen:
+            continue
+        stack, vs = [v], []
+        seen.add(v.index)
+        while stack:
+            a = stack.pop()
+            vs.append(a)
+            for e in a.link_edges:
+                o = e.other_vert(a)
+                if o.index not in seen:
+                    seen.add(o.index)
+                    stack.append(o)
+        local = {a.index: k for k, a in enumerate(vs)}
+        faces = {f for a in vs for f in a.link_faces}
+        tree = BVHTree.FromPolygons([a.co.copy() for a in vs], [tuple(local[x.index] for x in f.verts) for f in faces], epsilon=0.0) if faces else None
+        lo = [min(a.co[i] for a in vs) for i in range(3)]
+        hi = [max(a.co[i] for a in vs) for i in range(3)]
+        isl.append((bm, vs, lo, hi, tree, colour))
+    return isl
+
+
+def _touching_groups(isl, margin):
+    """The islands grouped by touch: {root: [island indexes]}."""
     n = len(isl)
     parent = list(range(n))
 
@@ -376,6 +376,19 @@ def prune_floating(prop, margin=0.01):
     groups = {}
     for i in range(n):
         groups.setdefault(find(i), []).append(i)
+    return groups
+
+
+def prune_floating(prop, margin=0.01):
+    """After Prop.damage() has dropped small parts at random, drop what is left with nothing to touch (a mirror head whose arm went, a lens whose bezel went,
+    a handlebar whose clamp went). Two parts touch when their surfaces overlap or come within `margin` metres; whatever is not connected to the biggest
+    group of parts is removed (the same test as the contact check the art PRs report). Returns how many parts went."""
+    import bmesh
+    isl = []
+    pieces = list(prop.parts.items()) + [("__part__", bm) for g in prop.groups.values() for bm in g["parts"].values()]      # a wheel or a door is something to touch, and is never dropped
+    for colour, bm in pieces:
+        isl += _islands(bm, colour)
+    groups = _touching_groups(isl, margin)
     if len(groups) < 2:
         return 0
     main = max(groups.values(), key=lambda g: sum(len(isl[i][1]) for i in g))
@@ -399,6 +412,26 @@ def ajar(prop):
             g["rest"] = round(g["limit"] * rng.uniform(0.12, 0.45), 1)
 
 
+def _build_car(family, label, kind, kw, cond):
+    """Build one car in one condition (Damaged is wrecked: dropped parts, tilt, grime, doors ajar) and return its Prop, not yet finished."""
+    props_lib.THEME = WRECK if cond == "Damaged" else {}
+    try:
+        prop = build(family, label, kind, kw)
+    finally:
+        props_lib.THEME = {}
+    if cond == "Damaged":
+        prop.name = prop.name.replace(f"_{label}_01", f"_{label}_Damaged_01")
+        tilt = 3.0
+        if family in OTHER_FAMILIES:                                                      # #357: the 3 degrees of a 4.6 m car lift one end of a 14 m trailer by 0.7 m; this keeps an end within about
+            ys = [v.co.y for bm in prop.parts.values() for v in bm.verts]
+            tilt = min(3.0, math.degrees(0.08 / ((max(ys) - min(ys)) / 2)))
+        prop.damage(seed=sum(ord(c) for c in prop.name) % 1000, drop=0.35, tilt=tilt, grime=4, max_part=0.03, grime_scale=3.0)
+        if family in OTHER_FAMILIES:
+            prune_floating(prop)
+        ajar(prop)
+    return prop
+
+
 def run():
     only = globals().get("CAR_LIST")
     only_variants = globals().get("VARIANT_LIST")   # build only these variants of the families (their labels, e.g. "FBI_Van"): the rest of a family is left as it is
@@ -411,21 +444,7 @@ def run():
             if only_variants and label not in only_variants:
                 continue
             for cond in conds:
-                props_lib.THEME = WRECK if cond == "Damaged" else {}
-                try:
-                    prop = build(family, label, kind, kw)
-                finally:
-                    props_lib.THEME = {}
-                if cond == "Damaged":
-                    prop.name = prop.name.replace(f"_{label}_01", f"_{label}_Damaged_01")
-                    tilt = 3.0
-                    if family in OTHER_FAMILIES:                                                      # #357: the 3 degrees of a 4.6 m car lift one end of a 14 m trailer by 0.7 m; this keeps an end within about 8 cm
-                        ys = [v.co.y for bm in prop.parts.values() for v in bm.verts]
-                        tilt = min(3.0, math.degrees(0.08 / ((max(ys) - min(ys)) / 2)))
-                    prop.damage(seed=sum(ord(c) for c in prop.name) % 1000, drop=0.35, tilt=tilt, grime=4, max_part=0.03, grime_scale=3.0)
-                    if family in OTHER_FAMILIES:
-                        prune_floating(prop)
-                    ajar(prop)
+                prop = _build_car(family, label, kind, kw, cond)
                 obj, coll = prop.finish()
                 common.export_fbx(coll, f"Assets/Art/Global/Vehicles/{family}/{prop.name}.fbx")
                 obj.location = (x, (0 if cond == "New" else 7), 0)

@@ -786,6 +786,26 @@ def _named(prop, theme):
     return prop
 
 
+def _styled_piece(name, fn, folder, theme):
+    """One household or decor piece in one theme, exported as FBX; returns its object, or None for the retro radio that has no plain variant."""
+    key = (name, theme)
+    if name == "Radio_Retro" and theme == "Retro" and key not in VARIANTS:
+        return None
+    var = VARIANTS.get(key)
+    props_lib.THEME = {} if var else THEMES[theme]
+    try:
+        prop = var() if var else fn()
+    finally:
+        props_lib.THEME = {}
+    if not var:
+        prop = _named(prop, theme)
+        if theme == "Damaged":
+            prop.damage(seed=sum(ord(c) * (i + 1) for i, c in enumerate(name)) % 1000)
+    obj, coll = prop.finish()
+    common.export_fbx(coll, f"Assets/Art/Global/{folder}/{theme}/{prop.name}.fbx")
+    return obj
+
+
 def run():
     themes = globals().get("THEME_LIST") or list(THEMES)
     only = globals().get("STYLE_PIECES")
@@ -797,21 +817,9 @@ def run():
                 continue
             x = 0.0
             for theme in themes:
-                key = (name, theme)
-                if name == "Radio_Retro" and theme == "Retro" and key not in VARIANTS:
+                obj = _styled_piece(name, fn, folder, theme)
+                if obj is None:
                     continue
-                var = VARIANTS.get(key)
-                props_lib.THEME = {} if var else THEMES[theme]
-                try:
-                    prop = var() if var else fn()
-                finally:
-                    props_lib.THEME = {}
-                if not var:
-                    prop = _named(prop, theme)
-                    if theme == "Damaged":
-                        prop.damage(seed=sum(ord(c) * (i + 1) for i, c in enumerate(name)) % 1000)
-                obj, coll = prop.finish()
-                common.export_fbx(coll, f"Assets/Art/Global/{folder}/{theme}/{prop.name}.fbx")
                 obj.location = (x, y, 0)
                 x += max(1.2, obj.dimensions.x + 0.4)
                 count += 1

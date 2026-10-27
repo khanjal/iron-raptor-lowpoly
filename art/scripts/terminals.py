@@ -171,25 +171,8 @@ def holo_rings(p, colour, cx, cy, z0, radii, gap, n=6, strut="metal_dark", base_
 
 # ===== The console ===============================================================================================================
 
-def ship_console(name="GV_ShipConsole_01"):
-    """The desk along the ship's back wall. Plan 3.4 x 0.9 m (a little more at the front where the ledge leans out), 0.9 m high."""
-    p = Prop(name)
-    W = 3.4
-    # plinth, recessed, with a glowing kick strip
-    p.box("metal_dark", (0, 0, 0.05), (W - 0.1, 0.80, 0.10))
-    p.box("glow_cyan", (0, -0.405, 0.075), (W - 0.5, 0.02, 0.035))
-    # body: a profile (y, z) lofted along X: bulging front, the control ledge leaning back and up, a flat top for the two terminals
-    prof = [(0.45, 0.10), (-0.40, 0.10), (-0.46, 0.46), (-0.50, 0.58), (-0.22, 0.90), (0.45, 0.90)]
-    p.loft_rings("alien_dark", [[Vector((x, y, z)) for y, z in prof] for x in (-W / 2, W / 2)])
-    # top plate (alien_grey), 3 cm over the body's top, with a dark rim and the strips the terminals stand beside
-    p.box("alien_grey", (0, 0.115, 0.915), (W, 0.67, 0.03))
-    p.box("metal_dark", (0, 0.45, 0.915), (W, 0.03, 0.035))
-    # the ledge: panels along it
-    sl = Plane((0, -0.50, 0.58), math.degrees(math.atan2(0.32, 0.28)))        # tilts the front down by the ledge's own slope
-    sl_len = math.hypot(0.28, 0.32)
-    sl.box(p, "metal_dark", 0, sl_len / 2, 0.012, (W - 0.1, sl_len - 0.02, 0.025))
-    sl.box(p, "glow_cyan", 0, 0.025, 0.03, (W - 0.3, 0.018, 0.012))             # a glow strip along the lower edge of the ledge
-    hi = 0.04
+def _ledge_controls(p, sl, hi):
+    """The controls along the ship console's ledge: five groups, buttons and sliders at the ends, dials and a row of lamps in between, a status bar in the middle."""
     cyan, amber, violet = "glow_cyan", "glow_amber", "alien_violet"
     for cx, kind in ((-1.45, 0), (-0.85, 1), (0.0, 2), (0.85, 1), (1.45, 0)):
         if kind == 0:                                       # two rows of square buttons and a slider
@@ -208,6 +191,27 @@ def ship_console(name="GV_ShipConsole_01"):
             dial(p, sl, cx - 0.14, 0.15, h=hi - 0.012, r=0.045, turn=-20)
             dial(p, sl, cx + 0.14, 0.15, h=hi - 0.012, r=0.045, turn=60)
             button_grid(p, sl, cx - 0.045, 0.10, 2, 2, 0.065, [amber, cyan, cyan, violet], h=hi - 0.012, size=0.045)
+
+
+def ship_console(name="GV_ShipConsole_01"):
+    """The desk along the ship's back wall. Plan 3.4 x 0.9 m (a little more at the front where the ledge leans out), 0.9 m high."""
+    p = Prop(name)
+    W = 3.4
+    # plinth, recessed, with a glowing kick strip
+    p.box("metal_dark", (0, 0, 0.05), (W - 0.1, 0.80, 0.10))
+    p.box("glow_cyan", (0, -0.405, 0.075), (W - 0.5, 0.02, 0.035))
+    # body: a profile (y, z) lofted along X: bulging front, the control ledge leaning back and up, a flat top for the two terminals
+    prof = [(0.45, 0.10), (-0.40, 0.10), (-0.46, 0.46), (-0.50, 0.58), (-0.22, 0.90), (0.45, 0.90)]
+    p.loft_rings("alien_dark", [[Vector((x, y, z)) for y, z in prof] for x in (-W / 2, W / 2)])
+    # top plate (alien_grey), 3 cm over the body's top, with a dark rim and the strips the terminals stand beside
+    p.box("alien_grey", (0, 0.115, 0.915), (W, 0.67, 0.03))
+    p.box("metal_dark", (0, 0.45, 0.915), (W, 0.03, 0.035))
+    # the ledge: panels along it
+    sl = Plane((0, -0.50, 0.58), math.degrees(math.atan2(0.32, 0.28)))        # tilts the front down by the ledge's own slope
+    sl_len = math.hypot(0.28, 0.32)
+    sl.box(p, "metal_dark", 0, sl_len / 2, 0.012, (W - 0.1, sl_len - 0.02, 0.025))
+    sl.box(p, "glow_cyan", 0, 0.025, 0.03, (W - 0.3, 0.018, 0.012))             # a glow strip along the lower edge of the ledge
+    _ledge_controls(p, sl, 0.04)
     # end caps: the body's flanks step in, with a glow strip each, and a fin on the front corners
     for s in (-1, 1):
         p.box("alien_grey", (s * (W / 2 - 0.02), 0.0, 0.50), (0.06, 0.86, 0.80))
