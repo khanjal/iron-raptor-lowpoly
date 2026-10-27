@@ -183,7 +183,7 @@ def seat(p, colour, x, y, z, w, ch):
     p.box(colour, (x, y + 0.24, z + 0.1 + back / 2), (w, 0.1, back), rot=(-8, 0, 0))
 
 
-def seats(p, colour, x, y0, rows, bench, sz, width, ch):
+def _seats(p, colour, x, y0, rows, bench, sz, width, ch):
     """The rows of seats of a cab_interior on a floor at height sz: two seats at +-x in the first row unless bench, benches behind."""
     for k, off in enumerate(rows):
         if k == 0 and not bench:
@@ -207,10 +207,10 @@ def cab_interior(p, y0, y1, z, width, ch, rows=(0.9,), bench=False, colour="offi
     p.cyl("black", (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.16, 0.03, n=6, axis="y")                      # steering wheel
     if lift:
         props_lib.rod(p, "metal_dark", (-x, y0 + 0.4, fz + (0.24 + lift) * 0.7), (-x, y0 + 0.62, z + min(0.36, ch * 0.7)), 0.05)   # its column
-    seats(p, colour, x, y0, rows, bench, fz + (0.1 if lift else 0), width, ch + lift)
+    _seats(p, colour, x, y0, rows, bench, fz + (0.1 if lift else 0), width, ch + lift)
 
 
-def pickup_doors(p, body, s, ytop, z_f, zmid):
+def _pickup_doors(p, body, s, ytop, z_f, zmid):
     """The two doors on one side of the pickup, each a part (the front one carries the mirror)."""
     side = "L" if s > 0 else "R"
     for role, ya, yb, front in ((f"Door_F{side}", -0.93, -0.13, True), (f"Door_R{side}", -0.11, 0.79, False)):
@@ -223,7 +223,7 @@ def pickup_doors(p, body, s, ytop, z_f, zmid):
                 mirror(p, body, s, 0.9, -0.9, 1.2)
 
 
-def pickup_bed(p, body, gate):
+def _pickup_bed(p, body, gate):
     """The open bed of the pickup: floor, side walls with rails, ribs and wheel wells, the tailgate (a part when `gate`) and the front wall."""
     p.box(body, (0, 1.75, 0.72), (1.9, 2.0, 0.1))                                    # bed floor
     for s in (-1, 1):
@@ -243,7 +243,7 @@ def pickup_bed(p, body, gate):
     p.box(body, (0, 0.78, 1.0), (1.9, 0.1, 0.5))                                     # bed front wall
 
 
-def pickup_front_and_rear(p):
+def _pickup_front_and_rear(p):
     """The pickup's bumpers, grille, headlights, indicators and exhaust."""
     p.box("metal_galv", (0, -2.7, 0.6), (2.0, 0.18, 0.22))
     p.box("black", (0, -2.66, 0.43), (1.5, 0.1, 0.14))                              # valance
@@ -293,12 +293,12 @@ def pickup(body="truck_blue", name="GV_Pickup_01", gate=True):
         p.sbox(body, (s * 0.935, -0.12, (0.52 + z_f) / 2), (0.09, 1.82, z_f - 0.52))       # rocker panel
         for y in (-0.96, -0.12):
             p.sbox("black", (s * 0.84, y, zmid), (0.1, 0.08, ytop - z_f))                   # the posts the doors shut against
-        pickup_doors(p, body, s, ytop, z_f, zmid)
+        _pickup_doors(p, body, s, ytop, z_f, zmid)
         p.box("black", (s * 1.0, -0.5, 0.5), (0.14, 1.5, 0.06))                    # running boards
     for x in (-0.3, 0.0, 0.3):
         p.box("paint_yellow", (x, -0.745, 1.63), (0.1, 0.05, 0.06))                # cab lights, on the roof front edge
-    pickup_bed(p, body, gate)
-    pickup_front_and_rear(p)
+    _pickup_bed(p, body, gate)
+    _pickup_front_and_rear(p)
     # wheels and arches
     for s in (-1, 1):
         for y in (-1.75, 1.7):
@@ -307,7 +307,7 @@ def pickup(body="truck_blue", name="GV_Pickup_01", gate=True):
     return p
 
 
-def tractor_rear_wheel(p, body, s):
+def _tractor_rear_wheel(p, body, s):
     """One side's rear wheel of the tractor, the curved mudguard over it and the footplate."""
     # the rear wheel: a tyre, a treaded ring of lugs, a hub in the body colour and a cap
     x, y, z, r, w = s * 1.12, 0.5, 0.85, 0.85, 0.55
@@ -333,7 +333,7 @@ def tractor_rear_wheel(p, body, s):
     p.box("metal_dark", (s * 0.68, 0.5, 1.15), (0.26, 1.5, 0.1))                 # footplate, between the body and the wheel
 
 
-def tractor_front_wheel(p, body, s):
+def _tractor_front_wheel(p, body, s):
     """One side's front wheel of the tractor."""
     # the front wheel: smaller, with its own lugs
     x, y, z, r, w = s * 0.85, -1.55, 0.5, 0.5, 0.28
@@ -392,8 +392,8 @@ def tractor(body="tractor_green", name="GV_Tractor_01"):
     p.box("metal_dark", (0, 1.65, 0.62), (0.34, 0.3, 0.12))                          # drawbar
     for s in (-1, 1):
         props_lib.rod(p, "metal_dark", (s * 0.35, 1.0, 1.0), (s * 0.35, 1.78, 0.74), 0.07)   # lift arms
-        tractor_rear_wheel(p, body, s)
-        tractor_front_wheel(p, body, s)
+        _tractor_rear_wheel(p, body, s)
+        _tractor_front_wheel(p, body, s)
         p.box("metal_galv", (s * 0.33, -2.04, 1.5), (0.2, 0.07, 0.17))               # headlight bezels
         p.box("paint_yellow", (s * 0.33, -2.07, 1.5), (0.16, 0.05, 0.13))            # headlights
         p.box("paint_yellow", (s * 0.5, 1.22, 2.88), (0.14, 0.05, 0.07))              # work lights on the canopy's rear edge

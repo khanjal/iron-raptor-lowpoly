@@ -110,7 +110,7 @@ def _door_handle(p, handle, side, x0, x1, z0, z1, fy):
         p.box(handle, (cx, fy - 0.01, hz), (w * 0.7, 0.035, 0.025))
 
 
-# a door's whole placement is its arguments (11 of 14 positional); a parameter object would change every caller
+# a door is placed by its opening and body (15 arguments, all but the first 10 with defaults); a parameter object would change every caller
 def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handle="metal_galv", window=None, extra=None):  # NOSONAR
     """A hinged door in front of an opening spanning x0..x1, z0..z1 on a body whose front face is at y = yf.
 
@@ -655,7 +655,7 @@ def _name(prop, style):
 
 
 def _build_style(key, fn, style):
-    """Build one prop in one style (Damaged gets its wear), export it as FBX and return the finished prop and its object."""
+    """Build one prop in one style (Damaged gets its wear), export it as FBX and return its object."""
     props_lib.THEME = {} if style == "Classic" else home_styles.THEMES[style]
     try:
         prop = VARIANTS.get((key, style), fn)(a=1.0 if style == "Damaged" else 0.0)

@@ -125,7 +125,7 @@ def _stitch_cap(bm, skull, layers, apex, centre):
             f.normal_flip()
 
 
-# a dome is placed by its centre, size, outline, tilt and heights (14 arguments, 12 with defaults); a parameter object would change every caller
+# a dome is placed by its centre, size, outline, tilt and heights (14 arguments, all but the first 6 with defaults); a parameter object would change every caller
 def dome(bm, skull, cx, cz, hw, hh, sx=1, outline=ROUND, tilt=0.0, bulge=0.012, rim=0.003, base=0.0, lift=None, rings=(1.0, 0.6)):  # NOSONAR
     """A cap on the skull at (cx, cz): the outline (a polygon in units of hw and hh around the centre, tilted tilt degrees) sits on the surface with its
     rim buried rim into the skull and the middle bulge above it, in rings that shrink to an apex. sx = -1 mirrors it to the other side of the head
