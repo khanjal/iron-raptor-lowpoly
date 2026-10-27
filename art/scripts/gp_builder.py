@@ -241,7 +241,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         if hands:
             spec = alien_parts.HANDS[hands]
             make(f"fingers_{tag}", lambda bm, s=side, sp=spec: alien_parts.fingers(bm, s, sp),
-                 lambda c, n: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
+                 lambda c, n, spec=spec: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
         else:
             make(f"thumb_{tag}",
                  lambda bm, s=side: common.add_box(bm, (s * 0.805, 0.030, 1.416), (0.075, 0.026, 0.026), rot_deg=(0, 0, s * 22)),

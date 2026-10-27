@@ -417,7 +417,7 @@ def test_floor(L):
                     matching.append((frac, other))
         if sum(f for f, _o in matching) >= SUPPORT_COVER:
             continue                                  # enough of its footprint is on tops at its height (a crate across two crates)
-        nearest = min(under, key=lambda t: abs(bottom - t))
+        nearest = min(under, key=lambda t, bottom=bottom: abs(bottom - t))
         d = bottom - nearest
         if matching:
             frac, other = max(matching, key=lambda m: m[0])
@@ -523,7 +523,7 @@ def test_facing(L):
             tvs = [o for o in L.indoor() if o.building == it.building and o.floor == it.floor and match(r"^TV_", o.s) and o.room == it.room]
             if tvs:
                 cx, cz = it.centre
-                tv = min(tvs, key=lambda o: math.hypot(o.centre[0] - cx, o.centre[1] - cz))
+                tv = min(tvs, key=lambda o, cx=cx, cz=cz: math.hypot(o.centre[0] - cx, o.centre[1] - cz))
                 to = (tv.centre[0] - cx, tv.centre[1] - cz)
                 n = math.hypot(*to) or 1.0
                 a = angle_between(front, (to[0] / n, to[1] / n))

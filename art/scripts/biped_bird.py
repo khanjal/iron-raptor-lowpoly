@@ -14,6 +14,8 @@ clips play on all of them. Birds face -Y, Z up, feet on z = 0.
                 +-- LegUpper_L - LegLower_L - Foot_L, and _R
 """
 
+from functools import partial
+
 import bmesh
 
 import common
@@ -231,21 +233,25 @@ def _turkey_extras(ctx):
 
 
 
+def _feather_box(c, spec, m, length, thick, bm):
+    """One flat box of a fan feather, `m` metres along the feather from its base (the build function the fan hands to ctx.make, with bm last)."""
+    bx, by, bz = spec["base"]
+    dx, dy, dz = spec["dir"]
+    return c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (spec["width"], length, thick), rot_deg=(-6, 0, -spec["angle"]))
+
+
 def _turkey_fan(ctx):
     """The tail: a plate and a tan tip band for every feather (feather_specs), each skinned to its own TailF bone. At rest the feathers lie close together
     behind the bird, flat and a little down (a folded tail); the Display clip (turkey_display.py) raises Tail1 and opens the feathers into a fan."""
     import math
     c = ctx.common
     for spec in feather_specs(ctx.sp):
-        bx, by, bz = spec["base"]
-        dx, dy, dz = spec["dir"]
-        a = spec["angle"]
-        ln, w = spec["length"], spec["width"]
+        ln = spec["length"]
         mid = 0.5 * ln - 0.03                                      # the root is 3 cm inside the body
         tip = ln - 0.075
-        ctx.make(f"feather_{spec['k']}", lambda bm, m=mid: c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (w, ln, 0.02), rot_deg=(-6, 0, -a)),
+        ctx.make(f"feather_{spec['k']}", partial(_feather_box, c, spec, mid, ln, 0.02),
                  lambda c_, n: "brown_coat", [spec["bone"]], sub=0, smooth=False)
-        ctx.make(f"tip_{spec['k']}", lambda bm, m=tip: c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (w, 0.09, 0.022), rot_deg=(-6, 0, -a)),
+        ctx.make(f"tip_{spec['k']}", partial(_feather_box, c, spec, tip, 0.09, 0.022),
                  lambda c_, n: "tan", [spec["bone"]], sub=0, smooth=False)
 
 
