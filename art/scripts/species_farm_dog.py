@@ -258,8 +258,8 @@ _COLLIE_HEAD_KEEL = [0.25, 0.20, 0.15, 0.20, 0.25, 0.25, 0.20, 0.15, 0.10]
 _STOP = 5                                # the head's ring at the stop: the muzzle in front of it is scaled on its own (make_breed's snout)
 # ---- the legs (z, dy, half width, half depth, dx): the front leg from the shoulder joint inside the chest, the upper arm's muscle (a little proud of the chest), the elbow
 # under the chest, the forearm, the pastern and a paw longer than it is wide; the hind leg from the hip joint, the thigh, the stifle (forward), the shin back to the hock and the
-# cannon down to the foot. Their joints: the front's elbow (2) and pastern (4), the hind's stifle (2) and hock (4)
-_COLLIE_FRONT = [(0.44, 0.030, 0.045, 0.060, -0.030), (0.34, 0.025, 0.036, 0.058), (0.25, 0.010, 0.031, 0.040), (0.13, 0.000, 0.026, 0.030),
+# cannon down to the foot. Their joints: the front's wrist (3: the joint that folds the paw back in a stride) and pastern (4), the hind's stifle (2) and hock (4)
+_COLLIE_FRONT = [(0.44, 0.030, 0.045, 0.060, -0.030), (0.34, 0.025, 0.036, 0.058), (0.25, 0.010, 0.031, 0.040), (0.11, 0.000, 0.026, 0.030),
                  (0.05, -0.004, 0.027, 0.034), (0.0, -0.024, 0.034, 0.056)]
 _COLLIE_HIND = [(0.48, 0.000, 0.050, 0.070, -0.030), (0.38, -0.005, 0.046, 0.078), (0.28, -0.035, 0.035, 0.045), (0.19, 0.010, 0.028, 0.032),
                 (0.12, 0.050, 0.025, 0.028), (0.05, 0.030, 0.025, 0.030), (0.0, 0.030, 0.030, 0.045)]
@@ -285,7 +285,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     leg, ly, wx, thick = shape.get("leg", _ELBOW), shape.get("length", 1.0), shape.get("width", 1.0), shape.get("thick", 1.0)
     drop = _ELBOW - leg                                           # how much lower the body is than the collie's
     body, head, tail = shape.get("body", _COLLIE_BODY), shape.get("head", _COLLIE_HEAD), shape.get("tail", _COLLIE_TAIL)
-    front_leg = {"x": 0.064 * wx, "y": -0.195 * ly, "joints": (2, 4), "profile": _legs(_COLLIE_FRONT, _ELBOW, drop, thick)}
+    front_leg = {"x": 0.064 * wx, "y": -0.195 * ly, "joints": (3, 4), "profile": _legs(_COLLIE_FRONT, _ELBOW, drop, thick)}
     hind_leg = {"x": 0.062 * wx, "y": 0.175 * ly, "joints": (2, 4), "profile": _legs(_COLLIE_HIND, _STIFLE, drop, thick)}
     skull = head[3]
     ear_x = skull[2] * 0.85

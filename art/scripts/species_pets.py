@@ -145,7 +145,7 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     d = SimpleNamespace(k=k, hk=head_k, cz0=cz0, pattern=pattern, c1=c1, c2=c2, c3=c3, head=head, skull=skull)
 
     return {"name": name, "body": body, "head": head,
-                "front": {"x": 0.040 * k, "y": -0.09 * k, "joints": (2, 4), "profile": fr},
+                "front": {"x": 0.040 * k, "y": -0.09 * k, "joints": (3, 4), "profile": fr},          # the wrist (3) folds the paw back
                 "hind": {"x": 0.042 * k, "y": 0.135 * k, "joints": (2, 4), "profile": hn},
                 "body_keel": [0.20, 0.30, 0.40, 0.40, 0.35, 0.20, 0.15, 0.10, 0.0], "head_keel": [0.20, 0.20, 0.15, 0.15, 0.15, 0.20, 0.25, 0.20, 0.10],
                 "body_n": 10, "head_n": 8, "leg_n": 6, "gait_leg": 0.20 * k,                # the gait's leg length as before the rework (the old leg's top)
