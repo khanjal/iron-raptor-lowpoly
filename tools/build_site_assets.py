@@ -140,9 +140,37 @@ def build_people(g):
     return done
 
 
-def build_animals(g):
+def run_animal(g, key):
+    """Build one animal or bird with its art script; returns (the script's namespace, the clips to add)."""
+    import species_pets
+    if g.get("birds"):
+        ns = runpy.run_path(str(SCRIPTS / "gn_birds.py"), init_globals={"SPECIES_LIST": [key]}, run_name="__main__")
+        return ns, []
+    ns = runpy.run_path(str(SCRIPTS / "gn_animals.py"), init_globals={"SPECIES_LIST": [key], "STYLES_LIST": ["faceted"]}, run_name="__main__")
+    return ns, g["clips"] + (g.get("dog_clips", []) if key in species_pets.DOGS else [])
+
+
+def add_clip(rig, anim_prefix, clip, key, report):
+    """Run the clip's script on the rig and stash its action under the clip's name."""
     import quadruped_rig
     import species_pets
+    init = {"RIG_NAME": rig.name, "ANIM_PREFIX": anim_prefix, "EXPORT": False, "KEEP": True, "REPORT": report}
+    if clip == "Idle":
+        runpy.run_path(str(SCRIPTS / "quadruped_idle.py"), init_globals=init, run_name="__main__")
+        fps = 24
+    else:
+        init["GAIT"] = clip.lower()
+        if clip == "Walk" and key in species_pets.DOGS:
+            init["SHOULDER_SLIDE"] = 0.45                          # as gn_animal_clips.py does for the dogs
+        runpy.run_path(str(SCRIPTS / "quadruped_walk.py"), init_globals=init, run_name="__main__")
+        fps = report[f"{anim_prefix}@{clip.lower()}"]["fps"]
+    if bpy.context.object is not None and bpy.context.object.mode != "OBJECT":
+        bpy.ops.object.mode_set(mode="OBJECT")
+    common.stash_clip(rig, rig.animation_data.action, clip, fps=fps)
+    quadruped_rig.rest_pose(rig)
+
+
+def build_animals(g):
     done = []
     for key, aid in g["animals"].items():
         if ONLY and key not in ONLY:
@@ -150,31 +178,13 @@ def build_animals(g):
         common.configure(reset=True, out=str(ROOT / "out"), glb=str(MODELS), formats="glb", only={aid})
         with SceneGuard():
             report = {}
-            if g.get("birds"):
-                ns = runpy.run_path(str(SCRIPTS / "gn_birds.py"), init_globals={"SPECIES_LIST": [key]}, run_name="__main__")
-                clips = []
-            else:
-                ns = runpy.run_path(str(SCRIPTS / "gn_animals.py"), init_globals={"SPECIES_LIST": [key], "STYLES_LIST": ["faceted"]}, run_name="__main__")
-                clips = g["clips"] + (g.get("dog_clips", []) if key in species_pets.DOGS else [])
+            ns, clips = run_animal(g, key)
             rig, coll = ns["rig"], ns["coll"]
             rig.location = (0, 0, 0)
             prefix = rig.name[:-len("_Rig")]                                  # GN_Cow_faceted
             anim_prefix = prefix[len("GN_"):]                                  # Cow_faceted
             for clip in clips:
-                init = {"RIG_NAME": rig.name, "ANIM_PREFIX": anim_prefix, "EXPORT": False, "KEEP": True, "REPORT": report}
-                if clip == "Idle":
-                    runpy.run_path(str(SCRIPTS / "quadruped_idle.py"), init_globals=init, run_name="__main__")
-                    fps = 24
-                else:
-                    init["GAIT"] = clip.lower()
-                    if clip == "Walk" and key in species_pets.DOGS:
-                        init["SHOULDER_SLIDE"] = 0.45                          # as gn_animal_clips.py does for the dogs
-                    runpy.run_path(str(SCRIPTS / "quadruped_walk.py"), init_globals=init, run_name="__main__")
-                    fps = report[f"{anim_prefix}@{clip.lower()}"]["fps"]
-                if bpy.context.object is not None and bpy.context.object.mode != "OBJECT":
-                    bpy.ops.object.mode_set(mode="OBJECT")
-                common.stash_clip(rig, rig.animation_data.action, clip, fps=fps)
-                quadruped_rig.rest_pose(rig)
+                add_clip(rig, anim_prefix, clip, key, report)
             common.export_glb(coll, aid)
             purge_collection(coll)
         common.configure(reset=True)

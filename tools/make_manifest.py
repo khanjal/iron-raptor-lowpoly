@@ -144,15 +144,20 @@ def apply_part_names(assets, entries=None):
         mapping = names.get(a["id"])
         if not mapping or a["id"] in catalog.PAINTS:
             continue
-        for i, p in enumerate(a.get("paintable") or []):
-            sw = entries[p["swatch"]][0]
-            if i == 0 and "$main" in mapping and len(a["paintable"]) == 1:      # only a lone colour: a model that gains parts later keeps "Main"
-                p["part"] = mapping["$main"]
-            elif i > 0 and sw in mapping:
-                p["part"] = mapping[sw]
-        labels = [p["part"] for p in a.get("paintable") or []]
-        if len(labels) != len(set(labels)):
-            raise ValueError(f"{a['id']}: two parts called the same after part_names.json: {labels}")
+        name_parts(a, mapping, entries)
+
+
+def name_parts(a, mapping, entries):
+    """Rename one model's paintable parts after `mapping` (see apply_part_names); ValueError when two parts end up with the same name."""
+    for i, p in enumerate(a.get("paintable") or []):
+        sw = entries[p["swatch"]][0]
+        if i == 0 and "$main" in mapping and len(a["paintable"]) == 1:      # only a lone colour: a model that gains parts later keeps "Main"
+            p["part"] = mapping["$main"]
+        elif i > 0 and sw in mapping:
+            p["part"] = mapping[sw]
+    labels = [p["part"] for p in a.get("paintable") or []]
+    if len(labels) != len(set(labels)):
+        raise ValueError(f"{a['id']}: two parts called the same after part_names.json: {labels}")
 
 
 def apply_aliases(assets):

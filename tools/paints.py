@@ -131,6 +131,41 @@ def part_label(swatch_name):
     return swatch_name.replace("_", " ").capitalize()
 
 
+PLAIN_COMPONENTS = {5126: "f", 5123: "H", 5125: "I", 5121: "B"}
+
+
+def read_column(doc, blob, path, i):
+    """Accessor i of a GLB as a flat array (plain accessors only: not sparse, normalized or empty)."""
+    a = doc["accessors"][i]
+    if "sparse" in a or a.get("normalized") or "bufferView" not in a:
+        raise ValueError(f"{path.name}: accessor {i} is sparse, normalized or empty; only plain accessors are read")
+    bv = doc["bufferViews"][a["bufferView"]]
+    vals = array(PLAIN_COMPONENTS[a["componentType"]])
+    n = {"SCALAR": 1, "VEC2": 2, "VEC3": 3}[a["type"]]
+    start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
+    size = n * vals.itemsize
+    stride = bv.get("byteStride") or size                       # interleaved buffers step by more than one element
+    if stride == size:
+        vals.frombytes(blob[start:start + a["count"] * size])
+    else:
+        for k in range(a["count"]):
+            vals.frombytes(blob[start + k * stride:start + k * stride + size])
+    return vals
+
+
+def primitive_areas(doc, blob, path, prim):
+    """(swatch index, triangle area) for every triangle of one primitive, in order."""
+    at = prim["attributes"]
+    pos, uv = read_column(doc, blob, path, at["POSITION"]), read_column(doc, blob, path, at["TEXCOORD_0"])
+    idx = read_column(doc, blob, path, prim["indices"]) if "indices" in prim else range(len(pos) // 3)
+    for t in range(0, len(idx) - 2, 3):
+        a, b, c = idx[t], idx[t + 1], idx[t + 2]
+        u = [pos[b * 3 + k] - pos[a * 3 + k] for k in range(3)]
+        v = [pos[c * 3 + k] - pos[a * 3 + k] for k in range(3)]
+        area = 0.5 * ((u[1] * v[2] - u[2] * v[1]) ** 2 + (u[2] * v[0] - u[0] * v[2]) ** 2 + (u[0] * v[1] - u[1] * v[0]) ** 2) ** 0.5
+        yield int(uv[a * 2] * GRID) + GRID * int(uv[a * 2 + 1] * GRID), area
+
+
 def surface_by_swatch(path):
     """{swatch index: surface area} of a GLB (triangle areas in the model's own units; node transforms are not applied)."""
     path = Path(path)
@@ -138,39 +173,12 @@ def surface_by_swatch(path):
     jlen = struct.unpack_from("<I", raw, 12)[0]
     doc = json.loads(raw[20:20 + jlen])
     blob = raw[20 + jlen + 8:]
-    kinds = {5126: "f", 5123: "H", 5125: "I", 5121: "B"}
-
-    def column(i):
-        a = doc["accessors"][i]
-        if "sparse" in a or a.get("normalized") or "bufferView" not in a:
-            raise ValueError(f"{path.name}: accessor {i} is sparse, normalized or empty; only plain accessors are read")
-        bv = doc["bufferViews"][a["bufferView"]]
-        vals = array(kinds[a["componentType"]])
-        n = {"SCALAR": 1, "VEC2": 2, "VEC3": 3}[a["type"]]
-        start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
-        size = n * vals.itemsize
-        stride = bv.get("byteStride") or size                       # interleaved buffers step by more than one element
-        if stride == size:
-            vals.frombytes(blob[start:start + a["count"] * size])
-        else:
-            for k in range(a["count"]):
-                vals.frombytes(blob[start + k * stride:start + k * stride + size])
-        return vals
-
     out = {}
     for node in doc.get("nodes", []):
         if "mesh" not in node:
             continue
         for prim in doc["meshes"][node["mesh"]]["primitives"]:
-            at = prim["attributes"]
-            pos, uv = column(at["POSITION"]), column(at["TEXCOORD_0"])
-            idx = column(prim["indices"]) if "indices" in prim else range(len(pos) // 3)
-            for t in range(0, len(idx) - 2, 3):
-                a, b, c = idx[t], idx[t + 1], idx[t + 2]
-                u = [pos[b * 3 + k] - pos[a * 3 + k] for k in range(3)]
-                v = [pos[c * 3 + k] - pos[a * 3 + k] for k in range(3)]
-                area = 0.5 * ((u[1] * v[2] - u[2] * v[1]) ** 2 + (u[2] * v[0] - u[0] * v[2]) ** 2 + (u[0] * v[1] - u[1] * v[0]) ** 2) ** 0.5
-                sw = int(uv[a * 2] * GRID) + GRID * int(uv[a * 2 + 1] * GRID)
+            for sw, area in primitive_areas(doc, blob, path, prim):
                 out[sw] = out.get(sw, 0.0) + area
     return out
 
@@ -273,29 +281,38 @@ def derive(path_a, path_b, pal):
     return {str(a): pal[b] for a, b in sorted(swap.items())}
 
 
-def check(models=None):
-    """Compare every declared preset that still has its old GLB with the swap worked out from the GLBs. Returns the number of mismatches."""
+def compare_with_glbs(models, label, base, was, pal, want, declared):
+    """Work the swap out of the two GLBs and compare it with `want`; prints and returns 1 for a difference (or a GLB that cannot be read), 0 for a match."""
+    try:
+        got = derive(models / f"{base}.glb", models / f"{was}.glb", pal)
+    except ValueError as e:
+        print(f"{label}: {e}")
+        return 1
+    if got != want:
+        print(f"{label}: {declared}, GLBs say {got}")
+        return 1
+    return 0
+
+
+def check_presets(models, entries, pal):
+    """(checked, differing) for every declared preset whose old GLB still exists."""
     import catalog
-    entries = palette_entries()
-    pal = [h for _, h in entries]
-    models = Path(models) if models else ROOT / "site" / "models"
-    bad = checked = 0
+    checked = bad = 0
     for base, spec in catalog.PAINTS.items():
         _, paints = resolve(spec, entries)
         for p in paints[1:]:
             if not p.get("was") or not (models / f"{p['was']}.glb").exists() or not (models / f"{base}.glb").exists():
                 continue
             checked += 1
-            try:
-                got = derive(models / f"{base}.glb", models / f"{p['was']}.glb", pal)
-            except ValueError as e:
-                bad += 1
-                print(f"{base} {p['name']}: {e}")
-                continue
-            if got != p["swap"]:
-                bad += 1
-                print(f"{base} {p['name']}: declared {p['swap']}, GLBs say {got}")
+            bad += compare_with_glbs(models, f"{base} {p['name']}", base, p["was"], pal, p["swap"], f"declared {p['swap']}")
+    return checked, bad
+
+
+def check_themed(models, entries, pal):
+    """(checked, differing) for every themed model whose old GLB still exists."""
+    import catalog
     th = themes(entries)
+    checked = bad = 0
     for base, styles in catalog.THEMED.items():
         if not (models / f"{base}.glb").exists():
             continue
@@ -305,15 +322,18 @@ def check(models=None):
                 continue
             checked += 1
             want = {k: v for k, v in th[style].items() if k in used}
-            try:
-                got = derive(models / f"{base}.glb", models / f"{was}.glb", pal)
-            except ValueError as e:
-                bad += 1
-                print(f"{base} {style}: {e}")
-                continue
-            if got != want:
-                bad += 1
-                print(f"{base} {style}: the theme gives {want}, the GLBs say {got}")
+            bad += compare_with_glbs(models, f"{base} {style}", base, was, pal, want, f"the theme gives {want}")
+    return checked, bad
+
+
+def check(models=None):
+    """Compare every declared preset that still has its old GLB with the swap worked out from the GLBs. Returns the number of mismatches."""
+    entries = palette_entries()
+    pal = [h for _, h in entries]
+    models = Path(models) if models else ROOT / "site" / "models"
+    checked, bad = check_presets(models, entries, pal)
+    more_checked, more_bad = check_themed(models, entries, pal)
+    checked, bad = checked + more_checked, bad + more_bad
     print(f"{checked} presets and themes checked against their GLBs, {bad} differ")
     return bad
 
