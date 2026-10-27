@@ -351,11 +351,11 @@ class Layout:
 # THE TESTS: each returns a list of (where, message)
 # =====================================================================================================================
 
-def test_floor(layout):
+def test_floor(L):
     """Floor penetration and floating: the lowest point of a thing is on its floor or on the top of what it stands on (within 3 cm)."""
     out = []
-    indoors = [i for i in layout.indoor() if not i.hidden]
-    for it in layout.items:
+    indoors = [i for i in L.indoor() if not i.hidden]
+    for it in L.items:
         if it.category == "person":
             if it.building:   # no state (the farmer, who walks) is standing
                 lo, hi = PERSON_SITTING if it.state == "Sit" else PERSON_STANDING
@@ -369,9 +369,9 @@ def test_floor(layout):
             if it.building and it.state == "Sit":
                 hips = it.pos[1] + SIT_HIPS.get(re.sub(r"^NPC_", "", short(it.kind)), SIT_HIPS_DEFAULT)   # the people are NPC_<Name> since the bystanders became networked humans
                 seats = []
-                for o in layout.indoor():
+                for o in L.indoor():
                     if o.building == it.building and o.floor == it.floor and o.category == "prop" and match(SEATS, o.s) and contains(o.rect, it.pos[0], it.pos[2], 0.05):
-                        seats += [(y, o) for y in o.surfaces(layout.geometry) if hips + HIPS_BELOW_SEAT[0] <= y <= hips + 0.6]
+                        seats += [(y, o) for y in o.surfaces(L.geometry) if hips + HIPS_BELOW_SEAT[0] <= y <= hips + 0.6]
                 if not seats:
                     out.append((it.where(), f"sits on nothing: their hips are at y {hips:.2f} and there is no seat under them"))
                 else:
@@ -403,7 +403,7 @@ def test_floor(layout):
         for other in indoors:
             if other is it or other.category != "prop" or other.building != it.building or other.floor != it.floor or other.flat or other.ceiling:
                 continue
-            ys = [y for y in other.surfaces(layout.geometry) if bottom - 0.6 <= y <= bottom + 0.6]
+            ys = [y for y in other.surfaces(L.geometry) if bottom - 0.6 <= y <= bottom + 0.6]
             if not ys:
                 continue
             ox, oz = rect_overlap(it.rect, other.rect)
@@ -431,19 +431,19 @@ def test_floor(layout):
     return out
 
 
-def test_hung(layout):
+def test_hung(L):
     """Things hung on a wall touch it; things hung from the ceiling reach it."""
     out = []
-    for it in layout.indoor():
+    for it in L.indoor():
         if it.category != "prop" or not (it.hung or it.ceiling):
             continue
         if it.ceiling:
-            f = layout.floor_of(it.building, it.floor)
+            f = L.floor_of(it.building, it.floor)
             if f is not None and not (f["ceiling"] - HANG_TOLERANCE <= it.top <= f["ceiling"] + CEILING_SLAB) and not match(r"^BareBulb", it.s):
                 out.append((it.where(), f"hangs from nothing: its top is y {it.top:.3f}, the ceiling {f['ceiling']:.3f} ({(f['ceiling'] - it.top) * 100:.0f} cm apart)"))
             continue
         best = None
-        for w in layout.walls[it.building]:
+        for w in L.walls[it.building]:
             if not w.overlaps_y(it.bottom, it.top, 0.0) or w.floor != it.floor:
                 continue
             for piece in w.pieces:
@@ -455,10 +455,10 @@ def test_hung(layout):
     return out
 
 
-def nearest_wall(layout, it, near):
+def nearest_wall(L, it, near):
     """Walls within `near` of the item's footprint on its floor: [(gap, wall rect, normal pointing from the wall into the room as (x, z))]."""
     found = []
-    for w in layout.walls[it.building]:
+    for w in L.walls[it.building]:
         if w.floor != it.floor or not w.overlaps_y(it.bottom, it.top):
             continue
         for piece in w.pieces:
@@ -480,15 +480,15 @@ def nearest_wall(layout, it, near):
     return sorted(found, key=lambda f: f[0])
 
 
-def test_facing(layout):
+def test_facing(L):
     """Facing: back-to-wall kinds face away from the wall they stand against; seats near a table or TV face it."""
     out = []
-    for it in layout.indoor():
+    for it in L.indoor():
         if it.category != "prop" or it.hung or it.ceiling or it.flat:
             continue
         front = it.front()
         if match(BACK_TO_WALL, it.s):
-            walls = nearest_wall(layout, it, BACK_WALL_NEAR)
+            walls = nearest_wall(L, it, BACK_WALL_NEAR)
             if walls:
                 ok = any(angle_between(front, n) <= FACING_TOLERANCE for gap, piece, n in walls[:2])
                 if not ok:
@@ -505,7 +505,7 @@ def test_facing(layout):
                 out.append((it.where(), f"its {part['name']} is on the {compass((-front[0], -front[1]))} side but the item faces {compass(front)}: the front is the wrong way round"))
         if match(SEATS, it.s) and not match(SEAT_FACING_EXEMPT, it.s):
             best, best_gap = None, SEAT_NEAR
-            for other in layout.indoor():
+            for other in L.indoor():
                 if other is it or other.building != it.building or other.floor != it.floor or not match(SEAT_TARGETS, other.s):
                     continue
                 g = rect_gap(it.rect, other.rect)
@@ -520,7 +520,7 @@ def test_facing(layout):
                 if a > SEAT_TOLERANCE:
                     out.append((it.where(), f"is {best_gap * 100:.0f} cm from {best.name} but faces {compass(front)}, {a:.0f} degrees off it"))
         if match(r"^(Sofa|Armchair)", it.s):
-            tvs = [o for o in layout.indoor() if o.building == it.building and o.floor == it.floor and match(r"^TV_", o.s) and o.room == it.room]
+            tvs = [o for o in L.indoor() if o.building == it.building and o.floor == it.floor and match(r"^TV_", o.s) and o.room == it.room]
             if tvs:
                 cx, cz = it.centre
                 tv = min(tvs, key=lambda o, cx=cx, cz=cz: math.hypot(o.centre[0] - cx, o.centre[1] - cz))
@@ -532,27 +532,27 @@ def test_facing(layout):
     return out
 
 
-def test_clearance(layout):
+def test_clearance(L):
     """Clearance: between flush (2 cm) and 10 cm from a wall is a crack; inside a wall is a fault; boxes of different things do not overlap; stairs keep 60 cm off walls."""
     out = []
-    for it in layout.indoor():
+    for it in L.indoor():
         if it.category != "prop" or match(WALL_CLEARANCE_EXEMPT, it.s):
             continue
-        for w in layout.walls[it.building]:
+        for w in L.walls[it.building]:
             if w.floor != it.floor or not w.overlaps_y(it.bottom, it.top, 0.1):
                 continue
             for piece in w.pieces:
                 ox, oz = rect_overlap(it.rect, piece)
                 if ox > INSIDE_WALL and oz > INSIDE_WALL:
                     out.append((it.where(), f"is {min(ox, oz) * 100:.0f} cm inside a wall ({w.raw['a'][0]:.1f},{w.raw['a'][1]:.1f})-({w.raw['b'][0]:.1f},{w.raw['b'][1]:.1f})"))
-    for it in layout.indoor():
+    for it in L.indoor():
         if it.category != "prop" or match(WALL_CLEARANCE_EXEMPT, it.s):
             continue
-        for gap, piece, n in nearest_wall(layout, it, MIN_WALL_GAP)[:1]:
+        for gap, piece, n in nearest_wall(L, it, MIN_WALL_GAP)[:1]:
             if FLUSH < gap < MIN_WALL_GAP and it.bottom - it.floor_y < 0.2:
                 out.append((it.where(), f"stands {gap * 100:.0f} cm from the wall to the {compass((-n[0], -n[1]))}: flush (under {FLUSH * 100:.0f} cm) or at least {MIN_WALL_GAP * 100:.0f} cm"))
     # boxes through each other
-    things = [i for i in layout.indoor() if i.category in ("prop", "person", "animal") and not i.flat and not i.hung and not i.ceiling]
+    things = [i for i in L.indoor() if i.category in ("prop", "person", "animal") and not i.flat and not i.hung and not i.ceiling]
     for ai, a in enumerate(things):
         for b in things[ai + 1:]:
             if a.building != b.building or a.floor != b.floor:
@@ -562,7 +562,7 @@ def test_clearance(layout):
             if ox <= OVERLAP_MIN or oz <= OVERLAP_MIN or oy <= OVERLAP_MIN:
                 continue
             # one stands on the other: the top of one is the bottom of the other
-            if any(abs(a.bottom - y) <= SUPPORT_TOLERANCE + 1e-3 for y in b.surfaces(layout.geometry)) or any(abs(b.bottom - y) <= SUPPORT_TOLERANCE + 1e-3 for y in a.surfaces(layout.geometry)):
+            if any(abs(a.bottom - y) <= SUPPORT_TOLERANCE + 1e-3 for y in b.surfaces(L.geometry)) or any(abs(b.bottom - y) <= SUPPORT_TOLERANCE + 1e-3 for y in a.surfaces(L.geometry)):
                 continue                                  # one stands on a top of the other
             if (a.category == "person" and match(SEATS, b.s)) or (b.category == "person" and match(SEATS, a.s)):
                 continue                                  # sitting is the point
@@ -572,9 +572,9 @@ def test_clearance(layout):
                 continue
             out.append((a.where(), f"overlaps {b.name} [{b.kind}] at ({b.pos[0]:.2f}, {b.pos[2]:.2f}) by {ox * 100:.0f} x {oz * 100:.0f} x {oy * 100:.0f} cm"))
     # stairs
-    for building, f, s in layout.stairs:
+    for building, f, s in L.stairs:
         rect = tuple(s["rect"])
-        for w in layout.walls[building]:
+        for w in L.walls[building]:
             if not w.overlaps_y(s["y0"], s["y1"], 0.5):
                 continue
             for piece in w.pieces:
@@ -591,7 +591,7 @@ def test_clearance(layout):
                                 f"is {g * 100:.0f} cm from a wall ({w.raw['a'][0]:.1f},{w.raw['a'][1]:.1f})-({w.raw['b'][0]:.1f},{w.raw['b'][1]:.1f}): "
                                 f"flush or at least {STAIR_WALL_GAP * 100:.0f} cm (a player's shoulders)"))
     # the foot and the head of a stair are clear: nothing that stands on the floor within STAIR_CLEAR of either end (the foot on the stair's own floor, the head on the floor it arrives on)
-    for building, f, s in layout.stairs:
+    for building, f, s in L.stairs:
         dx, dz = s["dir"]
         n = math.hypot(dx, dz) or 1.0
         dx, dz = dx / n, dz / n
@@ -604,10 +604,10 @@ def test_clearance(layout):
             xs = [base[0] + ax * half, base[0] - ax * half, base[0] + ax * half + dx * step, base[0] - ax * half + dx * step]
             zs = [base[1] + az * half, base[1] - az * half, base[1] + az * half + dz * step, base[1] - az * half + dz * step]
             zone = (min(xs), min(zs), max(xs), max(zs))
-            for it in layout.items:
+            for it in L.items:
                 if it.building != building or it.category not in ("prop", "person") or not it.has_box or it.hidden or it.hung or it.ceiling or it.flat:
                     continue
-                its_floor = layout.floor_of(building, it.floor)
+                its_floor = L.floor_of(building, it.floor)
                 if its_floor is None or abs(its_floor["elevation"] - elevation) > 0.2 or it.top <= elevation + 0.1:
                     continue
                 ox, oz = rect_overlap(zone, it.rect)
@@ -616,11 +616,11 @@ def test_clearance(layout):
     return out
 
 
-def test_unique(layout):
+def test_unique(L):
     """Kinds that appear once per building do; a washer has a dryer beside it."""
     out = []
     by = defaultdict(list)
-    for it in layout.items:
+    for it in L.items:
         if it.building:
             by[(it.building, it.s)].append(it)
     for (building, s), items in sorted(by.items()):
@@ -629,9 +629,9 @@ def test_unique(layout):
                 where = ", ".join(f"{i.floor}/{i.room} ({i.pos[0]:.1f}, {i.pos[2]:.1f})" for i in items)
                 out.append((f"{building}", f"{len(items)} x {items[0].kind} where there is one per house: {where}"))
     for kind, partner, gap in PAIRS:
-        for building in {i.building for i in layout.items if i.building}:
-            mine = [i for i in layout.items if i.building == building and match("^" + kind, i.s)]
-            theirs = [i for i in layout.items if i.building == building and match("^" + partner, i.s)]
+        for building in {i.building for i in L.items if i.building}:
+            mine = [i for i in L.items if i.building == building and match("^" + kind, i.s)]
+            theirs = [i for i in L.items if i.building == building and match("^" + partner, i.s)]
             for it in mine:
                 near = [o for o in theirs if o.floor == it.floor and rect_gap(it.rect, o.rect) <= gap]
                 if not near:
@@ -650,23 +650,23 @@ def world_point(it, local):
     return (it.pos[0] + ux * c + uz * sn, it.pos[1] + uy, it.pos[2] - ux * sn + uz * c)
 
 
-def test_connected(layout):
+def test_connected(L):
     """Connections: a pipe, cable or duct end that is meant to go into a wall, the ceiling or the floor does."""
     out = []
-    for it in layout.indoor():
+    for it in L.indoor():
         ends = None
         for kind, e in CONNECTED.items():
             if it.kind == kind:
                 ends = e
         if not ends:
             continue
-        f = layout.floor_of(it.building, it.floor)
+        f = L.floor_of(it.building, it.floor)
         for name, local, targets in ends:
             p = world_point(it, local)
             best = {"ceiling": max(f["ceiling"] - p[1], 0.0) if f else 9.9,   # an end above the ceiling is in the roof or the slab: that is reached, not in the air
                      "floor": abs(p[1] - it.floor_y)}
             wall_gap = 9.9
-            for w in layout.walls[it.building]:
+            for w in L.walls[it.building]:
                 if w.floor != it.floor or not (w.y0 - CONNECT_TOLERANCE <= p[1] <= w.y1 + CONNECT_TOLERANCE):
                     continue
                 for piece in w.pieces:
@@ -678,12 +678,12 @@ def test_connected(layout):
     return out
 
 
-def test_doors(layout):
+def test_doors(L):
     """Doors that work: the hinge is on the edge of its opening, the swing is clear of items and ends inside the building's room, not in a wall; and nothing solid stands in front of any opening."""
     out = []
     # the approach to every doorway and archway: DOOR_APPROACH_NO_LEAF m in front (a leaf's width plus a margin when it has one), as wide as the opening
-    for building in layout.buildings:
-        for w in layout.walls.get(building, []):
+    for building in L.buildings:
+        for w in L.walls.get(building, []):
             for o in w.openings:
                 if o["kind"] == "Window":
                     continue
@@ -695,20 +695,20 @@ def test_doors(layout):
                     zone = (min(ax, bx), cz - depth, max(ax, bx), cz + depth)
                 else:
                     zone = (cx - depth, min(az, bz), cx + depth, max(az, bz))
-                for it in layout.items:
+                for it in L.items:
                     if it.building != building or it.floor != w.floor or it.category != "prop" or not it.has_box or it.hidden or it.hung or it.ceiling or it.flat:
                         continue
-                    f = layout.floor_of(building, it.floor)
+                    f = L.floor_of(building, it.floor)
                     if f is None or it.top <= f["elevation"] + 0.35 or it.bottom > f["elevation"] + 0.5:
                         continue
                     ox, oz = rect_overlap(zone, it.rect)
                     if ox > 0.03 and oz > 0.03:
                         out.append((it.where(), f"stands in front of {o['name']} on the {w.floor} floor (keep {depth:.2f} m clear)"))
-    for d in layout.doors:
+    for d in L.doors:
         hinge = d["hinge"]
         where = f"{d['building']}/{d['floor']}: door {d['name']}"
         ends = []
-        for w in layout.walls.get(d["building"], []):
+        for w in L.walls.get(d["building"], []):
             if w.floor != d["floor"]:
                 continue
             for o in w.openings:
@@ -733,7 +733,7 @@ def test_doors(layout):
             dz = cz * math.cos(th) + rz * math.sin(th)
             for r in [0.1 * k for k in range(1, int(d["width"] / 0.1) + 1)] + [d["width"] - 0.03]:
                 px, pz = hinge[0] + dx * r, hinge[2] + dz * r
-                for it in layout.items:
+                for it in L.items:
                     if it.building not in (d["building"], "") or it.category not in ("prop", "person") or it.flat or it.ceiling or it.hung or it.hidden or not it.has_box:
                         continue
                     if it.top <= y0 + 0.05 or it.bottom >= y1:
@@ -743,7 +743,7 @@ def test_doors(layout):
                         break
                 if hit:
                     break
-                for w in layout.walls.get(d["building"], []):          # the leaf may not swing into a wall (the first 15 cm are its own frame)
+                for w in L.walls.get(d["building"], []):          # the leaf may not swing into a wall (the first 15 cm are its own frame)
                     if w.floor != d["floor"] or r < 0.15 or not w.overlaps_y(y0, y1, 0.5):
                         continue
                     if any(contains(piece, px, pz, -0.02) for piece in w.pieces):
@@ -759,10 +759,10 @@ def test_doors(layout):
     return out
 
 
-def test_rooms(layout):
+def test_rooms(L):
     """Empty rooms: a room with fewer things than its target, or no NavMesh to walk on; and a cellar that covers the house."""
     out = []
-    for building in layout.buildings.values():
+    for building in L.buildings.values():
         fp = building.get("footprint")
         for f in building["floors"]:
             if f["elevation"] >= -0.5 or f["name"] != "Cellar" or not fp:
@@ -779,12 +779,12 @@ def test_rooms(layout):
             total = (fp[2] - fp[0]) * (fp[3] - fp[1])
             if filled < CELLAR_MIN_FILL * total:
                 out.append((f"{building['name']}/{f['name']}", f"the cellar's rooms add up to {filled:.0f} m2 of the footprint's {total:.0f} m2 (at least {CELLAR_MIN_FILL:.0%}: a room is missing)"))
-    for building, f, r in layout.rooms:
+    for building, f, r in L.rooms:
         target = ROOM_ITEM_TARGET.get(r["name"])
         rect = r["rect"]
         area = (rect[2] - rect[0]) * (rect[3] - rect[1])
         if target:
-            count = sum(1 for i in layout.items if i.building == building and i.floor == f["name"] and i.room == r["name"]
+            count = sum(1 for i in L.items if i.building == building and i.floor == f["name"] and i.room == r["name"]
                         and i.category == "prop" and not i.hung and not i.ceiling and not i.flat)
             if count < target:
                 out.append((f"{building}/{f['name']}/{r['name']}", f"holds {count} things, the target is {target} ({area:.0f} m2)"))
