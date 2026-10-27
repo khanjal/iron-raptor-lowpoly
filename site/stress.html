@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stress test · Iron Raptor Lowpoly</title>
+<meta name="description" content="How many copies of one low-poly model a browser draws: separate meshes or one InstancedMesh, with the frame rate and draw calls.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Cpath fill=%27%231f7a8c%27 d=%27M8 1l6 3.5v7L8 15l-6-3.5v-7z%27/%3E%3Cpath fill=%27%2354c2d6%27 d=%27M8 1l6 3.5L8 8 2 4.5z%27/%3E%3C/svg%3E">
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three/build/three.module.js",
+  "three/addons/": "./vendor/three/examples/jsm/"
+} }
+</script>
+<style>
+  :root { color-scheme: light dark; --bg: #f4f2ee; --fg: #1d1d1b; --panel: rgba(255,255,255,0.88); --line: #c9c4ba; --accent: #1f7a8c; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1b1c1e; --fg: #ecebe8; --panel: rgba(30,31,34,0.9); --line: #44464b; --accent: #54c2d6; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 14px/1.35 system-ui, sans-serif; }
+  #stage { position: fixed; inset: 0; }
+  #canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .panel { position: fixed; top: 8px; left: 8px; right: 8px; max-width: 26rem; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  .panel h1 { font-size: 15px; margin: 0 0 6px; }
+  .panel h1 a { color: var(--accent); text-decoration: none; font-weight: normal; font-size: 13px; margin-left: 6px; }
+  .controls { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: center; }
+  .controls select { width: 100%; min-width: 0; font: inherit; padding: 3px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 6px; }
+  .checks label[aria-disabled="true"] { opacity: 0.5; }
+  .stats { margin: 6px 0 0; display: grid; grid-template-columns: repeat(4, auto); gap: 0 10px; font-variant-numeric: tabular-nums; }
+  .stats dt { font-size: 11px; opacity: 0.7; }
+  .stats dd { margin: 0; font-weight: 600; }
+  .bench { margin: 6px 0 0; font-variant-numeric: tabular-nums; }
+  .bench button { font: inherit; padding: 2px 8px; }
+  .note { margin: 6px 0 0; font-size: 12px; opacity: 0.8; }
+  .note:empty { display: none; }
+  @media (max-width: 420px) { .panel { font-size: 13px; } .stats { grid-template-columns: repeat(2, auto); } }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="canvas"></canvas></div>
+<section class="panel" aria-label="Stress test">
+  <h1>Stress test <a href="./">back to the models</a></h1>
+  <div class="controls">
+    <label for="model">Model</label><select id="model"></select>
+    <label for="count">Copies</label>
+    <select id="count"><option value="100">100</option><option value="1000">1,000</option><option value="10000">10,000</option></select>
+    <label for="mode">Drawn as</label>
+    <select id="mode"><option value="separate">separate meshes</option><option value="instanced">one InstancedMesh per part</option></select>
+  </div>
+  <div class="checks">
+    <label id="clip-label"><input id="clip" type="checkbox"> Play <span id="clip-name">clip</span></label>
+    <label><input id="paint" type="checkbox"> Repaint half</label>
+  </div>
+  <dl class="stats">
+    <div><dt>FPS</dt><dd id="fps">–</dd></div>
+    <div><dt>Draw calls</dt><dd id="calls">–</dd></div>
+    <div><dt>Triangles</dt><dd id="tris">–</dd></div>
+    <div><dt>Built in</dt><dd id="built">–</dd></div>
+  </dl>
+  <p class="bench"><button id="bench" type="button">Time 60 frames</button> <output id="bench-out" aria-live="polite"></output></p>
+  <p id="note" class="note" aria-live="polite"></p>
+</section>
+<script type="module" src="stress.js"></script>
+<noscript>This page needs JavaScript.</noscript>
+</body>
+</html>
