@@ -622,5 +622,78 @@
  "GH_CoffeeMachine_01": {
   "metal_dark": "Top plate",
   "fabric_grey": "Back panel"
+ },
+ "GN_CatTuxedo_faceted_01": {
+  "paint_white": "Chest, belly, paws and muzzle"
+ },
+ "GN_CatCalico_faceted_01": {
+  "orange_cat": "Orange patches",
+  "black": "Black patches"
+ },
+ "GN_CatSiamese_faceted_01": {
+  "dark_brown": "Points"
+ },
+ "GN_CatKitten_faceted_01": {
+  "tan": "Stripes"
+ },
+ "GN_DogRetriever_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DogDachshund_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DogBeagle_faceted_01": {
+  "paint_white": "White markings",
+  "black": "Saddle"
+ },
+ "GN_DogBulldog_faceted_01": {
+  "tan": "Patches and ears"
+ },
+ "GN_DogShepherd_faceted_01": {
+  "black": "Saddle, mask and ears"
+ },
+ "GN_DogStray_faceted_01": {
+  "cream": "Chest, belly, socks and tail tip",
+  "dark_brown": "Patches and ears"
+ },
+ "GN_Pig_faceted_01": {
+  "$main": "Skin"
+ },
+ "GN_Bear_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DeerDoe_faceted_01": {
+  "cream": "Belly, throat and muzzle"
+ },
+ "GN_DeerBuck_faceted_01": {
+  "cream": "Belly, throat and muzzle",
+  "horn_cream": "Antlers"
+ },
+ "GN_DeerFawn_faceted_01": {
+  "paint_white": "Spots and tail",
+  "cream": "Belly, throat and muzzle"
+ },
+ "GN_Fox_faceted_01": {
+  "paint_white": "Chest, cheeks and tail tip",
+  "black": "Stockings, ear tips and nose"
+ },
+ "GN_Opossum_faceted_01": {
+  "paint_white": "Face",
+  "pink": "Nose, feet and tail"
+ },
+ "GN_Raccoon_faceted_01": {
+  "black": "Mask, feet and tail rings"
+ },
+ "GN_Skunk_faceted_01": {
+  "paint_white": "Stripes, blaze and tail"
+ },
+ "GN_TurkeyTom_faceted_01": {
+  "dark_brown": "Breast, back and tail",
+  "tan": "Tail band",
+  "pink": "Legs"
+ },
+ "GN_TurkeyHen_faceted_01": {
+  "tan": "Tail band",
+  "pink": "Legs"
  }
 }

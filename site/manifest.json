@@ -433,7 +433,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1000,
+   "triangles": 1040,
    "size": [
     0.672,
     1.49,
@@ -479,7 +479,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 848,
+   "triangles": 888,
    "size": [
     0.351,
     1.186,
@@ -568,7 +568,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 872,
+   "triangles": 912,
    "size": [
     0.54,
     2.201,
@@ -609,7 +609,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 744,
+   "triangles": 784,
    "size": [
     0.6,
     0.81,
@@ -625,14 +625,9 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Skin",
      "swatch": 16,
      "hex": "#EFB3AC"
-    },
-    {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
     }
    ]
   },
@@ -651,7 +646,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 736,
+   "triangles": 776,
    "size": [
     0.44,
     0.887,
@@ -675,6 +670,112 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_TurkeyHen_faceted_01",
+   "name": "Turkey, hen",
+   "type": "animals/farm/turkey",
+   "tags": [
+    "animal",
+    "bird",
+    "brown",
+    "farm",
+    "hen",
+    "poultry",
+    "rural",
+    "turkey",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 766,
+   "size": [
+    0.46,
+    0.86,
+    0.958
+   ],
+   "glb": "models/GN_TurkeyHen_faceted_01.glb",
+   "thumb": "thumbs/GN_TurkeyHen_faceted_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GN_TurkeyTom_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Tail band",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Legs",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
+   "id": "GN_TurkeyTom_faceted_01",
+   "name": "Turkey, tom",
+   "type": "animals/farm/turkey",
+   "tags": [
+    "animal",
+    "bird",
+    "brown",
+    "display",
+    "fan",
+    "farm",
+    "gobbler",
+    "poultry",
+    "rural",
+    "tom",
+    "turkey",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 898,
+   "size": [
+    0.58,
+    1.055,
+    1.262
+   ],
+   "glb": "models/GN_TurkeyTom_faceted_01.glb",
+   "thumb": "thumbs/GN_TurkeyTom_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Display"
+   ],
+   "variants": [
+    "GN_TurkeyHen_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Breast, back and tail",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Tail band",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Legs",
+     "swatch": 16,
+     "hex": "#EFB3AC"
     }
    ]
   },
@@ -1686,26 +1787,82 @@
    ]
   },
   {
-   "id": "GN_CatTabby_faceted_01",
-   "name": "Cat, tabby",
+   "id": "GN_CatCalico_faceted_01",
+   "name": "Cat, calico",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "black",
+    "calico",
+    "cat",
+    "orange",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 900,
+   "size": [
+    0.152,
+    0.37,
+    0.571
+   ],
+   "glb": "models/GN_CatCalico_faceted_01.glb",
+   "thumb": "thumbs/GN_CatCalico_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Orange patches",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Black patches",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_CatKitten_faceted_01",
+   "name": "Kitten",
    "type": "animals/pet/cat",
    "tags": [
     "animal",
     "cat",
+    "cream",
+    "kitten",
     "pet",
     "quadruped",
-    "tabby"
+    "small",
+    "tabby",
+    "young"
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
-    0.37,
-    0.614
+    0.084,
+    0.203,
+    0.313
    ],
-   "glb": "models/GN_CatTabby_faceted_01.glb",
-   "thumb": "thumbs/GN_CatTabby_faceted_01.png",
+   "glb": "models/GN_CatKitten_faceted_01.glb",
+   "thumb": "thumbs/GN_CatKitten_faceted_01.png",
    "parts": {},
    "clips": [
     "Idle",
@@ -1715,13 +1872,289 @@
    "paintable": [
     {
      "part": "Main",
-     "swatch": 32,
-     "hex": "#E08A3C"
+     "swatch": 33,
+     "hex": "#E9DCC0"
     },
     {
-     "part": "Rust",
+     "part": "Stripes",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
+   "id": "GN_CatSiamese_faceted_01",
+   "name": "Cat, Siamese",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "brown",
+    "cat",
+    "cream",
+    "pet",
+    "points",
+    "quadruped",
+    "siamese"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 900,
+   "size": [
+    0.16,
+    0.389,
+    0.599
+   ],
+   "glb": "models/GN_CatSiamese_faceted_01.glb",
+   "thumb": "thumbs/GN_CatSiamese_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatCalico_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Points",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
+   "id": "GN_CatTabby_faceted_01",
+   "name": "Cat, tabby",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "black",
+    "cat",
+    "grey",
+    "grey-tabby",
+    "orange",
+    "orange-tabby",
+    "pet",
+    "quadruped",
+    "tabby"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 900,
+   "size": [
+    0.152,
+    0.37,
+    0.571
+   ],
+   "glb": "models/GN_CatTabby_faceted_01.glb",
+   "thumb": "thumbs/GN_CatTabby_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTuxedo_faceted_01",
+    "GN_CatCalico_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Stripes",
      "swatch": 4,
      "hex": "#9A5A3A"
+    },
+    {
+     "part": "Coat",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    }
+   ],
+   "paints": [
+    {
+     "name": "Orange tabby",
+     "hex": "#9A5A3A",
+     "swap": {}
+    },
+    {
+     "name": "Grey tabby",
+     "hex": "#5A5F66",
+     "swap": {
+      "32": "#7C8088",
+      "4": "#5A5F66"
+     }
+    },
+    {
+     "name": "Orange",
+     "hex": "#E08A3C",
+     "swap": {
+      "4": "#E08A3C"
+     }
+    },
+    {
+     "name": "Black",
+     "hex": "#1B1B1E",
+     "swap": {
+      "32": "#1B1B1E",
+      "4": "#1B1B1E"
+     }
+    },
+    {
+     "name": "Grey",
+     "hex": "#7C8088",
+     "swap": {
+      "32": "#7C8088",
+      "4": "#7C8088"
+     }
+    }
+   ]
+  },
+  {
+   "id": "GN_CatTuxedo_faceted_01",
+   "name": "Cat, tuxedo",
+   "type": "animals/pet/cat",
+   "tags": [
+    "animal",
+    "black",
+    "cat",
+    "pet",
+    "quadruped",
+    "tuxedo",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 900,
+   "size": [
+    0.152,
+    0.37,
+    0.571
+   ],
+   "glb": "models/GN_CatTuxedo_faceted_01.glb",
+   "thumb": "thumbs/GN_CatTuxedo_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_CatTabby_faceted_01",
+    "GN_CatCalico_faceted_01",
+    "GN_CatSiamese_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Chest, belly, paws and muzzle",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogBeagle_faceted_01",
+   "name": "Dog, beagle",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "beagle",
+    "black",
+    "dog",
+    "hound",
+    "pet",
+    "quadruped",
+    "tan",
+    "tricolour",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.179,
+    0.488,
+    0.758
+   ],
+   "glb": "models/GN_DogBeagle_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBeagle_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "White markings",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Saddle",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogBulldog_faceted_01",
+   "name": "Dog, bulldog",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "bulldog",
+    "dog",
+    "fawn",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1120,
+   "size": [
+    0.296,
+    0.426,
+    0.641
+   ],
+   "glb": "models/GN_DogBulldog_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBulldog_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 35,
+     "hex": "#C49A5E"
     }
    ]
   },
@@ -1740,11 +2173,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.266,
-    0.733,
-    1.166
+    0.224,
+    0.726,
+    1.111
    ],
    "glb": "models/GN_DogCollie_faceted_01.glb",
    "thumb": "thumbs/GN_DogCollie_faceted_01.png",
@@ -1770,6 +2203,46 @@
    ]
   },
   {
+   "id": "GN_DogDachshund_faceted_01",
+   "name": "Dog, dachshund",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dachshund",
+    "dog",
+    "pet",
+    "quadruped",
+    "sausage-dog",
+    "small"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.127,
+    0.299,
+    0.751
+   ],
+   "glb": "models/GN_DogDachshund_faceted_01.glb",
+   "thumb": "thumbs/GN_DogDachshund_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
    "id": "GN_DogHusky_faceted_01",
    "name": "Dog, husky",
    "type": "animals/pet/dog",
@@ -1784,11 +2257,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.282,
-    0.742,
-    1.073
+    0.242,
+    0.736,
+    1.027
    ],
    "glb": "models/GN_DogHusky_faceted_01.glb",
    "thumb": "thumbs/GN_DogHusky_faceted_01.png",
@@ -1815,6 +2288,520 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogRetriever_faceted_01",
+   "name": "Dog, golden retriever",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "dog",
+    "golden",
+    "pet",
+    "quadruped",
+    "retriever",
+    "yellow"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.273,
+    0.707,
+    1.12
+   ],
+   "glb": "models/GN_DogRetriever_faceted_01.glb",
+   "thumb": "thumbs/GN_DogRetriever_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 34,
+     "hex": "#D9A441"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogShepherd_faceted_01",
+   "name": "Dog, German shepherd",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "black",
+    "dog",
+    "guard",
+    "pet",
+    "police",
+    "quadruped",
+    "shepherd",
+    "tan"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1164,
+   "size": [
+    0.261,
+    0.887,
+    1.226
+   ],
+   "glb": "models/GN_DogShepherd_faceted_01.glb",
+   "thumb": "thumbs/GN_DogShepherd_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Saddle, mask and ears",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogStray_faceted_01",
+   "name": "Dog, stray",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dog",
+    "mongrel",
+    "mutt",
+    "quadruped",
+    "rural",
+    "stray",
+    "tan",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1120,
+   "size": [
+    0.197,
+    0.639,
+    0.978
+   ],
+   "glb": "models/GN_DogStray_faceted_01.glb",
+   "thumb": "thumbs/GN_DogStray_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Chest, belly, socks and tail tip",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
+   "id": "GN_Bear_faceted_01",
+   "name": "Black bear",
+   "type": "animals/wild/bear",
+   "tags": [
+    "animal",
+    "bear",
+    "big",
+    "black",
+    "mountain",
+    "quadruped",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 736,
+   "size": [
+    0.653,
+    0.989,
+    1.928
+   ],
+   "glb": "models/GN_Bear_faceted_01.glb",
+   "thumb": "thumbs/GN_Bear_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 29,
+     "hex": "#1F1A17"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerBuck_faceted_01",
+   "name": "White-tailed deer, buck",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "antlers",
+    "buck",
+    "deer",
+    "quadruped",
+    "rural",
+    "stag",
+    "tan",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1056,
+   "size": [
+    0.361,
+    1.763,
+    1.76
+   ],
+   "glb": "models/GN_DeerBuck_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerBuck_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerDoe_faceted_01",
+    "GN_DeerFawn_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Antlers",
+     "swatch": 17,
+     "hex": "#E8DDBE"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerDoe_faceted_01",
+   "name": "White-tailed deer, doe",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "deer",
+    "doe",
+    "quadruped",
+    "rural",
+    "tan",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 804,
+   "size": [
+    0.316,
+    1.425,
+    1.678
+   ],
+   "glb": "models/GN_DeerDoe_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerDoe_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerBuck_faceted_01",
+    "GN_DeerFawn_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    }
+   ]
+  },
+  {
+   "id": "GN_DeerFawn_faceted_01",
+   "name": "White-tailed deer, fawn",
+   "type": "animals/wild/deer",
+   "tags": [
+    "animal",
+    "deer",
+    "fawn",
+    "quadruped",
+    "rural",
+    "small",
+    "spotted",
+    "tan",
+    "wild",
+    "woodland",
+    "young"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 804,
+   "size": [
+    0.193,
+    0.869,
+    1.023
+   ],
+   "glb": "models/GN_DeerFawn_faceted_01.glb",
+   "thumb": "thumbs/GN_DeerFawn_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [
+    "GN_DeerDoe_faceted_01",
+    "GN_DeerBuck_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Belly, throat and muzzle",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Spots and tail",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    }
+   ]
+  },
+  {
+   "id": "GN_Fox_faceted_01",
+   "name": "Red fox",
+   "type": "animals/wild/fox",
+   "tags": [
+    "animal",
+    "fox",
+    "orange",
+    "quadruped",
+    "red",
+    "rural",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 796,
+   "size": [
+    0.194,
+    0.603,
+    1.255
+   ],
+   "glb": "models/GN_Fox_faceted_01.glb",
+   "thumb": "thumbs/GN_Fox_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 32,
+     "hex": "#E08A3C"
+    },
+    {
+     "part": "Chest, cheeks and tail tip",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Stockings, ear tips and nose",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Opossum_faceted_01",
+   "name": "Opossum",
+   "type": "animals/wild/opossum",
+   "tags": [
+    "animal",
+    "grey",
+    "opossum",
+    "pink",
+    "possum",
+    "quadruped",
+    "suburban",
+    "white",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 752,
+   "size": [
+    0.136,
+    0.214,
+    0.696
+   ],
+   "glb": "models/GN_Opossum_faceted_01.glb",
+   "thumb": "thumbs/GN_Opossum_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 37,
+     "hex": "#7C8088"
+    },
+    {
+     "part": "Face",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Nose, feet and tail",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
+   "id": "GN_Raccoon_faceted_01",
+   "name": "Raccoon",
+   "type": "animals/wild/raccoon",
+   "tags": [
+    "animal",
+    "grey",
+    "mask",
+    "quadruped",
+    "raccoon",
+    "ringed-tail",
+    "suburban",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 732,
+   "size": [
+    0.216,
+    0.313,
+    0.803
+   ],
+   "glb": "models/GN_Raccoon_faceted_01.glb",
+   "thumb": "thumbs/GN_Raccoon_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 19,
+     "hex": "#8C8C88"
+    },
+    {
+     "part": "Mask, feet and tail rings",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_Skunk_faceted_01",
+   "name": "Skunk",
+   "type": "animals/wild/skunk",
+   "tags": [
+    "animal",
+    "black",
+    "quadruped",
+    "skunk",
+    "striped",
+    "suburban",
+    "white",
+    "wild",
+    "woodland"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 744,
+   "size": [
+    0.16,
+    0.384,
+    0.621
+   ],
+   "glb": "models/GN_Skunk_faceted_01.glb",
+   "thumb": "thumbs/GN_Skunk_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Stripes, blaze and tail",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     }
    ]
   },
