@@ -279,7 +279,8 @@ def run_clipping(prefixes=()):
     return found
 
 
-STYLE = re.compile(r"_(Classic|Modern|Retro|Damaged|Clapboard|Barn|Corrugated|Brick|Concrete|Interior|Weathered|White|Red|Blue|Green|Yellow|Tan|Black|Grey|Beige|Teal|Cream|Log|Stone|Metal|Block|Orange|Sage|Navy|Olive|Brown|Mail|Checker|Rotten)(?=_|$)")
+STYLE_WORDS = ("Classic", "Modern", "Retro", "Damaged", "Clapboard", "Barn", "Corrugated", "Brick", "Concrete", "Interior", "Weathered", "White", "Red", "Blue", "Green", "Yellow", "Tan", "Black", "Grey", "Beige", "Teal", "Cream", "Log", "Stone", "Metal", "Block", "Orange", "Sage", "Navy", "Olive", "Brown", "Mail", "Checker", "Rotten")
+STYLE = re.compile("_(" + "|".join(STYLE_WORDS) + ")(?=_|$)")
 
 
 def run():

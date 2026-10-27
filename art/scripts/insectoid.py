@@ -208,7 +208,7 @@ CARRY_UPPER = (-10.0, 5.0)   # degrees: about X (negative lifts it forward; the 
 CARRY_FORE = (45.0, 5.0)
 
 
-def gait(rig, t, thigh, knee, lean, abdomen, arms, hop):
+def gait(rig, t, thigh, knee, lean, abdomen, arms):
     """One stride of both legs per loop. The leg that is forward has a bent knee; the abdomen counterweights (it rises as the body leans)."""
     w = 2 * math.pi * t
     turn(rig, "Hips", z=-4.0 * math.sin(w))
@@ -229,11 +229,11 @@ def gait(rig, t, thigh, knee, lean, abdomen, arms, hop):
 
 
 def walk(rig, t):
-    gait(rig, t, thigh=30.0, knee=45.0, lean=4.0, abdomen=7.0, arms=16.0, hop=0.0)
+    gait(rig, t, thigh=30.0, knee=45.0, lean=4.0, abdomen=7.0, arms=16.0)
 
 
 def run(rig, t):
-    gait(rig, t, thigh=52.0, knee=85.0, lean=14.0, abdomen=14.0, arms=34.0, hop=0.0)
+    gait(rig, t, thigh=52.0, knee=85.0, lean=14.0, abdomen=14.0, arms=34.0)
 
 
 CLIPS = (("Idle", idle, 96), ("Walk", walk, 24), ("Run", run, 16), ("Carry", carry, 96))
@@ -304,7 +304,7 @@ def build_all():
     return joined, rig, coll
 
 
-def export(coll, rig):
+def export(coll):
     out = common.out_dir() / "Assets" / "Art" / "Global" / "Aliens" / f"{NAME}.fbx"
     bpy.ops.object.select_all(action="DESELECT")
     bpy.ops.export_scene.fbx(
@@ -320,4 +320,4 @@ def export(coll, rig):
 if __name__ == "__main__":
     mesh, rig, coll = build_all()
     print(common.stats(mesh))
-    print("exported", export(coll, rig))
+    print("exported", export(coll))
