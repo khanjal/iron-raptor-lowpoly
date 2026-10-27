@@ -35,8 +35,9 @@ STYLES = {
 
 
 def feather_specs(sp):
-    """The tail feathers of a bird that has `tail_fan` (count, rest, open, length, width, base): for each, its bone name, its direction in the rest pose (the
-    feathers lie close together, `rest` degrees apart), its length and the root. The Display clip opens them to `open` degrees apart."""
+    """The tail feathers of a bird that has `tail_fan` (count, rest, open, length, width, base, and optionally droop and stack): for each, its bone name, its
+    direction in the rest pose (the feathers lie close together, `rest` degrees apart, `droop` degrees below level), its length and the root (the outer feathers
+    `stack` metres lower per step from the middle, so the plates of a folded tail do not lie in one plane). The Display clip opens them to `open` degrees apart."""
     import math
     fan = sp.get("tail_fan")
     if not fan:
@@ -240,12 +241,12 @@ def _feather_box(c, spec, m, length, thick, bm):
     """One flat box of a fan feather, `m` metres along the feather from its base (the build function the fan hands to ctx.make, with bm last)."""
     bx, by, bz = spec["base"]
     dx, dy, dz = spec["dir"]
-    return c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (spec["width"], length, thick), rot_deg=(-6 - spec.get("droop", 0.0), 0, -spec["angle"]))
+    return c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (spec["width"], length, thick), rot_deg=(-spec["droop"] if spec.get("droop") else -6, 0, -spec["angle"]))     # a drooped plate lies along its bone
 
 
 def _turkey_fan(ctx):
     """The tail: a plate and a tan tip band for every feather (feather_specs), each skinned to its own TailF bone. At rest the feathers lie close together
-    behind the bird, flat and a little down (a folded tail); the Display clip (turkey_display.py) raises Tail1 and opens the feathers into a fan."""
+    behind the bird, hanging `droop` degrees down (a folded tail); the Display clip (turkey_display.py) raises Tail1 and opens the feathers into a fan."""
     import math
     c = ctx.common
     for spec in feather_specs(ctx.sp):

@@ -201,8 +201,8 @@ def _deer_coat(c, n):
 
 
 def _deer_head(c, n):
-    if c.y < -1.215:
-        return B                                                       # the nose
+    if c.y < -1.225:
+        return B                                                       # the nose (the last ring's faces; their centres are at y -1.215)
     if c.y < -1.06 and c.z < 1.40:
         return "cream"
     return "tan"
@@ -213,7 +213,7 @@ def _deer_ears(ctx):
 
     def ears(bm):
         for s in (-1, 1):
-            c.add_box(bm, (s * 0.10, -0.86, 1.69), (0.115, 0.022, 0.20), taper=0.6, rot_deg=(0, s * 32, 0))      # big ears, held out to the sides
+            c.add_box(bm, (s * 0.095, -0.815, 1.635), (0.115, 0.022, 0.20), taper=0.6, rot_deg=(0, s * 32, 0))      # big ears, held out to the sides behind the antlers' bases
     ctx.make("ears", ears, lambda c_, n: "tan", ["Ear_L", "Ear_R"], sub=0, smooth=False)
 
 
@@ -226,10 +226,10 @@ def _buck_extras(ctx):
 
     def antlers(bm):                                                   # a main beam sweeping up and forward from each side, with four tines
         for s in (-1, 1):
-            beam = [(s * 0.06, -0.84, 1.60), (s * 0.09, -0.84, 1.74), (s * 0.13, -0.89, 1.87), (s * 0.15, -0.97, 1.95), (s * 0.15, -1.05, 1.98)]
+            beam = [(s * 0.06, -0.84, 1.55), (s * 0.09, -0.84, 1.69), (s * 0.13, -0.89, 1.82), (s * 0.15, -0.97, 1.90), (s * 0.15, -1.05, 1.93)]
             sp_mod.tube(bm, beam, [0.022, 0.02, 0.017, 0.014, 0.008], n=5)
-            for (px, py, pz), (tx, ty, tz) in (((s * 0.09, -0.84, 1.74), (s * 0.11, -0.81, 1.90)), ((s * 0.13, -0.89, 1.87), (s * 0.15, -0.87, 2.04)),
-                                               ((s * 0.15, -0.97, 1.95), (s * 0.15, -0.97, 2.10)), ((s * 0.06, -0.84, 1.60), (s * 0.05, -0.95, 1.66))):
+            for (px, py, pz), (tx, ty, tz) in (((s * 0.09, -0.84, 1.69), (s * 0.11, -0.81, 1.85)), ((s * 0.13, -0.89, 1.82), (s * 0.15, -0.87, 1.99)),
+                                               ((s * 0.15, -0.97, 1.90), (s * 0.15, -0.97, 2.05)), ((s * 0.06, -0.84, 1.55), (s * 0.05, -0.95, 1.61))):
                 sp_mod.tube(bm, [(px, py, pz), ((px + tx) / 2, (py + ty) / 2, (pz + tz) / 2), (tx, ty, tz)], [0.013, 0.011, 0.005], n=4)
     ctx.make("antlers", antlers, lambda c_, n: "horn_cream", ["Head"], sub=0, smooth=False)
 

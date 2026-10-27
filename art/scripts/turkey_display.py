@@ -2,10 +2,11 @@
 
 Run in Blender after the tom is built (gn_birds.py with SPECIES_LIST = ["turkey_tom"], which builds GN_TurkeyTom_faceted_Rig):
     import runpy; runpy.run_path(r"<repo>/art/scripts/turkey_display.py", run_name="__main__")
-Creates the action "Display" (frames 1-73, 24 fps, about 3 seconds; not a loop: it starts and ends in the rest pose, the tail flat behind him) and exports
+Creates the action "Display" (frames 1-73, 24 fps, about 3 seconds; it starts and ends in the rest pose, the tail folded and hanging behind him) and exports
 Assets/Art/Global/Animals/Anims/TurkeyTom_faceted@Display.fbx (Unity names the clip Display from the @).
 
-Every tail feather has its own bone, a child of Tail1 (biped_bird.feather_specs): rotating Tail1 about its own X axis by +80 degrees stands the tail up (a
+Every tail feather has its own bone, a child of Tail1 (biped_bird.feather_specs): rotating Tail1 about its own X axis by +80 degrees plus the fan's droop (the
+folded tail hangs that far below level) stands the tail up (a
 negative angle would push it into the ground) and rotating each feather bone about its own Z axis by -k * (open - rest) degrees (k = -5..5 across the tail, from -X, the bird's right, to +X, its left; rest 3, open 13 degrees apart) opens the feathers into the fan. A tip of the head and a quiver sell it. A script (the
 behaviour, #91) plays it when the tom struts: the model's rest pose is the folded tail down.
 """
@@ -51,7 +52,7 @@ KEYED = [b.name for b in rig.pose.bones if b.name != "Root"]
 for frame in range(1, FRAMES + 1):
     quadruped_rig.rest_pose(rig)
     if frame <= RISE:
-        up = ease(frame / RISE)
+        up = ease((frame - 1) / (RISE - 1))                         # frame 1 is the rest pose, as the last frame is
     elif frame <= FALL:
         up = 1.0
     else:

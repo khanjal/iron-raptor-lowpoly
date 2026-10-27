@@ -100,6 +100,10 @@ class Rebuilt(unittest.TestCase):
         with self.assertRaises(ValueError):
             species_farm_dog.make_breed("DogTest", species_farm_dog.BREED_SKINS["stray"], size=1.0, body_w=(1.0,) * 7)
 
+    def test_every_deer_is_within_the_deers_ranges_and_shape(self):
+        for key in ("deer_doe", "deer_buck", "deer_fawn"):
+            self.assertEqual(A.check("deer", species.SPECIES[key]) + A.check_shape("deer", species.SPECIES[key]), [], key)
+
     def test_the_hen_is_within_its_ranges(self):
         self.assertEqual(A.check_bird(biped_bird.CHICKEN_HEN), [])
         self.assertEqual(set(A.HEN), set(A.measure_bird(biped_bird.CHICKEN_HEN)) - {"H"})
