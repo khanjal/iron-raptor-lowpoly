@@ -138,7 +138,7 @@ Every FBX references a material called `GlobalPalette`; use one shared material 
 
 ### Instancing and batching
 
-What limits a scene of many small models is the number of draw calls and, for rigged models, the skinning work on the CPU, not the triangles: an insect is 268 to 922 triangles, a small prop under 150. `site/stress.html` (*Stress test* below) measures it in the browser; the numbers are in `NOTES.md`.
+What limits a scene of many small models is the number of draw calls and, for rigged models, the skinning work on the CPU, not the triangles: an insect is 268 to 922 triangles, most small props under 150. `site/stress.html` (*Stress test* below) measures it in the browser; the numbers are in `NOTES.md`.
 
 - **One material for everything.** Every model uses `GlobalPalette` and the one 64 x 64 palette texture; parts that are see-through use its blended twin `GlobalPaletteGlass`. Different models can be drawn with one material, so an engine's static batching (merging meshes that share a material) can merge a whole room of props, and a material switch never comes between them.
 - **Hundreds of the same model: instance it.** One instanced draw per mesh of the model (in three.js, per glTF primitive) draws every copy: three.js `InstancedMesh`, Godot `MultiMeshInstance3D`, Unity GPU instancing (the material's *Enable GPU Instancing*, or `Graphics.RenderMeshInstanced`), Unreal Instanced Static Mesh components (general knowledge of those engines, not checked against their docs or tried here). A model made of several meshes (a car's body, doors and wheels) costs one instanced draw per mesh; merging its parts that never move into one mesh lowers that.

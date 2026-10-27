@@ -62,7 +62,7 @@ function bakeSkinned(mesh) {
 }
 
 // A skinned mesh works out its bounds from its posed vertices at its first render, which for 10,000 copies is a long first frame, and keeps them while
-// the clip moves it, so a limb could be culled at the screen's edge. Its bounds are made once here, in the still pose with room to move, and copied.
+// the clip moves it, so a limb could be culled at the screen's edge. Its bounds are made once here, in the still pose with room to move; clones copy them (SkinnedMesh.copy).
 function roomyBounds(mesh) {
   mesh.skeleton.update();
   mesh.computeBoundingSphere();
@@ -171,8 +171,6 @@ function cloneRig(source) {
     if (!o.isSkinnedMesh) return;
     const src = originals[k++];
     o.bind(new THREE.Skeleton(src.skeleton.bones.map((b) => bones.get(b.name)), src.skeleton.boneInverses), src.bindMatrix);
-    o.boundingSphere = src.boundingSphere.clone();
-    o.boundingBox = src.boundingBox.clone();
   });
   return copy;
 }
@@ -274,6 +272,7 @@ function clipNote(a, clip, instanced) {
 }
 
 function syncClip() {
+  if (!state.model) return; // (no model loaded yet)
   const a = state.model, clip = a.rigged ? motionClip(state.gltf) : null, instanced = $('mode').value === 'instanced';
   const usable = !!clip && !instanced;
   $('clip').disabled = !usable;
@@ -319,7 +318,7 @@ async function pickModel() {
     if (await loadModel(a)) build();
   } catch (e) {
     console.warn(e);
-    $('note').textContent = 'Could not load ' + a.name + '.';
+    if (state.token?.description === a.id) $('note').textContent = 'Could not load ' + a.name + '.';
   }
 }
 
@@ -375,6 +374,8 @@ function timeFrames(n = 60, budget = 3000) {
   $('bench-out').textContent = `${ms.toFixed(1)} ms a frame (${Math.round(1000 / ms)} FPS uncapped, ${i} frames)`;
   $('calls').textContent = calls.toLocaleString('en');
   $('tris').textContent = triangles.toLocaleString('en');
+  frames = 0;
+  since = performance.now(); // (the blocked seconds are not a frame rate)
   return { ms, calls, triangles, frames: i };
 }
 $('bench').addEventListener('click', () => timeFrames());
