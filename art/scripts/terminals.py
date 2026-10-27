@@ -171,26 +171,43 @@ def holo_rings(p, colour, cx, cy, z0, radii, gap, n=6, strut="metal_dark", base_
 
 # ===== The console ===============================================================================================================
 
+def _ledge_buttons(p, sl, hi, cx):
+    """An end group of the ledge: two rows of square buttons and a slider."""
+    cyan, amber, violet = "glow_cyan", "glow_amber", "alien_violet"
+    button_grid(p, sl, cx - 0.12, 0.12, 4, 2, 0.065, [cyan, violet, cyan, amber], h=hi - 0.012, size=0.045)
+    sl.box(p, "alien_dark", cx, 0.30, hi - 0.012 + 0.006, (0.34, 0.025, 0.012))
+    sl.box(p, "glow_cyan", cx - 0.07, 0.30, hi - 0.012 + 0.014, (0.05, 0.035, 0.016))
+
+
+def _ledge_dial(p, sl, hi, cx):
+    """A group beside the middle of the ledge: a dial and a row of round buttons."""
+    cyan, amber = "glow_cyan", "glow_amber"
+    dial(p, sl, cx - 0.09, 0.21, h=hi - 0.012, turn=35 if cx < 0 else -50)
+    for k in range(3):
+        p.cyl(amber if k == 1 else cyan, tuple(sl.at(cx + 0.02 + k * 0.065, 0.11, hi + 0.002)), 0.025, 0.02, n=6, rot=(sl.tilt, 0, 0))
+    sl.box(p, "glow_cyan", cx, 0.30, hi - 0.012 + 0.006, (0.30, 0.012, 0.012))
+
+
+def _ledge_status(p, sl, hi, cx):
+    """The middle of the ledge: a wide status bar of segments in three groups, two dials and four buttons."""
+    cyan, amber, violet = "glow_cyan", "glow_amber", "alien_violet"
+    for k in range(9):
+        colour = amber if k % 4 == 3 else cyan
+        sl.box(p, colour, cx + (k - 4) * 0.075, 0.30, hi - 0.012 + 0.006, (0.05, 0.05, 0.012))
+    dial(p, sl, cx - 0.14, 0.15, h=hi - 0.012, r=0.045, turn=-20)
+    dial(p, sl, cx + 0.14, 0.15, h=hi - 0.012, r=0.045, turn=60)
+    button_grid(p, sl, cx - 0.045, 0.10, 2, 2, 0.065, [amber, cyan, cyan, violet], h=hi - 0.012, size=0.045)
+
+
 def _ledge_controls(p, sl, hi):
     """The controls along the ship console's ledge: five groups, buttons and sliders at the ends, dials and a row of lamps in between, a status bar in the middle."""
-    cyan, amber, violet = "glow_cyan", "glow_amber", "alien_violet"
     for cx, kind in ((-1.45, 0), (-0.85, 1), (0.0, 2), (0.85, 1), (1.45, 0)):
-        if kind == 0:                                       # two rows of square buttons and a slider
-            button_grid(p, sl, cx - 0.12, 0.12, 4, 2, 0.065, [cyan, violet, cyan, amber], h=hi - 0.012, size=0.045)
-            sl.box(p, "alien_dark", cx, 0.30, hi - 0.012 + 0.006, (0.34, 0.025, 0.012))
-            sl.box(p, "glow_cyan", cx - 0.07, 0.30, hi - 0.012 + 0.014, (0.05, 0.035, 0.016))
-        elif kind == 1:                                     # a dial and a row of round buttons
-            dial(p, sl, cx - 0.09, 0.21, h=hi - 0.012, turn=35 if cx < 0 else -50)
-            for k in range(3):
-                p.cyl(amber if k == 1 else cyan, tuple(sl.at(cx + 0.02 + k * 0.065, 0.11, hi + 0.002)), 0.025, 0.02, n=6, rot=(sl.tilt, 0, 0))
-            sl.box(p, "glow_cyan", cx, 0.30, hi - 0.012 + 0.006, (0.30, 0.012, 0.012))
-        else:                                               # the middle: a wide status bar of segments in three groups
-            for k in range(9):
-                colour = amber if k % 4 == 3 else cyan
-                sl.box(p, colour, cx + (k - 4) * 0.075, 0.30, hi - 0.012 + 0.006, (0.05, 0.05, 0.012))
-            dial(p, sl, cx - 0.14, 0.15, h=hi - 0.012, r=0.045, turn=-20)
-            dial(p, sl, cx + 0.14, 0.15, h=hi - 0.012, r=0.045, turn=60)
-            button_grid(p, sl, cx - 0.045, 0.10, 2, 2, 0.065, [amber, cyan, cyan, violet], h=hi - 0.012, size=0.045)
+        if kind == 0:
+            _ledge_buttons(p, sl, hi, cx)
+        elif kind == 1:
+            _ledge_dial(p, sl, hi, cx)
+        else:
+            _ledge_status(p, sl, hi, cx)
 
 
 def ship_console(name="GV_ShipConsole_01"):

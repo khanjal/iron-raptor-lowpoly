@@ -386,6 +386,11 @@ def _build_skin(key, fn, folder, cond, skin):
     return obj
 
 
+def _skins(new_skins, dmg_skins, cond, skin_only):
+    """The skins to build for a condition: those of its list that SKIN_LIST names (all of them without it)."""
+    return [skin for skin in (new_skins if cond == "New" else dmg_skins) if not skin_only or skin in skin_only]
+
+
 def run():
     names = globals().get("BUILDING_LIST") or list(BUILDINGS)
     conds = globals().get("CONDITIONS") or ["New", "Damaged"]
@@ -395,9 +400,7 @@ def run():
         fn, folder, new_skins, dmg_skins = BUILDINGS[key]
         x = 0.0
         for cond in conds:
-            for skin in (new_skins if cond == "New" else dmg_skins):
-                if skin_only and skin not in skin_only:
-                    continue
+            for skin in _skins(new_skins, dmg_skins, cond, skin_only):
                 obj = _build_skin(key, fn, folder, cond, skin)
                 obj.location = (x, y, 0)
                 x += obj.dimensions.x + 6

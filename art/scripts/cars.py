@@ -345,6 +345,27 @@ def _islands(bm, colour):
     return isl
 
 
+def _islands_touch(isl, i, j, margin):
+    """Whether islands i and j overlap or come within `margin` of each other."""
+    _, vi, _, _, ti, _ = isl[i]
+    _, vj, _, _, tj, _ = isl[j]
+    if ti is None or tj is None:
+        return False
+    if ti.overlap(tj):
+        return True
+    for va, tb in ((vi, tj), (vj, ti)):
+        for a in va[:64]:
+            hit = tb.find_nearest(a.co)
+            if hit[0] is not None and hit[3] <= margin:
+                return True
+    return False
+
+
+def _boxes_near(isl, i, j, margin):
+    """Whether the bounding boxes of islands i and j are within `margin` of each other on every axis."""
+    return all(isl[i][2][k] <= isl[j][3][k] + margin and isl[j][2][k] <= isl[i][3][k] + margin for k in range(3))
+
+
 def _touching_groups(isl, margin):
     """The islands grouped by touch: {root: [island indexes]}."""
     n = len(isl)
@@ -355,23 +376,9 @@ def _touching_groups(isl, margin):
             parent[a] = parent[parent[a]]
             a = parent[a]
         return a
-
-    def touch(i, j):
-        _, vi, _, _, ti, _ = isl[i]
-        _, vj, _, _, tj, _ = isl[j]
-        if ti is None or tj is None:
-            return False
-        if ti.overlap(tj):
-            return True
-        for va, tb in ((vi, tj), (vj, ti)):
-            for a in va[:64]:
-                hit = tb.find_nearest(a.co)
-                if hit[0] is not None and hit[3] <= margin:
-                    return True
-        return False
     for i in range(n):
         for j in range(i + 1, n):
-            if find(i) != find(j) and all(isl[i][2][k] <= isl[j][3][k] + margin and isl[j][2][k] <= isl[i][3][k] + margin for k in range(3)) and touch(i, j):
+            if find(i) != find(j) and _boxes_near(isl, i, j, margin) and _islands_touch(isl, i, j, margin):
                 parent[find(i)] = find(j)
     groups = {}
     for i in range(n):
@@ -422,7 +429,7 @@ def _build_car(family, label, kind, kw, cond):
     if cond == "Damaged":
         prop.name = prop.name.replace(f"_{label}_01", f"_{label}_Damaged_01")
         tilt = 3.0
-        if family in OTHER_FAMILIES:                                                      # #357: the 3 degrees of a 4.6 m car lift one end of a 14 m trailer by 0.7 m; this keeps an end within about
+        if family in OTHER_FAMILIES:                                                      # #357: the 3 degrees of a 4.6 m car lift one end of a 14 m trailer by 0.7 m; this keeps an end within about 8 cm
             ys = [v.co.y for bm in prop.parts.values() for v in bm.verts]
             tilt = min(3.0, math.degrees(0.08 / ((max(ys) - min(ys)) / 2)))
         prop.damage(seed=sum(ord(c) for c in prop.name) % 1000, drop=0.35, tilt=tilt, grime=4, max_part=0.03, grime_scale=3.0)
@@ -432,17 +439,20 @@ def _build_car(family, label, kind, kw, cond):
     return prop
 
 
+def _wanted_variants(family, variants, only, only_variants):
+    """The variants of a family to build: none when CAR_LIST leaves the family out, else those VARIANT_LIST names (all of them without it)."""
+    if only and family not in only:
+        return []
+    return [v for v in variants if not only_variants or v[0] in only_variants]
+
+
 def run():
     only = globals().get("CAR_LIST")
     only_variants = globals().get("VARIANT_LIST")   # build only these variants of the families (their labels, e.g. "FBI_Van"): the rest of a family is left as it is
     conds = globals().get("CONDITIONS") or ["New", "Damaged"]
     count, x = 0, 0.0
     for family, variants in families().items():
-        if only and family not in only:
-            continue
-        for label, kind, kw in variants:
-            if only_variants and label not in only_variants:
-                continue
+        for label, kind, kw in _wanted_variants(family, variants, only, only_variants):
             for cond in conds:
                 prop = _build_car(family, label, kind, kw, cond)
                 obj, coll = prop.finish()

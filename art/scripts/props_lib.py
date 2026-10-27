@@ -27,6 +27,27 @@ INTERACTIONS = {}   # prop name -> {"parts": {...}, "slots": {...}}, filled by P
 THEME = {}     # colour remap applied to every part added while set: {"wood_dark": "black", ...} (see home_styles.py)
 
 
+def _island_verts(bm):
+    """The vertices of every connected island of a mesh, one list per island."""
+    bm.verts.ensure_lookup_table()
+    bm.verts.index_update()
+    parent = list(range(len(bm.verts)))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    for e in bm.edges:
+        a, b = find(e.verts[0].index), find(e.verts[1].index)
+        if a != b:
+            parent[a] = b
+    islands = {}
+    for v in bm.verts:
+        islands.setdefault(find(v.index), []).append(v)
+    return list(islands.values())
+
+
 class Prop:
     def __init__(self, name):
         self.name = name
@@ -181,36 +202,25 @@ class Prop:
         bm.normal_update()
         self._orient([f], facing, away_from, toward)
 
+    def _doomed(self, verts, rng, drop, max_part):
+        """The verts of one island if it is a small loose part that goes missing, else none."""
+        xs = [v.co.x for v in verts]; ys = [v.co.y for v in verts]; zs = [v.co.z for v in verts]
+        vol = (max(xs) - min(xs)) * (max(ys) - min(ys)) * (max(zs) - min(zs))
+        if vol < max_part:
+            kept = self._kept(xs, ys, zs)
+            if kept == "new":
+                return []                                     # no draw: the random sequence of every other part stays what it was
+            # seeded modelling variation, not security
+            if rng.random() < drop and kept is None:  # NOSONAR
+                return verts
+        return []
+
     def _drop_small_parts(self, rng, drop, max_part):
         """The first half of damage(): each small loose part has a chance `drop` of going missing."""
         for colour, bm in self.parts.items():
-            bm.verts.ensure_lookup_table()
-            bm.verts.index_update()
-            parent = list(range(len(bm.verts)))
-
-            def find(i):
-                while parent[i] != i:
-                    parent[i] = parent[parent[i]]
-                    i = parent[i]
-                return i
-            for e in bm.edges:
-                a, b = find(e.verts[0].index), find(e.verts[1].index)
-                if a != b:
-                    parent[a] = b
-            islands = {}
-            for v in bm.verts:
-                islands.setdefault(find(v.index), []).append(v)
             kill = []
-            for verts in islands.values():
-                xs = [v.co.x for v in verts]; ys = [v.co.y for v in verts]; zs = [v.co.z for v in verts]
-                vol = (max(xs) - min(xs)) * (max(ys) - min(ys)) * (max(zs) - min(zs))
-                if vol < max_part:
-                    kept = self._kept(xs, ys, zs)
-                    if kept == "new":
-                        continue                                  # no draw: the random sequence of every other part stays what it was
-                    # seeded modelling variation, not security
-                    if rng.random() < drop and kept is None:  # NOSONAR
-                        kill.extend(verts)
+            for verts in _island_verts(bm):
+                kill.extend(self._doomed(verts, rng, drop, max_part))
             if kill:
                 bmesh.ops.delete(bm, geom=kill, context="VERTS")
 
