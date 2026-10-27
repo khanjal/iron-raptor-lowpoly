@@ -393,7 +393,7 @@ def test_size(name, prop, parts, mounted, lo, hi, table):
 
 
 def _back_rest_fault(s, parts, lo, hi, mid_y, out):
-    """A seat's back rest is behind its middle (+Y): the seat faces +Y."""
+    """A seat whose back rest is on the front (-Y) side of its middle faces +Y: wrong."""
     if SEAT.search(s):
         # the back rest: everything above 60% of the height (a tall back, arms or a head board); its middle must be behind the seat's middle (+Y)
         z0 = lo.z + 0.6 * (hi.z - lo.z)
@@ -431,7 +431,7 @@ def _hinge_edge_fault(role, g, parts):
         off = min(abs(pivot[i] - mlo[i]), abs(pivot[i] - mhi[i]))
         if off > HINGE_EDGE and (mhi[i] - mlo[i]) > 0.05:
             return (f"{role} turns about ({pivot.x:+.2f}, {pivot.y:+.2f}, {pivot.z:+.2f}), {off * 100:.0f} cm from the nearest edge of the part "
-                       f"({'xyz'[i]} {mlo[i]:+.2f}..{mhi[i]:+.2f}): the hinge is not on the {role.lower()}'s edge")
+                    f"({'xyz'[i]} {mlo[i]:+.2f}..{mhi[i]:+.2f}): the hinge is not on the {role.lower()}'s edge")
     return None
 
 
