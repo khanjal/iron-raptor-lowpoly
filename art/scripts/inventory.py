@@ -114,7 +114,8 @@ def load_dev_world(path=DEV_WORLD):
     if not path.exists():
         return {}
     try:
-        rows = json.loads(path.read_text(encoding="utf-8"))
+        # reads the dev-world file its user names (read-only; the game checkout's Logs/ is outside this repo)
+        rows = json.loads(path.read_text(encoding="utf-8"))  # NOSONAR
         return {r["id"]: r for r in rows if isinstance(r, dict) and "id" in r}
     except (ValueError, KeyError, TypeError):
         return {}

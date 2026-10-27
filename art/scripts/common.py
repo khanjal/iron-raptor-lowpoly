@@ -732,7 +732,8 @@ def _strip_prefix(path, root):
     body += b" " * (-len(body) % 4)
     rest = raw[20 + jlen:]
     out = struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(body) + len(rest)) + struct.pack("<II", len(body), jtype) + body + rest
-    path.write_bytes(out)
+    # path is a .glb inside the export folder (checked at the top of this function)
+    path.write_bytes(out)  # NOSONAR
 
 
 def export_glb(coll, name, rigged=None, meta=True):

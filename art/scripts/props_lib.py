@@ -209,7 +209,8 @@ class Prop:
                     kept = self._kept(xs, ys, zs)
                     if kept == "new":
                         continue                                  # no draw: the random sequence of every other part stays what it was
-                    if rng.random() < drop and kept is None:  # NOSONAR: seeded modelling variation, not security
+                    # seeded modelling variation, not security
+                    if rng.random() < drop and kept is None:  # NOSONAR
                         kill.extend(verts)
             if kill:
                 bmesh.ops.delete(bm, geom=kill, context="VERTS")
@@ -229,7 +230,8 @@ class Prop:
                     faces.append((f.calc_area(), (min(v.x for v in cs), max(v.x for v in cs)), (min(v.y for v in cs), max(v.y for v in cs)), cs[0].z))
         if faces and grime:
             for _ in range(grime):
-                _, (x0, x1), (y0, y1), z = rng.choices(faces, weights=[f[0] for f in faces])[0]  # NOSONAR: seeded modelling variation, not security
+                # seeded modelling variation, not security
+                _, (x0, x1), (y0, y1), z = rng.choices(faces, weights=[f[0] for f in faces])[0]  # NOSONAR
                 sx = min(rng.uniform(0.06, 0.18) * grime_scale, (x1 - x0) * 0.9)
                 sy = min(rng.uniform(0.05, 0.14) * grime_scale, (y1 - y0) * 0.9)
                 cx = rng.uniform(x0 + sx / 2, x1 - sx / 2); cy = rng.uniform(y0 + sy / 2, y1 - sy / 2)
