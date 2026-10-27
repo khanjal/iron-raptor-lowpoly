@@ -433,7 +433,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1000,
+   "triangles": 1040,
    "size": [
     0.672,
     1.49,
@@ -479,7 +479,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 848,
+   "triangles": 888,
    "size": [
     0.351,
     1.186,
@@ -568,7 +568,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 872,
+   "triangles": 912,
    "size": [
     0.54,
     2.201,
@@ -609,7 +609,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 744,
+   "triangles": 784,
    "size": [
     0.6,
     0.81,
@@ -625,14 +625,9 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Skin",
      "swatch": 16,
      "hex": "#EFB3AC"
-    },
-    {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
     }
    ]
   },
@@ -651,7 +646,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 736,
+   "triangles": 776,
    "size": [
     0.44,
     0.887,
@@ -1701,11 +1696,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatCalico_faceted_01.glb",
    "thumb": "thumbs/GN_CatCalico_faceted_01.png",
@@ -1754,11 +1749,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.09,
-    0.205,
-    0.34
+    0.084,
+    0.203,
+    0.313
    ],
    "glb": "models/GN_CatKitten_faceted_01.glb",
    "thumb": "thumbs/GN_CatKitten_faceted_01.png",
@@ -1797,11 +1792,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.173,
+    0.16,
     0.389,
-    0.645
+    0.599
    ],
    "glb": "models/GN_CatSiamese_faceted_01.glb",
    "thumb": "thumbs/GN_CatSiamese_faceted_01.png",
@@ -1846,11 +1841,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatTabby_faceted_01.glb",
    "thumb": "thumbs/GN_CatTabby_faceted_01.png",
@@ -1930,11 +1925,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatTuxedo_faceted_01.glb",
    "thumb": "thumbs/GN_CatTuxedo_faceted_01.png",
@@ -1979,11 +1974,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1020,
+   "triangles": 1136,
    "size": [
-    0.21,
-    0.485,
-    0.795
+    0.179,
+    0.488,
+    0.758
    ],
    "glb": "models/GN_DogBeagle_faceted_01.glb",
    "thumb": "thumbs/GN_DogBeagle_faceted_01.png",
@@ -2028,11 +2023,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1004,
+   "triangles": 1060,
    "size": [
-    0.322,
-    0.444,
-    0.709
+    0.279,
+    0.417,
+    0.762
    ],
    "glb": "models/GN_DogBulldog_faceted_01.glb",
    "thumb": "thumbs/GN_DogBulldog_faceted_01.png",
@@ -2072,11 +2067,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.266,
-    0.733,
-    1.166
+    0.224,
+    0.726,
+    1.111
    ],
    "glb": "models/GN_DogCollie_faceted_01.glb",
    "thumb": "thumbs/GN_DogCollie_faceted_01.png",
@@ -2117,11 +2112,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1020,
+   "triangles": 1136,
    "size": [
-    0.156,
-    0.302,
-    0.786
+    0.127,
+    0.299,
+    0.751
    ],
    "glb": "models/GN_DogDachshund_faceted_01.glb",
    "thumb": "thumbs/GN_DogDachshund_faceted_01.png",
@@ -2156,11 +2151,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.282,
-    0.742,
-    1.073
+    0.242,
+    0.736,
+    1.027
    ],
    "glb": "models/GN_DogHusky_faceted_01.glb",
    "thumb": "thumbs/GN_DogHusky_faceted_01.png",
@@ -2205,11 +2200,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1020,
+   "triangles": 1136,
    "size": [
-    0.322,
-    0.716,
-    1.172
+    0.273,
+    0.707,
+    1.12
    ],
    "glb": "models/GN_DogRetriever_faceted_01.glb",
    "thumb": "thumbs/GN_DogRetriever_faceted_01.png",
@@ -2246,11 +2241,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.31,
-    0.899,
-    1.284
+    0.261,
+    0.887,
+    1.226
    ],
    "glb": "models/GN_DogShepherd_faceted_01.glb",
    "thumb": "thumbs/GN_DogShepherd_faceted_01.png",
@@ -2293,11 +2288,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1004,
+   "triangles": 1120,
    "size": [
-    0.234,
-    0.645,
-    1.026
+    0.197,
+    0.639,
+    0.978
    ],
    "glb": "models/GN_DogStray_faceted_01.glb",
    "thumb": "thumbs/GN_DogStray_faceted_01.png",
