@@ -118,18 +118,9 @@ def _sink(part, solid, verts):
     return deepest, inside / len(pts)
 
 
-def clipping(obj, eps=1e-4):
-    """Parts of obj (its mesh islands) that clip each other. Returns [(kind, bounds of part a, bounds of part b, number of triangle pairs, depth in mm)] (depth 0 for coplanar)."""
-    from mathutils import Vector
-    from mathutils.bvhtree import BVHTree
-    bm = bmesh.new()
-    bm.from_mesh(obj.data)
-    bmesh.ops.triangulate(bm, faces=bm.faces)
-    bm.verts.ensure_lookup_table()
-    bm.faces.ensure_lookup_table()
-    verts = [v.co.copy() for v in bm.verts]
-    key = lambda i: (round(verts[i].x / eps), round(verts[i].y / eps), round(verts[i].z / eps))
-    parent = list(range(len(verts)))
+def _tris_by_island(bm, count):
+    """{root vertex: [triangles]} for the mesh islands of a triangulated bmesh (islands are joined through shared edges)."""
+    parent = list(range(count))
 
     def find(i):
         while parent[i] != i:
@@ -142,43 +133,73 @@ def clipping(obj, eps=1e-4):
     for f in bm.faces:
         t = tuple(v.index for v in f.verts)
         tris_of.setdefault(find(t[0]), []).append(t)
+    return tris_of
+
+
+def _island_parts(tris_of, verts):
+    """One part per island: its triangles, vertex set, bounds, BVH tree and whether it is a closed solid."""
+    from mathutils.bvhtree import BVHTree
     parts = []
     for tris in tris_of.values():
         idx = {i for t in tris for i in t}
         lo = tuple(min(verts[i][k] for i in idx) for k in range(3))
         hi = tuple(max(verts[i][k] for i in idx) for k in range(3))
         parts.append({"tris": tris, "idx": idx, "lo": lo, "hi": hi, "tree": BVHTree.FromPolygons(verts, tris), "closed": _closed(tris)})
+    return parts
+
+
+def _crossings(A, B, verts, key):
+    """How many triangle pairs of the parts A and B really cross (pairs that share a corner are a joint)."""
+    crossing = 0
+    for ta, tb in A["tree"].overlap(B["tree"]):
+        tri_a, tri_b = A["tris"][ta], B["tris"][tb]
+        if {key(i) for i in tri_a} & {key(i) for i in tri_b}:
+            continue                                                   # they share a corner: a joint
+        na = (verts[tri_a[1]] - verts[tri_a[0]]).cross(verts[tri_a[2]] - verts[tri_a[0]]).normalized()
+        nb = (verts[tri_b[1]] - verts[tri_b[0]]).cross(verts[tri_b[2]] - verts[tri_b[0]]).normalized()
+        if abs(na.dot(nb)) <= 0.999 and _straddles(verts, tri_a, tri_b, nb) and _straddles(verts, tri_b, tri_a, na):
+            crossing += 1
+    return crossing
+
+
+def _clip_record(A, B, verts, key, eps):
+    """The clip record of two parts, or None when they do not clip (or only as a band or a plug that is meant to)."""
+    if any(A["lo"][k] > B["hi"][k] + eps or B["lo"][k] > A["hi"][k] + eps for k in range(3)):
+        return None
+    crossing = _crossings(A, B, verts, key)
+    if not crossing:
+        return None
+    (da, fa), (db, fb) = _sink(A, B, verts), _sink(B, A, verts)
+    if A["closed"] and B["closed"] and max(da, db) < MIN_DEPTH:
+        return None                                                    # a band or label standing a millimetre proud, not a clip
+    if (A["closed"] and fa >= 0.5 and fb <= 0.15) or (B["closed"] and fb >= 0.5 and fa <= 0.15):
+        return None                                                    # one solid is plugged into the other (a stem in an apple)
+    return ("clip", (A["lo"], A["hi"]), (B["lo"], B["hi"]), crossing, round(max(da, db) * 1000, 1), (len(A["tris"]), A["closed"], len(B["tris"]), B["closed"]))
+
+
+def clipping(obj, eps=1e-4):
+    """Parts of obj (its mesh islands) that clip each other. Returns [(kind, bounds of part a, bounds of part b, number of triangle pairs, depth in mm)] (depth 0 for coplanar)."""
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bmesh.ops.triangulate(bm, faces=bm.faces)
+    bm.verts.ensure_lookup_table()
+    bm.faces.ensure_lookup_table()
+    verts = [v.co.copy() for v in bm.verts]
+    key = lambda i: (round(verts[i].x / eps), round(verts[i].y / eps), round(verts[i].z / eps))
+    parts = _island_parts(_tris_by_island(bm, len(verts)), verts)
     out = []
     for a in range(len(parts)):
         for b in range(a + 1, len(parts)):
-            A, B = parts[a], parts[b]
-            if any(A["lo"][k] > B["hi"][k] + eps or B["lo"][k] > A["hi"][k] + eps for k in range(3)):
-                continue
-            crossing = 0
-            for ta, tb in A["tree"].overlap(B["tree"]):
-                tri_a, tri_b = A["tris"][ta], B["tris"][tb]
-                if {key(i) for i in tri_a} & {key(i) for i in tri_b}:
-                    continue                                                   # they share a corner: a joint
-                na = (verts[tri_a[1]] - verts[tri_a[0]]).cross(verts[tri_a[2]] - verts[tri_a[0]]).normalized()
-                nb = (verts[tri_b[1]] - verts[tri_b[0]]).cross(verts[tri_b[2]] - verts[tri_b[0]]).normalized()
-                if abs(na.dot(nb)) <= 0.999 and _straddles(verts, tri_a, tri_b, nb) and _straddles(verts, tri_b, tri_a, na):
-                    crossing += 1
-            if crossing:
-                (da, fa), (db, fb) = _sink(A, B, verts), _sink(B, A, verts)
-                if A["closed"] and B["closed"] and max(da, db) < MIN_DEPTH:
-                    continue                                                   # a band or label standing a millimetre proud, not a clip
-                if (A["closed"] and fa >= 0.5 and fb <= 0.15) or (B["closed"] and fb >= 0.5 and fa <= 0.15):
-                    continue                                                   # one solid is plugged into the other (a stem in an apple)
-                out.append(("clip", (A["lo"], A["hi"]), (B["lo"], B["hi"]), crossing, round(max(da, db) * 1000, 1), (len(A["tris"]), A["closed"], len(B["tris"]), B["closed"])))
+            record = _clip_record(parts[a], parts[b], verts, key, eps)
+            if record:
+                out.append(record)
     out += _coplanar(parts, verts)
     bm.free()
     return out
 
 
-def _coplanar(parts, verts):
-    """Faces of different parts in the same plane, facing the same way, that overlap (shrunk by 10% so a shared edge is not an overlap)."""
-    from mathutils.geometry import intersect_tri_tri_2d
-    from mathutils import Vector
+def _plane_groups(parts, verts):
+    """The triangles of all parts grouped by plane (normal and offset), as (part index, triangle, normal)."""
     planes = {}
     for pi_, part in enumerate(parts):
         for t in part["tris"]:
@@ -190,63 +211,76 @@ def _coplanar(parts, verts):
             if n.z < -0.999 and abs(a.z) < 1e-4:
                 continue                                                      # the underside on the floor is never seen
             planes.setdefault((round(n.x, 2), round(n.y, 2), round(n.z, 2), round(n.dot(a) / 5e-4)), []).append((pi_, t, n))
+    return planes
+
+
+def _faces_overlap(verts, ta, tb, na):
+    """Whether two triangles in one plane (normal na) overlap, each shrunk by 10% so a shared edge is not an overlap."""
+    from mathutils.geometry import intersect_tri_tri_2d
+    from mathutils import Vector
+    drop = max(range(3), key=lambda k, na=na: abs(na[k]))
+    keep = [k for k in range(3) if k != drop]
+
+    def shrink(t):
+        pts = [verts[i] for i in t]
+        cen = sum(pts, Vector()) / 3
+        return [Vector(((cen + (p_ - cen) * 0.9)[keep[0]], (cen + (p_ - cen) * 0.9)[keep[1]])) for p_ in pts]
+    return intersect_tri_tri_2d(*shrink(ta), *shrink(tb))
+
+
+def _count_plane_overlaps(items, verts, found):
+    """Add to found[(part a, part b)] for each pair of faces of different parts in this plane that face the same way and overlap."""
+    for x in range(len(items)):
+        for y in range(x + 1, len(items)):
+            (pa, ta, na), (pb, tb, nb) = items[x], items[y]
+            if pa == pb or na.dot(nb) < 0.999:
+                continue
+            if _faces_overlap(verts, ta, tb, na):
+                found[(pa, pb)] = found.get((pa, pb), 0) + 1
+
+
+def _coplanar(parts, verts):
+    """Faces of different parts in the same plane, facing the same way, that overlap (shrunk by 10% so a shared edge is not an overlap)."""
     found = {}
-    for items in planes.values():
+    for items in _plane_groups(parts, verts).values():
         if len({i[0] for i in items}) < 2:
             continue
-        for x in range(len(items)):
-            for y in range(x + 1, len(items)):
-                (pa, ta, na), (pb, tb, nb) = items[x], items[y]
-                if pa == pb or na.dot(nb) < 0.999:
-                    continue
-                drop = max(range(3), key=lambda k, na=na: abs(na[k]))
-                keep = [k for k in range(3) if k != drop]
-
-                def shrink(t):
-                    pts = [verts[i] for i in t]
-                    cen = sum(pts, Vector()) / 3
-                    return [Vector(((cen + (p_ - cen) * 0.9)[keep[0]], (cen + (p_ - cen) * 0.9)[keep[1]])) for p_ in pts]
-                if intersect_tri_tri_2d(*shrink(ta), *shrink(tb)):
-                    found[(pa, pb)] = found.get((pa, pb), 0) + 1
+        _count_plane_overlaps(items, verts, found)
     return [("coplanar", (parts[a]["lo"], parts[a]["hi"]), (parts[b]["lo"], parts[b]["hi"]), n, 0.0, None) for (a, b), n in found.items()]
+
+
+def _part_gap(verts, tris, root, own, gap):
+    """((bounds), distance in mm) when the island `own` touches nothing else within `gap` metres, else None."""
+    from mathutils.bvhtree import BVHTree
+    rest = [t for r, ts in tris.items() if r != root for t in ts]
+    tree = BVHTree.FromPolygons(verts, rest)
+    idx = {i for t in own for i in t}
+    near = min(tree.find_nearest(verts[i])[3] for i in idx)
+    if near > gap:                                                    # a big part (a tray) may touch only with the other parts' corners
+        mine = BVHTree.FromPolygons(verts, own)
+        near = min(near, min(mine.find_nearest(verts[i])[3] for i in {i for t in rest for i in t}))
+        if near > gap and mine.overlap(tree):
+            near = 0.0                                                # a bone through the end of a drumstick: no corner is near, but the surfaces cross
+    if near > gap:
+        return ((tuple(round(min(verts[i][k] for i in idx), 3) for k in range(3)), tuple(round(max(verts[i][k] for i in idx), 3) for k in range(3))), round(near * 1000, 1))
+    return None
 
 
 def gaps(obj, gap=0.002):
     """Parts (mesh islands) that touch nothing: every corner of the part is more than `gap` metres from every other part's surface. Unlike the floating check
     above (bounding boxes, 2 cm), this is a contact test, so a decoration hovering a few millimetres over a curved surface shows. Returns [(bounds, distance)]."""
-    from mathutils.bvhtree import BVHTree
     bm = bmesh.new()
     bm.from_mesh(obj.data)
     bmesh.ops.triangulate(bm, faces=bm.faces)
     bm.verts.ensure_lookup_table()
     verts = [v.co.copy() for v in bm.verts]
-    parent = list(range(len(verts)))
-
-    def find(i):
-        while parent[i] != i:
-            parent[i] = parent[parent[i]]
-            i = parent[i]
-        return i
-    for e in bm.edges:
-        parent[find(e.verts[0].index)] = find(e.verts[1].index)
-    tris = {}
-    for f in bm.faces:
-        t = tuple(v.index for v in f.verts)
-        tris.setdefault(find(t[0]), []).append(t)
+    tris = _tris_by_island(bm, len(verts))
     out = []
     if len(tris) > 1:
         for root, own in tris.items():
-            rest = [t for r, ts in tris.items() if r != root for t in ts]
-            tree = BVHTree.FromPolygons(verts, rest)
-            idx = {i for t in own for i in t}
-            near = min(tree.find_nearest(verts[i])[3] for i in idx)
-            if near > gap:                                                    # a big part (a tray) may touch only with the other parts' corners
-                mine = BVHTree.FromPolygons(verts, own)
-                near = min(near, min(mine.find_nearest(verts[i])[3] for i in {i for t in rest for i in t}))
-                if near > gap and mine.overlap(tree):
-                    near = 0.0                                                # a bone through the end of a drumstick: no corner is near, but the surfaces cross
-            if near > gap:
-                out.append(((tuple(round(min(verts[i][k] for i in idx), 3) for k in range(3)), tuple(round(max(verts[i][k] for i in idx), 3) for k in range(3))), round(near * 1000, 1)))
+            record = _part_gap(verts, tris, root, own, gap)
+            if record:
+                out.append(record)
     bm.free()
     return out
 
