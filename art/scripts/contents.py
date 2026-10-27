@@ -571,6 +571,20 @@ def _wanted(key, group, names):
     return not names or key in names or group in names
 
 
+def _folder(group):
+    return "Clothes" if group == "clothes" else "Food"
+
+
+def _row_start_y(row, y):
+    """The y of the next row of items: the first row is at 0, the others 1.2 m past the last."""
+    return y + 1.2 if row is not None else 0.0
+
+
+def _rotten_lift(rotten):
+    """The rotten copy of an item stands 0.6 m beside the plain one."""
+    return 0.6 if rotten else 0.0
+
+
 def run():
     props_lib.INTERACTIONS.clear()
     names = globals().get("CONTENT_LIST")
@@ -578,12 +592,12 @@ def run():
     for key, (fn, group) in ITEMS.items():
         if not _wanted(key, group, names):
             continue
-        folder = "Clothes" if group == "clothes" else "Food"
+        folder = _folder(group)
         if group != row:
-            row, x, y = group, 0.0, (y + 1.2 if row is not None else 0.0)
+            row, x, y = group, 0.0, _row_start_y(row, y)
         for rotten in _versions(group):
             obj = _make_item(fn, group, folder, rotten)
-            obj.location = (x, y + (0.6 if rotten else 0.0), 0)
+            obj.location = (x, y + _rotten_lift(rotten), 0)
             count += 1
         x += max(0.3, obj.dimensions.x + 0.1)
     if props_lib.INTERACTIONS and globals().get("EXPORT", True):
