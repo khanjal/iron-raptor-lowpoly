@@ -145,10 +145,13 @@ def read_column(doc, blob, path, i):
     start = bv.get("byteOffset", 0) + a.get("byteOffset", 0)
     size = n * vals.itemsize
     stride = bv.get("byteStride") or size                       # interleaved buffers step by more than one element
+    count = a["count"]
+    if not isinstance(count, int) or count < 0 or (count and start + (count - 1) * stride + size > len(blob)):
+        raise ValueError(f"{path.name}: accessor {i} claims {count!r} elements that do not fit the binary chunk")
     if stride == size:
-        vals.frombytes(blob[start:start + a["count"] * size])
+        vals.frombytes(blob[start:start + count * size])
     else:
-        for k in range(a["count"]):
+        for k in range(count):
             vals.frombytes(blob[start + k * stride:start + k * stride + size])
     return vals
 

@@ -259,3 +259,20 @@ class CheckAgainstTheGlbs(unittest.TestCase):
             result, text = self.run_quiet(paints.check_themed, catalog_stub, folder, [], [])
         self.assertEqual(result, (1, 1))
         self.assertEqual(text, "X Autumn: the theme gives {'1': '#AA0000'}, the GLBs say {'1': '#123456'}\n")
+
+    def test_an_accessor_that_claims_more_than_the_buffer_holds_is_refused(self):
+        glb = next(MODELS.glob("*.glb"))
+        raw = glb.read_bytes()
+        jlen = int.from_bytes(raw[12:16], "little")
+        doc = json.loads(raw[20:20 + jlen])
+        index = doc["meshes"][0]["primitives"][0]["attributes"]["POSITION"]
+        doc["accessors"][index]["count"] = 4_000_000_000
+        body = json.dumps(doc).encode()
+        body += b" " * (-len(body) % 4)
+        rest = raw[20 + jlen:]
+        damaged = Path(tempfile.mkdtemp()) / "damaged.glb"
+        self.addCleanup(lambda: (damaged.unlink(), damaged.parent.rmdir()))
+        damaged.write_bytes(b"glTF" + (2).to_bytes(4, "little") + (12 + 8 + len(body) + len(rest)).to_bytes(4, "little") + len(body).to_bytes(4, "little") + b"JSON" + body + rest)
+        with self.assertRaises(ValueError) as caught:
+            paints.surface_by_swatch(damaged)
+        self.assertIn("do not fit the binary chunk", str(caught.exception))
