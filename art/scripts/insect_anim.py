@@ -167,13 +167,13 @@ def idle_spider(rig, t):
     w = 2 * math.pi * t
     turn(rig, "Body", x=1.5 * math.sin(w))
     for name, s in sides(rig, "Leg"):
-        if name[5:] == "0":
+        if len(name) == 6 and name.endswith("0"):
             turn(rig, name, y=-s * (8.0 + 8.0 * math.sin(w + (0.0 if s > 0 else 1.3))), z=s * 5.0 * math.sin(2 * w))
 
 
 def _caterpillar(rig, t, amp, head):
     w = 2 * math.pi * t
-    for pb in list(rig.pose.bones):
+    for pb in rig.pose.bones:
         if pb.name.startswith("Seg"):
             i = int(pb.name[3:])
             turn(rig, pb.name, shift=(0, 0, amp * MM * (0.5 + 0.5 * math.sin(w - 0.9 * i))))

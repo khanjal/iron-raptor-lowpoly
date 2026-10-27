@@ -259,7 +259,8 @@ def key_clip(rig, name, pose, frames):
 
 def build_all():
     global REST_LOW
-    for stale in list(bpy.data.actions):                                                 # a second run in one session must not export the first run's clips too
+    # the loop removes from the live collection, so it iterates a copy; a second run in one session must not export the first run's clips too
+    for stale in list(bpy.data.actions):  # NOSONAR
         curves = stale.fcurves if hasattr(stale, "fcurves") else [fc for layer in stale.layers for strip in layer.strips for bag in strip.channelbags for fc in bag.fcurves]   # Blender 5 keeps them in layers
         bones = {fc.data_path.split('"')[1] for fc in curves if fc.data_path.startswith("pose.bones[")}
         if bones and bones <= set(BONES):                                                # only the Insectoid's own: the Blender file may hold other models' clips

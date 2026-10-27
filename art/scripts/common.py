@@ -476,7 +476,8 @@ def fresh_collection(name):
     name = name_prefix() + name
     old = bpy.data.collections.get(name)
     if old is not None:
-        for o in list(old.objects):
+        # the loop removes from the live collection, so it iterates a copy
+        for o in list(old.objects):  # NOSONAR
             bpy.data.objects.remove(o, do_unlink=True)
         bpy.data.collections.remove(old)
     coll = bpy.data.collections.new(name)
@@ -675,7 +676,8 @@ def clear_clips(rig_obj):
     if ad is None:
         return
     used = [st.action for tr in ad.nla_tracks for st in tr.strips if st.action is not None]
-    for tr in list(ad.nla_tracks):
+    # the loop removes from the live collection, so it iterates a copy
+    for tr in list(ad.nla_tracks):  # NOSONAR
         ad.nla_tracks.remove(tr)
     for a in used:
         if a.users == 0:

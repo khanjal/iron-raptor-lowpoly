@@ -197,7 +197,7 @@ def egg_carton(p, rest=-105.0):
         for col in range(6):
             x, y = (col - 2.5) * 0.0487, (r - 0.5) * 0.050
             rings = [common.ring_z(CUP_RIM, x, y, CUP_TOP, CUP_TOP, n=6), common.ring_z(fl + 0.0008, x, y, CUP_BOTTOM, CUP_BOTTOM, n=6)]
-            p.quads(tray, [[v for v in ring] for ring in rings], wrap=True, toward=(x, y, 0.017), thick=0.0015, walls=False)
+            p.quads(tray, [list(ring) for ring in rings], wrap=True, toward=(x, y, 0.017), thick=0.0015, walls=False)
             egg(p, EGG_COLOURS[k], x, y, fl)
             k += 1
     # the lid: a shallow box over the eggs, hinged along the back edge (opens up and back, exported open)

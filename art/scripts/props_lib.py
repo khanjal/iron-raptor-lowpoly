@@ -184,7 +184,7 @@ class Prop:
         result by up to `tilt` degrees and re-seats it on the floor."""
         import random
         rng = random.Random(seed)
-        for colour, bm in list(self.parts.items()):
+        for colour, bm in self.parts.items():
             bm.verts.ensure_lookup_table()
             bm.verts.index_update()
             parent = list(range(len(bm.verts)))

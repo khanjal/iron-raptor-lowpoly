@@ -40,7 +40,7 @@ RANGES = {
                  "carry": (1.00, 1.30), "leg_top": (0.09, 0.15), "leg_low": (0.05, 0.09), "paw": (0.07, 0.12)},
 }
 # the species keys of species.SPECIES that each range row applies to
-KEYS = {**{k: "cat" for k in ("cat_tabby", "cat_black", "cat_orange", "cat_tuxedo", "cat_calico", "cat_siamese", "cat_grey", "cat_kitten")}, "dog_collie": "collie", **{f"dog_collie_{c}": "collie" for c in ("brown_white", "grey_merle", "yellow", "brindle")}, "dog_husky": "husky", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
+KEYS = {**dict.fromkeys(("cat_tabby", "cat_black", "cat_orange", "cat_tuxedo", "cat_calico", "cat_siamese", "cat_grey", "cat_kitten"), "cat"), "dog_collie": "collie", **{f"dog_collie_{c}": "collie" for c in ("brown_white", "grey_merle", "yellow", "brindle")}, "dog_husky": "husky", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
 ENFORCED = {"cat", "collie", "husky", "cow", "horse", "pig", "sheep", "goat"}          # every four-legged species is rebuilt to the brief: a miss fails the audit
 
 

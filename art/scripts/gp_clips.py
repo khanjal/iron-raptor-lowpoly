@@ -197,7 +197,8 @@ def tidy(rig):
         bpy.data.armatures.remove(data)
     if coll is not None and coll.name == "GP_Humanoid_Clips":
         bpy.data.collections.remove(coll)
-    for action in list(bpy.data.actions):
+    # the loop removes from the live collection, so it iterates a copy
+    for action in list(bpy.data.actions):  # NOSONAR
         bpy.data.actions.remove(action)
 
 
