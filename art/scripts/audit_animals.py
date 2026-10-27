@@ -109,21 +109,21 @@ def _inside(bvh, p):
     return hits % 2 == 1
 
 
-def audit(key):
-    sp = species.SPECIES[key]
-    quadruped_builder.build(sp, "faceted")
-    parts = dict(quadruped_builder.LAST_PARTS)
+def _part_problems(key, parts):
+    """Every part the species needs is there, and a nose or nostrils."""
     problems = []
-
-    # --- parts ---------------------------------------------------------------------------------------------------------
     need = COMMON + REQUIRED.get(key, [])
     for n in need:
         if n not in parts:
             problems.append(f"missing part: {n}")
     if "nose" not in parts and "nostrils" not in parts:
         problems.append("missing part: a nose or nostrils")
+    return problems
 
-    # --- joins ---------------------------------------------------------------------------------------------------------
+
+def _join_problems(parts):
+    """Every part except the body touches the rest of the animal."""
+    problems = []
     for name, (verts, tris) in parts.items():
         if name == "body":
             continue
@@ -131,8 +131,40 @@ def audit(key):
         best = min(bvh.find_nearest(v)[3] for v in verts)
         if best > ATTACH and not any(_inside(bvh, v) for v in verts):
             problems.append(f"{name} floats: its nearest point is {best * 100:.1f} cm from the rest of the animal")
+    return problems
 
-    # --- spacing -------------------------------------------------------------------------------------------------------
+
+def _eye_show_problems(ev, parts):
+    """Each eye shows: some of its eyeball outside the head's surface (a buried eye is invisible), but not hanging off it."""
+    problems = []
+    bvh = _bvh({"head": parts["head"]}, None)
+    for sign, label in ((1, "left"), (-1, "right")):
+        side = [v for v in ev if v.x * sign > 0]
+        radius = (max(v.z for v in side) - min(v.z for v in side)) / 2 if side else 0.0
+        out = [bvh.find_nearest(v)[3] for v in side if not _inside(bvh, v)]
+        shows = max(out, default=0.0)
+        if shows < 0.004:
+            problems.append(f"the {label} eye is buried: at most {shows * 1000:.1f} mm of it is outside the head")
+        elif shows > 0.75 * radius:                                  # set in: no more than three quarters of the eyeball's radius out of the head
+            problems.append(f"the {label} eye bulges: {shows * 100:.1f} cm of an eyeball of radius {radius * 100:.1f} cm is outside the head")
+    return problems
+
+
+def _eye_width_problems(parts, ev, near, ez):
+    """The eyes are above the middle of the head where they are, show, and are no wider apart than the head there (plus 30%)."""
+    problems = []
+    hw = max(abs(v.x) for v in near)
+    if ez < (min(v.z for v in near) + max(v.z for v in near)) / 2:
+        problems.append("the eyes are below the middle of the head")
+    problems += _eye_show_problems(ev, parts)
+    if max(abs(v.x) for v in ev) > hw * 1.3:
+        problems.append(f"the eyes are wider apart than the head (outer edge {max(abs(v.x) for v in ev):.3f}, the head here {hw:.3f})")
+    return problems
+
+
+def _eye_problems(parts):
+    """The eyes sit one on each side of the head, in front of the ears."""
+    problems = []
     if "head" in parts and "eyes" in parts:
         hv = parts["head"][0]
         ev = parts["eyes"][0]
@@ -142,26 +174,17 @@ def audit(key):
         if not (any(v.x > 0 for v in ev) and any(v.x < 0 for v in ev)):
             problems.append("the eyes are not one on each side of the head")
         elif near:
-            hw = max(abs(v.x) for v in near)
-            if ez < (min(v.z for v in near) + max(v.z for v in near)) / 2:
-                problems.append("the eyes are below the middle of the head")
-            # each eye must show: some of its eyeball outside the head's surface (a buried eye is invisible), but not hanging off it
-            bvh = _bvh({"head": parts["head"]}, None)
-            for sign, label in ((1, "left"), (-1, "right")):
-                side = [v for v in ev if v.x * sign > 0]
-                radius = (max(v.z for v in side) - min(v.z for v in side)) / 2 if side else 0.0
-                out = [bvh.find_nearest(v)[3] for v in side if not _inside(bvh, v)]
-                shows = max(out, default=0.0)
-                if shows < 0.004:
-                    problems.append(f"the {label} eye is buried: at most {shows * 1000:.1f} mm of it is outside the head")
-                elif shows > 0.75 * radius:                                  # set in: no more than three quarters of the eyeball's radius out of the head
-                    problems.append(f"the {label} eye bulges: {shows * 100:.1f} cm of an eyeball of radius {radius * 100:.1f} cm is outside the head")
-            if max(abs(v.x) for v in ev) > hw * 1.3:
-                problems.append(f"the eyes are wider apart than the head (outer edge {max(abs(v.x) for v in ev):.3f}, the head here {hw:.3f})")
+            problems += _eye_width_problems(parts, ev, near, ez)
         if "ears" in parts:
             ay = sum(v.y for v in parts["ears"][0]) / len(parts["ears"][0])
             if ey > ay - 0.005:
                 problems.append("the eyes are not in front of the ears")
+    return problems
+
+
+def _ear_problems(parts):
+    """The ears are a pair, no wider apart than 2.9 times the head where they are."""
+    problems = []
     if "head" in parts and "ears" in parts:
         av = parts["ears"][0]
         ay = sum(v.y for v in av) / len(av)
@@ -171,7 +194,12 @@ def audit(key):
             problems.append("the ears are far wider apart than the head (more than 2.9 times)")
         if not (any(v.x > 0 for v in av) and any(v.x < 0 for v in av)):
             problems.append("the ears are not a pair")
-    # --- size against the real animal ------------------------------------------------------------------------------------
+    return problems
+
+
+def _size_problems(key, sp, parts):
+    """The back height, the head-and-body length and the tail length are within the real animal's range."""
+    problems = []
     ref = REFERENCE.get(key)
     if ref and "body" in parts and "head" in parts:
         k = sp.get("scale", 1.0)
@@ -188,7 +216,12 @@ def audit(key):
             tl = max((a - b).length for a in tv for b in tv) * k
             if not (tail[0] * 0.85 <= tl <= tail[1] * 1.15):
                 problems.append(f"the tail is {tl:.2f} m long: a {key}'s is {tail[0]:.2f}-{tail[1]:.2f} m")
-    # --- proportions against the brief ---------------------------------------------------------------------------------------
+    return problems
+
+
+def _proportion_problems(key, sp):
+    """The ratios against the brief: a miss fails an enforced species and is a warning for the rest."""
+    problems = []
     row = animal_proportions.KEYS.get(key)
     if row:
         misses = animal_proportions.check(row, sp)
@@ -197,6 +230,20 @@ def audit(key):
         else:
             for m in misses:
                 print(f"    WARN {key}: proportions: {m}")
+    return problems
+
+
+def audit(key):
+    sp = species.SPECIES[key]
+    quadruped_builder.build(sp, "faceted")
+    parts = dict(quadruped_builder.LAST_PARTS)
+    problems = []
+    problems += _part_problems(key, parts)
+    problems += _join_problems(parts)
+    problems += _eye_problems(parts)
+    problems += _ear_problems(parts)
+    problems += _size_problems(key, sp, parts)
+    problems += _proportion_problems(key, sp)
     return problems, parts
 
 
