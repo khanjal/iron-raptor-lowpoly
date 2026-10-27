@@ -351,23 +351,33 @@ def utility_pole_body(p):
     p.box("metal_dark", (0, -0.13, 3.0), (0.03, 0.02, 2.4))                  # the ground wire's strap down the front
 
 
+def _crossarm_x(p, z, face, reach, braces, middle):
+    """A crossarm on the front face of the pole (along x)."""
+    p.box("wood_dark", (0, face + 0.02, z), (2.0 * reach, 0.15, 0.13))      # 0.15 deep, its front face stays at face - 0.055 and its back goes into the pole
+    for x in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
+        pin_insulator(p, x, face, z + 0.065)
+    if braces:
+        for s in (-1, 1):
+            props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.54, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
+
+
+def _crossarm_y(p, z, face, reach, braces, middle):
+    """A crossarm on the Blender -X face of the pole (along y)."""
+    x0 = face                                                            # the Blender -X face: Unity +X, where the road wires are tied
+    p.box("wood_dark", (x0 + 0.02, 0, z), (0.15, 2.0 * reach, 0.13))
+    for y in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
+        pin_insulator(p, x0, y, z + 0.065)
+    if braces:
+        for s in (-1, 1):
+            props_lib.rod(p, "metal_galv", (x0 * 0.54, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
+
+
 def crossarm(p, z, along="x", face=-0.185, reach=1.0, braces=True, middle=False):
     """A crossarm 2 m long with a pin insulator at each end (and in the middle if `middle`: only the lower arm, the top arm's middle wire sits on the pole top) and two angle braces. along x: on the front face, along y: on the +X face."""
     if along == "x":
-        p.box("wood_dark", (0, face + 0.02, z), (2.0 * reach, 0.15, 0.13))      # 0.15 deep, its front face stays at face - 0.055 and its back goes into the pole
-        for x in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
-            pin_insulator(p, x, face, z + 0.065)
-        if braces:
-            for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (s * 0.06, face * 0.54, z - 0.75), (s * 0.7, face, z - 0.05), w=0.035, h=0.05)
+        _crossarm_x(p, z, face, reach, braces, middle)
     else:
-        x0 = face                                                            # the Blender -X face: Unity +X, where the road wires are tied
-        p.box("wood_dark", (x0 + 0.02, 0, z), (0.15, 2.0 * reach, 0.13))
-        for y in ((-0.9 * reach, 0.0, 0.9 * reach) if middle else (-0.9 * reach, 0.9 * reach)):
-            pin_insulator(p, x0, y, z + 0.065)
-        if braces:
-            for s in (-1, 1):
-                props_lib.rod(p, "metal_galv", (x0 * 0.54, s * 0.06, z - 0.75), (x0, s * 0.7, z - 0.05), w=0.05, h=0.035)
+        _crossarm_y(p, z, face, reach, braces, middle)
 
 
 def utility_pole():

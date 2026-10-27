@@ -387,28 +387,33 @@ ABDOMEN_SEGMENTS = 8
 PROLEG_SEGMENTS = (2, 3, 4, 5)  # abdominal segments, counted from 0 at the thorax (A3 to A6), that carry a pair of prolegs
 
 
+def _caterpillar_segment(p, i, last):
+    """Segment i of the caterpillar (the last one is `last`): its blob, a yellow mark on an abdominal one and its legs."""
+    y = -9.0 + 2.8 * i
+    z = 2.8 + 1.0 * math.sin(math.pi * i / last)
+    thorax = i < THORAX_SEGMENTS
+    if thorax:
+        w = 2.1                                                          # the thorax is slimmer
+    else:
+        w = 2.9 if i < last else 2.2                                     # the tail tapers
+    with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the first segment is the body the others move against
+        blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (w, 2.3, w * 0.92), n=6, rings=2)
+        if not thorax:
+            p.box("paint_yellow", (0, y, z + w * 0.7), (1.4, 1.0, 0.4))
+        for s in (-1, 1):
+            if thorax:                                                                  # a true leg: a thin straight rod to the ground
+                rod(p, "dark_brown", (s * 1.2, y, z - 1.2), (s * 1.8, y - 0.6, 0.0), 0.35)
+            elif i - THORAX_SEGMENTS in PROLEG_SEGMENTS or i == last:                  # a proleg (stubby) or an anal clasper at the tail
+                p.box("plant_green", (s * 1.5, y - (1.0 if i == last else 0.0), 1.0), (1.2, 1.8, 2.0))
+
+
 @critter("hoppers", "Caterpillar")
 def caterpillar():
     p = new("GN_Caterpillar_01")
     p.motion = "caterpillar"
     last = THORAX_SEGMENTS + ABDOMEN_SEGMENTS - 1
     for i in range(THORAX_SEGMENTS + ABDOMEN_SEGMENTS):
-        y = -9.0 + 2.8 * i
-        z = 2.8 + 1.0 * math.sin(math.pi * i / last)
-        thorax = i < THORAX_SEGMENTS
-        if thorax:
-            w = 2.1                                                          # the thorax is slimmer
-        else:
-            w = 2.9 if i < last else 2.2                                     # the tail tapers
-        with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the first segment is the body the others move against
-            blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (w, 2.3, w * 0.92), n=6, rings=2)
-            if not thorax:
-                p.box("paint_yellow", (0, y, z + w * 0.7), (1.4, 1.0, 0.4))
-            for s in (-1, 1):
-                if thorax:                                                                  # a true leg: a thin straight rod to the ground
-                    rod(p, "dark_brown", (s * 1.2, y, z - 1.2), (s * 1.8, y - 0.6, 0.0), 0.35)
-                elif i - THORAX_SEGMENTS in PROLEG_SEGMENTS or i == last:                  # a proleg (stubby) or an anal clasper at the tail
-                    p.box("plant_green", (s * 1.5, y - (1.0 if i == last else 0.0), 1.0), (1.2, 1.8, 2.0))
+        _caterpillar_segment(p, i, last)
     with moving(p, "Head", (0, -11.0, 2.0)):
         blob(p, "cloth_red", (0, -12.4, 3.3), (2.2, 1.8, 2.1), n=6, rings=1)               # head capsule
     return p
