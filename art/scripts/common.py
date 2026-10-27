@@ -19,6 +19,9 @@ from pathlib import Path
 import bpy
 import bmesh
 
+PALETTE_PNG = "GlobalPalette.png"
+
+
 REPO = Path(__file__).resolve().parents[2]
 
 
@@ -80,7 +83,7 @@ def wanted(name):
 
 
 def palette_path():
-    return out_dir() / "Assets" / "Art" / "Global" / "Palette" / "GlobalPalette.png"
+    return out_dir() / "Assets" / "Art" / "Global" / "Palette" / PALETTE_PNG
 
 # The global palette: a 16 x 16 grid of flat swatches (256 slots). Index = row * 16 + column, row 0 at the top.
 # Append only; indices are baked into the UVs of every exported model. Unused slots are magenta so a wrong
@@ -268,9 +271,9 @@ def _hex_rgb(h):
 def palette_image():
     """The palette as a Blender image, regenerated from PALETTE and saved to palette_path()."""
     size = GRID * SWATCH_PX
-    img = bpy.data.images.get("GlobalPalette.png")      # reused in place so existing materials keep it
+    img = bpy.data.images.get(PALETTE_PNG)      # reused in place so existing materials keep it
     if img is None:
-        img = bpy.data.images.new("GlobalPalette.png", size, size, alpha=False)
+        img = bpy.data.images.new(PALETTE_PNG, size, size, alpha=False)
     img.colorspace_settings.name = "sRGB"
     pixels = [0.0] * (size * size * 4)
     for i in range(GRID * GRID):

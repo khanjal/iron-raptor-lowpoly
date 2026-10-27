@@ -19,6 +19,9 @@ import re
 import sys
 from pathlib import Path
 
+MANIFEST_NAME = "manifest.json"
+
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import catalog
@@ -176,7 +179,7 @@ def apply_themes(doc, assets, entries):
 def catalog_only():
     """Bring site/manifest.json in line with tools/catalog.py (names, tags, which models exist, variants, paints) without the Blender facts: for a change of
     description or of what is folded into a paint. Facts about a model (size, triangles, parts, clips) are kept as they are."""
-    path = ROOT / "site" / "manifest.json"
+    path = ROOT / "site" / MANIFEST_NAME
     doc = json.loads(path.read_text(encoding="utf-8"))
     groups = variant_groups(catalog.ASSETS)
     assets = []
@@ -214,7 +217,7 @@ def catalog_only():
 def part_names_only():
     """Apply art/data/part_names.json to the paintable parts already in site/manifest.json and change nothing else (no GLBs, no Blender facts).
     Every secondary part of every model without presets is first put back to its swatch's own label (that is all auto_parts ever gives it), so an edited or removed entry, or a removed model, takes effect too."""
-    path = ROOT / "site" / "manifest.json"
+    path = ROOT / "site" / MANIFEST_NAME
     doc = json.loads(path.read_text(encoding="utf-8"))
     entries = paints_tool.palette_entries()
     for a in doc["assets"]:
@@ -253,7 +256,7 @@ def main():
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = {"version": 1, "generated_from": "tools/make_manifest.py", "palette": {"glow": glow_swatches(), "common": paints_tool.common_colours(paints_tool.palette_entries()), "realistic": paints_tool.REALISTIC}, "assets": assets}
     apply_themes(doc, assets, paints_tool.palette_entries())
-    (ROOT / "site" / "manifest.json").write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+    (ROOT / "site" / MANIFEST_NAME).write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
     for x in assets:
         counts[x["type"].split("/")[0]] = counts.get(x["type"].split("/")[0], 0) + 1

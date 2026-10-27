@@ -20,6 +20,9 @@ import struct
 import sys
 from pathlib import Path
 
+HEX_COLOUR_RE = r"^#[0-9A-F]{6}$"
+
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paints  # noqa: E402
 import stamp_glb  # noqa: E402
@@ -72,7 +75,7 @@ def check_paints(a, err):
     """paintable: [{part, swatch, hex}] (the parts a person can colour); paints: [{name, hex, swap {swatch index: hex}, was?}], the first the model as exported
     (empty swap), the others each swapping only swatches that are paintable parts; names and chip colours all different.
     `paints` may be missing: the model then offers palette.common for its first part."""
-    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    hexre = re.compile(HEX_COLOUR_RE)
     parts, ps = a.get("paintable"), a.get("paints")
     if not (isinstance(parts, list) and parts):
         err("paints needs paintable: at least one part")
@@ -286,7 +289,7 @@ def check(site=None):
             elif a.get("id") not in byid[v].get("variants", []):
                 errors.append(f"{a.get('id')}: variant {v} does not list it back")
     themes = doc.get("themes", {})
-    hexre = re.compile(r"^#[0-9A-F]{6}$")
+    hexre = re.compile(HEX_COLOUR_RE)
     if not isinstance(themes, dict) or not all(isinstance(t, dict) and t and all(k.isdigit() and int(k) < 256 and hexre.match(str(v)) for k, v in t.items()) for t in themes.values()):
         errors.append("themes should be {name: {swatch index: '#RRGGBB'}}")
         themes = {}
@@ -295,10 +298,10 @@ def check(site=None):
             if isinstance(t, dict) and t.get("name") not in themes:
                 errors.append(f"{a.get('id')}: theme {t.get('name')!r} is not defined in the manifest's themes")
     for g in doc.get("palette", {}).get("glow", []):
-        if not re.match(r"^#[0-9A-F]{6}$", g.get("hex", "")):
+        if not re.match(HEX_COLOUR_RE, g.get("hex", "")):
             errors.append(f"palette glow {g.get('name')}: bad hex")
     common = doc.get("palette", {}).get("common", [])
-    if not (isinstance(common, list) and all(isinstance(c, dict) and isinstance(c.get("name"), str) and re.match(r"^#[0-9A-F]{6}$", str(c.get("hex"))) for c in common)):
+    if not (isinstance(common, list) and all(isinstance(c, dict) and isinstance(c.get("name"), str) and re.match(HEX_COLOUR_RE, str(c.get("hex"))) for c in common)):
         errors.append("palette.common should be a list of {name, hex '#RRGGBB'}")
     elif any(a.get("paintable") and "paints" not in a for a in assets) and not common:
         errors.append("models offer common colours but palette.common is empty")

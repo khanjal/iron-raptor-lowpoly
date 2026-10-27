@@ -44,6 +44,9 @@ import bpy
 from mathutils import Euler, Matrix, Vector
 from mathutils.bvhtree import BVHTree
 
+AUDIT_LAYOUT_PY = "audit_layout.py"
+
+
 HERE = Path(__file__).resolve().parent
 _g = globals()
 SCRIPTS = Path(_g.get("SCRIPTS") or HERE)
@@ -551,7 +554,7 @@ def exposed_tops(parts):
 # =====================================================================================================================
 
 def main():
-    layout = load_plain("audit_layout_for_props", SCRIPTS / "audit_layout.py") if (SCRIPTS / "audit_layout.py").exists() else load_plain("audit_layout_for_props", HERE / "audit_layout.py")
+    layout = load_plain("audit_layout_for_props", SCRIPTS / AUDIT_LAYOUT_PY) if (SCRIPTS / AUDIT_LAYOUT_PY).exists() else load_plain("audit_layout_for_props", HERE / AUDIT_LAYOUT_PY)
     mounted_re = re.compile(layout.WALL_HUNG + "|" + layout.CEILING_HUNG)
 
     built = build_all(SCRIPTS)

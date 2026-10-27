@@ -3,6 +3,19 @@
 Plain data, no Blender: tools/build_site_assets.py (in Blender) reads BUILD, tools/make_manifest.py reads ASSETS.
 """
 
+CARS_PY = "cars.py"
+SHIPS_PY = "ships.py"
+INTERACTIVE_PY = "interactive.py"
+CONTENTS_PY = "contents.py"
+BUILDINGS_PY = "buildings.py"
+SPORTS_PY = "sports.py"
+OFFICE_PY = "office.py"
+INSECT_BROWN_TAGS = "wild garden insect bug brown tiny"
+CUBICLE_PANEL_TYPE = "furniture/cubicle/panel"
+FRIDGE_TYPE = "appliances/kitchen/fridge"
+SOFA_TYPE = "furniture/seating/sofa"
+
+
 # ===== Ids ===========================================================================================================
 # The generators (art/scripts) name a model after its paint as built: GV_Tractor_Green_01. In the browser a colour is a paint, so a model whose colour is only
 # a paint has an id without it. SITE_IDS maps the generator's name to the browser's (BUILD keeps the generator's names; ASSETS, PAINTS and the files in site/
@@ -44,24 +57,24 @@ def site_id(generator_id):
 # kind "static": run the art script `script` with `globals`, keep the models in `ids`.
 # kind "people" / "animals" / "critters": one model at a time, then its clips; the dict maps the art script's key to the model id.
 BUILD = {
-    "cars_sedan": {"script": "cars.py", "globals": {"CAR_LIST": ["Sedan"], "VARIANT_LIST": ["Blue", "Red"]},
+    "cars_sedan": {"script": CARS_PY, "globals": {"CAR_LIST": ["Sedan"], "VARIANT_LIST": ["Blue", "Red"]},
                        "ids": ["GV_Sedan_Blue_01", "GV_Sedan_Red_Damaged_01"]},
-    "cars_taxi": {"script": "cars.py", "globals": {"CAR_LIST": ["Taxi"], "VARIANT_LIST": ["Yellow"], "CONDITIONS": ["New"]}, "ids": ["GV_Taxi_Yellow_01"]},
-    "cars_van": {"script": "cars.py", "globals": {"CAR_LIST": ["Van"], "VARIANT_LIST": ["Brown"], "CONDITIONS": ["New"]}, "ids": ["GV_Van_Brown_01"]},
-    "cars_police": {"script": "cars.py", "globals": {"CAR_LIST": ["Police"], "VARIANT_LIST": ["Sheriff"], "CONDITIONS": ["New"]}, "ids": ["GV_Police_Sheriff_01"]},
-    "cars_ambulance": {"script": "cars.py", "globals": {"CAR_LIST": ["Ambulance"], "CONDITIONS": ["New"]}, "ids": ["GV_Ambulance_White_01"]},
-    "cars_moto": {"script": "cars.py", "globals": {"CAR_LIST": ["Motorcycle"], "VARIANT_LIST": ["Red"], "CONDITIONS": ["New"]}, "ids": ["GV_Motorcycle_Red_01"]},
-    "cars_tractor": {"script": "cars.py", "globals": {"CAR_LIST": ["Tractor"], "VARIANT_LIST": ["Green", "Red"], "CONDITIONS": ["New"]},
+    "cars_taxi": {"script": CARS_PY, "globals": {"CAR_LIST": ["Taxi"], "VARIANT_LIST": ["Yellow"], "CONDITIONS": ["New"]}, "ids": ["GV_Taxi_Yellow_01"]},
+    "cars_van": {"script": CARS_PY, "globals": {"CAR_LIST": ["Van"], "VARIANT_LIST": ["Brown"], "CONDITIONS": ["New"]}, "ids": ["GV_Van_Brown_01"]},
+    "cars_police": {"script": CARS_PY, "globals": {"CAR_LIST": ["Police"], "VARIANT_LIST": ["Sheriff"], "CONDITIONS": ["New"]}, "ids": ["GV_Police_Sheriff_01"]},
+    "cars_ambulance": {"script": CARS_PY, "globals": {"CAR_LIST": ["Ambulance"], "CONDITIONS": ["New"]}, "ids": ["GV_Ambulance_White_01"]},
+    "cars_moto": {"script": CARS_PY, "globals": {"CAR_LIST": ["Motorcycle"], "VARIANT_LIST": ["Red"], "CONDITIONS": ["New"]}, "ids": ["GV_Motorcycle_Red_01"]},
+    "cars_tractor": {"script": CARS_PY, "globals": {"CAR_LIST": ["Tractor"], "VARIANT_LIST": ["Green", "Red"], "CONDITIONS": ["New"]},
                          "ids": ["GV_Tractor_Green_01"]},
-    "cars_pickup": {"script": "cars.py", "globals": {"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, "ids": ["GV_Pickup_Blue_01"]},
-    "ships": {"script": "ships.py", "globals": {"SHIP_LIST": ["Scout", "Dart"]}, "ids": ["SH_Scout_01", "SH_Dart_01"]},
-    "ship_parts": {"script": "ships.py", "globals": {"SHIP_LIST": ["parts"]},
+    "cars_pickup": {"script": CARS_PY, "globals": {"CAR_LIST": ["Pickup"], "VARIANT_LIST": ["Blue"], "CONDITIONS": ["New"]}, "ids": ["GV_Pickup_Blue_01"]},
+    "ships": {"script": SHIPS_PY, "globals": {"SHIP_LIST": ["Scout", "Dart"]}, "ids": ["SH_Scout_01", "SH_Dart_01"]},
+    "ship_parts": {"script": SHIPS_PY, "globals": {"SHIP_LIST": ["parts"]},
                        "ids": ["SH_PowerCell_01", "SH_HullPanel_01", "SH_NavCrystal_01", "SH_EngineCoil_01", "SH_ThrusterNozzle_01", "SH_FuelCanister_01", "SH_ShieldEmitter_01",
                             "SH_CommsArray_01", "SH_BlackBox_01", "SH_WarpRingSegment_01", "SH_LandingLeg_01", "SH_ConsoleModule_01", "SH_Beacon_01", "SH_SpecimenJar_01",
                             "SH_ContainmentPod_01"]},
-    "ship_tools": {"script": "ships.py", "globals": {"SHIP_LIST": ["tools", "debris"]},
+    "ship_tools": {"script": SHIPS_PY, "globals": {"SHIP_LIST": ["tools", "debris"]},
                        "ids": ["SH_RepairTool_01", "SH_Scanner_01", "SH_Translator_01", "SH_HullShard_A_01", "SH_HullShard_B_01", "SH_CableTangle_01", "SH_ScorchedGround_01"]},
-    "ships_more": {"script": "ships.py", "globals": {"SHIP_LIST": ["Cigar", "Triangle", "EscapePod", "ProbeDrone", "DropShip", "MIBCraft", "Mothership"]},
+    "ships_more": {"script": SHIPS_PY, "globals": {"SHIP_LIST": ["Cigar", "Triangle", "EscapePod", "ProbeDrone", "DropShip", "MIBCraft", "Mothership"]},
                        "ids": ["SH_Cigar_01", "SH_Triangle_01", "SH_EscapePod_01", "SH_ProbeDrone_01", "SH_DropShip_01", "SH_MIBCraft_01", "SH_Mothership_01"]},
     "ship_ufo": {"script": "ufo.py", "ids": ["SH_AbductionUfo_01"]},
     "ship_saucer": {"script": "vehicles.py", "globals": {"VEHICLE_LIST": ["ship"]}, "ids": ["GV_CrashedShip_01"]},
@@ -70,30 +83,30 @@ BUILD = {
                                                     "GV_ShipToolRack_01", "GV_ShipSampleRack_01", "GV_ShipHelm_01", "GV_ShipNavScreen_01", "GV_ShipRadarPost_01",
                                                     "GV_ShipCrates_01", "GV_ShipDrums_01", "GV_ShipBunk_01", "GV_ShipMess_01"]},
     "ship_terminals": {"script": "terminals.py", "globals": {"STATE_LAMPS": False}, "ids": ["GV_ShipConsole_01", "GV_ShipTerminalBank_01", "GV_ShipTerminalLaunch_01"]},
-    "int_fridge": {"script": "interactive.py", "globals": {"INTERACTIVE_LIST": ["Fridge"]},
+    "int_fridge": {"script": INTERACTIVE_PY, "globals": {"INTERACTIVE_LIST": ["Fridge"]},
                        "ids": ["GI_Fridge_01", "GI_Fridge_Modern_01", "GI_Fridge_Retro_01", "GI_Fridge_Damaged_01"]},
-    "int_fridge_dispenser": {"script": "interactive.py", "globals": {"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, "ids": ["GI_Fridge_Dispenser_01"]},
-    "int_wardrobe": {"script": "interactive.py", "globals": {"INTERACTIVE_LIST": ["Wardrobe"], "STYLE_LIST": ["Classic", "Damaged"]},
+    "int_fridge_dispenser": {"script": INTERACTIVE_PY, "globals": {"INTERACTIVE_LIST": ["FridgeDispenser"], "STYLE_LIST": ["Classic"]}, "ids": ["GI_Fridge_Dispenser_01"]},
+    "int_wardrobe": {"script": INTERACTIVE_PY, "globals": {"INTERACTIVE_LIST": ["Wardrobe"], "STYLE_LIST": ["Classic", "Damaged"]},
                          "ids": ["GI_Wardrobe_01", "GI_Wardrobe_Damaged_01"]},
-    "int_dresser": {"script": "interactive.py", "globals": {"INTERACTIVE_LIST": ["Dresser", "Toolbox", "Microwave", "Chest", "Mailbox", "Locker"], "STYLE_LIST": ["Classic"]},
+    "int_dresser": {"script": INTERACTIVE_PY, "globals": {"INTERACTIVE_LIST": ["Dresser", "Toolbox", "Microwave", "Chest", "Mailbox", "Locker"], "STYLE_LIST": ["Classic"]},
                         "ids": ["GI_Dresser_01", "GI_Toolbox_01", "GI_Microwave_01", "GI_Chest_01", "GI_Mailbox_01", "GI_Locker_01"]},
     "home_sofa": {"script": "home_styles.py", "globals": {"STYLE_PIECES": ["Sofa", "Armchair", "Bookcase", "Bed_Double"]},
                       "ids": ["GH_Sofa_Modern_01", "GH_Sofa_Retro_01", "GH_Sofa_Damaged_01", "GH_Armchair_Retro_01", "GH_Bookcase_Modern_01", "GH_Bed_Double_Modern_01"]},
     "home_misc": {"script": "home_styles.py", "globals": {"STYLE_PIECES": ["TV_Flat", "TableLamp", "Clock_Wall"]},
                       "ids": ["GD_TV_Flat_Modern_01", "GD_TableLamp_Retro_01", "GD_Clock_Wall_Retro_01"]},
     "decor": {"script": "decor.py", "globals": {"DECOR_LIST": ["PottedPlant", "NeonSign"]}, "ids": ["GD_PottedPlant_01", "GD_NeonSign_01"]},
-    "food": {"script": "contents.py", "globals": {"CONTENT_LIST": ["Apple", "BreadLoaf", "Pie", "Hamburger"]},
+    "food": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ["Apple", "BreadLoaf", "Pie", "Hamburger"]},
                  "ids": ["FD_Apple_01", "FD_BreadLoaf_01", "FD_Pie_01", "FD_Hamburger_01"]},
-    "food_produce2": {"script": "contents.py", "globals": {"CONTENT_LIST": ['Orange', 'Banana', 'Carrot', 'Tomato', 'Potato', 'Onion', 'Corn', 'Lettuce', 'Cabbage', 'Pumpkin', 'Watermelon'], "EXPORT": True}, "ids": ['FD_Orange_01', 'FD_Banana_01', 'FD_Carrot_01', 'FD_Tomato_01', 'FD_Potato_01', 'FD_Onion_01', 'FD_Corn_01', 'FD_Lettuce_01', 'FD_Cabbage_01', 'FD_Pumpkin_01', 'FD_Watermelon_01']},
-    "food_bakery2": {"script": "contents.py", "globals": {"CONTENT_LIST": ['Baguette', 'Cake', 'Donut', 'CookieJar'], "EXPORT": True}, "ids": ['FD_Baguette_01', 'FD_Cake_01', 'FD_Donut_01', 'FD_CookieJar_01']},
-    "food_dairy2": {"script": "contents.py", "globals": {"CONTENT_LIST": ['MilkCarton', 'MilkBottle', 'EggCarton', 'CheeseWedge', 'Butter', 'JuiceBox'], "EXPORT": True}, "ids": ['FD_MilkCarton_01', 'FD_MilkBottle_01', 'FD_EggCarton_01', 'FD_CheeseWedge_01', 'FD_Butter_01', 'FD_JuiceBox_01']},
-    "food_prepared2": {"script": "contents.py", "globals": {"CONTENT_LIST": ['Steak', 'Sausages', 'Drumstick', 'TurkeyRoast', 'Fish', 'HotDog', 'PizzaBox', 'Sandwich', 'TVDinner'], "EXPORT": True}, "ids": ['FD_Steak_01', 'FD_Sausages_01', 'FD_Drumstick_01', 'FD_TurkeyRoast_01', 'FD_Fish_01', 'FD_HotDog_01', 'FD_PizzaBox_01', 'FD_Sandwich_01', 'FD_TVDinner_01']},
-    "food_drinks": {"script": "contents.py", "globals": {"CONTENT_LIST": ['SodaCan_Red', 'BeerCan', 'BeerBottle', 'WaterBottle', 'WineBottle', 'WhiskeyBottle', 'CoffeeCan']}, "ids": ['FD_SodaCan_Red_01', 'FD_BeerCan_01', 'FD_BeerBottle_01', 'FD_WaterBottle_01', 'FD_WineBottle_01', 'FD_WhiskeyBottle_01', 'FD_CoffeeCan_01']},
-    "food_canned": {"script": "contents.py", "globals": {"CONTENT_LIST": ['Can_Soup', 'Can_Beans', 'Jar_Pickles', 'Jar_Jam', 'Ketchup', 'Mustard', 'PeanutButter']}, "ids": ['FD_Can_Soup_01', 'FD_Can_Beans_01', 'FD_Jar_Pickles_01', 'FD_Jar_Jam_01', 'FD_Ketchup_01', 'FD_Mustard_01', 'FD_PeanutButter_01']},
-    "food_boxed": {"script": "contents.py", "globals": {"CONTENT_LIST": ['CerealBox', 'PastaBox', 'CrackerBox', 'FlourSack', 'SugarBag', 'ChipsBag', 'CandyBar']}, "ids": ['FD_CerealBox_01', 'FD_PastaBox_01', 'FD_CrackerBox_01', 'FD_FlourSack_01', 'FD_SugarBag_01', 'FD_ChipsBag_01', 'FD_CandyBar_01']},
-    "food_pet": {"script": "contents.py", "globals": {"CONTENT_LIST": ['DogBone', 'CatFoodTin', 'HayFlake', 'SeedBag']}, "ids": ['FD_DogBone_01', 'FD_CatFoodTin_01', 'FD_HayFlake_01', 'FD_SeedBag_01']},
-    "food_clothes": {"script": "contents.py", "globals": {"CONTENT_LIST": ['Shirt_Hanger', 'Jacket_Hanger', 'Dress_Hanger', 'Pants_Folded', 'Towel_Folded', 'Shoes_Pair', 'Scarf']}, "ids": ['FD_Shirt_Hanger_01', 'FD_Jacket_Hanger_01', 'FD_Dress_Hanger_01', 'FD_Pants_Folded_01', 'FD_Towel_Folded_01', 'FD_Shoes_Pair_01', 'FD_Scarf_01']},
-    "food_produce": {"script": "contents.py", "globals": {"CONTENT_LIST": ["Apple_Green", "Apple_Yellow", "BananaBunch", "Lemon", "Pear", "Grapes_Purple", "Grapes_Green", "Strawberry"]},
+    "food_produce2": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['Orange', 'Banana', 'Carrot', 'Tomato', 'Potato', 'Onion', 'Corn', 'Lettuce', 'Cabbage', 'Pumpkin', 'Watermelon'], "EXPORT": True}, "ids": ['FD_Orange_01', 'FD_Banana_01', 'FD_Carrot_01', 'FD_Tomato_01', 'FD_Potato_01', 'FD_Onion_01', 'FD_Corn_01', 'FD_Lettuce_01', 'FD_Cabbage_01', 'FD_Pumpkin_01', 'FD_Watermelon_01']},
+    "food_bakery2": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['Baguette', 'Cake', 'Donut', 'CookieJar'], "EXPORT": True}, "ids": ['FD_Baguette_01', 'FD_Cake_01', 'FD_Donut_01', 'FD_CookieJar_01']},
+    "food_dairy2": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['MilkCarton', 'MilkBottle', 'EggCarton', 'CheeseWedge', 'Butter', 'JuiceBox'], "EXPORT": True}, "ids": ['FD_MilkCarton_01', 'FD_MilkBottle_01', 'FD_EggCarton_01', 'FD_CheeseWedge_01', 'FD_Butter_01', 'FD_JuiceBox_01']},
+    "food_prepared2": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['Steak', 'Sausages', 'Drumstick', 'TurkeyRoast', 'Fish', 'HotDog', 'PizzaBox', 'Sandwich', 'TVDinner'], "EXPORT": True}, "ids": ['FD_Steak_01', 'FD_Sausages_01', 'FD_Drumstick_01', 'FD_TurkeyRoast_01', 'FD_Fish_01', 'FD_HotDog_01', 'FD_PizzaBox_01', 'FD_Sandwich_01', 'FD_TVDinner_01']},
+    "food_drinks": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['SodaCan_Red', 'BeerCan', 'BeerBottle', 'WaterBottle', 'WineBottle', 'WhiskeyBottle', 'CoffeeCan']}, "ids": ['FD_SodaCan_Red_01', 'FD_BeerCan_01', 'FD_BeerBottle_01', 'FD_WaterBottle_01', 'FD_WineBottle_01', 'FD_WhiskeyBottle_01', 'FD_CoffeeCan_01']},
+    "food_canned": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['Can_Soup', 'Can_Beans', 'Jar_Pickles', 'Jar_Jam', 'Ketchup', 'Mustard', 'PeanutButter']}, "ids": ['FD_Can_Soup_01', 'FD_Can_Beans_01', 'FD_Jar_Pickles_01', 'FD_Jar_Jam_01', 'FD_Ketchup_01', 'FD_Mustard_01', 'FD_PeanutButter_01']},
+    "food_boxed": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['CerealBox', 'PastaBox', 'CrackerBox', 'FlourSack', 'SugarBag', 'ChipsBag', 'CandyBar']}, "ids": ['FD_CerealBox_01', 'FD_PastaBox_01', 'FD_CrackerBox_01', 'FD_FlourSack_01', 'FD_SugarBag_01', 'FD_ChipsBag_01', 'FD_CandyBar_01']},
+    "food_pet": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['DogBone', 'CatFoodTin', 'HayFlake', 'SeedBag']}, "ids": ['FD_DogBone_01', 'FD_CatFoodTin_01', 'FD_HayFlake_01', 'FD_SeedBag_01']},
+    "food_clothes": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ['Shirt_Hanger', 'Jacket_Hanger', 'Dress_Hanger', 'Pants_Folded', 'Towel_Folded', 'Shoes_Pair', 'Scarf']}, "ids": ['FD_Shirt_Hanger_01', 'FD_Jacket_Hanger_01', 'FD_Dress_Hanger_01', 'FD_Pants_Folded_01', 'FD_Towel_Folded_01', 'FD_Shoes_Pair_01', 'FD_Scarf_01']},
+    "food_produce": {"script": CONTENTS_PY, "globals": {"CONTENT_LIST": ["Apple_Green", "Apple_Yellow", "BananaBunch", "Lemon", "Pear", "Grapes_Purple", "Grapes_Green", "Strawberry"]},
                          "ids": ["FD_BananaBunch_01", "FD_Lemon_01", "FD_Pear_01",
                               "FD_Grapes_Green_01", "FD_Strawberry_01"]},
     "farm": {"script": "props_farm.py", "globals": {"PROP_LIST": ["barrel", "wheelbarrow", "scarecrow", "hay_round", "doghouse"]},
@@ -102,31 +115,31 @@ BUILD = {
     "tools_more": {"script": "tools_more.py", "ids": ['GT_Plunger_01', 'GT_RopeCoil_01', 'GT_Sawhorse_01', 'GT_PaintCan_01', 'GT_PruningShears_01', 'GT_FirePoker_01', 'GT_HoseCoil_01', 'GT_Sprinkler_01', 'GT_CordReel_01', 'GT_HandTruck_01']},
     "tools_extra": {"script": "tools_extra.py", "ids": ['GT_Mallet_01', 'GT_ClothesIron_01', 'GT_BathroomScale_01', 'GT_CordlessDrill_01', 'GT_BenchVise_01', 'GT_SnowShovel_01', 'GT_CarBattery_01', 'GT_BootScraper_01', 'GT_ToiletBrush_01', 'GT_WorkLight_01']},
     "farm_props2": {"script": "props_farm.py", "globals": {"PROP_LIST": ['rake', 'shovel', 'pitchfork', 'crate', 'milk_can', 'hay_square', 'jerrycan', 'feed_sack', 'stool', 'firewood', 'firewood_triangle', 'firewood_small', 'firewood_loose', 'chopping_block', 'fence', 'gate', 'mailbox', 'bare_bulb', 'pole_lamp', 'phone', 'utility_pole', 'utility_pole_corner', 'utility_pole_transformer', 'service_entry', 'floodlight_stand', 'generator', 'trough']}, "ids": ['GT_Rake_01', 'GT_Shovel_01', 'GT_Pitchfork_01', 'GT_Crate_01', 'GT_MilkCan_01', 'GT_HayBale_Square_01', 'GT_Jerrycan_01', 'GT_FeedSack_01', 'GT_Stool_01', 'GT_FirewoodStack_01', 'GT_FirewoodStack_Triangle_01', 'GT_FirewoodStack_Small_01', 'GT_FirewoodPile_Loose_01', 'GT_ChoppingBlock_01', 'GI_FenceSection_01', 'GI_Gate_01', 'GT_MailboxPost_01', 'GL_BareBulb_01', 'GL_PoleLamp_01', 'GE_LandlinePhone_01', 'GL_UtilityPole_01', 'GL_UtilityPoleCorner_01', 'GL_UtilityPoleTransformer_01', 'GL_ServiceEntry_01', 'GL_FloodlightStand_01', 'FM_Generator_01', 'FM_WaterTrough_01']},
-    "bld_farmhouse": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["farmhouse"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_farmhouse": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["farmhouse"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["FM_Farmhouse_White_01", "FM_Farmhouse_White_Damaged_01"]},
-    "bld_barn": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["barn"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_barn": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["barn"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["FM_Barn_Red_01", "FM_Barn_Red_Damaged_01"]},
-    "bld_workshop": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["workshop"], "SKIN_LIST": ["Metal"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_workshop": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["workshop"], "SKIN_LIST": ["Metal"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["FM_Workshop_Metal_01", "FM_Workshop_Metal_Damaged_01"]},
-    "bld_shed": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["shed"], "SKIN_LIST": ["Weathered"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_shed": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["shed"], "SKIN_LIST": ["Weathered"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["FM_Shed_Weathered_01", "FM_Shed_Weathered_Damaged_01"]},
-    "bld_coop": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["coop"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New"]},
+    "bld_coop": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["coop"], "SKIN_LIST": ["Red"], "CONDITIONS": ["New"]},
                       "ids": ["FM_ChickenCoop_Red_01"]},
-    "bld_outhouse": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["outhouse"], "SKIN_LIST": ["Weathered"], "CONDITIONS": ["New"]},
+    "bld_outhouse": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["outhouse"], "SKIN_LIST": ["Weathered"], "CONDITIONS": ["New"]},
                       "ids": ["FM_Outhouse_Weathered_01"]},
-    "bld_well": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["well"], "SKIN_LIST": ["Stone"], "CONDITIONS": ["New"]},
+    "bld_well": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["well"], "SKIN_LIST": ["Stone"], "CONDITIONS": ["New"]},
                       "ids": ["FM_Well_Stone_01"]},
-    "bld_silo": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["silo"], "SKIN_LIST": ["Metal"], "CONDITIONS": ["New"]},
+    "bld_silo": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["silo"], "SKIN_LIST": ["Metal"], "CONDITIONS": ["New"]},
                       "ids": ["FM_Silo_Metal_01"]},
-    "bld_windmill": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["windmill"], "SKIN_LIST": ["White"], "CONDITIONS": ["New"]},
+    "bld_windmill": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["windmill"], "SKIN_LIST": ["White"], "CONDITIONS": ["New"]},
                       "ids": ["FM_Windmill_White_01"]},
-    "bld_trailer": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["trailer"], "SKIN_LIST": ["Beige"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_trailer": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["trailer"], "SKIN_LIST": ["Beige"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["GB_Trailer_Beige_01", "GB_Trailer_Beige_Damaged_01"]},
-    "bld_garage": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["garage"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_garage": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["garage"], "SKIN_LIST": ["White"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["GB_Garage_White_01", "GB_Garage_White_Damaged_01"]},
-    "bld_town_house": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["town_house"], "SKIN_LIST": ["Brick"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_town_house": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["town_house"], "SKIN_LIST": ["Brick"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["GB_TownHouse_Brick_01", "GB_TownHouse_Brick_Damaged_01"]},
-    "bld_diner": {"script": "buildings.py", "globals": {"BUILDING_LIST": ["diner"], "SKIN_LIST": ["Cream"], "CONDITIONS": ["New", "Damaged"]},
+    "bld_diner": {"script": BUILDINGS_PY, "globals": {"BUILDING_LIST": ["diner"], "SKIN_LIST": ["Cream"], "CONDITIONS": ["New", "Damaged"]},
                       "ids": ["GB_Diner_Cream_01", "GB_Diner_Cream_Damaged_01"]},
     "kit": {"script": "kit.py", "globals": {"KIT_LIST": ["Wall_Window"], "SKIN_LIST": ["Brick", "Clapboard", "Barn"]},
                 "ids": ["GK_Wall_Window_Brick_01", "GK_Wall_Window_Barn_01"]},
@@ -139,12 +152,12 @@ BUILD = {
                               "StinkBug": "GN_StinkBug_01", "Housefly": "GN_Housefly_01", "Mosquito": "GN_Mosquito_01", "Wasp": "GN_Wasp_01", "Cockroach": "GN_Cockroach_01", "Cricket": "GN_Cricket_01", "Mantis": "GN_Mantis_01", "Earwig": "GN_Earwig_01",
                               "Aphid": "GN_Aphid_01", "Weevil": "GN_Weevil_01", "StagBeetle": "GN_StagBeetle_01", "Scarab": "GN_Scarab_01", "Scorpion": "GN_Scorpion_01", "WolfSpider": "GN_WolfSpider_01", "OrbWeaver": "GN_OrbWeaver_01", "JumpingSpider": "GN_JumpingSpider_01"},
                     "ids": ['GN_Ladybug_01', 'GN_Beetle_01', 'GN_Firefly_01', 'GN_Honeybee_01', 'GN_Butterfly_Blue_01', 'GN_Moth_01', 'GN_Dragonfly_01', 'GN_Ant_01', 'GN_Grasshopper_01', 'GN_Caterpillar_01', 'GN_Spider_01', 'GN_StinkBug_01', 'GN_Housefly_01', 'GN_Mosquito_01', 'GN_Wasp_01', 'GN_Cockroach_01', 'GN_Cricket_01', 'GN_Mantis_01', 'GN_Earwig_01', 'GN_Aphid_01', 'GN_Weevil_01', 'GN_StagBeetle_01', 'GN_Scarab_01', 'GN_Scorpion_01', 'GN_WolfSpider_01', 'GN_OrbWeaver_01', 'GN_JumpingSpider_01']},
-    "sports_balls": {"script": "sports.py", "globals": {"SPORT_LIST": ["balls"]}, "ids": ['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']},
-    "sports_nets": {"script": "sports.py", "globals": {"SPORT_LIST": ["nets"]}, "ids": ['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']},
-    "sports_gear": {"script": "sports.py", "globals": {"SPORT_LIST": ["gear"]}, "ids": ['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']},
-    "office_furniture": {"script": "office.py", "globals": {"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, "ids": ['GO_Desk_Wood_01', 'GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']},
-    "office_cubicle": {"script": "office.py", "globals": {"OFFICE_LIST": ["cubicle"]}, "ids": ['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']},
-    "office_equipment": {"script": "office.py", "globals": {"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, "ids": ['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']},
+    "sports_balls": {"script": SPORTS_PY, "globals": {"SPORT_LIST": ["balls"]}, "ids": ['GS_Basketball_01', 'GS_Soccerball_01', 'GS_Baseball_01', 'GS_TennisBall_01', 'GS_Football_01', 'GS_Volleyball_01', 'GS_GolfBall_01', 'GS_BowlingBall_01', 'GS_HockeyPuck_01']},
+    "sports_nets": {"script": SPORTS_PY, "globals": {"SPORT_LIST": ["nets"]}, "ids": ['GS_BasketballHoop_01', 'GS_SoccerGoal_01', 'GS_HockeyGoal_01', 'GS_TennisNet_01', 'GS_VolleyballNet_01']},
+    "sports_gear": {"script": SPORTS_PY, "globals": {"SPORT_LIST": ["gear"]}, "ids": ['GS_BaseballBat_Metal_01', 'GS_BaseballGlove_01', 'GS_HomePlate_01', 'GS_BaseballBase_01', 'GS_TennisRacket_01', 'GS_HockeyStick_01', 'GS_GolfClub_01', 'GS_FootballHelmet_01', 'GS_Skateboard_01', 'GS_Dumbbell_01', 'GS_TrainingCone_01', 'GS_Frisbee_01']},
+    "office_furniture": {"script": OFFICE_PY, "globals": {"OFFICE_LIST": ["desks", "seating", "FilingCabinet", "Whiteboard_Stand"]}, "ids": ['GO_Desk_Wood_01', 'GO_Desk_Steel_01', 'GO_Desk_L_01', 'GO_ConferenceTable_01', 'GO_Chair_Office_01', 'GO_FilingCabinet_01', 'GO_Whiteboard_Stand_01']},
+    "office_cubicle": {"script": OFFICE_PY, "globals": {"OFFICE_LIST": ["cubicle"]}, "ids": ['GO_Cubicle_Panel_Low_01', 'GO_Cubicle_Panel_High_01', 'GO_Cubicle_Panel_Glass_01', 'GO_Cubicle_Worksurface_01', 'GO_Cubicle_OverheadBin_01', 'GO_Cubicle_Pod_01']},
+    "office_equipment": {"script": OFFICE_PY, "globals": {"OFFICE_LIST": ["Copier", "Printer_Desktop", "WaterCooler", "Shredder", "Wastebasket", "desktop"]}, "ids": ['GO_Copier_01', 'GO_Printer_Desktop_01', 'GO_WaterCooler_01', 'GO_Shredder_01', 'GO_Wastebasket_01', 'GO_Workstation_01', 'GO_Phone_01']},
     "people": {"kind": "people", "clips": ["Idle", "Walk", "Run", "Sit"],
                    "people": {"farmer": "GP_Farmer_01", "sheriff": "GP_Sheriff_01", "farmer_kid": "GP_FarmerKid_01", "waitress": "GP_Waitress_01", "grey": "GP_Grey_01",
                            "farmer_spouse": "GP_FarmerSpouse_01", "grandparent": "GP_Grandparent_01", "worker": "GP_Worker_01", "deputy": "GP_Deputy_01",
@@ -307,16 +320,16 @@ _a("GN_Ant_01", "Ant", "animals/insect/ant", "wild garden insect bug black tiny"
 _a("GN_Grasshopper_01", "Grasshopper", "animals/insect/grasshopper", "wild field rural insect bug green hopper")
 _a("GN_Caterpillar_01", "Caterpillar", "animals/insect/caterpillar", "wild garden insect bug green larva")
 _a("GN_Spider_01", "Spider", "animals/arachnid/spider", "wild cellar barn bug arachnid brown eight-legs spider")
-_a("GN_StinkBug_01", "Stink bug", "animals/insect/stink-bug", "wild garden insect bug brown tiny")
+_a("GN_StinkBug_01", "Stink bug", "animals/insect/stink-bug", INSECT_BROWN_TAGS)
 _a("GN_Housefly_01", "Housefly", "animals/insect/fly", "wild house insect bug fly grey tiny flying")
 _a("GN_Mosquito_01", "Mosquito", "animals/insect/mosquito", "wild insect bug mosquito grey tiny flying")
 _a("GN_Wasp_01", "Wasp", "animals/insect/wasp", "wild garden insect bug yellow black tiny flying")
 _a("GN_Cockroach_01", "Cockroach", "animals/insect/cockroach", "wild house insect bug brown")
-_a("GN_Cricket_01", "Cricket", "animals/insect/cricket", "wild garden insect bug brown tiny")
+_a("GN_Cricket_01", "Cricket", "animals/insect/cricket", INSECT_BROWN_TAGS)
 _a("GN_Mantis_01", "Praying mantis", "animals/insect/mantis", "wild garden insect bug green")
-_a("GN_Earwig_01", "Earwig", "animals/insect/earwig", "wild garden insect bug brown tiny")
+_a("GN_Earwig_01", "Earwig", "animals/insect/earwig", INSECT_BROWN_TAGS)
 _a("GN_Aphid_01", "Aphid", "animals/insect/aphid", "wild garden insect bug green tiny")
-_a("GN_Weevil_01", "Weevil", "animals/insect/weevil", "wild garden insect bug brown tiny")
+_a("GN_Weevil_01", "Weevil", "animals/insect/weevil", INSECT_BROWN_TAGS)
 _a("GN_StagBeetle_01", "Stag beetle", "animals/insect/stag-beetle", "wild garden insect bug beetle brown black")
 _a("GN_Scarab_01", "Scarab beetle", "animals/insect/scarab", "wild garden insect bug beetle black")
 _a("GN_Scorpion_01", "Scorpion", "animals/arachnid/scorpion", "wild desert arachnid tan stinging bug eight-legs")
@@ -358,9 +371,9 @@ _a("GO_ConferenceTable_01", "Conference table", "furniture/office/conference-tab
 _a("GO_Chair_Office_01", "Office chair", "furniture/office/chair", "office swivel casters seat new")
 _a("GO_FilingCabinet_01", "Filing cabinet", "furniture/office/filing-cabinet", "office steel grey drawers storage new")
 _a("GO_Whiteboard_Stand_01", "Whiteboard on stand", "furniture/office/whiteboard", "office meeting board wheels new")
-_a("GO_Cubicle_Panel_Low_01", "Cubicle panel, low", "furniture/cubicle/panel", "office cubicle partition modular fabric new", "cubicle-panel")
-_a("GO_Cubicle_Panel_High_01", "Cubicle panel, high", "furniture/cubicle/panel", "office cubicle partition modular fabric new", "cubicle-panel")
-_a("GO_Cubicle_Panel_Glass_01", "Cubicle panel, glass top", "furniture/cubicle/panel", "office cubicle partition modular glass new", "cubicle-panel")
+_a("GO_Cubicle_Panel_Low_01", "Cubicle panel, low", CUBICLE_PANEL_TYPE, "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_High_01", "Cubicle panel, high", CUBICLE_PANEL_TYPE, "office cubicle partition modular fabric new", "cubicle-panel")
+_a("GO_Cubicle_Panel_Glass_01", "Cubicle panel, glass top", CUBICLE_PANEL_TYPE, "office cubicle partition modular glass new", "cubicle-panel")
 _a("GO_Cubicle_Worksurface_01", "Cubicle worksurface", "furniture/cubicle/worksurface", "office cubicle desk modular corner new")
 _a("GO_Cubicle_OverheadBin_01", "Cubicle overhead bin", "furniture/cubicle/overhead-bin", "office cubicle storage modular flap new")
 _a("GO_Cubicle_Pod_01", "Cubicle, assembled", "furniture/cubicle/pod", "office cubicle desk partition drawers new")
@@ -388,11 +401,11 @@ _a("GP_Nordic_01", "Nordic alien", "people/alien/nordic", "sci-fi alien tall pal
 _a("GP_Shadow_01", "Shadow entity", "people/alien/shadow", "sci-fi alien tall dark glow horror humanoid")
 _a("GP_Reptilian_01", "Reptilian alien", "people/alien/reptilian", "sci-fi alien green scaled tail crest humanoid")
 # appliances and storage that open
-_a("GI_Fridge_01", "Fridge, two-door", "appliances/kitchen/fridge", "classic kitchen white new cold two-door freezer-top", "fridge")
-_a("GI_Fridge_Modern_01", "Fridge, French door", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
-_a("GI_Fridge_Dispenser_01", "Fridge, ice and water dispenser", "appliances/kitchen/fridge", "modern kitchen steel new cold french-door bottom-freezer drawer ice water dispenser", "fridge")
-_a("GI_Fridge_Retro_01", "Fridge, retro", "appliances/kitchen/fridge", "retro kitchen cream rounded new cold single-door", "fridge")
-_a("GI_Fridge_Damaged_01", "Fridge, rusty", "appliances/kitchen/fridge", "kitchen rusty damaged abandoned cold", "fridge")
+_a("GI_Fridge_01", "Fridge, two-door", FRIDGE_TYPE, "classic kitchen white new cold two-door freezer-top", "fridge")
+_a("GI_Fridge_Modern_01", "Fridge, French door", FRIDGE_TYPE, "modern kitchen steel new cold french-door bottom-freezer drawer", "fridge")
+_a("GI_Fridge_Dispenser_01", "Fridge, ice and water dispenser", FRIDGE_TYPE, "modern kitchen steel new cold french-door bottom-freezer drawer ice water dispenser", "fridge")
+_a("GI_Fridge_Retro_01", "Fridge, retro", FRIDGE_TYPE, "retro kitchen cream rounded new cold single-door", "fridge")
+_a("GI_Fridge_Damaged_01", "Fridge, rusty", FRIDGE_TYPE, "kitchen rusty damaged abandoned cold", "fridge")
 _a("GI_Microwave_01", "Microwave", "appliances/kitchen/microwave", "classic kitchen new")
 _a("GI_Wardrobe_01", "Wardrobe", "furniture/storage/wardrobe", "classic bedroom wood new", "wardrobe")
 _a("GI_Wardrobe_Damaged_01", "Wardrobe, ruined", "furniture/storage/wardrobe", "bedroom wood damaged abandoned", "wardrobe")
@@ -402,9 +415,9 @@ _a("GI_Locker_01", "Locker", "furniture/storage/locker", "classic metal new scho
 _a("GI_Toolbox_01", "Toolbox", "farm/tools/toolbox", "rural workshop red metal new lid")
 _a("GI_Mailbox_01", "Mailbox", "farm/structures/mailbox", "rural outdoor post new flap")
 # furniture and decor in their styles
-_a("GH_Sofa_Modern_01", "Sofa, modern", "furniture/seating/sofa", "modern living-room grey new", "sofa")
-_a("GH_Sofa_Retro_01", "Sofa, retro", "furniture/seating/sofa", "retro living-room tufted new", "sofa")
-_a("GH_Sofa_Damaged_01", "Sofa, slashed", "furniture/seating/sofa", "living-room damaged abandoned", "sofa")
+_a("GH_Sofa_Modern_01", "Sofa, modern", SOFA_TYPE, "modern living-room grey new", "sofa")
+_a("GH_Sofa_Retro_01", "Sofa, retro", SOFA_TYPE, "retro living-room tufted new", "sofa")
+_a("GH_Sofa_Damaged_01", "Sofa, slashed", SOFA_TYPE, "living-room damaged abandoned", "sofa")
 _a("GH_Armchair_Retro_01", "Armchair, retro", "furniture/seating/armchair", "retro living-room new")
 _a("GH_Bed_Double_Modern_01", "Double bed, modern", "furniture/bedroom/bed", "modern bedroom new")
 _a("GH_Bookcase_Modern_01", "Bookcase, modern", "furniture/storage/bookcase", "modern living-room shelves books new")
