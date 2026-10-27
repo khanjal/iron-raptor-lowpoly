@@ -61,12 +61,23 @@ function bakeSkinned(mesh) {
   return g;
 }
 
+// A skinned mesh works out its bounds from its posed vertices at its first render, which for 10,000 copies is a long first frame, and keeps them while
+// the clip moves it, so a limb could be culled at the screen's edge. Its bounds are made once here, in the still pose with room to move, and copied.
+function roomyBounds(mesh) {
+  mesh.skeleton.update();
+  mesh.computeBoundingSphere();
+  mesh.boundingSphere.radius *= 1.5;
+  mesh.computeBoundingBox();
+  mesh.boundingBox.expandByScalar(mesh.boundingSphere.radius / 3);
+}
+
 // The model as {geometry, material, matrix, owned} pieces, one per mesh, for instancing; a rigged one in the first frame of its Idle clip.
 function piecesOf(gltf) {
   const root = gltf.scene;
-  if (gltf.animations.length) {
+  const pose = gltf.animations.find((c) => c.name === 'Idle') || gltf.animations[0];
+  if (pose) {
     const mixer = new THREE.AnimationMixer(root);
-    mixer.clipAction(gltf.animations.find((c) => c.name === 'Idle') || gltf.animations[0]).play();
+    mixer.clipAction(pose).play();
     mixer.update(0);
   }
   root.updateMatrixWorld(true);
@@ -74,6 +85,7 @@ function piecesOf(gltf) {
   root.traverse((o) => {
     if (!o.isMesh) return;
     const owned = !!o.isSkinnedMesh;
+    if (owned) roomyBounds(o);
     pieces.push({ geometry: owned ? bakeSkinned(o) : o.geometry, material: o.material, matrix: o.matrixWorld.clone(), owned, order: o.renderOrder });
   });
   return pieces;
@@ -133,6 +145,7 @@ async function loadModel(a) {
   state.model = a;
   state.gltf = gltf;
   state.pieces = piecesOf(gltf);
+  state.poseName = (gltf.animations.find((c) => c.name === 'Idle') || gltf.animations[0])?.name || '';
   state.painted = paintedMaterials(gltf, repaintSwap(a));
   return true;
 }
@@ -158,6 +171,8 @@ function cloneRig(source) {
     if (!o.isSkinnedMesh) return;
     const src = originals[k++];
     o.bind(new THREE.Skeleton(src.skeleton.bones.map((b) => bones.get(b.name)), src.skeleton.boneInverses), src.bindMatrix);
+    o.boundingSphere = src.boundingSphere.clone();
+    o.boundingBox = src.boundingBox.clone();
   });
   return copy;
 }
@@ -183,7 +198,7 @@ function buildSeparate(field, n, repaint) {
     if (clip) {
       const mixer = new THREE.AnimationMixer(copy);
       mixer.clipAction(clip).play();
-      mixer.update((i * 0.37) % clip.duration); // each copy at its own point of the loop
+      mixer.update(clip.duration > 0 ? (i * 0.37) % clip.duration : 0); // each copy at its own point of the loop
       state.mixers.push(mixer);
     }
     field.add(copy);
@@ -254,7 +269,7 @@ function build() {
 function clipNote(a, clip, instanced) {
   if (!a.rigged) return '';
   if (!clip) return 'This model has a rig but no clips.';
-  if (instanced) return 'Instanced copies share one still pose (the first frame of Idle): an InstancedMesh is not skinned. Animating them takes baked vertex-animation textures.';
+  if (instanced) return `Instanced copies share one still pose (the first frame of ${state.poseName}): an InstancedMesh is not skinned. Animating them takes baked vertex-animation textures.`;
   return '';
 }
 
@@ -262,7 +277,7 @@ function syncClip() {
   const a = state.model, clip = a.rigged ? motionClip(state.gltf) : null, instanced = $('mode').value === 'instanced';
   const usable = !!clip && !instanced;
   $('clip').disabled = !usable;
-  $('clip-label').setAttribute('aria-disabled', String(!usable));
+  $('clip-label').classList.toggle('off', !usable);
   $('clip-name').textContent = clip ? clip.name : 'clip';
   state.playing = usable && $('clip').checked;
   $('paint').disabled = !state.painted.size;
@@ -299,7 +314,13 @@ function fillModels() {
 
 async function pickModel() {
   writeUrl();
-  if (await loadModel(byId.get($('model').value))) build();
+  const a = byId.get($('model').value);
+  try {
+    if (await loadModel(a)) build();
+  } catch (e) {
+    console.warn(e);
+    $('note').textContent = 'Could not load ' + a.name + '.';
+  }
 }
 
 fillModels();
@@ -339,7 +360,7 @@ function frame(now) {
 
 // The FPS above is capped by the display (and by the browser, in a hidden tab). This times frames back to back instead: each one advances the clips,
 // renders and reads one pixel back, which waits for the GPU to finish, so the time per frame is the real cost of the scene, uncapped.
-function timeFrames(n = 60) {
+function timeFrames(n = 60, budget = 3000) {
   const gl = renderer.getContext(), px = new Uint8Array(4);
   const step = () => {
     if (state.playing) for (const m of state.mixers) m.update(1 / 60);
@@ -348,15 +369,16 @@ function timeFrames(n = 60) {
   };
   step(); // (the first frame may still upload buffers)
   const t0 = performance.now();
-  for (let i = 0; i < n; i++) step();
-  const ms = (performance.now() - t0) / n, { calls, triangles } = renderer.info.render;
-  $('bench-out').textContent = `${ms.toFixed(1)} ms a frame (${Math.round(1000 / ms)} FPS uncapped)`;
+  let i = 0;
+  while (i < n && (i < 3 || performance.now() - t0 < budget)) { step(); i++; } // a slow scene stops after about `budget` ms, not 60 frames
+  const ms = (performance.now() - t0) / i, { calls, triangles } = renderer.info.render;
+  $('bench-out').textContent = `${ms.toFixed(1)} ms a frame (${Math.round(1000 / ms)} FPS uncapped, ${i} frames)`;
   $('calls').textContent = calls.toLocaleString('en');
   $('tris').textContent = triangles.toLocaleString('en');
-  return { ms, calls, triangles };
+  return { ms, calls, triangles, frames: i };
 }
 $('bench').addEventListener('click', () => timeFrames());
-globalThis.stressTimeFrames = timeFrames; // for measuring from the console: stressTimeFrames(120)
+globalThis.stressTimeFrames = timeFrames; // for measuring from the console: stressTimeFrames(120, 10000)
 
 addEventListener('resize', resize);
 resize();

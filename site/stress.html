@@ -25,7 +25,7 @@
   .controls { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: center; }
   .controls select { width: 100%; min-width: 0; font: inherit; padding: 3px; }
   .checks { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 6px; }
-  .checks label[aria-disabled="true"] { opacity: 0.5; }
+  .checks label.off { opacity: 0.5; }
   .stats { margin: 6px 0 0; display: grid; grid-template-columns: repeat(4, auto); gap: 0 10px; font-variant-numeric: tabular-nums; }
   .stats dt { font-size: 11px; opacity: 0.7; }
   .stats dd { margin: 0; font-weight: 600; }
@@ -57,7 +57,7 @@
     <div><dt>Triangles</dt><dd id="tris">–</dd></div>
     <div><dt>Built in</dt><dd id="built">–</dd></div>
   </dl>
-  <p class="bench"><button id="bench" type="button">Time 60 frames</button> <output id="bench-out" aria-live="polite"></output></p>
+  <p class="bench"><button id="bench" type="button">Time frames</button> <output id="bench-out" aria-live="polite"></output></p>
   <p id="note" class="note" aria-live="polite"></p>
 </section>
 <script type="module" src="stress.js"></script>

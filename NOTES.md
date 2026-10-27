@@ -293,14 +293,14 @@ A session can plan a change and hand a written plan to the `implementer` agent (
 ## Stress test page and instancing notes (2026-10-27, issue #145 steps 1 and 3)
 `site/stress.html` (script `site/stress.js`) draws 100, 1,000 or 10,000 copies of one model as separate meshes or as one `InstancedMesh` per mesh of the model, with the frame rate, draw calls and triangles; README "Stress test" and "Instancing and batching". Instanced copies of a rigged model are its skinned mesh baked once into the first frame of Idle (an `InstancedMesh` is not skinned in three.js r160), so the clip plays only on separate meshes. `check_site.py` now checks `stress.html` and its script the way it checks `index.html`. The viewer's palette repaint is now `paintedTexture` in `site/viewer.js`, shared with the stress page; the viewer's colour picker was tried on the sedan after the move.
 
-**Measured** in the desktop app's built-in browser (Chromium 152, WebGL through ANGLE / Direct3D 11) on a laptop with an Intel Core i9-14900HX, an NVIDIA GeForce RTX 4070 Laptop GPU and 64 GB, Windows 11, an 800 x 600 canvas at device pixel ratio 1. The browser pane was hidden, which holds `requestAnimationFrame` to about one frame a second, so the page's FPS counter read 0.2 to 1 and is **not** what is below: each figure is the page's *Time 60 frames* (frames rendered back to back, each waiting for the GPU by reading a pixel back), as milliseconds a frame and the uncapped FPS that gives. Draw calls are three.js's count for one frame (separate copies outside the view are culled, so a little under one per copy). One run each, so the small figures (under about 3 ms) are noise.
+**Measured** in the desktop app's built-in browser (Chromium 152, WebGL through ANGLE / Direct3D 11) on a laptop with an Intel Core i9-14900HX, an NVIDIA GeForce RTX 4070 Laptop GPU and 64 GB, Windows 11, an 800 x 600 canvas at device pixel ratio 1. The browser pane was hidden, which holds `requestAnimationFrame` to about one frame a second, so the page's FPS counter read 0.2 to 1 and is **not** what is below: each figure is the page's *Time frames* button with 60 frames (frames rendered back to back, each waiting for the GPU by reading a pixel back), as milliseconds a frame and the uncapped FPS that gives. Draw calls are three.js's count for one frame (separate copies outside the view are culled, so a little under one per copy). One run each, so the small figures (under about 3 ms) are noise.
 
 | Model (triangles) | Copies | Separate meshes: ms (FPS), draw calls | InstancedMesh: ms (FPS), draw calls |
 |---|---|---|---|
 | Apple (132, static, 1 mesh) | 100 | 1.2 (830), 96 | 3.2 (noise), 1 |
 | | 1,000 | 4.8 (210), 941 | 1.3 (800), 1 |
 | | 10,000 | 33.8 (30), 9,296 | 2.4 (420), 1 |
-| Sedan (2,052, 11 meshes, 16 draws a copy) | 100 | 8.4 (120), 1,496 | 1.3 (800), 16 |
+| Sedan (2,052, 16 meshes, so 16 draws a copy) | 100 | 8.4 (120), 1,496 | 1.3 (800), 16 |
 | | 1,000 | 72.6 (14), 14,901 | 2.4 (420), 16 |
 | | 10,000 | 781 (1.3), 147,096 | 8.4 (120), 16 |
 | Ant (368, rigged), clip paused | 100 | 8.9 (110), 96 | 0.9 (noise), 1 |
