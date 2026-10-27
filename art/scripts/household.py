@@ -397,16 +397,18 @@ def _bookcase(name, seed, colours, kind):
                 p.cyl("plant_green", (0.22, 0.0, z0 + 0.14), 0.09, 0.28, n=6, top_radius=0.14)
         elif kind == "binders":                    # a study's: tall dark binders and box files, a stack of papers lying flat
             x = _books(p, rng, -0.38, 0.1, z0, clear, ["navy", "fabric_grey", "black", "fabric_brown"], gap=0.03, lean=0.0, thin=(0.05, 0.09), tall=(0.28, 0.37), depth=(0.2, 0.26))
-            for k in range(rng.randint(2, 4)):
-                p.box(rng.choice(["paper", "linen", "cream"]), (0.25, 0.0, z0 + 0.02 + k * 0.04), (0.28 - 0.03 * (k % 2), 0.22, 0.04))
+            # seeded modelling variation, not security
+            for k in range(rng.randint(2, 4)):  # NOSONAR
+                p.box(rng.choice(["paper", "linen", "cream"]), (0.25, 0.0, z0 + 0.02 + k * 0.04), (0.28 - 0.03 * (k % 2), 0.22, 0.04))  # NOSONAR
         elif kind == "bright":                     # a child's: fat colourful picture books, a pile on the floor of the shelf, a toy
             _books(p, rng, -0.38, 0.0 if row == 0 else 0.38, z0, clear, colours, gap=0.15, lean=0.25, thin=(0.05, 0.1), tall=(0.2, 0.32), depth=(0.18, 0.26))
             if row == 0:
                 p.box("fabric_red", (0.2, 0.0, z0 + 0.05), (0.14, 0.14, 0.1))                 # a toy block, in the free stretch
         else:                                      # "mixed": an ordinary shelf with a stack of books lying down on each of two shelves
             x = _books(p, rng, -0.38, 0.15, z0, clear, colours, gap=0.1, lean=0.2)
-            for k in range(rng.randint(2, 4)):
-                p.box(rng.choice(colours), (0.26, 0.0, z0 + 0.025 + k * 0.05), (0.2 + 0.04 * (k % 2), 0.15, 0.05))
+            # seeded modelling variation, not security
+            for k in range(rng.randint(2, 4)):  # NOSONAR
+                p.box(rng.choice(colours), (0.26, 0.0, z0 + 0.025 + k * 0.05), (0.2 + 0.04 * (k % 2), 0.15, 0.05))  # NOSONAR
     return p
 
 

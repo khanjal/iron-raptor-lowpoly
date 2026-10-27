@@ -395,7 +395,8 @@ def ajar(prop):
     import random
     rng = random.Random(sum(ord(c) for c in prop.name) % 1000)
     for role, g in sorted(prop.groups.items()):
-        if g["kind"] == "hinge" and rng.random() < 0.4:
+        # seeded modelling variation, not security
+        if g["kind"] == "hinge" and rng.random() < 0.4:  # NOSONAR
             g["rest"] = round(g["limit"] * rng.uniform(0.12, 0.45), 1)
 
 

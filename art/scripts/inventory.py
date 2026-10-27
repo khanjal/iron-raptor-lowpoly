@@ -27,6 +27,14 @@ INTERACTIONS = ROOT / "art" / "data" / "interactions.json"
 DEV_WORLD = ROOT / "Logs" / "dev_world_inventory.json"
 OUT = ROOT / "docs" / "assets" / "inventory.md"
 
+
+def project_path(arg):
+    """`arg` as a resolved path; ValueError when it is not inside the project."""
+    path = Path(arg).resolve()
+    if not path.is_relative_to(ROOT.resolve()):
+        raise ValueError(f"outside the project: {arg}")
+    return path
+
 STYLES = ("Classic", "Modern", "Retro", "Damaged")
 STYLE_GROUPS = ("Household", "Decor", "Interactive")   # their style folders are a column of the parent's table, not tables
 ANIM_MARK = "@"                                     # the at sign of a clip file, `GP_Humanoid@Idle.fbx`
@@ -106,7 +114,8 @@ def load_dev_world(path=DEV_WORLD):
     if not path.exists():
         return {}
     try:
-        rows = json.loads(path.read_text(encoding="utf-8"))
+        # reads the dev-world file its user names (read-only; the game checkout's Logs/ is outside this repo)
+        rows = json.loads(path.read_text(encoding="utf-8"))  # NOSONAR
         return {r["id"]: r for r in rows if isinstance(r, dict) and "id" in r}
     except (ValueError, KeyError, TypeError):
         return {}
@@ -201,15 +210,19 @@ def anchor(category):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--out", default=str(OUT), help="the markdown file to write")
+    ap.add_argument("--out", default=str(OUT), help="the markdown file to write (inside the project)")
     ap.add_argument("--dev-world", default=None, help="the dev test world's tris/materials file, e.g. Logs/dev_world_inventory.json (opt-in: with no flag the table has no Tris, so it is the same on every machine)")
     ap.add_argument("--check", action="store_true", help="write nothing; exit 1 if the file differs from what would be written")
     args = ap.parse_args(argv)
 
-    models = collect()
+    try:
+        out = project_path(args.out)
+    except ValueError as e:
+        print(f"inventory: {e}", file=sys.stderr)
+        return 2
     dev_world = load_dev_world(args.dev_world) if args.dev_world else {}
+    models = collect()
     text = render(models, dev_world)
-    out = Path(args.out)
     if args.check:
         same = out.exists() and out.read_text(encoding="utf-8") == text
         print("inventory: up to date" if same else f"inventory: {out} is out of date, run art/scripts/inventory.py")

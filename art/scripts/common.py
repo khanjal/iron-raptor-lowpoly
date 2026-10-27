@@ -715,10 +715,13 @@ def describe(coll):
     return {"triangles": tris, "bbox_min": [round(v, 4) for v in lo], "bbox_max": [round(v, 4) for v in hi], "rigged": bool(rigs), "clips": clips, "part_nodes": parts}
 
 
-def _strip_prefix(path):
+def _strip_prefix(path, root):
     """Take the build prefix off the node, mesh and material names in a GLB's JSON chunk (the binary chunk is untouched)."""
     import struct
-    raw = Path(path).read_bytes()
+    path = Path(path).resolve()
+    if path.suffix.lower() != ".glb" or not path.is_relative_to(Path(root).resolve()):
+        raise ValueError(f"not a .glb file inside {root}: {path}")
+    raw = path.read_bytes()
     jlen, jtype = struct.unpack_from("<II", raw, 12)
     doc = json.loads(raw[20:20 + jlen].decode("utf-8"))
     for key in ("nodes", "meshes", "materials", "skins", "animations", "scenes"):
@@ -729,7 +732,8 @@ def _strip_prefix(path):
     body += b" " * (-len(body) % 4)
     rest = raw[20 + jlen:]
     out = struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(body) + len(rest)) + struct.pack("<II", len(body), jtype) + body + rest
-    Path(path).write_bytes(out)
+    # path is a .glb inside the export folder (checked at the top of this function)
+    path.write_bytes(out)  # NOSONAR
 
 
 def export_glb(coll, name, rigged=None, meta=True):
@@ -785,7 +789,7 @@ def export_glb(coll, name, rigged=None, meta=True):
         for o in saved_sel:
             o.select_set(True)
     if name_prefix():
-        _strip_prefix(out)
+        _strip_prefix(out, d)
     if meta:
         md = out_dir() / "meta"
         md.mkdir(parents=True, exist_ok=True)

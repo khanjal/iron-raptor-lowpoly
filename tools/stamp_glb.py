@@ -52,13 +52,14 @@ def stamp_bytes(raw, copyright=COPYRIGHT):
 
 
 def stamp(path, copyright=COPYRIGHT):
-    """Stamp one file in place; True if it changed."""
-    path = Path(path)
+    """Stamp one file in place; True if it changed. ValueError when the file is not inside the project."""
+    path = project_path(path)
     raw = path.read_bytes()
     new = stamp_bytes(raw, copyright)
     if new == raw:
         return False
-    path.write_bytes(new)
+    # the bytes written are this file's own, with one JSON field set; the path was checked by project_path above
+    path.write_bytes(new)  # NOSONAR
     return True
 
 

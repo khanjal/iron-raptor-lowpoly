@@ -931,7 +931,8 @@ def main(argv=None):
     if not path.exists():
         print(f"layout audit: {path} not found: run FarmsteadLayoutDump.Run (see the layout-audit skill)", file=sys.stderr)
         return 2
-    L = Layout(json.loads(path.read_text(encoding="utf-8")))
+    # reads the layout dump its user names (read-only; the game checkout's Logs/ is outside this repo)
+    L = Layout(json.loads(path.read_text(encoding="utf-8")))  # NOSONAR
 
     chosen = [t.strip() for t in args.only.split(",")] if args.only else list(TESTS)
     unknown = [t for t in chosen if t not in TESTS]

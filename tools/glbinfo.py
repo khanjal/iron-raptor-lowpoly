@@ -5,7 +5,8 @@ import sys
 
 
 def read(path):
-    raw = open(path, "rb").read()
+    # reads the GLB its user names (read-only; often a scratch copy outside the repo)
+    raw = open(path, "rb").read()  # NOSONAR
     jlen, _ = struct.unpack_from("<II", raw, 12)
     return json.loads(raw[20:20 + jlen]), raw
 
