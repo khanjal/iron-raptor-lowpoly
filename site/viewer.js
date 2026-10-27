@@ -410,26 +410,32 @@ export class Viewer {
   }
 
   // ---- loop ------------------------------------------------------------------------------------------------------------------------------
+  // One step of a moving part: a spinning one turns while it is on, a door or drawer moves towards its target.
+  _stepPart(st, dt) {
+    if (st.kind === 'spin') {
+      if (st.target > 0.5) {
+        st.angle = (st.angle + dt * 6) % (Math.PI * 2); // about one turn a second, the way a wheel turns at walking pace
+        this._applyPart(st);
+      }
+    } else if (st.s !== st.target) {
+      const step = dt / 0.45; // a door takes about half a second
+      st.s = st.s < st.target ? Math.min(st.target, st.s + step) : Math.max(st.target, st.s - step);
+      this._applyPart(st);
+    }
+  }
+
+  _flickerLights() {
+    if (!this.lights.length) return;
+    const t = performance.now() / 1000;
+    for (const l of this.lights) if (l.flicker) l.light.intensity = l.base * (0.8 + 0.2 * Math.sin(t * 23 + l.phase) * Math.sin(t * 7.3 + l.phase * 2));
+  }
+
   _frame() {
     this._raf = requestAnimationFrame(this._frame);
     const dt = Math.min(this.clock.getDelta(), 0.1);
     if (this.mixer) this.mixer.update(dt);
-    for (const st of Object.values(this.parts)) {
-      if (st.kind === 'spin') {
-        if (st.target > 0.5) {
-          st.angle = (st.angle + dt * 6) % (Math.PI * 2); // about one turn a second, the way a wheel turns at walking pace
-          this._applyPart(st);
-        }
-      } else if (st.s !== st.target) {
-        const step = dt / 0.45; // a door takes about half a second
-        st.s = st.s < st.target ? Math.min(st.target, st.s + step) : Math.max(st.target, st.s - step);
-        this._applyPart(st);
-      }
-    }
-    if (this.lights.length) {
-      const t = performance.now() / 1000;
-      for (const l of this.lights) if (l.flicker) l.light.intensity = l.base * (0.8 + 0.2 * Math.sin(t * 23 + l.phase) * Math.sin(t * 7.3 + l.phase * 2));
-    }
+    for (const st of Object.values(this.parts)) this._stepPart(st, dt);
+    this._flickerLights();
     if (this._hoverPending) { this._setHover(this._partAt(this._hoverPending)); this._hoverPending = null; }
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
