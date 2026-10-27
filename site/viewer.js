@@ -103,7 +103,7 @@ export class Viewer {
       const seen = new Set();
       this.root.traverse((o) => {
         if (o.geometry) o.geometry.dispose();
-        const mats = Array.isArray(o.material) ? o.material : o.material ? [o.material] : [];
+        const mats = Array.isArray(o.material) ? o.material : [o.material].filter(Boolean);
         for (const m of mats) {
           if (seen.has(m)) continue;
           seen.add(m);
@@ -150,7 +150,7 @@ export class Viewer {
     if (!this.root) return;
     const entries = Object.entries(swap || {});
     this.root.traverse((o) => {
-      if (!o.isMesh || !o.material || !o.material.map) return;
+      if (!o.isMesh || !o.material?.map) return;
       const m = o.material;
       if (!m.userData.basePalette) m.userData.basePalette = m.map;
       const base = m.userData.basePalette;

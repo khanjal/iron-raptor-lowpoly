@@ -40,12 +40,12 @@ async function init() {
     return;
   }
   state.assets = doc.assets;
-  state.glow = (doc.palette && doc.palette.glow) || [];
-  state.common = (doc.palette && doc.palette.common) || [];
-  state.realistic = (doc.palette && doc.palette.realistic) || {};
+  state.glow = doc.palette?.glow || [];
+  state.common = doc.palette?.common || [];
+  state.realistic = doc.palette?.realistic || {};
   state.themes = doc.themes || {};
   for (const a of state.assets) {
-    a.haystack = [a.name, a.id, ...(a.aliases || []), a.type.replace(/[\/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
+    a.haystack = [a.name, a.id, ...(a.aliases || []), a.type.replace(/[/-]/g, ' '), ...a.tags].join(' ').toLowerCase();
     state.byId.set(a.id, a);
     for (const old of a.aliases || []) state.was.set(old, { asset: a }); // an id the model had before: old links and bookmarks still open it
     for (const p of a.paints || []) if (p.was) state.was.set(p.was, { asset: a, paint: p.name }); // a model that became a colour or a style keeps its old link
@@ -113,7 +113,7 @@ function buildTree() {
 }
 
 const LABELS = { 'sci-fi': 'Sci-fi' };   // names that keep their hyphen
-function label(s) { return LABELS[s] || s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase()); }
+function label(s) { return LABELS[s] || s.replaceAll('-', ' ').replace(/^./, (c) => c.toUpperCase()); }
 
 function treeList(node, top) {
   const ul = el('ul');
@@ -290,7 +290,10 @@ async function showAsset(a) {
     catch (e) { $('status').textContent = 'WebGL is not available here: ' + e.message; return; }
     window.lowpolyViewer = state.viewer; // handy in the browser console
     state.viewer.onPartsChanged = updatePartButtons;
-    state.viewer.onHover = (role) => { const spin = role && state.viewer.parts[role] && state.viewer.parts[role].kind === 'spin'; $('hint').textContent = role ? `Click to ${spin ? 'start or stop' : 'open or close'}: ${role}` : defaultHint(); };
+    state.viewer.onHover = (role) => {
+      const verb = state.viewer.parts[role]?.kind === 'spin' ? 'start or stop' : 'open or close';
+      $('hint').textContent = role ? `Click to ${verb}: ${role}` : defaultHint();
+    };
   }
   state.viewer.resize();
   $('status').textContent = 'Loading…';
@@ -307,7 +310,7 @@ async function showAsset(a) {
 
 function defaultHint() {
   const a = state.byId.get(state.current);
-  return a && a.interactive ? 'Click a door, drawer, lid or wheel to open or spin it. Drag to orbit, scroll to zoom, right-drag to pan.' : 'Drag to orbit, scroll to zoom, right-drag to pan.';
+  return a?.interactive ? 'Click a door, drawer, lid or wheel to open or spin it. Drag to orbit, scroll to zoom, right-drag to pan.' : 'Drag to orbit, scroll to zoom, right-drag to pan.';
 }
 
 // A breadcrumb click: close the viewer and show that category, opened in the tree like a click there. The filters the model passes (search, tags, features) are kept;
@@ -335,7 +338,7 @@ function fillDetails(a) {
   $('v-tris').textContent = a.triangles.toLocaleString();
   $('v-size').textContent = `${fmt(a.size[0])} × ${fmt(a.size[2])} × ${fmt(a.size[1])} m (width × depth × height)`;
   $('v-id').textContent = a.id;
-  $('v-traits').textContent = [a.rigged ? 'rigged' : 'static', a.interactive ? 'moving parts: ' + Object.keys(a.parts).join(', ') : null, a.lights ? (a.lights === 1 ? '1 light' : a.lights + ' lights') : null, a.clips.length ? 'clips: ' + a.clips.join(', ') : null].filter(Boolean).join('; ');
+  $('v-traits').textContent = [a.rigged ? 'rigged' : 'static', a.interactive ? 'moving parts: ' + Object.keys(a.parts).join(', ') : null, lightsText(a.lights), a.clips.length ? 'clips: ' + a.clips.join(', ') : null].filter(Boolean).join('; ');
   $('v-download').href = a.glb;
   $('v-download').setAttribute('download', a.id + '.glb');
   const tags = $('v-tags');
@@ -390,7 +393,14 @@ function setupLook(a) {
   state.wantPaint = state.wantTheme = null;
 }
 
-function fmt(n) { return n >= 10 ? n.toFixed(1) : n >= 1 ? n.toFixed(2) : n.toFixed(3); }
+function fmt(n) {
+  if (n >= 10) return n.toFixed(1);
+  return n >= 1 ? n.toFixed(2) : n.toFixed(3);
+}
+function lightsText(n) {
+  if (!n) return null;
+  return n === 1 ? '1 light' : n + ' lights';
+}
 
 function setupControls(a, info) {
   const v = state.viewer;
@@ -440,14 +450,14 @@ $('filters-toggle').addEventListener('click', () => {
 });
 $('close').addEventListener('click', () => closeViewer());
 $('maximize').addEventListener('click', () => setMax(!state.max));
-$('reset-view').addEventListener('click', () => state.viewer && state.viewer.resetView());
+$('reset-view').addEventListener('click', () => state.viewer?.resetView());
 $('open-all').addEventListener('click', () => {
   if (!state.viewer) return;
   const states = state.viewer.partStates();
   state.viewer.setAllParts(states.some((s) => s.kind !== 'spin' && !s.open));
 });
 $('clip').addEventListener('change', (e) => state.viewer.setClip(e.target.value));
-$('speed').addEventListener('input', (e) => { const v = parseFloat(e.target.value); state.viewer.setSpeed(v); $('speed-out').textContent = v.toFixed(1) + '×'; });
+$('speed').addEventListener('input', (e) => { const v = Number.parseFloat(e.target.value); state.viewer.setSpeed(v); $('speed-out').textContent = v.toFixed(1) + '×'; });
 $('play').addEventListener('click', () => {
   const v = state.viewer;
   v.setPlaying(!v.playing);

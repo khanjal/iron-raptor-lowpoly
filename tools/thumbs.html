@@ -23,12 +23,13 @@ let done = 0;
 for (const a of doc.assets) {
   if (only && !only.split(',').includes(a.id)) continue;
   const asset = { ...a, glb: '../site/' + a.glb };
-  await v.load(asset);
+  // one canvas, so the models are rendered, saved and replaced one at a time
+  await v.load(asset);  // NOSONAR
   v.setPlaying(false);
   if (v.mixer) v.mixer.update(0); // the Idle pose at time 0
-  await sleep(50);
+  await sleep(50);  // NOSONAR
   const png = v.snapshot();
-  const r = await fetch('/save/' + a.id, { method: 'POST', body: png });
+  const r = await fetch('/save/' + a.id, { method: 'POST', body: png });  // NOSONAR
   if (!r.ok) throw new Error('save failed for ' + a.id);
   log.textContent = `${++done} done: ${a.id}`;
 }
