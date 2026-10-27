@@ -87,9 +87,10 @@ def check(row, sp):
 #   front_in, hind_in   how far the top of each leg (its first ring) is inside the body above the body's underside there: a leg that starts at the shoulder or the hip,
 #             not a post stuck on under the barrel
 #   stifle    how far the stifle (the most forward ring of the hind leg between 30 % of H and the hip) is in front of the hip
-#   hock      how far the hock (the rearmost ring below 30 % of H) is behind the stifle: together, the angle of a hind leg
+#   hock      how far the hock (the rearmost ring below the stifle) is behind the stifle: together, the angle of a hind leg
 #   root      how far the top of the neck's root stands above the withers (a dog's or a cat's neck leaves the chest forward; it must not rise out of the top of the back)
-SHAPE_DEFAULT = {"tuck": 0.0, "front_in": 0.10, "hind_in": 0.10, "stifle": 0.03, "hock": 0.06, "root_max": 0.08}
+SHAPE_NAMES = ("tuck", "front_in", "hind_in", "stifle", "hock", "root")       # the measures; every limit is a minimum but the root's, a maximum
+SHAPE_DEFAULT = dict(zip(SHAPE_NAMES, (0.0, 0.10, 0.10, 0.03, 0.06, 0.08)))
 SHAPE = {**dict.fromkeys(("cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund"), {**SHAPE_DEFAULT, "tuck": 0.08}),
          **dict.fromkeys(("horse", "cow", "fox", "deer"), {**SHAPE_DEFAULT, "tuck": 0.03})}
 
@@ -115,19 +116,20 @@ def measure_shape(sp):
     inside = {kind: (leg["profile"][0][0] - _bottom_at(body, leg["y"] + leg["profile"][0][1])) / H for kind, leg in (("front", front), ("hind", hind))}
     p = hind["profile"]
     stifle = min((r for r in p[1:] if r[0] >= 0.30 * H), key=lambda r: r[1], default=p[0])
-    hock = max((r for r in p if r[0] < 0.30 * H), key=lambda r: r[1], default=p[-1])
+    hock = max((r for r in p if r[0] < stifle[0]), key=lambda r: r[1], default=p[-1])
     root = sp["head"][0]
     withers = max(z + h for y, z, _, h in body if y <= mid)
-    return {"tuck": (loin - chest) / H, "front_in": inside["front"], "hind_in": inside["hind"], "stifle": (p[0][1] - stifle[1]) / H,
-            "hock": (hock[1] - stifle[1]) / H, "root": (root[1] + root[3] - withers) / H}
+    values = ((loin - chest) / H, inside["front"], inside["hind"], (p[0][1] - stifle[1]) / H, (hock[1] - stifle[1]) / H, (root[1] + root[3] - withers) / H)
+    return dict(zip(SHAPE_NAMES, values))
 
 
 def check_shape(row, sp):
     """The shape problems of a species (a list of strings, empty when it passes SHAPE[row], or SHAPE_DEFAULT for a row with none of its own)."""
     lim, m = SHAPE.get(row, SHAPE_DEFAULT), measure_shape(sp)
-    out = [f"{name} {m[name]:.2f} is below {lim[name]:.2f}" for name in ("tuck", "front_in", "hind_in", "stifle", "hock") if m[name] < lim[name]]
-    if m["root"] > lim["root_max"]:
-        out.append(f"root {m['root']:.2f} is above {lim['root_max']:.2f} (the neck rises out of the back)")
+    *minimums, root = SHAPE_NAMES
+    out = [f"{name} {m[name]:.2f} is below {lim[name]:.2f}" for name in minimums if m[name] < lim[name]]
+    if m[root] > lim[root]:
+        out.append(f"root {m[root]:.2f} is above {lim[root]:.2f} (the neck rises out of the back)")
     return out
 
 

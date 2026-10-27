@@ -74,7 +74,7 @@ saved_scene = (bpy.context.scene.render.fps, bpy.context.scene.frame_start, bpy.
 rig.hide_viewport = False                       # pose mode needs a visible rig
 rig.hide_set(False)
 ANIM_PREFIX = globals().get("ANIM_PREFIX", "Quadruped")
-LEG_LENGTH = rig.data.bones["FrontUpper_L"].head_local.z
+LEG_LENGTH = rig.get("gait_leg", rig.data.bones["FrontUpper_L"].head_local.z)     # quadruped_builder.gait_leg (older rigs: the front leg's top)
 if BODY_DROP is None:
     BODY_DROP = round(0.098 * LEG_LENGTH, 3)            # 0.09 m for the cow
 bpy.context.view_layer.objects.active = rig
@@ -104,10 +104,10 @@ def foot_tip(side_name):
     return rig.matrix_world @ pb[side_name].tail
 
 
-def _raise_sign(kind):
-    """+1 when turning the lower leg by a positive angle (the foot kept flat) lifts the foot from the rest pose, else -1. A straight leg folds its foot back and
-    the old hind legs (the 'knee' bone at the hock) forward, the hardcoded FLEX_SIGN; an angled hind leg with the stifle forward and the hock back (the dogs' and
-    cats', issue #125) folds the other way, so the sign is measured on the rig."""
+def _raise_sign(kind, default):
+    """+1 when turning the lower leg by a positive angle (the foot kept flat) lifts the foot from the rest pose, -1 when the negative angle does, `default` when
+    neither does by more than half a millimetre (a lower leg straight under the knee). The old hind legs (the 'knee' bone at the hock) fold forward (-1); an
+    angled hind leg with the stifle forward and the hock back (the dogs' and cats', issue #125) folds the other way, so a hind leg's sign is measured on the rig."""
     lo, ft = f"{kind}Lower_L", f"{kind}Foot_L"
     heights = []
     for m in (4.0, -4.0):
@@ -118,10 +118,12 @@ def _raise_sign(kind):
     set_rot(lo, x=0.0)
     set_rot(ft, x=0.0)
     bpy.context.view_layer.update()
+    if abs(heights[0] - heights[1]) < 0.0005:
+        return default
     return 1.0 if heights[0] > heights[1] else -1.0
 
 
-FLEX_SIGN = {kind: _raise_sign(kind) for kind in ("Front", "Hind")}
+FLEX_SIGN = {"Front": 1.0, "Hind": _raise_sign("Hind", -1.0)}       # a front leg always folds its foot back (the wrist)
 
 
 def solve_lower(kind, side, upper_deg, target_z=0.0):

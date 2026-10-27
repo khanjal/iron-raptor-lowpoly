@@ -89,6 +89,17 @@ class Rebuilt(unittest.TestCase):
         for name in ("tuck", "front_in", "hind_in", "stifle", "hock"):
             self.assertTrue(any(m.startswith(name + " ") for m in misses), (name, misses))
 
+    def test_the_shape_check_fails_a_neck_out_of_the_back(self):
+        sp = dict(SPECIES["collie"])
+        y, z, w, h = sp["head"][0]
+        sp["head"] = [(y, z + 0.08, w, h)] + sp["head"][1:]                          # the neck's root raised 8 cm (15 % of H) above the withers
+        self.assertTrue(any(m.startswith("root ") for m in A.check_shape("collie", sp)))
+
+    def test_a_breed_needs_a_width_for_every_section(self):
+        import species_farm_dog
+        with self.assertRaises(ValueError):
+            species_farm_dog.make_breed("DogTest", species_farm_dog.BREED_SKINS["stray"], size=1.0, body_w=(1.0,) * 7)
+
     def test_the_hen_is_within_its_ranges(self):
         self.assertEqual(A.check_bird(biped_bird.CHICKEN_HEN), [])
         self.assertEqual(set(A.HEN), set(A.measure_bird(biped_bird.CHICKEN_HEN)) - {"H"})

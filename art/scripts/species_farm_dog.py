@@ -6,17 +6,19 @@
 The farm's first dog looked like a sheep with a dark face (the owner's play-test): a tube of a body as deep as a barrel, the head a plain continuation of the neck,
 ears flat on top of it, a stub of a tail, and a black back over a white belly. This one is built from the real animal (docs/art/animal-notes.md, "Farm dog"):
 
-    * a **deep chest and a tucked waist** (the body is 0.27 m deep at the chest and 0.20 m at the loin, not 0.34 m the whole way), so the belly rises and the legs show
-    * a **narrow wedge of a head**: a skull 12 cm wide, a stop, and a muzzle as long as the skull with a nose and a lip line, the lower jaw in a lighter colour
+    * a **deep, keeled chest** (0.28 m) reaching forward of the front legs, **a tucked loin** (the belly at 0.32 m) and a croup that falls to the tail (issue #125's rework:
+      the sections follow a border collie's side profile, `_COLLIE_BODY`)
+    * a **neck** that leaves the top of the chest forward and up at about 45 degrees into **a skull with a stop** and a muzzle about as long as the skull, a nose and a
+      lip line, the lower jaw in a lighter colour
     * **half-folded ears** (an upright base, the tips folded forward), set on the crown at the sides of the skull
     * a **ruff** of fur round the neck, a **medium coat** (no wool: the colour only changes at the markings) and a **tail** carried low with a hook in its tip
-    * a **haunch** and a **shoulder** over the top of each leg (the legs' tops are the old collie's, set lower than the new, slimmer body's sides, so a lofted blob joins each to the body)
+    * **legs that start inside the body**: the front from a shoulder joint with the upper arm's muscle a little proud of the chest, the hind from the hip with a thigh, the
+      stifle forward and the hock back (`_COLLIE_FRONT`, `_COLLIE_HIND`)
     * **dark eyes with a highlight**, set in the front of the skull, looking forward
 
-The legs' profiles (the knee and ankle joints and the foot) are the old collie's (the same numbers as the old `species_pets.make_dog` with `leg=0.22`, removed in issue #125), so the leg bones keep their lengths and
-with them the gait clips' strides and the speeds in `Anims/gait-speeds.json` (regenerated: they moved by under 1%); the legs stand 1-2 cm further out and back and the body above
-them is new, so the other bones' positions moved a little (the bone names and the hierarchy are the shared quadruped rig's, unchanged). Every coat is the same mesh (the same vertices, the
-same bones) with the faces painted differently, so the game can swap one for another on a dog that is already in the scene (`DogSkin`).
+The gait clips are fitted to a leg of 0.28 m (`gait_leg`, the old collie's), so their speeds are as before the rework. The husky and the other breeds are `make_breed` on
+the same numbers. Every coat is the same mesh (the same vertices, the same bones) with the faces painted differently, so the game can swap one for another on a dog that is
+already in the scene (`DogSkin`).
 """
 
 import math
@@ -305,7 +307,8 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
         "coat": lambda c, n: _farm_coat(sk, to_collie(c), n), "head_coat": lambda c, n: _farm_head_coat(sk, head, c, n, to_collie),
         "tail_coat": lambda c, n: _farm_tail_coat(sk, c if tip_at else to_collie(c), n, tip_at),
         "body_keel": _COLLIE_BODY_KEEL, "head_keel": _COLLIE_HEAD_KEEL,
-        "body_n": 10, "head_n": 8, "leg_n": 6, "tail_n": 6, "uv_jitter": True, "scale": shape.get("size", 1.0),                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
+        "body_n": 10, "head_n": 8, "leg_n": 6, "tail_n": 6, "uv_jitter": True, "scale": shape.get("size", 1.0),
+        "gait_leg": leg + 0.03,                                   # the gait's leg length as before the rework (0.28 m for the collie: its speeds stay as they were)                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
         "extras": lambda ctx: _farm_extras(st, ctx)}
 
 
@@ -330,6 +333,8 @@ def make_breed(name, skin, size, leg=_ELBOW, length=1.0, width=1.0, depth=1.0, h
     neck's length factor (the head comes back towards the shoulders) and head_low how far the head is carried lower (a bulldog's sits on its shoulders); nose_k: the nose pad's size."""
     drop = _ELBOW - leg
     bw = body_w or (1.0,) * len(_COLLIE_BODY)
+    if len(bw) != len(_COLLIE_BODY):
+        raise ValueError(f"{name}: {len(bw)} body_w factors for {len(_COLLIE_BODY)} body sections")
     body = [(y * length, z - drop, w * width * k, h * depth) for (y, z, w, h), k in zip(_COLLIE_BODY, bw)]
     y0, z0 = _NECK_ROOT
     ny, nz = y0 + _COLLIE_BODY[0][0] * (length - 1), z0 - drop - head_low       # the neck's root keeps its place behind the front of the chest
