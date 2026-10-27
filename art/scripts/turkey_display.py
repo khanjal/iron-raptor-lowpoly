@@ -50,7 +50,12 @@ def ease(x):
 KEYED = [b.name for b in rig.pose.bones if b.name != "Root"]
 for frame in range(1, FRAMES + 1):
     quadruped_rig.rest_pose(rig)
-    up = ease(frame / RISE) if frame <= RISE else (1.0 if frame <= FALL else ease(1 - (frame - FALL) / (FRAMES - FALL)))
+    if frame <= RISE:
+        up = ease(frame / RISE)
+    elif frame <= FALL:
+        up = 1.0
+    else:
+        up = ease(1 - (frame - FALL) / (FRAMES - FALL))
     t = (frame - RISE) / 24.0
     shake = math.sin(t * 2 * math.pi * 5.0) * 1.6 * up if RISE < frame < FALL else 0.0     # a quiver while the fan is up
     quadruped_rig.set_rot(rig, "Tail1", x=80.0 * up + shake)

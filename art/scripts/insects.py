@@ -396,7 +396,10 @@ def caterpillar():
         y = -9.0 + 2.8 * i
         z = 2.8 + 1.0 * math.sin(math.pi * i / last)
         thorax = i < THORAX_SEGMENTS
-        w = 2.1 if thorax else (2.9 if i < last else 2.2)                                  # the thorax is slimmer, the tail tapers
+        if thorax:
+            w = 2.1                                                          # the thorax is slimmer
+        else:
+            w = 2.9 if i < last else 2.2                                     # the tail tapers
         with (moving(p, f"Seg{i}", (0, y, 1.0)) if i else nullcontext()):                  # the first segment is the body the others move against
             blob(p, "corn_leaf" if i % 2 == 0 else "plant_green", (0, y, z), (w, 2.3, w * 0.92), n=6, rings=2)
             if not thorax:

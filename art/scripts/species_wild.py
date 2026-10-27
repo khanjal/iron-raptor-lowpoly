@@ -73,6 +73,12 @@ def _possum_extras(ctx):
     ctx.make("ears", ears, lambda c_, n: B, ["Ear_L", "Ear_R"], sub=0, smooth=False)
 
 
+def _opossum_head_coat(c, n):
+    if c.y < -0.455:
+        return B
+    return "pink" if c.y < -0.44 else W
+
+
 OPOSSUM = {
     "name": "Opossum", "scale": 0.68,                                  # real: 0.15-0.25 m at the shoulder, 0.36-0.50 m long
     "body": [(-0.22, 0.19, 0.06, 0.07), (-0.14, 0.21, 0.09, 0.10), (0.00, 0.21, 0.10, 0.11), (0.14, 0.20, 0.09, 0.10), (0.22, 0.18, 0.06, 0.07)],
@@ -86,7 +92,7 @@ OPOSSUM = {
     "tail": [(0.18, 0.22, 0.02), (0.14, 0.32, 0.017), (0.08, 0.42, 0.014), (0.03, 0.50, 0.012), (0.0, 0.55, 0.008)],
     "ear_x": 0.05, "ear_y": -0.285, "ear_z": 0.275,
     "coat": lambda c, n: "pink" if c.z < 0.03 else "grey_cat",
-    "head_coat": lambda c, n: B if c.y < -0.455 else ("pink" if c.y < -0.44 else W),
+    "head_coat": _opossum_head_coat,
     "tail_coat": lambda c, n: "pink",
     "eyes": {"gap": 0.12, "inset": 0.48, "up": 0.30, "forward": 0.6, "size": 0.20},
     "extras": _possum_extras,

@@ -621,7 +621,13 @@ def run():
     for key in chosen:
         fn, group = PIECES[key]
         if group != row:
-            row, x, y = group, 0.0, (y + 90.0 if group == "ships" else y + 3.0) if row is not None else 0.0
+            if row is None:
+                y = 0.0
+            elif group == "ships":
+                y += 90.0
+            else:
+                y += 3.0
+            row, x = group, 0.0
         prop = fn()
         obj, coll = prop.finish()
         common.export_fbx(coll, f"Assets/Art/Global/Ships/{prop.name}.fbx")

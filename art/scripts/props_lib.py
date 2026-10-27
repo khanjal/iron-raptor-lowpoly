@@ -134,7 +134,12 @@ class Prop:
         score = 0.0
         for f in faces:
             c = f.calc_center_median()
-            ref = Vector(facing) if facing is not None else (c - Vector(away_from) if away_from is not None else Vector(toward) - c)
+            if facing is not None:
+                ref = Vector(facing)
+            elif away_from is not None:
+                ref = c - Vector(away_from)
+            else:
+                ref = Vector(toward) - c
             score += f.normal.dot(ref)
         if score < 0:
             for f in faces:
@@ -431,7 +436,8 @@ def wall_run(p, colour, a, b, z0, height, openings=(), thick=T, glass=True, door
     bx, by = b
     length = abs(bx - ax) + abs(by - ay)
     along_x = abs(bx - ax) > abs(by - ay)
-    sign = (1 if bx > ax else -1) if along_x else (1 if by > ay else -1)
+    start, end = (ax, bx) if along_x else (ay, by)
+    sign = 1 if end > start else -1
 
     def put(off0, off1, zz0, zz1, col, th=thick, inset=0.0):
         if off1 - off0 < 1e-4 or zz1 - zz0 < 1e-4:

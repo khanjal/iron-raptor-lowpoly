@@ -124,7 +124,7 @@ def _horse_coat(c, n):
 
 
 def _horse_head(c, n):
-    return "brown_coat" if c.y > -1.26 else ("black" if c.y < -1.45 else "brown_coat")
+    return "black" if c.y < -1.45 else "brown_coat"
 
 
 def _horse_extras(ctx):

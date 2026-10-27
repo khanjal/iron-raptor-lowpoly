@@ -574,7 +574,12 @@ def main():
         stem, problems, notes, m = audit(f, mf, ref)
         checked += 1
         line = " ".join(f"{k} {m[k]:.3f}" for k in ("head", "neck", "neck_w", "arm", "leg", "foot") if k in m)
-        status = "FAIL" if problems else ("ok (allowed deviations)" if notes else "ok")
+        if problems:
+            status = "FAIL"
+        elif notes:
+            status = "ok (allowed deviations)"
+        else:
+            status = "ok"
         print(f"{stem:18s} {status:24s} H {m.get('height', 0):.2f} m | {line}")
         for p in problems:
             print("    PROBLEM:", p)

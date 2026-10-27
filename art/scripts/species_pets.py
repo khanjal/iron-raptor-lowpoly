@@ -107,13 +107,18 @@ def make_dog(name, length=1.0, width=1.0, depth=1.0, leg=0.30, head=1.0, head_w=
         ctx.make("nose", lambda bm: cm.add_box(bm, (0, hd[-1][0] - 0.005, hd[-1][1] + 0.005), (0.03 * head, 0.02, 0.025 * head)),
                  lambda c, n: "black", ["Head"], sub=0, smooth=False)
 
+    def tail_coat(c, n):
+        if pattern == "bicolor" and c.z < cz0 - 0.1:
+            return c2
+        return c3 if pattern == "tri" else c1
+
     return {
         "name": name, "body": body, "head": hd,
         "front": {"x": 0.065 * sx, "y": -0.18 * sy, "joints": (1, 3), "profile": fr},
         "hind": {"x": 0.065 * sx, "y": 0.20 * sy, "joints": (2, 4), "profile": hn},
         "tail": tl, "ear_x": ear_x, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.5,
         "coat": coat, "head_coat": head_coat,
-        "tail_coat": lambda c, n: (c2 if pattern == "bicolor" and c.z < cz0 - 0.1 else (c3 if pattern == "tri" else c1)),
+        "tail_coat": tail_coat,
         "eyes": {"gap": 0.20, "inset": 0.55, "up": 0.34, "forward": 0.80, "size": 0.19},                  # a dog's eyes face forward, towards the nose
         "extras": extras}
 
@@ -174,7 +179,9 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
         if pattern == "calico":
             t = _blobs(c, [(0.04 * k, 0.0, cz0 + 0.06 * k, 0.07 * k), (-0.05 * k, 0.14 * k, cz0 + 0.04 * k, 0.06 * k)])
             u = _blobs(c, [(-0.05 * k, -0.1 * k, cz0 + 0.05 * k, 0.06 * k), (0.05 * k, 0.17 * k, cz0 + 0.02 * k, 0.05 * k)])
-            return c1 if t > 0.5 else (c3 if u > 0.5 else c2)
+            if t > 0.5:
+                return c1
+            return c3 if u > 0.5 else c2
         if pattern == "siamese":                           # pale body, dark points
             return c3 if (c.z < 0.07 * k or c.y < -0.28 * k) else c1
         return c1
