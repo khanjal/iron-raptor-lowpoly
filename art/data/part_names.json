@@ -688,5 +688,14 @@
  },
  "GN_Skunk_faceted_01": {
   "paint_white": "Stripes, blaze and tail"
+ },
+ "GN_TurkeyTom_faceted_01": {
+  "dark_brown": "Breast, back and tail",
+  "tan": "Tail band",
+  "pink": "Legs"
+ },
+ "GN_TurkeyHen_faceted_01": {
+  "tan": "Tail band",
+  "pink": "Legs"
  }
 }

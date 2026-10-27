@@ -177,7 +177,8 @@ BUILD = {
     "wildlife": {"kind": "animals", "clips": ["Idle", "Walk"],
                      "animals": {"raccoon": "GN_Raccoon_faceted_01", "opossum": "GN_Opossum_faceted_01", "skunk": "GN_Skunk_faceted_01", "fox": "GN_Fox_faceted_01",
                               "deer_doe": "GN_DeerDoe_faceted_01", "deer_buck": "GN_DeerBuck_faceted_01", "deer_fawn": "GN_DeerFawn_faceted_01", "bear": "GN_Bear_faceted_01"}},
-    "birds": {"kind": "animals", "birds": True, "clips": [], "animals": {"chicken_hen": "GN_ChickenHen_faceted_01"}},
+    "birds": {"kind": "animals", "birds": True, "clips": [], "bird_clips": {"turkey_tom": ["Display"]},
+                  "animals": {"chicken_hen": "GN_ChickenHen_faceted_01", "turkey_tom": "GN_TurkeyTom_faceted_01", "turkey_hen": "GN_TurkeyHen_faceted_01"}},
 }
 
 
@@ -319,6 +320,8 @@ _a("GN_Sheep_faceted_01", "Sheep", "animals/farm/sheep", "rural farm livestock w
 _a("GN_Pig_faceted_01", "Pig", "animals/farm/pig", "rural farm livestock pink animal quadruped")
 _a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horns animal quadruped")
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
+_a("GN_TurkeyTom_faceted_01", "Turkey, tom", "animals/farm/turkey", "rural farm wild poultry bird turkey tom gobbler fan display brown animal", "turkey")
+_a("GN_TurkeyHen_faceted_01", "Turkey, hen", "animals/farm/turkey", "rural farm wild poultry bird turkey hen brown animal", "turkey")
 _a("GN_DogCollie_faceted_01", "Dog, collie", DOG_TYPE, "rural farm pet dog animal quadruped collie")
 _a("GN_DogHusky_faceted_01", "Dog, husky", DOG_TYPE, "pet dog animal quadruped husky grey white")
 _a("GN_DogRetriever_faceted_01", "Dog, golden retriever", DOG_TYPE, "pet dog animal quadruped retriever golden yellow")

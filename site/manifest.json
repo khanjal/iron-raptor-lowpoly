@@ -674,6 +674,112 @@
    ]
   },
   {
+   "id": "GN_TurkeyHen_faceted_01",
+   "name": "Turkey, hen",
+   "type": "animals/farm/turkey",
+   "tags": [
+    "animal",
+    "bird",
+    "brown",
+    "farm",
+    "hen",
+    "poultry",
+    "rural",
+    "turkey",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 766,
+   "size": [
+    0.46,
+    0.86,
+    0.957
+   ],
+   "glb": "models/GN_TurkeyHen_faceted_01.glb",
+   "thumb": "thumbs/GN_TurkeyHen_faceted_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [
+    "GN_TurkeyTom_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Tail band",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Legs",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
+   "id": "GN_TurkeyTom_faceted_01",
+   "name": "Turkey, tom",
+   "type": "animals/farm/turkey",
+   "tags": [
+    "animal",
+    "bird",
+    "brown",
+    "display",
+    "fan",
+    "farm",
+    "gobbler",
+    "poultry",
+    "rural",
+    "tom",
+    "turkey",
+    "wild"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 898,
+   "size": [
+    0.58,
+    1.055,
+    1.261
+   ],
+   "glb": "models/GN_TurkeyTom_faceted_01.glb",
+   "thumb": "thumbs/GN_TurkeyTom_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Display"
+   ],
+   "variants": [
+    "GN_TurkeyHen_faceted_01"
+   ],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 18,
+     "hex": "#7A4A2E"
+    },
+    {
+     "part": "Breast, back and tail",
+     "swatch": 36,
+     "hex": "#4A3322"
+    },
+    {
+     "part": "Tail band",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Legs",
+     "swatch": 16,
+     "hex": "#EFB3AC"
+    }
+   ]
+  },
+  {
    "id": "GN_Ant_01",
    "name": "Ant",
    "type": "animals/insect/ant",

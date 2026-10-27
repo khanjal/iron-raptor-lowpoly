@@ -42,13 +42,16 @@ def feather_specs(sp):
     if not fan:
         return []
     half = fan["count"] // 2
+    droop = math.radians(fan.get("droop", 0.0))                   # a folded tail hangs down behind the bird (degrees below level)
+    bx, by, bz = fan["base"]
     out = []
     for k in range(-half, half + 1):
         a = math.radians(k * fan["rest"])
-        d = (math.sin(a), math.cos(a), -0.03)
+        d = (math.sin(a), math.cos(a), -0.03) if not droop else (math.sin(a) * math.cos(droop), math.cos(a) * math.cos(droop), -math.sin(droop))
         n = math.sqrt(sum(v * v for v in d))
-        out.append({"k": k, "bone": f"TailF{k + half}", "base": tuple(fan["base"]), "dir": tuple(v / n for v in d), "angle": k * fan["rest"],
-                        "length": fan["length"] * (1.0 - 0.18 * (abs(k) / max(half, 1)) ** 2), "width": fan["width"]})
+        base = (bx, by, bz - fan.get("stack", 0.0) * abs(k))       # folded, the outer feathers lie under the middle ones (no two plates in one plane)
+        out.append({"k": k, "bone": f"TailF{k + half}", "base": base, "dir": tuple(v / n for v in d), "angle": k * fan["rest"],
+                        "length": fan["length"] * (1.0 - 0.18 * (abs(k) / max(half, 1)) ** 2), "width": fan["width"], "droop": fan.get("droop", 0.0)})
     return out
 
 
@@ -237,7 +240,7 @@ def _feather_box(c, spec, m, length, thick, bm):
     """One flat box of a fan feather, `m` metres along the feather from its base (the build function the fan hands to ctx.make, with bm last)."""
     bx, by, bz = spec["base"]
     dx, dy, dz = spec["dir"]
-    return c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (spec["width"], length, thick), rot_deg=(-6, 0, -spec["angle"]))
+    return c.add_box(bm, (bx + dx * m, by + dy * m, bz + dz * m), (spec["width"], length, thick), rot_deg=(-6 - spec.get("droop", 0.0), 0, -spec["angle"]))
 
 
 def _turkey_fan(ctx):
@@ -266,7 +269,7 @@ TURKEY_TOM = {
              "profile": [(0.40, 0.02, 0.045, 0.045), (0.22, 0.0, 0.03, 0.03), (0.09, 0.04, 0.022, 0.022), (0.0, 0.04, 0.022, 0.022)]},
     "leg_colour": "pink",
     "tail": [(0.58, 0.38), (0.54, 0.50), (0.50, 0.62)], "tail_spread": 0.0, "tail_boxes": False,
-    "tail_fan": {"count": 11, "rest": 3.0, "open": 13.0, "length": 0.48, "width": 0.098, "base": (0.0, 0.40, 0.58)},         # 11 feathers: 3 degrees apart folded, 13 apart in the display
+    "tail_fan": {"count": 11, "rest": 3.0, "open": 13.0, "length": 0.48, "width": 0.098, "base": (0.0, 0.40, 0.58), "droop": 28.0, "stack": 0.005},   # 11 feathers: 3 degrees apart folded, 13 apart in the display
     "coat": lambda c, n: "dark_brown" if c.z < 0.9 else "brown_coat",
     "wing_coat": lambda c, n: "brown_coat",
     "tail_coat": lambda c, n: "dark_brown",
@@ -284,7 +287,7 @@ TURKEY_HEN = dict(
     leg={"x": 0.07, "joints": (1, 2), "toe": 0.10,
              "profile": [(0.32, 0.02, 0.036, 0.036), (0.18, 0.0, 0.024, 0.024), (0.07, 0.03, 0.018, 0.018), (0.0, 0.03, 0.018, 0.018)]},
     tail=[(0.48, 0.30), (0.45, 0.40), (0.42, 0.50)], tail_boxes=False,
-    tail_fan={"count": 7, "rest": 3.0, "open": 3.0, "length": 0.32, "width": 0.085, "base": (0.0, 0.32, 0.48)},          # the hen's tail does not open
+    tail_fan={"count": 7, "rest": 3.0, "open": 3.0, "length": 0.32, "width": 0.085, "base": (0.0, 0.32, 0.48), "droop": 22.0, "stack": 0.005},   # the hen's tail does not open
     coat=lambda c, n: "brown_coat",
     neck_coat=lambda c, n: "fur_grey" if c.z > 0.74 else "brown_coat",               # a dull grey-brown head
 )

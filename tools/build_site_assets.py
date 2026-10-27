@@ -145,7 +145,7 @@ def run_animal(g, key):
     import species_pets
     if g.get("birds"):
         ns = runpy.run_path(str(SCRIPTS / "gn_birds.py"), init_globals={"SPECIES_LIST": [key]}, run_name="__main__")
-        return ns, []
+        return ns, g.get("bird_clips", {}).get(key, [])            # a bird has no walk yet; the tom turkey has his Display
     ns = runpy.run_path(str(SCRIPTS / "gn_animals.py"), init_globals={"SPECIES_LIST": [key], "STYLES_LIST": ["faceted"]}, run_name="__main__")
     return ns, g["clips"] + (g.get("dog_clips", []) if key in species_pets.DOGS else [])
 
@@ -157,6 +157,9 @@ def add_clip(rig, anim_prefix, clip, key, report):
     init = {"RIG_NAME": rig.name, "ANIM_PREFIX": anim_prefix, "EXPORT": False, "KEEP": True, "REPORT": report}
     if clip == "Idle":
         runpy.run_path(str(SCRIPTS / "quadruped_idle.py"), init_globals=init, run_name="__main__")
+        fps = 24
+    elif clip == "Display":                                         # the tom turkey's tail fan (turkey_display.py: 24 fps, it starts and ends folded)
+        runpy.run_path(str(SCRIPTS / "turkey_display.py"), init_globals={"RIG_NAME": rig.name}, run_name="__main__")
         fps = 24
     else:
         init["GAIT"] = clip.lower()

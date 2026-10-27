@@ -58,7 +58,7 @@ for frame in range(1, FRAMES + 1):
         up = ease(1 - (frame - FALL) / (FRAMES - FALL))
     t = (frame - RISE) / 24.0
     shake = math.sin(t * 2 * math.pi * 5.0) * 1.6 * up if RISE < frame < FALL else 0.0     # a quiver while the fan is up
-    quadruped_rig.set_rot(rig, "Tail1", x=80.0 * up + shake)
+    quadruped_rig.set_rot(rig, "Tail1", x=(80.0 + biped_bird.TURKEY_TOM["tail_fan"].get("droop", 0.0)) * up + shake)     # the folded tail hangs `droop` degrees below level
     quadruped_rig.set_rot(rig, "Tail2", x=-4.0 * up)
     fan = biped_bird.TURKEY_TOM["tail_fan"]
     for spec in biped_bird.feather_specs(biped_bird.TURKEY_TOM):                          # open the feathers: each turns about its own Z axis
