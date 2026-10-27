@@ -148,11 +148,11 @@ def _island_parts(tris_of, verts):
     return parts
 
 
-def _crossings(A, B, verts, key):
-    """How many triangle pairs of the parts A and B really cross (pairs that share a corner are a joint)."""
+def _crossings(part_a, part_b, verts, key):
+    """How many triangle pairs of the parts part_a and part_b really cross (pairs that share a corner are a joint)."""
     crossing = 0
-    for ta, tb in A["tree"].overlap(B["tree"]):
-        tri_a, tri_b = A["tris"][ta], B["tris"][tb]
+    for ta, tb in part_a["tree"].overlap(part_b["tree"]):
+        tri_a, tri_b = part_a["tris"][ta], part_b["tris"][tb]
         if {key(i) for i in tri_a} & {key(i) for i in tri_b}:
             continue                                                   # they share a corner: a joint
         na = (verts[tri_a[1]] - verts[tri_a[0]]).cross(verts[tri_a[2]] - verts[tri_a[0]]).normalized()
@@ -162,19 +162,19 @@ def _crossings(A, B, verts, key):
     return crossing
 
 
-def _clip_record(A, B, verts, key, eps):
+def _clip_record(part_a, part_b, verts, key, eps):
     """The clip record of two parts, or None when they do not clip (or only as a band or a plug that is meant to)."""
-    if any(A["lo"][k] > B["hi"][k] + eps or B["lo"][k] > A["hi"][k] + eps for k in range(3)):
+    if any(part_a["lo"][k] > part_b["hi"][k] + eps or part_b["lo"][k] > part_a["hi"][k] + eps for k in range(3)):
         return None
-    crossing = _crossings(A, B, verts, key)
+    crossing = _crossings(part_a, part_b, verts, key)
     if not crossing:
         return None
-    (da, fa), (db, fb) = _sink(A, B, verts), _sink(B, A, verts)
-    if A["closed"] and B["closed"] and max(da, db) < MIN_DEPTH:
+    (da, fa), (db, fb) = _sink(part_a, part_b, verts), _sink(part_b, part_a, verts)
+    if part_a["closed"] and part_b["closed"] and max(da, db) < MIN_DEPTH:
         return None                                                    # a band or label standing a millimetre proud, not a clip
-    if (A["closed"] and fa >= 0.5 and fb <= 0.15) or (B["closed"] and fb >= 0.5 and fa <= 0.15):
+    if (part_a["closed"] and fa >= 0.5 and fb <= 0.15) or (part_b["closed"] and fb >= 0.5 and fa <= 0.15):
         return None                                                    # one solid is plugged into the other (a stem in an apple)
-    return ("clip", (A["lo"], A["hi"]), (B["lo"], B["hi"]), crossing, round(max(da, db) * 1000, 1), (len(A["tris"]), A["closed"], len(B["tris"]), B["closed"]))
+    return ("clip", (part_a["lo"], part_a["hi"]), (part_b["lo"], part_b["hi"]), crossing, round(max(da, db) * 1000, 1), (len(part_a["tris"]), part_a["closed"], len(part_b["tris"]), part_b["closed"]))
 
 
 def clipping(obj, eps=1e-4):
