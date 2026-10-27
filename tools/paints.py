@@ -23,7 +23,7 @@ from array import array
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL_ID = re.compile(r"[A-Za-z0-9_]+")
+MODEL_ID = re.compile(r"\w+", re.ASCII)
 REFUSED = "no:"
 sys.path.insert(0, str(ROOT / "tools"))
 GRID = 16
