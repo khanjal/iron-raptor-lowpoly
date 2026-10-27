@@ -429,12 +429,12 @@ def _tri_ring(z, k, cut=0.94):
     pts = []
     for i in range(3):
         a, b, c = corners[i - 1], corners[i], corners[(i + 1) % 3]
-        pts.append(V3(b[0] + (a[0] - b[0]) * (1 - cut), b[1] + (a[1] - b[1]) * (1 - cut), z))
-        pts.append(V3(b[0] + (c[0] - b[0]) * (1 - cut), b[1] + (c[1] - b[1]) * (1 - cut), z))
-    return [V3(q.x * k, q.y * k, z) for q in pts]
+        pts.append(vec3(b[0] + (a[0] - b[0]) * (1 - cut), b[1] + (a[1] - b[1]) * (1 - cut), z))
+        pts.append(vec3(b[0] + (c[0] - b[0]) * (1 - cut), b[1] + (c[1] - b[1]) * (1 - cut), z))
+    return [vec3(q.x * k, q.y * k, z) for q in pts]
 
 
-def V3(x, y, z):
+def vec3(x, y, z):
     from mathutils import Vector
     return Vector((x, y, z))
 

@@ -245,7 +245,7 @@ def install(common, props_lib, rec):
 
     common.add_box, common.loft = add_box, loft
 
-    Prop = props_lib.Prop
+    prop_cls = props_lib.Prop
 
     def role_of(prop):
         if prop._cur is None:
@@ -265,7 +265,7 @@ def install(common, props_lib, rec):
         return f"{f.f_code.co_name}:{f.f_lineno} {line}"
 
     for name in ("box", "cyl", "loft_rings"):
-        orig = getattr(Prop, name)
+        orig = getattr(prop_cls, name)
 
         def wrapped(self, colour, *a, _orig=orig, **k):
             rec.ctx = {"colour": props_lib.THEME.get(colour, colour), "role": role_of(self), "src": caller()}
@@ -273,7 +273,7 @@ def install(common, props_lib, rec):
                 return _orig(self, colour, *a, **k)
             finally:
                 rec.ctx = None
-        setattr(Prop, name, wrapped)
+        setattr(prop_cls, name, wrapped)
 
 
 def build_all(scripts):

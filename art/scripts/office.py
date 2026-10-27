@@ -155,20 +155,20 @@ def chair_office():
 # ===== Cubicle kit (1.5 m module) ================================================================================
 def _panel(p, cx, cy, length, h, along="x", glass_from=None, t=0.06):
     """One cubicle panel centred on (cx, cy): fabric body, trim posts and cap, feet; glass_from = height above which the panel is glass."""
-    def B(col, a, b, z, sx, sy, sz):
+    def box(col, a, b, z, sx, sy, sz):
         if along == "x":
             p.box(col, (cx + a, cy + b, z), (sx, sy, sz))
         else:
             p.box(col, (cx + b, cy + a, z), (sy, sx, sz))
     top = glass_from if glass_from else h - 0.04
-    B("office_grey", 0, 0, 0.03 + (top - 0.03) / 2, length - 0.06, t - 0.01, top - 0.03)
+    box("office_grey", 0, 0, 0.03 + (top - 0.03) / 2, length - 0.06, t - 0.01, top - 0.03)
     if glass_from:
-        B("clear_glass", 0, 0, (glass_from + h - 0.04) / 2, length - 0.06, t - 0.03, h - 0.04 - glass_from)
-        B("office_dark", 0, 0, glass_from, length - 0.06, t, 0.03)
-    B("office_dark", 0, 0, h - 0.02, length, t, 0.04)
+        box("clear_glass", 0, 0, (glass_from + h - 0.04) / 2, length - 0.06, t - 0.03, h - 0.04 - glass_from)
+        box("office_dark", 0, 0, glass_from, length - 0.06, t, 0.03)
+    box("office_dark", 0, 0, h - 0.02, length, t, 0.04)
     for s in (-1, 1):
-        B("office_dark", s * (length / 2 - 0.015), 0, h / 2, 0.03, t, h)
-        B("office_dark", s * (length / 2 - 0.2), 0, 0.015, 0.06, 0.34, 0.03)
+        box("office_dark", s * (length / 2 - 0.015), 0, h / 2, 0.03, t, h)
+        box("office_dark", s * (length / 2 - 0.2), 0, 0.015, 0.06, 0.34, 0.03)
 
 
 @piece("cubicle", "Panel_Low")

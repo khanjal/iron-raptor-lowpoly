@@ -25,7 +25,7 @@ for _m in (common, props_lib, vehicles):
     importlib.reload(_m)
 Prop = props_lib.Prop
 rod = props_lib.rod
-V = vehicles.V
+V = vehicles.vec3
 
 
 def srod(p, colour, a, b, w=0.06, h=None):

@@ -31,7 +31,7 @@ for _m in (common, props_lib, vehicles, other_vehicles):
     importlib.reload(_m)
 Prop = props_lib.Prop
 wheel = props_lib.wheel
-V = vehicles.V
+V = vehicles.vec3
 
 NAMES = {"truck_blue": "Blue", "cloth_red": "Red", "paint_white": "White", "tractor_green": "Green", "paint_yellow": "Yellow",
          "black": "Black", "tan": "Tan", "fabric_grey": "Grey", "rust_dark": "Brown", "navy": "Navy", "orange_cat": "Orange",

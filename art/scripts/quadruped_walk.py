@@ -252,18 +252,18 @@ def stance_upper(kind, side, x, dy=0.0):
 stance_upper.table = {}
 
 
-def stance_travel(kind, A):
-    """How far the planted hoof moves along Y between hoof strike and lift-off for a swing of +-A degrees."""
+def stance_travel(kind, swing_deg):
+    """How far the planted hoof moves along Y between hoof strike and lift-off for a swing of +-swing_deg degrees."""
     o = OFFSET[f"{kind}Upper_L"]
     ft = f"{kind}Foot_L"
     d = leg_angles.direction[kind] * SLIDE[kind]
     set_body(o % 1.0)
     set_slide(kind, "L", -d)
-    solve_lower(kind, "L", -A)
+    solve_lower(kind, "L", -swing_deg)
     y_strike = foot_tip(ft).y
     set_body((o + STANCE[kind]) % 1.0)
     set_slide(kind, "L", d)
-    solve_lower(kind, "L", A)
+    solve_lower(kind, "L", swing_deg)
     y_lift = foot_tip(ft).y
     set_slide(kind, "L", 0.0)
     return abs(y_lift - y_strike)
