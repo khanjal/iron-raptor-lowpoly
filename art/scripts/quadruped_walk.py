@@ -491,7 +491,7 @@ def joint_side(kind):
 
 for kind in ("Front", "Hind"):
     lo_side, hi_side = joint_side(kind)
-    tolerance = 0.05 * LEG_LENGTH                                  # a straight leg stands a centimetre either side of the line
+    tolerance = (0.10 if kind == "Front" else 0.05) * LEG_LENGTH   # a straight leg stands a little either side of it (a front leg locks a little past straight under load)
     if lo_side < -tolerance < tolerance < hi_side:
         raise RuntimeError(f"{GAIT}: the {kind.lower()} leg's middle joint crosses its top-to-ankle line ({lo_side:+.3f} to {hi_side:+.3f} m): it bends the wrong way")
     print(f"{GAIT}: {kind.lower()} leg's middle joint {'in front of' if lo_side + hi_side > 0 else 'behind'} the line throughout ({lo_side:+.3f} to {hi_side:+.3f} m)")
