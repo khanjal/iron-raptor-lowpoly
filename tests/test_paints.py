@@ -221,8 +221,6 @@ class PartNames(unittest.TestCase):
             self.assertEqual(paints.main(["GV_Sedan_01", "../x"]), 2)
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class CheckAgainstTheGlbs(unittest.TestCase):
@@ -276,3 +274,7 @@ class CheckAgainstTheGlbs(unittest.TestCase):
         with self.assertRaises(ValueError) as caught:
             paints.surface_by_swatch(damaged)
         self.assertIn("do not fit the binary chunk", str(caught.exception))
+
+
+if __name__ == "__main__":
+    unittest.main()
