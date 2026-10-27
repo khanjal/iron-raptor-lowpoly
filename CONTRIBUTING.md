@@ -27,7 +27,7 @@ Generic things in the shared style fit, whatever they are: a wheelbarrow, a park
 
 ## Milestones
 
-The maintainer places each issue in a milestone when it is triaged. Reporters cannot set one and do not need to. A milestone is a theme or goal, not a release (there are no version numbers yet). The 11 milestones are:
+The maintainer places each issue in a milestone when it is triaged. Reporters cannot set one and do not need to. A milestone is a theme or goal, not a release (there are no version numbers yet). The milestones are:
 
 - Trustworthy base
 - Browser and exports
