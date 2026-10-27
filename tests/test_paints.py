@@ -1,4 +1,6 @@
 """Colour variants as a palette swap: the declared paints resolve, a different shape is refused, and the manifest and checker accept the result."""
+import contextlib
+import io
 import json
 import re
 import sys
@@ -20,7 +22,7 @@ class Paints(unittest.TestCase):
     def test_every_declared_paint_resolves(self):
         for base, spec in catalog.PAINTS.items():
             self.assertIn(base, catalog.ASSETS)
-            parts, ps = paints.resolve(spec, ENTRIES)
+            _, ps = paints.resolve(spec, ENTRIES)
             self.assertGreaterEqual(len(ps), 2, base)
             self.assertEqual(ps[0]["swap"], {})
             self.assertEqual(len({p["name"] for p in ps}), len(ps), base)
@@ -207,6 +209,12 @@ class PartNames(unittest.TestCase):
         for a in doc["assets"]:
             labels = [p["part"] for p in a.get("paintable", [])]
             self.assertEqual(len(labels), len(set(labels)), a["id"])
+
+    def test_main_refuses_ids_that_are_not_plain_names(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(paints.main(["../x", "GV_Sedan_01"]), 2)
+            self.assertEqual(paints.main(["check", "/"]), 2)
+            self.assertEqual(paints.main(["GV_Sedan_01", "../x"]), 2)
 
 
 if __name__ == "__main__":

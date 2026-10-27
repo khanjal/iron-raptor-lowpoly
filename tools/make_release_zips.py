@@ -1,7 +1,7 @@
 """Zip the models for a GitHub release (standard library only): one zip of every GLB and one per top-level category.
 
     python tools/make_release_zips.py            # writes dist/iron-raptor-lowpoly-glb-all.zip, dist/iron-raptor-lowpoly-glb-<category>.zip ...
-    python tools/make_release_zips.py OUTDIR
+    python tools/make_release_zips.py OUTDIR     # OUTDIR must be inside the project
 
 Each zip holds `<id>.glb` files at its top level (and `<id>.interactions.json` next to the ones that have moving parts, lights, sounds or switches), plus CREDIT.txt (how to credit under CC BY 4.0) and LICENSE-MODELS. Which models go into which zip
 comes from site/manifest.json (the first part of `type`). Only GLB: the FBX files are not committed, so they cannot be zipped without Blender.
@@ -13,6 +13,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import stamp_glb  # noqa: E402
 CREDIT = """These models are licensed under Creative Commons Attribution 4.0 (CC BY 4.0): free to use in any project, commercial or not, with credit.
 Full text: LICENSE-MODELS (in this zip), https://creativecommons.org/licenses/by/4.0/
 
@@ -58,5 +60,10 @@ def build(out_dir, site=None, root=None):
 
 
 if __name__ == "__main__":
-    for p in build(sys.argv[1] if len(sys.argv) > 1 else ROOT / "dist"):
+    try:
+        target = stamp_glb.project_path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "dist"
+    except ValueError as e:
+        print(e, file=sys.stderr)
+        sys.exit(2)
+    for p in build(target):
         print(f"{p}  {p.stat().st_size / 1e6:.1f} MB")

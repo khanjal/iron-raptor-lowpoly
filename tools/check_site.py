@@ -233,7 +233,7 @@ def check_page(site, errors):
     refs = re.findall(r'(?:src|href)="([^"#?:]+)"', html)
     importmap = re.search(r'<script type="importmap">(.*?)</script>', html, re.S)
     if importmap:
-        refs += [v for v in json.loads(importmap.group(1))["imports"].values()]
+        refs += list(json.loads(importmap.group(1))["imports"].values())
     for r in refs:
         if not (site / r).exists():
             errors.append(f"index.html refers to {r}, which does not exist")
