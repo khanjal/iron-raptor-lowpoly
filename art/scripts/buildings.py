@@ -65,7 +65,8 @@ WRECK = {   # applied after the skin for the Damaged condition: paint faded, met
 }
 
 
-def box_building(p, wall, w, d, floors, floor_h, front=(), back=(), left=(), right=(), upper=None, trim=SLOT_TRIM, door=SLOT_DOOR, base=0.0):
+# one openings list per wall plus the style options, nine buildings call it positionally: a parameter object would be a refactor of its own
+def box_building(p, wall, w, d, floors, floor_h, front=(), back=(), left=(), right=(), upper=None, trim=SLOT_TRIM, door=SLOT_DOOR, base=0.0):  # NOSONAR
     """Four walls of a rectangular building, floor by floor. Openings are for the ground floor; `upper` is a 4-tuple for upper floors."""
     x0, x1, y0, y1 = -w / 2, w / 2, -d / 2, d / 2
     for f in range(floors):
