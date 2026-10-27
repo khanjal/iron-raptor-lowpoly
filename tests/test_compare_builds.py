@@ -114,6 +114,12 @@ class CompareFolders(unittest.TestCase):
     def test_an_unreadable_file_is_a_difference(self):
         self.assert_different(make_glb(SQUARE, TWO_TRIANGLES), make_glb(SQUARE, TWO_TRIANGLES)[:60])
 
+    def test_an_accessor_that_claims_more_than_the_buffer_holds_is_a_difference(self):
+        glb = make_glb(SQUARE, TWO_TRIANGLES)
+        lie = glb.replace(b'"count": 4, "type": "VEC3"', b'"count": 4000000000, "type": "VEC3"')
+        self.assertNotEqual(glb, lie)
+        self.assert_different(glb, lie)
+
     def test_a_model_in_one_build_only(self):
         self.put(self.a, "A.glb", make_glb(SQUARE, [0, 1, 2]))
         self.put(self.b, "B.glb", make_glb(SQUARE, [0, 1, 2]))

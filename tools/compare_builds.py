@@ -44,9 +44,13 @@ def read_accessor(doc, buf, index):
         raise ValueError(f"accessor {index} is sparse or has no buffer view")
     view = doc["bufferViews"][acc["bufferView"]]
     code, width = COMPONENT[acc["componentType"]], WIDTH[acc["type"]]
-    stride = view.get("byteStride") or struct.calcsize(code) * width
+    size = struct.calcsize(code) * width
+    stride = view.get("byteStride") or size
     base = view.get("byteOffset", 0) + acc.get("byteOffset", 0)
-    return [struct.unpack_from("<" + code * width, buf, base + n * stride) for n in range(acc["count"])]
+    count = acc["count"]
+    if not isinstance(count, int) or count < 0 or (count and base + (count - 1) * stride + size > len(buf)):
+        raise ValueError(f"accessor {index} claims {count!r} elements that do not fit the binary chunk")
+    return [struct.unpack_from("<" + code * width, buf, base + n * stride) for n in range(count)]
 
 
 def primitive_accessors(doc):
