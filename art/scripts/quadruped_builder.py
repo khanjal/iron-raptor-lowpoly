@@ -81,7 +81,7 @@ def skeleton(sp):
     }
     for kind, leg in (("Front", sp["front"]), ("Hind", sp["hind"])):
         p, (knee, ankle), x, y0 = leg["profile"], leg["joints"], leg["x"], leg["y"]
-        pt = lambda i: (x, y0 + p[i][1], p[i][0])
+        pt = lambda i: (x + _leg_dx(p[i]), y0 + p[i][1], p[i][0])
         bones[f"{kind}Upper_L"] = (pt(0), pt(knee))
         bones[f"{kind}Lower_L"] = (pt(knee), pt(ankle))
         bones[f"{kind}Foot_L"] = (pt(ankle), (x, y0 + p[-1][1], 0.0))
@@ -91,6 +91,26 @@ def skeleton(sp):
     bones["Tail2"] = (t[a], t[b])
     bones["Tail3"] = (t[b], t[-1])
     return bones
+
+
+def _leg_dx(ring):
+    """A leg ring's sideways offset from the leg's x: a profile ring is (z, dy, hx, hy) or (z, dy, hx, hy, dx) (dx > 0 is outwards, so a top ring with dx < 0 sits inside the body)."""
+    return ring[4] if len(ring) > 4 else 0.0
+
+
+def _section(y, z, w, h, keel, n):
+    """A body or head cross-section: common.ring_y's superellipse, its lower half narrowed by `keel` towards the bottom (0: the plain ring; 0.4: the bottom 40 %
+    narrower than the middle, a rib cage's keel or a jaw)."""
+    from mathutils import Vector
+    if not keel:
+        return common.ring_y(y, 0, z, w, h, n=n)
+    return [Vector((w * u * (1.0 - keel * max(0.0, -v)), y, z + h * v)) for u, v in common._superellipse(n, 2.4)]
+
+
+def _sections(sp, key, n):
+    """The rings of sp[key] ("body" or "head"), with sp[key + "_keel"] (one factor per ring) when the species gives one."""
+    keel = sp.get(key + "_keel") or [0.0] * len(sp[key])
+    return [_section(y, z, w, h, k, n) for (y, z, w, h), k in zip(sp[key], keel)]
 
 
 def _ball(bm, centre, radius, n=6):
@@ -192,9 +212,9 @@ def build(sp, style="smooth", rig_name=None):
     # a species can ask for its own number of sides, whatever the style (the farm dog's head and tail need theirs to read as a dog's; they do not follow the style's)
     body_n = sp.get("body_n", st["body_n"])
     head_n, tail_n = sp.get("head_n", st["head_n"]), sp.get("tail_n", st["tail_n"])
-    ctx.make("body", lambda bm: common.loft(bm, [common.ring_y(y, 0, z, w, h, n=body_n) for y, z, w, h in sp["body"]]),
+    ctx.make("body", lambda bm: common.loft(bm, _sections(sp, "body", body_n)),
              sp["coat"], ["Hips", "Spine", "Chest"], sub=st["sub_body"])
-    ctx.make("head", lambda bm: common.loft(bm, [common.ring_y(y, 0, z, w, h, n=head_n) for y, z, w, h in sp["head"]]),
+    ctx.make("head", lambda bm: common.loft(bm, _sections(sp, "head", head_n)),
              sp.get("head_coat", sp["coat"]), ["Chest", "Neck1", "Neck2", "Head"])
     for s in (-1, 1):
         for kind in ("front", "hind"):
@@ -202,7 +222,7 @@ def build(sp, style="smooth", rig_name=None):
             K = kind.capitalize()
             ctx.make(f"leg_{kind}_{side(s).lower()}",
                      lambda bm, l=leg, s=s: common.loft(
-                         bm, [common.ring_z(z, s * l["x"], l["y"] + dy, hx, hy, n=st["leg_n"]) for z, dy, hx, hy in l["profile"]]),
+                         bm, [common.ring_z(r[0], s * (l["x"] + _leg_dx(r)), l["y"] + r[1], r[2], r[3], n=sp.get("leg_n", st["leg_n"])) for r in l["profile"]]),
                      sp["coat"], [f"{K}{p}_{side(s)}" for p in ("Upper", "Lower", "Foot")])
     ctx.make("tail", lambda bm: common.loft(bm, [common.ring_z(z, 0, y, r, r, n=tail_n) for z, y, r in sp["tail"]]),
              sp.get("tail_coat", sp["coat"]), ["Tail1", "Tail2", "Tail3"], sub=0)

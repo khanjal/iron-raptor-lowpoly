@@ -50,7 +50,7 @@ SKINS = {
 DEFAULT_SKIN = "black_tan"
 
 
-_BODY_Z0 = 0.26
+_ELBOW, _STIFLE = 0.25, 0.28            # the collie's elbow and stifle heights: a breed's legs are squashed below them and its body lowered above them
 SADDLE, PATCHES, PATCH, TAIL_TOP = "saddle", "patches", "patch", "tail_top"     # the coat keys of the breeds' patterns (make_breed, BREED_SKINS)
 
 
@@ -78,10 +78,10 @@ def _pattern(sk, c, saddle=True, stripes=True):
 def _farm_coat(sk, c, n):
     if c.z < 0.075:
         return sk["sock"]
-    if c.z < _BODY_Z0 - 0.01:                                       # a leg
+    if c.z < _ELBOW - 0.01:                                         # a leg below the elbow and the stifle (the upper arm and thigh are the body's colour)
         return sk["legs"]
-    low = c.z - (0.40 if c.y < -0.05 else 0.39)                   # how far below the centre line the face is
-    if c.y < -0.16 and abs(c.x) < 0.075 and ((low < -0.04 and n.y < -0.2) or (c.y < -0.28 and n.y < -0.9)):
+    low = c.z - (0.395 if c.y < -0.05 else 0.42)                  # how far below the centre line the face is
+    if c.y < -0.18 and abs(c.x) < 0.075 and ((low < -0.04 and n.y < -0.2) or (c.y < -0.31 and n.y < -0.9)):
         return sk["chest"]                                       # the front of the chest: its underside and the breast (the body's front cap)
     if n.z < -0.45 or low < -0.085:
         return sk["under"]
@@ -146,30 +146,6 @@ def _farm_ears(ctx, st):
              sub=0, smooth=False)
 
 
-def _farm_haunches(ctx, st):
-    """A haunch over each hind leg and a shoulder over each front leg."""
-    cm, hind_leg, front_leg, sk, drop, thick = ctx.common, st.hind_leg, st.front_leg, st.sk, st.drop, st.thick
-    # a haunch over the top of each hind leg and a shoulder over each front leg: the legs' top rings are the old collie's, and the body above them is slimmer, so a blob
-    # lofted from inside the body down to the leg's own top ring fills the join (skinned to the body bone and the leg's upper bone: the clips slide the upper bones along the body, and the top of the blob must stay with the body while its bottom follows the leg)
-    for kind, leg_, top, wide, inset in (("hind", hind_leg, 0.385 - drop, 0.038 * thick, 0.026), ("front", front_leg, 0.375 - drop, 0.05 * thick, 0.008)):
-        for s in (-1, 1):
-            side = "R" if s < 0 else "L"
-            ring0 = leg_["profile"][0]
-            rings = [cm.ring_z(top, s * (leg_["x"] - inset), leg_["y"] - 0.005, wide, ring0[3] + 0.015, n=6),
-                     cm.ring_z(ring0[0], s * leg_["x"], leg_["y"] + ring0[1], ring0[2], ring0[3], n=6)]
-            blob = ctx.make(f"{'haunch' if kind == 'hind' else 'shoulder'}_{side.lower()}", lambda bm, r=rings: cm.loft(bm, r), lambda c, n: sk["body"],
-                            ["Hips" if kind == "hind" else "Chest", f"{kind.capitalize()}Upper_{side}"], sub=0, smooth=False)
-            # the weights by height, not by distance: the top of the blob (inside the body) is the body bone's alone and the bottom (the leg's own top ring) the leg's alone, with a
-            # smooth blend between, so a clip that slides the leg's upper bone along the body (the dogs' walk, trot and run) drags the bottom of the blob and not its top
-            body_bone, leg_bone = blob.vertex_groups[0].name, blob.vertex_groups[1].name
-            z0 = ring0[0]
-            for v in blob.data.vertices:
-                t = min(max((v.co.z - z0) / (top - z0), 0.0), 1.0)
-                t = t * t * (3.0 - 2.0 * t)
-                blob.vertex_groups[body_bone].add([v.index], t, "REPLACE")
-                blob.vertex_groups[leg_bone].add([v.index], 1.0 - t, "REPLACE")
-
-
 def _farm_nose_and_ruff(ctx, st):
     """The nose pad at the tip of the muzzle and the ruff of fur round the neck."""
     cm, head, shape, sk = ctx.common, st.head, st.shape, st.sk
@@ -179,14 +155,15 @@ def _farm_nose_and_ruff(ctx, st):
     ctx.make("nose", lambda bm: cm.add_box(bm, (0, tip[0] - 0.004, tip[1] + 0.004), (0.050 * pad, 0.032 * pad, 0.036 * pad), taper=0.9),
              lambda c, n: "black", ["Head"], sub=0, smooth=False)
 
-    # the ruff: a collar of fur round the base of the neck, a little proud of it (None: a short-coated dog has none). It is drawn for the collie's neck (root at y -0.24,
-    # z 0.50) and moved and scaled with the breed's (st.neck: the root's y and z, the head's scale, the neck's width factor)
+    # the ruff: a collar of fur round the base of the neck, a little proud of it (None: a short-coated dog has none). It is drawn for the collie's neck (_NECK_ROOT) and moved
+    # and scaled with the breed's (st.neck: the root's y and z, the head's scale, the neck's width factor)
     rw = shape.get("ruff", 1.0)
     if rw is None:
         return
     ny, nz, nk, nw = st.neck
-    rings = [cm.ring_y(ny + (y + 0.24) * nk, 0, nz + (z - 0.50) * nk, hw * rw * nk * nw, hh * rw * nk, n=8)
-             for y, z, hw, hh in ((-0.215, 0.500, 0.088, 0.118), (-0.275, 0.525, 0.078, 0.104), (-0.335, 0.560, 0.072, 0.095))]
+    y0, z0 = _NECK_ROOT
+    rings = [cm.ring_y(ny + (y - y0) * nk, 0, nz + (z - z0) * nk, hw * rw * nk * nw, hh * rw * nk, n=8)
+             for y, z, hw, hh in ((-0.25, 0.445, 0.090, 0.118), (-0.30, 0.480, 0.082, 0.108), (-0.35, 0.530, 0.074, 0.096))]
     ctx.make("ruff", lambda bm: cm.loft(bm, rings), lambda c, n: sk["ruff"], ["Chest", "Neck1", "Neck2"], sub=0, smooth=False)
 
 
@@ -237,31 +214,62 @@ def _farm_lips_and_brows(ctx, st, y, cz, r, w):
 
 def _farm_extras(st, ctx):
     _farm_ears(ctx, st)
-    _farm_haunches(ctx, st)
     _farm_nose_and_ruff(ctx, st)
     y, cz, r, w = _farm_eyes(ctx, st)
     _farm_lips_and_brows(ctx, st, y, cz, r, w)
 
 
-# ---- the collie's body: y runs front (negative) to back, z is the height of the section's centre, then its half width and half height (metres; shoulder height 0.53)
-_COLLIE_BODY = [(-0.30, 0.375, 0.078, 0.098),       # the front of the chest
-                (-0.22, 0.392, 0.112, 0.138),       # the deep chest: 0.27 m from the withers to the breastbone
-                (-0.10, 0.394, 0.112, 0.138),
-                (0.03, 0.404, 0.092, 0.100),        # the tucked waist: the belly rises to 0.30 m
-                (0.17, 0.396, 0.097, 0.112),        # the hips
-                (0.30, 0.382, 0.082, 0.100),
-                (0.35, 0.372, 0.055, 0.075)]
-# ---- the head: neck, skull, stop, long muzzle; y, centre height, half width, half height
-_COLLIE_HEAD = [(-0.24, 0.500, 0.074, 0.105),       # the base of the neck
-                (-0.31, 0.545, 0.066, 0.092),
-                (-0.36, 0.580, 0.062, 0.082),       # the back of the skull
-                (-0.41, 0.588, 0.063, 0.074),       # the widest: the cheeks (the head from the cheeks to the nose is 35 % of the trunk; docs/assets/briefs/animals.md)
-                (-0.47, 0.572, 0.055, 0.062),       # the stop
-                (-0.52, 0.552, 0.046, 0.054),       # the muzzle starts narrow
-                (-0.58, 0.541, 0.042, 0.050),
-                (-0.635, 0.533, 0.038, 0.045)]      # the nose
-# ---- the tail: hangs from the rump, bushy in the middle, a hook forward at the tip (height, y, radius)
-_COLLIE_TAIL = [(0.395, 0.335, 0.026), (0.325, 0.415, 0.036), (0.235, 0.475, 0.042), (0.150, 0.470, 0.027)]
+def _tb(y, top, bottom, w):
+    """A section given by its top and bottom heights: (y, centre height, half width, half height)."""
+    return (y, (top + bottom) / 2, w, (top - bottom) / 2)
+
+
+# ---- the collie (issue #125's rework): a border collie's side profile, 0.535 m to the withers. The back is highest over the shoulders and slopes a little to a croup that
+# falls to the tail; the chest is deep (0.28 m) and reaches forward of the front legs, its underside a keel (the sections' lower halves narrowed by _COLLIE_BODY_KEEL); behind
+# the ribs the belly tucks up to 0.32 m. y, top, bottom, half width (metres)
+_COLLIE_BODY = [_tb(y, top, bottom, w) for y, top, bottom, w in (
+    (-0.34, 0.470, 0.340, 0.060),       # the point of the breastbone, forward of the front legs
+    (-0.303, 0.510, 0.280, 0.085),
+    (-0.230, 0.535, 0.255, 0.105),       # the withers over the deepest chest
+    (-0.138, 0.530, 0.260, 0.112),
+    (-0.046, 0.520, 0.280, 0.105),       # the end of the rib cage
+    (0.046, 0.515, 0.320, 0.088),        # the loin, the belly tucked up
+    (0.120, 0.520, 0.330, 0.092),
+    (0.194, 0.515, 0.330, 0.098),        # the hips
+    (0.258, 0.500, 0.350, 0.088),        # the croup falls away
+    (0.299, 0.475, 0.390, 0.050))]
+_COLLIE_BODY_KEEL = [0.20, 0.35, 0.45, 0.45, 0.40, 0.25, 0.15, 0.10, 0.10, 0.0]
+# ---- the neck leaves the top of the chest forward and up at about 45 degrees (not up out of the back) into a skull with a stop and a long muzzle; the lower halves narrow to
+# the throat and the jaw
+_NECK_ROOT = (-0.27, 0.44)
+_COLLIE_HEAD = [_tb(y, top, bottom, w) for y, top, bottom, w in (
+    (-0.27, 0.540, 0.340, 0.078),       # the root of the neck, inside the top of the chest
+    (-0.33, 0.585, 0.415, 0.068),
+    (-0.38, 0.635, 0.475, 0.062),       # the back of the skull
+    (-0.42, 0.655, 0.505, 0.064),       # the skull at the ears, the widest (the cheeks)
+    (-0.465, 0.645, 0.505, 0.058),      # the forehead
+    (-0.495, 0.615, 0.505, 0.050),      # the stop: the top steps down to the muzzle
+    (-0.55, 0.598, 0.508, 0.046),
+    (-0.605, 0.590, 0.512, 0.042),
+    (-0.635, 0.585, 0.518, 0.035))]     # the nose
+_COLLIE_HEAD_KEEL = [0.25, 0.20, 0.15, 0.20, 0.25, 0.25, 0.20, 0.15, 0.10]
+_STOP = 5                                # the head's ring at the stop: the muzzle in front of it is scaled on its own (make_breed's snout)
+# ---- the legs (z, dy, half width, half depth, dx): the front leg from the shoulder joint inside the chest, the upper arm's muscle (a little proud of the chest), the elbow
+# under the chest, the forearm, the pastern and a paw longer than it is wide; the hind leg from the hip joint, the thigh, the stifle (forward), the shin back to the hock and the
+# cannon down to the foot. Their joints: the front's elbow (2) and pastern (4), the hind's stifle (2) and hock (4)
+_COLLIE_FRONT = [(0.44, 0.030, 0.045, 0.060, -0.030), (0.34, 0.025, 0.036, 0.058), (0.25, 0.010, 0.031, 0.040), (0.13, 0.000, 0.026, 0.030),
+                 (0.05, -0.004, 0.027, 0.034), (0.0, -0.024, 0.034, 0.056)]
+_COLLIE_HIND = [(0.48, 0.000, 0.050, 0.070, -0.030), (0.38, -0.005, 0.046, 0.078), (0.28, -0.035, 0.035, 0.045), (0.19, 0.010, 0.028, 0.032),
+                (0.12, 0.050, 0.025, 0.028), (0.05, 0.030, 0.025, 0.030), (0.0, 0.030, 0.030, 0.045)]
+# ---- the tail: set on at the end of the croup, bushy in the middle, a hook forward at the tip (height, y, radius)
+_COLLIE_TAIL = [(0.460, 0.295, 0.026), (0.380, 0.365, 0.036), (0.280, 0.420, 0.042), (0.190, 0.425, 0.027)]
+
+
+def _legs(profile, ref, drop, thick):
+    """A leg profile on a breed's legs: the rings above `ref` (the elbow or stifle, inside or beside the body) move down with the body by `drop`, the ones below are squashed
+    to fit, and every ring's girth is times `thick`."""
+    k = (ref - drop) / ref
+    return [(r[0] - drop if r[0] > ref else r[0] * k, r[1], r[2] * thick, r[3] * thick, *r[4:]) for r in profile]
 
 
 def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
@@ -272,27 +280,18 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     collie's size and scaled to the breed's)."""
     sk = SKINS[skin] if isinstance(skin, str) else skin
     shape = shape or {}
-    body, head = _COLLIE_BODY, _COLLIE_HEAD
-    # ---- the legs' profiles: the old collie's (the removed make_dog, leg=0.22)
-    leg, ly, wx, thick = shape.get("leg", 0.22), shape.get("length", 1.0), shape.get("width", 1.0), shape.get("thick", 1.0)
-    kz = (leg + 0.06) / 0.36
-    fr = [(z * kz, dy, hx * thick, hy * thick) for z, dy, hx, hy in
-          [(0.36, 0.00, 0.04, 0.05), (0.22, 0.00, 0.03, 0.035), (0.12, 0.00, 0.026, 0.03), (0.05, -0.004, 0.027, 0.034), (0.0, -0.024, 0.034, 0.056)]]   # a paw that is longer than it is wide
-    hn = [(z * kz, dy, hx * thick, hy * thick) for z, dy, hx, hy in
-          [(0.38, 0.00, 0.055, 0.07), (0.26, 0.03, 0.035, 0.045), (0.17, 0.06, 0.026, 0.03), (0.09, 0.03, 0.024, 0.028),
-           (0.04, 0.01, 0.025, 0.03), (0.0, 0.0, 0.03, 0.045)]]
-    body, head, tail = shape.get("body", body), shape.get("head", head), shape.get("tail", _COLLIE_TAIL)
-    front_leg = {"x": shape.get("front_x", 0.068 * wx), "y": -0.17 * ly, "joints": (1, 3), "profile": fr}
-    hind_leg = {"x": shape.get("hind_x", 0.078 * wx), "y": 0.22 * ly, "joints": (2, 4), "profile": hn}
+    leg, ly, wx, thick = shape.get("leg", _ELBOW), shape.get("length", 1.0), shape.get("width", 1.0), shape.get("thick", 1.0)
+    drop = _ELBOW - leg                                           # how much lower the body is than the collie's
+    body, head, tail = shape.get("body", _COLLIE_BODY), shape.get("head", _COLLIE_HEAD), shape.get("tail", _COLLIE_TAIL)
+    front_leg = {"x": 0.064 * wx, "y": -0.195 * ly, "joints": (2, 4), "profile": _legs(_COLLIE_FRONT, _ELBOW, drop, thick)}
+    hind_leg = {"x": 0.062 * wx, "y": 0.175 * ly, "joints": (2, 4), "profile": _legs(_COLLIE_HIND, _STIFLE, drop, thick)}
     skull = head[3]
     ear_x = skull[2] * 0.85
-    drop = 0.22 - leg                                             # how much lower the body is than the collie's
     st = SimpleNamespace(sk=sk, shape=shape, head=head, skull=skull, ear_x=ear_x, front_leg=front_leg, hind_leg=hind_leg, drop=drop, thick=thick,
-                         neck=shape.get("neck", (-0.24, 0.50, 1.0, 1.0)))
-    if "leg" in shape or "length" in shape or "width" in shape:   # a breed: its coat is worked out where the point would be on the collie
+                         neck=shape.get("neck", (*_NECK_ROOT, 1.0, 1.0)))
+    if drop or ly != 1.0 or wx != 1.0:                            # a breed: its coat is worked out where the point would be on the collie
         def to_collie(c):
-            top = leg + 0.06                                      # the legs' top ring: below it the leg is squashed, above it the body is lowered
-            z = c.z * 0.28 / top if c.z < top else c.z + drop
+            z = c.z * _ELBOW / leg if c.z < leg else c.z + drop   # below the elbow the leg is squashed, above it the body is lowered
             return SimpleNamespace(x=c.x / wx, y=c.y / ly, z=z)
     else:
         def to_collie(c):
@@ -305,7 +304,8 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
         "tail": tail, "ear_x": ear_x, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.72,
         "coat": lambda c, n: _farm_coat(sk, to_collie(c), n), "head_coat": lambda c, n: _farm_head_coat(sk, head, c, n, to_collie),
         "tail_coat": lambda c, n: _farm_tail_coat(sk, c if tip_at else to_collie(c), n, tip_at),
-        "body_n": 8, "head_n": 8, "tail_n": 6, "uv_jitter": True, "scale": shape.get("size", 1.0),                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
+        "body_keel": _COLLIE_BODY_KEEL, "head_keel": _COLLIE_HEAD_KEEL,
+        "body_n": 10, "head_n": 8, "leg_n": 6, "tail_n": 6, "uv_jitter": True, "scale": shape.get("size", 1.0),                 # (see quadruped_builder._jitter_uvs: every coat keeps the same vertex count)
         "extras": lambda ctx: _farm_extras(st, ctx)}
 
 
@@ -314,38 +314,33 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
 # with a white mask (muzzle, jaw, blaze and brows). Docs/assets/briefs/animals.md.
 HUSKY_SKIN = {"body": "grey_cat", "under": W, "legs": W, "sock": W, "ruff": "grey_cat", "chest": W, "muzzle": W, "jaw": W, "ears": "black", "tip": None, "tail_under": W,
                   "blaze": W, "brows": W, "pattern": "plain", "label": "a grey and white husky"}
-HUSKY_SHAPE = {
-    "body": [(-0.30, 0.380, 0.084, 0.100), (-0.22, 0.396, 0.120, 0.140), (-0.10, 0.398, 0.120, 0.140), (0.03, 0.405, 0.100, 0.104),
-          (0.17, 0.398, 0.104, 0.115), (0.28, 0.385, 0.088, 0.100), (0.32, 0.375, 0.060, 0.076)],
-    "head": [(-0.24, 0.500, 0.084, 0.108), (-0.31, 0.545, 0.074, 0.094), (-0.36, 0.578, 0.070, 0.082), (-0.41, 0.585, 0.071, 0.076),
-          (-0.46, 0.570, 0.064, 0.066), (-0.50, 0.548, 0.054, 0.060), (-0.565, 0.538, 0.050, 0.055), (-0.625, 0.530, 0.045, 0.050)],
-    "tail": [(0.395, 0.310, 0.034), (0.470, 0.385, 0.050), (0.545, 0.365, 0.050), (0.580, 0.290, 0.038)],           # up and over the back
-    "front_x": 0.076, "hind_x": 0.086, "ears": "up", "ruff": 1.12}
-
-
 def make_husky(name="DogHusky"):
-    return make_farm_dog(name, HUSKY_SKIN, HUSKY_SHAPE)
+    """The husky: the collie's build a little broader and heavier (a thick coat), a broader head with a blunter muzzle, upright ears, a full ruff and a tail curled over the back."""
+    return make_breed(name, HUSKY_SKIN, size=1.0, width=1.08, head_w=1.05, snout=0.92, neck_w=1.08, thick=1.05, ears="up", ruff=1.12,
+                      tail=[(0.460, 0.270, 0.034), (0.535, 0.340, 0.050), (0.610, 0.320, 0.050), (0.645, 0.245, 0.038)])
 
 
 # ---- the other breeds (issue #125): the same builder, the collie's sections moved and scaled. A breed is drawn at about the collie's size (legs lowered by `leg`, the body
 # stretched by `length`, `width` and `depth`, the head by `head`, `head_w` and `snout`) and its rig is scaled to its real size (`size`). Docs/assets/briefs/animals.md has their numbers.
-def make_breed(name, skin, size, leg=0.22, length=1.0, width=1.0, depth=1.0, head=1.0, head_w=1.0, snout=1.0, neck_w=1.0, thick=1.0,  # NOSONAR
+def make_breed(name, skin, size, leg=_ELBOW, length=1.0, width=1.0, depth=1.0, head=1.0, head_w=1.0, snout=1.0, neck_w=1.0, thick=1.0,  # NOSONAR
                ears="drop", ear_k=1.0, tail=None, tip_at=None, ruff=None, body_w=None, neck_len=1.0, head_low=0.0, nose_k=1.0):
     """skin: a coat dict like SKINS' (with "saddle" for the saddle pattern, "patch" for patches, optionally "tail_top"); leg: the height to the elbow before scaling (the
-    collie's 0.22); body_w: a width factor per body section (a bulldog is wider at the chest than the hips); tail: (height, y, radius) points as drawn for the collie's rump,
+    collie's 0.25); body_w: a width factor per body section (a bulldog is wider at the chest than the hips); tail: (height, y, radius) points as drawn for the collie's rump,
     moved with it; tip_at: (y, height, radius) of the tail's tip as drawn, for a coloured tip on a tail carried up; ruff: the collar's width factor or None; neck_len: the
     neck's length factor (the head comes back towards the shoulders) and head_low how far the head is carried lower (a bulldog's sits on its shoulders); nose_k: the nose pad's size."""
-    drop = 0.22 - leg
+    drop = _ELBOW - leg
     bw = body_w or (1.0,) * len(_COLLIE_BODY)
     body = [(y * length, z - drop, w * width * k, h * depth) for (y, z, w, h), k in zip(_COLLIE_BODY, bw)]
-    ny, nz = -0.30 * length + 0.06, 0.50 - drop - head_low       # the neck's root, 6 cm behind the front of the chest as on the collie
+    y0, z0 = _NECK_ROOT
+    ny, nz = y0 + _COLLIE_BODY[0][0] * (length - 1), z0 - drop - head_low       # the neck's root keeps its place behind the front of the chest
+    stop = _COLLIE_HEAD[_STOP][0]
     hd = []
     for i, (y, z, w, h) in enumerate(_COLLIE_HEAD):
-        dy = y + 0.24 if i <= 4 else (-0.47 + 0.24) + (y + 0.47) * snout       # the muzzle (in front of the stop, ring 4) is scaled on its own
+        dy = y - y0 if i <= _STOP else (stop - y0) + (y - stop) * snout       # the muzzle (in front of the stop) is scaled on its own
         if i:
-            dy += (1.0 - neck_len) * 0.07                         # ring 1 is 7 cm in front of the neck's root on the collie
-        hd.append((ny + dy * head, nz + (z - 0.50) * head, w * head * (neck_w if i < 2 else head_w), h * head))
-    rear = 0.35 * (length - 1)
+            dy += (1.0 - neck_len) * (y0 - _COLLIE_HEAD[1][0])    # a shorter neck brings the head back towards the root
+        hd.append((ny + dy * head, nz + (z - z0) * head, w * head * (neck_w if i < 2 else head_w), h * head))
+    rear = _COLLIE_BODY[-1][0] * (length - 1)
     shape = {"body": body, "head": hd, "tail": [(z - drop, y + rear, r) for z, y, r in (tail or _COLLIE_TAIL)], "leg": leg, "length": length, "width": width,
              "thick": thick, "ears": ears, "ear_k": ear_k, "ruff": ruff, "neck": (ny, nz, head, neck_w), "size": size, "nose_k": nose_k}
     if tip_at:

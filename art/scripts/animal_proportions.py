@@ -12,7 +12,7 @@ over the withers) or of the trunk length L (the body from the front of the chest
     head     the head's length along its slope (the nose to the skull ring, the one the ears sit on: sp["ear_y"]) as a share of L
     head_w   the head's full width at its widest ring from the skull forward, as a share of the head's length
     carry    the height of the top of the skull ring, as a share of H (the neck raises it above the back)
-    leg_top  the full width of the front leg's top ring (the forearm with its muscle), as a share of H
+    leg_top  the full width of the front leg's widest ring above the elbow (the upper arm with its muscle), as a share of H
     leg_low  the full width of the front leg at the ankle ring (the cannon bone and pastern: where a leg looks like a stick), as a share of H
     paw      the length of the front foot (its last ring's full depth), as a share of H
 """
@@ -68,7 +68,7 @@ def measure(sp):
     nose = head[-1][0]
     head_len = math.hypot(skull[0] - nose, skull[1] - head[-1][1])      # along the head's slope (a horse's is tipped)
     foot = front["profile"][-1]
-    fore = front["profile"][0]
+    fore = max(front["profile"][:front["joints"][0] + 1], key=lambda r: r[2])      # the widest ring above the elbow (the upper arm's muscle)
     return {"H": H * k, "L": L * k, "LH": L / H,
                 "width": 2 * max(w for _, _, w, _ in body) / H, "depth": 2 * max(h for *_, h in body) / H,
                 "elbow": min(z - h for y, z, _, h in body if y <= mid) / H,
