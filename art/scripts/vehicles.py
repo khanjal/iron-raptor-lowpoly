@@ -438,7 +438,6 @@ def crashed_ship(name="GV_CrashedShip_01"):
     a power core (the console is a separate model: terminals.py), belly thrusters, swept tail fins, a bent antenna and a torn patch. Level on purpose: the floor has to be walkable (the colliders
     are the cylinders and panels of FarmsteadBuilder.BuildLandedShip, under the skin). Front is -Y (the ramp), origin at the centre on the ground."""
     p = Prop(name)
-    r_in = SHIP_INNER_RADIUS
     # the three hull faces round the front (-Y, 270 degrees). Face k is the quad between ring points k and k + 1, which sit at 360 * k / HULL_N + HULL_PHASE
     # degrees, so the face centred on 270 is k = 29 and the doorway is 28, 29, 30. (It was 29, 30, 31: centred on 279 degrees, a doorway 0.9 m off the
     # glow posts, the ramp and the wall panel that is the doorway in the colliders.)

@@ -405,7 +405,7 @@ def _bookcase(name, seed, colours, kind):
             if row == 0:
                 p.box("fabric_red", (0.2, 0.0, z0 + 0.05), (0.14, 0.14, 0.1))                 # a toy block, in the free stretch
         else:                                      # "mixed": an ordinary shelf with a stack of books lying down on each of two shelves
-            x = _books(p, rng, -0.38, 0.15, z0, clear, colours, gap=0.1, lean=0.2)
+            _books(p, rng, -0.38, 0.15, z0, clear, colours, gap=0.1, lean=0.2)
             # seeded modelling variation, not security
             for k in range(rng.randint(2, 4)):  # NOSONAR
                 p.box(rng.choice(colours), (0.26, 0.0, z0 + 0.025 + k * 0.05), (0.2 + 0.04 * (k % 2), 0.15, 0.05))  # NOSONAR
