@@ -86,21 +86,39 @@ def shelf(p, col, w, d, z, t=0.02, inset=0.03):
     p.box(col, (0, 0, z), (w - 2 * inset, d - 0.04, t))
 
 
-def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handle="metal_galv", window=None, extra=None):
+def _door_hinge(side, x0, x1, z0, z1, yc, limit):
+    """(pivot, axis, limit) of a door that hinges on `side`."""
+    cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
+    if side == "right":
+        return (x1, yc, cz), "z", limit
+    if side == "left":
+        return (x0, yc, cz), "z", -limit
+    if side == "bottom":
+        return (cx, yc, z0), "x", limit
+    return (cx, yc, z1), "x", -limit
+
+
+def _door_handle(p, handle, side, x0, x1, z0, z1, fy):
+    """The handle of a door: a vertical one by the free edge of a side-hinged door, a horizontal bar on a flap."""
+    cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
+    w, h = x1 - x0, z1 - z0
+    if side in ("right", "left"):
+        hx = (x0 + 0.06) if side == "right" else (x1 - 0.06)
+        p.box(handle, (hx, fy - 0.01, cz), (0.025, 0.035, min(0.3, h * 0.4)))
+    else:
+        hz = z1 - 0.05 if side == "bottom" else z0 + 0.05
+        p.box(handle, (cx, fy - 0.01, hz), (w * 0.7, 0.035, 0.025))
+
+
+# a door's whole placement is its arguments (11 of 14 positional); a parameter object would change every caller
+def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handle="metal_galv", window=None, extra=None):  # NOSONAR
     """A hinged door in front of an opening spanning x0..x1, z0..z1 on a body whose front face is at y = yf.
 
     side: right/left (hinged on that vertical edge, turns about Z), bottom (drops down like an oven door), top (flap that lifts out)."""
     yc = yf - thick / 2
     cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
     w, h = x1 - x0, z1 - z0
-    if side == "right":
-        pivot, axis, lim = (x1, yc, cz), "z", limit
-    elif side == "left":
-        pivot, axis, lim = (x0, yc, cz), "z", -limit
-    elif side == "bottom":
-        pivot, axis, lim = (cx, yc, z0), "x", limit
-    else:
-        pivot, axis, lim = (cx, yc, z1), "x", -limit
+    pivot, axis, lim = _door_hinge(side, x0, x1, z0, z1, yc, limit)
     with p.part(role, pivot=pivot, kind="hinge", axis=axis, limit=lim, rest=lim * _ajar(role) * a):
         p.box(col, (cx, yc, cz), (w, thick, h))
         fy = yf - thick - 0.01
@@ -108,12 +126,7 @@ def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handl
             p.box("black" if window == "oven" else "metal_dark", (cx, yf - thick - 0.004, cz), (w * 0.8, 0.008, h * 0.66))
             p.box("glass", (cx, fy + 0.004, cz), (w * 0.72, 0.01, h * 0.56))
         if handle:
-            if side in ("right", "left"):
-                hx = (x0 + 0.06) if side == "right" else (x1 - 0.06)
-                p.box(handle, (hx, fy - 0.01, cz), (0.025, 0.035, min(0.3, h * 0.4)))
-            else:
-                hz = z1 - 0.05 if side == "bottom" else z0 + 0.05
-                p.box(handle, (cx, fy - 0.01, hz), (w * 0.7, 0.035, 0.025))
+            _door_handle(p, handle, side, x0, x1, z0, z1, fy)
         if extra is not None:
             extra()
 
@@ -641,6 +654,23 @@ def _name(prop, style):
     return prop
 
 
+def _build_style(key, fn, style):
+    """Build one prop in one style (Damaged gets its wear), export it as FBX and return the finished prop and its object."""
+    props_lib.THEME = {} if style == "Classic" else home_styles.THEMES[style]
+    try:
+        prop = VARIANTS.get((key, style), fn)(a=1.0 if style == "Damaged" else 0.0)
+    finally:
+        props_lib.THEME = {}
+    prop = _name(prop, style)
+    if style == "Damaged":
+        seed = sum(ord(c) * (i + 1) for i, c in enumerate(key)) % 1000
+        prop.damage(seed=seed, drop=0.25, tilt=0.0, grime=2)
+        prop.post = None                      # parts are parented after the body, so the body must not move
+    obj, coll = prop.finish()
+    common.export_fbx(coll, f"Assets/Art/Global/Interactive/{style}/{prop.name}.fbx")
+    return obj
+
+
 def run():
     names = globals().get("INTERACTIVE_LIST")
     styles = globals().get("STYLE_LIST") or STYLES
@@ -651,18 +681,7 @@ def run():
             continue
         x = 0.0
         for style in styles:
-            props_lib.THEME = {} if style == "Classic" else home_styles.THEMES[style]
-            try:
-                prop = VARIANTS.get((key, style), fn)(a=1.0 if style == "Damaged" else 0.0)
-            finally:
-                props_lib.THEME = {}
-            prop = _name(prop, style)
-            if style == "Damaged":
-                seed = sum(ord(c) * (i + 1) for i, c in enumerate(key)) % 1000
-                prop.damage(seed=seed, drop=0.25, tilt=0.0, grime=2)
-                prop.post = None                      # parts are parented after the body, so the body must not move
-            obj, coll = prop.finish()
-            common.export_fbx(coll, f"Assets/Art/Global/Interactive/{style}/{prop.name}.fbx")
+            obj = _build_style(key, fn, style)
             obj.location = (x, y, 0)
             x += max(1.4, obj.dimensions.x + 0.5)
             count += 1

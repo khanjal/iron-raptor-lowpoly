@@ -144,29 +144,34 @@ def lettuce(p):
 COB_RADIUS = ((0.03, 0.012), (0.06, 0.027), (0.12, 0.030), (0.17, 0.026), (0.20, 0.012), (0.207, 0.004))
 
 
+def _husk_leaf(p, k):
+    """Husk leaf k of the ear: the odd ones are the outer layer."""
+    nrow = 5
+    outer = k % 2
+    colour = "corn_green" if outer else "corn_leaf"
+    gap = 0.0125 if outer else 0.0055
+    az = radians(60 * k + (30 if outer else 0))
+    base_half = radians(53)
+    length = 0.150 if outer else 0.135
+    grid = []
+    for i in range(nrow):
+        s = i / (nrow - 1)
+        z0 = 0.0315 + length * s
+        peel = 0.040 * min(1.0, max(0.0, (z0 - 0.115) / 0.065)) ** 2        # by height, so the two layers peel together and never cross
+        z = z0 - 0.35 * peel
+        rho = _table(COB_RADIUS, z) + gap + peel
+        if i == 0:
+            rho = 0.0163 if not outer else 0.0215        # the root sits on the stalk's top
+        half = base_half * (1 - 0.9 * s ** 1.5)
+        grid.append([Vector((rho * cos(az + half * u), rho * sin(az + half * u), z)) for u in (-1.0, -1 / 3, 1 / 3, 1.0)])
+    p.quads(colour, grid, thick=0.002, walls=False, away_from=(0, 0, 0.1))
+
+
 def corn(p):
     p.cyl("corn_green", (0, 0, 0.015), 0.0165, 0.03, n=8)
     props_lib.lathe(p, "corn_cob", [(z, r) for z, r in COB_RADIUS], n=8)
-    nrow = 5
     for k in range(6):
-        outer = k % 2
-        colour = "corn_green" if outer else "corn_leaf"
-        gap = 0.0125 if outer else 0.0055
-        az = radians(60 * k + (30 if outer else 0))
-        base_half = radians(53)
-        length = 0.150 if outer else 0.135
-        grid = []
-        for i in range(nrow):
-            s = i / (nrow - 1)
-            z0 = 0.0315 + length * s
-            peel = 0.040 * min(1.0, max(0.0, (z0 - 0.115) / 0.065)) ** 2        # by height, so the two layers peel together and never cross
-            z = z0 - 0.35 * peel
-            rho = _table(COB_RADIUS, z) + gap + peel
-            if i == 0:
-                rho = 0.0163 if not outer else 0.0215        # the root sits on the stalk's top
-            half = base_half * (1 - 0.9 * s ** 1.5)
-            grid.append([Vector((rho * cos(az + half * u), rho * sin(az + half * u), z)) for u in (-1.0, -1 / 3, 1 / 3, 1.0)])
-        p.quads(colour, grid, thick=0.002, walls=False, away_from=(0, 0, 0.1))
+        _husk_leaf(p, k)
 
 
 # ===== Eggs and the carton ======================================================================================
@@ -215,6 +220,32 @@ def egg_carton(p, rest=-105.0):
 # ===== Cheese ===================================================================================================
 # A wedge cut from a wheel: the curved rind at the front, a top that slopes down to the point at the back, and the two flat cut faces with a few holes (square
 # dents, each with a darker floor) in a grid of cells.
+def _cut_face(p, end, pb, apex_b, h0, h1, pits):
+    """One flat cut face of the wedge (from the point to the arc point pb[end]): a grid of cells, `pits` of them dented with a darker floor."""
+    nt, nv = 6, 4
+    d = pb[end] - apex_b
+    d.z = 0.0
+    out = Vector((d.y, -d.x, 0.0)).normalized()
+    if out.x * pb[end].x < 0:
+        out = -out
+
+    def q(i, j):
+        t = i / nt
+        hh = h0 + (h1 - h0) * t
+        return apex_b + d * t + Vector((0, 0, hh * j / nv))
+    for i in range(nt):
+        for j in range(nv):
+            corners = [q(i, j), q(i + 1, j), q(i + 1, j + 1), q(i, j + 1)]
+            if (i, j) in pits:
+                c = sum(corners, Vector()) / 4
+                inner = [c + (v - c) * 0.65 - out * 0.009 for v in corners]
+                for m in range(4):
+                    p.poly("cheese_hole", [corners[m], corners[(m + 1) % 4], inner[(m + 1) % 4], inner[m]], toward=c - out * 0.004)
+                p.poly("cheese_hole", inner, facing=out)
+            else:
+                p.poly("cheese_cut", corners, facing=out)
+
+
 def cheese(p):
     R, half = 0.09, radians(32)
     ay = R / 2                                           # the point of the wedge, at the back
@@ -228,31 +259,9 @@ def cheese(p):
         p.poly("cheese_rind", [pb[i], pb[i + 1], pt[i + 1], pt[i]], away_from=inside)
         p.poly("cheese_cut", [apex_t, pt[i], pt[i + 1]], facing=(0, 0, 1))
         p.poly("cheese_rind", [apex_b, pb[i], pb[i + 1]], facing=(0, 0, -1))
-    nt, nv = 6, 4
     holes = (((3, 1), (4, 2), (2, 2)), ((2, 1), (3, 2), (4, 1)))
     for side, end in enumerate((0, 4)):
-        d = pb[end] - apex_b
-        d.z = 0.0
-        out = Vector((d.y, -d.x, 0.0)).normalized()
-        if out.x * pb[end].x < 0:
-            out = -out
-
-        def q(i, j):
-            t = i / nt
-            hh = h0 + (h1 - h0) * t
-            return apex_b + d * t + Vector((0, 0, hh * j / nv))
-        pits = holes[side]
-        for i in range(nt):
-            for j in range(nv):
-                corners = [q(i, j), q(i + 1, j), q(i + 1, j + 1), q(i, j + 1)]
-                if (i, j) in pits:
-                    c = sum(corners, Vector()) / 4
-                    inner = [c + (v - c) * 0.65 - out * 0.009 for v in corners]
-                    for m in range(4):
-                        p.poly("cheese_hole", [corners[m], corners[(m + 1) % 4], inner[(m + 1) % 4], inner[m]], toward=c - out * 0.004)
-                    p.poly("cheese_hole", inner, facing=out)
-                else:
-                    p.poly("cheese_cut", corners, facing=out)
+        _cut_face(p, end, pb, apex_b, h0, h1, holes[side])
 
 
 # ===== Batch 2: produce, bread, sausages, fish, drumstick, bags, pickle jar =====================================

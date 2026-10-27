@@ -345,22 +345,25 @@ def glass_material():
     return mat
 
 
+def _sync_mesh_materials(me):
+    """sync_materials for one mesh's data."""
+    uv = me.uv_layers.active.data
+    glass = [is_glass(swatch_of_uv(*uv[p.loop_start].uv)) for p in me.polygons]
+    want = [palette_material()] + ([glass_material()] if any(glass) else [])
+    if list(me.materials) != want:
+        me.materials.clear()
+        for m in want:
+            me.materials.append(m)
+    for p, g in zip(me.polygons, glass):
+        p.material_index = 1 if g else 0
+
+
 def sync_materials(objs):
     """Give each mesh the palette material, plus the glass one when a face is painted with a transparent swatch, and point every face at the
     right one (read from its UV, so it does not matter how the face was painted). Called when a model is exported; safe to call again."""
     for o in objs:
-        if o.type != "MESH" or not o.data.uv_layers:
-            continue
-        me = o.data
-        uv = me.uv_layers.active.data
-        glass = [is_glass(swatch_of_uv(*uv[p.loop_start].uv)) for p in me.polygons]
-        want = [palette_material()] + ([glass_material()] if any(glass) else [])
-        if list(me.materials) != want:
-            me.materials.clear()
-            for m in want:
-                me.materials.append(m)
-        for p, g in zip(me.polygons, glass):
-            p.material_index = 1 if g else 0
+        if o.type == "MESH" and o.data.uv_layers:
+            _sync_mesh_materials(o.data)
 
 
 def set_swatch(obj, name_or_index):
@@ -687,18 +690,19 @@ def clear_clips(rig_obj):
             bpy.data.actions.remove(a)
 
 
-def describe(coll):
-    """Facts about a built collection, in Blender's axes (x right, y back, z up, front is -y), metres: triangles, the bounding box of the meshes in their exported pose,
-    the moving-part objects (child meshes of the body: their name and origin, which is the pivot) and the clips on a rig."""
-    rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
+def _mute_clips(rigs):
+    """Mute every clip track on the rigs (to measure the rest pose, not whichever clip happens to be on top at this frame); returns the tracks it muted."""
     muted = []
-    for r in rigs:                                                   # measure the rest pose, not whichever clip happens to be on top at this frame
+    for r in rigs:
         for t in (r.animation_data.nla_tracks if r.animation_data else []):
             if not t.mute:
                 t.mute = True
                 muted.append(t)
-    bpy.context.view_layer.update()
-    meshes = [o for o in coll.all_objects if o.type == "MESH"]
+    return muted
+
+
+def _measure(meshes):
+    """(triangles, lowest corner, highest corner) of the meshes in their current pose; the corners are zeros when there are no meshes."""
     import mathutils
     pts, tris = [], 0
     for o in meshes:
@@ -707,6 +711,17 @@ def describe(coll):
         pts += [o.matrix_world @ mathutils.Vector(c) for c in o.bound_box]
     lo = [min(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
     hi = [max(p[i] for p in pts) for i in range(3)] if pts else [0, 0, 0]
+    return tris, lo, hi
+
+
+def describe(coll):
+    """Facts about a built collection, in Blender's axes (x right, y back, z up, front is -y), metres: triangles, the bounding box of the meshes in their exported pose,
+    the moving-part objects (child meshes of the body: their name and origin, which is the pivot) and the clips on a rig."""
+    rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
+    muted = _mute_clips(rigs)
+    bpy.context.view_layer.update()
+    meshes = [o for o in coll.all_objects if o.type == "MESH"]
+    tris, lo, hi = _measure(meshes)
     for t in muted:
         t.mute = False
     clips = []
@@ -741,6 +756,30 @@ def _strip_prefix(path, root):
     path.write_bytes(out)  # NOSONAR
 
 
+def _check_palette_materials(coll, name):
+    """Every mesh must carry a palette image material: an empty image node exports a flat white model that no colour picker can repaint."""
+    for o in coll.all_objects:
+        if o.type != "MESH":
+            continue
+        mats = [m for m in o.data.materials if m is not None]
+        if not mats:
+            raise RuntimeError(f"{name}: mesh {o.name} has no material")
+        for m in mats:
+            nodes = m.node_tree.nodes if m.use_nodes and m.node_tree else []
+            if not any(n.type == "TEX_IMAGE" and n.image is not None for n in nodes):
+                raise RuntimeError(f"{name}: material {m.name} has no palette image")
+
+
+def _gltf_options(out, rigged, info):
+    """The glTF export operator's arguments for one model (only those this Blender version knows)."""
+    props = bpy.ops.export_scene.gltf.get_rna_type().properties
+    want = {"filepath": str(out), "export_format": "GLB", "use_selection": True, "export_apply": not rigged, "export_yup": True,
+            "export_cameras": False, "export_lights": False, "export_extras": False, "export_animations": bool(info["clips"]),
+            "export_animation_mode": "NLA_TRACKS", "export_force_sampling": True, "export_optimize_animation_size": True,
+            "export_morph": False, "export_skins": rigged, "export_texcoords": True, "export_normals": True, "export_copyright": GLB_COPYRIGHT}
+    return {k: v for k, v in want.items() if k in props}
+
+
 def export_glb(coll, name, rigged=None, meta=True):
     """Export one collection as a binary glTF (GLB) for the web viewer: out_dir()/glb/<name>.glb (or glb_dir() when it was set).
 
@@ -756,16 +795,7 @@ def export_glb(coll, name, rigged=None, meta=True):
     info = describe(coll)
     rigged = info["rigged"] if rigged is None else rigged
     sync_materials(coll.all_objects)                                 # (a rigged model reaches here without export_fbx having run first)
-    for o in coll.all_objects:                                       # an empty image node exports a flat white model that no colour picker can repaint
-        if o.type != "MESH":
-            continue
-        mats = [m for m in o.data.materials if m is not None]
-        if not mats:
-            raise RuntimeError(f"{name}: mesh {o.name} has no material")
-        for m in mats:
-            nodes = m.node_tree.nodes if m.use_nodes and m.node_tree else []
-            if not any(n.type == "TEX_IMAGE" and n.image is not None for n in nodes):
-                raise RuntimeError(f"{name}: material {m.name} has no palette image")
+    _check_palette_materials(coll, name)
     objs = [o for o in coll.all_objects if o.type in ("MESH", "ARMATURE")]
     top = [o for o in objs if o.parent is None]
     saved_loc = [(o, o.location.copy()) for o in top]
@@ -779,13 +809,8 @@ def export_glb(coll, name, rigged=None, meta=True):
     sc = bpy.context.scene
     saved_fps = sc.render.fps
     sc.render.fps, sc.render.fps_base = GLB_FPS, 1.0
-    props = bpy.ops.export_scene.gltf.get_rna_type().properties
-    want = {"filepath": str(out), "export_format": "GLB", "use_selection": True, "export_apply": not rigged, "export_yup": True,
-                "export_cameras": False, "export_lights": False, "export_extras": False, "export_animations": bool(info["clips"]),
-                "export_animation_mode": "NLA_TRACKS", "export_force_sampling": True, "export_optimize_animation_size": True,
-                "export_morph": False, "export_skins": rigged, "export_texcoords": True, "export_normals": True, "export_copyright": GLB_COPYRIGHT}
     try:
-        bpy.ops.export_scene.gltf(**{k: v for k, v in want.items() if k in props})
+        bpy.ops.export_scene.gltf(**_gltf_options(out, rigged, info))
     finally:
         sc.render.fps = saved_fps
         for o, loc in saved_loc:

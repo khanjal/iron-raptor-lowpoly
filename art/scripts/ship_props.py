@@ -121,6 +121,50 @@ def pod(name="GV_ShipPod_01"):
 
 # ----- Specimen jars --------------------------------------------------------------------------------------------------------------
 
+def _jar_cow(p, cx, cy, z, z0, jh):
+    """A cow: white body, dark patches, head, legs and a pink muzzle."""
+    k = 0.72                                                                              # scaled to stand inside the bars (head and muzzle within 0.2 m of the middle)
+
+    def at(dx, dy, dz):
+        return (cx + dx * k, cy + dy * k, z + dz * k)
+
+    def sz(w, d, h):
+        return (w * k, d * k, h * k)
+    for lx in (-0.07, 0.07):
+        for ly in (-0.11, 0.11):
+            p.box("fur_grey", at(lx, ly, 0.06), sz(0.04, 0.04, 0.12))
+    p.box("paint_white", at(0, 0, 0.17), sz(0.20, 0.34, 0.16))
+    p.box(DARK, at(0.05, 0.04, 0.26), sz(0.10, 0.12, 0.02))
+    p.box("paint_white", at(0, -0.20, 0.22), sz(0.13, 0.12, 0.13))
+    p.box("pink", at(0, -0.27, 0.19), sz(0.09, 0.04, 0.07))
+    for sx in (-1, 1):
+        p.box("horn_cream", at(sx * 0.06, -0.20, 0.30), sz(0.025, 0.025, 0.05))
+    rod(p, "black", at(0, 0.17, 0.20), at(0, 0.19, 0.30), 0.02)                            # a tail
+    back = z + 0.27 * k                                                                   # the top of the dark patch on its back
+    lid = z0 + jh - 0.02                                                                  # the underside of the lid
+    p.cyl(METAL, (cx, cy + 0.04 * k, (back + lid) / 2), 0.015, lid - back, n=4)            # a probe from the lid down to the animal's back
+
+
+def _jar_plant(p, cx, cy, z):
+    """A plant with a root ball."""
+    p.box("dirt", (cx, cy, z + 0.05), (0.18, 0.18, 0.10), taper=0.7)
+    p.cyl("plant_green", (cx, cy, z + 0.32), 0.02, 0.46, n=4)
+    for k, a in enumerate((0, 100, 200, 300)):
+        zz = z + 0.16 + 0.09 * k
+        rod(p, "leaf_dark", (cx, cy, zz), (cx + 0.14 * cos(radians(a)), cy + 0.14 * sin(radians(a)), zz + 0.07), 0.035)
+    p.cyl("plant_green", (cx, cy, z + 0.58), 0.05, 0.08, n=6, top_radius=0.0)               # a bud
+
+
+def _jar_alien(p, cx, cy, z):
+    """A little alien: a lit green body with three legs and a head."""
+    ball(p, GREEN, (cx, cy, z + 0.29), 0.12, n=6, rings=3)
+    p.cyl("alien_green", (cx, cy, z + 0.2), 0.05, 0.14, n=6)
+    for a in (90, 210, 330):
+        rod(p, "alien_green", (cx + 0.03 * cos(radians(a)), cy + 0.03 * sin(radians(a)), z + 0.2), (cx + 0.07 * cos(radians(a)), cy + 0.07 * sin(radians(a)), z + 0.0), 0.03)      # the legs end on the plinth
+    for s in (-1, 1):
+        p.box(DARK, (cx + s * 0.05, cy - 0.10, z + 0.33), (0.05, 0.03, 0.04))
+
+
 def jar(p, cx, cy, specimen, jh=1.0, jr=0.21, z0=0.80):
     """A specimen jar standing on a surface at z0: a base and lid with four thin glass bars between, a lit liquid line at the bottom and
     the specimen on a plinth inside. The bars, not a panel: the palette has no alpha, a solid jar would hide what is in it."""
@@ -132,41 +176,12 @@ def jar(p, cx, cy, specimen, jh=1.0, jr=0.21, z0=0.80):
         p.box(GLASS, (cx + jr * cos(a), cy + jr * sin(a), z0 + jh / 2), (0.04, 0.04, jh - 0.08), rot=(0, 0, math.degrees(a)))
     p.cyl(DARK, (cx, cy, z0 + 0.13), 0.09, 0.06, n=6)                                           # the plinth the specimen stands on
     z = z0 + 0.16
-    if specimen == "cow":                                                                     # a cow: white body, dark patches, head, legs and a pink muzzle
-        k = 0.72                                                                              # scaled to stand inside the bars (head and muzzle within 0.2 m of the middle)
-
-        def at(dx, dy, dz):
-            return (cx + dx * k, cy + dy * k, z + dz * k)
-
-        def sz(w, d, h):
-            return (w * k, d * k, h * k)
-        for lx in (-0.07, 0.07):
-            for ly in (-0.11, 0.11):
-                p.box("fur_grey", at(lx, ly, 0.06), sz(0.04, 0.04, 0.12))
-        p.box("paint_white", at(0, 0, 0.17), sz(0.20, 0.34, 0.16))
-        p.box(DARK, at(0.05, 0.04, 0.26), sz(0.10, 0.12, 0.02))
-        p.box("paint_white", at(0, -0.20, 0.22), sz(0.13, 0.12, 0.13))
-        p.box("pink", at(0, -0.27, 0.19), sz(0.09, 0.04, 0.07))
-        for sx in (-1, 1):
-            p.box("horn_cream", at(sx * 0.06, -0.20, 0.30), sz(0.025, 0.025, 0.05))
-        rod(p, "black", at(0, 0.17, 0.20), at(0, 0.19, 0.30), 0.02)                            # a tail
-        back = z + 0.27 * k                                                                   # the top of the dark patch on its back
-        lid = z0 + jh - 0.02                                                                  # the underside of the lid
-        p.cyl(METAL, (cx, cy + 0.04 * k, (back + lid) / 2), 0.015, lid - back, n=4)            # a probe from the lid down to the animal's back
-    elif specimen == "plant":                                                                 # a plant with a root ball
-        p.box("dirt", (cx, cy, z + 0.05), (0.18, 0.18, 0.10), taper=0.7)
-        p.cyl("plant_green", (cx, cy, z + 0.32), 0.02, 0.46, n=4)
-        for k, a in enumerate((0, 100, 200, 300)):
-            zz = z + 0.16 + 0.09 * k
-            rod(p, "leaf_dark", (cx, cy, zz), (cx + 0.14 * cos(radians(a)), cy + 0.14 * sin(radians(a)), zz + 0.07), 0.035)
-        p.cyl("plant_green", (cx, cy, z + 0.58), 0.05, 0.08, n=6, top_radius=0.0)               # a bud
-    else:                                                                                     # a little alien: a lit green body with three legs and a head
-        ball(p, GREEN, (cx, cy, z + 0.29), 0.12, n=6, rings=3)
-        p.cyl("alien_green", (cx, cy, z + 0.2), 0.05, 0.14, n=6)
-        for a in (90, 210, 330):
-            rod(p, "alien_green", (cx + 0.03 * cos(radians(a)), cy + 0.03 * sin(radians(a)), z + 0.2), (cx + 0.07 * cos(radians(a)), cy + 0.07 * sin(radians(a)), z + 0.0), 0.03)      # the legs end on the plinth
-        for s in (-1, 1):
-            p.box(DARK, (cx + s * 0.05, cy - 0.10, z + 0.33), (0.05, 0.03, 0.04))
+    if specimen == "cow":
+        _jar_cow(p, cx, cy, z, z0, jh)
+    elif specimen == "plant":
+        _jar_plant(p, cx, cy, z)
+    else:
+        _jar_alien(p, cx, cy, z)
 
 
 def jars(name="GV_ShipJars_01"):

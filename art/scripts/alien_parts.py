@@ -109,7 +109,24 @@ SLIT = [(0.0, 1.0), (0.7, 0.0), (0.0, -1.0), (-0.7, 0.0)]
 BAR = [(-1.0, 0.0), (-0.5, 0.8), (0.5, 0.8), (1.0, 0.0), (0.5, -0.8), (-0.5, -0.8)]
 
 
-def dome(bm, skull, cx, cz, hw, hh, sx=1, outline=ROUND, tilt=0.0, bulge=0.012, rim=0.003, base=0.0, lift=None, rings=(1.0, 0.6)):
+def _stitch_cap(bm, skull, layers, apex, centre):
+    """The faces of a dome: quads between neighbouring rings, triangles from the last ring to the apex, all turned to face outward at `centre`."""
+    m = len(layers[0])
+    made = []
+    for a, b in zip(layers, layers[1:]):
+        for i in range(m):
+            made.append(bm.faces.new((a[i], a[(i + 1) % m], b[(i + 1) % m], b[i])))
+    for i in range(m):
+        made.append(bm.faces.new((layers[-1][i], layers[-1][(i + 1) % m], apex)))
+    out = skull.normal(*centre)
+    for f in made:
+        f.normal_update()
+        if f.normal.dot(out) < 0:
+            f.normal_flip()
+
+
+# a dome is placed by its centre, size, outline, tilt and heights (14 arguments, 12 with defaults); a parameter object would change every caller
+def dome(bm, skull, cx, cz, hw, hh, sx=1, outline=ROUND, tilt=0.0, bulge=0.012, rim=0.003, base=0.0, lift=None, rings=(1.0, 0.6)):  # NOSONAR
     """A cap on the skull at (cx, cz): the outline (a polygon in units of hw and hh around the centre, tilted tilt degrees) sits on the surface with its
     rim buried rim into the skull and the middle bulge above it, in rings that shrink to an apex. sx = -1 mirrors it to the other side of the head
     (cx stays the distance from the middle). lift(x, z) adds a height at a point: a pupil that follows an eyeball's curve."""
@@ -130,18 +147,7 @@ def dome(bm, skull, cx, cz, hw, hh, sx=1, outline=ROUND, tilt=0.0, bulge=0.012, 
         layers.append(layer)
     x, z = spot(0.0, 0.0, 0.0)
     apex = bm.verts.new(skull.point(x, z, base + bulge + (lift(x, z) if lift else 0.0)))
-    m = len(outline)
-    made = []
-    for a, b in zip(layers, layers[1:]):
-        for i in range(m):
-            made.append(bm.faces.new((a[i], a[(i + 1) % m], b[(i + 1) % m], b[i])))
-    for i in range(m):
-        made.append(bm.faces.new((layers[-1][i], layers[-1][(i + 1) % m], apex)))
-    out = skull.normal(*spot(0.0, 0.0, 0.0))
-    for f in made:
-        f.normal_update()
-        if f.normal.dot(out) < 0:
-            f.normal_flip()
+    _stitch_cap(bm, skull, layers, apex, spot(0.0, 0.0, 0.0))
     return layers
 
 

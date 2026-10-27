@@ -257,8 +257,8 @@ def key_clip(rig, name, pose, frames):
     return action
 
 
-def build_all():
-    global REST_LOW
+def _remove_own_actions():
+    """Remove the Insectoid's clips left in the Blender file by an earlier run, and refuse to go on when another model's action has a clip's name."""
     # the loop removes from the live collection, so it iterates a copy; a second run in one session must not export the first run's clips too
     for stale in list(bpy.data.actions):  # NOSONAR
         curves = stale.fcurves if hasattr(stale, "fcurves") else [fc for layer in stale.layers for strip in layer.strips for bag in strip.channelbags for fc in bag.fcurves]   # Blender 5 keeps them in layers
@@ -268,12 +268,10 @@ def build_all():
     for name, _, _ in CLIPS:                                                             # a clip's name must come out exactly (Unity keys its settings and the Animator by it)
         if bpy.data.actions.get(name) is not None:
             raise RuntimeError(f"the Blender file has an action called {name} that is not the Insectoid's: rename or delete it first, or the clip would be exported as {name}.001")
-    prop = build_pieces()
-    obj, coll = prop.finish()                                                            # the pelvis, with the pieces parented to it
-    rig = build_armature(coll)
-    bpy.context.view_layer.update()
 
-    # one mesh: bake each piece into world space, name its vertices' group for its bone, join
+
+def _join_pieces(coll, obj, rig):
+    """One mesh: bake each piece into world space, name its vertices' group for its bone, join, and bind the result to the rig."""
     pieces = [o for o in coll.objects if o.type == "MESH" and o.parent is obj]
     mesh_objs = [obj] + pieces
     for o in pieces:
@@ -292,6 +290,17 @@ def build_all():
     joined.parent = rig
     mod = joined.modifiers.new("Armature", "ARMATURE")
     mod.object = rig
+    return joined
+
+
+def build_all():
+    global REST_LOW
+    _remove_own_actions()
+    prop = build_pieces()
+    obj, coll = prop.finish()                                                            # the pelvis, with the pieces parented to it
+    rig = build_armature(coll)
+    bpy.context.view_layer.update()
+    joined = _join_pieces(coll, obj, rig)
 
     bpy.context.view_layer.objects.active = rig
     bpy.ops.object.mode_set(mode="POSE")

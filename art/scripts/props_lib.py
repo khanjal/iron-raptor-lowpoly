@@ -11,6 +11,7 @@ facing -Y. Parts are collected per colour and joined, so a prop is one object wi
 """
 
 import importlib
+from collections import namedtuple
 
 import bmesh
 import bpy
@@ -426,6 +427,29 @@ def ball(p, colour, centre, radius, n=7, squash=1.0, rings=5):
 T = 0.25                                                          # wall thickness
 
 
+# what wall_run fits into its openings, so the helper that does it takes six arguments and not eleven
+_Fit = namedtuple("_Fit", "thick glass door_colour trim fill frame")
+
+
+def _fit_opening(put, off, w, sill, oh, fit):
+    """The door (sill 0) or window of one opening: its infill and its frame, through the wall's `put`."""
+    th = fit.thick + 0.04
+    if sill == 0:
+        if fit.fill:
+            put(off + 0.08, off + w - 0.08, 0, oh - 0.06, fit.door_colour, th=0.08)       # a closed door
+        if fit.frame:
+            put(off - 0.06, off, 0, oh, fit.trim, th=th)                          # jambs
+            put(off + w, off + w + 0.06, 0, oh, fit.trim, th=th)
+    else:
+        if fit.glass and fit.fill:
+            put(off + 0.05, off + w - 0.05, sill + 0.05, sill + oh - 0.05, "glass", th=0.05)
+        if fit.frame:
+            put(off - 0.05, off + w + 0.05, sill - 0.06, sill, fit.trim, th=fit.thick + 0.1)    # sill
+            put(off - 0.05, off, sill, sill + oh, fit.trim, th=th)
+            put(off + w, off + w + 0.05, sill, sill + oh, fit.trim, th=th)
+            put(off + w / 2 - 0.02, off + w / 2 + 0.02, sill, sill + oh, fit.trim, th=0.06) # a mullion
+
+
 def wall_run(p, colour, a, b, z0, height, openings=(), thick=T, glass=True, door_colour="wood_dark", trim="paint_white", fill=True, frame=True):
     """A straight axis-aligned wall from a=(x, y) to b=(x, y) with openings [(offset, width, sill, height), ...].
 
@@ -450,25 +474,13 @@ def wall_run(p, colour, a, b, z0, height, openings=(), thick=T, glass=True, door
         else:
             p.box(col, (ax + inset, ay + sign * mid, z0 + zz0 + h / 2), (th, w, h))
 
+    fit = _Fit(thick, glass, door_colour, trim, fill, frame)
     cursor = 0.0
     for off, w, sill, oh in sorted(openings):
         put(cursor, off, 0, height, colour)                        # solid wall up to the opening
         put(off, off + w, 0, sill, colour)                         # under a window
         put(off, off + w, sill + oh, height, colour)               # the header
-        if sill == 0:
-            if fill:
-                put(off + 0.08, off + w - 0.08, 0, oh - 0.06, door_colour, th=0.08)       # a closed door
-            if frame:
-                put(off - 0.06, off, 0, oh, trim, th=thick + 0.04)                          # jambs
-                put(off + w, off + w + 0.06, 0, oh, trim, th=thick + 0.04)
-        else:
-            if glass and fill:
-                put(off + 0.05, off + w - 0.05, sill + 0.05, sill + oh - 0.05, "glass", th=0.05)
-            if frame:
-                put(off - 0.05, off + w + 0.05, sill - 0.06, sill, trim, th=thick + 0.1)    # sill
-                put(off - 0.05, off, sill, sill + oh, trim, th=thick + 0.04)
-                put(off + w, off + w + 0.05, sill, sill + oh, trim, th=thick + 0.04)
-                put(off + w / 2 - 0.02, off + w / 2 + 0.02, sill, sill + oh, trim, th=0.06) # a mullion
+        _fit_opening(put, off, w, sill, oh, fit)
         cursor = off + w
     put(cursor, length, 0, height, colour)
 
