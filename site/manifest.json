@@ -2023,11 +2023,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1060,
+   "triangles": 1120,
    "size": [
-    0.279,
-    0.417,
-    0.762
+    0.296,
+    0.426,
+    0.641
    ],
    "glb": "models/GN_DogBulldog_faceted_01.glb",
    "thumb": "thumbs/GN_DogBulldog_faceted_01.png",
