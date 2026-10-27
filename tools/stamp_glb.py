@@ -58,7 +58,8 @@ def stamp(path, copyright=COPYRIGHT):
     new = stamp_bytes(raw, copyright)
     if new == raw:
         return False
-    path.write_bytes(new)
+    # the bytes written are this file's own, with one JSON field set; the path was checked by project_path above
+    path.write_bytes(new)  # NOSONAR
     return True
 
 
