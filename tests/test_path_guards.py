@@ -1,6 +1,9 @@
-"""The command-line tools and scripts that take a path refuse one outside the project (or, for the GLB rewriter Blender calls, one that is not a .glb)."""
+"""The scripts that write a file at a path they are given refuse one they should not touch: stamp_glb and inventory --out stay inside the project, and the GLB rewriter Blender calls
+only rewrites a .glb inside the export folder it was given."""
 
 import io
+import shutil
+import struct
 import sys
 import tempfile
 import types
@@ -11,60 +14,55 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 sys.path.insert(0, str(ROOT / "art" / "scripts"))
-import audit_layout
-import glbinfo
 import inventory
 import stamp_glb
 
-OUTSIDE = Path(tempfile.mkdtemp()).resolve()
 
-
-def quiet(fn, *args):
-    with redirect_stderr(io.StringIO()):
-        return fn(*args)
+def tiny_glb(name):
+    body = b'{"asset":{"version":"2.0"},"nodes":[{"name":"%s"}]}' % name
+    body += b" " * (-len(body) % 4)
+    return b"glTF" + struct.pack("<III", 2, 20 + len(body), len(body)) + struct.pack("<I", 0x4E4F534A) + body
 
 
 class PathGuards(unittest.TestCase):
-    def test_glbinfo_reads_inside_and_refuses_outside(self):
-        glb = next((ROOT / "site" / "models").glob("*.glb"))
-        doc, raw = glbinfo.read(glb)
-        self.assertIn("asset", doc)
-        outside = OUTSIDE / "x.glb"
-        outside.write_bytes(raw)
-        with self.assertRaises(ValueError):
-            glbinfo.read(outside)
+    def setUp(self):
+        self.outside = Path(tempfile.mkdtemp()).resolve()
+        self.addCleanup(shutil.rmtree, self.outside, True)
 
     def test_stamp_refuses_a_file_outside_the_project_and_leaves_it_alone(self):
-        outside = OUTSIDE / "t.glb"
-        outside.write_bytes(b"unchanged")
+        target = self.outside / "t.glb"
+        target.write_bytes(b"unchanged")
         with self.assertRaises(ValueError):
-            stamp_glb.stamp(outside)
-        self.assertEqual(outside.read_bytes(), b"unchanged")
+            stamp_glb.stamp(target)
+        self.assertEqual(target.read_bytes(), b"unchanged")
 
-    def test_inventory_refuses_an_output_or_dev_world_outside_the_project(self):
-        self.assertEqual(quiet(inventory.main, ["--out", str(OUTSIDE / "inventory.md")]), 2)
-        self.assertEqual(quiet(inventory.main, ["--out", str(ROOT / "docs" / "assets" / "inventory.md"), "--check", "--dev-world", str(OUTSIDE / "w.json")]), 2)
-        self.assertFalse((OUTSIDE / "inventory.md").exists())
-        with self.assertRaises(ValueError):
-            inventory.load_dev_world(OUTSIDE / "w.json")
+    def test_inventory_refuses_an_output_outside_the_project(self):
+        with redirect_stderr(io.StringIO()):
+            self.assertEqual(inventory.main(["--out", str(self.outside / "inventory.md")]), 2)
+        self.assertFalse((self.outside / "inventory.md").exists())
 
-    def test_audit_layout_refuses_a_dump_outside_the_project(self):
-        dump = OUTSIDE / "layout.json"
-        dump.write_text("{}", encoding="utf-8")
-        self.assertEqual(quiet(audit_layout.main, [str(dump)]), 2)
-        self.assertEqual(audit_layout.layout_path(None), (ROOT / audit_layout.DEFAULT_JSON).resolve())
-
-    def test_strip_prefix_only_rewrites_glb_files(self):
+    def test_strip_prefix_only_rewrites_a_glb_inside_the_export_folder(self):
         stubs = [n for n in ("bpy", "bmesh") if n not in sys.modules]
         for n in stubs:
             sys.modules[n] = types.ModuleType(n)
         try:
             import common
-            text = OUTSIDE / "notes.txt"
+            export = self.outside / "glb"
+            export.mkdir()
+            text = export / "notes.txt"
             text.write_bytes(b"unchanged")
-            with self.assertRaises(ValueError):
-                common._strip_prefix(text)
+            elsewhere = self.outside / "elsewhere.glb"
+            elsewhere.write_bytes(b"unchanged")
+            for bad in (text, elsewhere, export / ".." / "elsewhere.glb"):
+                with self.assertRaises(ValueError):
+                    common._strip_prefix(bad, export)
             self.assertEqual(text.read_bytes(), b"unchanged")
+            self.assertEqual(elsewhere.read_bytes(), b"unchanged")
+            ok = export / "ok.glb"
+            ok.write_bytes(tiny_glb(b"P_Door"))
+            common.plain = lambda name: name.removeprefix("P_")
+            common._strip_prefix(ok, export)
+            self.assertIn(b'"name":"Door"', ok.read_bytes())
         finally:
             for n in stubs:
                 sys.modules.pop(n, None)

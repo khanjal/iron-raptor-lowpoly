@@ -3,23 +3,16 @@ import json
 import struct
 import sys
 
-from stamp_glb import project_path
-
 
 def read(path):
-    """(json, bytes) of a GLB inside the project; ValueError when it is not."""
-    raw = project_path(path).read_bytes()
+    raw = open(path, "rb").read()
     jlen, _ = struct.unpack_from("<II", raw, 12)
     return json.loads(raw[20:20 + jlen]), raw
 
 
 if __name__ == "__main__":
     for path in sys.argv[1:]:
-        try:
-            d, raw = read(path)
-        except ValueError as e:
-            print(e, file=sys.stderr)
-            sys.exit(2)
+        d, raw = read(path)
         print(path, len(raw), "bytes;", len(d.get("nodes", [])), "nodes;", len(d.get("skins", [])), "skins")
         acc = d.get("accessors", [])
         for a in d.get("animations", []):

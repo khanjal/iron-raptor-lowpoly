@@ -110,7 +110,7 @@ def collect(art=ART, interactions=INTERACTIONS):
 
 def load_dev_world(path=DEV_WORLD):
     """{id: {"tris", "materials"}} from the dev test world's file; empty when the file is missing or unreadable."""
-    path = project_path(path)
+    path = Path(path)
     if not path.exists():
         return {}
     try:
@@ -209,17 +209,17 @@ def anchor(category):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--out", default=str(OUT), help="the markdown file to write")
+    ap.add_argument("--out", default=str(OUT), help="the markdown file to write (inside the project)")
     ap.add_argument("--dev-world", default=None, help="the dev test world's tris/materials file, e.g. Logs/dev_world_inventory.json (opt-in: with no flag the table has no Tris, so it is the same on every machine)")
     ap.add_argument("--check", action="store_true", help="write nothing; exit 1 if the file differs from what would be written")
     args = ap.parse_args(argv)
 
     try:
         out = project_path(args.out)
-        dev_world = load_dev_world(args.dev_world) if args.dev_world else {}
     except ValueError as e:
         print(f"inventory: {e}", file=sys.stderr)
         return 2
+    dev_world = load_dev_world(args.dev_world) if args.dev_world else {}
     models = collect()
     text = render(models, dev_world)
     if args.check:
