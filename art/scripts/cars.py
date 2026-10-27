@@ -14,7 +14,9 @@ origin at the centre of the footprint.
 import importlib
 import math
 import sys
+from functools import partial
 from pathlib import Path
+from types import SimpleNamespace
 
 _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE))
@@ -52,15 +54,8 @@ KINDS = {   # length, width, hood, cabin, body height, cabin height, wheel radiu
 }
 
 
-def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=None, extras=()):
-    """A road car from its dimensions (#344): a lofted body shell with a low nose, a rising hood and a tail; a glasshouse with a slanted
-    windscreen, side windows that lean in and a rear window, carried on A, B and C pillars under a roof panel; sills, mirrors, wheel arches and
-    detailed wheels, a grille with bars, headlight and tail light housings, bumpers, a plate, an exhaust.
-
-    It opens: the cabin is hollow (a floor, seats, a dashboard) and every door is a part with its window, handle and mirror, hinged at its front
-    edge (Door_FL, Door_FR, Door_RL, Door_RR; L is +X, the model faces -Y); the hood is a part hinged at the cowl (Hood), over an engine; a sedan's boot
-    lid (Trunk) lifts off a spare wheel; a wagon, SUV or minivan has a tailgate (Tailgate) hinged at the roof with the rear window in it; a van has two
-    rear doors (RearDoor_L, RearDoor_R) on an empty cargo bay. The wheels spin (vehicles.name_wheels)."""
+def _car_dims(name, kind):
+    """The dimensions of the kind and the underbody."""
     k = KINDS[kind]
     L, W, hood, cab, bh, ch, wr = k["L"], k["W"], k["hood"], k["cabin"], k["bh"], k["ch"], k["wr"]
     rf, rr, solid = k["rf"], k["rr"], k.get("solid", False)
@@ -78,7 +73,25 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
     zmid = (z_f + ytop) / 2                                       # half way up a door
     drop = 0.17                                                   # how deep a lid is: the hood, boot lid or tailgate is the top `drop` of the shell
     p.box("black", (0, 0, base - 0.05), (W - 0.3, L - 0.5, 0.15))                       # underbody
+    return SimpleNamespace(L=L, W=W, base=base, boot=boot, cab_len=cab_len, cab_mid=cab_mid, ch=ch, drop=drop, hood=hood, hw=hw, p=p, rf=rf, rr=rr, solid=solid, wr=wr, y_c0=y_c0, y_c1=y_c1, y_front=y_front, y_rear=y_rear, ytop=ytop, z_f=z_f, zmid=zmid)
 
+
+def _car_shell(c):
+    """The body shell, lofted: a low nose, a hood that rises to the cowl, a tail, and the engine under the hood."""
+    W = c.W
+    base = c.base
+    body = c.body
+    boot = c.boot
+    drop = c.drop
+    hood = c.hood
+    hw = c.hw
+    p = c.p
+    solid = c.solid
+    y_c0 = c.y_c0
+    y_c1 = c.y_c1
+    y_front = c.y_front
+    y_rear = c.y_rear
+    ytop = c.ytop
     # the body shell, lofted: a low nose, a hood that rises to the cowl, [the cabin is hollow], a tail
     S0 = (y_front, hw * 0.93, base + 0.1, ytop - 0.14, 0.06)
     S1 = (y_front + 0.22, hw * 0.99, base + 0.04, ytop - 0.05, 0.07)
@@ -100,6 +113,27 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
     if not solid:                                                                         # a van's tail is its two rear doors
         vehicles.body_loft(p, body, [S5, S6, S7] if boot else [S6, S7])                   # the tail, which stays
         vehicles.low_loft(p, body, lid_st, drop)                                          # the floor of the boot or the luggage bay
+    c.lid_st = lid_st
+
+
+def _car_glass(c):
+    """The glasshouse: the windscreen, the rear window and the boot lid or the tailgate."""
+    body = c.body
+    cab_len = c.cab_len
+    ch = c.ch
+    drop = c.drop
+    glass = c.glass
+    hw = c.hw
+    kind = c.kind
+    lid_st = c.lid_st
+    p = c.p
+    rf = c.rf
+    rr = c.rr
+    solid = c.solid
+    y_c0 = c.y_c0
+    y_c1 = c.y_c1
+    y_rear = c.y_rear
+    ytop = c.ytop
     # the glasshouse: windscreen run rf, rear window run rr, sides leaning in; the side windows are in the doors
     hb, ht = hw - 0.12, hw - 0.25
     zt = ytop + ch - 0.03
@@ -111,12 +145,6 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
     ends = lambda y: (y, hb, hb - 0.02, ytop, ytop + 0.02)
     lean_a = math.degrees(math.atan2(hb - ht, zt - ytop))        # how far the glasshouse sides lean in
     cos_a, sin_a = math.cos(math.radians(lean_a)), math.sin(math.radians(lean_a))
-
-    def lean(colour, sx, ya, yb, z0, z1, thick, outset=0.0):
-        """A panel on the leaning side of the glasshouse from y ya to yb and height z0 to z1 (outset is how far it stands off the surface)."""
-        zc = (z0 + z1) / 2
-        xc = hb + (ht - hb) * (zc - ytop) / (zt - ytop) + outset * cos_a
-        p.box(colour, (sx * xc, (ya + yb) / 2, zc + outset * sin_a), (thick, yb - ya, (z1 - z0) / cos_a), rot=(0, -sx * lean_a, 0))
 
     vehicles.glasshouse(p, glass, [ends(y_c0), (s1, hb, ht, ytop, zt)])                  # the windscreen, with the little triangle of glass at each side
     if solid:
@@ -137,60 +165,193 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
             with p.part("Tailgate", pivot=(0, s2, zt), kind="hinge", axis="x", limit=70.0):
                 vehicles.glasshouse(p, glass, wedge)
                 vehicles.lid_loft(p, body, lid_st, drop)
+    c.cos_a = cos_a
+    c.hb = hb
+    c.ht = ht
+    c.lean_a = lean_a
+    c.s1 = s1
+    c.s2 = s2
+    c.sin_a = sin_a
+    c.y0f = y0f
+    c.y_b = y_b
+    c.y_floor = y_floor
+    c.y_i1 = y_i1
+    if solid:
+        c.y_k = y_k
+    c.y_rd = y_rd
+    c.zt = zt
+
+
+def _car_interior(c):
+    """The seats and dashboard, the floor and the roof panel."""
+    body = c.body
+    ch = c.ch
+    hb = c.hb
+    ht = c.ht
+    hw = c.hw
+    p = c.p
+    s1 = c.s1
+    s2 = c.s2
+    solid = c.solid
+    y_c0 = c.y_c0
+    y_floor = c.y_floor
+    y_i1 = c.y_i1
+    ytop = c.ytop
+    z_f = c.z_f
+    zt = c.zt
     vehicles.cab_interior(p, y_c0 + 0.05, y_i1, ytop, 2 * hb - 0.1, ch - 0.1, floor=z_f, rows=[0.9] + ([1.6] if (y_i1 - y_c0) > 2.0 and not solid else []))   # dashboard, wheel and seats
     p.box("black", (0, (y_c0 + y_floor) / 2, z_f - 0.04), (2 * (hw - 0.08), y_floor - y_c0, 0.1))               # the floor
     p.box(body, (0, (s1 + s2) / 2, zt + 0.025), (2 * ht + 0.06, s2 - s1 + 0.06, 0.07))                          # roof panel
     z_roof = zt + 0.06
-    for sx in (-1, 1):
-        props_lib.rod(p, body, (sx * hb, y_c0, ytop + 0.02), (sx * ht, s1, zt), 0.08)                           # A pillars
-        props_lib.rod(p, body, (sx * hb, y_b, ytop), (sx * ht, y_b, zt), 0.07)                                  # B pillars
-        if not solid:
-            props_lib.rod(p, body, (sx * ht, s2, zt), (sx * hb, y_c1, ytop + 0.02), 0.11)                        # C pillars
-            if cab_len > 3.2:
-                props_lib.rod(p, body, (sx * hb, y_rd, ytop), (sx * ht, y_rd, zt), 0.07)                         # a third pair on a long cabin
-            if kind in ("suv", "wagon"):
-                p.box("black", (sx * (ht - 0.04), (s1 + s2) / 2, z_roof + 0.015), (0.04, s2 - s1 - 0.3, 0.04))        # roof rails
-        # the body round the doors: rocker panels, the panel in front of the first door, the posts they shut against, the panel behind the last door
-        p.sbox(body, (sx * (hw - 0.045), (y_c0 + y_floor) / 2, (base + 0.02 + z_f) / 2), (0.09, y_floor - y_c0, z_f - base - 0.02))
-        p.sbox(body, (sx * (hw - 0.045), (y_c0 + y0f - 0.006) / 2, (base + 0.02 + ytop) / 2), (0.09, y0f - 0.006 - y_c0, ytop - base - 0.02))
-        for y in (y_c0 + 0.07, y_b):
-            p.sbox("black", (sx * (hw - 0.14), y, zmid), (0.1, 0.08, ytop - z_f))
-        if not solid:
-            p.sbox("black", (sx * (hw - 0.14), min(y_rd, y_c1 - 0.05), zmid), (0.1, 0.08, ytop - z_f))
-            if y_c1 - y_rd > 0.03:
-                p.sbox(body, (sx * (hw - 0.045), (y_rd + 0.006 + y_c1) / 2, (base + 0.02 + ytop) / 2), (0.09, y_c1 - y_rd - 0.006, ytop - base - 0.02))
-                if s2 - (y_rd + 0.02) > 0.15:
-                    lean(glass, sx, y_rd + 0.02, s2, ytop + 0.005, zt - 0.01, 0.03)           # the quarter window
-        p.box("black", (sx * (hw - 0.01), 0, base + 0.07), (0.06, L - 1.9 - 2 * wr - 0.24, 0.07))               # sills
-        # the doors, each a part: panel, card, window, handle (the front ones carry the mirror)
-        side = "L" if sx > 0 else "R"
-        doors = [(f"Door_F{side}", y0f + 0.006, y_b - 0.006, True)] + ([] if solid else [(f"Door_R{side}", y_b + 0.006, y_rd - 0.006, False)])
-        for role, ya, yb, front in doors:
-            with p.part(role, pivot=(sx * (hw - 0.02), ya, zmid), kind="hinge", axis="z", limit=-70.0 * sx):
-                p.box(body, (sx * (hw - 0.045), (ya + yb) / 2, zmid), (0.09, yb - ya, ytop - z_f))
-                p.box("black", (sx * (hw - 0.098), (ya + yb) / 2, zmid + 0.02), (0.016, yb - ya - 0.08, ytop - z_f - 0.1))     # the door card
-                wa = max(ya + 0.04, s1) if front else ya + 0.04
-                wb = yb - 0.035 if front or solid else min(yb - 0.04, s2)
-                if wb - wa > 0.1:
-                    lean(glass, sx, wa, wb, ytop + 0.005, zt - 0.01, 0.03)
-                p.box(trim, (sx * (hw + 0.005), yb - 0.15, ytop - 0.17), (0.04, 0.14, 0.035))                 # handle
-                if front:
-                    vehicles.mirror(p, body, sx, hw - 0.12, y_c0 + 0.1, ytop + 0.03)
-        # lights: bezel and lens at the front, housing and lens at the back, indicators, fog lights
-        p.box(trim, (sx * (hw - 0.3), y_front - 0.012, ytop - 0.24), (0.34, 0.06, 0.17))
-        p.box("paint_yellow", (sx * (hw - 0.3), y_front - 0.025, ytop - 0.24), (0.28, 0.08, 0.12))
-        p.box("orange_cat", (sx * (hw - 0.06), y_front + 0.01, ytop - 0.34), (0.1, 0.06, 0.07))
-        if not solid:
-            p.box("black", (sx * (hw - 0.3), y_rear + 0.006, ytop - 0.2), (0.38, 0.05, 0.16))
-            p.box("cloth_red", (sx * (hw - 0.3), y_rear + 0.015, ytop - 0.2), (0.34, 0.07, 0.12))
-            p.box("paint_white", (sx * (hw - 0.62), y_rear + 0.015, ytop - 0.2), (0.1, 0.07, 0.1))              # reversing lights
-        p.box("paint_yellow", (sx * (hw - 0.22), y_front - 0.02, base + 0.27), (0.1, 0.04, 0.07))               # fog lights
-        # bumper ends that wrap the corners
-        p.box(trim, (sx * (hw - 0.04), y_front - 0.02, base + 0.14), (0.1, 0.26, 0.18))
-        p.box(trim, (sx * (hw - 0.04), y_rear + 0.02, base + 0.14), (0.1, 0.26, 0.18))
-        for yy in (y_front + 0.95, y_rear - 0.95):
-            vehicles.car_wheel(p, trim, sx * (hw - 0.1), yy, wr, 0.24, n=12)
-            vehicles.arch(p, "black", sx * (hw + 0.005), yy, wr, wr + 0.1)
+    c.z_roof = z_roof
+
+
+def _car_side_pillars(c, sx):
+    """The A, B and C pillars and the roof rails on one side."""
+    body = c.body
+    cab_len = c.cab_len
+    hb = c.hb
+    ht = c.ht
+    kind = c.kind
+    p = c.p
+    s1 = c.s1
+    s2 = c.s2
+    solid = c.solid
+    y_b = c.y_b
+    y_c0 = c.y_c0
+    y_c1 = c.y_c1
+    y_rd = c.y_rd
+    ytop = c.ytop
+    z_roof = c.z_roof
+    zt = c.zt
+    props_lib.rod(p, body, (sx * hb, y_c0, ytop + 0.02), (sx * ht, s1, zt), 0.08)                           # A pillars
+    props_lib.rod(p, body, (sx * hb, y_b, ytop), (sx * ht, y_b, zt), 0.07)                                  # B pillars
+    if not solid:
+        props_lib.rod(p, body, (sx * ht, s2, zt), (sx * hb, y_c1, ytop + 0.02), 0.11)                        # C pillars
+        if cab_len > 3.2:
+            props_lib.rod(p, body, (sx * hb, y_rd, ytop), (sx * ht, y_rd, zt), 0.07)                         # a third pair on a long cabin
+        if kind in ("suv", "wagon"):
+            p.box("black", (sx * (ht - 0.04), (s1 + s2) / 2, z_roof + 0.015), (0.04, s2 - s1 - 0.3, 0.04))        # roof rails
+
+
+def _car_side_panels(c, sx):
+    """The body round the doors, and the sills, on one side."""
+    L = c.L
+    base = c.base
+    body = c.body
+    glass = c.glass
+    hw = c.hw
+    lean = c.lean
+    p = c.p
+    s2 = c.s2
+    solid = c.solid
+    wr = c.wr
+    y0f = c.y0f
+    y_b = c.y_b
+    y_c0 = c.y_c0
+    y_c1 = c.y_c1
+    y_floor = c.y_floor
+    y_rd = c.y_rd
+    ytop = c.ytop
+    z_f = c.z_f
+    zmid = c.zmid
+    zt = c.zt
+    # the body round the doors: rocker panels, the panel in front of the first door, the posts they shut against, the panel behind the last door
+    p.sbox(body, (sx * (hw - 0.045), (y_c0 + y_floor) / 2, (base + 0.02 + z_f) / 2), (0.09, y_floor - y_c0, z_f - base - 0.02))
+    p.sbox(body, (sx * (hw - 0.045), (y_c0 + y0f - 0.006) / 2, (base + 0.02 + ytop) / 2), (0.09, y0f - 0.006 - y_c0, ytop - base - 0.02))
+    for y in (y_c0 + 0.07, y_b):
+        p.sbox("black", (sx * (hw - 0.14), y, zmid), (0.1, 0.08, ytop - z_f))
+    if not solid:
+        p.sbox("black", (sx * (hw - 0.14), min(y_rd, y_c1 - 0.05), zmid), (0.1, 0.08, ytop - z_f))
+        if y_c1 - y_rd > 0.03:
+            p.sbox(body, (sx * (hw - 0.045), (y_rd + 0.006 + y_c1) / 2, (base + 0.02 + ytop) / 2), (0.09, y_c1 - y_rd - 0.006, ytop - base - 0.02))
+            if s2 - (y_rd + 0.02) > 0.15:
+                lean(glass, sx, y_rd + 0.02, s2, ytop + 0.005, zt - 0.01, 0.03)           # the quarter window
+    p.box("black", (sx * (hw - 0.01), 0, base + 0.07), (0.06, L - 1.9 - 2 * wr - 0.24, 0.07))               # sills
+
+
+def _car_side_doors(c, sx):
+    """The doors of one side, each a part with its window, handle and mirror."""
+    body = c.body
+    glass = c.glass
+    hw = c.hw
+    lean = c.lean
+    p = c.p
+    s1 = c.s1
+    s2 = c.s2
+    solid = c.solid
+    trim = c.trim
+    y0f = c.y0f
+    y_b = c.y_b
+    y_c0 = c.y_c0
+    y_rd = c.y_rd
+    ytop = c.ytop
+    z_f = c.z_f
+    zmid = c.zmid
+    zt = c.zt
+    # the doors, each a part: panel, card, window, handle (the front ones carry the mirror)
+    side = "L" if sx > 0 else "R"
+    doors = [(f"Door_F{side}", y0f + 0.006, y_b - 0.006, True)] + ([] if solid else [(f"Door_R{side}", y_b + 0.006, y_rd - 0.006, False)])
+    for role, ya, yb, front in doors:
+        with p.part(role, pivot=(sx * (hw - 0.02), ya, zmid), kind="hinge", axis="z", limit=-70.0 * sx):
+            p.box(body, (sx * (hw - 0.045), (ya + yb) / 2, zmid), (0.09, yb - ya, ytop - z_f))
+            p.box("black", (sx * (hw - 0.098), (ya + yb) / 2, zmid + 0.02), (0.016, yb - ya - 0.08, ytop - z_f - 0.1))     # the door card
+            wa = max(ya + 0.04, s1) if front else ya + 0.04
+            wb = yb - 0.035 if front or solid else min(yb - 0.04, s2)
+            if wb - wa > 0.1:
+                lean(glass, sx, wa, wb, ytop + 0.005, zt - 0.01, 0.03)
+            p.box(trim, (sx * (hw + 0.005), yb - 0.15, ytop - 0.17), (0.04, 0.14, 0.035))                 # handle
+            if front:
+                vehicles.mirror(p, body, sx, hw - 0.12, y_c0 + 0.1, ytop + 0.03)
+
+
+def _car_side_fittings(c, sx):
+    """The lights, bumper ends and wheels of one side."""
+    base = c.base
+    hw = c.hw
+    p = c.p
+    solid = c.solid
+    trim = c.trim
+    wr = c.wr
+    y_front = c.y_front
+    y_rear = c.y_rear
+    ytop = c.ytop
+    # lights: bezel and lens at the front, housing and lens at the back, indicators, fog lights
+    p.box(trim, (sx * (hw - 0.3), y_front - 0.012, ytop - 0.24), (0.34, 0.06, 0.17))
+    p.box("paint_yellow", (sx * (hw - 0.3), y_front - 0.025, ytop - 0.24), (0.28, 0.08, 0.12))
+    p.box("orange_cat", (sx * (hw - 0.06), y_front + 0.01, ytop - 0.34), (0.1, 0.06, 0.07))
+    if not solid:
+        p.box("black", (sx * (hw - 0.3), y_rear + 0.006, ytop - 0.2), (0.38, 0.05, 0.16))
+        p.box("cloth_red", (sx * (hw - 0.3), y_rear + 0.015, ytop - 0.2), (0.34, 0.07, 0.12))
+        p.box("paint_white", (sx * (hw - 0.62), y_rear + 0.015, ytop - 0.2), (0.1, 0.07, 0.1))              # reversing lights
+    p.box("paint_yellow", (sx * (hw - 0.22), y_front - 0.02, base + 0.27), (0.1, 0.04, 0.07))               # fog lights
+    # bumper ends that wrap the corners
+    p.box(trim, (sx * (hw - 0.04), y_front - 0.02, base + 0.14), (0.1, 0.26, 0.18))
+    p.box(trim, (sx * (hw - 0.04), y_rear + 0.02, base + 0.14), (0.1, 0.26, 0.18))
+    for yy in (y_front + 0.95, y_rear - 0.95):
+        vehicles.car_wheel(p, trim, sx * (hw - 0.1), yy, wr, 0.24, n=12)
+        vehicles.arch(p, "black", sx * (hw + 0.005), yy, wr, wr + 0.1)
+
+
+def _car_cargo_bay(c):
+    """A van's cargo bay and rear doors."""
+    base = c.base
+    body = c.body
+    ch = c.ch
+    glass = c.glass
+    ht = c.ht
+    hw = c.hw
+    lean = c.lean
+    p = c.p
+    solid = c.solid
+    trim = c.trim
+    y_b = c.y_b
+    y_c1 = c.y_c1
+    y_k = c.y_k
+    y_rear = c.y_rear
+    ytop = c.ytop
+    z_f = c.z_f
+    zt = c.zt
     if solid:
         # a van: the cargo bay is a box of two walls, a floor, the cab's bulkhead and the roof, shut at the back by two doors that swing wide
         for sx in (-1, 1):
@@ -214,6 +375,21 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
                 if sx > 0:
                     p.box("paint_white", (0, y_rear + 0.01, base + 0.31), (0.4, 0.04, 0.15))                    # plate
                     p.box("black", (0, y_rear + 0.006, ytop + ch * 0.5), (0.025, 0.03, ch * 0.92))              # the seam between the doors
+
+
+def _car_trim(c):
+    """The bumpers, valances, grille, plate, exhaust and stripe."""
+    L = c.L
+    W = c.W
+    base = c.base
+    hw = c.hw
+    p = c.p
+    solid = c.solid
+    stripe = c.stripe
+    trim = c.trim
+    y_front = c.y_front
+    y_rear = c.y_rear
+    ytop = c.ytop
     p.box(trim, (0, y_front - 0.05, base + 0.14), (W * 0.98, 0.16, 0.18))                                      # bumpers
     p.box(trim, (0, y_rear + 0.05, base + 0.14), (W * 0.98, 0.16, 0.18))
     p.box("black", (0, y_front - 0.03, base + 0.04), (W * 0.8, 0.12, 0.1))                                     # valances
@@ -226,27 +402,115 @@ def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=Non
     p.cyl("metal_dark", (hw * 0.55, y_rear + 0.08, base + 0.05), 0.04, 0.2, n=6, axis="y")                     # exhaust
     if stripe:
         p.box(stripe, (0, 0, ytop - 0.2), (W + 0.02, L - 0.4, 0.16))
+
+
+def _car_extra_lightbar(c):
+    """The lightbar extra."""
+    cab_mid = c.cab_mid
+    p = c.p
+    z_roof = c.z_roof
+    p.box("cloth_red", (-0.25, cab_mid, z_roof + 0.04), (0.45, 0.22, 0.1)); p.box("truck_blue", (0.25, cab_mid, z_roof + 0.04), (0.45, 0.22, 0.1))
+
+
+def _car_extra_taxi(c):
+    """The taxi extra."""
+    cab_mid = c.cab_mid
+    p = c.p
+    z_roof = c.z_roof
+    p.box("paint_yellow", (0, cab_mid, z_roof + 0.07), (0.7, 0.22, 0.16)); p.box("glow_cyan", (0, cab_mid - 0.12, z_roof + 0.07), (0.5, 0.01, 0.1))
+
+
+def _car_extra_antenna(c):
+    """The antenna extra."""
+    p = c.p
+    y_c1 = c.y_c1
+    z_roof = c.z_roof
+    p.cyl("black", (0.5, y_c1 - 0.2, z_roof + 0.35), 0.008, 0.7, n=4)
+    p.cyl("black", (-0.5, y_c1 - 0.2, z_roof + 0.25), 0.008, 0.5, n=4)
+
+
+def _car_extra_cross(c):
+    """The cross extra."""
+    ch = c.ch
+    lean = c.lean
+    y_b = c.y_b
+    y_c1 = c.y_c1
+    ytop = c.ytop
+    zc, cy = ytop + ch * 0.45, (y_b + y_c1) / 2
+    for sx in (-1, 1):
+        lean("cloth_red", sx, cy - 0.45, cy + 0.45, zc - 0.11, zc + 0.11, 0.04, outset=0.02)
+        lean("cloth_red", sx, cy - 0.11, cy + 0.11, zc - 0.45, zc + 0.45, 0.04, outset=0.02)
+
+
+def _car_extra_roofrack(c):
+    """The roofrack extra."""
+    W = c.W
+    cab_mid = c.cab_mid
+    p = c.p
+    y_c0 = c.y_c0
+    y_c1 = c.y_c1
+    z_roof = c.z_roof
+    p.box("black", (0, cab_mid, z_roof + 0.1), (W - 0.5, y_c1 - y_c0 - 0.3, 0.06))
+    for sy in (-0.7, 0.7):
+        p.box("black", (0, cab_mid + sy, z_roof + 0.06), (W - 0.5, 0.05, 0.1))
+
+
+def _car_extra_deliverysign(c):
+    """The deliverysign extra."""
+    body = c.body
+    cab_mid = c.cab_mid
+    lean = c.lean
+    zt = c.zt
+    for sx in (-1, 1):
+        lean("fabric_brown" if body != "fabric_brown" else "paint_white", sx, cab_mid + 0.2 - 0.9, cab_mid + 0.2 + 0.9, zt - 0.8, zt - 0.2, 0.04, outset=0.02)
+
+
+def _lean(c, colour, sx, ya, yb, z0, z1, thick, outset=0.0):
+    """A panel on the leaning side of the glasshouse from y ya to yb and height z0 to z1 (outset is how far it stands off the surface)."""
+    p, hb, ht, zt, ytop, cos_a, sin_a, lean_a = c.p, c.hb, c.ht, c.zt, c.ytop, c.cos_a, c.sin_a, c.lean_a
+    zc = (z0 + z1) / 2
+    xc = hb + (ht - hb) * (zc - ytop) / (zt - ytop) + outset * cos_a
+    p.box(colour, (sx * xc, (ya + yb) / 2, zc + outset * sin_a), (thick, yb - ya, (z1 - z0) / cos_a), rot=(0, -sx * lean_a, 0))
+
+
+_CAR_EXTRAS = {
+    "lightbar": _car_extra_lightbar,
+    "taxi": _car_extra_taxi,
+    "antenna": _car_extra_antenna,
+    "cross": _car_extra_cross,
+    "roofrack": _car_extra_roofrack,
+    "deliverysign": _car_extra_deliverysign,
+}
+
+
+def box_car(name, kind, body, trim="metal_galv", glass="clear_glass", stripe=None, extras=()):
+    """A road car from its dimensions (#344): a lofted body shell with a low nose, a rising hood and a tail; a glasshouse with a slanted
+    windscreen, side windows that lean in and a rear window, carried on A, B and C pillars under a roof panel; sills, mirrors, wheel arches and
+    detailed wheels, a grille with bars, headlight and tail light housings, bumpers, a plate, an exhaust.
+
+    It opens: the cabin is hollow (a floor, seats, a dashboard) and every door is a part with its window, handle and mirror, hinged at its front
+    edge (Door_FL, Door_FR, Door_RL, Door_RR; L is +X, the model faces -Y); the hood is a part hinged at the cowl (Hood), over an engine; a sedan's boot
+    lid (Trunk) lifts off a spare wheel; a wagon, SUV or minivan has a tailgate (Tailgate) hinged at the roof with the rear window in it; a van has two
+    rear doors (RearDoor_L, RearDoor_R) on an empty cargo bay. The wheels spin (vehicles.name_wheels)."""
+    c = _car_dims(name, kind)
+    vars(c).update(body=body, glass=glass, kind=kind, stripe=stripe, trim=trim)
+    _car_shell(c)
+    _car_glass(c)
+    c.lean = partial(_lean, c)
+    _car_interior(c)
+    for sx in (-1, 1):
+        _car_side_pillars(c, sx)
+        _car_side_panels(c, sx)
+        _car_side_doors(c, sx)
+        _car_side_fittings(c, sx)
+    if c.solid:
+        _car_cargo_bay(c)
+    _car_trim(c)
     for e in extras:
-        if e == "lightbar":
-            p.box("cloth_red", (-0.25, cab_mid, z_roof + 0.04), (0.45, 0.22, 0.1)); p.box("truck_blue", (0.25, cab_mid, z_roof + 0.04), (0.45, 0.22, 0.1))
-        elif e == "taxi":
-            p.box("paint_yellow", (0, cab_mid, z_roof + 0.07), (0.7, 0.22, 0.16)); p.box("glow_cyan", (0, cab_mid - 0.12, z_roof + 0.07), (0.5, 0.01, 0.1))
-        elif e == "antenna":
-            p.cyl("black", (0.5, y_c1 - 0.2, z_roof + 0.35), 0.008, 0.7, n=4)
-            p.cyl("black", (-0.5, y_c1 - 0.2, z_roof + 0.25), 0.008, 0.5, n=4)
-        elif e == "cross":                                                                                  # a red cross on each side of the cargo bay
-            zc, cy = ytop + ch * 0.45, (y_b + y_c1) / 2
-            for sx in (-1, 1):
-                lean("cloth_red", sx, cy - 0.45, cy + 0.45, zc - 0.11, zc + 0.11, 0.04, outset=0.02)
-                lean("cloth_red", sx, cy - 0.11, cy + 0.11, zc - 0.45, zc + 0.45, 0.04, outset=0.02)
-        elif e == "roofrack":
-            p.box("black", (0, cab_mid, z_roof + 0.1), (W - 0.5, y_c1 - y_c0 - 0.3, 0.06))
-            for sy in (-0.7, 0.7):
-                p.box("black", (0, cab_mid + sy, z_roof + 0.06), (W - 0.5, 0.05, 0.1))
-        elif e == "deliverysign":                                                                           # a panel on each side of the cargo bay
-            for sx in (-1, 1):
-                lean("fabric_brown" if body != "fabric_brown" else "paint_white", sx, cab_mid + 0.2 - 0.9, cab_mid + 0.2 + 0.9, zt - 0.8, zt - 0.2, 0.04, outset=0.02)
-    return p
+        handler = _CAR_EXTRAS.get(e)
+        if handler:
+            handler(c)
+    return c.p
 
 
 def tow_truck(body="paint_yellow", name="GV_TowTruck_01"):
