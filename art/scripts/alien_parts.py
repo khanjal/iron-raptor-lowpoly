@@ -273,7 +273,7 @@ HANDS = {   # fingers: (offset y from the arm's centre line, length, half thickn
 }
 
 
-def fingers(bm, side, girth, spec):
+def fingers(bm, side, spec):
     """The fingers of one hand (side +1 is the left, +x): lofted tapering prisms that start 2 cm inside the paddle (it ends at |x| 0.87). With claws=True a
     finger has a third ring, so its last 40% (the faces with |x| over 0.935, which gp_builder paints) is the claw."""
     x0 = 0.85
@@ -296,7 +296,7 @@ def fingers(bm, side, girth, spec):
 # Joints
 # ----------------------------------------------------------------------------------------------------------------------
 
-def pelvis_rings(girth, n):
+def pelvis_rings(girth):
     """The hip block: rings (z, centre y, half x, half y) from below the hip joints (z 0.932, x +-0.089) to inside the torso's first ring (z 0.90-1.05),
     as wide as the outer edge of the legs, so a leg swinging at the hip still meets something."""
     reach = 0.089 + 0.095 * girth                      # the outer edge of the leg's top

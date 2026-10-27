@@ -482,7 +482,7 @@ def floor_grate():
 def run():
     names = globals().get("KIT_LIST")
     skins = globals().get("SKIN_LIST") or list(SKINS)
-    x, y, row = 0.0, 0.0, None
+    x, y = 0.0, 0.0
     count = 0
     for key, (fn, group) in SKINNED.items():
         if names and key not in names and group not in names:

@@ -473,7 +473,7 @@ def test_through(name, prop, parts, mounted, lo, hi):
     allowed = [(ca, cb) for pat, ca, cb, _why in THROUGH_OK if re.search(pat, s)]
     if (None, None) in allowed:
         return []
-    out, seen = [], {}
+    seen = {}
     for a in parts:
         if not a.rodlike:
             continue
@@ -561,7 +561,7 @@ def main():
     declared = {k: [tuple(e[1]) for e in v] for k, v in layout.CONNECTED.items()}
     checked = 0
     for name in sorted(built):
-        module, prop, parts, error = built[name]
+        _, prop, parts, error = built[name]
         if ONLY and not any(o == name or o == short(name) for o in ONLY):
             continue
         if error:

@@ -471,7 +471,7 @@ def slab(p, colour, cx, cy, w, d, z, thick=0.2):
     p.box(colour, (cx, cy, z + thick / 2), (w, d, thick))
 
 
-def gable_roof(p, colour, cx, cy, w, d, z_eave, rise, overhang=0.6, along="x", thick=0.0):
+def gable_roof(p, colour, cx, cy, w, d, z_eave, rise, overhang=0.6, along="x"):
     """A solid prism roof: eaves at z_eave, ridge z_eave + rise, ridge running along x or y, overhanging by overhang."""
     if along == "x":
         hw, hd = w / 2 + overhang, d / 2 + overhang

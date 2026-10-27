@@ -249,7 +249,6 @@ def couch(name="GV_ShipCouch_01"):
     """A medical (examination) couch with restraint straps, a raised head end and a scanner arm that rises behind it and bends over it with a
     lamp. 2.0 x 0.95 m, 1.8 m tall to the lamp."""
     p = Prop(name)
-    W = 2.0
     p.box(DARK, (0, 0.05, 0.08), (1.5, 0.7, 0.16))                                            # foot plate
     p.box(METAL, (0, 0.05, 0.36), (0.5, 0.32, 0.40))                                           # the column the bed sits on
     p.box(GREY, (0.15, 0.0, 0.62), (1.6, 0.72, 0.16), taper=1.0)                               # the padded bed

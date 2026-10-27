@@ -466,7 +466,7 @@ def _audit_imported(stem, made, mf=None, ref=None):
 _REF = {}                                          # the neutral body of each cast person, audited once: key -> (forearm depth, upper arm depth) of the arm test
 
 
-def _reference(key, folder, label=""):
+def _reference(key, folder):
     """The neutral body (mf 1.0) of cast person `key`: the arm test's reference. Audited once per session run (its own problems are printed and counted by the caller)."""
     if key not in _REF:
         _, problems, _, m = audit(_make_person(key, 1.0, folder), 1.0)
@@ -524,7 +524,7 @@ def _builds_audit(only):
                 levels = sorted(set(levels + list(HUMAN_BUILD)))
             for region_mf in levels:
                 path = _make_person(key, region_mf, os.path.join(folder, f"mf{region_mf:.2f}"))
-                _, problems, notes, m = audit(path, region_mf, ref)
+                _, problems, _, m = audit(path, region_mf, ref)
                 checked += 1
                 print(f"{stem:18s} {'FAIL' if problems else 'ok':4s} at mf {region_mf - off:.2f}: waist {m.get('waist_w', 0):.3f} x {m.get('waist_d', 0):.3f} belly {m.get('waist_f', 0):.3f} thigh {m.get('thigh_w', 0):.3f} neck {m.get('neck_t', 0):.3f} arm_in {m.get('arm_in', 0) * 100:.1f}/{m.get('arm_in_upper', 0) * 100:.1f} cm (neutral {ref[0] * 100:.1f}/{ref[1] * 100:.1f})")
                 for p in problems:

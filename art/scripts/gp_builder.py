@@ -172,12 +172,11 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
         parts.append(obj)
 
     shirt_split = 0.0 if suit else 0.98
-    mult = BUILDS[shape]
     make("torso", lambda bm: common.loft(bm, [common.ring_z(z, 0, cy, hw, hd, n=st["torso_n"], p=2.6) for z, cy, hw, hd in t_rings]),
          lambda c, n: o["pants"] if c.z < shirt_split else o["shirt"],
          ["pelvis", "spine_01", "spine_02", "spine_03", "clavicle_l", "clavicle_r"])
     if joints and "skirt" not in extras:                         # the hip block: the legs hinge below the narrow torso's bottom ring, so cover both joints (a skirt already does)
-        make("hips", lambda bm: common.loft(bm, [common.ring_z(z, 0, cy, hx, hy, n=st["torso_n"], p=2.6) for z, cy, hx, hy in alien_parts.pelvis_rings(girth, st["torso_n"])]),
+        make("hips", lambda bm: common.loft(bm, [common.ring_z(z, 0, cy, hx, hy, n=st["torso_n"], p=2.6) for z, cy, hx, hy in alien_parts.pelvis_rings(girth)]),
              lambda c, n: o["pants"], ["pelvis"])
     # the head is scaled about the neck's top, so its underside moves up as the head grows: the neck must still reach 1.2 cm into it (the Grey, 2.05x, had a 1 mm gap)
     neck_top = max(1.62, pivot.z + 0.02 * head_scale + 0.012)
@@ -241,7 +240,7 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
                  lambda c, n: o["shirt"] if 0.192 < sleeve else o["skin"], [f"clavicle_{tag}", f"upperarm_{tag}"], sub=0)
         if hands:
             spec = alien_parts.HANDS[hands]
-            make(f"fingers_{tag}", lambda bm, s=side: alien_parts.fingers(bm, s, girth, spec),
+            make(f"fingers_{tag}", lambda bm, s=side, sp=spec: alien_parts.fingers(bm, s, sp),
                  lambda c, n: "horn_cream" if (spec.get("claws") and abs(c.x) > 0.935) else o["skin"], [f"hand_{tag}"], sub=0)
         else:
             make(f"thumb_{tag}",
@@ -257,7 +256,6 @@ def build(name, outfit=None, hair="short", hat=None, extras=(), sleeve=0.36, sui
     # --- hats: lofted crowns and flat brims, all weighted to the head ---------------------------------------
     if hat:
         def hat_build(bm):
-            top = 1.80
             if hat == "cap":
                 common.loft(bm, [common.ring_z(z, 0, cy, hx * f_face, hy * f_face, n=st["head_n"]) for z, cy, hx, hy in
                                  [(1.75, -0.003, 0.100, 0.112), (1.80, -0.003, 0.098, 0.110), (1.85, 0.0, 0.07, 0.085), (1.875, 0.004, 0.035, 0.045)]])

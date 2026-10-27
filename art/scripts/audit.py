@@ -71,7 +71,7 @@ def groups_of(isl, margin):
     return sorted(out.values(), key=len, reverse=True)
 
 
-def _closed(bm, tris):
+def _closed(tris):
     """True when every edge of these triangles is shared by exactly two of them (a solid, so 'inside' means something)."""
     count = {}
     for t in tris:
@@ -147,7 +147,7 @@ def clipping(obj, eps=1e-4):
         idx = {i for t in tris for i in t}
         lo = tuple(min(verts[i][k] for i in idx) for k in range(3))
         hi = tuple(max(verts[i][k] for i in idx) for k in range(3))
-        parts.append({"tris": tris, "idx": idx, "lo": lo, "hi": hi, "tree": BVHTree.FromPolygons(verts, tris), "closed": _closed(bm, tris)})
+        parts.append({"tris": tris, "idx": idx, "lo": lo, "hi": hi, "tree": BVHTree.FromPolygons(verts, tris), "closed": _closed(tris)})
     out = []
     for a in range(len(parts)):
         for b in range(a + 1, len(parts)):

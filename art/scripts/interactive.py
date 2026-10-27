@@ -645,7 +645,6 @@ def run():
     styles = globals().get("STYLE_LIST") or STYLES
     count, y = 0, 0.0
     props_lib.INTERACTIONS.clear()
-    row = None
     for key, (fn, group) in ITEMS.items():
         if names and key not in names and group not in names:
             continue
