@@ -24,6 +24,7 @@ finally:
 
 NAMES = ("LH", "width", "depth", "elbow", "head", "head_w", "carry", "leg_top", "leg_low", "paw")
 SPECIES = {"cat": species_pets.CATS["cat_tabby"], "collie": species_pets.DOGS["dog_collie"], "husky": species_pets.DOGS["dog_husky"],
+           **{k: species_pets.DOGS["dog_" + k] for k in ("retriever", "shepherd", "beagle", "bulldog", "dachshund")},
            **{k: species.SPECIES[k] for k in ("cow", "horse", "pig", "sheep", "goat")}}
 
 
@@ -69,6 +70,36 @@ class Rebuilt(unittest.TestCase):
         for row in sorted(A.ENFORCED):
             self.assertEqual(A.check(row, SPECIES[row]), [], row)
 
+    def test_the_rebuilt_species_have_the_shape(self):
+        for row in sorted(A.ENFORCED):
+            self.assertEqual(A.check_shape(row, SPECIES[row]), [], row)
+
+    def test_every_cat_and_dog_has_the_shape(self):
+        for key, sp in {**species_pets.DOGS, **species_pets.CATS}.items():
+            self.assertEqual(A.check_shape(A.KEYS[key], sp), [], key)
+
+    def test_the_shape_check_fails_a_tube_on_posts(self):
+        sp = dict(SPECIES["collie"])
+        bottom = min(z - h for _, z, _, h in sp["body"])
+        top = max(z + h for _, z, _, h in sp["body"])
+        sp["body"] = [(y, (top + bottom) / 2, w, (top - bottom) / 2) for y, _, w, _ in sp["body"]]          # a straight tube: no tuck
+        posts = lambda leg: {**leg, "profile": [(min(r[0], bottom), 0.0, r[2], r[3]) for r in leg["profile"]]}      # straight posts that end at the underside
+        sp["front"], sp["hind"] = posts(sp["front"]), posts(sp["hind"])
+        misses = A.check_shape("collie", sp)
+        for name in ("tuck", "front_in", "hind_in", "stifle", "hock"):
+            self.assertTrue(any(m.startswith(name + " ") for m in misses), (name, misses))
+
+    def test_the_shape_check_fails_a_neck_out_of_the_back(self):
+        sp = dict(SPECIES["collie"])
+        y, z, w, h = sp["head"][0]
+        sp["head"] = [(y, z + 0.08, w, h)] + sp["head"][1:]                          # the neck's root raised 8 cm (15 % of H) above the withers
+        self.assertTrue(any(m.startswith("root ") for m in A.check_shape("collie", sp)))
+
+    def test_a_breed_needs_a_width_for_every_section(self):
+        import species_farm_dog
+        with self.assertRaises(ValueError):
+            species_farm_dog.make_breed("DogTest", species_farm_dog.BREED_SKINS["stray"], size=1.0, body_w=(1.0,) * 7)
+
     def test_the_hen_is_within_its_ranges(self):
         self.assertEqual(A.check_bird(biped_bird.CHICKEN_HEN), [])
         self.assertEqual(set(A.HEN), set(A.measure_bird(biped_bird.CHICKEN_HEN)) - {"H"})
@@ -89,6 +120,10 @@ class Rebuilt(unittest.TestCase):
         self.assertTrue(0.22 <= A.measure(SPECIES["cat"])["H"] <= 0.32)
         self.assertTrue(0.46 <= A.measure(SPECIES["collie"])["H"] <= 0.62)
         self.assertTrue(0.50 <= A.measure(SPECIES["husky"])["H"] <= 0.62)
+        for key, (lo, hi) in {"dog_retriever": (0.55, 0.62), "dog_shepherd": (0.55, 0.66), "dog_beagle": (0.33, 0.41), "dog_bulldog": (0.31, 0.40),
+                              "dog_dachshund": (0.20, 0.25), "dog_stray": (0.40, 0.55)}.items():
+            self.assertTrue(lo <= A.measure(species_pets.DOGS[key])["H"] <= hi, key)
+        self.assertTrue(0.13 <= A.measure(species_pets.CATS["cat_kitten"])["H"] <= 0.18)
         for row, (lo, hi) in {"cow": (1.30, 1.55), "horse": (1.45, 1.65), "pig": (0.75, 1.0), "sheep": (0.65, 0.85), "goat": (0.70, 0.90)}.items():
             self.assertTrue(lo <= A.measure(SPECIES[row])["H"] <= hi, row)
 

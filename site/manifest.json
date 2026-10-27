@@ -433,7 +433,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1000,
+   "triangles": 1040,
    "size": [
     0.672,
     1.49,
@@ -479,7 +479,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 848,
+   "triangles": 888,
    "size": [
     0.351,
     1.186,
@@ -568,7 +568,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 872,
+   "triangles": 912,
    "size": [
     0.54,
     2.201,
@@ -609,7 +609,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 744,
+   "triangles": 784,
    "size": [
     0.6,
     0.81,
@@ -625,14 +625,9 @@
    "variants": [],
    "paintable": [
     {
-     "part": "Main",
+     "part": "Skin",
      "swatch": 16,
      "hex": "#EFB3AC"
-    },
-    {
-     "part": "Black",
-     "swatch": 7,
-     "hex": "#1B1B1E"
     }
    ]
   },
@@ -651,7 +646,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 736,
+   "triangles": 776,
    "size": [
     0.44,
     0.887,
@@ -1701,11 +1696,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatCalico_faceted_01.glb",
    "thumb": "thumbs/GN_CatCalico_faceted_01.png",
@@ -1754,11 +1749,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.09,
-    0.205,
-    0.34
+    0.084,
+    0.203,
+    0.313
    ],
    "glb": "models/GN_CatKitten_faceted_01.glb",
    "thumb": "thumbs/GN_CatKitten_faceted_01.png",
@@ -1797,11 +1792,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.173,
+    0.16,
     0.389,
-    0.645
+    0.599
    ],
    "glb": "models/GN_CatSiamese_faceted_01.glb",
    "thumb": "thumbs/GN_CatSiamese_faceted_01.png",
@@ -1846,11 +1841,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatTabby_faceted_01.glb",
    "thumb": "thumbs/GN_CatTabby_faceted_01.png",
@@ -1930,11 +1925,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 676,
+   "triangles": 900,
    "size": [
-    0.164,
+    0.152,
     0.37,
-    0.614
+    0.571
    ],
    "glb": "models/GN_CatTuxedo_faceted_01.glb",
    "thumb": "thumbs/GN_CatTuxedo_faceted_01.png",
@@ -1962,6 +1957,102 @@
    ]
   },
   {
+   "id": "GN_DogBeagle_faceted_01",
+   "name": "Dog, beagle",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "beagle",
+    "black",
+    "dog",
+    "hound",
+    "pet",
+    "quadruped",
+    "tan",
+    "tricolour",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.179,
+    0.488,
+    0.758
+   ],
+   "glb": "models/GN_DogBeagle_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBeagle_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "White markings",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Saddle",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogBulldog_faceted_01",
+   "name": "Dog, bulldog",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "bulldog",
+    "dog",
+    "fawn",
+    "pet",
+    "quadruped",
+    "white"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1120,
+   "size": [
+    0.296,
+    0.426,
+    0.641
+   ],
+   "glb": "models/GN_DogBulldog_faceted_01.glb",
+   "thumb": "thumbs/GN_DogBulldog_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 6,
+     "hex": "#E6E2D6"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    }
+   ]
+  },
+  {
    "id": "GN_DogCollie_faceted_01",
    "name": "Dog, collie",
    "type": "animals/pet/dog",
@@ -1976,11 +2067,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.266,
-    0.733,
-    1.166
+    0.224,
+    0.726,
+    1.111
    ],
    "glb": "models/GN_DogCollie_faceted_01.glb",
    "thumb": "thumbs/GN_DogCollie_faceted_01.png",
@@ -2006,6 +2097,46 @@
    ]
   },
   {
+   "id": "GN_DogDachshund_faceted_01",
+   "name": "Dog, dachshund",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dachshund",
+    "dog",
+    "pet",
+    "quadruped",
+    "sausage-dog",
+    "small"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.127,
+    0.299,
+    0.751
+   ],
+   "glb": "models/GN_DogDachshund_faceted_01.glb",
+   "thumb": "thumbs/GN_DogDachshund_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 36,
+     "hex": "#4A3322"
+    }
+   ]
+  },
+  {
    "id": "GN_DogHusky_faceted_01",
    "name": "Dog, husky",
    "type": "animals/pet/dog",
@@ -2020,11 +2151,11 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 1048,
+   "triangles": 1164,
    "size": [
-    0.282,
-    0.742,
-    1.073
+    0.242,
+    0.736,
+    1.027
    ],
    "glb": "models/GN_DogHusky_faceted_01.glb",
    "thumb": "thumbs/GN_DogHusky_faceted_01.png",
@@ -2051,6 +2182,143 @@
      "part": "Black",
      "swatch": 7,
      "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogRetriever_faceted_01",
+   "name": "Dog, golden retriever",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "dog",
+    "golden",
+    "pet",
+    "quadruped",
+    "retriever",
+    "yellow"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1136,
+   "size": [
+    0.273,
+    0.707,
+    1.12
+   ],
+   "glb": "models/GN_DogRetriever_faceted_01.glb",
+   "thumb": "thumbs/GN_DogRetriever_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Coat",
+     "swatch": 34,
+     "hex": "#D9A441"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogShepherd_faceted_01",
+   "name": "Dog, German shepherd",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "black",
+    "dog",
+    "guard",
+    "pet",
+    "police",
+    "quadruped",
+    "shepherd",
+    "tan"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1164,
+   "size": [
+    0.261,
+    0.887,
+    1.226
+   ],
+   "glb": "models/GN_DogShepherd_faceted_01.glb",
+   "thumb": "thumbs/GN_DogShepherd_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Saddle, mask and ears",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    }
+   ]
+  },
+  {
+   "id": "GN_DogStray_faceted_01",
+   "name": "Dog, stray",
+   "type": "animals/pet/dog",
+   "tags": [
+    "animal",
+    "brown",
+    "dog",
+    "mongrel",
+    "mutt",
+    "quadruped",
+    "rural",
+    "stray",
+    "tan",
+    "urban"
+   ],
+   "rigged": true,
+   "interactive": false,
+   "triangles": 1120,
+   "size": [
+    0.197,
+    0.639,
+    0.978
+   ],
+   "glb": "models/GN_DogStray_faceted_01.glb",
+   "thumb": "thumbs/GN_DogStray_faceted_01.png",
+   "parts": {},
+   "clips": [
+    "Idle",
+    "Walk",
+    "Trot",
+    "Run"
+   ],
+   "variants": [],
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 35,
+     "hex": "#C49A5E"
+    },
+    {
+     "part": "Chest, belly, socks and tail tip",
+     "swatch": 33,
+     "hex": "#E9DCC0"
+    },
+    {
+     "part": "Patches and ears",
+     "swatch": 36,
+     "hex": "#4A3322"
     }
    ]
   },

@@ -15,6 +15,7 @@ CUBICLE_PANEL_TYPE = "furniture/cubicle/panel"
 FRIDGE_TYPE = "appliances/kitchen/fridge"
 SOFA_TYPE = "furniture/seating/sofa"
 CAT_TYPE = "animals/pet/cat"
+DOG_TYPE = "animals/pet/dog"
 
 
 # ===== Ids ===========================================================================================================
@@ -169,6 +170,8 @@ BUILD = {
                              "dog_husky": "GN_DogHusky_faceted_01", "cat_tabby": "GN_CatTabby_faceted_01",
                              "cat_tuxedo": "GN_CatTuxedo_faceted_01", "cat_calico": "GN_CatCalico_faceted_01", "cat_siamese": "GN_CatSiamese_faceted_01",
                              "cat_kitten": "GN_CatKitten_faceted_01",
+                             "dog_retriever": "GN_DogRetriever_faceted_01", "dog_shepherd": "GN_DogShepherd_faceted_01", "dog_beagle": "GN_DogBeagle_faceted_01",
+                             "dog_bulldog": "GN_DogBulldog_faceted_01", "dog_dachshund": "GN_DogDachshund_faceted_01", "dog_stray": "GN_DogStray_faceted_01",
                              "sheep": "GN_Sheep_faceted_01", "pig": "GN_Pig_faceted_01", "goat": "GN_Goat_faceted_01"}},
     "birds": {"kind": "animals", "birds": True, "clips": [], "animals": {"chicken_hen": "GN_ChickenHen_faceted_01"}},
 }
@@ -312,8 +315,14 @@ _a("GN_Sheep_faceted_01", "Sheep", "animals/farm/sheep", "rural farm livestock w
 _a("GN_Pig_faceted_01", "Pig", "animals/farm/pig", "rural farm livestock pink animal quadruped")
 _a("GN_Goat_faceted_01", "Goat", "animals/farm/goat", "rural farm livestock horns animal quadruped")
 _a("GN_ChickenHen_faceted_01", "Hen", "animals/farm/hen", "rural farm poultry bird chicken animal")
-_a("GN_DogCollie_faceted_01", "Dog, collie", "animals/pet/dog", "rural farm pet dog animal quadruped collie")
-_a("GN_DogHusky_faceted_01", "Dog, husky", "animals/pet/dog", "pet dog animal quadruped husky grey white")
+_a("GN_DogCollie_faceted_01", "Dog, collie", DOG_TYPE, "rural farm pet dog animal quadruped collie")
+_a("GN_DogHusky_faceted_01", "Dog, husky", DOG_TYPE, "pet dog animal quadruped husky grey white")
+_a("GN_DogRetriever_faceted_01", "Dog, golden retriever", DOG_TYPE, "pet dog animal quadruped retriever golden yellow")
+_a("GN_DogShepherd_faceted_01", "Dog, German shepherd", DOG_TYPE, "pet dog animal quadruped shepherd police guard black tan")
+_a("GN_DogBeagle_faceted_01", "Dog, beagle", DOG_TYPE, "pet dog animal quadruped beagle hound tricolour tan black white")
+_a("GN_DogBulldog_faceted_01", "Dog, bulldog", DOG_TYPE, "pet dog animal quadruped bulldog white fawn")
+_a("GN_DogDachshund_faceted_01", "Dog, dachshund", DOG_TYPE, "pet dog animal quadruped dachshund sausage-dog brown small")
+_a("GN_DogStray_faceted_01", "Dog, stray", DOG_TYPE, "dog animal quadruped stray mongrel mutt tan brown rural urban")
 _a("GN_CatTabby_faceted_01", "Cat, tabby", CAT_TYPE, "pet cat animal quadruped tabby orange grey black", "cat")
 _a("GN_CatTuxedo_faceted_01", "Cat, tuxedo", CAT_TYPE, "pet cat animal quadruped tuxedo black white", "cat")
 _a("GN_CatCalico_faceted_01", "Cat, calico", CAT_TYPE, "pet cat animal quadruped calico orange black white", "cat")

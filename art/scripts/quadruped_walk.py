@@ -67,7 +67,6 @@ OFFSET = CFG["offset"]
 STANCE = CFG["stance"]
 FLEX = CFG["flex"]
 SWING_ANGLE = {"Front": 22.0, "Hind": 21.0}     # degrees each side of upright (replaced by the fitted angle below)
-FLEX_SIGN = {"Front": 1.0, "Hind": -1.0}       # knees fold the foot back, hocks fold it forward
 
 rig = bpy.data.objects[RIG_NAME]
 saved_active = bpy.context.view_layer.objects.active
@@ -75,7 +74,7 @@ saved_scene = (bpy.context.scene.render.fps, bpy.context.scene.frame_start, bpy.
 rig.hide_viewport = False                       # pose mode needs a visible rig
 rig.hide_set(False)
 ANIM_PREFIX = globals().get("ANIM_PREFIX", "Quadruped")
-LEG_LENGTH = rig.data.bones["FrontUpper_L"].head_local.z
+LEG_LENGTH = rig.get("gait_leg", rig.data.bones["FrontUpper_L"].head_local.z)     # quadruped_builder.gait_leg (older rigs: the front leg's top)
 if BODY_DROP is None:
     BODY_DROP = round(0.098 * LEG_LENGTH, 3)            # 0.09 m for the cow
 bpy.context.view_layer.objects.active = rig
@@ -105,6 +104,65 @@ def foot_tip(side_name):
     return rig.matrix_world @ pb[side_name].tail
 
 
+def _raise_sign(kind, default):
+    """+1 when turning the lower leg by a positive angle (the foot kept flat) lifts the foot from the rest pose, -1 when the negative angle does, `default` when
+    neither does by more than half a millimetre (a lower leg straight under the knee). The old hind legs (the 'knee' bone at the hock) fold forward (-1); an
+    angled hind leg with the stifle forward and the hock back (the dogs' and cats', issue #125) folds the other way, so a hind leg's sign is measured on the rig."""
+    lo, ft = f"{kind}Lower_L", f"{kind}Foot_L"
+    heights = []
+    for m in (4.0, -4.0):
+        set_rot(lo, x=m)
+        set_rot(ft, x=-m)
+        bpy.context.view_layer.update()
+        heights.append(foot_tip(ft).z)
+    set_rot(lo, x=0.0)
+    set_rot(ft, x=0.0)
+    bpy.context.view_layer.update()
+    if abs(heights[0] - heights[1]) < 0.0005:
+        return default
+    return 1.0 if heights[0] > heights[1] else -1.0
+
+
+quadruped_rig.rest_pose(rig)                                     # the probes below measure the rest pose, whatever clip was keyed before
+FLEX_SIGN = {"Front": 1.0, "Hind": _raise_sign("Hind", -1.0)}       # a front leg always folds its foot back (the wrist)
+
+
+def joint_offset(kind, side="L"):
+    """How far the leg's middle joint (the Lower bone's head) stands in front of the line from the leg's top to its ankle, in the current pose (m, + towards the
+    head). A mammal's stifle is in front of it and a hock behind it; a joint that crosses the line bends the wrong way."""
+    top, mid, ank = (rig.matrix_world @ pb[f"{kind}{part}_{side}"].head for part in ("Upper", "Lower", "Foot"))
+    dy, dz = ank.y - top.y, ank.z - top.z
+    return -(dy * (mid.z - top.z) - dz * (mid.y - top.y)) / max(1e-9, math.hypot(dy, dz))
+
+
+def _straight_angle(kind):
+    """The lower-leg angle (degrees from rest, in the direction that unfolds the leg) at which the leg is straight, or None when it does not straighten within 90
+    degrees: the gait solver may not turn the lower leg past it, or the joint would bend the wrong way (a dog's stifle backwards in the trot, issue #125)."""
+    lo, ft = f"{kind}Lower_L", f"{kind}Foot_L"
+    unfold = -FLEX_SIGN[kind]
+
+    def side_at(m):
+        set_rot(lo, x=m)
+        set_rot(ft, x=-m)
+        bpy.context.view_layer.update()
+        return joint_offset(kind)
+
+    rest = side_at(0.0)
+    found = None
+    for step in range(1, 91):
+        if side_at(unfold * step) * rest <= 0:
+            found = unfold * (step - 1)
+            break
+    set_rot(lo, x=0.0)
+    set_rot(ft, x=0.0)
+    bpy.context.view_layer.update()
+    return found
+
+
+STRAIGHT = {"Front": None, "Hind": _straight_angle("Hind")}       # a front leg stands nearly straight and may straighten a little in the stance
+REST_SIDE = {kind: joint_offset(kind) for kind in ("Front", "Hind")}  # the side each leg's middle joint is on at rest: the clip must keep it
+
+
 def solve_lower(kind, side, upper_deg, target_z=0.0):
     """Lower-leg angle (degrees) that puts the hoof tip on the ground for this upper-leg angle, hoof kept flat."""
     up, lo, ft = f"{kind}Upper_{side}", f"{kind}Lower_{side}", f"{kind}Foot_{side}"
@@ -116,10 +174,12 @@ def solve_lower(kind, side, upper_deg, target_z=0.0):
         bpy.context.view_layer.update()
         return foot_tip(ft).z - target_z
 
-    a, b = -20.0, 60.0                                       # slight hyperextension up to a deep fold
+    a, b = -30.0, 85.0                                       # some hyperextension up to a deep fold (an angled hind leg, a dog's or a cat's, needs more than 60 degrees)
     sgn = FLEX_SIGN[kind]
     # flexing in this leg's direction raises the hoof, so height() rises with m*sgn
     lo_m, hi_m = (a, b) if sgn > 0 else (-b, -a)
+    if STRAIGHT[kind] is not None:                                # never past straight
+        lo_m, hi_m = (max(lo_m, STRAIGHT[kind]), hi_m) if sgn > 0 else (lo_m, min(hi_m, STRAIGHT[kind]))
     for _ in range(14):
         mid = (lo_m + hi_m) / 2
         h = height(mid)
@@ -423,6 +483,28 @@ for n, v in slide.items():                                       # a hoof is pla
     v[1] = (max(dev) - min(dev)) / 2 * 100.0
 worst_drift = max(v[1] for v in slide.values())
 worst_height = max(v[2] for v in slide.values())
+
+
+def joint_side(kind):
+    """joint_offset over the clip: (least, most). A joint that crosses the line mid-clip, or stays on the other side of it from the rest pose, bends the wrong
+    way (issue #125); the clip then fails with a RuntimeError and leaves the rig as it is (tools/build_site_assets.py's SceneGuard restores the scene's settings)."""
+    seen = []
+    for frame in range(bpy.context.scene.frame_start, bpy.context.scene.frame_end + 1):
+        bpy.context.scene.frame_set(frame)
+        seen.append(joint_offset(kind))
+    return min(seen), max(seen)
+
+
+for kind in ("Front", "Hind"):
+    lo_side, hi_side = joint_side(kind)
+    # a straight leg stands a little either side of the line (a front leg locks a little past straight under load); the offsets are in world units, so is this
+    tolerance = (0.10 if kind == "Front" else 0.05) * LEG_LENGTH * rig.matrix_world.to_scale().x
+    rest_side = REST_SIDE[kind]
+    if lo_side < -tolerance < tolerance < hi_side:
+        raise RuntimeError(f"{GAIT}: the {kind.lower()} leg's middle joint crosses its top-to-ankle line ({lo_side:+.3f} to {hi_side:+.3f} m): it bends the wrong way")
+    if abs(rest_side) > tolerance and rest_side * (lo_side + hi_side) < 0:
+        raise RuntimeError(f"{GAIT}: the {kind.lower()} leg's middle joint is on the other side of its line from the rest pose ({rest_side:+.3f} m at rest)")
+    print(f"{GAIT}: {kind.lower()} leg's middle joint {'in front of' if lo_side + hi_side > 0 else 'behind'} the line throughout ({lo_side:+.3f} to {hi_side:+.3f} m)")
 print(f"{GAIT}: ground speed {speed_measured:.2f} m/s (feet {', '.join(f'{k.replace("Foot_", "")} {v[0]:.2f}' for k, v in slide.items())}); {STRIDE_FRAMES} frames at {FPS} fps"
       f" = {1 / stride_seconds:.2f} strides/s")
 print(f"{GAIT}: foot slide: planted hoof drifts at most {worst_drift:.1f} cm from its line, {worst_height:.1f} cm off the ground"
