@@ -41,6 +41,12 @@ All shares are of the back height **H** (top of the body over the withers) or th
 | Bulldog (English; 18-23 kg) | 0.31-0.38 m | 0.40-0.50 m | 0.28-0.35 / 0.22-0.27 m | 30-40 % of H (a low, deep brisket) | 0.12-0.15 m to the skull, a muzzle of only 3-5 cm | very short and thick: the head sits on the shoulders | broad, thick paws, 0.08-0.10 m |
 | Dachshund (standard; 7-15 kg) | 0.20-0.23 m | 0.38-0.46 m (about twice the height) | 0.11-0.14 / 0.13-0.16 m | about a third of H (the ground clearance) | 0.16-0.19 m, 40 % | long, carried up | large front paws for its size, 0.06-0.07 m |
 | Stray (a medium mixed breed) | 0.40-0.55 m | about the collie's | as the collie | about 50 % | as the collie | as the collie | as the collie |
+| Raccoon (5-12 kg) | 0.23-0.30 m (the back higher at the hips) | 0.40-0.50 m (head and body 0.40-0.70 m) | chunky, about 0.20 / 0.21 m | 30-35 % of H | 0.10-0.13 m, about 28 % | short; the head carried at the level of the back | hand-like front paws, 0.05-0.07 m |
+| Virginia opossum (2-6 kg) | 0.15-0.25 m | 0.28-0.35 m (head and body 0.36-0.50 m) | 0.13-0.15 / 0.14-0.16 m | about 30 % | 0.10-0.13 m, a long pointed snout, about 40 % | short; the head carried low | small five-toed feet, 0.04-0.05 m |
+| Striped skunk (2-6 kg) | 0.14-0.24 m (an arched back) | 0.25-0.33 m (head and body 0.33-0.46 m) | 0.15-0.17 / 0.16-0.18 m | 25-30 % | 0.07-0.09 m, about 30 % | short; the head carried low | small feet with long front claws |
+| Red fox (4-8 kg) | 0.35-0.50 m | 0.45-0.60 m (head and body 0.45-0.90 m) | 0.15-0.20 / 0.20-0.24 m | about 50 % | 0.14-0.17 m, about 36 % | medium; the head carried a little above the back | small oval paws, 0.04-0.06 m |
+| White-tailed deer (doe 40-70 kg, buck 60-130 kg) | 0.80-1.00 m (buck to 1.05 m) | 0.95-1.10 m (head and body 1.5-2.0 m) | 0.28-0.36 / 0.40-0.46 m | 55-60 % of H | 0.28-0.33 m, about 30 % | long; the head carried well above the back | narrow cloven hooves, 0.06-0.08 m |
+| Black bear (60-250 kg) | 0.75-1.05 m | 1.2-1.5 m (head and body 1.2-2.0 m) | 0.50-0.62 / 0.50-0.60 m | about 45 % of H | 0.28-0.33 m, about 25 % | short and thick; the head carried at or below the back | broad flat feet, 0.20-0.25 m |
 | Cow (Holstein) | 1.30-1.55 m | 1.5-1.8 m | 0.55-0.70 / 0.75-0.90 m | 43-50 % | 0.50-0.58 m, 30-33 % | short, level with the back | cloven hoof, 0.11-0.13 m long |
 | Horse (riding, 15-15.2 hands = 1.52-1.57 m) | 1.45-1.65 m | 1.45-1.7 m | 0.40-0.58 / 0.75-0.95 m | 49-55 % | 0.60-0.70 m, 40-45 % | long, 0.7 m, head carried above the back | round hoof 0.13-0.15 m |
 | Pig (domestic, market) | 0.75-1.0 m | 1.05-1.4 m | 0.50-0.65 / 0.50-0.65 m | 33 % | 0.36-0.45 m, 30-35 % | short and thick; jowl; ham at the rear | small cloven hooves |
@@ -75,7 +81,7 @@ A straight tube on posts fails all of the first five (the test builds one from t
 
 ## Proportion table: the audit's ranges
 
-These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The breeds' rows (#125) are estimates from the American Kennel Club standards' heights and photographs, like the collie's; the stray is checked against the collie's row. The hen is a biped and has its own table below.
+These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The wildlife's rows (#125) are estimates from wildlife references and photographs, like the dogs'; the fawn is checked against the deer's row. The breeds' rows (#125) are estimates from the American Kennel Club standards' heights and photographs, like the collie's; the stray is checked against the collie's row. The hen is a biped and has its own table below.
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -87,6 +93,12 @@ These are the ranges in `animal_proportions.RANGES` (the test checks that the sc
 | beagle | 1.00-1.35 | 0.36-0.54 | 0.46-0.60 | 0.42-0.52 | 0.32-0.44 | 0.48-0.66 | 1.05-1.35 | 0.13-0.19 | 0.08-0.12 | 0.16-0.25 |
 | bulldog | 1.05-1.35 | 0.65-0.95 | 0.55-0.75 | 0.28-0.42 | 0.22-0.34 | 1.15-1.60 | 1.00-1.30 | 0.20-0.30 | 0.13-0.20 | 0.26-0.40 |
 | dachshund | 1.65-2.20 | 0.45-0.70 | 0.58-0.78 | 0.25-0.38 | 0.32-0.46 | 0.38-0.56 | 1.20-1.55 | 0.18-0.30 | 0.11-0.19 | 0.24-0.38 |
+| raccoon | 1.15-1.60 | 0.55-0.80 | 0.60-0.82 | 0.22-0.38 | 0.24-0.36 | 0.80-1.15 | 0.90-1.15 | 0.15-0.24 | 0.09-0.16 | 0.18-0.30 |
+| opossum | 1.15-1.60 | 0.50-0.75 | 0.55-0.80 | 0.22-0.38 | 0.36-0.52 | 0.42-0.62 | 0.78-1.00 | 0.15-0.24 | 0.10-0.17 | 0.18-0.30 |
+| skunk | 1.15-1.60 | 0.55-0.80 | 0.60-0.85 | 0.18-0.34 | 0.26-0.38 | 0.62-0.90 | 0.82-1.05 | 0.16-0.26 | 0.10-0.18 | 0.18-0.30 |
+| fox | 1.05-1.40 | 0.32-0.48 | 0.40-0.54 | 0.44-0.58 | 0.32-0.44 | 0.45-0.62 | 1.05-1.30 | 0.10-0.16 | 0.055-0.09 | 0.09-0.15 |
+| deer | 0.95-1.25 | 0.26-0.38 | 0.40-0.52 | 0.52-0.62 | 0.28-0.40 | 0.32-0.48 | 1.20-1.50 | 0.08-0.13 | 0.04-0.065 | 0.06-0.10 |
+| bear | 1.20-1.55 | 0.48-0.68 | 0.50-0.66 | 0.36-0.50 | 0.22-0.32 | 0.75-0.95 | 0.82-1.02 | 0.20-0.30 | 0.13-0.20 | 0.20-0.30 |
 | cow | 1.10-1.45 | 0.34-0.54 | 0.50-0.66 | 0.42-0.52 | 0.27-0.36 | 0.40-0.55 | 0.95-1.20 | 0.10-0.16 | 0.05-0.09 | 0.07-0.12 |
 | horse | 1.00-1.25 | 0.26-0.38 | 0.48-0.64 | 0.47-0.60 | 0.38-0.50 | 0.30-0.45 | 1.15-1.45 | 0.07-0.12 | 0.045-0.07 | 0.05-0.11 |
 | pig | 1.30-1.70 | 0.55-0.78 | 0.60-0.80 | 0.28-0.40 | 0.28-0.38 | 0.55-0.75 | 0.85-1.05 | 0.12-0.20 | 0.07-0.12 | 0.08-0.14 |
@@ -114,6 +126,12 @@ Measured by `measure_bird` on `biped_bird.CHICKEN_HEN`: H is the top of the head
 - **Bulldog** (#125): a huge broad head on almost no neck, a very short muzzle, small rose ears, a wide chest on short, thick, wide-set legs and narrow hips, a stub of a tail, white with fawn patches (kept); the undershot jaw and the wrinkles (dropped).
 - **Dachshund** (#125): a long low body with about a third of its height under the chest, short thick legs, a long head with long ears, a tail carried in line with the back (kept); the dark chocolate coat is the palette's `dark_brown`.
 - **Stray** (#125): the farm dog's build at 0.88 of its size with a medium coat, folded ears and dark patches on tan: a dog with no breed in particular.
+- **Raccoon** (#125): a black mask across a white-edged face, rounded ears, a grey-brown chunky body with a back that rises to the hips, a bushy ringed tail (kept); the hand-like paws (dropped: a foot shape).
+- **Opossum** (#125): a long pointed white face with a pink nose, bare black ears, a shaggy grey body on short legs, a long bare pink tail (kept).
+- **Skunk** (#125): black with a white stripe up the face and two down the back, a small pointed head, a big bushy tail carried up and white at the top (kept).
+- **Red fox** (#125): orange with a white chest and cheeks, black stockings, tall pointed ears with black tips, a long bushy tail with a white tip (kept).
+- **White-tailed deer** (#125): a slim barrel on long thin legs, a long neck carrying a small head high, large ears held out, a tail white underneath; the buck with antlers (a main beam and tines), the fawn spotted (kept); the pale throat patch (kept as the cream jaw).
+- **Black bear** (#125): heavy, a level back (no hump: that is the grizzly), a big head carried low with a tan muzzle, small round ears, thick legs, a very short tail (kept); the plantigrade foot (kept: the hind heel low behind the shin, a long foot forward; the front foot is the wide last leg ring).
 - **Cow**: a deep barrel, a broad head carried level and tipped down with a wide muzzle, the knee halfway down the leg, a hoof (the bottom of the leg flared and dark), an udder, two horns and the Holstein patches (kept); the cloven split of the hoof (dropped).
 - **Horse**: a long arched neck, a long head tipped 45 degrees, a body as deep as the legs are long, a mane and a full tail, tall ears (kept); the hoof is round and dark (kept as the dark flared foot).
 - **Pig**: a long barrel as deep as it is wide, short legs, a big wedge head with jowls ending in a flat snout, floppy ears over the eyes, a curly tail (kept); the cloven hoof (dropped).
@@ -162,6 +180,7 @@ The faceted animals are 500-1500 triangles (`docs/from-game/asset-list.md` class
 | --- | --- | --- |
 | Cat | rebuilt (#88) | head too small, slab body, long thin legs |
 | Collie | rebuilt (#88) | head short and wide, no shoulder, stub feet |
+| Raccoon, opossum, skunk, fox, deer (doe, buck, fawn), bear | rebuilt (#125) | 8-sided slab bodies and 6-sided heads (now 10 and 8, as the farm animals'); the deer's trunk was shorter than it was tall, its chest shallow and its head carried low (LH 0.89, depth 0.38, carry 1.18), now a longer, deeper body, a long neck and big ears; the others were within their new ranges; then all eight got the shape rework's keels, legs that start inside the body and a bent hind leg |
 | Retriever, shepherd, beagle, bulldog, dachshund, stray | rebuilt (#125) on the farm dog's builder | the old `make_dog` failed width, depth, elbow and head width on all six (and the length on the beagle and dachshund) |
 | Husky | rebuilt (#88) | short and broad, chest hung too low (elbow at 35 % of the height, real 50 %) |
 | Cow, horse, pig, sheep, goat | rebuild (done) | same causes (issue #87): bodies 8-sided slabs, thin legs with the knee too high, small wedge heads |

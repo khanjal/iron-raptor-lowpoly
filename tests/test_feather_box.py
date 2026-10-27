@@ -50,5 +50,22 @@ class FeatherBox(unittest.TestCase):
         self.assertEqual(c.calls[1][3], (-6, 0, -20.0))
 
 
+class DroopedFan(unittest.TestCase):
+    def test_a_drooped_plate_lies_along_its_bone(self):
+        c = Recorder()
+        biped_bird._feather_box(c, dict(FeatherBox.SPEC, droop=28.0), 0.1, 0.48, 0.02, "BM")
+        self.assertEqual(c.calls[0][3], (-28.0, 0, -20.0))
+
+    def test_the_folded_fan_hangs_and_its_feathers_are_stacked(self):
+        import math
+        sp = {"tail_fan": {"count": 5, "rest": 3.0, "open": 13.0, "length": 0.4, "width": 0.09, "base": (0.0, 0.4, 0.6), "droop": 30.0, "stack": 0.005}}
+        specs = biped_bird.feather_specs(sp)
+        self.assertEqual([s["bone"] for s in specs], [f"TailF{i}" for i in range(5)])
+        for s in specs:
+            self.assertAlmostEqual(math.sqrt(sum(v * v for v in s["dir"])), 1.0)
+            self.assertAlmostEqual(math.degrees(math.asin(-s["dir"][2])), 30.0, places=6)
+            self.assertAlmostEqual(s["base"][2], 0.6 - 0.005 * abs(s["k"]))
+
+
 if __name__ == "__main__":
     unittest.main()

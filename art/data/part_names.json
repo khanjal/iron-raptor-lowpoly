@@ -658,5 +658,42 @@
  },
  "GN_Pig_faceted_01": {
   "$main": "Skin"
+ },
+ "GN_Bear_faceted_01": {
+  "$main": "Coat"
+ },
+ "GN_DeerDoe_faceted_01": {
+  "cream": "Belly, throat and muzzle"
+ },
+ "GN_DeerBuck_faceted_01": {
+  "cream": "Belly, throat and muzzle",
+  "horn_cream": "Antlers"
+ },
+ "GN_DeerFawn_faceted_01": {
+  "paint_white": "Spots and tail",
+  "cream": "Belly, throat and muzzle"
+ },
+ "GN_Fox_faceted_01": {
+  "paint_white": "Chest, cheeks and tail tip",
+  "black": "Stockings, ear tips and nose"
+ },
+ "GN_Opossum_faceted_01": {
+  "paint_white": "Face",
+  "pink": "Nose, feet and tail"
+ },
+ "GN_Raccoon_faceted_01": {
+  "black": "Mask, feet and tail rings"
+ },
+ "GN_Skunk_faceted_01": {
+  "paint_white": "Stripes, blaze and tail"
+ },
+ "GN_TurkeyTom_faceted_01": {
+  "dark_brown": "Breast, back and tail",
+  "tan": "Tail band",
+  "pink": "Legs"
+ },
+ "GN_TurkeyHen_faceted_01": {
+  "tan": "Tail band",
+  "pink": "Legs"
  }
 }

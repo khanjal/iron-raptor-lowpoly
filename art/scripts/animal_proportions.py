@@ -38,6 +38,19 @@ RANGES = {
                     "carry": (1.00, 1.30), "leg_top": (0.20, 0.30), "leg_low": (0.13, 0.20), "paw": (0.26, 0.40)},
     "dachshund": {"LH": (1.65, 2.20), "width": (0.45, 0.70), "depth": (0.58, 0.78), "elbow": (0.25, 0.38), "head": (0.32, 0.46), "head_w": (0.38, 0.56),
                       "carry": (1.20, 1.55), "leg_top": (0.18, 0.30), "leg_low": (0.11, 0.19), "paw": (0.24, 0.38)},
+    # the wildlife (issue #125)
+    "raccoon": {"LH": (1.15, 1.60), "width": (0.55, 0.80), "depth": (0.60, 0.82), "elbow": (0.22, 0.38), "head": (0.24, 0.36), "head_w": (0.80, 1.15),
+                    "carry": (0.90, 1.15), "leg_top": (0.15, 0.24), "leg_low": (0.09, 0.16), "paw": (0.18, 0.30)},
+    "opossum": {"LH": (1.15, 1.60), "width": (0.50, 0.75), "depth": (0.55, 0.80), "elbow": (0.22, 0.38), "head": (0.36, 0.52), "head_w": (0.42, 0.62),
+                    "carry": (0.78, 1.00), "leg_top": (0.15, 0.24), "leg_low": (0.10, 0.17), "paw": (0.18, 0.30)},
+    "skunk": {"LH": (1.15, 1.60), "width": (0.55, 0.80), "depth": (0.60, 0.85), "elbow": (0.18, 0.34), "head": (0.26, 0.38), "head_w": (0.62, 0.90),
+                  "carry": (0.82, 1.05), "leg_top": (0.16, 0.26), "leg_low": (0.10, 0.18), "paw": (0.18, 0.30)},
+    "fox": {"LH": (1.05, 1.40), "width": (0.32, 0.48), "depth": (0.40, 0.54), "elbow": (0.44, 0.58), "head": (0.32, 0.44), "head_w": (0.45, 0.62),
+                "carry": (1.05, 1.30), "leg_top": (0.10, 0.16), "leg_low": (0.055, 0.09), "paw": (0.09, 0.15)},
+    "deer": {"LH": (0.95, 1.25), "width": (0.26, 0.38), "depth": (0.40, 0.52), "elbow": (0.52, 0.62), "head": (0.28, 0.40), "head_w": (0.32, 0.48),
+                 "carry": (1.20, 1.50), "leg_top": (0.08, 0.13), "leg_low": (0.04, 0.065), "paw": (0.06, 0.10)},
+    "bear": {"LH": (1.20, 1.55), "width": (0.48, 0.68), "depth": (0.50, 0.66), "elbow": (0.36, 0.50), "head": (0.22, 0.32), "head_w": (0.75, 0.95),
+                 "carry": (0.82, 1.02), "leg_top": (0.20, 0.30), "leg_low": (0.13, 0.20), "paw": (0.20, 0.30)},
     # the farm animals
     "cow": {"LH": (1.10, 1.45), "width": (0.34, 0.54), "depth": (0.50, 0.66), "elbow": (0.42, 0.52), "head": (0.27, 0.36), "head_w": (0.40, 0.55),
                 "carry": (0.95, 1.20), "leg_top": (0.10, 0.16), "leg_low": (0.05, 0.09), "paw": (0.07, 0.12)},
@@ -52,8 +65,9 @@ RANGES = {
 }
 # the species keys of species.SPECIES that each range row applies to
 KEYS = {**dict.fromkeys(("cat_tabby", "cat_black", "cat_orange", "cat_tuxedo", "cat_calico", "cat_siamese", "cat_grey", "cat_kitten"), "cat"), "dog_collie": "collie", **{f"dog_collie_{c}": "collie" for c in ("brown_white", "grey_merle", "yellow", "brindle")}, "dog_husky": "husky", "dog_retriever": "retriever", "dog_shepherd": "shepherd", "dog_beagle": "beagle", "dog_bulldog": "bulldog",
-        "dog_dachshund": "dachshund", "dog_stray": "collie", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
-ENFORCED = {"cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund", "cow", "horse", "pig", "sheep", "goat"}          # every four-legged species is rebuilt to the brief: a miss fails the audit
+        "dog_dachshund": "dachshund", "dog_stray": "collie", "raccoon": "raccoon", "opossum": "opossum", "skunk": "skunk", "fox": "fox",
+        **dict.fromkeys(("deer_doe", "deer_buck", "deer_fawn"), "deer"), "bear": "bear", "cow": "cow", "horse": "horse", "pig": "pig", "sheep": "sheep", "goat": "goat"}
+ENFORCED = {"cat", "collie", "husky", "retriever", "shepherd", "beagle", "bulldog", "dachshund", "raccoon", "opossum", "skunk", "fox", "deer", "bear", "cow", "horse", "pig", "sheep", "goat"}          # every four-legged species is rebuilt to the brief: a miss fails the audit
 
 
 def measure(sp):
