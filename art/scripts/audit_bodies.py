@@ -36,6 +36,7 @@ import glob
 import os
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 from mathutils.bvhtree import BVHTree
 
@@ -257,6 +258,29 @@ def _inside_closed(tree, point):
     return hits % 2 == 1
 
 
+def _arm_depths(tree, a, mw, me, height, worst):
+    """Raise worst[band] to how deep the vertices of arm `a`, lower than the shoulder, stand inside the torso's tree in this pose."""
+    for i in a.vi:
+        p = mw @ me.vertices[i].co
+        if p.z >= ARM_SHOULDER * height:
+            continue
+        if _inside_closed(tree, p):
+            hit = tree.find_nearest(p)
+            band = 0 if p.z < ARM_ELBOW * height else 1
+            worst[band] = max(worst[band], hit[3] if hit[0] is not None else 0.0)
+
+
+def _pose_depths(mw, mesh_obj, torso, arms, height, worst):
+    """Read the mesh posed as it is now back, and raise `worst` by how deep each arm stands inside the torso."""
+    dg = bpy.context.evaluated_depsgraph_get()
+    eo = mesh_obj.evaluated_get(dg)
+    me = eo.to_mesh()
+    tree = BVHTree.FromPolygons([mw @ me.vertices[i].co for i in torso.vi], torso._polys)
+    for a in arms:
+        _arm_depths(tree, a, mw, me, height, worst)
+    eo.to_mesh_clear()
+
+
 def _arm_clearance(rig, mesh_obj, torso, arms, height):
     """How far the hanging arms stand inside the torso, below the shoulder, in the poses of the game's clips (gp_clips: the Idle, the Walk and the Run with the arms swinging): the
     biggest depth of any arm vertex lower than ARM_SHOULDER of the height. The imported rig is posed in place and put back; the posed mesh is read back by vertex index.
@@ -271,30 +295,14 @@ def _arm_clearance(rig, mesh_obj, torso, arms, height):
         for pose, t in ((gp_clips.standing, 0.0), (gp_clips.walking, 0.0), (gp_clips.walking, 0.25), (gp_clips.running, 0.25)):
             gp_clips.reset(rig)
             pose(rig, t)
-            dg = bpy.context.evaluated_depsgraph_get()
-            eo = mesh_obj.evaluated_get(dg)
-            me = eo.to_mesh()
-            tree = BVHTree.FromPolygons([mw @ me.vertices[i].co for i in torso.vi], torso._polys)
-            for a in arms:
-                for i in a.vi:
-                    p = mw @ me.vertices[i].co
-                    if p.z >= ARM_SHOULDER * height:
-                        continue
-                    if _inside_closed(tree, p):
-                        hit = tree.find_nearest(p)
-                        band = 0 if p.z < ARM_ELBOW * height else 1
-                        worst[band] = max(worst[band], hit[3] if hit[0] is not None else 0.0)
-            eo.to_mesh_clear()
+            _pose_depths(mw, mesh_obj, torso, arms, height, worst)
     finally:
         gp_clips.reset(rig)
     return tuple(worst)
 
 
-def _build_measures(torso, legs, arms, neck, skull, height):
-    """The build's measures (issue #269), ratios to the figure's height like the proportions: the torso's width at its six rings (hips, waist, ribs, chest, shoulders, neck base: hip_w ...),
-    its depth at the waist and ribs (waist_d, ribs_d), how far its front stands in front of the body's middle at the waist and ribs (waist_f, ribs_f: the belly), the thickest thigh,
-    upper arm and neck. The torso's rings are found as the height levels of its vertices (a loft: six rings and nothing between), the rest from the islands' own extents."""
-    m = {}
+def _torso_measures(torso, height, m):
+    """The torso's width at its six rings, its depth at the waist and ribs and how far its front stands out at the waist and ribs."""
     rings = _levels(torso)
     if len(rings) >= 6:
         names = ("hip", "waist", "ribs", "chest", "shoulder", "neckbase")
@@ -304,6 +312,10 @@ def _build_measures(torso, legs, arms, neck, skull, height):
         m["ribs_d"] = (rings[2][4] - rings[2][3]) / height
         m["waist_f"] = -rings[1][3] / height               # the front of the torso (y is negative in front) at the waist, ratio to the height
         m["ribs_f"] = -rings[2][3] / height
+
+
+def _thigh_measure(legs, height, m):
+    """The thickest thigh."""
     if legs:                                               # the thigh: the leg's width a little below the hips (the top ring is capped to the torso's side: it says nothing about the build)
         widths = []
         for l in legs:
@@ -312,6 +324,10 @@ def _build_measures(torso, legs, arms, neck, skull, height):
                 widths.append(max(xs) - min(xs))
         if widths:
             m["thigh_w"] = max(widths) / height
+
+
+def _upper_arm_measure(arms, height, m):
+    """The thickest upper arm."""
     if arms:
         t = []
         for a in arms:                                     # the upper arm: the arm's length between a quarter and a half of the way out (the elbow's ring: its thickness is the mean of the upper arm's and the forearm's factors; the shoulder's end is inside the torso)
@@ -322,6 +338,16 @@ def _build_measures(torso, legs, arms, neck, skull, height):
                 t.append(max(zs) - min(zs))
         if t:
             m["upper_arm_t"] = max(t) / height
+
+
+def _build_measures(torso, legs, arms, neck, skull, height):
+    """The build's measures (issue #269), ratios to the figure's height like the proportions: the torso's width at its six rings (hips, waist, ribs, chest, shoulders, neck base: hip_w ...),
+    its depth at the waist and ribs (waist_d, ribs_d), how far its front stands in front of the body's middle at the waist and ribs (waist_f, ribs_f: the belly), the thickest thigh,
+    upper arm and neck. The torso's rings are found as the height levels of its vertices (a loft: six rings and nothing between), the rest from the islands' own extents."""
+    m = {}
+    _torso_measures(torso, height, m)
+    _thigh_measure(legs, height, m)
+    _upper_arm_measure(arms, height, m)
     m["neck_t"] = (neck.x1 - neck.x0) / height
     m["face_w"] = (skull.x1 - skull.x0) / height
     return m
@@ -337,6 +363,155 @@ def audit(path, mf=None, ref=None):
     finally:
         for o in made:
             bpy.data.objects.remove(o, do_unlink=True)
+
+
+def _is_floating(i, p, pieces, surface):
+    """Whether piece p (number i) touches no other piece: by its surface when `surface`, else by its box."""
+    return not any(_meets(p, q) and (touches(p, q) if surface else True) for j, q in enumerate(pieces) if j != i)
+
+
+def _floating_problems(stem, pieces, problems, notes):
+    """Pieces that touch no other piece: a person's float is a fault, an alien's judged by the surface, a few models may float on purpose."""
+    # --- floating pieces ---------------------------------------------------------------------------------------------------------
+    if stem in FLOATING_ON_PURPOSE:
+        notes.append(f"floating pieces are allowed ({FLOATING_ON_PURPOSE[stem]})")
+    else:
+        surface = stem in ALIENS or stem in OTHER_ALIENS      # the people's face boxes still float a few millimetres off the skin (#183): the box test for them
+        for i, p in enumerate(pieces):
+            if _is_floating(i, p, pieces, surface):
+                problems.append(f"floating piece ({p.group}, z {p.z0:.2f}-{p.z1:.2f}, x {p.x0:+.2f}..{p.x1:+.2f}): " + ("its surface touches no other piece's" if surface else "its box meets no other piece's"))
+
+
+def _other_alien_audit(stem, pieces, problems, notes):
+    """The Insectoid and the Energy Being have no skull and no person skeleton: only their floating pieces and their eyes are checked."""
+    top = max(p.z1 for p in pieces)
+    big = max(pieces, key=lambda p: (p.x1 - p.x0) * (p.y1 - p.y0) * (p.z1 - p.z0))
+    heads = [p for p in pieces if p.group == "Head"]                            # the Insectoid has a Head bone; the Energy Being has no groups at all
+    least = 0.05 if heads else 0.02                                             # an eye is a lump (every side 5 cm or more on the Insectoid): not an antenna or a mandible
+    cands = [p for p in (heads or pieces) if p is not big and _centre(p)[2] > 0.5 * top and _centre(p)[1] < _centre(big)[1]
+             and min(p.x1 - p.x0, p.y1 - p.y0, p.z1 - p.z0) >= least]
+    _eyes(cands, pieces, problems, "head or core")
+    return stem, problems, notes, {"height": top}
+
+
+def _body_parts(stem, pieces):
+    """The skull, neck candidates, torso, arms, legs and shoes of a person on the shared skeleton, or None when there is no skull."""
+    skulls = sorted([p for p in pieces if p.group == "Head" and p.n > 20], key=lambda p: p.z0)
+    if not skulls:
+        return None
+    skull = skulls[0]
+    height = skull.z1
+    necks = [p for p in pieces if p is not skull and p.z1 >= skull.z0 - 0.01 and p.z1 <= skull.z0 + 0.06 and p.z0 < skull.z0 and p.xr < skull.xr]
+    # the torso: the tall piece that starts low (the arms start at the shoulders, a vest or a skirt covers part of the height). A broad torso can weigh more to a clavicle than to the spine
+    torso_groups = ("spine_03", "spine_02", "spine_01", "pelvis") + (() if stem in ALIENS else ("clavicle_l", "clavicle_r"))     # (an alien's shoulder balls weigh to the clavicles: not a torso)
+    torso = max((p for p in pieces if p.group in torso_groups and p.z1 > 0.4 * height and (stem in ALIENS or p.z0 < 0.55 * height)), key=lambda p: p.z1, default=None)
+    arms = [p for p in pieces if p.n > 20 and p.xr - min(abs(p.x0), abs(p.x1)) > 0.25 * height * 0.6 and p.z0 > 0.4 * height]     # (a finger is a piece too: it has few vertices)
+    legs = [p for p in pieces if p.z0 < 0.12 * height and 0.3 * height < p.z1 < 0.65 * height]
+    shoes = [p for p in pieces if p.z1 < 0.1 * height]
+    return SimpleNamespace(skull=skull, height=height, necks=necks, torso=torso, arms=arms, legs=legs, shoes=shoes)
+
+
+def _alien_skull_eyes(pieces, skull, problems):
+    """The eyes: a mirrored pair on the front of the skull's upper half that shows outside it."""
+    h = skull.z1 - skull.z0
+    sy = _centre(skull)[1]
+    cands = [p for p in pieces if p is not skull and p.group == "Head" and skull.z0 + 0.35 * h < _centre(p)[2] < skull.z0 + 0.92 * h and _centre(p)[1] < sy]
+    _eyes(cands, [skull], problems, "skull")
+
+
+def _arm_join_problems(torso, arms, problems):
+    """Each arm starts inside the torso's edge at its height."""
+    for a in arms:
+        near = [v for v in torso.pts if abs(v.z - (a.z0 + a.z1) * 0.5) < 0.08]
+        reach = max((abs(v.x) for v in near), default=0.0)
+        inner = min(abs(a.x0), abs(a.x1))
+        if inner > reach + 0.005:
+            problems.append(f"an arm starts outside the torso (its inner end at |x| {inner:.3f}, the torso's edge at {reach:.3f})")
+
+
+def _leg_join_problems(torso, legs, problems):
+    """Each leg reaches into the pelvis."""
+    for leg in legs:
+        if leg.z1 < torso.z0 + 0.01:
+            problems.append(f"a leg does not reach into the pelvis (its top z {leg.z1:.3f}, the pelvis's bottom {torso.z0:.3f})")
+
+
+def _shoe_join_problems(legs, shoes, problems):
+    """Each shoe reaches its leg and its heel covers the leg's back edge."""
+    for s in shoes:
+        near = [l for l in legs if abs((l.x0 + l.x1) * 0.5 - (s.x0 + s.x1) * 0.5) < 0.1]
+        if near and s.z1 < near[0].z0 - 0.002:
+            problems.append(f"a shoe does not reach its leg (shoe top z {s.z1:.3f}, leg bottom {near[0].z0:.3f})")
+        if near:
+            back = max((p.y for p in near[0].pts if p.z < near[0].z0 + 0.03), default=None)
+            if back is not None and s.y1 < back - 0.004:
+                problems.append(f"the back of a leg overhangs its shoe (the leg's bottom edge at y {back:.3f}, the heel ends at {s.y1:.3f})")
+
+
+def _join_problems(parts, neck, problems):
+    """Neck to skull and torso, arms to the torso, legs to the pelvis, shoes to the legs."""
+    skull, torso = parts.skull, parts.torso
+    if neck.z1 - skull.z0 < 0.004:
+        problems.append(f"the neck does not reach the skull ({neck.z1 - skull.z0:+.3f} m into it)")
+    if torso.z1 - neck.z0 < 0.004:
+        problems.append(f"the neck does not reach the torso ({torso.z1 - neck.z0:+.3f} m into it)")
+    _arm_join_problems(torso, parts.arms, problems)
+    _leg_join_problems(torso, parts.legs, problems)
+    _shoe_join_problems(parts.legs, parts.shoes, problems)
+
+
+def _basic_measures(parts, neck, measures):
+    """Head, neck, arm, leg and foot against the height."""
+    skull, torso, arms, legs, shoes, height = parts.skull, parts.torso, parts.arms, parts.legs, parts.shoes, parts.height
+    measures["head"] = (skull.z1 - skull.z0) / height
+    measures["neck"] = (skull.z0 - torso.z1) / height
+    measures["neck_w"] = (neck.x1 - neck.x0) / max(1e-6, skull.x1 - skull.x0)
+    if arms:
+        measures["arm"] = sum((a.xr - min(abs(a.x0), abs(a.x1))) for a in arms) / len(arms) / height
+    if legs:
+        measures["leg"] = sum(l.z1 for l in legs) / len(legs) / height
+    if shoes:
+        measures["foot"] = max(s.y1 - s.y0 for s in shoes)
+        measures["foot"] /= height
+
+
+def _arm_clearance_problems(made, m, parts, ref, measures, problems):
+    """How far a swinging arm stands inside the torso, against the neutral body's."""
+    torso, arms, height = parts.torso, parts.arms, parts.height
+    rig = next((o for o in made if o.type == "ARMATURE"), None)
+    if rig is not None and arms:
+        measures["arm_in"], measures["arm_in_upper"] = _arm_clearance(rig, m, torso, arms, height)
+        if ref is not None:
+            if measures["arm_in"] > ref[0] + ARM_CLEARANCE:
+                problems.append(f"a swinging forearm or hand stands {measures['arm_in'] * 100:.1f} cm inside the torso in the Idle, Walk or Run pose, the neutral body's {ref[0] * 100:.1f} cm + {ARM_CLEARANCE * 100:.0f} is the limit")
+            if measures["arm_in_upper"] > ref[1] + ARM_CLEARANCE:
+                problems.append(f"a hanging upper arm stands {measures['arm_in_upper'] * 100:.1f} cm inside the chest in the Idle, Walk or Run pose, the neutral body's {ref[1] * 100:.1f} cm + {ARM_CLEARANCE * 100:.0f} is the limit")
+
+
+def _build_range_problems(stem, mf, measures, problems):
+    """The measures of a person built at the mass factor mf against the build's ranges."""
+    if mf is not None:
+        for k in HUMAN_BUILD[min(HUMAN_BUILD)]:
+            if k in measures:
+                lo, hi = _build_range(k, mf, stem in CHILDREN)
+                if not lo <= measures[k] <= hi:
+                    problems.append(f"{k} {measures[k]:.3f} is outside {lo:.3f}-{hi:.3f} for a build of {mf:.2f}")
+
+
+def _range_problems(stem, measures, problems, notes):
+    """Each measure against its range; a deviation the model is allowed is a note."""
+    ranges = _ranges(stem)
+    for k, v in measures.items():
+        if k not in ranges:
+            continue
+        lo, hi = ranges[k]
+        if lo <= v <= hi:
+            continue
+        allowed = ALLOWED.get(stem, {}).get(k)
+        if allowed and allowed[0] <= v <= allowed[1]:
+            notes.append(f"{k} {v:.3f} is outside {lo:.3f}-{hi:.3f} but allowed ({allowed[2]})")
+        else:
+            problems.append(f"{k} {v:.3f} is outside {lo:.3f}-{hi:.3f}" + (f" (allowed {allowed[0]:.2f}-{allowed[1]:.2f}: {allowed[2]})" if allowed else ""))
 
 
 def _audit_imported(stem, made, mf=None, ref=None):
@@ -355,111 +530,26 @@ def _audit_imported(stem, made, mf=None, ref=None):
 
     problems, notes, measures = [], [], {}
 
-    # --- floating pieces ---------------------------------------------------------------------------------------------------------
-    if stem in FLOATING_ON_PURPOSE:
-        notes.append(f"floating pieces are allowed ({FLOATING_ON_PURPOSE[stem]})")
-    else:
-        surface = stem in ALIENS or stem in OTHER_ALIENS      # the people's face boxes still float a few millimetres off the skin (#183): the box test for them
-        for i, p in enumerate(pieces):
-            if not any(_meets(p, q) and (touches(p, q) if surface else True) for j, q in enumerate(pieces) if j != i):
-                problems.append(f"floating piece ({p.group}, z {p.z0:.2f}-{p.z1:.2f}, x {p.x0:+.2f}..{p.x1:+.2f}): " + ("its surface touches no other piece's" if surface else "its box meets no other piece's"))
-
-    if stem in OTHER_ALIENS:                       # no skull, no person skeleton: the eyes are the pair of pieces high on the front that sits on the biggest piece
-        top = max(p.z1 for p in pieces)
-        big = max(pieces, key=lambda p: (p.x1 - p.x0) * (p.y1 - p.y0) * (p.z1 - p.z0))
-        heads = [p for p in pieces if p.group == "Head"]                            # the Insectoid has a Head bone; the Energy Being has no groups at all
-        least = 0.05 if heads else 0.02                                             # an eye is a lump (every side 5 cm or more on the Insectoid): not an antenna or a mandible
-        cands = [p for p in (heads or pieces) if p is not big and _centre(p)[2] > 0.5 * top and _centre(p)[1] < _centre(big)[1]
-                 and min(p.x1 - p.x0, p.y1 - p.y0, p.z1 - p.z0) >= least]
-        _eyes(cands, pieces, problems, "head or core")
-        return stem, problems, notes, {"height": top}
-
-    # --- the skeleton of the checks: find the skull, neck, torso, arms, legs, shoes --------------------------------------------------
-    skulls = sorted([p for p in pieces if p.group == "Head" and p.n > 20], key=lambda p: p.z0)
-    if not skulls:
+    _floating_problems(stem, pieces, problems, notes)
+    if stem in OTHER_ALIENS:
+        return _other_alien_audit(stem, pieces, problems, notes)
+    parts = _body_parts(stem, pieces)
+    if parts is None:
         return stem, problems + ["no skull found"], notes, measures
-    skull = skulls[0]
-    height = skull.z1
-    necks = [p for p in pieces if p is not skull and p.z1 >= skull.z0 - 0.01 and p.z1 <= skull.z0 + 0.06 and p.z0 < skull.z0 and p.xr < skull.xr]
-    # the torso: the tall piece that starts low (the arms start at the shoulders, a vest or a skirt covers part of the height). A broad torso can weigh more to a clavicle than to the spine
-    torso_groups = ("spine_03", "spine_02", "spine_01", "pelvis") + (() if stem in ALIENS else ("clavicle_l", "clavicle_r"))     # (an alien's shoulder balls weigh to the clavicles: not a torso)
-    torso = max((p for p in pieces if p.group in torso_groups and p.z1 > 0.4 * height and (stem in ALIENS or p.z0 < 0.55 * height)), key=lambda p: p.z1, default=None)
-    arms = [p for p in pieces if p.n > 20 and p.xr - min(abs(p.x0), abs(p.x1)) > 0.25 * height * 0.6 and p.z0 > 0.4 * height]     # (a finger is a piece too: it has few vertices)
-    legs = [p for p in pieces if p.z0 < 0.12 * height and 0.3 * height < p.z1 < 0.65 * height]
-    shoes = [p for p in pieces if p.z1 < 0.1 * height]
-    if not necks or torso is None:
+    if not parts.necks or parts.torso is None:
         problems.append("no neck or no torso found")
         return stem, problems, notes, measures
-    neck = necks[0]
-    if stem in ALIENS:                             # the eyes: a mirrored pair on the front of the skull's upper half that shows outside it
-        h = skull.z1 - skull.z0
-        sy = _centre(skull)[1]
-        cands = [p for p in pieces if p is not skull and p.group == "Head" and skull.z0 + 0.35 * h < _centre(p)[2] < skull.z0 + 0.92 * h and _centre(p)[1] < sy]
-        _eyes(cands, [skull], problems, "skull")
-
-    # --- joins -----------------------------------------------------------------------------------------------------------------------
-    if neck.z1 - skull.z0 < 0.004:
-        problems.append(f"the neck does not reach the skull ({neck.z1 - skull.z0:+.3f} m into it)")
-    if torso.z1 - neck.z0 < 0.004:
-        problems.append(f"the neck does not reach the torso ({torso.z1 - neck.z0:+.3f} m into it)")
-    for a in arms:
-        near = [v for v in torso.pts if abs(v.z - (a.z0 + a.z1) * 0.5) < 0.08]
-        reach = max((abs(v.x) for v in near), default=0.0)
-        inner = min(abs(a.x0), abs(a.x1))
-        if inner > reach + 0.005:
-            problems.append(f"an arm starts outside the torso (its inner end at |x| {inner:.3f}, the torso's edge at {reach:.3f})")
-    for leg in legs:
-        if leg.z1 < torso.z0 + 0.01:
-            problems.append(f"a leg does not reach into the pelvis (its top z {leg.z1:.3f}, the pelvis's bottom {torso.z0:.3f})")
-    for s in shoes:
-        near = [l for l in legs if abs((l.x0 + l.x1) * 0.5 - (s.x0 + s.x1) * 0.5) < 0.1]
-        if near and s.z1 < near[0].z0 - 0.002:
-            problems.append(f"a shoe does not reach its leg (shoe top z {s.z1:.3f}, leg bottom {near[0].z0:.3f})")
-        if near:
-            back = max((p.y for p in near[0].pts if p.z < near[0].z0 + 0.03), default=None)
-            if back is not None and s.y1 < back - 0.004:
-                problems.append(f"the back of a leg overhangs its shoe (the leg's bottom edge at y {back:.3f}, the heel ends at {s.y1:.3f})")
-
-    # --- proportions ---------------------------------------------------------------------------------------------------------------
-    measures["head"] = (skull.z1 - skull.z0) / height
-    measures["neck"] = (skull.z0 - torso.z1) / height
-    measures["neck_w"] = (neck.x1 - neck.x0) / max(1e-6, skull.x1 - skull.x0)
-    if arms:
-        measures["arm"] = sum((a.xr - min(abs(a.x0), abs(a.x1))) for a in arms) / len(arms) / height
-    if legs:
-        measures["leg"] = sum(l.z1 for l in legs) / len(legs) / height
-    if shoes:
-        measures["foot"] = max(s.y1 - s.y0 for s in shoes)
-        measures["foot"] /= height
+    neck = parts.necks[0]
+    if stem in ALIENS:
+        _alien_skull_eyes(pieces, parts.skull, problems)
+    _join_problems(parts, neck, problems)
+    _basic_measures(parts, neck, measures)
     if stem not in ALIENS:
-        measures.update(_build_measures(torso, legs, arms, neck, skull, height))
-        rig = next((o for o in made if o.type == "ARMATURE"), None)
-        if rig is not None and arms:
-            measures["arm_in"], measures["arm_in_upper"] = _arm_clearance(rig, m, torso, arms, height)
-            if ref is not None:
-                if measures["arm_in"] > ref[0] + ARM_CLEARANCE:
-                    problems.append(f"a swinging forearm or hand stands {measures['arm_in'] * 100:.1f} cm inside the torso in the Idle, Walk or Run pose, the neutral body's {ref[0] * 100:.1f} cm + {ARM_CLEARANCE * 100:.0f} is the limit")
-                if measures["arm_in_upper"] > ref[1] + ARM_CLEARANCE:
-                    problems.append(f"a hanging upper arm stands {measures['arm_in_upper'] * 100:.1f} cm inside the chest in the Idle, Walk or Run pose, the neutral body's {ref[1] * 100:.1f} cm + {ARM_CLEARANCE * 100:.0f} is the limit")
-        if mf is not None:
-            for k in HUMAN_BUILD[min(HUMAN_BUILD)]:
-                if k in measures:
-                    lo, hi = _build_range(k, mf, stem in CHILDREN)
-                    if not lo <= measures[k] <= hi:
-                        problems.append(f"{k} {measures[k]:.3f} is outside {lo:.3f}-{hi:.3f} for a build of {mf:.2f}")
-    ranges = _ranges(stem)
-    for k, v in measures.items():
-        if k not in ranges:
-            continue
-        lo, hi = ranges[k]
-        if lo <= v <= hi:
-            continue
-        allowed = ALLOWED.get(stem, {}).get(k)
-        if allowed and allowed[0] <= v <= allowed[1]:
-            notes.append(f"{k} {v:.3f} is outside {lo:.3f}-{hi:.3f} but allowed ({allowed[2]})")
-        else:
-            problems.append(f"{k} {v:.3f} is outside {lo:.3f}-{hi:.3f}" + (f" (allowed {allowed[0]:.2f}-{allowed[1]:.2f}: {allowed[2]})" if allowed else ""))
-    measures["height"] = height
+        measures.update(_build_measures(parts.torso, parts.legs, parts.arms, neck, parts.skull, parts.height))
+        _arm_clearance_problems(made, m, parts, ref, measures, problems)
+        _build_range_problems(stem, mf, measures, problems)
+    _range_problems(stem, measures, problems, notes)
+    measures["height"] = parts.height
     return stem, problems, notes, measures
 
 
@@ -495,6 +585,33 @@ def _make_person(key, mf, folder):
     return path
 
 
+def _audit_role(data, role, folder):
+    """(builds checked, builds with problems) for one cast role: the neutral reference first, then the build at each end."""
+    stem = role["model"]
+    bad = checked = 0
+    key = role["cast"]
+    lim = data["childLimits"] if role.get("child") else data["limits"]
+    off = data["childRegionOffset"] if role.get("child") else 0.0
+    already = key in _REF
+    ref, ref_problems = _reference(key, os.path.join(folder, "ref"))
+    if not already:
+        for p in ref_problems:                              # the neutral body is a build too: its problems count (the reference of the arm test must be a sound body)
+            print(f"{stem:18s} FAIL at mf 1.00 (the reference): {p}")
+        bad += bool(ref_problems)
+    levels = [lim["min"] + off, lim["max"] + off]
+    if globals().get("EVERY_ANCHOR"):
+        levels = sorted(set(levels + list(HUMAN_BUILD)))
+    for region_mf in levels:
+        path = _make_person(key, region_mf, os.path.join(folder, f"mf{region_mf:.2f}"))
+        _, problems, _, m = audit(path, region_mf, ref)
+        checked += 1
+        print(f"{stem:18s} {'FAIL' if problems else 'ok':4s} at mf {region_mf - off:.2f}: waist {m.get('waist_w', 0):.3f} x {m.get('waist_d', 0):.3f} belly {m.get('waist_f', 0):.3f} thigh {m.get('thigh_w', 0):.3f} neck {m.get('neck_t', 0):.3f} arm_in {m.get('arm_in', 0) * 100:.1f}/{m.get('arm_in_upper', 0) * 100:.1f} cm (neutral {ref[0] * 100:.1f}/{ref[1] * 100:.1f})")
+        for p in problems:
+            print("    PROBLEM:", p)
+        bad += bool(problems)
+    return checked, bad
+
+
 def _builds_audit(only):
     """The people at their ends: each cast person built at the lightest and the heaviest mass factor the data allows (and at every anchor of HUMAN_BUILD when EVERY_ANCHOR is set), exported to a
     temporary folder and audited like the real files (joins, proportions, the measures of their build, the arm clearance against the neutral body of the same person). The joins must hold at every
@@ -506,49 +623,77 @@ def _builds_audit(only):
     folder = tempfile.mkdtemp(prefix="body_builds_")
     bad = checked = 0
     try:
-        for name, role in data["roles"].items():
-            stem = role["model"]
-            if only and stem not in only:
+        for role in data["roles"].values():
+            if only and role["model"] not in only:
                 continue
-            key = role["cast"]
-            lim = data["childLimits"] if role.get("child") else data["limits"]
-            off = data["childRegionOffset"] if role.get("child") else 0.0
-            already = key in _REF
-            ref, ref_problems = _reference(key, os.path.join(folder, "ref"))
-            if not already:
-                for p in ref_problems:                              # the neutral body is a build too: its problems count (the reference of the arm test must be a sound body)
-                    print(f"{stem:18s} FAIL at mf 1.00 (the reference): {p}")
-                bad += bool(ref_problems)
-            levels = [lim["min"] + off, lim["max"] + off]
-            if globals().get("EVERY_ANCHOR"):
-                levels = sorted(set(levels + list(HUMAN_BUILD)))
-            for region_mf in levels:
-                path = _make_person(key, region_mf, os.path.join(folder, f"mf{region_mf:.2f}"))
-                _, problems, _, m = audit(path, region_mf, ref)
-                checked += 1
-                print(f"{stem:18s} {'FAIL' if problems else 'ok':4s} at mf {region_mf - off:.2f}: waist {m.get('waist_w', 0):.3f} x {m.get('waist_d', 0):.3f} belly {m.get('waist_f', 0):.3f} thigh {m.get('thigh_w', 0):.3f} neck {m.get('neck_t', 0):.3f} arm_in {m.get('arm_in', 0) * 100:.1f}/{m.get('arm_in_upper', 0) * 100:.1f} cm (neutral {ref[0] * 100:.1f}/{ref[1] * 100:.1f})")
-                for p in problems:
-                    print("    PROBLEM:", p)
-                bad += bool(problems)
+            role_checked, role_bad = _audit_role(data, role, folder)
+            checked += role_checked
+            bad += role_bad
     finally:
         shutil.rmtree(folder, ignore_errors=True)
     print(f"audit_bodies (builds at their ends): {checked} builds, {bad} with problems")
     return bad
 
 
-def main():
-    import builds
-    only = globals().get("ONLY")
+def _model_files():
+    """The FBX files of the people and the aliens that are audited."""
     folders = globals().get("FOLDERS") or [GLOBAL / "People", GLOBAL / "Aliens"]
     files = []
     for folder in folders:
         files += sorted(glob.glob(str(Path(folder) / "G[PA]_*_01.fbx")))
+    return files
+
+
+def _check_tables():
+    """The shared body's tables against the brief; returns how many problems they had."""
     import people_proportions
     table_bad = 0
     for p in people_proportions.check():                       # the shared body's tables against the brief (docs/assets/briefs/people.md)
         print("    PROBLEM (body tables):", p)
         table_bad += 1
     print("people_proportions: " + " ".join(f"{k} {v:.3f}" for k, v in people_proportions.measure().items()))
+    return table_bad
+
+
+def _cast_reference(stem, entry, data, ref_dir):
+    """(mf, ref, ref_dir, bad) of a person of the cast: its role's build and the neutral body of the same person to audit it against."""
+    import builds
+    bad = 0
+    role_name, role = entry
+    import tempfile
+    mf = builds.region_mf(role_name, data=data)
+    ref_dir = ref_dir or tempfile.mkdtemp(prefix="body_ref_")
+    already = role["cast"] in _REF
+    ref, ref_problems = _reference(role["cast"], ref_dir)
+    if not already:
+        for p in ref_problems:
+            print(f"{stem:18s} FAIL at mf 1.00 (the neutral reference): {p}")
+        bad += bool(ref_problems)
+    return mf, ref, ref_dir, bad
+
+
+def _report_model(stem, problems, notes, m):
+    """Print the model's line, its problems and allowed deviations; returns whether it has problems."""
+    line = " ".join(f"{k} {m[k]:.3f}" for k in ("head", "neck", "neck_w", "arm", "leg", "foot") if k in m)
+    if problems:
+        status = "FAIL"
+    elif notes:
+        status = "ok (allowed deviations)"
+    else:
+        status = "ok"
+    print(f"{stem:18s} {status:24s} H {m.get('height', 0):.2f} m | {line}")
+    for p in problems:
+        print("    PROBLEM:", p)
+    for n in notes:
+        print("    allowed:", n)
+    return bool(problems)
+
+
+def main():
+    import builds
+    only = globals().get("ONLY")
+    files = _model_files()
+    table_bad = _check_tables()
     data = builds.load()
     by_model = {r["model"]: (n, r) for n, r in data["roles"].items()}
     bad = checked = 0
@@ -560,32 +705,11 @@ def main():
             continue
         mf = ref = None
         if stem in by_model:                       # a person of the cast: audited at its role's build, against the neutral body of the same person
-            import shutil
-            import tempfile
-            role_name, role = by_model[stem]
-            mf = builds.region_mf(role_name, data=data)
-            ref_dir = ref_dir or tempfile.mkdtemp(prefix="body_ref_")
-            already = role["cast"] in _REF
-            ref, ref_problems = _reference(role["cast"], ref_dir)
-            if not already:
-                for p in ref_problems:
-                    print(f"{stem:18s} FAIL at mf 1.00 (the neutral reference): {p}")
-                bad += bool(ref_problems)
+            mf, ref, ref_dir, ref_bad = _cast_reference(stem, by_model[stem], data, ref_dir)
+            bad += ref_bad
         stem, problems, notes, m = audit(f, mf, ref)
         checked += 1
-        line = " ".join(f"{k} {m[k]:.3f}" for k in ("head", "neck", "neck_w", "arm", "leg", "foot") if k in m)
-        if problems:
-            status = "FAIL"
-        elif notes:
-            status = "ok (allowed deviations)"
-        else:
-            status = "ok"
-        print(f"{stem:18s} {status:24s} H {m.get('height', 0):.2f} m | {line}")
-        for p in problems:
-            print("    PROBLEM:", p)
-        for n in notes:
-            print("    allowed:", n)
-        bad += bool(problems)
+        bad += _report_model(stem, problems, notes, m)
     if ref_dir:
         import shutil
         shutil.rmtree(ref_dir, ignore_errors=True)
