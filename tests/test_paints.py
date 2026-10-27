@@ -4,8 +4,11 @@ import io
 import json
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -220,3 +223,39 @@ class PartNames(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CheckAgainstTheGlbs(unittest.TestCase):
+    """paints.check compares nothing on the committed site (the old preset models are gone), so its messages are pinned here with the GLB reading stubbed."""
+
+    def run_quiet(self, fn, *args):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            result = fn(*args)
+        return result, out.getvalue()
+
+    def test_a_matching_swap_prints_nothing(self):
+        with mock.patch.object(paints, "derive", return_value={"1": "#000000"}):
+            result, text = self.run_quiet(paints.compare_with_glbs, Path("m"), "X Red", "X", "Y", ["pal"], {"1": "#000000"}, "declared {}")
+        self.assertEqual((result, text), (0, ""))
+
+    def test_a_preset_that_differs_says_what_was_declared_and_what_the_glbs_say(self):
+        with mock.patch.object(paints, "derive", return_value={}):
+            result, text = self.run_quiet(paints.compare_with_glbs, Path("m"), "X Red", "X", "Y", ["pal"], {"1": "#000000"}, "declared {'1': '#000000'}")
+        self.assertEqual((result, text), (1, "X Red: declared {'1': '#000000'}, GLBs say {}\n"))
+
+    def test_an_unreadable_glb_prints_the_reason(self):
+        with mock.patch.object(paints, "derive", side_effect=ValueError("boom")):
+            result, text = self.run_quiet(paints.compare_with_glbs, Path("m"), "X Red", "X", "Y", ["pal"], {}, "declared {}")
+        self.assertEqual((result, text), (1, "X Red: boom\n"))
+
+    def test_a_themed_model_that_differs_says_what_the_theme_gives(self):
+        folder = Path(tempfile.mkdtemp())
+        self.addCleanup(lambda: [f.unlink() for f in folder.iterdir()] and folder.rmdir())
+        for name in ("X", "Y"):
+            (folder / f"{name}.glb").write_bytes(b"")
+        catalog_stub = SimpleNamespace(THEMED={"X": {"Autumn": "Y"}})
+        with mock.patch.object(paints, "themes", return_value={"Autumn": {"1": "#AA0000", "2": "#00AA00"}}),                 mock.patch.object(paints, "used_swatches", return_value={1}), mock.patch.object(paints, "derive", return_value={"1": "#123456"}):
+            result, text = self.run_quiet(paints.check_themed, catalog_stub, folder, [], [])
+        self.assertEqual(result, (1, 1))
+        self.assertEqual(text, "X Autumn: the theme gives {'1': '#AA0000'}, the GLBs say {'1': '#123456'}\n")

@@ -281,7 +281,7 @@ def derive(path_a, path_b, pal):
     return {str(a): pal[b] for a, b in sorted(swap.items())}
 
 
-def compare_with_glbs(models, label, base, was, pal, want, declared):
+def compare_with_glbs(models, label, base, was, pal, want, declared, says="GLBs say"):
     """Work the swap out of the two GLBs and compare it with `want`; prints and returns 1 for a difference (or a GLB that cannot be read), 0 for a match."""
     try:
         got = derive(models / f"{base}.glb", models / f"{was}.glb", pal)
@@ -289,14 +289,13 @@ def compare_with_glbs(models, label, base, was, pal, want, declared):
         print(f"{label}: {e}")
         return 1
     if got != want:
-        print(f"{label}: {declared}, GLBs say {got}")
+        print(f"{label}: {declared}, {says} {got}")
         return 1
     return 0
 
 
-def check_presets(models, entries, pal):
+def check_presets(catalog, models, entries, pal):
     """(checked, differing) for every declared preset whose old GLB still exists."""
-    import catalog
     checked = bad = 0
     for base, spec in catalog.PAINTS.items():
         _, paints = resolve(spec, entries)
@@ -308,9 +307,8 @@ def check_presets(models, entries, pal):
     return checked, bad
 
 
-def check_themed(models, entries, pal):
+def check_themed(catalog, models, entries, pal):
     """(checked, differing) for every themed model whose old GLB still exists."""
-    import catalog
     th = themes(entries)
     checked = bad = 0
     for base, styles in catalog.THEMED.items():
@@ -322,17 +320,18 @@ def check_themed(models, entries, pal):
                 continue
             checked += 1
             want = {k: v for k, v in th[style].items() if k in used}
-            bad += compare_with_glbs(models, f"{base} {style}", base, was, pal, want, f"the theme gives {want}")
+            bad += compare_with_glbs(models, f"{base} {style}", base, was, pal, want, f"the theme gives {want}", says="the GLBs say")
     return checked, bad
 
 
 def check(models=None):
     """Compare every declared preset that still has its old GLB with the swap worked out from the GLBs. Returns the number of mismatches."""
+    import catalog
     entries = palette_entries()
     pal = [h for _, h in entries]
     models = Path(models) if models else ROOT / "site" / "models"
-    checked, bad = check_presets(models, entries, pal)
-    more_checked, more_bad = check_themed(models, entries, pal)
+    checked, bad = check_presets(catalog, models, entries, pal)
+    more_checked, more_bad = check_themed(catalog, models, entries, pal)
     checked, bad = checked + more_checked, bad + more_bad
     print(f"{checked} presets and themes checked against their GLBs, {bad} differ")
     return bad
