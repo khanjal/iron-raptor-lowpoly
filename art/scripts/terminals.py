@@ -226,7 +226,8 @@ def ship_console(name="GV_ShipConsole_01"):
             p.box("alien_grey", (sx, -0.428, 0.30), (0.32, 0.012, 0.26))                    # an access panel
             p.box("metal_dark", (sx, -0.436, 0.30), (0.08, 0.012, 0.02))                    # its handle
     for k in range(14):
-        p.box("glow_amber" if k % 5 == 2 else ("alien_violet" if k % 5 == 4 else "glow_cyan"), (-0.78 + k * 0.12, -0.418, 0.13), (0.04, 0.012, 0.025))
+        colour = {2: "glow_amber", 4: "alien_violet"}.get(k % 5, "glow_cyan")
+        p.box(colour, (-0.78 + k * 0.12, -0.418, 0.13), (0.04, 0.012, 0.025))
     # the holo-ring between the two terminals: a stub with a lens, three stacked rings, struts
     mid = 0.9
     p.cyl("metal_dark", (0, 0.04, mid + 0.04), 0.13, 0.08, n=6, top_radius=0.08)

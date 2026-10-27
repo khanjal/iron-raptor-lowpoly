@@ -689,7 +689,10 @@ def test_doors(L):
                     continue
                 (ax, az), (bx, bz) = o["a"], o["b"]
                 width = math.hypot(bx - ax, bz - az)
-                depth = (width * (0.5 if o.get("double") else 1.0) + DOOR_APPROACH_LEAF_MARGIN) if o["leaf"] else DOOR_APPROACH_NO_LEAF   # two leaves swing half the width each
+                if o["leaf"]:
+                    depth = width * (0.5 if o.get("double") else 1.0) + DOOR_APPROACH_LEAF_MARGIN   # two leaves swing half the width each
+                else:
+                    depth = DOOR_APPROACH_NO_LEAF
                 cx, cz = (ax + bx) / 2, (az + bz) / 2
                 if abs(bx - ax) >= abs(bz - az):
                     zone = (min(ax, bx), cz - depth, max(ax, bx), cz + depth)

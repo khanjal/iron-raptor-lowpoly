@@ -43,7 +43,13 @@ def V(x, y, z):
 def wheel_role(x, y):
     """The temporary name of the moving part for the wheel at (x, y): every tyre at the same side and the same y (a dual pair) is one part.
     name_wheels() turns these into Wheel_FL, Wheel_RR... once the whole vehicle is built and the axles are known."""
-    return f"Wheel@{'C' if abs(x) < 0.05 else ('L' if x > 0 else 'R')}@{round(y, 2)}"
+    if abs(x) < 0.05:
+        side = "C"
+    elif x > 0:
+        side = "L"
+    else:
+        side = "R"
+    return f"Wheel@{side}@{round(y, 2)}"
 
 
 def wheel_part(p, x, y, z):
