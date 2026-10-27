@@ -392,10 +392,8 @@ def test_size(name, prop, parts, mounted, lo, hi, table):
     return out
 
 
-def test_front(name, prop, parts, mounted, lo, hi):
-    out = []
-    s = short(name)
-    mid_y = (lo.y + hi.y) / 2
+def _back_rest_fault(s, parts, lo, hi, mid_y, out):
+    """A seat's back rest is behind its middle (+Y): the seat faces +Y."""
     if SEAT.search(s):
         # the back rest: everything above 60% of the height (a tall back, arms or a head board); its middle must be behind the seat's middle (+Y)
         z0 = lo.z + 0.6 * (hi.z - lo.z)
@@ -404,6 +402,10 @@ def test_front(name, prop, parts, mounted, lo, hi):
             cy = sum((p.lo.y + p.hi.y) / 2 * max(p.hi.z - max(p.lo.z, z0), 0) for p in high) / max(sum(max(p.hi.z - max(p.lo.z, z0), 0) for p in high), 1e-9)
             if cy < mid_y - 0.02:
                 out.append(f"the back rest is on the front (-Y) side (its middle y {cy:+.2f}, the seat's {mid_y:+.2f}): the seat faces +Y")
+
+
+def _detail_faults(s, parts, lo, hi, out):
+    """Knobs, handles, dials, screens and lamps are on the front, not the back."""
     # Details: knobs, handles, dials, screens and lamps are on the front. Count the small parts sitting on the -Y face and on the +Y face (their middle within 4 cm of it).
     depth = hi.y - lo.y
     if depth > 0.25 and not SEAT.search(s):
@@ -414,23 +416,45 @@ def test_front(name, prop, parts, mounted, lo, hi):
         backs = sum(1 for p in parts if small(p) and (p.lo.y + p.hi.y) / 2 >= hi.y - 0.04)
         if backs >= fronts + 3:
             out.append(f"{backs} small details (knobs, handles, dials) are on the back (+Y) face and {fronts} on the front: the front may face +Y")
+
+
+def _hinge_edge_fault(role, g, parts):
+    """The message when a door or lid hinge is not on an edge of the part it turns, else None."""
+    pivot = g["pivot"]
+    mine = [p for p in parts if p.role == role]
+    if not mine:
+        return None
+    mlo = Vector((min(p.lo.x for p in mine), min(p.lo.y for p in mine), min(p.lo.z for p in mine)))
+    mhi = Vector((max(p.hi.x for p in mine), max(p.hi.y for p in mine), max(p.hi.z for p in mine)))
+    axes = {"z": (0, 1), "x": (1, 2), "y": (0, 2)}[g["axis"]]
+    for i in axes:
+        off = min(abs(pivot[i] - mlo[i]), abs(pivot[i] - mhi[i]))
+        if off > HINGE_EDGE and (mhi[i] - mlo[i]) > 0.05:
+            return (f"{role} turns about ({pivot.x:+.2f}, {pivot.y:+.2f}, {pivot.z:+.2f}), {off * 100:.0f} cm from the nearest edge of the part "
+                       f"({'xyz'[i]} {mlo[i]:+.2f}..{mhi[i]:+.2f}): the hinge is not on the {role.lower()}'s edge")
+    return None
+
+
+def _role_front_faults(role, g, parts, mid_y, out):
+    """A moving part's front: a door or drawer is not hinged behind the middle, and a hinge is on the edge of what it turns."""
+    pivot = g["pivot"]
+    if re.match(r"^(Door|Drawer|Lid)", role) and g["kind"] in ("hinge", "slide") and pivot.y > mid_y + 0.02 and not re.match(r"^Lid", role):
+        out.append(f"{role} is hinged at y {pivot.y:+.2f}, behind the middle ({mid_y:+.2f}): its front faces +Y")
+    # a hinge is on the edge of what it turns: its pivot is within 3 cm of an end of the part, in the two axes across the hinge axis
+    if g["kind"] == "hinge" and re.match(r"^(Door|Lid)", role):
+        fault = _hinge_edge_fault(role, g, parts)
+        if fault:
+            out.append(fault)
+
+
+def test_front(name, prop, parts, mounted, lo, hi):
+    out = []
+    s = short(name)
+    mid_y = (lo.y + hi.y) / 2
+    _back_rest_fault(s, parts, lo, hi, mid_y, out)
+    _detail_faults(s, parts, lo, hi, out)
     for role, g in prop.groups.items():
-        pivot = g["pivot"]
-        if re.match(r"^(Door|Drawer|Lid)", role) and g["kind"] in ("hinge", "slide") and pivot.y > mid_y + 0.02 and not re.match(r"^Lid", role):
-            out.append(f"{role} is hinged at y {pivot.y:+.2f}, behind the middle ({mid_y:+.2f}): its front faces +Y")
-        # a hinge is on the edge of what it turns: its pivot is within 3 cm of an end of the part, in the two axes across the hinge axis
-        if g["kind"] == "hinge" and re.match(r"^(Door|Lid)", role):
-            mine = [p for p in parts if p.role == role]
-            if mine:
-                mlo = Vector((min(p.lo.x for p in mine), min(p.lo.y for p in mine), min(p.lo.z for p in mine)))
-                mhi = Vector((max(p.hi.x for p in mine), max(p.hi.y for p in mine), max(p.hi.z for p in mine)))
-                axes = {"z": (0, 1), "x": (1, 2), "y": (0, 2)}[g["axis"]]
-                for i in axes:
-                    off = min(abs(pivot[i] - mlo[i]), abs(pivot[i] - mhi[i]))
-                    if off > HINGE_EDGE and (mhi[i] - mlo[i]) > 0.05:
-                        out.append(f"{role} turns about ({pivot.x:+.2f}, {pivot.y:+.2f}, {pivot.z:+.2f}), {off * 100:.0f} cm from the nearest edge of the part "
-                                   f"({'xyz'[i]} {mlo[i]:+.2f}..{mhi[i]:+.2f}): the hinge is not on the {role.lower()}'s edge")
-                        break
+        _role_front_faults(role, g, parts, mid_y, out)
     return out
 
 
@@ -470,6 +494,43 @@ def min_dimension(part):
     return min(d.x, d.y, d.z)
 
 
+def _passes_through(a, b, near, far, dn, d, allowed):
+    """How far (m) the rod a, going from near to far, ends free beyond the part b it passes right through, or None when it does not."""
+    if any(a.lo[i] > b.hi[i] or b.lo[i] > a.hi[i] for i in range(3)):
+        return None
+    if (a.colour, b.colour) in allowed:
+        return None
+    if min_dimension(b) < a.cross * 0.9:
+        return None                       # b is thinner than the rod: it is the one threaded on it (a tine on a bar), not pierced
+    if inside([b], near):
+        return None                       # the rod starts inside b: it ends there, not passes through
+    if b.rodlike and abs((Vector(b.ends[1]) - Vector(b.ends[0])).normalized().dot(dn)) < 0.5 and any(inside([a], Vector(e)) for e in b.ends):
+        return None                       # one end of b is inside the rod and b crosses it: a T joint (a handle on a shaft). A socket round the shaft is parallel to it and does not count
+    hit = b.tree.ray_cast(near, dn, d.length)
+    if hit[0] is None:
+        return None
+    # it must come out the far side too: from the far end back toward b there is a face to hit
+    back = b.tree.ray_cast(far, -dn, d.length)
+    if back[0] is None:
+        return None
+    return (far - back[0]).length
+
+
+def _rod_end_hits(a, others, near, far, allowed):
+    """(part, stub length) for each part the rod a passes right through from its end `near` to its end `far`."""
+    near, far = Vector(near), Vector(far)
+    if inside(others, far):
+        return                            # this end is buried in something: a joint
+    d = far - near
+    if d.length < 1e-6:
+        return
+    dn = d.normalized()
+    for b in others:
+        stub = _passes_through(a, b, near, far, dn, d, allowed)
+        if stub is not None:
+            yield b, stub
+
+
 def test_through(name, prop, parts, mounted, lo, hi):
     """A rod-like part (a handle, a beam, a leg) that passes right through another part and ends free on the far side: it pokes out of it."""
     s = short(name)
@@ -482,32 +543,7 @@ def test_through(name, prop, parts, mounted, lo, hi):
             continue
         others = [b for b in parts if b is not a]
         for near, far in ((a.ends[0], a.ends[1]), (a.ends[1], a.ends[0])):
-            near, far = Vector(near), Vector(far)
-            if inside(others, far):
-                continue                          # this end is buried in something: a joint
-            d = far - near
-            if d.length < 1e-6:
-                continue
-            dn = d.normalized()
-            for b in others:
-                if any(a.lo[i] > b.hi[i] or b.lo[i] > a.hi[i] for i in range(3)):
-                    continue
-                if (a.colour, b.colour) in allowed:
-                    continue
-                if min_dimension(b) < a.cross * 0.9:
-                    continue                      # b is thinner than the rod: it is the one threaded on it (a tine on a bar), not pierced
-                if inside([b], near):
-                    continue                      # the rod starts inside b: it ends there, not passes through
-                if b.rodlike and abs((Vector(b.ends[1]) - Vector(b.ends[0])).normalized().dot(dn)) < 0.5 and any(inside([a], Vector(e)) for e in b.ends):
-                    continue                      # one end of b is inside the rod and b crosses it: a T joint (a handle on a shaft). A socket round the shaft is parallel to it and does not count
-                hit = b.tree.ray_cast(near, dn, d.length)
-                if hit[0] is None:
-                    continue
-                # it must come out the far side too: from the far end back toward b there is a face to hit
-                back = b.tree.ray_cast(far, -dn, d.length)
-                if back[0] is None:
-                    continue
-                stub = (far - back[0]).length
+            for b, stub in _rod_end_hits(a, others, near, far, allowed):
                 key = (a.src, b.src)                  # a loop makes many copies of the same pair: report the line once
                 if key in seen:
                     seen[key][1] += 1
@@ -553,49 +589,38 @@ def exposed_tops(parts):
 # Run
 # =====================================================================================================================
 
-def main():
-    layout = load_plain("audit_layout_for_props", SCRIPTS / AUDIT_LAYOUT_PY) if (SCRIPTS / AUDIT_LAYOUT_PY).exists() else load_plain("audit_layout_for_props", HERE / AUDIT_LAYOUT_PY)
-    mounted_re = re.compile(layout.WALL_HUNG + "|" + layout.CEILING_HUNG)
+def _pipe_findings(name, prop, parts, mounted, lo, hi, declared):
+    """The pipe ends that hang free and are not declared in audit_layout.CONNECTED, and the declared ones the model does not have."""
+    found = []
+    _, free = test_pipes(name, prop, parts, mounted, lo, hi)
+    want = declared.get(name, [])
+    for e in free:
+        if not any((e - Vector(w)).length <= 0.03 for w in want):
+            found.append(("pipes", f"a pipe end hangs free at ({e.x:.2f}, {e.y:.2f}, {e.z:.2f}) and is not declared in audit_layout.CONNECTED"))
+    for w in want:
+        if not any((e - Vector(w)).length <= 0.03 for e in free):
+            found.append(("pipes", f"audit_layout.CONNECTED lists a pipe end at {tuple(w)} but the model has no free pipe end there"))
+    return found
 
-    built = build_all(SCRIPTS)
-    problems = 0
-    table = []
-    geometry = {}
-    declared = {k: [tuple(e[1]) for e in v] for k, v in layout.CONNECTED.items()}
-    checked = 0
-    for name in sorted(built):
-        _, prop, parts, error = built[name]
-        if ONLY and not any(o == name or o == short(name) for o in ONLY):
-            continue
-        if error:
-            print(f"FAIL build {name}: did not build: {error}")
-            problems += 1
-            continue
-        if not parts:
-            continue
-        checked += 1
-        lo, hi = whole(parts)
-        s = short(name)
-        mounted = bool(mounted_re.search(s)) or bool(HULL.search(s))
-        found = []
-        found += [("origin", m) for m in test_origin(name, prop, parts, mounted, lo, hi)]
-        found += [("size", m) for m in test_size(name, prop, parts, mounted, lo, hi, table)]
-        found += [("front", m) for m in test_front(name, prop, parts, mounted, lo, hi)]
-        found += [("floating", m) for m in test_floating(name, prop, parts, mounted, lo, hi)]
-        found += [("through", m) for m in test_through(name, prop, parts, mounted, lo, hi)]
-        _, free = test_pipes(name, prop, parts, mounted, lo, hi)
-        want = declared.get(name, [])
-        for e in free:
-            if not any((e - Vector(w)).length <= 0.03 for w in want):
-                found.append(("pipes", f"a pipe end hangs free at ({e.x:.2f}, {e.y:.2f}, {e.z:.2f}) and is not declared in audit_layout.CONNECTED"))
-        for w in want:
-            if not any((e - Vector(w)).length <= 0.03 for e in free):
-                found.append(("pipes", f"audit_layout.CONNECTED lists a pipe end at {tuple(w)} but the model has no free pipe end there"))
-        for test, message in found:
-            print(f"FAIL {test} {name}: {message}")
-            problems += 1
-        geometry[name] = {"size": [round(v, 3) for v in (hi - lo)], "zmin": round(lo.z, 3), "surfaces": [round(z, 3) for z in exposed_tops(parts)]}
 
+def _prop_findings(name, prop, parts, mounted, lo, hi, table, declared):
+    """Every finding for one prop, as (test, message)."""
+    found = []
+    found += [("origin", m) for m in test_origin(name, prop, parts, mounted, lo, hi)]
+    found += [("size", m) for m in test_size(name, prop, parts, mounted, lo, hi, table)]
+    found += [("front", m) for m in test_front(name, prop, parts, mounted, lo, hi)]
+    found += [("floating", m) for m in test_floating(name, prop, parts, mounted, lo, hi)]
+    found += [("through", m) for m in test_through(name, prop, parts, mounted, lo, hi)]
+    found += _pipe_findings(name, prop, parts, mounted, lo, hi, declared)
+    return found
+
+
+def _selected(name):
+    """Whether the ONLY filter (if any) names this prop."""
+    return not ONLY or any(o == name or o == short(name) for o in ONLY)
+
+
+def _report(table, geometry):
     if table and not QUIET:
         print("\nmeasured size against the real table (w x d x h, metres):")
         for row in table:
@@ -608,6 +633,39 @@ def main():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(doc, indent=0, sort_keys=True), encoding="utf-8")
         print(f"wrote {out} ({len(geometry)} props)")
+
+
+def main():
+    layout = load_plain("audit_layout_for_props", SCRIPTS / AUDIT_LAYOUT_PY) if (SCRIPTS / AUDIT_LAYOUT_PY).exists() else load_plain("audit_layout_for_props", HERE / AUDIT_LAYOUT_PY)
+    mounted_re = re.compile(layout.WALL_HUNG + "|" + layout.CEILING_HUNG)
+
+    built = build_all(SCRIPTS)
+    problems = 0
+    table = []
+    geometry = {}
+    declared = {k: [tuple(e[1]) for e in v] for k, v in layout.CONNECTED.items()}
+    checked = 0
+    for name in sorted(built):
+        _, prop, parts, error = built[name]
+        if not _selected(name):
+            continue
+        if error:
+            print(f"FAIL build {name}: did not build: {error}")
+            problems += 1
+            continue
+        if not parts:
+            continue
+        checked += 1
+        lo, hi = whole(parts)
+        s = short(name)
+        mounted = bool(mounted_re.search(s)) or bool(HULL.search(s))
+        found = _prop_findings(name, prop, parts, mounted, lo, hi, table, declared)
+        for test, message in found:
+            print(f"FAIL {test} {name}: {message}")
+            problems += 1
+        geometry[name] = {"size": [round(v, 3) for v in (hi - lo)], "zmin": round(lo.z, 3), "surfaces": [round(z, 3) for z in exposed_tops(parts)]}
+
+    _report(table, geometry)
     print(f"\nprop audit: {checked} props, {problems} problem(s)")
     return problems
 
