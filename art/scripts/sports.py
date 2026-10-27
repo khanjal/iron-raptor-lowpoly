@@ -49,18 +49,18 @@ def strand(p, colour, a, b, r=0.004):
     p.loft_rings(colour, [ring(a), ring(b)])
 
 
-def patch(p, colour, centre, direction, R, radius, n=5):
-    """A flat marking on the surface of a ball of radius R about `centre`, facing `direction` (a soccer ball's black pentagons, a bowling ball's holes)."""
+def patch(p, colour, centre, direction, ball_radius, radius, n=5):
+    """A flat marking on the surface of a ball of radius ball_radius about `centre`, facing `direction` (a soccer ball's black pentagons, a bowling ball's holes)."""
     d, u, v = _basis(direction)
     c = Vector(centre)
     ring = lambda dist, rad: [c + d * dist + u * rad * math.cos(t) + v * rad * math.sin(t) for t in (math.tau * k / n for k in range(n))]
-    p.loft_rings(colour, [ring(R * 0.96, radius), ring(R * 1.012, radius * 0.9)])
+    p.loft_rings(colour, [ring(ball_radius * 0.96, radius), ring(ball_radius * 1.012, radius * 0.9)])
 
 
-def belt(p, colour, centre, R, axis, w, n):
-    """A band of width w around a ball of radius R (n sides, like the ball), about the given axis: a seam or stripe."""
+def belt(p, colour, centre, ball_radius, axis, w, n):
+    """A band of width w around a ball of radius ball_radius (n sides, like the ball), about the given axis: a seam or stripe."""
     cx, cy, cz = centre
-    r = R * 1.012
+    r = ball_radius * 1.012
     if axis == "z":
         rings = [common.ring_z(cz + s * w / 2, cx, cy, r, r, n=n) for s in (-1, 1)]
     elif axis == "x":
@@ -70,13 +70,13 @@ def belt(p, colour, centre, R, axis, w, n):
     p.loft_rings(colour, rings, cap=False)
 
 
-def seam(p, colour, centre, R, r, count=14):
+def seam(p, colour, centre, ball_radius, r, count=14):
     """The curved seam of a baseball or a tennis ball, as strands along a curve that winds twice round the ball."""
     pts = []
     for k in range(count + 1):
         t = math.tau * k / count
         v = Vector((math.cos(t) + 0.3 * math.cos(3 * t), math.sin(t) - 0.3 * math.sin(3 * t), 0.9 * math.cos(2 * t))).normalized()
-        pts.append(Vector(centre) + v * R * 1.035)
+        pts.append(Vector(centre) + v * ball_radius * 1.035)
     for a, b in zip(pts, pts[1:]):
         strand(p, colour, a, b, r)
 
