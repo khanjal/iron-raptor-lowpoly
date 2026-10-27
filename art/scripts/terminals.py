@@ -25,6 +25,9 @@ import sys
 from math import cos, radians, sin
 from pathlib import Path
 
+VEHICLES_CATEGORY = "Global/Vehicles"
+
+
 _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE))
 # Blender is shared by several sessions, each running scripts from its own checkout: a `common` another checkout imported first would
@@ -357,9 +360,9 @@ def launch_terminal(name="GV_ShipTerminalLaunch_01"):
 # ===== Build and export ==========================================================================================================
 
 TERMINALS = {
-    "console": (ship_console, "Global/Vehicles"),
-    "bank": (bank_terminal, "Global/Vehicles"),
-    "launch": (launch_terminal, "Global/Vehicles"),
+    "console": (ship_console, VEHICLES_CATEGORY),
+    "bank": (bank_terminal, VEHICLES_CATEGORY),
+    "launch": (launch_terminal, VEHICLES_CATEGORY),
 }
 
 
