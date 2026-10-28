@@ -31,7 +31,7 @@ For every new or reworked model, write down before any code (use the `asset-brie
 6. **Moving parts and markers** (`hinge` / `slide` only), and their `interactions.json` entries. Keep what already works (rigs, clips, parts, ids, file names).
 7. **Parts table**: each part's size, centre and what it attaches to (see "Parts, fit and clipping" below).
 
-Reference pictures: look at the real object and at other people's low-poly models of it (`asset-brief` step 3: what they push past real proportions, how the colour sits in blocks) for direction; describe what you learned in words; never trace, copy or commit an image or a model.
+Reference pictures: look at the real object and at other people's low-poly models of it, viewed and never saved (`asset-brief` step 3: what they push past real proportions, how the colour sits in blocks) for direction; describe what you learned in words; never trace, copy or commit an image or a model.
 
 **Build order:** (1) blockout of the main shapes at the right proportions, and `look` at it before adding anything; (2) secondary features (bevels, trim, handles, feet, seams, wear; not bevels on the 3 m grid kit pieces, which must butt without a groove, nor on the faceted animals and people); hollow only what anyone can see into or put something in; (3) small details with the triangle budget left. Check from four angles and at 10 m, then against the brief: size, front faces -Y, pivot, palette-only colours, triangles, markers.
 
