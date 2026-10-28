@@ -31,6 +31,7 @@ import home_styles
 for _m in (common, props_lib, household, decor, home_styles):
     importlib.reload(_m)
 Prop = props_lib.Prop
+stack_fronts, front_rail = props_lib.stack_fronts, props_lib.front_rail
 lathe = props_lib.lathe
 
 ITEMS = {}
@@ -98,16 +99,21 @@ def _door_hinge(side, x0, x1, z0, z1, yc, limit):
     return (cx, yc, z1), "x", -limit
 
 
-def _door_handle(p, handle, side, x0, x1, z0, z1, fy):
-    """The handle of a door: a vertical one by the free edge of a side-hinged door, a horizontal bar on a flap."""
+HANDLE_DEPTH = 0.035   # m: how far a door handle stands out
+SINK = props_lib.SINK
+
+
+def _door_handle(p, handle, side, x0, x1, z0, z1, front):
+    """The handle of a door whose front face is at y = front: a vertical one by the free edge of a side-hinged door, a horizontal bar on a flap."""
     cx, cz = (x0 + x1) / 2, (z0 + z1) / 2
     w, h = x1 - x0, z1 - z0
+    hy = front - HANDLE_DEPTH / 2 + SINK
     if side in ("right", "left"):
         hx = (x0 + 0.06) if side == "right" else (x1 - 0.06)
-        p.box(handle, (hx, fy - 0.01, cz), (0.025, 0.035, min(0.3, h * 0.4)))
+        p.box(handle, (hx, hy, cz), (0.025, HANDLE_DEPTH, min(0.3, h * 0.4)))
     else:
         hz = z1 - 0.05 if side == "bottom" else z0 + 0.05
-        p.box(handle, (cx, fy - 0.01, hz), (w * 0.7, 0.035, 0.025))
+        p.box(handle, (cx, hy, hz), (w * 0.7, HANDLE_DEPTH, 0.025))
 
 
 # a door is placed by its opening and body (15 arguments, all but the first 10 with defaults); a parameter object would change every caller
@@ -126,7 +132,7 @@ def door(p, role, side, col, x0, x1, z0, z1, yf, a, thick=0.03, limit=105, handl
             p.box("black" if window == "oven" else "metal_dark", (cx, yf - thick - 0.004, cz), (w * 0.8, 0.008, h * 0.66))
             p.box("glass", (cx, fy + 0.004, cz), (w * 0.72, 0.01, h * 0.56))
         if handle:
-            _door_handle(p, handle, side, x0, x1, z0, z1, fy)
+            _door_handle(p, handle, side, x0, x1, z0, z1, yf - thick)
         if extra is not None:
             extra()
 
@@ -168,11 +174,13 @@ def fridge(a=0.0):
     yf = -d / 2
     p.box("metal_dark", (0, 0, 0.05), (0.66, 0.66, 0.1))
     shell(p, "enamel_cream", w, d, h - 0.1, z0=0.1, inner="paint_white")
-    p.box("paint_white", (0, 0, 1.2), (w - 0.06, d - 0.06, 0.03))
+    p.box("paint_white", (0, 0, 1.2), (w - 0.06, d - 0.06, 0.03))                      # the freezer floor
     for z in (0.45, 0.75, 1.0, 1.5):
         shelf(p, "clear_glass", w, d, z, t=0.015)
-    door(p, "Door", "right", "enamel_cream", -w / 2, w / 2, 0.1, 1.19, yf, a, thick=0.04, limit=100)
-    door(p, "DoorFreezer", "right", "enamel_cream", -w / 2, w / 2, 1.21, 1.8, yf, a, thick=0.04, limit=100)
+    split, seal = 1.2, 0.003                                                            # the freezer floor; the reveal between the doors shows a dark seal
+    door(p, "Door", "right", "enamel_cream", -w / 2, w / 2, 0.1, split - seal / 2, yf, a, thick=0.04, limit=100)
+    door(p, "DoorFreezer", "right", "enamel_cream", -w / 2, w / 2, split + seal / 2, h, yf, a, thick=0.04, limit=100)
+    front_rail(p, "metal_dark", -w / 2 + 0.03, w / 2 - 0.03, split, yf, d=0.03)        # back to the freezer floor's front edge
     p.slot("Crisper", (0, 0, 0.13), (0.6, 0.55, 0.3))
     p.slot("Shelf1", (0, 0, 0.46), (0.6, 0.55, 0.27))
     p.slot("Shelf2", (0, 0, 0.76), (0.6, 0.55, 0.22))
@@ -193,8 +201,9 @@ def fridge_retro(a=0.0):
         for sy in (-1, 1):
             p.cyl("metal_galv", (sx * (w / 2 - 0.1), sy * (d / 2 - 0.12), z0 / 2), 0.035, z0, n=6, top_radius=0.025)      # round chrome feet
     shell(p, "enamel_cream", w, d, h, z0=z0, inner="paint_white")
-    p.box("paint_white", (0, 0.05, z0 + h - 0.18), (w - 0.12, d - 0.18, 0.28))                                          # the little freezer box inside
-    p.box("metal_galv", (0, yf + 0.06, z0 + h - 0.18), (w - 0.12, 0.01, 0.28))
+    box_z = z0 + h - 0.03 - 0.14 + SINK                                                                                 # hung from the underside of the top
+    p.box("paint_white", (0, 0.05, box_z), (w - 0.12, d - 0.18, 0.28))                                                  # the little freezer box inside
+    p.box("metal_galv", (0, yf + 0.06, box_z), (w - 0.12, 0.01, 0.28))
     for z in (0.4, 0.7, 1.0):
         shelf(p, "clear_glass", w, d, z, t=0.015)
     z_lo, z_hi = z0 + 0.02 + r, z0 + h - r
@@ -241,11 +250,15 @@ def _french_door_fridge(name, a, dispenser=False):
         p.box("black", (-0.22, yd - 0.035, 1.123), (0.17, 0.05, 0.004))                                               # its grille
         p.box("glow_cyan", (-0.22, yd - 0.01, 1.46), (0.1, 0.006, 0.035))                                             # the selector display
 
-    door(p, "DoorL", "left", "metal_galv", -w / 2, 0.0, 0.66, h, yf, a, thick=0.04, limit=100, handle="black",
+    doors_z, seal = 0.66, 0.008                                                       # the doors' lower edge; the freezer drawer runs from the plinth up to it, a dark seal between
+    door(p, "DoorL", "left", "metal_galv", -w / 2, 0.0, doors_z, h, yf, a, thick=0.04, limit=100, handle="black",
          extra=dispenser_parts if dispenser else None)
-    door(p, "DoorR", "right", "metal_galv", 0.0, w / 2, 0.66, h, yf, a, thick=0.04, limit=100, handle="black",
-         extra=lambda: p.box("glow_cyan", (0.26, yf - 0.047, 1.5), (0.1, 0.006, 0.06)))                               # the display
-    drawer(p, "DrawerFreezer", "metal_galv", "paint_white", 0.0, 0.38, w - 0.02, 0.54, d, yf, a, travel=0.4, handle="black", pull="bar")
+    door(p, "DoorR", "right", "metal_galv", 0.0, w / 2, doors_z, h, yf, a, thick=0.04, limit=100, handle="black",
+         extra=lambda: p.box("glow_cyan", (0.26, yf - 0.04 - 0.003 + SINK, 1.5), (0.1, 0.006, 0.06)))                  # the display, on the door's face
+    drawer_lo = 0.11                                                                  # its box floor rests on the carcass's bottom wall (0.10 to 0.13)
+    drawer(p, "DrawerFreezer", "metal_galv", "paint_white", 0.0, (drawer_lo + doors_z - seal) / 2, w - 0.02, doors_z - seal - drawer_lo, d, yf, a, travel=0.4,
+           handle="black", pull="bar")
+    front_rail(p, "black", -w / 2 + 0.03, w / 2 - 0.03, doors_z - seal / 2, yf, d=0.03)    # back to the fresh-food floor's front edge
     p.slot("Shelf1", (0, 0, 0.93), (0.8, 0.6, 0.27))
     p.slot("Shelf2", (0, 0, 1.23), (0.8, 0.6, 0.27))
     p.slot("Shelf3", (0, 0, 1.53), (0.8, 0.6, 0.27))
@@ -272,8 +285,9 @@ def stove(a=0.0):
     p = Prop("GI_Stove_01")
     w, d = 0.6, 0.65
     yf = -d / 2
-    shell(p, "enamel_white", w, d, 0.74, z0=0.0, inner="metal_dark", top=False)
-    p.box("metal_galv", (0, 0.0, 0.3), (0.5, 0.5, 0.015))
+    t, body_h = 0.03, 0.74
+    shell(p, "enamel_white", w, d, body_h, t=t, z0=0.0, inner="metal_dark", top=False)
+    p.box("metal_galv", (0, 0.0, 0.3), (w - 2 * t, 0.5, 0.015))                                  # the oven rack, side to side
     p.box("enamel_white", (0, 0, 0.82), (w, d, 0.16))
     p.box("black", (0, 0, 0.905), (w - 0.04, d - 0.06, 0.012))
     for x, y in ((-0.14, -0.12), (0.14, -0.12), (-0.14, 0.14), (0.14, 0.14)):
@@ -281,7 +295,9 @@ def stove(a=0.0):
     p.box("enamel_white", (0, d / 2 - 0.025, 1.0), (w, 0.05, 0.2))
     for x in (-0.2, -0.07, 0.07, 0.2):
         p.cyl("black", (x, yf - 0.015, 0.8), 0.025, 0.03, n=6, axis="y")
-    door(p, "Door", "bottom", "enamel_white", -0.27, 0.27, 0.06, 0.72, yf, a, thick=0.04, limit=90, window="oven")
+    hinge_z = 0.06                                                                  # high enough that the open door's handle clears the floor
+    p.box("enamel_white", (0, yf - 0.01, (t + hinge_z) / 2), (w - 2 * t, 0.02, hinge_z - t))   # the kick panel under the door, 2 cm behind its face
+    door(p, "Door", "bottom", "enamel_white", -w / 2 + t, w / 2 - t, hinge_z, body_h, yf, a, thick=0.04, limit=90, window="oven")   # up to the control box
     p.slot("Oven", (0, 0, 0.31), (0.46, 0.46, 0.4))
     p.slot("BurnerL", (-0.14, -0.12, 0.921), (0.2, 0.2, 0.3))
     p.slot("BurnerR", (0.14, -0.12, 0.921), (0.2, 0.2, 0.3))
@@ -308,8 +324,9 @@ def toaster(a=0.0):
         p.box("black", (x, 0, 0.181), (0.03, 0.12, 0.008))
     p.box("metal_dark", (0, 0, 0.005), (0.26, 0.15, 0.01))
     with p.part("Lever", pivot=(0.14, 0, 0.14), kind="slide", axis="z", limit=-0.05, rest=0.0):
-        p.box("black", (0.15, 0, 0.14), (0.02, 0.025, 0.012))
-        p.box("black", (0.142, 0, 0.14), (0.004, 0.012, 0.03))
+        side = 0.14 * (1 - (1 - 0.94) * 0.14 / 0.18)                                            # the tapered body's half width at the lever's height
+        p.box("black", (side + 0.025, 0, 0.14), (0.02, 0.025, 0.012))                          # the knob
+        p.box("black", (side + 0.0075, 0, 0.14), (0.019, 0.01, 0.008))                          # the stem, from inside the body into the knob
     p.slot("SlotL", (-0.06, 0, 0.1), (0.03, 0.11, 0.1))
     p.slot("SlotR", (0.06, 0, 0.1), (0.03, 0.11, 0.1))
     return p
@@ -320,14 +337,18 @@ def counter_kitchen(a=0.0):
     p = Prop("GI_Counter_Kitchen_01")
     w, d, h = 1.2, 0.6, 0.87
     yf = -d / 2
-    shell(p, "wood_light", w, d, h, inner="wood_dark", top=False)
-    p.box("wood_light", (0, 0, 0.45), (0.03, d, h - 0.06))
+    t, div = 0.03, 0.03                                                                 # carcass walls; the divider between the drawers and the cupboard
+    shell(p, "wood_light", w, d, h, t=t, inner="wood_dark", top=False)
+    p.box("wood_light", (0, -t / 2, t + (h - t) / 2), (div, d - t, h - t))                # floor to worktop, front to the back wall
     p.box("concrete", (0, 0, 0.89), (w + 0.04, d + 0.04, 0.04))
     p.box("wood_light", (0.3, 0, 0.42), (0.55, d - 0.04, 0.02))
-    drawer(p, "Drawer1", "wood_dark", "wood_light", -0.3, 0.74, 0.56, 0.24, d, yf, a, travel=0.4)
-    drawer(p, "Drawer2", "wood_dark", "wood_light", -0.3, 0.46, 0.56, 0.28, d, yf, a, travel=0.4)
-    drawer(p, "Drawer3", "wood_dark", "wood_light", -0.3, 0.2, 0.56, 0.24, d, yf, a, travel=0.4)
-    door(p, "Door", "right", "wood_dark", 0.02, 0.58, 0.04, h - 0.03, yf, a, limit=105)
+    x0, x1 = -w / 2, -div / 2                                                           # the drawer fronts lie over the side's front edge
+    fronts, joints = stack_fronts(t, h, (0.24, 0.28, 0.24))
+    for k, (zc, fh) in enumerate(reversed(fronts)):                                     # Drawer1 is the top one
+        drawer(p, f"Drawer{k + 1}", "wood_dark", "wood_light", (x0 + x1) / 2, zc, x1 - x0, fh, d, yf, a, travel=0.4)
+    for z in joints:
+        front_rail(p, "wood_light", -w / 2 + t, x1, z, yf)
+    door(p, "Door", "right", "wood_dark", div / 2, w / 2, t, h, yf, a, limit=105)
     p.slot("Cabinet", (0.3, 0, 0.03), (0.5, 0.5, 0.37))
     p.slot("CabinetUpper", (0.3, 0, 0.43), (0.5, 0.5, 0.4))
     p.slot("Top", (0, 0, 0.91), (1.1, 0.5, 0.4))
@@ -350,19 +371,20 @@ def washer(a=0.0):
     w, d, h = 0.6, 0.65, 0.9
     yf = -d / 2
     shell(p, "enamel_white", w, d, h, inner="metal_dark")
-    t = 0.03                                                       # front panel around a square opening, 0.44 m, centred at z 0.4
-    p.box("enamel_white", (0, yf + t / 2, 0.76), (w, t, 0.28))
-    p.box("enamel_white", (0, yf + t / 2, 0.09), (w, t, 0.18))
+    t = 0.03                                                       # front panel around a square opening, 0.44 m, centred at z 0.4; 1 mm proud of the carcass edges
+    p.box("enamel_white", (0, yf + t / 2 - 0.001, 0.76), (w, t, 0.28))
+    p.box("enamel_white", (0, yf + t / 2 - 0.001, 0.09), (w, t, 0.18))
     for sx in (-1, 1):
-        p.box("enamel_white", (sx * 0.26, yf + t / 2, 0.4), (0.08, t, 0.44))
+        p.box("enamel_white", (sx * 0.26, yf + t / 2 - 0.001, 0.4), (0.08, t, 0.44))
     p.box("fabric_grey", (0.0, yf - 0.006, 0.82), (0.5, 0.012, 0.1))
-    p.cyl("black", (0.2, yf - 0.02, 0.82), 0.025, 0.02, n=6, axis="y")
+    p.cyl("black", (0.2, yf - 0.012 - 0.01 + SINK, 0.82), 0.025, 0.02, n=6, axis="y")          # the dial, on the panel
     # the round door is centred on the opening (x 0) and hinged on its left edge, 0.26 m from the middle; the pivot and the disc used to be
     # given in different frames, which put the disc 0.26 m too far right (hanging past the machine's side) and made it swing about its own edge
-    with p.part("Door", pivot=(-0.26, yf - 0.02, 0.4), kind="hinge", axis="z", limit=-110, rest=-110 * _ajar("Door") * a):
-        p.cyl("paint_white", (0.0, yf - 0.02, 0.4), 0.26, 0.03, n=10, axis="y")
-        p.cyl("glass", (0.0, yf - 0.045, 0.4), 0.2, 0.012, n=10, axis="y")
-        p.box("metal_galv", (0.2, yf - 0.06, 0.4), (0.03, 0.03, 0.12))                       # the handle, on the free edge
+    door_t = 0.03                                                  # the disc lies on the front panel; the glass and handle on the disc
+    with p.part("Door", pivot=(-0.26, yf - door_t / 2, 0.4), kind="hinge", axis="z", limit=-110, rest=-110 * _ajar("Door") * a):
+        p.cyl("paint_white", (0.0, yf - door_t / 2, 0.4), 0.26, door_t, n=10, axis="y")
+        p.cyl("glass", (0.0, yf - door_t - 0.006 + SINK, 0.4), 0.2, 0.012, n=10, axis="y")
+        p.box("metal_galv", (0.2, yf - door_t - 0.015 + SINK, 0.4), (0.03, 0.03, 0.12))                       # the handle, on the free edge
     p.slot("Drum", (0, 0, 0.04), (0.4, 0.5, 0.36))
     return p
 
@@ -376,18 +398,19 @@ def dryer(a=0.0):
     yf = -d / 2
     shell(p, "enamel_cream", w, d, h, inner="metal_dark")
     t = 0.03
-    p.box("enamel_cream", (0, yf + t / 2, 0.76), (w, t, 0.28))
-    p.box("enamel_cream", (0, yf + t / 2, 0.09), (w, t, 0.18))
+    p.box("enamel_cream", (0, yf + t / 2 - 0.001, 0.76), (w, t, 0.28))
+    p.box("enamel_cream", (0, yf + t / 2 - 0.001, 0.09), (w, t, 0.18))
     for sx in (-1, 1):
-        p.box("enamel_cream", (sx * 0.26, yf + t / 2, 0.4), (0.08, t, 0.44))
+        p.box("enamel_cream", (sx * 0.26, yf + t / 2 - 0.001, 0.4), (0.08, t, 0.44))
     p.box("fabric_grey", (-0.1, yf - 0.006, 0.82), (0.3, 0.012, 0.1))                          # the display
     for dx in (0.12, 0.22):
-        p.cyl("black", (dx, yf - 0.02, 0.82), 0.025, 0.02, n=6, axis="y")                     # two dials
+        p.cyl("black", (dx, yf - 0.01 + SINK, 0.82), 0.025, 0.02, n=6, axis="y")                # two dials, on the front
     p.box("metal_dark", (0.0, yf - 0.006, 0.08), (0.4, 0.012, 0.04))                           # the lint filter slot
-    with p.part("Door", pivot=(0.26, yf - 0.02, 0.4), kind="hinge", axis="z", limit=110, rest=110 * _ajar("Door") * a):
-        p.cyl("paint_white", (0.0, yf - 0.02, 0.4), 0.26, 0.03, n=10, axis="y")
-        p.cyl("glass", (0.0, yf - 0.045, 0.4), 0.2, 0.012, n=10, axis="y")
-        p.box("metal_galv", (-0.2, yf - 0.06, 0.4), (0.03, 0.03, 0.12))
+    door_t = 0.03                                                  # the disc lies on the front panel; the glass and handle on the disc
+    with p.part("Door", pivot=(0.26, yf - door_t / 2, 0.4), kind="hinge", axis="z", limit=110, rest=110 * _ajar("Door") * a):
+        p.cyl("paint_white", (0.0, yf - door_t / 2, 0.4), 0.26, door_t, n=10, axis="y")
+        p.cyl("glass", (0.0, yf - door_t - 0.006 + SINK, 0.4), 0.2, 0.012, n=10, axis="y")
+        p.box("metal_galv", (-0.2, yf - door_t - 0.015 + SINK, 0.4), (0.03, 0.03, 0.12))
     p.slot("Drum", (0, 0, 0.04), (0.4, 0.5, 0.36))
     return p
 
@@ -400,7 +423,7 @@ def wardrobe(a=0.0):
     yf = -d / 2
     shell(p, "wood_dark", w, d, h, inner="wood_light")
     shelf(p, "wood_light", w, d, 0.5)
-    p.cyl("metal_galv", (0, 0.0, 1.72), 0.015, w - 0.08, n=5, axis="x")
+    p.cyl("metal_galv", (0, 0.0, 1.72), 0.015, w - 2 * 0.03 + 2 * SINK, n=5, axis="x")      # the hanging rail, side wall to side wall
     door(p, "DoorL", "left", "wood_light", -0.5, 0.0, 0.03, 1.88, yf, a, thick=0.025, limit=110)
     door(p, "DoorR", "right", "wood_light", 0.0, 0.5, 0.03, 1.88, yf, a, thick=0.025, limit=110)
     p.slot("Rail", (0, 0, 0.98), (0.9, 0.4, 0.74))                      # hung clothes: base 0.74 m below the rail
@@ -414,12 +437,16 @@ def dresser(a=0.0):
     p = Prop("GI_Dresser_01")
     w, d, h = 1.2, 0.5, 0.88
     yf = -d / 2
-    shell(p, "wood_dark", w, d, h, inner="wood_light", top=False)
-    for z in (0.31, 0.59):
-        p.box("wood_dark", (0, 0, z), (w - 0.06, d, 0.02))
-    p.box("wood_light", (0, 0, 0.9), (w + 0.04, d + 0.04, 0.04))
-    for k, zc in enumerate((0.17, 0.45, 0.73)):
-        drawer(p, f"Drawer{k + 1}", "wood_light", "wood_dark", 0, zc, w - 0.08, 0.26, d, yf, a, travel=0.38, pull="knob")
+    t, div = 0.03, 0.02
+    shell(p, "wood_dark", w, d, h, t=t, inner="wood_light", top=False)
+    dividers = (0.31, 0.59)
+    for z in dividers:
+        p.box("wood_dark", (0, -t / 2, z), (w - 2 * t, d - t, div))                        # front to the back wall: the rails between the drawers
+    p.box("wood_light", (0, 0, h + 0.02), (w + 0.04, d + 0.04, 0.04))
+    edges = [t] + [e for z in dividers for e in (z - div / 2, z + div / 2)] + [h]
+    for k in range(3):
+        lo, hi = edges[2 * k], edges[2 * k + 1]
+        drawer(p, f"Drawer{k + 1}", "wood_light", "wood_dark", 0, (lo + hi) / 2, w - 2 * t, hi - lo, d, yf, a, travel=0.38, pull="knob")
     p.slot("Top", (0, 0, 0.92), (1.1, 0.4, 0.4))
     return p
 
@@ -429,13 +456,16 @@ def nightstand(a=0.0):
     p = Prop("GI_Nightstand_01")
     w, d, h = 0.45, 0.4, 0.56
     yf = -d / 2
-    shell(p, "wood_light", w, d, h, inner="wood_dark", top=False)
-    p.box("wood_light", (0, 0, 0.58), (w + 0.03, d + 0.03, 0.03))
-    p.box("wood_light", (0, 0, 0.3), (w - 0.06, d, 0.02))
-    drawer(p, "Drawer1", "wood_dark", "wood_light", 0, 0.45, w - 0.06, 0.2, d, yf, a, travel=0.3, pull="knob")
-    door(p, "Door", "right", "wood_dark", -0.21, 0.21, 0.04, 0.29, yf, a, thick=0.02, limit=100)
+    t, top_t, div_z, div = 0.03, 0.03, 0.3, 0.02
+    shell(p, "wood_light", w, d, h, t=t, inner="wood_dark", top=False)
+    p.box("wood_light", (0, 0, h + top_t / 2), (w + 0.03, d + 0.03, top_t))             # the top, on the carcass
+    p.box("wood_light", (0, -t / 2, div_z), (w - 2 * t, d - t, div))                       # the divider, front to the back wall
+    lo, hi = div_z + div / 2, h
+    front_w = 0.42                                                                       # the drawer and the door both lie over the sides' front edges
+    drawer(p, "Drawer1", "wood_dark", "wood_light", 0, (lo + hi) / 2, front_w, hi - lo, d, yf, a, travel=0.3, pull="knob")
+    door(p, "Door", "right", "wood_dark", -front_w / 2, front_w / 2, t, div_z - div / 2, yf, a, thick=0.02, limit=100)
     p.slot("Shelf", (0, 0, 0.04), (0.36, 0.3, 0.25))
-    p.slot("Top", (0, 0, 0.595), (0.4, 0.35, 0.3))
+    p.slot("Top", (0, 0, h + top_t), (0.4, 0.35, 0.3))
     return p
 
 
@@ -445,11 +475,12 @@ def cabinet(a=0.0):
     w, d, h = 0.8, 0.38, 1.2
     yf = -d / 2
     shell(p, "wood_light", w, d, h, inner="paint_white")
-    shelf(p, "wood_light", w, d, 0.6)
-    door(p, "DoorUL", "left", "wood_light", -0.4, 0.0, 0.62, 1.17, yf, a, thick=0.025, limit=105, window="glass")
-    door(p, "DoorUR", "right", "wood_light", 0.0, 0.4, 0.62, 1.17, yf, a, thick=0.025, limit=105, window="glass")
-    door(p, "DoorLL", "left", "wood_dark", -0.4, 0.0, 0.03, 0.58, yf, a, thick=0.025, limit=105)
-    door(p, "DoorLR", "right", "wood_dark", 0.0, 0.4, 0.03, 0.58, yf, a, thick=0.025, limit=105)
+    split = 0.6                                                          # the shelf: the upper and lower doors meet in front of it
+    shelf(p, "wood_light", w, d, split)
+    door(p, "DoorUL", "left", "wood_light", -0.4, 0.0, split, 1.17, yf, a, thick=0.025, limit=105, window="glass")
+    door(p, "DoorUR", "right", "wood_light", 0.0, 0.4, split, 1.17, yf, a, thick=0.025, limit=105, window="glass")
+    door(p, "DoorLL", "left", "wood_dark", -0.4, 0.0, 0.03, split, yf, a, thick=0.025, limit=105)
+    door(p, "DoorLR", "right", "wood_dark", 0.0, 0.4, 0.03, split, yf, a, thick=0.025, limit=105)
     p.slot("ShelfUpper", (0, 0, 0.61), (0.7, 0.3, 0.5))
     p.slot("ShelfLower", (0, 0, 0.03), (0.7, 0.3, 0.55))
     p.slot("Top", (0, 0, 1.2), (0.7, 0.3, 0.3))
@@ -494,7 +525,7 @@ def safe(a=0.0):
     shell(p, "metal_dark", w, d, h, t=0.06, inner="fabric_grey")
     door(p, "Door", "right", "metal_galv", -0.22, 0.25, 0.04, h - 0.04, yf, a, thick=0.05, limit=110, handle=None,
          extra=lambda: (p.cyl("black", (0.0, yf - 0.065, 0.3), 0.08, 0.03, n=8, axis="y"),
-                        p.box("metal_dark", (-0.14, yf - 0.07, 0.3), (0.03, 0.03, 0.2))))
+                        p.box("metal_dark", (-0.14, yf - 0.05 - 0.015 + SINK, 0.3), (0.03, 0.03, 0.2))))   # the handle bar, on the door's face
     p.slot("Inside", (0, 0, 0.065), (0.34, 0.34, 0.35))
     return p
 
@@ -532,8 +563,13 @@ def toolbox(a=0.0):
     p = Prop("GI_Toolbox_01")
     shell(p, "cloth_red", 0.5, 0.22, 0.14, t=0.015, top=False, inner="metal_dark", front=True)
     p.box("metal_dark", (0, 0.0, 0.1), (0.015, 0.2, 0.08))
-    lid_back(p, "Lid", "cloth_red", 0, 0.11, 0.14, 0.5, 0.22, 0.05, a, limit=-110,
-             extra=lambda: p.box("metal_dark", (0, 0.0, 0.215), (0.24, 0.03, 0.03)))
+    lid_top = 0.14 + 0.05
+
+    def handle():
+        for x in (-0.1, 0.1):
+            p.box("metal_dark", (x, 0.0, lid_top + 0.0125 - SINK), (0.02, 0.02, 0.025))        # the posts, on the lid
+        p.box("metal_dark", (0, 0.0, lid_top + 0.025 + 0.015 - 2 * SINK), (0.24, 0.03, 0.03))  # the grip, on the posts
+    lid_back(p, "Lid", "cloth_red", 0, 0.11, 0.14, 0.5, 0.22, 0.05, a, limit=-110, extra=handle)
     p.slot("Inside", (0, 0, 0.02), (0.44, 0.18, 0.1))
     return p
 
@@ -558,10 +594,11 @@ def fuse_box(a=0.0):
     p = Prop("GI_FuseBox_01")
     w, d, h = 0.4, 0.1, 0.5
     shell(p, "metal_dark", w, d, h, t=0.015, z0=-h / 2, inner="fabric_grey")
+    back = d / 2 - 0.015                                                                # the back wall's inner face
     for k in range(6):
-        p.box("black", (-0.1 + (k % 2) * 0.2, -0.03, 0.14 - (k // 2) * 0.1), (0.07, 0.03, 0.05))
+        p.box("black", (-0.1 + (k % 2) * 0.2, back - 0.03 + SINK, 0.14 - (k // 2) * 0.1), (0.07, 0.06, 0.05))   # breakers, 6 cm out from the back
     door(p, "Door", "left", "metal_dark", -0.2, 0.2, -h / 2, h / 2, -d / 2, a, thick=0.015, limit=110, handle="metal_galv",
-         extra=lambda: p.box("cloth_red", (0.1, -d / 2 - 0.02, -0.18), (0.08, 0.008, 0.05)))
+         extra=lambda: p.box("cloth_red", (0.1, -d / 2 - 0.015 - 0.004 + SINK / 2, -0.18), (0.08, 0.008, 0.05)))   # the label, on the door's face
     p.slot("Inside", (0, 0.0, -0.23), (0.3, 0.06, 0.1))
     return p
 
@@ -580,10 +617,11 @@ def vending_machine(a=0.0):
     p.box("cloth_red", (0, yf - 0.01, 0.41), (w - 0.06, 0.02, 0.18))             # lower front, open where the flap is (x -0.3..0.1)
     p.box("cloth_red", (-0.35, yf - 0.01, 0.175), (0.1, 0.02, 0.29))
     p.box("cloth_red", (0.25, yf - 0.01, 0.175), (0.3, 0.02, 0.29))
-    p.box("glow_cyan", (0, yf - 0.012, 1.8), (0.5, 0.012, 0.1))
-    door(p, "Door", "left", "cloth_red", -0.385, 0.175, 0.5, 1.7, yf, a, thick=0.03, limit=100, handle="metal_galv",
+    p.box("cloth_red", (0, yf - 0.01, 1.785), (w - 0.06, 0.02, 0.17))             # the header over the door, up to the top
+    p.box("glow_cyan", (0, yf - 0.02 - 0.006 + SINK / 2, 1.8), (0.5, 0.012, 0.1))  # the lit sign, on the header
+    door(p, "Door", "left", "cloth_red", -w / 2, 0.175, 0.5, 1.7, yf, a, thick=0.03, limit=100, handle="metal_galv",
          extra=lambda: (p.box("glass", (-0.105, yf - 0.032, 1.1), (0.5, 0.008, 1.1)),))
-    door(p, "Flap", "top", "black", -0.3, 0.1, 0.08, 0.3, yf - 0.02, a, thick=0.02, limit=60, handle=None)
+    door(p, "Flap", "top", "black", -0.3, 0.1, 0.03, 0.32, yf - 0.02, a, thick=0.02, limit=60, handle=None)   # the lower panels' height
     for k, z in enumerate(rows):
         p.slot(f"Row{k + 1}", (-0.1, 0, z + 0.0075), (0.5, 0.55, 0.27))
     p.slot("Tray", (-0.1, yf + 0.15, 0.04), (0.3, 0.2, 0.2))
@@ -614,8 +652,8 @@ def dumpster(a=0.0):
         for sy in (-1, 1):
             p.cyl("rubber", (sx * (w / 2 - 0.12), sy * (d / 2 - 0.12), 0.07), 0.07, 0.05, n=8, axis="x")
     top = z0 + h
-    lid_back(p, "LidL", "black", -w / 4, d / 2 + 0.02, top, w / 2 - 0.01, d + 0.04, 0.04, a, limit=-115)
-    lid_back(p, "LidR", "black", w / 4, d / 2 + 0.02, top, w / 2 - 0.01, d + 0.04, 0.04, a, limit=-115)
+    lid_back(p, "LidL", "black", -w / 4, d / 2 + 0.02, top, w / 2, d + 0.04, 0.04, a, limit=-115)          # the two lids meet in the middle
+    lid_back(p, "LidR", "black", w / 4, d / 2 + 0.02, top, w / 2, d + 0.04, 0.04, a, limit=-115)
     p.slot("Inside", (0, 0, z0 + 0.05), (1.6, 0.8, 0.7))
     return p
 
@@ -638,8 +676,8 @@ def mailbox(a=0.0):
     p.box("wood_dark", (0, 0.0, 0.525), (0.08, 0.08, 1.05))
     shell(p, "metal_dark", 0.2, 0.4, 0.2, t=0.012, z0=1.05, inner="fabric_grey")
     door(p, "Flap", "bottom", "metal_dark", -0.1, 0.1, 1.05, 1.25, -0.2, a, thick=0.012, limit=90, handle=None)
-    with p.part("Flag", pivot=(0.11, 0.0, 1.2), kind="hinge", axis="y", limit=90, rest=0.0):
-        p.box("cloth_red", (0.11, 0.0, 1.27), (0.012, 0.03, 0.14))
+    with p.part("Flag", pivot=(0.1, 0.0, 1.2), kind="hinge", axis="y", limit=90, rest=0.0):           # on the box's side: raised, it still touches it
+        p.box("cloth_red", (0.1 + 0.006 - SINK / 2, 0.0, 1.27), (0.012, 0.03, 0.14))     # on the box's side
     p.slot("Inside", (0, 0, 1.062), (0.16, 0.34, 0.15))
     return p
 
