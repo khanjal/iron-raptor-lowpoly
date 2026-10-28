@@ -31,12 +31,17 @@ STYLES = {
 }
 
 
+# the parts a species' "facet" applies to: the lofted forms, not the small hand-placed ones (eyes, nose, ears, horns), which keep their own faces
+FACET_PARTS = ("body", "head", "tail", "leg_front_l", "leg_front_r", "leg_hind_l", "leg_hind_r")
+
+
 class Context:
     """What a species' extras() hook is given."""
 
-    def __init__(self, name, coll, rig, style, parts):
+    def __init__(self, name, coll, rig, style, parts, facet=None):
         self.name, self.coll, self.rig, self.style, self._parts = name, coll, rig, style, parts
         self.common = common
+        self.facet = facet          # sp["facet"]: {"ratio": share of faces kept, "sub": subdivisions first}; None keeps the loft bands
 
     def make(self, part, build, colour, bones, sub=None, smooth=None):
         """One mesh part: build(bm) then subdivide, shade, colour and skin it. sub/smooth default to the style's."""
@@ -44,8 +49,12 @@ class Context:
         build(bm)
         obj = common.new_mesh_object(f"{self.name}_{part}", bm, self.coll, "paint_white")
         s = self.style["sub"] if sub is None else sub
+        if self.facet and part in FACET_PARTS:                       # the form, subdivided, then cut into irregular triangles (common.facet)
+            s = max(s, self.facet.get("sub", 1))
         if s:
             common.subsurf(obj, s)
+        if self.facet and part in FACET_PARTS:
+            common.facet(obj, self.facet["ratio"])
         common.smooth(obj, self.style["smooth"] if smooth is None else smooth)
         common.paint_faces(obj, colour)
         quadruped_rig.weights(obj, self.rig, bones)
@@ -222,7 +231,7 @@ def build(sp, style="smooth", rig_name=None):
     rig = quadruped_rig.build(rig_name or f"{name}_Rig", skeleton(sp), coll)
     rig["gait_leg"] = gait_leg(sp)                                   # read by quadruped_walk.py
     parts = []
-    ctx = Context(name, coll, rig, st, parts)
+    ctx = Context(name, coll, rig, st, parts, sp.get("facet"))
     side = lambda s: "R" if s < 0 else "L"
 
     # a species can ask for its own number of sides, whatever the style (the farm dog's head and tail need theirs to read as a dog's; they do not follow the style's)

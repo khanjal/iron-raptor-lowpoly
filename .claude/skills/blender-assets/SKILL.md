@@ -35,6 +35,22 @@ Reference pictures: look at the real object and at other people's low-poly model
 
 **Build order:** (1) blockout of the main shapes at the right proportions, and `look` at it before adding anything; (2) secondary features (bevels, trim, handles, feet, seams, wear; not bevels on the 3 m grid kit pieces, which must butt without a groove, nor on the faceted animals and people); hollow only what anyone can see into or put something in; (3) small details with the triangle budget left. Check from four angles and at 10 m, then against the brief: size, front faces -Y, pivot, palette-only colours, triangles, markers.
 
+## Matching the references (asset-brief step 3)
+
+What a model is judged on is a sheet: the references in one row, our model in the next, at the same angles and the same size. Not a description of either, and not the model on its own. The cat rework went through six rounds of "close, but" because each round fixed one thing described in words while the shape of the whole was never laid next to the references; the sheet shows at once what the words miss.
+
+1. **The reference card first** (asset-brief step 3): the owner's references, measured into ratios, agreed before anything is built.
+2. **Prototype in Blender, outside the repo.** Write the trial in a script under `out/` (git ignores it), build it next to the current model, and change it there until the owner agrees; then move it into the generator. A trial that fails is thrown away without a revert.
+3. **The sheet, every round.** Render ours and any reference models with `art/scripts/render_views.py` (the thumbnail angle, front, side and the other three-quarter, the whole model and `HEAD=True`), then put them with the reference pictures with `python tools/compare_sheet.py --row "References" ... --row "Ours" ...`. Look at the sheet before anyone else does, and say row by row what still differs.
+4. **One change per round**, the biggest difference on the sheet first. Shape before detail: the facets, the head's size and silhouette and the ears come before the eyes' rim; colour last.
+5. **Check it at 256 px.** The site's thumbnails are that size, from the front-left. A detail that reads in a close-up can vanish there (forward-facing eyes did); a face is judged at both sizes.
+
+**Facets.** Published low-poly models are small irregular triangles all over, with more of them in the face; a loft of rings gives long regular bands that read as boxes and tubes. A species can set `sp["facet"] = {"ratio": r, "sub": n}`: the builder subdivides its lofted parts (body, head, legs, tail) n times and decimates them to r of their faces with `common.facet` (collapse, mirrored about X, triangulated), before they are painted. Hand-placed parts (eyes, nose, ears, horns) keep their own faces. Check the triangle count against the budget afterwards, and the audit: decimating moves surfaces by millimetres.
+
+**Eyes and faces** (learned on the cat): eyes set into sockets in the head (the facet inset and pushed in, its floor flat and dark, the iris and pupil on it) read as part of the face; eyes stacked on the surface look stuck on and fight the facets. A flat face with the eyes looking straight ahead loses them from the three-quarter view the thumbnails use. Ears are measured above the crown, not guessed: ours were three times too tall.
+
+**Who designs it.** The design pass for a new body shape (a head, a body plan) goes to the strongest model available, as a sub-agent given the code, the references and the card, not this session's earlier attempts: on the cat its first plan beat six rounds of tuning by hand.
+
 ## Conventions that bite
 
 - A model faces **-Y** in Blender (arrives facing **+Z** in a GLB and in Unity), origin on the floor at the centre of its base, 1 unit = 1 m. Wall-mounted pieces have the origin at the mount's centre.
