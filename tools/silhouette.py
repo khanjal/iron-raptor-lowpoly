@@ -9,14 +9,16 @@
 The proportion ratios of animal_proportions.py can all pass while the animal still reads wrong (a tube on four posts, issue #125); an outline laid
 over the real animal's shows that at once. The model's rest pose is read from its GLB in site/models/ (every mesh, skinned or not), projected from the
 side (the model's front, +Z in a GLB, on the right of the image) or the front, and filled into a mask. The reference is any side-view PNG of the
-real animal: a dark shape on a light or transparent background. It is scaled to the model's height (--fit length or box for the others), aligned on
+real animal: a shape cut out on a transparent background (any colour), or a dark shape on a light, opaque one. It is scaled to the model's height (--fit length or box for the others), aligned on
 the ground, flipped if it faces the other way and slid along for the best overlap.
 
-Reference images are third-party pictures and are never committed (the blender-assets skill): keep them in out/reference/, which git ignores.
+Reference images are third-party pictures and are never committed (the blender-assets skill): keep them in out/reference/, which git ignores
+(in a worktree, its own out/reference/: paths outside the checkout are refused).
 
 Prints the overlap (intersection over union), the share of the reference the model misses and the share of the model outside it, the two aspect
-ratios, and where the misses and extras are (back, middle, front by upper and lower half). Writes the overlay to out/silhouette/<id>.<view>.png:
-grey where both are, red where only the model is, blue where only the reference is. Without a reference it writes the model's own outline.
+ratios, and where the misses and extras are (back, middle, front by upper and lower half; those as shares of the reference's area). Writes the overlay to out/silhouette/<id>.<view>.png:
+grey where both are, red where only the model is, blue where only the reference is. Without a reference it writes the model's own outline
+(and fails when the reference was named with --ref). Exit codes: 0 passed, 1 an overlap under --min-iou or a named reference missing, 2 an error.
 """
 
 import argparse
@@ -37,10 +39,11 @@ OVERLAYS = ROOT / "out" / "silhouette"
 
 SIDE, FRONT = "side", "front"
 VIEWS = {SIDE: (2, 1), FRONT: (0, 1)}                      # (horizontal, vertical) GLB axes; the side view has the model's front on the right
-COLUMNS = {SIDE: ("back", "middle", FRONT), FRONT: ("left", "middle", "right")}
+COLUMNS = {SIDE: ("back", "middle", FRONT), FRONT: ("its right", "middle", "its left")}   # the model faces the viewer in the front view
 FITS = ("height", "length", "box")
 ROWS = 240                                                      # mask height in pixels
-MAX_PIXELS = 25_000_000                                         # refuse bigger reference images
+MAX_PIXELS = 6_000_000                                          # refuse bigger reference images (the decoder is pure Python: about 2500 x 2400)
+MAX_STRETCH = 8                                                 # a fitted reference is at most this many times the model's length or height
 
 COMPONENTS = {5120: "b", 5121: "B", 5122: "h", 5123: "H", 5125: "I", 5126: "f"}
 WIDTHS = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4, "MAT4": 16}
@@ -85,7 +88,7 @@ def read_glb(path):
 def accessor(doc, binary, index):
     acc = doc["accessors"][index]
     if "sparse" in acc or "bufferView" not in acc:
-        raise ValueError("sparse accessors are not read")
+        raise ValueError("sparse or compressed accessors are not read")
     view = doc["bufferViews"][acc["bufferView"]]
     item = struct.Struct("<" + COMPONENTS[acc["componentType"]] * WIDTHS[acc["type"]])
     stride = view.get("byteStride", item.size)
@@ -131,8 +134,9 @@ def mesh_matrix(doc, binary, node, worlds, index):
     if "skin" not in node:
         return worlds[index]
     skin = doc["skins"][node["skin"]]
-    inverse_bind = column_major(accessor(doc, binary, skin["inverseBindMatrices"])[0])
-    return matmul(worlds[skin["joints"][0]], inverse_bind)
+    if "inverseBindMatrices" not in skin:
+        return worlds[skin["joints"][0]]
+    return matmul(worlds[skin["joints"][0]], column_major(accessor(doc, binary, skin["inverseBindMatrices"])[0]))
 
 
 def transform(m, p):
@@ -209,13 +213,20 @@ def crop(mask):
     return Mask(right - left + 1, [r >> left for r in rows])
 
 
+def spans(source, target):
+    """For each target pixel, the source pixels it covers [first, end); at least one, so enlarging repeats pixels."""
+    return [(i * source // target, max(i * source // target + 1, (i + 1) * source // target)) for i in range(target)]
+
+
 def resample(mask, width, height):
-    """Nearest-neighbour resize."""
-    cols = [int((i + 0.5) * mask.width / width) for i in range(width)]
+    """Resize: a pixel is set when any source pixel it covers is, so shrinking a big picture keeps a thin tail or leg."""
+    cols = [(first, (1 << (end - first)) - 1) for first, end in spans(mask.width, width)]
     out = []
-    for j in range(height):
-        src = mask.rows[int((j + 0.5) * mask.height / height)]
-        out.append(sum(1 << i for i, c in enumerate(cols) if src >> c & 1))
+    for first, end in spans(mask.height, height):
+        src = 0
+        for r in mask.rows[first:end]:
+            src |= r
+        out.append(sum(1 << i for i, (c, band) in enumerate(cols) if src >> c & band))
     return Mask(width, out)
 
 
@@ -240,6 +251,8 @@ def png_chunks(raw):
         raise ValueError("not a PNG")
     at = 8
     while at < len(raw):
+        if at + 12 > len(raw) or at + 12 + struct.unpack_from(">I", raw, at)[0] > len(raw):
+            raise ValueError("the PNG is truncated")
         length, kind = struct.unpack_from(">I4s", raw, at)
         yield kind, raw[at + 8:at + 8 + length]
         at += 12 + length
@@ -278,22 +291,26 @@ def samples(row, depth, count):
     return [(row[i // per_byte] >> (8 - depth * (i % per_byte + 1))) & top for i in range(count)]
 
 
-def inside(r, g, b, a):
-    """A silhouette pixel: opaque and dark."""
-    return a >= 128 and r * 299 + g * 587 + b * 114 < 128_000
-
-
-def row_inside(values, ctype, depth, palette):
+def pixels(values, ctype, depth, palette):
+    """The row's pixels as (r, g, b, a), 0-255 (tRNS is read for palette images only)."""
     if ctype == 3:
-        return [inside(*palette[i]) for i in values]
+        return [palette[i] for i in values]
     if ctype in (0, 4):
         top = (1 << min(depth, 8)) - 1
         grey = [v * 255 // top for v in values[::CHANNELS[ctype]]]
         alpha = values[1::2] if ctype == 4 else [255] * len(grey)
-        return [inside(v, v, v, a) for v, a in zip(grey, alpha)]
+        return [(v, v, v, a) for v, a in zip(grey, alpha)]
     step = CHANNELS[ctype]
     alpha = values[3::4] if ctype == 6 else [255] * (len(values) // 3)
-    return [inside(r, g, b, a) for r, g, b, a in zip(values[0::step], values[1::step], values[2::step], alpha)]
+    return list(zip(values[0::step], values[1::step], values[2::step], alpha))
+
+
+def bits(flags):
+    return int("".join("1" if f else "0" for f in reversed(flags)) or "0", 2)
+
+
+def dark(r, g, b):
+    return r * 299 + g * 587 + b * 114 < 128_000
 
 
 def palette_of(plte, trns):
@@ -302,7 +319,9 @@ def palette_of(plte, trns):
 
 
 def read_png_mask(path):
-    """The dark, opaque pixels of a PNG (8 or 16-bit, any colour type, not interlaced) as a cropped mask."""
+    """A PNG's silhouette as a cropped mask: its opaque pixels when some are transparent (a cut-out), else its dark ones.
+
+    Any colour type at 8 or 16 bits (and grey or palette at 1, 2 or 4), not interlaced."""
     header, plte, trns, data = None, b"", b"", bytearray()
     for kind, chunk in png_chunks(Path(path).read_bytes()):
         if kind == b"IHDR":
@@ -313,6 +332,8 @@ def read_png_mask(path):
             trns = chunk
         elif kind == b"IDAT":
             data += chunk
+    if header is None:
+        raise ValueError(f"{path}: no PNG header")
     width, height, depth, ctype, _, _, interlace = header
     if interlace or width * height > MAX_PIXELS:
         raise ValueError(f"{path}: interlaced or too large; save it as a plain PNG under {MAX_PIXELS} pixels")
@@ -321,13 +342,17 @@ def read_png_mask(path):
     bpp = max(1, CHANNELS[ctype] * depth // 8)
     raw = zlib.decompress(bytes(data))
     palette = palette_of(plte, trns)
-    prev, rows = bytearray(stride), []
+    if len(raw) < height * (stride + 1):
+        raise ValueError(f"{path}: image data is truncated")
+    prev, opaque, shape = bytearray(stride), [], []
     for j in range(height):
         line = raw[j * (stride + 1):(j + 1) * (stride + 1)]
         prev = unfilter_row(line[0], line[1:], prev, bpp)
-        flags = row_inside(samples(prev, depth, count), ctype, depth, palette)
-        rows.append(int("".join("1" if f else "0" for f in reversed(flags)), 2))
-    return crop(Mask(width, rows))
+        row = pixels(samples(prev, depth, count), ctype, depth, palette)
+        opaque.append(bits([a >= 128 for _, _, _, a in row]))
+        shape.append(bits([a >= 128 and dark(r, g, b) for r, g, b, a in row]))
+    cut_out = any(r != (1 << width) - 1 for r in opaque)
+    return crop(Mask(width, opaque if cut_out else shape))
 
 
 def png_chunk(kind, data):
@@ -348,8 +373,8 @@ def fit_reference(model, ref, fit):
     if fit == "box":
         return resample(ref, model.width, model.height)
     if fit == "length":
-        return resample(ref, model.width, max(1, round(ref.height * model.width / ref.width)))
-    return resample(ref, max(1, round(ref.width * model.height / ref.height)), model.height)
+        return resample(ref, model.width, min(MAX_STRETCH * model.height, max(1, round(ref.height * model.width / ref.width))))
+    return resample(ref, min(MAX_STRETCH * model.width, max(1, round(ref.width * model.height / ref.height))), model.height)
 
 
 def bottom_aligned(mask, height):
@@ -401,17 +426,31 @@ def regions(m, r, width, view):
     return out
 
 
+@dataclass
+class Result:
+    """The best fit: the overlap, the two masks on one canvas (rows from the top, `width` wide) and how they differ."""
+    iou: float
+    flipped: bool
+    offset: int
+    width: int
+    model: list
+    reference: list
+    missed: float                                               # share of the reference the model leaves out
+    extra: float                                                # share of the model outside the reference
+    regions: dict
+
+
 def compare(model, ref, view=SIDE, fit="height"):
     ref = fit_reference(model, ref, fit)
+    if not ref.area():
+        raise ValueError("the reference has no pixels left at the model's size")
     score, flipped, offset = best_overlap(model, ref)
     m, r, width = place(model, mirror(ref) if flipped else ref, offset)
     ref_area, model_area = sum(x.bit_count() for x in r), sum(x.bit_count() for x in m)
-    return {
-        "iou": score, "flipped": flipped, "offset": offset, "width": width, "model": m, "reference": r,
-        "missed": sum((b & ~a).bit_count() for a, b in zip(m, r)) / ref_area,
-        "extra": sum((a & ~b).bit_count() for a, b in zip(m, r)) / model_area,
-        "regions": regions(m, r, width, view),
-    }
+    return Result(score, flipped, offset, width, m, r,
+                  sum((b & ~a).bit_count() for a, b in zip(m, r)) / ref_area,
+                  sum((a & ~b).bit_count() for a, b in zip(m, r)) / model_area,
+                  regions(m, r, width, view))
 
 
 def overlay(m, r, width):
@@ -422,27 +461,28 @@ def overlay(m, r, width):
 # ---- command line ----
 
 def report(name, result, model, ref):
-    print(f"{name}: overlap {result['iou']:.2f}, reference missed {result['missed']:.0%}, model outside it {result['extra']:.0%}"
-          f"{' (reference mirrored)' if result['flipped'] else ''}")
+    print(f"{name}: overlap {result.iou:.2f}, reference missed {result.missed:.0%}, model outside it {result.extra:.0%}"
+          f"{' (reference mirrored)' if result.flipped else ''}")
     print(f"  length/height: model {model.width / model.height:.2f}, reference {ref.width / ref.height:.2f}")
-    worst = sorted(result["regions"].items(), key=lambda kv: -max(kv[1]))[:3]
-    print("  most different: " + "; ".join(f"{c} {h}: missed {a:.0%}, extra {b:.0%}" for (c, h), (a, b) in worst))
+    worst = sorted(result.regions.items(), key=lambda kv: -max(kv[1]))[:3]
+    print("  most different (shares of the reference's area): "
+          + "; ".join(f"{c} {h}: missed {a:.0%}, extra {b:.0%}" for (c, h), (a, b) in worst))
 
 
-def check_model(glb, ref_path, args):
-    """Compare one model; True when it passes --min-iou (or there is nothing to compare)."""
-    model, _ = model_mask(triangles(*read_glb(glb)), args.view, args.rows)
-    out = OVERLAYS / f"{glb.stem}.{args.view}.png"
+def check_model(glb, ref_path, view, args):
+    """Compare one model; True when it passes --min-iou, or when there is no reference and none was named."""
+    model, _ = model_mask(triangles(*read_glb(glb)), view, args.rows)
+    out = OVERLAYS / f"{glb.stem}.{view}.png"
     if not ref_path.exists():
         write_png(out, model.width, overlay(model.rows, [0] * model.height, model.width))
         print(f"{glb.stem}: no reference at {ref_path.relative_to(ROOT)}; wrote the model's outline to {out.relative_to(ROOT)}")
-        return True
+        return not args.ref
     ref = read_png_mask(ref_path)
-    result = compare(model, ref, args.view, args.fit)
-    write_png(out, result["width"], overlay(result["model"], result["reference"], result["width"]))
+    result = compare(model, ref, view, args.fit)
+    write_png(out, result.width, overlay(result.model, result.reference, result.width))
     report(glb.stem, result, model, ref)
     print(f"  overlay: {out.relative_to(ROOT)}")
-    return result["iou"] >= args.min_iou
+    return result.iou >= args.min_iou
 
 
 def default_reference(model_id, view):
@@ -450,20 +490,30 @@ def default_reference(model_id, view):
 
 
 def model_path(arg):
-    return project_path(arg) if arg.endswith(".glb") else project_path(MODELS / f"{arg}.glb")
+    path = project_path(arg) if arg.endswith(".glb") else project_path(MODELS / f"{arg}.glb")
+    if not path.exists():
+        raise ValueError(f"no model at {path}")
+    return path
+
+
+def all_jobs():
+    """(glb, reference, view) for every out/reference/<model id>[.front].png whose model exists."""
+    found = []
+    for png in sorted(REFERENCES.glob("*.png")):
+        stem, _, view = png.stem.partition(".")
+        if (MODELS / f"{stem}.glb").exists() and view in ("", FRONT):
+            found.append((MODELS / f"{stem}.glb", png, view or SIDE))
+    if not found:
+        raise ValueError(f"no <model id>.png or <model id>.front.png in {REFERENCES}")
+    return found
 
 
 def jobs(args):
     """(glb, reference, view) for each comparison asked for."""
     if args.all:
-        for png in sorted(REFERENCES.glob("*.png")):
-            stem, _, view = png.stem.partition(".")
-            if (MODELS / f"{stem}.glb").exists() and view in ("", FRONT):
-                yield MODELS / f"{stem}.glb", png, view or SIDE
-        return
-    for arg in args.models:
-        glb = model_path(arg)
-        yield glb, project_path(args.ref) if args.ref else default_reference(glb.stem, args.view), args.view
+        return all_jobs()
+    ref = project_path(args.ref) if args.ref else None
+    return [(glb, ref or default_reference(glb.stem, args.view), args.view) for glb in map(model_path, args.models)]
 
 
 def main(argv=None):
@@ -474,14 +524,15 @@ def main(argv=None):
     parser.add_argument("--fit", choices=FITS, default="height", help="scale the reference to the model's height, length or both")
     parser.add_argument("--rows", type=int, default=ROWS, help="mask height in pixels")
     parser.add_argument("--min-iou", type=float, default=0.0, help="exit 1 when a model's overlap is lower")
-    parser.add_argument("--all", action="store_true", help="every out/reference/<model id>[.front].png")
+    parser.add_argument("--all", action="store_true", help="every out/reference/<model id>[.front].png (without models, --ref or --view)")
     args = parser.parse_args(argv)
-    if not args.models and not args.all:
-        parser.error("name a model or pass --all")
-    passed = True
-    for glb, ref_path, view in jobs(args):
-        args.view = view
-        passed = check_model(glb, ref_path, args) and passed
+    if args.all == bool(args.models) or (args.all and (args.ref or args.view != SIDE)):
+        parser.error("name models, or pass --all alone")
+    try:
+        passed = all([check_model(glb, ref_path, view, args) for glb, ref_path, view in jobs(args)])
+    except (ValueError, OSError, KeyError, IndexError, struct.error, zlib.error) as error:
+        print(f"silhouette: {error}", file=sys.stderr)
+        return 2
     return 0 if passed else 1
 
 

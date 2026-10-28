@@ -1,10 +1,13 @@
 """tools/silhouette.py: the model's outline from its GLB, PNG reading and writing, and the overlap with a reference."""
+import contextlib
+import io
 import struct
 import sys
 import tempfile
 import unittest
 import zlib
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -56,28 +59,37 @@ class Overlap(unittest.TestCase):
     def test_same_shape_scores_one(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
         result = silhouette.compare(mask, mask)
-        self.assertAlmostEqual(result["iou"], 1.0)
-        self.assertEqual((result["missed"], result["extra"]), (0.0, 0.0))
+        self.assertAlmostEqual(result.iou, 1.0)
+        self.assertEqual((result.missed, result.extra), (0.0, 0.0))
 
     def test_reference_facing_the_other_way_is_mirrored(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
         result = silhouette.compare(mask, silhouette.mirror(mask))
-        self.assertTrue(result["flipped"])
-        self.assertAlmostEqual(result["iou"], 1.0)
+        self.assertTrue(result.flipped)
+        self.assertAlmostEqual(result.iou, 1.0)
 
     def test_reference_at_another_scale_is_fitted(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
         big = silhouette.resample(mask, mask.width * 3, mask.height * 3)
-        self.assertAlmostEqual(silhouette.compare(mask, big)["iou"], 1.0)
+        self.assertAlmostEqual(silhouette.compare(mask, big).iou, 1.0)
+
+    def test_shrinking_keeps_a_thin_line(self):
+        wide = silhouette.Mask(40, [0] * 19 + [(1 << 40) - 1] + [0] * 20)     # a one-pixel line in a 40 x 40 picture
+        self.assertEqual(silhouette.resample(wide, 8, 8).area(), 8)
+
+    def test_a_long_thin_reference_is_capped(self):
+        mask = silhouette.crop(silhouette.from_text(SHAPE))
+        strip = silhouette.Mask(300, [(1 << 300) - 1])
+        self.assertLessEqual(silhouette.fit_reference(mask, strip, "height").width, silhouette.MAX_STRETCH * mask.width)
 
     def test_regions_name_where_the_model_differs(self):
         ref = silhouette.from_text("######\n######")
         model = silhouette.from_text("######\n####..")       # the lower front corner is missing
         result = silhouette.compare(model, ref, fit="box")
-        missed, extra = result["regions"][("front", "lower")]
+        missed, extra = result.regions[("front", "lower")]
         self.assertAlmostEqual(missed, 2 / 12)
         self.assertEqual(extra, 0.0)
-        self.assertEqual(result["regions"][("back", "upper")], (0.0, 0.0))
+        self.assertEqual(result.regions[("back", "upper")], (0.0, 0.0))
 
 
 class Png(unittest.TestCase):
@@ -87,15 +99,25 @@ class Png(unittest.TestCase):
             path.write_bytes(data)
             return silhouette.to_text(silhouette.read_png_mask(path))
 
-    def test_rgba_dark_and_opaque_is_inside(self):
+    def test_cut_out_is_its_opaque_pixels_of_any_colour(self):
         rows = [[0, 0, 0, 255, 0, 0, 0, 0, 255, 255, 255, 255], [0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255]]
+        self.assertEqual(self.read(png(3, rows, 6)), "#.#\n###")             # a white horse on a transparent background still counts
+
+    def test_opaque_picture_is_its_dark_pixels(self):
+        rows = [[0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255], [0, 0, 0, 255, 0, 0, 0, 255, 0, 0, 0, 255]]
         self.assertEqual(self.read(png(3, rows, 6)), "#..\n###")
 
     def test_grey_and_palette_and_bits(self):
         self.assertEqual(self.read(png(2, [[0, 255], [255, 0]], 0)), "#.\n.#")
         plte, trns = bytes((0, 0, 0, 0, 0, 0, 255, 255, 255)), bytes((255, 0))
-        self.assertEqual(self.read(png(3, [[0, 1, 2]], 3, plte=plte, trns=trns)), "#")
+        self.assertEqual(self.read(png(3, [[0, 1, 2]], 3, plte=plte, trns=trns)), "#.#")     # index 1 is transparent
         self.assertEqual(self.read(png(8, [[0b00001111]], 0, depth=1)), "####")
+
+    def test_broken_pngs_are_errors(self):
+        with self.assertRaises(ValueError):
+            self.read(png(2, [[0, 0]], 0)[:-30])                                # truncated before the image data ends
+        with self.assertRaises(ValueError):
+            self.read(png(2, [[255, 255]], 0))                                  # no silhouette in it
 
     def test_write_then_read(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
@@ -129,6 +151,24 @@ class Glb(unittest.TestCase):
     def test_paths_outside_the_project_are_refused(self):
         with self.assertRaises(ValueError):
             silhouette.model_path(str(ROOT.parent / "x.glb"))
+
+
+class CommandLine(unittest.TestCase):
+    def run_quietly(self, argv):
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            return silhouette.main(argv)
+
+    def test_a_named_reference_that_is_missing_fails(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp, mock.patch.object(silhouette, "OVERLAYS", Path(tmp)):
+            self.assertEqual(self.run_quietly(["GN_CatTabby_faceted_01", "--ref", str(Path(tmp) / "nope.png")]), 1)
+
+    def test_errors_exit_2(self):
+        self.assertEqual(self.run_quietly(["GN_NoSuchModel_01"]), 2)
+        self.assertEqual(self.run_quietly(["GN_CatTabby_faceted_01", "--ref", str(ROOT.parent / "x.png")]), 2)
+
+    def test_all_takes_no_models(self):
+        with self.assertRaises(SystemExit):
+            self.run_quietly(["--all", "GN_CatTabby_faceted_01"])
 
 
 if __name__ == "__main__":
