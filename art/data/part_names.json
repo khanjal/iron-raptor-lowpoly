@@ -134,10 +134,26 @@
   "metal_galv": "Shelves and handle",
   "metal_dark": "Inside"
  },
+ "GH_ArcadeUpright_01": {
+  "label_blue": "Side art",
+  "metal_dark": "Bezel and coin door",
+  "cloth_red": "Control panel and stripe",
+  "screen": "Screen"
+ },
+ "GH_ArcadeCocktail_01": {
+  "screen": "Screen",
+  "cloth_red": "Control panels"
+ },
+ "GH_Pinball_01": {
+  "label_blue": "Playfield",
+  "metal_galv": "Legs and rails",
+  "metal_dark": "Coin door and speaker"
+ },
  "GH_Jukebox_01": {
-  "glass": "Display frame",
-  "cloth_red": "Top dome",
-  "metal_galv": "Lower front panel"
+  "black": "Plinth, record and buttons",
+  "fabric_mustard": "Speaker cloth",
+  "metal_galv": "Chrome trim and grille",
+  "metal_dark": "Window backing"
  },
  "GO_Copier_01": {
   "glass": "Scanner glass",

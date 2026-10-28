@@ -1,6 +1,6 @@
 # How our models compare with good low-poly work
 
-A survey of every category in `site/manifest.json` (501 models) against published low-poly models, made on 2026-10-27 after a look at five third-party cats and dogs showed ours reading as thin and generic. It says what the good examples do, where we fall short, the weakest models, and what to change, category by category, ranked by how much each would gain. No model changes here: this is the survey, and each category's rework is its own issue and PR.
+A survey of every category in `site/manifest.json` (501 models when it was made; the jukebox rebuild and three arcade machines landed after and are not in it) against published low-poly models, made on 2026-10-27 after a look at five third-party cats and dogs showed ours reading as thin and generic. It says what the good examples do, where we fall short, the weakest models, and what to change, category by category, ranked by how much each would gain. No model changes here: this is the survey, and each category's rework is its own issue and PR.
 
 **References are described, never used.** Nothing was downloaded, traced or copied, and no third-party image or model is in the repository. The examples were looked at as gallery thumbnails on [Poly Pizza](https://poly.pizza) (searches for cat, dog, cow, deer, fox, character, car, burger, house, sofa, tree, spaceship, bee, axe, fridge, teddy, backpack and ufo), mostly the collections by Quaternius, Kenney, "Poly by Google" and a few single authors. Where this doc says "the references" it means that set. Our side is the 256 px thumbnails in `site/thumbs/`, looked at as contact sheets by category.
 
@@ -37,7 +37,7 @@ Ours are generally correct in size and construction (the briefs and audits see t
 | 9 | Sci-fi props and ship parts | 22 | Medium: grey cylinders and boxes | [#203](https://github.com/khanjal/iron-raptor-lowpoly/issues/203) |
 | 10 | Tools | 33 | Medium: thin heads and handles | [#204](https://github.com/khanjal/iron-raptor-lowpoly/issues/204) |
 | 11 | Farm props and structures | 24 | Low-medium | (folded into [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92)'s batches) |
-| 12 | Appliances, fixtures, equipment | 46 | Low: right shapes, missing bevels and a few details | none (the item-fit audit covers fit) |
+| 12 | Appliances, fixtures, equipment | 46 (+3 arcade machines, not surveyed) | Low: right shapes, missing bevels and a few details | none (the item-fit audit covers fit) |
 | 13 | Furniture | 58 | Low | none |
 | 14 | Buildings | 24 | Low | none |
 | 15 | Sports | 26 | Low (the glove is in #89) | none |

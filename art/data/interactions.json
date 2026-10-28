@@ -3209,6 +3209,78 @@
     "power"
    ]
   },
+  "GH_ArcadeCocktail_01": {
+   "parts": {},
+   "slots": {},
+   "emitters": {
+    "Light_Screen": {
+     "kind": "light",
+     "position": [
+      0.0,
+      0.0,
+      0.7719
+     ],
+     "colour": "cool",
+     "range": 3,
+     "intensity": 1.0,
+     "flicker": false,
+     "when": "on",
+     "shape": "point"
+    },
+    "Sound_Attract": {
+     "kind": "sound",
+     "position": [
+      0.0,
+      0.0,
+      0.498
+     ],
+     "event": "arcade",
+     "loop": true,
+     "loudness": 0.4,
+     "when": "on"
+    }
+   },
+   "traits": [
+    "noisy",
+    "power"
+   ]
+  },
+  "GH_ArcadeUpright_01": {
+   "parts": {},
+   "slots": {},
+   "emitters": {
+    "Light_Screen": {
+     "kind": "light",
+     "position": [
+      0.0,
+      -0.3389,
+      1.225
+     ],
+     "colour": "cool",
+     "range": 3,
+     "intensity": 1.0,
+     "flicker": false,
+     "when": "on",
+     "shape": "point"
+    },
+    "Sound_Attract": {
+     "kind": "sound",
+     "position": [
+      0.0,
+      -0.1703,
+      1.05
+     ],
+     "event": "arcade",
+     "loop": true,
+     "loudness": 0.4,
+     "when": "on"
+    }
+   },
+   "traits": [
+    "noisy",
+    "power"
+   ]
+  },
   "GH_Boiler_01": {
    "parts": {},
    "slots": {},
@@ -3845,8 +3917,8 @@
      "kind": "light",
      "position": [
       0.0,
-      -0.29,
-      0.87
+      -0.3708,
+      0.9
      ],
      "colour": "warm",
      "range": 4,
@@ -3859,8 +3931,8 @@
      "kind": "sound",
      "position": [
       0.0,
-      -0.1205,
-      0.725
+      -0.1666,
+      0.75
      ],
      "event": "jukebox",
      "loop": true,
@@ -4337,6 +4409,42 @@
       "human",
       "alien"
      ]
+    }
+   },
+   "traits": [
+    "noisy",
+    "power"
+   ]
+  },
+  "GH_Pinball_01": {
+   "parts": {},
+   "slots": {},
+   "emitters": {
+    "Light_Backglass": {
+     "kind": "light",
+     "position": [
+      0.0,
+      0.2529,
+      1.6405
+     ],
+     "colour": "warm",
+     "range": 3,
+     "intensity": 1.0,
+     "flicker": false,
+     "when": "on",
+     "shape": "point"
+    },
+    "Sound_Attract": {
+     "kind": "sound",
+     "position": [
+      0.0,
+      -0.0969,
+      1.158
+     ],
+     "event": "pinball",
+     "loop": true,
+     "loudness": 0.5,
+     "when": "on"
     }
    },
    "traits": [
