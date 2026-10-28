@@ -93,7 +93,10 @@ def accessor(doc, binary, index):
     item = struct.Struct("<" + COMPONENTS[acc["componentType"]] * WIDTHS[acc["type"]])
     stride = view.get("byteStride", item.size)
     base = view.get("byteOffset", 0) + acc.get("byteOffset", 0)
-    return [item.unpack_from(binary, base + i * stride) for i in range(acc["count"])]
+    count = acc["count"]
+    if not isinstance(count, int) or count < 0 or base + max(count - 1, 0) * stride + item.size > len(binary):
+        raise ValueError(f"accessor {index} runs past the end of the binary chunk")
+    return [item.unpack_from(binary, base + i * stride) for i in range(count)]
 
 
 def matmul(a, b):
@@ -529,11 +532,11 @@ def main(argv=None):
     if args.all == bool(args.models) or (args.all and (args.ref or args.view != SIDE)):
         parser.error("name models, or pass --all alone")
     try:
-        passed = all([check_model(glb, ref_path, view, args) for glb, ref_path, view in jobs(args)])
+        results = [check_model(glb, ref_path, view, args) for glb, ref_path, view in jobs(args)]     # every model, not only up to the first failure
     except (ValueError, OSError, KeyError, IndexError, struct.error, zlib.error) as error:
         print(f"silhouette: {error}", file=sys.stderr)
         return 2
-    return 0 if passed else 1
+    return 0 if all(results) else 1
 
 
 if __name__ == "__main__":

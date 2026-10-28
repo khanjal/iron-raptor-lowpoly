@@ -114,10 +114,17 @@ class Png(unittest.TestCase):
         self.assertEqual(self.read(png(8, [[0b00001111]], 0, depth=1)), "####")
 
     def test_broken_pngs_are_errors(self):
+        truncated = png(2, [[0, 0]], 0)[:-30]                                   # cut before the image data ends
+        blank = png(2, [[255, 255]], 0)                                         # no silhouette in it
         with self.assertRaises(ValueError):
-            self.read(png(2, [[0, 0]], 0)[:-30])                                # truncated before the image data ends
+            self.read(truncated)
         with self.assertRaises(ValueError):
-            self.read(png(2, [[255, 255]], 0))                                  # no silhouette in it
+            self.read(blank)
+
+    def test_accessor_past_the_end_is_an_error(self):
+        doc = {"accessors": [{"bufferView": 0, "componentType": 5126, "type": "VEC3", "count": 1000}], "bufferViews": [{}]}
+        with self.assertRaises(ValueError):
+            silhouette.accessor(doc, b"\x00" * 24, 0)
 
     def test_write_then_read(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
