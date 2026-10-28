@@ -3022,6 +3022,7 @@
    "variants": [
     "GI_Fridge_Modern_01",
     "GI_Fridge_Dispenser_01",
+    "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_01.interactions.json",
@@ -3101,7 +3102,8 @@
    "variants": [
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
-    "GI_Fridge_Dispenser_01"
+    "GI_Fridge_Dispenser_01",
+    "GI_Fridge_Retro_01"
    ],
    "interactions": "models/GI_Fridge_Damaged_01.interactions.json",
    "paintable": [
@@ -3200,6 +3202,7 @@
    "variants": [
     "GI_Fridge_01",
     "GI_Fridge_Modern_01",
+    "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_Dispenser_01.interactions.json",
@@ -3296,6 +3299,7 @@
    "variants": [
     "GI_Fridge_01",
     "GI_Fridge_Dispenser_01",
+    "GI_Fridge_Retro_01",
     "GI_Fridge_Damaged_01"
    ],
    "interactions": "models/GI_Fridge_Modern_01.interactions.json",
