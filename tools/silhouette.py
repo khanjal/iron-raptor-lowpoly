@@ -532,11 +532,13 @@ def main(argv=None):
     if args.all == bool(args.models) or (args.all and (args.ref or args.view != SIDE)):
         parser.error("name models, or pass --all alone")
     try:
-        results = [check_model(glb, ref_path, view, args) for glb, ref_path, view in jobs(args)]     # every model, not only up to the first failure
+        failed = 0
+        for glb, ref_path, view in jobs(args):              # every model, not only up to the first failure
+            failed += not check_model(glb, ref_path, view, args)
     except (ValueError, OSError, KeyError, IndexError, struct.error, zlib.error) as error:
         print(f"silhouette: {error}", file=sys.stderr)
         return 2
-    return 0 if all(results) else 1
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
