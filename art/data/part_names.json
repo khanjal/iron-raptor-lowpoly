@@ -650,7 +650,9 @@
   "dark_brown": "Points"
  },
  "GN_CatKitten_faceted_01": {
-  "tan": "Stripes"
+  "tan": "Stripes",
+  "paint_white": "Chest, belly, socks and muzzle",
+  "paint_yellow": "Eyes"
  },
  "GN_DogRetriever_faceted_01": {
   "$main": "Coat"

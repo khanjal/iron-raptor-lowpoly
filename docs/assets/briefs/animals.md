@@ -85,7 +85,7 @@ These are the ranges in `animal_proportions.RANGES` (the test checks that the sc
 
 | | LH | width | depth | elbow | head | head_w | carry | leg_top | leg_low | paw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| cat | 1.05-1.65 | 0.43-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.64-1.00 | 1.05-1.35 | 0.13-0.22 | 0.07-0.12 | 0.15-0.26 |
+| cat | 1.05-1.65 | 0.43-0.66 | 0.46-0.66 | 0.36-0.52 | 0.28-0.40 | 0.64-1.00 | 1.05-1.35 | 0.13-0.26 | 0.07-0.16 | 0.15-0.31 |
 | collie | 0.95-1.35 | 0.30-0.50 | 0.44-0.58 | 0.44-0.54 | 0.31-0.44 | 0.45-0.62 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | husky | 0.95-1.30 | 0.32-0.52 | 0.44-0.58 | 0.44-0.54 | 0.32-0.42 | 0.50-0.68 | 1.05-1.30 | 0.12-0.18 | 0.07-0.11 | 0.15-0.24 |
 | retriever | 1.00-1.35 | 0.34-0.54 | 0.44-0.58 | 0.44-0.54 | 0.31-0.42 | 0.52-0.70 | 1.05-1.30 | 0.13-0.19 | 0.08-0.12 | 0.16-0.25 |
@@ -114,6 +114,17 @@ Measured by `measure_bird` on `biped_bird.CHICKEN_HEN`: H is the top of the head
 | hen | 0.60-0.90 | 0.34-0.52 | 0.45-0.65 | 0.22-0.38 | 1.15-1.45 | 0.04-0.08 | 0.14-0.24 | 0.95-1.25 |
 
 (LH body length / H; width, depth the body's, / H; legs the underside of the body / H; carry the top of the head / the top of the back; shank the leg's width at the ankle / H; toe the toes' length / H; tail the top of the tail / the top of the back.)
+
+## Stylised: the low-poly direction (asset-brief step 3)
+
+With the right sizes the cats and dogs still read as thin and generic next to published low-poly ones. Looked at: the low-poly cats and dogs the owner shared (two sitting cats, a standing cat, a retriever, a small dog), sold as prints and STL models, and the survey's pet and animal sections (`docs/assets/style-comparison.md`, sections 2 and 3). What they do, in common (the habits of the style, not any one model):
+
+- the head larger than real and rounder, the ears 1.5 to 2 times real, the eyes large;
+- the coat in a few large colour blocks along the facets: a pale bib and belly, a light muzzle, socks, a darker saddle or cap; never thin stripes round the body;
+- legs that stay thick down to a distinct paw block;
+- a short, full tail; a face that reads from the front (a muzzle block and a pink nose).
+
+**How far ours goes (the cat, the pilot on `pets-stylise`).** Overall length and height stay real, so the cat still fits beside a person or a chair. The head is 1.18 times real (the kitten's 1.32), within the head range. The ears are about 1.4 times real, in the coat's colour with a smaller pink inside (two thirds of the front face, a separate plate 0.8 mm in front of it), as the references and the owner's two reference models have them. The eyes are about 1.6 times the first build's (eye 0.24 to 0.38; the kitten's 0.30 to 0.46), still round with a black pupil: at 256 px that reads better than eyes set in sockets or looking straight ahead, which were tried and dropped (blender-assets, "Matching the references"). The legs are about 15 % thicker at the top and 30 % at the ankle, and the paw block is about 1.3 times wider and longer. The tail is a quarter thicker. The tabby is white at the bib, belly, muzzle and socks, with two or three broad saddle stripes on the top of the back. The legs and paws go past the real spread, so the cat row's `leg_top`, `leg_low` and `paw` are widened (to 0.26, 0.16 and 0.31) in the table above and in `animal_proportions.RANGES`. This is a deliberate stylisation, recorded here; it is not a correction of the real numbers in "Per species". Nothing else in the cat row moves. The dogs follow once the cat is agreed.
 
 ## Recognisable features (kept, faked, dropped)
 
