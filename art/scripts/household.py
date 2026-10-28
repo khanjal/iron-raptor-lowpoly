@@ -1001,6 +1001,12 @@ def _slab(p, colour, r, z_arc, z_low, y_front, y_back):
     p.loft_rings(colour, [_front_outline(r, z_arc, z_low, y_front), _front_outline(r, z_arc, z_low, y_back)])
 
 
+def _disc(p, colour, r, cx, cz, y_front, y_back, n=16):
+    """A round disc facing -Y (a true circle: Prop.cyl's y axis rings are rounded squares), between depths y_front and y_back."""
+    ring = [(cx + r * math.cos(2 * math.pi * k / n), 0.0, cz + r * math.sin(2 * math.pi * k / n)) for k in range(n)]
+    p.loft_rings(colour, [[(x, y_front, z) for x, _, z in ring], [(x, y_back, z) for x, _, z in ring]])
+
+
 @piece("service", "Jukebox")
 def jukebox():
     """A 1940s arched-top floor jukebox (a generic design, not a copy of any maker's): lit arch and pilasters with bubble tubes, a window
@@ -1032,10 +1038,13 @@ def jukebox():
     back_front = yf - 0.006
     _slab(p, "metal_dark", win_r, arch_z, win_low, back_front, yf + sink)
     rec_z, rec_t = 1.17, 0.008
-    p.cyl("black", (0, back_front - rec_t / 2 + sink, rec_z), 0.13, rec_t, n=16, axis="y")
     rec_front = back_front - rec_t + sink
-    p.cyl("cloth_red", (0, rec_front - 0.002 + 0.0005, rec_z), 0.04, 0.004, n=10, axis="y")
-    p.box("metal_galv", (0.18, back_front - 0.004 + sink, rec_z + 0.02), (0.02, 0.008, 0.16), rot=(0, 15, 0))
+    _disc(p, "black", 0.13, 0, rec_z, rec_front, back_front + sink)
+    _disc(p, "cloth_red", 0.04, 0, rec_z, rec_front - 0.0035, rec_front + 0.0005, n=10)
+    tip, pivot = (0.1, rec_z - 0.05), (0.17, rec_z + 0.1)                                # the tone arm: from its pivot at the upper right down onto the record
+    arm = math.hypot(pivot[0] - tip[0], pivot[1] - tip[1])
+    p.box("metal_galv", ((tip[0] + pivot[0]) / 2, rec_front - 0.0005, (tip[1] + pivot[1]) / 2), (0.016, 0.002, arm),
+          rot=(0, math.degrees(math.atan2(pivot[0] - tip[0], pivot[1] - tip[1])), 0))
     glass_back = rec_front - 0.004 + 0.0015                                             # touches the label
     _slab(p, "clear_glass", win_r + 0.01, arch_z, win_low, glass_back - 0.008, glass_back)
 
@@ -1047,7 +1056,7 @@ def jukebox():
         """A point x across, ly along and lz above the middle of the tilted strip."""
         c, sn = math.cos(math.radians(tilt)), math.sin(math.radians(tilt))
         return (x, strip[1] + ly * c - lz * sn, strip[2] + ly * sn + lz * c)
-    p.box("label_white", on_strip(0, 0.015, strip_t / 2 + 0.002 - sink / 4), (0.54, 0.05, 0.004), rot=(tilt, 0, 0))
+    p.box("label_white", on_strip(0, 0.0, strip_t / 2 + 0.002 - sink / 4), (0.54, 0.05, 0.004), rot=(tilt, 0, 0))
     for k in range(10):
         p.box("black", on_strip(-0.27 + 0.06 * k, -0.033, strip_t / 2 + 0.006 - sink), (0.03, 0.015, 0.012), rot=(tilt, 0, 0))
 

@@ -31,7 +31,7 @@ Colours (palette names): `wood_dark` cabinet and arch, `black` plinth and button
 
 ## Size, pivot, budget, markers
 
-- 0.84 x 0.62 x 1.50 m (w x d x h), front -Y, origin on the floor at the centre of the base.
+- Cabinet 0.84 x 0.62 x 1.50 m (w x d x h, the width at the plinth); 0.84 x 0.68 overall with the selection strip and the light band in front. Front -Y, origin on the floor at the centre of the base.
 - Furniture and appliance class: 300-1,200 triangles (`docs/from-game/asset-list.md` 2.1); aim for 400-700.
 - No moving parts (as now). Markers kept: the `Glow` light and the `Music` sound in `emitters.SPECS` (fractions of the bounding box, so they follow the new size).
 - Condition: new only (no Damaged style is built for it).
@@ -47,12 +47,12 @@ Colours (palette names): `wood_dark` cabinet and arch, `black` plinth and button
 | Pilasters | 0.07 x 0.027 boxes from z 0.06 to 1.10 at x ±0.345, `glow_amber` | same depth as the light arch | meet the arch's ends at z 1.10 |
 | Bubble bands | 0.066 x 0.02 boxes, three per pilaster, `glow_red` | 4 mm prouder than the pilaster | sunk into the pilaster |
 | Window backing | the arch's inside (radius 0.31) down to z 0.98, `metal_dark` | y -0.316 to -0.308 | sunk into the front |
-| Record and label | discs radius 0.13 and 0.04, `black`, `cloth_red` | centre z 1.17, in front of the backing | sunk 2 mm into the backing / record |
-| Tone arm | 0.02 x 0.01 x 0.16 rod, `metal_galv` | beside the record | on the backing |
-| Window glass | same outline, radius 0.32, `clear_glass` | y -0.334 to -0.324 | its edge inside the light arch; touches the label |
+| Record and label | round discs radius 0.13 and 0.04, `black`, `cloth_red` | centre z 1.17, in front of the backing | sunk 2 mm into the backing / record |
+| Tone arm | 0.016 x 0.002 rod, `metal_galv` | from a pivot at the record's upper right down onto the record | on the record's face, behind the glass |
+| Window glass | same outline, radius 0.32, `clear_glass` | y -0.3325 to -0.3245 | its edge inside the light arch; the label sinks 1 mm into it |
 | Selection strip | 0.60 x 0.10 x 0.05, tilted 30 degrees, `metal_galv` | centre z 0.95, in front of the window's lower edge | sunk into the front and the backing |
 | Title cards, buttons | `label_white` strip and ten `black` buttons on the strip's face | on the strip | sunk 0.5 mm |
-| Grille cloth | 0.60 x 0.008 x 0.52, `fabric_mustard` | z 0.18 to 0.70, y -0.314 to -0.306 | sunk into the front |
+| Grille cloth | 0.60 x 0.008 x 0.52, `fabric_mustard` | z 0.18 to 0.70, y -0.316 to -0.308 | sunk into the front |
 | Grille bars | seven 0.58 x 0.014 x 0.02 bars, `metal_galv` | across the cloth | sunk 2 mm into the cloth |
 | Coin plate and slot | 0.08 x 0.012 x 0.12 plate, `metal_galv`; 0.006 x 0.04 slot, `black` | x 0.20, z 0.80 | on the front |
 
