@@ -988,14 +988,78 @@ def microscope():
 
 
 # ===== Food service (GH-11) ====================================================================================
+def _front_outline(r, z_arc, z_low, y, n=8):
+    """The outline of an arched front: a half circle of radius r about (0, z_arc) from the right round to the left, then down to z_low. Points at depth y."""
+    pts = [(r * math.cos(math.pi * k / n), y, z_arc + r * math.sin(math.pi * k / n)) for k in range(n + 1)]
+    if z_low < z_arc:
+        pts += [(-r, y, z_low), (r, y, z_low)]
+    return pts
+
+
+def _slab(p, colour, r, z_arc, z_low, y_front, y_back):
+    """A flat arched slab (the outline of _front_outline) between depths y_front and y_back."""
+    p.loft_rings(colour, [_front_outline(r, z_arc, z_low, y_front), _front_outline(r, z_arc, z_low, y_back)])
+
+
 @piece("service", "Jukebox")
 def jukebox():
+    """A 1940s arched-top floor jukebox (a generic design, not a copy of any maker's): lit arch and pilasters with bubble tubes, a window
+    showing the record, a slanted selection strip, a speaker grille, a coin entry. Brief and parts table: docs/assets/briefs/service-appliances.md."""
     p = Prop("GH_Jukebox_01")
-    p.box("wood_dark", (0, 0, 0.6), (0.9, 0.55, 1.2))
-    p.box("cloth_red", (0, 0, 1.3), (0.9, 0.55, 0.3), taper=0.8)
-    p.box("glass", (0, -0.28, 0.9), (0.6, 0.02, 0.5))
-    p.box("glow_cyan", (0, -0.285, 0.9), (0.5, 0.01, 0.4))
-    p.box("metal_galv", (0, -0.28, 0.45), (0.5, 0.02, 0.2))
+    w, d, plinth_h, arch_z = 0.84, 0.62, 0.06, 1.10
+    yf = -d / 2
+    sink = 0.002
+    r_arch = (w - 0.04) / 2                                                            # the arch is as wide as the cabinet
+    p.box("black", (0, 0, plinth_h / 2), (w, d, plinth_h))                              # plinth
+    p.box("wood_dark", (0, 0, (plinth_h + arch_z) / 2), (w - 0.04, d, arch_z - plinth_h))  # cabinet, on the plinth
+    _slab(p, "wood_dark", r_arch, arch_z, arch_z, yf, -yf)                             # the arched top, on the cabinet
+
+    # the light: a band round the arch and down both sides as pilasters, 2.5 cm proud of the front, with bubble tubes
+    band_r, band_w, band_d = 0.345, 0.07, 0.027
+    band_y = yf - band_d / 2 + sink
+    n_seg = 10
+    for k in range(n_seg):
+        a = math.pi * (k + 0.5) / n_seg
+        length = 2 * band_r * math.sin(math.pi / n_seg / 2) + 0.012                     # each segment overlaps the next
+        p.box("glow_amber", (band_r * math.cos(a), band_y, arch_z + band_r * math.sin(a)), (length, band_d, band_w), rot=(0, 90 - math.degrees(a), 0))
+    for sx in (-1, 1):
+        p.box("glow_amber", (sx * band_r, band_y, (plinth_h + arch_z) / 2), (band_w, band_d, arch_z - plinth_h))
+        for z in (0.3, 0.6, 0.85):
+            p.box("glow_red", (sx * band_r, band_y - 0.002, z), (band_w - 0.004, band_d + 0.004, 0.02))   # a bubble tube, 4 mm prouder
+
+    # the window in the arch: a dark backing, the record with its label and the tone arm, the glass in front with its edge in the band
+    win_r, win_low = band_r - band_w / 2, 0.98
+    back_front = yf - 0.006
+    _slab(p, "metal_dark", win_r, arch_z, win_low, back_front, yf + sink)
+    rec_z, rec_t = 1.17, 0.008
+    p.cyl("black", (0, back_front - rec_t / 2 + sink, rec_z), 0.13, rec_t, n=16, axis="y")
+    rec_front = back_front - rec_t + sink
+    p.cyl("cloth_red", (0, rec_front - 0.002 + 0.0005, rec_z), 0.04, 0.004, n=10, axis="y")
+    p.box("metal_galv", (0.18, back_front - 0.004 + sink, rec_z + 0.02), (0.02, 0.008, 0.16), rot=(0, 15, 0))
+    glass_back = rec_front - 0.004 + 0.0015                                             # touches the label
+    _slab(p, "clear_glass", win_r + 0.01, arch_z, win_low, glass_back - 0.008, glass_back)
+
+    # the selection strip under the window, tilted towards the player: title cards and a row of buttons on its face
+    strip, tilt, strip_t = (0, yf - 0.005, 0.95), 30, 0.05
+    p.box("metal_galv", strip, (0.6, 0.1, strip_t), rot=(tilt, 0, 0))
+
+    def on_strip(x, ly, lz):
+        """A point x across, ly along and lz above the middle of the tilted strip."""
+        c, sn = math.cos(math.radians(tilt)), math.sin(math.radians(tilt))
+        return (x, strip[1] + ly * c - lz * sn, strip[2] + ly * sn + lz * c)
+    p.box("label_white", on_strip(0, 0.015, strip_t / 2 + 0.002 - sink / 4), (0.54, 0.05, 0.004), rot=(tilt, 0, 0))
+    for k in range(10):
+        p.box("black", on_strip(-0.27 + 0.06 * k, -0.033, strip_t / 2 + 0.006 - sink), (0.03, 0.015, 0.012), rot=(tilt, 0, 0))
+
+    # the speaker grille: cloth behind chrome bars; the coin entry above it
+    cloth_t, cloth_lo, cloth_hi = 0.008, 0.18, 0.70
+    p.box("fabric_mustard", (0, yf - cloth_t / 2 + sink, (cloth_lo + cloth_hi) / 2), (0.6, cloth_t, cloth_hi - cloth_lo))
+    cloth_front = yf - cloth_t + sink
+    for k in range(7):
+        p.box("metal_galv", (0, cloth_front - 0.007 + sink, cloth_lo + 0.04 + k * (cloth_hi - cloth_lo - 0.08) / 6), (0.58, 0.014, 0.02))
+    plate_t = 0.012
+    p.box("metal_galv", (0.2, yf - plate_t / 2 + sink, 0.8), (0.08, plate_t, 0.12))
+    p.box("black", (0.2, yf - plate_t + sink - 0.002 + 0.0005, 0.82), (0.006, 0.004, 0.04))
     return p
 
 
