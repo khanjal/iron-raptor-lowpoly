@@ -427,6 +427,30 @@ def wheel(p, colour_tyre, colour_hub, x, y, z, radius, width, n=10):
     p.cyl(colour_hub, (x + out * (width / 2 + 0.004), y, z), radius * 0.55, 0.012, n=n, axis="x")
 
 
+def stack_fronts(z0, z1, weights, reveal=0.003):
+    """Drawer or door fronts stacked from z0 up to z1, sized in proportion to `weights` (bottom first) and `reveal` apart.
+
+    Returns ([(centre z, height)], [joint z]): put a front_rail at each joint so the reveal shows the frame, not the inside."""
+    free = z1 - z0 - reveal * (len(weights) - 1)
+    total = sum(weights)
+    fronts, joints, z = [], [], z0
+    for k, weight in enumerate(weights):
+        h = free * weight / total
+        fronts.append((z + h / 2, h))
+        z += h
+        if k < len(weights) - 1:
+            joints.append(z + reveal / 2)
+            z += reveal
+    return fronts, joints
+
+
+def front_rail(p, colour, x0, x1, z, yf, h=0.02, d=0.02):
+    """A rail across a carcass front between the side walls' inner faces x0..x1, at the joint z between two fronts: the reveal between the fronts shows it.
+    Its face is 1 mm behind the front at y = yf (not in the plane of the sides' front edges) and its ends 1 mm into the sides. 20 mm high, so a
+    drawer box (its floor 20 mm or more above its front's lower edge) slides past it."""
+    p.box(colour, ((x0 + x1) / 2, yf + 0.001 + d / 2, z), (x1 - x0 + 0.002, d, h))
+
+
 def rod(p, colour, a, b, w=0.06, h=None):
     """A beam between two points a and b (its ends sit exactly on them), w wide and h deep (h defaults to w)."""
     from math import degrees, pi

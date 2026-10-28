@@ -21,6 +21,8 @@ import props_lib
 for _m in (common, props_lib):
     importlib.reload(_m)
 Prop = props_lib.Prop
+stack_fronts, front_rail = props_lib.stack_fronts, props_lib.front_rail
+SINK = 0.002           # m: a part fixed on a face sinks this far into it, so there is no gap and no shared face
 rod, lathe, ball = props_lib.rod, props_lib.lathe, props_lib.ball
 
 PIECES = {}
@@ -39,7 +41,7 @@ def shell(p, col, cx, w, d, z0, h, yf, t=0.02, inner=None):
     inner = inner or col
     for s in (-1, 1):
         p.box(col, (cx + s * (w - t) / 2, yf + d / 2, z0 + h / 2), (t, d, h))
-    p.box(inner, (cx, yf + d - t / 2, z0 + h / 2), (w - 2 * t, t, h))
+    p.box(inner, (cx, yf + d - t / 2, z0 + h / 2), (w - 2 * t, t, h - 2 * t))         # the back, between the top and the bottom
     p.box(col, (cx, yf + d / 2, z0 + h - t / 2), (w, d, t))
     p.box(inner, (cx, yf + d / 2, z0 + t / 2), (w - 2 * t, d, t))
 
@@ -84,14 +86,18 @@ def _desk(name, top, body, edge):
     p = Prop(name)
     w, d = 1.6, 0.75
     p.box(top, (0, 0, 0.725), (w, d, 0.03))
-    p.box(edge, (0, -d / 2 + 0.006, 0.725), (w, 0.012, 0.032))
+    p.box(edge, (0, -d / 2 + 0.006 - 0.001, 0.725), (w - 0.002, 0.012, 0.032))         # the edge strip: 1 mm proud of the front, top and bottom, its ends 1 mm in
     p.box(body, (-0.775, 0.0, 0.355), (0.03, 0.66, 0.71))                       # a panel leg
     p.box(body, (-0.1, 0.3, 0.52), (1.3, 0.02, 0.4))                            # the modesty panel
     yf = -0.33
     px, pw, pd = 0.57, 0.42, 0.66
-    shell(p, body, px, pw, pd, 0.0, 0.71, yf, inner="office_grey")
-    for k, zc in enumerate((0.12, 0.34, 0.56)):
-        drawer(p, f"Drawer{k + 1}", body, "office_grey", px, zc, pw - 0.04, 0.2, pd, yf, 0.4)
+    t, ph = 0.02, 0.71
+    shell(p, body, px, pw, pd, 0.0, ph, yf, t=t, inner="office_grey")
+    fronts, joints = stack_fronts(t, ph - t, (1, 1, 1))
+    for k, (zc, fh) in enumerate(fronts):
+        drawer(p, f"Drawer{k + 1}", body, "office_grey", px, zc, pw - 2 * t, fh, pd, yf, 0.4)
+    for z in joints:
+        front_rail(p, body, px - pw / 2 + t, px + pw / 2 - t, z, yf)
     return p
 
 
@@ -258,11 +264,15 @@ def copier():
     for sx in (-1, 1):
         for sy in (-1, 1):
             p.cyl("rubber", (sx * 0.27, sy * 0.3, 0.02), 0.03, 0.04, n=6)
-    shell(p, "enamel_white", 0, w, d, 0.04, 0.68, yf, inner="office_grey")
-    for z in (0.255, 0.475):
-        p.box("enamel_white", (0, yf + d / 2 - 0.02, z), (w - 0.04, d, 0.02))                  # flush with the tray fronts: no groove
-    for k, zc in enumerate((0.14, 0.36, 0.58)):
-        drawer(p, f"Tray{k + 1}", "office_grey", "office_dark", 0, zc, w - 0.04, 0.2, d, yf, 0.35, handle="black")
+    t, z0, ch = 0.02, 0.04, 0.68
+    shell(p, "enamel_white", 0, w, d, z0, ch, yf, t=t, inner="office_grey")
+    shelves = (0.255, 0.475)
+    for z in shelves:
+        p.box("enamel_white", (0, yf + d / 2 - 0.02, z), (w - 2 * t, d - t, t))              # flush with the tray fronts: no groove
+    edges = [z0 + t] + [e for z in shelves for e in (z - t / 2, z + t / 2)] + [z0 + ch - t]
+    for k in range(3):
+        lo, hi = edges[2 * k], edges[2 * k + 1]
+        drawer(p, f"Tray{k + 1}", "office_grey", "office_dark", 0, (lo + hi) / 2, w - 2 * t, hi - lo, d, yf, 0.35, handle="black")
     p.box("office_grey", (0, 0, 0.82), (w, d, 0.2))
     p.box("office_dark", (0, yf - 0.002, 0.74), (w, 0.004, 0.025))
     p.box("glass", (0, 0.0, 0.9205), (0.6, 0.5, 0.004))
@@ -270,9 +280,16 @@ def copier():
     with p.part("Lid", pivot=(0, y_back, z_top), kind="hinge", axis="x", limit=-80, rest=0.0):
         p.box("enamel_white", (0, y_back - 0.31, z_top + 0.03), (w, 0.62, 0.06))
         p.box("office_dark", (0, y_back - 0.31, z_top + 0.062), (w - 0.1, 0.5, 0.004))
-    p.box("office_dark", (0.16, -0.32, 0.95), (0.3, 0.1, 0.04), rot=(15, 0, 0))
-    p.box("screen", (0.1, -0.325, 0.973), (0.14, 0.06, 0.004), rot=(15, 0, 0))
-    p.box("glow_cyan", (0.1, -0.325, 0.976), (0.11, 0.04, 0.002), rot=(15, 0, 0))
+    panel, tilt, panel_h = (0.16, -0.32, 0.95), 15, 0.04
+    p.box("office_dark", panel, (0.3, 0.1, panel_h), rot=(tilt, 0, 0))
+
+    def on_panel(x, ly, lz):
+        """A point x across, ly along and lz above the middle of the tilted control panel."""
+        c, s = math.cos(math.radians(tilt)), math.sin(math.radians(tilt))
+        return (x, panel[1] + ly * c - lz * s, panel[2] + ly * s + lz * c)
+    screen_z = panel_h / 2 + 0.002 - SINK / 4                                                  # the screen's middle: it sinks 0.5 mm into the panel
+    p.box("screen", on_panel(0.1, 0.001, screen_z), (0.14, 0.06, 0.004), rot=(tilt, 0, 0))
+    p.box("glow_cyan", on_panel(0.1, 0.002, screen_z + 0.002 + 0.001 - SINK / 4), (0.11, 0.04, 0.002), rot=(tilt, 0, 0))
     p.box("glow_green", (0.22, -0.31, 0.973), (0.03, 0.025, 0.006), rot=(15, 0, 0))
     p.box("cloth_red", (0.255, -0.31, 0.973), (0.03, 0.025, 0.006), rot=(15, 0, 0))
     p.box("office_grey", (-0.43, 0.0, 0.76), (0.22, 0.36, 0.012))
@@ -289,13 +306,13 @@ def printer_desktop():
     yf = -d / 2
     shell(p, "office_dark", 0, w, d, 0.0, 0.22, yf, t=0.015, inner="black")
     drawer(p, "Tray", "office_grey", "office_grey", 0, 0.045, w - 0.03, 0.07, d, yf, 0.14, handle=None)
-    p.box("office_dark", (0, yf - 0.002, 0.145), (w, 0.004, 0.15))                       # the front panel, up to the cover: no open strip
+    p.box("office_dark", (0, yf - 0.002, 0.15), (w, 0.004, 0.14))                        # the front panel, from the tray up to the cover: no open strip
     p.box("black", (0, yf - 0.004, 0.19), (0.3, 0.005, 0.01))
     y_back, z_top = d / 2, 0.22
     with p.part("Cover", pivot=(0, y_back, z_top), kind="hinge", axis="x", limit=-70, rest=0.0):
         p.box("office_grey", (0, y_back - 0.17, z_top + 0.015), (w, 0.34, 0.03))
     p.box("black", (0.0, 0.06, 0.252), (0.3, 0.22, 0.004))                                # the output ramp, on top of the cover
-    p.box("paper", (0.0, 0.04, 0.2755), (0.21, 0.28, 0.004), rot=(8, 0, 0))               # a sheet on the output ramp, its low end on the cover, its far end short of the back
+    p.box("paper", (0.0, 0.04, 0.2715), (0.21, 0.28, 0.004), rot=(8, 0, 0))               # a sheet on the output ramp, its low end on the cover, its far end short of the back
     p.box("screen", (0.12, yf - 0.006, 0.16), (0.1, 0.006, 0.05))
     p.box("glow_cyan", (0.12, yf - 0.0095, 0.16), (0.08, 0.002, 0.03))
     p.box("glow_green", (0.17, yf - 0.006, 0.2), (0.012, 0.006, 0.012))
@@ -311,17 +328,20 @@ def water_cooler():
     shell(p, "enamel_white", 0, w, d, 0.02, h - 0.02, yf, inner="office_grey")
     p.box("office_dark", (0, 0, 0.01), (w - 0.02, d - 0.02, 0.02))
     p.box("office_dark", (0, yf + d / 2, h + 0.01), (w + 0.01, d + 0.01, 0.02))
-    hinged(p, "Door", "right", "office_grey", -w / 2 + 0.02, w / 2 - 0.02, 0.05, 0.58, yf, thick=0.02, limit=105, handle="metal_galv")
-    p.box("office_dark", (0, yf - 0.006, 0.78), (0.26, 0.012, 0.2))
+    t, z0, door_top = 0.02, 0.02, 0.58
+    hinged(p, "Door", "right", "office_grey", -w / 2 + t, w / 2 - t, z0 + t, door_top, yf, thick=0.02, limit=105, handle="metal_galv")
+    panel_lo, panel_hi = door_top, h - t                                                 # the front from the door up to the top
+    p.box("office_dark", (0, yf - 0.006, (panel_lo + panel_hi) / 2), (w, 0.012, panel_hi - panel_lo))
     p.box("cloth_red", (-0.06, yf - 0.03, 0.83), (0.04, 0.05, 0.04))
     p.box("label_blue", (0.06, yf - 0.03, 0.83), (0.04, 0.05, 0.04))
-    p.box("metal_galv", (0, yf - 0.05, 0.7), (0.24, 0.1, 0.02))
-    p.box("black", (0, yf - 0.05, 0.712), (0.2, 0.08, 0.004))
+    tray_y = yf - 0.012 - 0.044 + SINK                                                   # the drip tray, its back end in the front panel
+    p.box("metal_galv", (0, tray_y, 0.7), (0.24, 0.088, 0.02))
+    p.box("black", (0, tray_y, 0.712), (0.2, 0.07, 0.004))
     p.box("glow_cyan", (0.1, yf - 0.012, 0.88), (0.012, 0.004, 0.012))
     p.box("glow_red", (-0.1, yf - 0.012, 0.88), (0.012, 0.004, 0.012))
     lathe(p, "clear_glass", [(0.0, 0.04), (0.04, 0.04), (0.12, 0.12), (0.22, 0.15), (0.5, 0.15), (0.52, 0.1)], n=10, z0=h + 0.02)   # the jug
     lathe(p, "clear_water", [(0.0, 0.03), (0.04, 0.03), (0.12, 0.108), (0.22, 0.138), (0.34, 0.138)], n=10, z0=h + 0.02)             # the water in it, filled to 0.34
-    lathe(p, "label_white", [(0.26, 0.152), (0.4, 0.152)], n=10, z0=h + 0.02, cap=False)
+    lathe(p, "label_white", [(0.25, 0.151), (0.41, 0.151)], n=10, z0=h + 0.02, cap=False)
     return p
 
 
@@ -332,11 +352,15 @@ def filing_cabinet():
     p = Prop("GO_FilingCabinet_01")
     w, d, h = 0.46, 0.62, 1.32
     yf = -d / 2
-    shell(p, "fabric_grey", 0, w, d, 0.0, h, yf, inner="office_grey")
-    for z in (0.33, 0.66, 0.99):
-        p.box("fabric_grey", (0, yf + d / 2, z), (w - 0.04, d - 0.02, 0.012))
-    for k, zc in enumerate((0.165, 0.495, 0.825, 1.155)):
-        drawer(p, f"Drawer{k + 1}", "fabric_grey", "office_grey", 0, zc, w - 0.03, 0.31, d, yf, 0.5, handle="metal_galv")
+    t = 0.02
+    shell(p, "fabric_grey", 0, w, d, 0.0, h, yf, t=t, inner="office_grey")
+    fronts, joints = stack_fronts(t, h - t, (1, 1, 1, 1), reveal=0.006)
+    for k, (zc, fh) in enumerate(fronts):
+        drawer(p, f"Drawer{k + 1}", "fabric_grey", "office_grey", 0, zc, w - 2 * t, fh, d, yf, 0.5, handle="metal_galv")
+    rail_d = 0.02
+    for z in joints:
+        front_rail(p, "metal_dark", -w / 2 + t, w / 2 - t, z, yf, d=rail_d)            # the dark line between two drawers
+        front_rail(p, "fabric_grey", -w / 2 + t, w / 2 - t, z, yf + rail_d, d=d - t - rail_d)   # and the steel shelf behind it, to the back wall
     return p
 
 

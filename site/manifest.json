@@ -2872,11 +2872,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 324,
+   "triangles": 348,
    "size": [
     1.24,
     0.91,
-    0.688
+    0.683
    ],
    "glb": "models/GI_Counter_Kitchen_01.glb",
    "thumb": "thumbs/GI_Counter_Kitchen_01.png",
@@ -2889,8 +2889,8 @@
       -1
      ],
      "pivot": [
-      -0.3,
-      0.74,
+      -0.3075,
+      0.7383,
       0.3
      ],
      "limit": -0.4,
@@ -2904,8 +2904,8 @@
       -1
      ],
      "pivot": [
-      -0.3,
-      0.46,
+      -0.3075,
+      0.45,
       0.3
      ],
      "limit": -0.4,
@@ -2919,8 +2919,8 @@
       -1
      ],
      "pivot": [
-      -0.3,
-      0.2,
+      -0.3075,
+      0.1617,
       0.3
      ],
      "limit": -0.4,
@@ -2934,8 +2934,8 @@
       0
      ],
      "pivot": [
-      0.58,
-      0.44,
+      0.6,
+      0.45,
       0.315
      ],
      "limit": 105,
@@ -2978,11 +2978,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 180,
+   "triangles": 192,
    "size": [
     0.7,
     1.8,
-    0.777
+    0.773
    ],
    "glb": "models/GI_Fridge_01.glb",
    "thumb": "thumbs/GI_Fridge_01.png",
@@ -2996,7 +2996,7 @@
      ],
      "pivot": [
       0.35,
-      0.645,
+      0.6492,
       0.37
      ],
      "limit": 100,
@@ -3011,7 +3011,7 @@
      ],
      "pivot": [
       0.35,
-      1.505,
+      1.5007,
       0.37
      ],
      "limit": 100,
@@ -3058,9 +3058,9 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 204,
+   "triangles": 216,
    "size": [
-    0.757,
+    0.752,
     1.804,
     1.419
    ],
@@ -3076,7 +3076,7 @@
      ],
      "pivot": [
       0.35,
-      0.645,
+      0.6492,
       0.37
      ],
      "limit": 100,
@@ -3091,7 +3091,7 @@
      ],
      "pivot": [
       0.35,
-      1.505,
+      1.5007,
       0.37
      ],
      "limit": 100,
@@ -3143,7 +3143,7 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 324,
+   "triangles": 336,
    "size": [
     0.9,
     1.85,
@@ -3191,7 +3191,7 @@
      ],
      "pivot": [
       0.0,
-      0.38,
+      0.376,
       0.36
      ],
      "limit": -0.4,
@@ -3240,11 +3240,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 252,
+   "triangles": 264,
    "size": [
     0.9,
     1.85,
-    0.797
+    0.793
    ],
    "glb": "models/GI_Fridge_Modern_01.glb",
    "thumb": "thumbs/GI_Fridge_Modern_01.png",
@@ -3288,7 +3288,7 @@
      ],
      "pivot": [
       0.0,
-      0.38,
+      0.376,
       0.36
      ],
      "limit": -0.4,
@@ -3404,7 +3404,7 @@
    "size": [
     0.5,
     0.3,
-    0.443
+    0.438
    ],
    "glb": "models/GI_Microwave_01.glb",
    "thumb": "thumbs/GI_Microwave_01.png",
@@ -3468,7 +3468,7 @@
    "size": [
     0.6,
     1.1,
-    0.728
+    0.723
    ],
    "glb": "models/GI_Stove_01.glb",
    "thumb": "thumbs/GI_Stove_01.png",
@@ -3482,7 +3482,7 @@
      ],
      "pivot": [
       0.0,
-      0.06,
+      0.03,
       0.345
      ],
      "limit": 90,
@@ -3535,7 +3535,7 @@
    "interactive": true,
    "triangles": 72,
    "size": [
-    0.3,
+    0.308,
     0.185,
     0.16
    ],
@@ -3596,7 +3596,7 @@
    "size": [
     0.6,
     0.9,
-    0.725
+    0.708
    ],
    "glb": "models/GI_Dryer_01.glb",
    "thumb": "thumbs/GI_Dryer_01.png",
@@ -3611,7 +3611,7 @@
      "pivot": [
       0.26,
       0.4,
-      0.345
+      0.34
      ],
      "limit": 110,
      "rest": 0.0
@@ -3659,7 +3659,7 @@
    "size": [
     0.6,
     0.9,
-    0.725
+    0.708
    ],
    "glb": "models/GI_Washer_01.glb",
    "thumb": "thumbs/GI_Washer_01.png",
@@ -3674,7 +3674,7 @@
      "pivot": [
       -0.26,
       0.4,
-      0.345
+      0.34
      ],
      "limit": -110,
      "rest": -0.0
@@ -3739,7 +3739,7 @@
      ],
      "pivot": [
       0.0,
-      0.14,
+      0.1525,
       0.35
      ],
      "limit": -0.35,
@@ -3754,7 +3754,7 @@
      ],
      "pivot": [
       0.0,
-      0.36,
+      0.365,
       0.35
      ],
      "limit": -0.35,
@@ -3769,7 +3769,7 @@
      ],
      "pivot": [
       0.0,
-      0.58,
+      0.5925,
       0.35
      ],
      "limit": -0.35,
@@ -3834,7 +3834,7 @@
    "triangles": 216,
    "size": [
     0.42,
-    0.297,
+    0.293,
     0.4
    ],
    "glb": "models/GO_Printer_Desktop_01.glb",
@@ -3969,7 +3969,7 @@
    "size": [
     0.33,
     1.49,
-    0.445
+    0.443
    ],
    "glb": "models/GO_WaterCooler_01.glb",
    "thumb": "thumbs/GO_WaterCooler_01.png",
@@ -3983,7 +3983,7 @@
      ],
      "pivot": [
       0.14,
-      0.315,
+      0.31,
       0.18
      ],
      "limit": 105,
@@ -4174,11 +4174,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 228,
+   "triangles": 240,
    "size": [
     0.85,
     1.9,
-    0.868
+    0.863
    ],
    "glb": "models/GI_VendingMachine_01.glb",
    "thumb": "thumbs/GI_VendingMachine_01.png",
@@ -4191,7 +4191,7 @@
       0
      ],
      "pivot": [
-      -0.385,
+      -0.425,
       1.1,
       0.415
      ],
@@ -4207,7 +4207,7 @@
      ],
      "pivot": [
       -0.1,
-      0.3,
+      0.32,
       0.43
      ],
      "limit": -60,
@@ -10020,7 +10020,7 @@
    "interactive": true,
    "triangles": 96,
    "size": [
-    0.216,
+    0.211,
     1.34,
     0.412
    ],
@@ -10137,10 +10137,10 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 108,
+   "triangles": 132,
    "size": [
     0.5,
-    0.23,
+    0.241,
     0.22
    ],
    "glb": "models/GI_Toolbox_01.glb",
@@ -10891,7 +10891,7 @@
    "size": [
     0.4,
     0.5,
-    0.152
+    0.148
    ],
    "glb": "models/GI_FuseBox_01.glb",
    "thumb": "thumbs/GI_FuseBox_01.png",
@@ -14806,11 +14806,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 324,
+   "triangles": 348,
    "size": [
     1.6,
     0.741,
-    0.75
+    0.751
    ],
    "glb": "models/GO_Desk_Steel_01.glb",
    "thumb": "thumbs/GO_Desk_Steel_01.png",
@@ -14824,7 +14824,7 @@
      ],
      "pivot": [
       0.57,
-      0.12,
+      0.1307,
       0.33
      ],
      "limit": -0.4,
@@ -14839,7 +14839,7 @@
      ],
      "pivot": [
       0.57,
-      0.34,
+      0.355,
       0.33
      ],
      "limit": -0.4,
@@ -14854,7 +14854,7 @@
      ],
      "pivot": [
       0.57,
-      0.56,
+      0.5793,
       0.33
      ],
      "limit": -0.4,
@@ -14898,11 +14898,11 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 324,
+   "triangles": 348,
    "size": [
     1.6,
     0.741,
-    0.75
+    0.751
    ],
    "glb": "models/GO_Desk_Wood_01.glb",
    "thumb": "thumbs/GO_Desk_Wood_01.png",
@@ -14916,7 +14916,7 @@
      ],
      "pivot": [
       0.57,
-      0.12,
+      0.1307,
       0.33
      ],
      "limit": -0.4,
@@ -14931,7 +14931,7 @@
      ],
      "pivot": [
       0.57,
-      0.34,
+      0.355,
       0.33
      ],
      "limit": -0.4,
@@ -14946,7 +14946,7 @@
      ],
      "pivot": [
       0.57,
-      0.56,
+      0.5793,
       0.33
      ],
      "limit": -0.4,
@@ -14990,7 +14990,7 @@
    ],
    "rigged": false,
    "interactive": true,
-   "triangles": 384,
+   "triangles": 420,
    "size": [
     0.46,
     1.32,
@@ -15008,7 +15008,7 @@
      ],
      "pivot": [
       0.0,
-      0.165,
+      0.1778,
       0.31
      ],
      "limit": -0.5,
@@ -15023,7 +15023,7 @@
      ],
      "pivot": [
       0.0,
-      0.495,
+      0.4992,
       0.31
      ],
      "limit": -0.5,
@@ -15038,7 +15038,7 @@
      ],
      "pivot": [
       0.0,
-      0.825,
+      0.8207,
       0.31
      ],
      "limit": -0.5,
@@ -15053,7 +15053,7 @@
      ],
      "pivot": [
       0.0,
-      1.155,
+      1.1422,
       0.31
      ],
      "limit": -0.5,
@@ -15814,7 +15814,7 @@
    "size": [
     0.8,
     1.2,
-    0.443
+    0.438
    ],
    "glb": "models/GI_Cabinet_01.glb",
    "thumb": "thumbs/GI_Cabinet_01.png",
@@ -15828,7 +15828,7 @@
      ],
      "pivot": [
       -0.4,
-      0.895,
+      0.885,
       0.2025
      ],
      "limit": -105,
@@ -15843,7 +15843,7 @@
      ],
      "pivot": [
       0.4,
-      0.895,
+      0.885,
       0.2025
      ],
      "limit": 105,
@@ -15858,7 +15858,7 @@
      ],
      "pivot": [
       -0.4,
-      0.305,
+      0.315,
       0.2025
      ],
      "limit": -105,
@@ -15873,7 +15873,7 @@
      ],
      "pivot": [
       0.4,
-      0.305,
+      0.315,
       0.2025
      ],
      "limit": 105,
@@ -16043,7 +16043,7 @@
      ],
      "pivot": [
       0.0,
-      0.17,
+      0.165,
       0.25
      ],
      "limit": -0.38,
@@ -16073,7 +16073,7 @@
      ],
      "pivot": [
       0.0,
-      0.73,
+      0.74,
       0.25
      ],
      "limit": -0.38,
@@ -16165,7 +16165,7 @@
    "size": [
     0.4,
     1.8,
-    0.562
+    0.558
    ],
    "glb": "models/GI_Locker_01.glb",
    "thumb": "thumbs/GI_Locker_01.png",
@@ -16224,7 +16224,7 @@
    "size": [
     0.4,
     0.55,
-    0.198
+    0.193
    ],
    "glb": "models/GI_MedicineCabinet_01.glb",
    "thumb": "thumbs/GI_MedicineCabinet_01.png",
@@ -16276,8 +16276,8 @@
    "triangles": 180,
    "size": [
     0.48,
-    0.595,
-    0.473
+    0.59,
+    0.468
    ],
    "glb": "models/GI_Nightstand_01.glb",
    "thumb": "thumbs/GI_Nightstand_01.png",
@@ -16291,7 +16291,7 @@
      ],
      "pivot": [
       0.0,
-      0.45,
+      0.435,
       0.2
      ],
      "limit": -0.3,
@@ -16306,7 +16306,7 @@
      ],
      "pivot": [
       0.21,
-      0.165,
+      0.16,
       0.21
      ],
      "limit": 100,
@@ -16345,7 +16345,7 @@
    "size": [
     0.5,
     0.6,
-    0.585
+    0.58
    ],
    "glb": "models/GI_Safe_01.glb",
    "thumb": "thumbs/GI_Safe_01.png",
@@ -16713,7 +16713,7 @@
    "size": [
     1.0,
     1.9,
-    0.613
+    0.608
    ],
    "glb": "models/GI_Wardrobe_01.glb",
    "thumb": "thumbs/GI_Wardrobe_01.png",
@@ -16781,9 +16781,9 @@
    "interactive": true,
    "triangles": 160,
    "size": [
-    1.079,
+    1.071,
     1.904,
-    1.052
+    1.051
    ],
    "glb": "models/GI_Wardrobe_Damaged_01.glb",
    "thumb": "thumbs/GI_Wardrobe_Damaged_01.png",

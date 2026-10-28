@@ -7,7 +7,7 @@ Run in Blender (the MCP), from the checkout you want audited:
     # optional globals (init_globals=): ONLY=["GT_Rake_01", "Washer"] (names or short names), WRITE=True (also write art/data/prop_geometry.json),
     # SCRIPTS=r"<other folder>" (audit the scripts in another folder, for example a scratch copy of an older props_farm.py), QUIET=True (problems only)
 
-It builds every prop in props_farm.py, household.py, decor.py, interactive.py, office.py, ship_props.py and ship_hulls.py, and the bespoke variants of home_styles.py, the way the export does, but does NOT call Prop.finish(): nothing is added to the
+It builds every prop in props_farm.py, household.py, decor.py, interactive.py, office.py, ship_props.py and ship_hulls.py, and the bespoke variants of interactive.py and home_styles.py, the way the export does, but does NOT call Prop.finish(): nothing is added to the
 Blender scene, no collection is cleared and nothing is exported, so it is safe in a Blender file other sessions are using. The scripts are imported from the
 folder given (modules of the same names that are loaded already are put aside while it runs and put back after). A recorder wraps the builder, so every
 box, cylinder and loft is kept as a part of its own (the builder joins them into one mesh), with the line of the prop's script that made it.
@@ -27,7 +27,8 @@ Tests (one line per problem, "FAIL <test> <prop>: <what>"; the problem count is 
   gap       parts that the floating test counts as joined (within 1 cm) but that do not touch (more than 1 mm apart): a sliver of background between a drawer and
             its carcass, a handle off its door, a top off its legs.
   reveal    a door, drawer or lid (a moving part) that leaves an open slot round its edge: a ring of points just outside the part, looked at from the front (from
-            above for a lid), sees into the carcass more than 1 cm behind the back of the door leaf or drawer front.
+            above for a lid), sees into the carcass more than 1 cm behind the back of the door leaf or drawer front, while 2 or 4 cm further out there is a
+            surface level with it again (a neighbouring door, the frame): a slot, not the model's outer edge stepping down to a latch or a plinth.
   pipes     a pipe, cable or duct part (copper, or a script line that says pipe, cable, duct, hose, wire) has both ends in another part; a free end is listed and must be declared
             in audit_layout.CONNECTED (the layout audit then checks that it reaches a wall, the ceiling or the floor).
 
@@ -81,6 +82,7 @@ CONTACT = 0.001         # m: parts closer than this touch; between this and TOUC
 REVEAL_OFFSET = 0.002   # m: the ring of sight lines is this far outside a moving part's edge
 REVEAL_STEP = 0.02      # m: and this far apart along the edge
 REVEAL_DEPTH = 0.01     # m: a sight line that goes this far behind the back of the door leaf or drawer front sees into a slot
+REVEAL_BEYOND = (0.02, 0.04)  # m: a slot has a surface level with the part this far further out (a neighbouring door, the carcass); without one it is the model's edge
 
 # Short names (GH_Chair_Kitchen_01 -> Chair_Kitchen) whose origin is the middle of a wall mount or a ceiling fixing, not the floor. Taken from audit_layout.
 # Kinds that are loose items by design (several separate objects in one model): floating parts are not reported.
@@ -303,6 +305,7 @@ def build_all(scripts):
             ("household", [fn for fn, _g in household.PIECES.values()]),
             ("decor", [fn for fn, _g in decor.PIECES.values()]),
             ("interactive", [fn for fn, _g in interactive.ITEMS.values()]),
+            ("interactive", list(interactive.VARIANTS.values())),                      # the fridge's and wardrobe's other designs
             ("office", [fn for fn, _g in office.PIECES.values()]),
             ("home_styles", list(home_styles.VARIANTS.values())),                     # the bespoke shapes; the colour themes reuse household's and decor's
             ("ship_props", list(ship_props.SHIP_PROPS.values())),                       # the ship's set dressing (issue #212)
@@ -319,7 +322,7 @@ def build_all(scripts):
                 except Exception as e:                         # a prop that does not build is its own problem
                     out[f"{module}.{fn.__name__}"] = (module, None, [], repr(e))
                     continue
-                key = prop.name if prop.name not in out else f"{prop.name}@{module}"
+                key = prop.name if prop.name not in out else f"{prop.name}@{fn.__name__}"     # a variant keeps its piece's name
                 out[key] = (module, prop, rec.parts, None)
     return out
 
@@ -640,6 +643,8 @@ def _coplanar_hits(a, b, others):
             n = ta[3]
             if n.dot(tb[3]) < 0.999 or abs(n.dot(tb[0] - ta[0])) > PLANE_EPS:
                 continue
+            if n.z < -0.999 and abs(ta[0].z) < FLOOR_TOLERANCE / 10:
+                continue                                                  # the undersides on the floor are never seen
             q = _overlap_point(ta, tb)
             if q is not None and not inside(others, q + n * 0.002):
                 hits += 1
@@ -670,19 +675,21 @@ def _facing(role, g, mine):
     """Which way the moving part faces when shut: 'top' for a lid that lies flat, else 'front' (-Y)."""
     d = Vector((max(p.hi.x for p in mine) - min(p.lo.x for p in mine), max(p.hi.y for p in mine) - min(p.lo.y for p in mine),
                 max(p.hi.z for p in mine) - min(p.lo.z for p in mine)))
-    return "top" if role.startswith("Lid") or (g["axis"] != "z" and d.z < min(d.x, d.y)) else "front"
+    if g["kind"] == "slide":
+        return "top" if g["axis"] == "z" else "front"                # a drawer slides out of the front; a tray that lifts is seen from above
+    return "top" if role.startswith("Lid") or (g["axis"] != "z" and d.z < d.y) else "front"
 
 
 def _ring(lo2, hi2):
-    """Points REVEAL_OFFSET outside the rectangle lo2..hi2, every REVEAL_STEP along each edge."""
+    """Points REVEAL_OFFSET outside the rectangle lo2..hi2, every REVEAL_STEP along each edge, with the outward direction: [(u, v, du, dv)]."""
     o = REVEAL_OFFSET
     pts = []
-    for u0, u1, v in ((lo2[0], hi2[0], lo2[1] - o), (lo2[0], hi2[0], hi2[1] + o)):
+    for u0, u1, v, dv in ((lo2[0], hi2[0], lo2[1] - o, -1), (lo2[0], hi2[0], hi2[1] + o, 1)):
         k = max(1, int((u1 - u0) / REVEAL_STEP))
-        pts.extend((u0 + (u1 - u0) * (j + 0.5) / k, v) for j in range(k))
-    for v0, v1, u in ((lo2[1], hi2[1], lo2[0] - o), (lo2[1], hi2[1], hi2[0] + o)):
+        pts.extend((u0 + (u1 - u0) * (j + 0.5) / k, v, 0, dv) for j in range(k))
+    for v0, v1, u, du in ((lo2[1], hi2[1], lo2[0] - o, -1), (lo2[1], hi2[1], hi2[0] + o, 1)):
         k = max(1, int((v1 - v0) / REVEAL_STEP))
-        pts.extend((u, v0 + (v1 - v0) * (j + 0.5) / k) for j in range(k))
+        pts.extend((u, v0 + (v1 - v0) * (j + 0.5) / k, du, 0) for j in range(k))
     return pts
 
 
@@ -707,17 +714,29 @@ def _reveal_of(role, g, parts):
     lo2 = [min(p.lo[k] for p in mine) for k in ax]
     hi2 = [max(p.hi[k] for p in mine) for k in ax]
     panel = max(mine, key=lambda p: (p.hi[ax[0]] - p.lo[ax[0]]) * (p.hi[ax[1]] - p.lo[ax[1]]))   # the door leaf or drawer front, not its handle
+    if max(panel.hi[ax[0]] - panel.lo[ax[0]], panel.hi[ax[1]] - panel.lo[ax[1]]) < 0.05:
+        return 0, 0, 0.0                                              # a lever or a knob, not a door
     face = panel.lo.z if top else panel.hi.y                         # the back of the panel: a door laid over the carcass meets it there
     direction = Vector((0, 0, -1)) if top else Vector((0, 1, 0))
-    bad, looked, deepest = 0, 0, 0.0
-    for u, v in _ring(lo2, hi2):
-        origin = Vector((u, v, face + 1.0)) if top else Vector((u, face - 1.0, v))
-        hit = _sight(rest, origin, direction)
+
+    def depth_at(u, v):
+        """How far behind the panel's back the sight line at (u, v) first meets the rest of the model (None: it misses)."""
+        hit = _sight(rest, Vector((u, v, face + 1.0)) if top else Vector((u, face - 1.0, v)), direction)
         if hit is None:
+            return None
+        return (face - hit.z) if top else (hit.y - face)
+
+    def level_beyond(u, v, du, dv):
+        """Whether a surface level with the part (within REVEAL_DEPTH) lies a little further out: then the deep line between is a slot."""
+        return any(dd is not None and dd <= REVEAL_DEPTH for dd in (depth_at(u + du * k, v + dv * k) for k in REVEAL_BEYOND))
+
+    bad, looked, deepest = 0, 0, 0.0
+    for u, v, du, dv in _ring(lo2, hi2):
+        depth = depth_at(u, v)
+        if depth is None:
             continue                                                  # outside the model's outline
         looked += 1
-        depth = (face - hit.z) if top else (hit.y - face)
-        if depth > REVEAL_DEPTH:
+        if depth > REVEAL_DEPTH and level_beyond(u, v, du, dv):
             bad += 1
             deepest = max(deepest, depth)
     return bad, looked, deepest
