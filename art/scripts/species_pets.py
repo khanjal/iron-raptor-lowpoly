@@ -54,8 +54,23 @@ DOG_SKINS = {
 
 
 # ===== Cats ====================================================================================================
+def _cat_light(d, c, h):
+    """The pale blocks a low-poly cat reads by: a bib down the chest, the belly and white socks."""
+    return (c.y < -0.07 * d.k and h < 0.015 * d.k) or h < -0.045 * d.k or c.z < 0.045 * d.k
+
+
+def _cat_leg_coat(d, c):
+    """A tabby's legs are the coat's colour down to white socks; the other patterns paint the legs as the body."""
+    if d.pattern == "tabby":
+        return d.c2 if c.z < 0.045 * d.k else d.c1
+    return _cat_coat(d, c)
+
+
 def _cat_tabby(d, c, h):
-    return d.c3 if (math.sin(c.y * 70 / d.k) > 0.25 and h > -0.02 * d.k) else d.c1
+    """Colour in blocks, not stripes round the body: a pale bib, belly and socks, and two or three broad saddle stripes on the top of the back."""
+    if _cat_light(d, c, h):
+        return d.c2
+    return d.c3 if (math.sin(c.y * 40 / d.k) > 0.35 and h > 0.035 * d.k) else d.c1
 
 
 def _cat_tuxedo(d, c, h):
@@ -83,7 +98,7 @@ _CAT_COATS = {"tabby": _cat_tabby, "tuxedo": _cat_tuxedo, "calico": _cat_calico,
 _CAT_HEAD_COATS = {
     "siamese": lambda d, c, n: d.c3 if c.y < -0.245 * d.k else d.c1,
     "tuxedo": lambda d, c, n: d.c2 if (c.y < -0.25 * d.k and c.z < d.head[4][1] + 0.01) else d.c1,
-    "tabby": lambda d, c, n: d.c3 if (abs(c.x) < 0.012 * d.k and n.z > 0.3) else d.c1,
+    "tabby": lambda d, c, n: d.c2 if (c.y < -0.25 * d.k * d.hk and c.z < d.head[4][1] + 0.005) else (d.c3 if (abs(c.x) < 0.014 * d.k and n.z > 0.3) else d.c1),
 }
 
 
@@ -99,24 +114,32 @@ def _cat_head_coat(d, c, n):
 
 
 def _cat_ears(cm, d, bm):
-    """Large upright ears, wide at the base and set wide on the crown, tipped a little outwards."""
+    """Large upright ears, wide at the base and set wide on the crown, tipped a little outwards; about 1.4 times a real cat's, as low-poly cats have them."""
     skull = d.skull
     e = d.k * d.hk
     for s in (-1, 1):
-        cm.add_box(bm, (s * skull[2] * 0.62, skull[0] - 0.004 * d.k, skull[1] + skull[3] * 0.80), (0.050 * e, 0.030 * e, 0.060 * e),
+        cm.add_box(bm, (s * skull[2] * 0.62, skull[0] - 0.004 * d.k, skull[1] + skull[3] * 0.80), (0.064 * e, 0.030 * e, 0.085 * e),
                    taper=0.12, rot_deg=(0, s * 14, 0))
+
+
+def _cat_ear_coat(d, c, n):
+    """The inside of the ear (its forward face) pink, the back the coat's."""
+    if n.y < -0.5:
+        return "pink"
+    return d.c3 if d.pattern in ("siamese", "tuxedo") else d.c1
 
 
 def _cat_extras(d, ctx):
     cm = ctx.common
-    ctx.make("ears", partial(_cat_ears, cm, d), lambda c, n: d.c3 if d.pattern in ("siamese", "tuxedo") else d.c1, ["Ear_L", "Ear_R"], sub=0, smooth=False)
+    ctx.make("ears", partial(_cat_ears, cm, d), partial(_cat_ear_coat, d), ["Ear_L", "Ear_R"], sub=0, smooth=False)
     ctx.make("nose", lambda bm: cm.add_box(bm, (0, d.head[-1][0], d.head[-1][1] + 0.004), (0.014 * d.k, 0.012 * d.k, 0.012 * d.k)),
              lambda c, n: "pink", ["Head"], sub=0, smooth=False)
 
 
-def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white", c3="dark_brown", tail_len=1.0, fluff=1.0, head_k=1.0, eye=0.24):  # NOSONAR
+def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white", c3="dark_brown", tail_len=1.0, fluff=1.0, head_k=1.18, eye=0.30):  # NOSONAR
     """A house cat, 0.27 m to the back (about 0.25 at the shoulder). Patterns: solid, tabby, tuxedo, calico, siamese.
-    head_k scales the head about the root of the neck (a kitten's head is large for its body), eye is the eyes' size factor."""
+    head_k scales the head about the root of the neck (a kitten's head is large for its body), eye is the eyes' size factor.
+    Stylised as low-poly cats are (docs/assets/briefs/animals.md, "Stylised"): the head 1.18 and the ears about 1.4 times real, thick legs ending in a paw block, the coat in blocks."""
     k = size
     cz0 = 0.19 * k                                         # the centre line of the barrel; the back is 0.27 m, the chest hangs to 0.115 m (docs/assets/briefs/animals.md)
     # a house cat's side profile (issue #125's rework): the back a shallow curve a little higher over the hips, a deep chest with a keel, the belly's loose skin low at the
@@ -136,12 +159,12 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
     # heel at 4); the hind
     # from the hip through the thigh, the stifle forward (2), the shin back to a high hock (4) and the long foot to the paw
     fr = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
-          [(0.21, 0.012, 0.028, 0.038, -0.012), (0.16, 0.010, 0.026, 0.034, 0.0), (0.11, 0.004, 0.019, 0.023, 0.0), (0.06, 0.0, 0.016, 0.020, 0.0),
-           (0.025, -0.003, 0.015, 0.019, 0.0), (0.0, -0.014, 0.022, 0.030, 0.0)]]
+          [(0.21, 0.012, 0.032, 0.042, -0.012), (0.16, 0.010, 0.030, 0.038, 0.0), (0.11, 0.004, 0.023, 0.027, 0.0), (0.06, 0.0, 0.020, 0.024, 0.0),
+           (0.025, -0.004, 0.020, 0.025, 0.0), (0.0, -0.016, 0.029, 0.039, 0.0)]]
     hn = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
-          [(0.23, 0.0, 0.030, 0.045, -0.012), (0.17, -0.005, 0.034, 0.050, 0.0), (0.115, -0.030, 0.022, 0.030, 0.0), (0.09, 0.012, 0.018, 0.022, 0.0),
-           (0.06, 0.040, 0.016, 0.020, 0.0), (0.02, 0.025, 0.015, 0.019, 0.0), (0.0, 0.020, 0.022, 0.030, 0.0)]]
-    tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.215, 0.195, 0.020), (0.25, 0.24, 0.018), (0.31, 0.262, 0.016), (0.37, 0.25, 0.014))]
+          [(0.23, 0.0, 0.034, 0.050, -0.012), (0.17, -0.005, 0.038, 0.055, 0.0), (0.115, -0.030, 0.026, 0.034, 0.0), (0.09, 0.012, 0.022, 0.026, 0.0),
+           (0.06, 0.040, 0.020, 0.024, 0.0), (0.02, 0.025, 0.020, 0.025, 0.0), (0.0, 0.020, 0.029, 0.039, 0.0)]]
+    tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.215, 0.195, 0.025), (0.25, 0.24, 0.023), (0.31, 0.262, 0.020), (0.37, 0.25, 0.017))]
     skull = head[2]
     d = SimpleNamespace(k=k, hk=head_k, cz0=cz0, pattern=pattern, c1=c1, c2=c2, c3=c3, head=head, skull=skull)
 
@@ -151,7 +174,7 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
                 "body_keel": [0.20, 0.30, 0.40, 0.40, 0.35, 0.20, 0.15, 0.10, 0.0], "head_keel": [0.20, 0.20, 0.15, 0.15, 0.15, 0.20, 0.25, 0.20, 0.10],
                 "body_n": 10, "head_n": 8, "leg_n": 6, "gait_leg": 0.20 * k,                # the gait's leg length as before the rework (the old leg's top)
                 "tail": tl, "ear_x": skull[2] * 0.7, "ear_y": skull[0], "ear_z": skull[1] + skull[3] * 0.9,
-                "coat": lambda c, n: _cat_coat(d, c), "head_coat": lambda c, n: _cat_head_coat(d, c, n),
+                "coat": lambda c, n: _cat_coat(d, c), "leg_coat": lambda c, n: _cat_leg_coat(d, c), "head_coat": lambda c, n: _cat_head_coat(d, c, n),
                 "tail_coat": lambda c, n: c3 if pattern in ("siamese", "tuxedo") else c1,
                 "eyes": {"gap": 0.40, "inset": 0.55, "up": 0.30, "forward": 0.85, "size": eye}, "eye_colour": "paint_yellow",     # round, golden, looking ahead
                 "extras": lambda ctx: _cat_extras(d, ctx)}
@@ -165,5 +188,5 @@ CATS = {
     "cat_calico":  make_cat("CatCalico", pattern="calico", c1="orange_cat", c2="paint_white", c3="black"),
     "cat_siamese": make_cat("CatSiamese", pattern="siamese", c1="cream", c3="dark_brown", size=1.05),
     "cat_grey":    make_cat("CatGrey", pattern="solid", c1="grey_cat", fluff=1.1),
-    "cat_kitten":  make_cat("CatKitten", pattern="tabby", c1="cream", c3="tan", size=0.55, tail_len=0.9, head_k=1.15, eye=0.30),   # a big head and eyes
+    "cat_kitten":  make_cat("CatKitten", pattern="tabby", c1="cream", c3="tan", size=0.55, tail_len=0.9, head_k=1.32, eye=0.36),   # a big head and eyes
 }

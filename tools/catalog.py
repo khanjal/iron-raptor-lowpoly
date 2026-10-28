@@ -230,10 +230,11 @@ PAINTS = {
     "FD_Grapes_01": {"base": "Green", "parts": {"Fruit": "grape_green"}, "presets": {"Purple": {"was": "FD_Grapes_Purple_01", "set": {"Fruit": "#5A2E6B"}}}},
     "GN_Butterfly_01": {"base": "Blue", "parts": {"Wings": "wing_blue"}, "presets": {"Monarch": {"was": "GN_Butterfly_Monarch_01", "set": {"Wings": "#E8922A"}}}},
     "GK_Wall_Window_Barn_01": {"base": "Barn red", "parts": {"Siding": "barn_red"}, "presets": {"Clapboard": {"was": "GK_Wall_Window_Clapboard_01", "set": {"Siding": "#E6E2D6"}}}},
-    # the solid cats of species_pets.CATS (black, orange, grey) are the tabby's mesh with the stripes in the coat's colour (Stripes first: a paint's chip is its first part, so a tabby and its plain coat show different chips); tuxedo, calico, siamese and the kitten are models of their own
-    "GN_CatTabby_faceted_01": {"base": "Orange tabby", "parts": {"Stripes": "rust", "Coat": "orange_cat"}, "presets": {
-        "Grey tabby": {"set": {"Coat": "grey_cat", "Stripes": "grey_suit"}}, "Orange": {"set": {"Stripes": "orange_cat"}},
-        "Black": {"set": {"Coat": "black", "Stripes": "black"}}, "Grey": {"set": {"Coat": "grey_cat", "Stripes": "grey_cat"}}}},
+    # the solid cats of species_pets.CATS (black, orange, grey) are the tabby's mesh with the stripes and the white blocks in the coat's colour (Stripes first: a paint's chip is its first part, so a tabby and its plain coat show different chips); tuxedo, calico, siamese and the kitten are models of their own
+    "GN_CatTabby_faceted_01": {"base": "Orange tabby", "parts": {"Stripes": "rust", "Coat": "orange_cat", "Chest, belly, socks and muzzle": "paint_white"}, "presets": {
+        "Grey tabby": {"set": {"Coat": "grey_cat", "Stripes": "grey_suit"}}, "Orange": {"set": {"Stripes": "orange_cat", "Chest, belly, socks and muzzle": "orange_cat"}},
+        "Black": {"set": {"Coat": "black", "Stripes": "black", "Chest, belly, socks and muzzle": "black"}},
+        "Grey": {"set": {"Coat": "grey_cat", "Stripes": "grey_cat", "Chest, belly, socks and muzzle": "grey_cat"}}}},
     "GS_BaseballBat_Metal_01": {"base": "Metal", "parts": {"Barrel": "truck_blue", "Grip": "rubber"}, "presets": {
         "Wood": {"was": "GS_BaseballBat_Wood_01", "set": {"Barrel": "#C9A06A", "Grip": "#1B1B1E"}}}},
 }

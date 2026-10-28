@@ -1804,9 +1804,9 @@
    "interactive": false,
    "triangles": 900,
    "size": [
-    0.152,
-    0.37,
-    0.571
+    0.16,
+    0.379,
+    0.605
    ],
    "glb": "models/GN_CatCalico_faceted_01.glb",
    "thumb": "thumbs/GN_CatCalico_faceted_01.png",
@@ -1857,9 +1857,9 @@
    "interactive": false,
    "triangles": 900,
    "size": [
-    0.084,
-    0.203,
-    0.313
+    0.088,
+    0.219,
+    0.331
    ],
    "glb": "models/GN_CatKitten_faceted_01.glb",
    "thumb": "thumbs/GN_CatKitten_faceted_01.png",
@@ -1874,6 +1874,11 @@
      "part": "Main",
      "swatch": 33,
      "hex": "#E9DCC0"
+    },
+    {
+     "part": "Chest, belly, socks and muzzle",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     },
     {
      "part": "Stripes",
@@ -1900,9 +1905,9 @@
    "interactive": false,
    "triangles": 900,
    "size": [
-    0.16,
-    0.389,
-    0.599
+    0.168,
+    0.398,
+    0.635
    ],
    "glb": "models/GN_CatSiamese_faceted_01.glb",
    "thumb": "thumbs/GN_CatSiamese_faceted_01.png",
@@ -1949,9 +1954,9 @@
    "interactive": false,
    "triangles": 900,
    "size": [
-    0.152,
-    0.37,
-    0.571
+    0.16,
+    0.379,
+    0.605
    ],
    "glb": "models/GN_CatTabby_faceted_01.glb",
    "thumb": "thumbs/GN_CatTabby_faceted_01.png",
@@ -1975,6 +1980,11 @@
      "part": "Coat",
      "swatch": 32,
      "hex": "#E08A3C"
+    },
+    {
+     "part": "Chest, belly, socks and muzzle",
+     "swatch": 6,
+     "hex": "#E6E2D6"
     }
    ],
    "paints": [
@@ -1995,7 +2005,8 @@
      "name": "Orange",
      "hex": "#E08A3C",
      "swap": {
-      "4": "#E08A3C"
+      "4": "#E08A3C",
+      "6": "#E08A3C"
      }
     },
     {
@@ -2003,7 +2014,8 @@
      "hex": "#1B1B1E",
      "swap": {
       "32": "#1B1B1E",
-      "4": "#1B1B1E"
+      "4": "#1B1B1E",
+      "6": "#1B1B1E"
      }
     },
     {
@@ -2011,7 +2023,8 @@
      "hex": "#7C8088",
      "swap": {
       "32": "#7C8088",
-      "4": "#7C8088"
+      "4": "#7C8088",
+      "6": "#7C8088"
      }
     }
    ]
@@ -2033,9 +2046,9 @@
    "interactive": false,
    "triangles": 900,
    "size": [
-    0.152,
-    0.37,
-    0.571
+    0.16,
+    0.379,
+    0.605
    ],
    "glb": "models/GN_CatTuxedo_faceted_01.glb",
    "thumb": "thumbs/GN_CatTuxedo_faceted_01.png",

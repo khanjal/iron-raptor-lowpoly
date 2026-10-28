@@ -239,7 +239,7 @@ def build(sp, style="smooth", rig_name=None):
             ctx.make(f"leg_{kind}_{side(s).lower()}",
                      lambda bm, l=leg, s=s: common.loft(
                          bm, [common.ring_z(r[0], s * (l["x"] + _leg_dx(r)), l["y"] + r[1], r[2], r[3], n=sp.get("leg_n", st["leg_n"])) for r in l["profile"]]),
-                     sp["coat"], [f"{K}{p}_{side(s)}" for p in ("Upper", "Lower", "Foot")])
+                     sp.get("leg_coat", sp["coat"]), [f"{K}{p}_{side(s)}" for p in ("Upper", "Lower", "Foot")])
     ctx.make("tail", lambda bm: common.loft(bm, [common.ring_z(z, 0, y, r, r, n=tail_n) for z, y, r in sp["tail"]]),
              sp.get("tail_coat", sp["coat"]), ["Tail1", "Tail2", "Tail3"], sub=0)
     if "extras" in sp:
