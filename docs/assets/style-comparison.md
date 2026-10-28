@@ -27,7 +27,7 @@ Ours are generally correct in size and construction (the briefs and audits see t
 | Rank | Category | Models | Gain | Issue |
 |---|---|---|---|---|
 | 1 | People (and aliens) | 15 | High: every figure is thin, small-headed and faceless at thumbnail size | [#199](https://github.com/khanjal/iron-raptor-lowpoly/issues/199) |
-| 2 | Animals: pets | 13 | High (in progress on `pets-stylise`) | none yet (the pets rework is on a local branch, `pets-stylise`, not pushed) |
+| 2 | Animals: pets | 13 | High (the cats done in [#208](https://github.com/khanjal/iron-raptor-lowpoly/pull/208); the dogs next) | [#208](https://github.com/khanjal/iron-raptor-lowpoly/pull/208) |
 | 3 | Animals: wild and farm mammals, poultry | 16 | High: same gaps as the pets | [#200](https://github.com/khanjal/iron-raptor-lowpoly/issues/200) |
 | 4 | Food: prepared food and packaged goods | 63 (17 of them produce) | High for a dozen models, low for the produce | [#201](https://github.com/khanjal/iron-raptor-lowpoly/issues/201) |
 | 5 | Decor, toys, kitchenware, clutter, soft furnishings | 85 (all of `decor/*`) | High for the crude boxes | [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92) |
@@ -64,7 +64,7 @@ Each section below follows the same order: what the references do, where we fall
 
 ## 2. Animals: pets (`animals/pet/*`, 13), in progress
 
-Being reworked on a branch, `pets-stylise`, in another session (not pushed yet) (cat_tabby first, then the other cats and the dogs); listed here so the doc covers them and the other animal work copies what lands there.
+The cats are reworked in [#208](https://github.com/khanjal/iron-raptor-lowpoly/pull/208) (what changed, and what was tried and dropped: the "Stylised" section of `docs/assets/briefs/animals.md`); the dogs follow by the same method. Listed here so the doc covers them and the other animal work copies what lands there.
 
 **References.** Big round heads (cats) or big blocky heads (dogs) with ears 1.5-2x real; eyes large, often with a highlight; a muzzle block in a lighter colour; coats in a few blocks (white bib, muzzle, belly and socks; a Siamese's dark mask, ears, paws and tail; a beagle's saddle); legs that thicken into paws; sitting and lying poses as well as standing.
 

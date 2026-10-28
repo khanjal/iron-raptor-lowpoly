@@ -183,12 +183,12 @@ def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white",
         head = head[:1] + [(y0 + (y - y0) * head_k, z0 + (z - z0) * head_k, w * head_k, h * head_k) for y, z, w, h in head[1:]]
     # the legs (z, dy, half width, half depth, dx): the front from the shoulder inside the chest down a straight slim leg under it (the elbow at 2, the wrist at 3, the paw's
     # heel at 4); the hind
-    # from the hip through the thigh, the stifle forward (2), the shin back to a high hock (4) and the long foot to the paw
+    # from the hip (its top ring narrower, so the leg's flat top stays inside the flank) through the thigh, the stifle forward (2), the shin back to a high hock (4) and the long foot to the paw
     fr = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
           [(0.21, 0.012, 0.032, 0.042, -0.012), (0.16, 0.010, 0.030, 0.038, 0.0), (0.11, 0.004, 0.023, 0.027, 0.0), (0.06, 0.0, 0.020, 0.024, 0.0),
            (0.025, -0.004, 0.020, 0.025, 0.0), (0.0, -0.016, 0.029, 0.039, 0.0)]]
     hn = [(z * k, dy * k, hx * k, hy * k, dx * k) for z, dy, hx, hy, dx in
-          [(0.23, 0.0, 0.034, 0.050, -0.012), (0.17, -0.005, 0.038, 0.055, 0.0), (0.115, -0.030, 0.026, 0.034, 0.0), (0.09, 0.012, 0.022, 0.026, 0.0),
+          [(0.23, 0.0, 0.027, 0.050, -0.012), (0.17, -0.005, 0.038, 0.055, 0.0), (0.115, -0.030, 0.026, 0.034, 0.0), (0.09, 0.012, 0.022, 0.026, 0.0),
            (0.06, 0.040, 0.020, 0.024, 0.0), (0.02, 0.025, 0.020, 0.025, 0.0), (0.0, 0.020, 0.029, 0.039, 0.0)]]
     tl = [(z * k, y * k * tail_len, r * k) for z, y, r in ((0.215, 0.195, 0.025), (0.25, 0.24, 0.023), (0.31, 0.262, 0.020), (0.37, 0.25, 0.017))]
     skull = head[2]
