@@ -20,7 +20,7 @@ Ours are generally correct in size and construction (the briefs and audits see t
 
 ## Before the categories: thumbnail framing (all models)
 
-`site/viewer.js` (`_frameModel`) fits the camera to the model's bounding **sphere** (half the diagonal of its size) with 5 % margin. A cube fills the tile; anything tall, long or flat does not: people fill about 40 % of the tile's height, tools, rakes, bats and hockey sticks a thin diagonal line, rugs and frames a sliver. The references fill the tile. Fit the camera to the model's **projected box** instead (its eight corners in camera space, the larger of the height and width fit, 8 % margin), keep the view direction, and regenerate the thumbnails with `tools/thumbs.html`. The same fit helps the viewer's opening view. This is the single change that improves every category's look in the browser at once, and it touches no model. Tracked in [#198](https://github.com/khanjal/iron-raptor-lowpoly/issues/198).
+`site/viewer.js` (`_frameModel`) fits the camera to the model's bounding **sphere** (half the diagonal of its size) with 5 % margin. A cube fills the tile; anything tall, long or flat does not: a standing person is about 65 % of the tile's height and a quarter of its width, rugs, frames and flat things a sliver, and the margin around every model is wider than it needs to be. The references fill 70-85 % of the tile. (Long tools already span the tile's width; their problem is thinness, section 10.) Fit the camera to the model's **projected box** instead (its eight corners in camera space, the larger of the height and width fit, 8 % margin), keep the view direction, and regenerate the thumbnails with `tools/thumbs.html`. The same fit helps the viewer's opening view. This is the single change that improves every category's look in the browser at once, and it touches no model. Tracked in [#198](https://github.com/khanjal/iron-raptor-lowpoly/issues/198).
 
 ## Ranking
 
@@ -29,13 +29,13 @@ Ours are generally correct in size and construction (the briefs and audits see t
 | 1 | People (and aliens) | 15 | High: every figure is thin, small-headed and faceless at thumbnail size | [#199](https://github.com/khanjal/iron-raptor-lowpoly/issues/199) |
 | 2 | Animals: pets | 13 | High (in progress on `pets-stylise`) | (that branch) |
 | 3 | Animals: wild and farm mammals, poultry | 16 | High: same gaps as the pets | [#200](https://github.com/khanjal/iron-raptor-lowpoly/issues/200) |
-| 4 | Food: prepared food and packaged goods | 63 | High for a dozen models, low for the produce | [#201](https://github.com/khanjal/iron-raptor-lowpoly/issues/201) |
-| 5 | Decor, toys, kitchenware, clutter | 61 | High for the crude boxes | [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92) |
+| 4 | Food: prepared food and packaged goods | 63 (17 of them produce) | High for a dozen models, low for the produce | [#201](https://github.com/khanjal/iron-raptor-lowpoly/issues/201) |
+| 5 | Decor, toys, kitchenware, clutter, soft furnishings | 85 (all of `decor/*`) | High for the crude boxes | [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92) |
 | 6 | Clothing, footwear, bags | 7 (+4 elsewhere) | High, but few models | [#89](https://github.com/khanjal/iron-raptor-lowpoly/issues/89) |
 | 7 | Insects and arachnids | 27 | Medium: good shapes, no faces, thin | [#202](https://github.com/khanjal/iron-raptor-lowpoly/issues/202) |
 | 8 | Nature (trees and plants) | 2 (+4 plants) | Medium | [#91](https://github.com/khanjal/iron-raptor-lowpoly/issues/91) |
 | 9 | Sci-fi props and ship parts | 22 | Medium: grey cylinders and boxes | [#203](https://github.com/khanjal/iron-raptor-lowpoly/issues/203) |
-| 10 | Tools | 33 | Medium: thin heads and handles, framing | [#204](https://github.com/khanjal/iron-raptor-lowpoly/issues/204) |
+| 10 | Tools | 33 | Medium: thin heads and handles | [#204](https://github.com/khanjal/iron-raptor-lowpoly/issues/204) |
 | 11 | Farm props and structures | 24 | Low-medium | (folded into [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92)'s batches) |
 | 12 | Appliances, fixtures, equipment | 46 | Low: right shapes, missing bevels and a few details | none (the item-fit audit covers fit) |
 | 13 | Furniture | 58 | Low | none |
@@ -51,12 +51,12 @@ Each section below follows the same order: what the references do, where we fall
 
 **References.** The stylised low-poly people (Quaternius's character sets, "Poly by Google" figures, the chibi packs) carry a head of 1/5 to 1/6 of the height, hands and shoes visibly oversized, a slightly thickened neck and limbs, and clothing in three to five colour blocks with a contrasting belt, collar, boots and hair. The hair is one chunky mass with a fringe or parting shape, not a cap. Faces have large eyes (often with whites), brows and a nose block. They stand with a little space between arms and body.
 
-**Our gaps.** Ours are anatomically right (the brief puts the head at 1/7.5 of the height; `head_scale` is 1.12) and so read small-headed and spindly at thumbnail size. Hands and feet are within real ranges and vanish. Faces are dot eyes on skin; at 256 px most figures have no face. Hair is a thin shell. The thumbnails frame them at 40 % of the tile (see framing). The clothing blocks are good (the Worker's hi-vis, the Sheriff's hat) and should stay.
+**Our gaps.** Ours are anatomically right (the brief puts the head at 1/7.5 of the height; `head_scale` is 1.12) and so read small-headed and spindly at thumbnail size. Hands and feet are within real ranges and vanish. Faces are dot eyes on skin; at 256 px most figures have no face. Hair is a thin shell. The thumbnails leave them about 65 % of the tile's height (see framing). The clothing blocks are good (the Worker's hi-vis, the Sheriff's hat) and should stay.
 
-**Weakest.** `GP_FarmerSpouse_01` and `GP_Nordic_01` (cream on skin, no contrast at all), `GP_FbiAgent_01`, `GP_FbiAgentF_01` and `GP_Mib_01` (one dark block head to toe), `GP_Grandparent_01`.
+**Weakest.** `GP_FarmerSpouse_01` and `GP_Nordic_01` (cream on skin, no contrast at all), `GP_FbiAgent_01`, `GP_FbiAgentF_01` and `GP_Mib_01` (one dark block head to toe).
 
 **Changes.**
-- Head to about 1/6 of the height for adults: `head_scale` about 1.30 (children stay larger than adults, about 1/4.5); widen the brief's head row and `people_proportions.RANGES["head_w"]` only if the head's shape changes, not its scale.
+- Head to about 1/6 of the height for adults: `head_scale` about 1.30. The brief's child head (1/6.0-1/6.5, `audit_bodies.CHILD`) would then be no bigger than the adult's, so the child row moves up too (about 1/5); widen the brief's head row and `people_proportions.RANGES["head_w"]` only if the head's shape changes, not its scale.
 - Hands and shoes 15-25 % larger: `RANGES["hand"]` (0.095-0.125) to about 0.10-0.15, `hand_w` (0.040-0.058) to 0.045-0.07, and the shoe length in `gp_builder.SHOE`; `wrist` and `calf` up about 10 %.
 - Faces: eye whites or a light eye patch with a dark pupil, brows in the hair colour, a nose block and a mouth line in a darker skin tone (all palette colours by name).
 - Hair as a volume with a fringe, sideburns or a bun; give every figure a contrasting belt and shoe colour.
@@ -68,7 +68,7 @@ Being reworked on branch `pets-stylise` (cat_tabby first, then the other cats an
 
 **References.** Big round heads (cats) or big blocky heads (dogs) with ears 1.5-2x real; eyes large, often with a highlight; a muzzle block in a lighter colour; coats in a few blocks (white bib, muzzle, belly and socks; a Siamese's dark mask, ears, paws and tail; a beagle's saddle); legs that thicken into paws; sitting and lying poses as well as standing.
 
-**Our gaps.** Heads and ears are real-sized; the tabby's stripes wrap the body like a bee's; legs are sticks with no paw; faces are dot eyes; the thumbnails frame the animal small. The measures in `animal_proportions.py` leave room for a longer head but almost none for wider legs, wider heads or bigger paws (head_w, leg_top, leg_low and paw are within 0.01-0.03 of their maximum on every cat and dog).
+**Our gaps.** Heads and ears are real-sized; the tabby's stripes wrap the body like a bee's; legs are sticks with no paw; faces are dot eyes; the thumbnails frame the animal small. The measures in `animal_proportions.py` leave room for a longer head but almost none for wider legs, wider heads or bigger paws (on the tabby and most dogs, head_w, leg_top and leg_low are within 0.00-0.03 of their maximum; the cat's head_w and paw have 0.04-0.05 left, and the bulldog and dachshund 0.03-0.09).
 
 **Changes** (as the pets branch is doing): see the shared animal changes in section 3.
 
@@ -76,28 +76,28 @@ Being reworked on branch `pets-stylise` (cat_tabby first, then the other cats an
 
 **References.** The Quaternius and "Poly by Google" deer, cows, foxes, bears and farm sets: deer with a white throat, belly and tail flash, dark nose and large ears; a cow with a pink muzzle and udder, horns and big ears, patches as two or three large shapes; a fox with a white chest and cheeks, black socks and a big brush; a bear with a lighter muzzle and a heavy head. Legs taper but end in a visible hoof or paw. Necks are thick.
 
-**Our gaps.** Uniform body colours where the animal is known by its markings (deer, horse, bear, hen); ears at real size and so lost; dot eyes; thin legs; poultry legs are pink sticks under a brick body. The turkeys read as a brown box on legs: the tom shows no displayed fan and the snood and wattle are small.
+**Our gaps.** Some markings are already there (the horse's black socks, mane and face, the bear's tan muzzle, the goat's two-colour coat, the fox's black socks), but the deer are uniform tan with no white throat, belly or tail flash; ears are at real size and so lost; eyes are dots; legs are thin; poultry legs are pink sticks under a brick body. The turkeys read as a brown box on legs at rest: the tom's fan is folded (it fans out in its Display clip, but the thumbnail is the Idle pose) and the snood and wattle are small.
 
-**Weakest.** `GN_TurkeyTom_faceted_01` and `GN_TurkeyHen_faceted_01`, `GN_DeerDoe_faceted_01` (uniform tan), `GN_Horse_faceted_01`, `GN_Bear_faceted_01`, `GN_Goat_faceted_01`.
+**Weakest.** `GN_TurkeyTom_faceted_01` and `GN_TurkeyHen_faceted_01`, `GN_DeerDoe_faceted_01`, `GN_DeerBuck_faceted_01` and `GN_DeerFawn_faceted_01` (uniform tan), `GN_ChickenHen_faceted_01` (stick legs).
 
 **Changes (all four-legged animals, pets included).**
 - Head, ears and eyes up: ears 1.4-1.8x real; eyes larger with a highlight or white; a muzzle block in a lighter or darker colour.
-- Colour blocks from the animal's real markings, not stripes round the body: white throat, belly and tail for deer; pale muzzle for bear and horse; white chest and black socks for the fox; two or three big patches on a cow.
+- Colour blocks from the animal's real markings, not stripes round the body: white throat, belly and tail for deer; a white chest for the fox; two or three big patches on a cow; keep the markings that are there and make them bigger.
 - Legs that thicken at the end into a paw or hoof of a different colour.
-- Widen `animal_proportions.RANGES` and the brief's proportion table to allow it. Measured today against each row's maximum:
+- Widen `animal_proportions.RANGES` and the brief's proportion table to allow it. Measured today against each row's maximum (on the species the unit test measures: the tabby, the first collie, the doe and one of each other row, so the figures are approximate):
 
   | Measure | Today (cat / dogs / hoofed / wild) | Proposed maximum |
   |---|---|---|
-  | `head` (head length / L) | 0.30 / 0.32-0.38 / 0.31-0.41 / 0.26-0.46, 0.04-0.10 under the max | +0.06 on every row |
-  | `head_w` | 0.95 of 1.00 / at the max -0.03 / at the max -0.03 to -0.10 | +0.15 on every row (cat 1.15) |
-  | `leg_top` | at the max on most rows | +0.04 |
-  | `leg_low` | at the max on most rows | +0.03 (deer 0.085, horse 0.09) |
-  | `paw` | 0.02-0.06 under | +0.05 (hooves +0.03) |
+  | `head` (head length / L) | 0.30 / 0.25-0.38 / 0.31-0.41 / 0.26-0.46: 0.04-0.10 under the max | +0.06 on every row |
+  | `head_w` | 0.05 under / 0.02-0.09 under / 0.03-0.10 under / 0.07-0.15 under | +0.15 on every row (cat 1.15) |
+  | `leg_top` | at the max on the cat, most dogs, horse and pig; 0.02-0.05 under elsewhere | +0.04 |
+  | `leg_low` | at the max or 0.01 under on most rows; 0.02-0.04 under on the bulldog, dachshund and the wild rows | +0.03 (deer 0.085, horse 0.09) |
+  | `paw` | 0.01-0.06 under | +0.05 (hooves +0.03) |
 
   Better than editing the real ranges: keep the brief's real numbers and add a "stylised" column (or a `STYLISED` slack per measure in `animal_proportions.py`) that the audit enforces, so the real data stays documented. Add an `ear` measure (ear length / head length) to the brief so the ears are checked too.
-- Poultry: rounder body, a head and comb or snood at 1.3x, shanks thicker (`HEN["shank"]` 0.04-0.08 to about 0.10), a displayed fan for the tom as its own pose or variant.
+- Poultry: rounder body, a head and comb or snood at 1.3x, thicker shanks (the chicken's `HEN["shank"]` 0.04-0.08 to about 0.10; the turkeys have no proportion row yet, NOTES says `HEN` does not fit them, so they need one). A thumbnail or a paint that shows the tom's fan displayed would make it read as a turkey at once.
 
-## 4. Food: prepared food and packaged goods (`food/*`, 63)
+## 4. Food: prepared food and packaged goods (`food/*`, 63, of which 17 produce)
 
 **References.** Burgers (four very similar ones on Poly Pizza) are a tall domed bun with sesame seeds, and every layer (lettuce frill, tomato, cheese with drooping corners, patty) sticks out past the bun's edge in its own colour. The food packs' previews (Kenney's food kit, Quaternius's food pack) show the same habits at small size: rounded or bevelled shapes, every item in two or three strong colours, nothing left as a plain box.
 
@@ -114,7 +114,7 @@ Being reworked on branch `pets-stylise` (cat_tabby first, then the other cats an
 - Packaged goods: bevel the boxes, give each a second label block and a band, and caps a rim. Generic and unbranded (see #150).
 - No proportion ranges to widen: the food briefs give real sizes, and these are shape changes.
 
-## 5. Decor, toys, kitchenware, clutter (`decor/*`, 61)
+## 5. Decor, toys, kitchenware, clutter, soft furnishings (`decor/*`, 85)
 
 Tracked in [#92](https://github.com/khanjal/iron-raptor-lowpoly/issues/92) (comment added with this survey).
 
@@ -174,7 +174,7 @@ Tracked in [#91](https://github.com/khanjal/iron-raptor-lowpoly/issues/91) (comm
 
 **Weakest.** `GT_Hoe_01`, `GT_Axe_01`, `GT_Sledgehammer_01`, `GT_FirePoker_01`, `GT_Spade_01`, `GT_SnowShovel_01`, `GT_Screwdriver_01`, `GT_Sprinkler_01`, `GT_WorkLight_01`.
 
-**Changes.** Heads 1.3x, handles 1.3-1.5x thick with a grip block; edges in a lighter metal; fix the framing first (most of the gain here is the thumbnail). The hand-tools briefs (`docs/assets/briefs/hand-tools*.md`) would need a "stylised" allowance on head size and handle diameter.
+**Changes.** Heads 1.3x, handles 1.3-1.5x thick with a grip block; edges in a lighter metal. Framing helps less here than elsewhere: long tools already span the tile's width. The hand-tools briefs (`docs/assets/briefs/hand-tools*.md`) would need a "stylised" allowance on head size and handle diameter.
 
 ## 11. Farm props and structures (`farm/*`, 24)
 
@@ -210,7 +210,7 @@ Tracked in [#91](https://github.com/khanjal/iron-raptor-lowpoly/issues/91) (comm
 
 ## 15. Sports (`sports/*`, 26)
 
-**Our gaps.** Balls read well (seams and panels are right). The golf ball and hockey puck are plain; the bat, club and hockey stick suffer the same framing as the tools; the baseball glove is in #89. Low priority.
+**Our gaps.** Balls read well (seams and panels are right). The golf ball and hockey puck are plain; the bat, club and hockey stick are thin lines like the tools; the baseball glove is in #89. Low priority.
 
 ## 16. Vehicles, ships and ship interiors (`vehicles/*`, 40)
 
