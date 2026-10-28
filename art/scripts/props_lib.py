@@ -427,6 +427,9 @@ def wheel(p, colour_tyre, colour_hub, x, y, z, radius, width, n=10):
     p.cyl(colour_hub, (x + out * (width / 2 + 0.004), y, z), radius * 0.55, 0.012, n=n, axis="x")
 
 
+SINK = 0.002           # m: a part fixed on a face sinks this far into it, so there is no gap and no shared face
+
+
 def stack_fronts(z0, z1, weights, reveal=0.003):
     """Drawer or door fronts stacked from z0 up to z1, sized in proportion to `weights` (bottom first) and `reveal` apart.
 

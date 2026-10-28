@@ -370,7 +370,7 @@ def touching(a, b, pad=TOUCH):
 
 
 def short(name):
-    s = re.sub(r"^[A-Z]{2}_", "", name)
+    s = re.sub(r"^[A-Z]{2}_", "", name.split("@")[0])                  # a variant's key is its piece's name @ its builder
     return re.sub(r"_\d\d$", "", s)
 
 
@@ -703,6 +703,27 @@ def _sight(rest, origin, direction):
     return best[0] if best else None
 
 
+class _View:
+    """Sight lines from in front of a moving part (from above for a lid) onto the rest of the model, measured from the plane `face`."""
+
+    def __init__(self, rest, face, top):
+        self.rest, self.face, self.top = rest, face, top
+        self.direction = Vector((0, 0, -1)) if top else Vector((0, 1, 0))
+
+    def depth_at(self, u, v):
+        """How far behind the face the sight line at (u, v) first meets the rest of the model (None: it misses)."""
+        origin = Vector((u, v, self.face + 1.0)) if self.top else Vector((u, self.face - 1.0, v))
+        hit = _sight(self.rest, origin, self.direction)
+        if hit is None:
+            return None
+        return (self.face - hit.z) if self.top else (hit.y - self.face)
+
+    def level_beyond(self, u, v, du, dv):
+        """Whether a surface level with the part (within REVEAL_DEPTH) lies a little further out: then the deep line between is a slot."""
+        depths = (self.depth_at(u + du * k, v + dv * k) for k in REVEAL_BEYOND)
+        return any(dd is not None and dd <= REVEAL_DEPTH for dd in depths)
+
+
 def _reveal_of(role, g, parts):
     """(sight lines that see into a slot, sight lines that hit the model, the deepest in m) round the moving part `role`."""
     mine = [p for p in parts if p.role == role]
@@ -716,27 +737,14 @@ def _reveal_of(role, g, parts):
     panel = max(mine, key=lambda p: (p.hi[ax[0]] - p.lo[ax[0]]) * (p.hi[ax[1]] - p.lo[ax[1]]))   # the door leaf or drawer front, not its handle
     if max(panel.hi[ax[0]] - panel.lo[ax[0]], panel.hi[ax[1]] - panel.lo[ax[1]]) < 0.05:
         return 0, 0, 0.0                                              # a lever or a knob, not a door
-    face = panel.lo.z if top else panel.hi.y                         # the back of the panel: a door laid over the carcass meets it there
-    direction = Vector((0, 0, -1)) if top else Vector((0, 1, 0))
-
-    def depth_at(u, v):
-        """How far behind the panel's back the sight line at (u, v) first meets the rest of the model (None: it misses)."""
-        hit = _sight(rest, Vector((u, v, face + 1.0)) if top else Vector((u, face - 1.0, v)), direction)
-        if hit is None:
-            return None
-        return (face - hit.z) if top else (hit.y - face)
-
-    def level_beyond(u, v, du, dv):
-        """Whether a surface level with the part (within REVEAL_DEPTH) lies a little further out: then the deep line between is a slot."""
-        return any(dd is not None and dd <= REVEAL_DEPTH for dd in (depth_at(u + du * k, v + dv * k) for k in REVEAL_BEYOND))
-
+    view = _View(rest, panel.lo.z if top else panel.hi.y, top)       # from the back of the panel: a door laid over the carcass meets it there
     bad, looked, deepest = 0, 0, 0.0
     for u, v, du, dv in _ring(lo2, hi2):
-        depth = depth_at(u, v)
+        depth = view.depth_at(u, v)
         if depth is None:
             continue                                                  # outside the model's outline
         looked += 1
-        if depth > REVEAL_DEPTH and level_beyond(u, v, du, dv):
+        if depth > REVEAL_DEPTH and view.level_beyond(u, v, du, dv):
             bad += 1
             deepest = max(deepest, depth)
     return bad, looked, deepest
@@ -824,7 +832,7 @@ def _prop_findings(name, prop, parts, mounted, lo, hi, table, declared):
 
 def _selected(name):
     """Whether the ONLY filter (if any) names this prop."""
-    return not ONLY or any(o == name or o == short(name) for o in ONLY)
+    return not ONLY or any(o in (name, name.split("@")[0], short(name)) for o in ONLY)
 
 
 def _report(table, geometry):
@@ -870,7 +878,8 @@ def main():
         for test, message in found:
             print(f"FAIL {test} {name}: {message}")
             problems += 1
-        geometry[name] = {"size": [round(v, 3) for v in (hi - lo)], "zmin": round(lo.z, 3), "surfaces": [round(z, 3) for z in exposed_tops(parts)]}
+        if "@" not in name:                                          # audit_layout places the pieces by name; a variant has its piece's name
+            geometry[name] = {"size": [round(v, 3) for v in (hi - lo)], "zmin": round(lo.z, 3), "surfaces": [round(z, 3) for z in exposed_tops(parts)]}
 
     _report(table, geometry)
     print(f"\nprop audit: {checked} props, {problems} problem(s)")

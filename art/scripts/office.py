@@ -22,7 +22,7 @@ for _m in (common, props_lib):
     importlib.reload(_m)
 Prop = props_lib.Prop
 stack_fronts, front_rail = props_lib.stack_fronts, props_lib.front_rail
-SINK = 0.002           # m: a part fixed on a face sinks this far into it, so there is no gap and no shared face
+SINK = props_lib.SINK
 rod, lathe, ball = props_lib.rod, props_lib.lathe, props_lib.ball
 
 PIECES = {}
@@ -268,7 +268,7 @@ def copier():
     shell(p, "enamel_white", 0, w, d, z0, ch, yf, t=t, inner="office_grey")
     shelves = (0.255, 0.475)
     for z in shelves:
-        p.box("enamel_white", (0, yf + d / 2 - 0.02, z), (w - 2 * t, d - t, t))              # flush with the tray fronts: no groove
+        p.box("enamel_white", (0, yf + d / 2 - 0.02, z), (w - 2 * t, d, t))                  # flush with the tray fronts (no groove), back to the back wall
     edges = [z0 + t] + [e for z in shelves for e in (z - t / 2, z + t / 2)] + [z0 + ch - t]
     for k in range(3):
         lo, hi = edges[2 * k], edges[2 * k + 1]

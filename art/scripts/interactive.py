@@ -100,7 +100,7 @@ def _door_hinge(side, x0, x1, z0, z1, yc, limit):
 
 
 HANDLE_DEPTH = 0.035   # m: how far a door handle stands out
-SINK = 0.002           # m: a part fixed on a face sinks this far into it, so there is no gap and no shared face
+SINK = props_lib.SINK
 
 
 def _door_handle(p, handle, side, x0, x1, z0, z1, front):
