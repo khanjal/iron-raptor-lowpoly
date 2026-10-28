@@ -1036,7 +1036,7 @@ def jukebox():
     # the window in the arch: a dark backing, the record with its label and the tone arm, the glass in front with its edge in the band
     win_r, win_low = band_r - band_w / 2, 0.98
     back_front = yf - 0.006
-    _slab(p, "metal_dark", win_r, arch_z, win_low, back_front, yf + sink)
+    _slab(p, "metal_dark", win_r + 0.01, arch_z, win_low, back_front, yf + sink)       # its edge inside the band, like the glass's
     rec_z, rec_t = 1.17, 0.008
     rec_front = back_front - rec_t + sink
     _disc(p, "black", 0.13, 0, rec_z, rec_front, back_front + sink)
@@ -1045,6 +1045,7 @@ def jukebox():
     arm = math.hypot(pivot[0] - tip[0], pivot[1] - tip[1])
     p.box("metal_galv", ((tip[0] + pivot[0]) / 2, rec_front - 0.0005, (tip[1] + pivot[1]) / 2), (0.016, 0.002, arm),
           rot=(0, math.degrees(math.atan2(pivot[0] - tip[0], pivot[1] - tip[1])), 0))
+    _disc(p, "metal_galv", 0.012, pivot[0], pivot[1], rec_front - 0.001, back_front + sink, n=8)   # the arm's pivot post, from the backing
     glass_back = rec_front - 0.004 + 0.0015                                             # touches the label
     _slab(p, "clear_glass", win_r + 0.01, arch_z, win_low, glass_back - 0.008, glass_back)
 
