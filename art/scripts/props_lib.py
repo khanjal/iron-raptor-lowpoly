@@ -449,8 +449,9 @@ def stack_fronts(z0, z1, weights, reveal=0.003):
 
 def front_rail(p, colour, x0, x1, z, yf, h=0.02, d=0.02):
     """A rail across a carcass front between the side walls' inner faces x0..x1, at the joint z between two fronts: the reveal between the fronts shows it.
-    Its face is 1 mm behind the front at y = yf (not in the plane of the sides' front edges) and its ends 1 mm into the sides. 20 mm high, so a
-    drawer box (its floor 20 mm or more above its front's lower edge) slides past it."""
+    Its face is 1 mm behind the front at y = yf (not in the plane of the sides' front edges) and its ends 1 mm into the sides. 20 mm high: it reaches
+    7 to 8.5 mm above the lower front's edge, and a drawer box's floor sits 12.5 mm (office.drawer) or 20 mm (interactive.drawer) above it, so the box
+    slides past. A taller rail, a wider reveal or a lower floor would clip."""
     p.box(colour, ((x0 + x1) / 2, yf + 0.001 + d / 2, z), (x1 - x0 + 0.002, d, h))
 
 

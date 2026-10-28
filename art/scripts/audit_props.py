@@ -583,7 +583,9 @@ def _group_gap(grp, rest, parts):
 
 
 def test_gap(name, prop, parts, mounted, lo, hi):
-    """Parts the floating test counts as joined (within TOUCH) that do not touch (more than CONTACT apart): a visible sliver between them."""
+    """Parts the floating test counts as joined (within TOUCH) that do not touch (more than CONTACT apart): a visible sliver between them.
+    Only a group of parts that touches nothing else is reported: a gap between two parts that each touch something else (a shelf joined to one
+    side wall and short of the other) is not."""
     if re.search(LOOSE, short(name)) or len(parts) < 2:
         return []
     loose = {i for grp in joined_groups(parts, TOUCH)[1:] for i in grp}            # the floating test reports these
