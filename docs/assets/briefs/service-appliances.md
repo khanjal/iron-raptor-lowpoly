@@ -77,10 +77,10 @@ All three are generic designs: no game, maker, character or logo is copied. The 
 
 - Upright: the side profile (built from three convex prisms: base, sloping screen section, marquee box), control panel tilted towards the player with a joystick and three buttons, a screen in a black bezel on the sloping face with a few lit blocks, a lit marquee, a coin door with two lit coin slots, a stripe of side art on each side.
 - Cocktail table: the black box, the screen under a glass top, a control panel with a joystick and two buttons at each short end, a coin door on a long side.
-- Pinball: the cabinet sloping down towards the player (6 degrees), four chrome legs (the front ones shorter), a coloured playfield with bumpers and flippers under glass, a backbox with a lit backglass and a speaker grille, a coin door, flipper buttons, the plunger.
-- Dropped: the CRT's shape behind the bezel, the playfield's ramps and lanes beyond a few blocks, the real art.
+- Pinball: the cabinet sloping down towards the player (6.5 degrees), four chrome legs (the front ones shorter), a coloured playfield with bumpers and flippers under glass, a backbox with a lit backglass and a speaker grille, a coin door, flipper buttons, the plunger.
+- Dropped: the CRT's shape behind the bezel, the playfield's ramps (three lanes and three flat bumpers are kept), the real art.
 
-Colours (palette names): `black` cabinets, `screen` and `glow_green`, `glow_cyan`, `glow_red`, `glow_amber` for the screens, marquees and backglass, `cloth_red` and `label_blue` side art, controls and playfield, `metal_galv` chrome, `metal_dark` coin doors, `clear_glass` glass, `paint_white` flippers.
+Colours (palette names): `black` cabinets, `screen` and `glow_cyan`, `glow_red`, `glow_amber` for the screens, marquees and backglass, `cloth_red` and `label_blue` side art, controls and playfield, `metal_galv` chrome, `metal_dark` coin doors, `clear_glass` glass, `paint_white` flippers.
 
 ## Size, pivot, budget, markers
 
@@ -97,7 +97,7 @@ Colours (palette names): `black` cabinets, `screen` and `glow_green`, `glow_cyan
 | Marquee box | 0.64 x 0.66 x 0.25, `black` | y -0.24 to 0.42, z 1.50 to 1.75 | on the screen section; overhangs its front by 10 cm |
 | Marquee light | 0.58 x 0.012 x 0.17, `glow_amber` | on the marquee box's front | sunk 2 mm |
 | Bezel, screen, pixels | parallel to the sloping face: `black` 0.56 x 0.50, `screen` 0.44 x 0.36, lit blocks | on the sloping face | each sunk into the one behind |
-| Control panel | 0.64 x 0.18 x 0.05, tilted 12 degrees towards the player, `cloth_red` | front edge at y -0.42, z about 0.89 | sunk into the base front |
+| Control panel | 0.64 x 0.18 x 0.05, tilted 12 degrees towards the player, `cloth_red` | front edge at y -0.42, z about 0.88, its underside on the base's front edge | sunk into the base front |
 | Joystick, buttons | a `metal_galv` stick with a `black` ball; three `label_blue` buttons | on the panel's face | sunk into it |
 | Coin door | 0.26 x 0.012 x 0.30, `metal_dark`; two `glow_red` slots | z 0.30 to 0.60 on the base front | sunk 2 mm |
 | Side art | a 0.006 thick `label_blue` panel and a `cloth_red` stripe on each side | x ±0.322 | sunk 2 mm into the side |

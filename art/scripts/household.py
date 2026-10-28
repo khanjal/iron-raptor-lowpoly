@@ -1126,7 +1126,7 @@ def _upright_screen(p, w, foot, head):
 @piece("service", "ArcadeUpright")
 def arcade_upright():
     """A one-player upright video arcade cabinet (generic, no game's art): the side profile with the control panel at the waist, the screen
-    leaning back above it, a lit marquee overhanging the top; side art; a coin door. 0.64 x 0.84 x 1.75 m."""
+    leaning back above it, a lit marquee overhanging the top; side art; a coin door. 0.66 x 0.72 x 1.75 m (0.64 wide without the side art)."""
     p = Prop("GH_ArcadeUpright_01")
     w, y_front, y_back, base_h = 0.64, -0.30, 0.42, 0.86
     foot, head = (y_front, base_h), (-0.14, 1.50)                                # the sloping screen face
@@ -1136,7 +1136,7 @@ def arcade_upright():
     p.box("black", (0, (marquee_y + y_back) / 2, (head[1] + top) / 2), (w, y_back - marquee_y, top - head[1]))
     p.box("glow_amber", (0, marquee_y - 0.006 + SINK, (head[1] + top) / 2), (w - 0.06, 0.012, 0.17))           # the lit marquee
     _upright_screen(p, w, foot, head)
-    tilt, panel = 12, (0, -0.33, 0.89)                                          # the control panel, leaning towards the player
+    tilt, panel = 12, (0, -0.33, 0.877)                                         # the control panel, leaning towards the player; its underside meets the base's front edge
     p.box("cloth_red", panel, (w - 0.004, 0.18, 0.05), rot=(tilt, 0, 0))
     _joystick(p, _tilted(panel, tilt, -0.15, -0.01, 0.025))
     for k in range(3):
@@ -1179,20 +1179,23 @@ def _pinball_legs(p, centre, tilt, length, height):
             p.box("metal_galv", (x, y, z / 2), (0.05, 0.05, z))
 
 
-def _playfield(p, centre, tilt, height):
-    """The playfield under glass on the tilted top: a blue field with bumpers, lanes and flippers, the glass on two side rails."""
+def _playfield(p, centre, tilt, height, field_end):
+    """The playfield under glass on the tilted top, from the front up to `field_end` (along the cabinet, where the backbox stands): a blue
+    field with bumpers, lanes and flippers, the glass on two side rails, its far end 2 cm into the backbox."""
     top = height / 2
-    p.box("label_blue", _tilted(centre, tilt, 0, 0, top + 0.003 - SINK), (0.62, 1.1, 0.006), rot=(tilt, 0, 0))
+    field_start = -0.53
+    p.box("label_blue", _tilted(centre, tilt, 0, (field_start + field_end) / 2, top + 0.003 - SINK), (0.62, field_end - field_start, 0.006), rot=(tilt, 0, 0))
     art = top + 0.004 + 0.002 - SINK / 2                                        # the decals, 1 mm into the field
-    for x, ly in ((-0.12, 0.25), (0.12, 0.25), (0.0, 0.38)):
+    for x, ly in ((-0.12, 0.15), (0.12, 0.15), (0.0, 0.26)):
         p.cyl("cloth_red", _tilted(centre, tilt, x, ly, art), 0.045, 0.004, n=10, rot=(tilt, 0, 0))
     for x in (-0.12, 0.0, 0.12):
-        p.box("paint_yellow", _tilted(centre, tilt, x, 0.485, art), (0.02, 0.11, 0.004), rot=(tilt, 0, 0))
+        p.box("paint_yellow", _tilted(centre, tilt, x, 0.37, art), (0.02, 0.1, 0.004), rot=(tilt, 0, 0))
     for sx in (-1, 1):
         p.box("paint_white", _tilted(centre, tilt, sx * 0.08, -0.42, art), (0.1, 0.025, 0.004), rot=(tilt, 0, 0))
         p.box("paint_yellow", _tilted(centre, tilt, sx * 0.2, -0.3, art), (0.04, 0.14, 0.004), rot=(tilt, 0, 0))
         p.box("metal_galv", _tilted(centre, tilt, sx * 0.333, 0, top + 0.015 - SINK), (0.03, 1.296, 0.03), rot=(tilt, 0, 0))   # inside the cabinet's sides and ends
-    p.box("clear_glass", _tilted(centre, tilt, 0, -0.02, top + 0.013), (0.66, 1.2, 0.008), rot=(tilt, 0, 0))
+    glass_start, glass_end = -0.61, field_end + 0.02
+    p.box("clear_glass", _tilted(centre, tilt, 0, (glass_start + glass_end) / 2, top + 0.013), (0.66, glass_end - glass_start, 0.008), rot=(tilt, 0, 0))
 
 
 def _backbox(p, w, y0, y1, z0, z1):
@@ -1211,14 +1214,17 @@ def _backbox(p, w, y0, y1, z0, z1):
 @piece("service", "Pinball")
 def pinball():
     """A pinball machine (generic): a long cabinet sloping down towards the player on four chrome legs, the playfield under glass, a tall lit
-    backbox at the far end, a coin door, flipper buttons on the sides and a plunger at the front right. 0.72 x 1.32 x 1.93 m."""
+    backbox at the far end, a coin door, flipper buttons on the sides and a plunger at the front right. 0.73 x 1.40 x 1.93 m with the plunger."""
     p = Prop("GH_Pinball_01")
     w, length, height, tilt = 0.7, 1.3, 0.3, 6.5
     centre = (0, -0.06, 0.85)
     p.box("black", centre, (w, length, height), rot=(tilt, 0, 0))
     _pinball_legs(p, centre, tilt, length, height)
-    _playfield(p, centre, tilt, height)
-    _backbox(p, w, 0.37, 0.59, 1.0, 1.93)
+    box_front, box_back = 0.37, 0.6
+    c, s = math.cos(math.radians(tilt)), math.sin(math.radians(tilt))
+    field_end = (box_front - centre[1] + height / 2 * s) / c                      # along the cabinet, where the backbox's front meets the top
+    _playfield(p, centre, tilt, height, field_end)
+    _backbox(p, w, box_front, box_back, 1.0, 1.93)
     front = -length / 2                                                         # the front face, across the cabinet's length
     p.box("metal_dark", _tilted(centre, tilt, 0, front - 0.006 + SINK, -0.03), (0.3, 0.012, 0.16), rot=(tilt, 0, 0))
     for dx in (-0.06, 0.06):
