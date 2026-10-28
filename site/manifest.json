@@ -1802,7 +1802,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 900,
+   "triangles": 904,
    "size": [
     0.16,
     0.379,
@@ -1855,7 +1855,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 900,
+   "triangles": 904,
    "size": [
     0.088,
     0.219,
@@ -1884,6 +1884,11 @@
      "part": "Stripes",
      "swatch": 35,
      "hex": "#C49A5E"
+    },
+    {
+     "part": "Eyes",
+     "swatch": 42,
+     "hex": "#E0B83A"
     }
    ]
   },
@@ -1903,7 +1908,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 900,
+   "triangles": 904,
    "size": [
     0.168,
     0.398,
@@ -1952,7 +1957,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 900,
+   "triangles": 904,
    "size": [
     0.16,
     0.379,
@@ -2044,7 +2049,7 @@
    ],
    "rigged": true,
    "interactive": false,
-   "triangles": 900,
+   "triangles": 904,
    "size": [
     0.16,
     0.379,

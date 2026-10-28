@@ -123,23 +123,40 @@ def _cat_ears(cm, d, bm):
 
 
 def _cat_ear_coat(d, c, n):
-    """The inside of the ear (its forward face) pink, the back the coat's."""
-    if n.y < -0.5:
-        return "pink"
+    """The ear in the coat's colour all over (the pink inside is its own part, _cat_ear_inner)."""
     return d.c3 if d.pattern in ("siamese", "tuxedo") else d.c1
+
+
+def _cat_ear_inner(cm, d, bm):
+    """The pink inside of each ear, smaller than its front, as low-poly cats have it: the ear's forward face with its corners pulled two thirds of
+    the way in towards a point a little above its middle (the ear's lower part is inside the skull), standing 0.8 mm in front of it so the two
+    never share a plane."""
+    import bmesh
+    from mathutils import Vector
+    tmp = bmesh.new()
+    _cat_ears(cm, d, tmp)
+    tmp.normal_update()
+    for f in tmp.faces:
+        if f.normal.y < -0.5:
+            pts = [v.co.copy() for v in f.verts]
+            centre = sum(pts, Vector()) / len(pts)
+            centre.z -= (min(p.z for p in pts) - centre.z) * 0.22
+            bm.faces.new([bm.verts.new(centre + (p - centre) * 0.66 + f.normal * 0.0008) for p in pts])
+    tmp.free()
 
 
 def _cat_extras(d, ctx):
     cm = ctx.common
     ctx.make("ears", partial(_cat_ears, cm, d), partial(_cat_ear_coat, d), ["Ear_L", "Ear_R"], sub=0, smooth=False)
+    ctx.make("ear_inner", partial(_cat_ear_inner, cm, d), lambda c, n: "pink", ["Ear_L", "Ear_R"], sub=0, smooth=False)
     ctx.make("nose", lambda bm: cm.add_box(bm, (0, d.head[-1][0], d.head[-1][1] + 0.004), (0.014 * d.k, 0.012 * d.k, 0.012 * d.k)),
              lambda c, n: "pink", ["Head"], sub=0, smooth=False)
 
 
-def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white", c3="dark_brown", tail_len=1.0, fluff=1.0, head_k=1.18, eye=0.30):  # NOSONAR
+def make_cat(name, size=1.0, pattern="solid", c1="orange_cat", c2="paint_white", c3="dark_brown", tail_len=1.0, fluff=1.0, head_k=1.18, eye=0.38):  # NOSONAR
     """A house cat, 0.27 m to the back (about 0.25 at the shoulder). Patterns: solid, tabby, tuxedo, calico, siamese.
     head_k scales the head about the root of the neck (a kitten's head is large for its body), eye is the eyes' size factor.
-    Stylised as low-poly cats are (docs/assets/briefs/animals.md, "Stylised"): the head 1.18 and the ears about 1.4 times real, thick legs ending in a paw block, the coat in blocks."""
+    Stylised as low-poly cats are (docs/assets/briefs/animals.md, "Stylised"): the head 1.18 and the ears about 1.4 times real (coat-coloured, a smaller pink inside), the eyes large, thick legs ending in a paw block, the coat in blocks."""
     k = size
     cz0 = 0.19 * k                                         # the centre line of the barrel; the back is 0.27 m, the chest hangs to 0.115 m (docs/assets/briefs/animals.md)
     # a house cat's side profile (issue #125's rework): the back a shallow curve a little higher over the hips, a deep chest with a keel, the belly's loose skin low at the
@@ -188,5 +205,5 @@ CATS = {
     "cat_calico":  make_cat("CatCalico", pattern="calico", c1="orange_cat", c2="paint_white", c3="black"),
     "cat_siamese": make_cat("CatSiamese", pattern="siamese", c1="cream", c3="dark_brown", size=1.05),
     "cat_grey":    make_cat("CatGrey", pattern="solid", c1="grey_cat", fluff=1.1),
-    "cat_kitten":  make_cat("CatKitten", pattern="tabby", c1="cream", c3="tan", size=0.55, tail_len=0.9, head_k=1.32, eye=0.36),   # a big head and eyes
+    "cat_kitten":  make_cat("CatKitten", pattern="tabby", c1="cream", c3="tan", size=0.55, tail_len=0.9, head_k=1.32, eye=0.46),   # a big head and eyes
 }
