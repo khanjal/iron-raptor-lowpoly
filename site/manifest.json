@@ -4017,6 +4017,114 @@
    ]
   },
   {
+   "id": "GH_ArcadeCocktail_01",
+   "name": "Arcade cocktail table",
+   "type": "appliances/service/arcade-cabinet",
+   "tags": [
+    "arcade",
+    "cocktail",
+    "diner",
+    "game",
+    "household",
+    "indoor",
+    "new",
+    "retro",
+    "table",
+    "video"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 532,
+   "size": [
+    0.92,
+    0.83,
+    0.53
+   ],
+   "glb": "models/GH_ArcadeCocktail_01.glb",
+   "thumb": "thumbs/GH_ArcadeCocktail_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_ArcadeCocktail_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    },
+    {
+     "part": "Control panels",
+     "swatch": 13,
+     "hex": "#B8443B"
+    }
+   ]
+  },
+  {
+   "id": "GH_ArcadeUpright_01",
+   "name": "Arcade cabinet",
+   "type": "appliances/service/arcade-cabinet",
+   "tags": [
+    "arcade",
+    "cabinet",
+    "diner",
+    "game",
+    "household",
+    "indoor",
+    "new",
+    "retro",
+    "upright",
+    "video"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 478,
+   "size": [
+    0.656,
+    1.75,
+    0.843
+   ],
+   "glb": "models/GH_ArcadeUpright_01.glb",
+   "thumb": "thumbs/GH_ArcadeUpright_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_ArcadeUpright_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Side art",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    },
+    {
+     "part": "Bezel and coin door",
+     "swatch": 3,
+     "hex": "#4A525A"
+    },
+    {
+     "part": "Control panel and stripe",
+     "swatch": 13,
+     "hex": "#B8443B"
+    },
+    {
+     "part": "Screen",
+     "swatch": 61,
+     "hex": "#1E2A33"
+    }
+   ]
+  },
+  {
    "id": "GH_CoffeeMachine_01",
    "name": "Coffee machine",
    "type": "appliances/service/coffee-machine",
@@ -4161,6 +4269,58 @@
     },
     {
      "part": "Window backing",
+     "swatch": 3,
+     "hex": "#4A525A"
+    }
+   ]
+  },
+  {
+   "id": "GH_Pinball_01",
+   "name": "Pinball machine",
+   "type": "appliances/service/pinball",
+   "tags": [
+    "arcade",
+    "diner",
+    "game",
+    "household",
+    "indoor",
+    "new",
+    "pinball",
+    "retro"
+   ],
+   "rigged": false,
+   "interactive": false,
+   "triangles": 560,
+   "size": [
+    0.728,
+    1.93,
+    1.399
+   ],
+   "glb": "models/GH_Pinball_01.glb",
+   "thumb": "thumbs/GH_Pinball_01.png",
+   "parts": {},
+   "clips": [],
+   "variants": [],
+   "interactions": "models/GH_Pinball_01.interactions.json",
+   "lights": 1,
+   "paintable": [
+    {
+     "part": "Main",
+     "swatch": 7,
+     "hex": "#1B1B1E"
+    },
+    {
+     "part": "Playfield",
+     "swatch": 103,
+     "hex": "#2F6F9F"
+    },
+    {
+     "part": "Legs and rails",
+     "swatch": 2,
+     "hex": "#A9B4BC"
+    },
+    {
+     "part": "Coin door and speaker",
      "swatch": 3,
      "hex": "#4A525A"
     }
