@@ -1127,7 +1127,7 @@ def _upright_screen(p, w, foot, head):
 @piece("service", "ArcadeUpright")
 def arcade_upright():
     """A one-player upright video arcade cabinet (generic, no game's art): the side profile with the control panel at the waist, the screen
-    leaning back above it, a lit marquee overhanging the top; side art; a coin door. 0.66 x 0.72 x 1.75 m (0.64 wide without the side art)."""
+    leaning back above it, a lit marquee overhanging the top; side art; a coin door. 0.66 x 0.84 x 1.75 m (0.64 wide without the side art, 0.72 deep without the control panel)."""
     p = Prop("GH_ArcadeUpright_01")
     w, y_front, y_back, base_h = 0.64, -0.30, 0.42, 0.86
     foot, head = (y_front, base_h), (-0.14, 1.50)                                # the sloping screen face
@@ -1152,7 +1152,7 @@ def arcade_upright():
 @piece("service", "ArcadeCocktail")
 def arcade_cocktail():
     """A sit-down cocktail-table arcade game: a black box with the screen facing up under a glass top, a control panel at each short end
-    (the two players face each other across it), a coin door on the front. 0.92 x 0.53 x 0.76 m."""
+    (the two players face each other across it), a coin door on the front. 0.92 x 0.53 x 0.75 m at the glass, 0.83 m to the joystick tops."""
     p = Prop("GH_ArcadeCocktail_01")
     w, d, h = 0.7, 0.5, 0.74
     p.box("black", (0, 0, h / 2), (w, d, h))
@@ -1162,10 +1162,11 @@ def arcade_cocktail():
     p.box("clear_glass", (0, 0, h + 0.004), (w + 0.04, d + 0.03, 0.012))        # the glass top, its underside 2 mm below the cabinet's top
     for sx in (-1, 1):
         cx = sx * (w / 2 + 0.06 - 0.01)                                         # the panels: 1 cm into the cabinet's ends
-        p.box("cloth_red", (cx, 0, h - 0.08), (0.12, 0.3, 0.05))
-        _joystick(p, (cx + sx * 0.02, -0.07, h - 0.055))
+        panel_top = h + 0.012                                                   # the controls are at the table's top, 2 mm above the glass's edge in them
+        p.box("cloth_red", (cx, 0, panel_top - 0.025), (0.12, 0.3, 0.05))
+        _joystick(p, (cx + sx * 0.02, -0.07, panel_top))
         for dy in (0.04, 0.1):
-            p.cyl("label_blue", (cx, dy, h - 0.055 + 0.006 - SINK), 0.016, 0.012, n=8)
+            p.cyl("label_blue", (cx, dy, panel_top + 0.006 - SINK), 0.016, 0.012, n=8)
     _coin_door(p, 0, -d / 2, 0.35, w=0.2, h=0.24)
     return p
 

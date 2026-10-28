@@ -10,7 +10,7 @@
    "position": [
     0.0,
     0.0,
-    0.7248
+    0.7719
    ],
    "colour": "cool",
    "range": 3,
@@ -24,7 +24,7 @@
    "position": [
     0.0,
     0.0,
-    0.4578
+    0.498
    ],
    "event": "arcade",
    "loop": true,

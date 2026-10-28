@@ -86,7 +86,7 @@ Colours (palette names): `black` cabinets, `screen` and `glow_cyan`, `glow_red`,
 
 - Front -Y (the player stands at -Y; the cocktail table's players sit at its two short ends, ±X), origin on the floor at the centre of the base.
 - Furniture and appliance class: 300-1,200 triangles each.
-- No moving parts. Markers (`emitters.SPECS`): a cool `Screen` light and a looping `Attract` sound for each (traits power and noisy).
+- No moving parts. Markers (`emitters.SPECS`): a cool `Screen` light on the upright and the cocktail table, a warm `Backglass` light on the pinball, and a looping `Attract` sound for each (traits power and noisy).
 
 ## Parts: upright (W 0.64; y from the front: -0.42 control panel, -0.30 base front, +0.42 back)
 
@@ -96,12 +96,37 @@ Colours (palette names): `black` cabinets, `screen` and `glow_cyan`, `glow_red`,
 | Screen section | prism, profile (y, z): (-0.30, 0.86), (0.42, 0.86), (0.42, 1.50), (-0.14, 1.50): the front leans back 14 degrees | x ±0.32 | on the base |
 | Marquee box | 0.64 x 0.66 x 0.25, `black` | y -0.24 to 0.42, z 1.50 to 1.75 | on the screen section; overhangs its front by 10 cm |
 | Marquee light | 0.58 x 0.012 x 0.17, `glow_amber` | on the marquee box's front | sunk 2 mm |
-| Bezel, screen, pixels | parallel to the sloping face: `black` 0.56 x 0.50, `screen` 0.44 x 0.36, lit blocks | on the sloping face | each sunk into the one behind |
+| Bezel, screen, pixels | parallel to the sloping face: `metal_dark` 0.56 x 0.52, `screen` 0.44 x 0.36, lit blocks | on the sloping face | each sunk into the one behind |
 | Control panel | 0.64 x 0.18 x 0.05, tilted 12 degrees towards the player, `cloth_red` | front edge at y -0.42, z about 0.88, its underside on the base's front edge | sunk into the base front |
 | Joystick, buttons | a `metal_galv` stick with a `black` ball; three `label_blue` buttons | on the panel's face | sunk into it |
 | Coin door | 0.26 x 0.012 x 0.30, `metal_dark`; two `glow_red` slots | z 0.30 to 0.60 on the base front | sunk 2 mm |
 | Side art | a 0.006 thick `label_blue` panel and a `cloth_red` stripe on each side | x ±0.322 | sunk 2 mm into the side |
 
-The cocktail table's and the pinball's parts follow the same rules (each part sunk into what it stands on, decals 2 mm proud of their face, thin plates with their own depth) and are listed in the script's docstrings.
+## Parts: cocktail table (cabinet 0.70 x 0.50 x 0.74)
+
+| Part | Size or shape | Position | Attaches to |
+|---|---|---|---|
+| Cabinet | 0.70 x 0.50 x 0.74 box, `black` | z 0 to 0.74 | the floor |
+| Screen and lit blocks | 0.40 x 0.30 x 0.004 `screen`, blocks 0.002 thick | z 0.739 to 0.743, blocks 0.5 mm into it | sunk 1 mm into the top |
+| Glass top | 0.74 x 0.53 x 0.012, `clear_glass` | z 0.738 to 0.750 | its underside 2 mm into the top; the screen inside it |
+| Control panels | 0.12 x 0.30 x 0.05, `cloth_red` | x ±0.34 to ±0.46, top at z 0.752 | 1 cm into the cabinet's ends; the glass's ends 3 cm into them |
+| Joysticks, buttons | as on the upright | on the panels' tops | sunk 2 mm |
+| Coin door | 0.20 x 0.012 x 0.24, `metal_dark`, two `glow_red` slots | front, z 0.23 to 0.47 | sunk 2 mm |
+
+## Parts: pinball (cabinet 0.70 x 1.30 x 0.30, tilted 6.5 degrees, centre (0, -0.06, 0.85))
+
+Positions along the cabinet (ly, from its middle; front -0.65) and out from its top face (lz, top 0.15) are turned by the tilt.
+
+| Part | Size or shape | Position | Attaches to |
+|---|---|---|---|
+| Cabinet | 0.70 x 1.30 x 0.30 box, `black` | front top z 0.93, back top 1.07 | the legs |
+| Legs | 0.05 x 0.05 `metal_galv`, four | x ±0.30, ly -0.57 and 0.53 | the floor; 2 cm into the cabinet's underside |
+| Playfield | 0.62 x 0.98 x 0.006, `label_blue` | ly -0.53 to the backbox's front (0.45) | 2 mm into the top |
+| Bumpers, lanes, flippers, slingshots | 4 mm discs and bars, `cloth_red`, `paint_yellow`, `paint_white` | on the field | 1 mm into it |
+| Side rails | 0.03 x 1.296 x 0.03, `metal_galv` | x ±0.333 | 2 mm into the top, inside its sides and ends |
+| Glass | 0.66 x 1.08 x 0.008, `clear_glass` | ly -0.61 to 0.47, lz 0.159 to 0.167 | its sides in the rails, its far end 2 cm into the backbox |
+| Backbox | 0.70 x 0.23 x 0.93, `black` | y 0.37 to 0.60, z 1.00 to 1.93 | stands on the cabinet's back end (its front meets the top at z 1.00) |
+| Backglass, art, speaker | `glow_amber` 0.62 x 0.40, blocks; `metal_dark` 0.62 x 0.20 with `black` bars | backbox front | each sunk 1 to 2 mm |
+| Coin door, slots, plunger, flipper buttons | `metal_dark`, `glow_red`, `metal_galv`/`black`, `label_white` | front face; sides | sunk 2 mm |
 
 Checks: `audit_props.py` (no gap, coplanar or floating finding), thumbnails, four sides in Blender.
