@@ -100,6 +100,7 @@ To rebuild the browser's slice:
 | credit line | `python tools/stamp_glb.py` (writes the CC BY 4.0 credit into `asset.copyright` of every `site/models/*.glb` that lacks it; Blender's exporter does it for new builds, `check_site.py` fails without it) |
 | check | `python tools/check_site.py` |
 | compare two builds | `python tools/compare_builds.py <worktree> <worktree>`: the GLBs, `out/meta` and `art/data/interactions.json` of two builds (how to prove an `art/scripts/` change changed nothing: `.claude/skills/sonar-check`) |
+| silhouette | `python tools/silhouette.py <model id>`: the model's side (or `--view front`) outline from its GLB laid over a reference picture of the real thing in `out/reference/<id>.png` (git-ignored, never committed; `--ref` for one shared by several models), with the overlap and where they differ; the overlay goes to `out/silhouette/` |
 
 ## Using the models in your engine
 

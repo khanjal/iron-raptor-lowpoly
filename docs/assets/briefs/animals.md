@@ -156,7 +156,7 @@ The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 
 
 For every rebuilt animal, in Blender with `look` (mode `angles`) and again in the site's viewer:
 
-1. **Side (right)**: the profile. Head carried above the back with a visible neck, a chest that hangs lower than the belly, a tucked waist, the hips rounder than the shoulders, four legs with a bend at the hock, feet longer than they are wide, a tail with a shape of its own.
+1. **Side (right)**: the profile. Head carried above the back with a visible neck, a chest that hangs lower than the belly, a tucked waist, the hips rounder than the shoulders, four legs with a bend at the hock, feet longer than they are wide, a tail with a shape of its own. Lay it over the real animal's: `python tools/silhouette.py <model id> --ref out/reference/<species>.png` with a side-view silhouette of the species in `out/reference/` (git-ignored; never commit it). Read the overlay (red: only the model, blue: only the real animal) for where the back line, belly, legs and head go wrong, not only the overlap number.
 2. **Front**: the body wider at the chest than the legs are apart; the head wider than the neck; two ears and two eyes visible; the legs under the shoulders, not at the sides.
 3. **Top**: the body a barrel (widest at the rib cage, narrower at the waist), the head a wedge that narrows to the muzzle, the tail laid along the body.
 4. **Three-quarter**, and at 10 m (the size in the game): it reads as the animal in a silhouette.
@@ -165,6 +165,7 @@ For every rebuilt animal, in Blender with `look` (mode `angles`) and again in th
 
 - [ ] `audit_animals.py` has no problem (parts, joins, spacing, size and proportions).
 - [ ] The ratios in the table above.
+- [ ] The side outline laid over a real side view (`tools/silhouette.py`), and the differences it shows fixed or named.
 - [ ] A neck and shoulder you can see from the side; the head is not a continuation of the spine.
 - [ ] Barrel chest and tucked waist (dogs and cat); the legs are not longer than the trunk is deep.
 - [ ] Feet (paws or hooves), not stubs.

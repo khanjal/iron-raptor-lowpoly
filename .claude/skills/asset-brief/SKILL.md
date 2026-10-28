@@ -7,7 +7,7 @@ description: Research a real-world object family before modelling or reworking i
 
 A model that has the right size and one colour is not done. The sports balls were: nine models, one of each kind, no size classes, and a golf ball with no dimples. Fruit and vehicles got variants because someone asked "what does the real family look like?". Ask that first, for every category, and write the answer down before opening Blender.
 
-The United States is the reference region (issue #346 covers the rest: do not build other regions). Style stays better-made low-poly with the shared palette; reference images are looked at, never traced, copied or committed.
+The United States is the reference region (issue #346 covers the rest: do not build other regions). Style stays better-made low-poly with the shared palette; reference images are looked at, never traced, copied or committed (a side-view silhouette may be kept in the git-ignored `out/reference/` for `tools/silhouette.py`: `blender-assets`).
 
 ## Steps
 
