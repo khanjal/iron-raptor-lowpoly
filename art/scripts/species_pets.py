@@ -91,6 +91,15 @@ def _cat_siamese(d, c, h):
     return d.c3 if (c.z < 0.07 * d.k or c.y < -0.28 * d.k) else d.c1
 
 
+def _cat_tabby_head(d, c, n):
+    """A tabby's face: a white muzzle below the cheeks, a dark stripe down the middle of the forehead, the rest the coat."""
+    if c.y < -0.25 * d.k * d.hk and c.z < d.head[4][1] + 0.005:
+        return d.c2
+    if abs(c.x) < 0.014 * d.k and n.z > 0.3:
+        return d.c3
+    return d.c1
+
+
 # how each pattern paints the body; "solid" and any other pattern is c1
 _CAT_COATS = {"tabby": _cat_tabby, "tuxedo": _cat_tuxedo, "calico": _cat_calico, "siamese": _cat_siamese}
 
@@ -98,7 +107,7 @@ _CAT_COATS = {"tabby": _cat_tabby, "tuxedo": _cat_tuxedo, "calico": _cat_calico,
 _CAT_HEAD_COATS = {
     "siamese": lambda d, c, n: d.c3 if c.y < -0.245 * d.k else d.c1,
     "tuxedo": lambda d, c, n: d.c2 if (c.y < -0.25 * d.k and c.z < d.head[4][1] + 0.01) else d.c1,
-    "tabby": lambda d, c, n: d.c2 if (c.y < -0.25 * d.k * d.hk and c.z < d.head[4][1] + 0.005) else (d.c3 if (abs(c.x) < 0.014 * d.k and n.z > 0.3) else d.c1),
+    "tabby": _cat_tabby_head,
 }
 
 

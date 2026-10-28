@@ -7,12 +7,12 @@ TARGETS  object names to render (each with its children), one set of images each
          never committed: see asset-brief step 3)
 OUT      folder for the images (default <repo>/out/compare, which git ignores); the files are <target>_<view>[_head].png
 VIEWS    names from VIEW_DIRS (default all of them)
-HEAD     True frames the head end of each target (the top of its front half) instead of the whole of it
+HEAD     True frames the head end of each target (the top of its front half, towards -Y: turn a reference that faces +Y first) instead of the whole of it
 SIZE     the images' side in pixels (default 512)
 
 Every target is drawn the same way, so the sheets compare shapes, not lighting: Workbench, flat studio light, the palette texture (a reference
 without one is plain grey), from a temporary camera on the same direction and with the same lens. The scene's camera, render engine, resolution,
-output path and every object's render visibility are put back afterwards.
+output path and format, Workbench shading and every object's render visibility are put back afterwards.
 """
 
 import math
@@ -45,6 +45,8 @@ def _points(obj):
             me = ev.to_mesh()
             pts += [ev.matrix_world @ v.co for v in me.vertices]
             ev.to_mesh_clear()
+    if not pts:
+        raise ValueError(f"render_views: {obj.name} has no visible mesh (hidden in the viewport, or no mesh among its children)")
     return pts
 
 
@@ -67,7 +69,8 @@ def _family(obj):
 def render(targets, out, views, head, size):
     scene = bpy.context.scene
     keep = {"camera": scene.camera, "engine": scene.render.engine, "x": scene.render.resolution_x, "y": scene.render.resolution_y,
-            "pct": scene.render.resolution_percentage, "path": scene.render.filepath, "film": scene.render.film_transparent}
+            "pct": scene.render.resolution_percentage, "path": scene.render.filepath, "film": scene.render.film_transparent,
+            "format": scene.render.image_settings.file_format, "light": scene.display.shading.light, "colour": scene.display.shading.color_type}
     hidden = {o.name: o.hide_render for o in scene.objects}
     cam_data = bpy.data.cameras.new("RenderViewsCam")
     cam_data.lens = LENS
@@ -81,6 +84,7 @@ def render(targets, out, views, head, size):
         scene.render.resolution_x = scene.render.resolution_y = size
         scene.render.resolution_percentage = 100
         scene.render.film_transparent = False
+        scene.render.image_settings.file_format = "PNG"
         scene.camera = cam
         out.mkdir(parents=True, exist_ok=True)
         half_fov = math.atan(18.0 / LENS)                            # a 36 mm sensor: half its width over the lens
@@ -90,6 +94,7 @@ def render(targets, out, views, head, size):
             for o in scene.objects:
                 o.hide_render = o.name not in show
             centre, radius = _frame(_points(obj), head)
+            cam_data.clip_start, cam_data.clip_end = radius * 0.05, radius * 20     # a small model (a 4 cm insect) is not cut by the near plane
             for view in views:
                 d = Vector(VIEW_DIRS[view]).normalized()
                 cam.location = centre + d * (radius / math.sin(half_fov) * 1.05)
@@ -107,6 +112,8 @@ def render(targets, out, views, head, size):
         scene.camera, scene.render.engine = keep["camera"], keep["engine"]
         scene.render.resolution_x, scene.render.resolution_y, scene.render.resolution_percentage = keep["x"], keep["y"], keep["pct"]
         scene.render.filepath, scene.render.film_transparent = keep["path"], keep["film"]
+        scene.render.image_settings.file_format = keep["format"]
+        scene.display.shading.light, scene.display.shading.color_type = keep["light"], keep["colour"]
     return written
 
 
