@@ -25,13 +25,13 @@ For every new or reworked model, write down before any code (use the `asset-brie
 
 1. **Which real object, which variant**, and why (a wedge or a wheel of cheese; a Type I or Type II ambulance). **An existing id keeps its variant, name and file name.**
 2. **Real size** in metres. For a fantasy or sci-fi thing with no real counterpart, the size is the project's choice: pick it from a real animal or object it resembles and write the reason in the brief.
-3. **3-5 features that make it recognisable.**
+3. **3-5 features that make it recognisable**, and the low-poly direction (`asset-brief` step 3): what the model pushes past the real numbers, and its colour blocks.
 4. **Colours** as palette names (`common.PALETTE`), never RGB.
 5. **Pivot and use**: where the origin goes decides how people place it.
 6. **Moving parts and markers** (`hinge` / `slide` only), and their `interactions.json` entries. Keep what already works (rigs, clips, parts, ids, file names).
 7. **Parts table**: each part's size, centre and what it attaches to (see "Parts, fit and clipping" below).
 
-Reference pictures: describe what you learned in words; never trace, copy or commit an image or a model.
+Reference pictures: look at the real object and at other people's low-poly models of it, viewed and never saved (`asset-brief` step 3: what they push past real proportions, how the colour sits in blocks) for direction; describe what you learned in words; never trace, copy or commit an image or a model.
 
 **Build order:** (1) blockout of the main shapes at the right proportions, and `look` at it before adding anything; (2) secondary features (bevels, trim, handles, feet, seams, wear; not bevels on the 3 m grid kit pieces, which must butt without a groove, nor on the faceted animals and people); hollow only what anyone can see into or put something in; (3) small details with the triangle budget left. Check from four angles and at 10 m, then against the brief: size, front faces -Y, pivot, palette-only colours, triangles, markers.
 
