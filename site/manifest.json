@@ -4125,11 +4125,11 @@
    ],
    "rigged": false,
    "interactive": false,
-   "triangles": 60,
+   "triangles": 750,
    "size": [
-    0.9,
-    1.45,
-    0.565
+    0.84,
+    1.5,
+    0.681
    ],
    "glb": "models/GH_Jukebox_01.glb",
    "thumb": "thumbs/GH_Jukebox_01.png",
@@ -4145,19 +4145,24 @@
      "hex": "#6B4A2E"
     },
     {
-     "part": "Top dome",
-     "swatch": 13,
-     "hex": "#B8443B"
+     "part": "Plinth, record and buttons",
+     "swatch": 7,
+     "hex": "#1B1B1E"
     },
     {
-     "part": "Display frame",
-     "swatch": 41,
-     "hex": "#9FC8D8"
+     "part": "Speaker cloth",
+     "swatch": 57,
+     "hex": "#C9A43A"
     },
     {
-     "part": "Lower front panel",
+     "part": "Chrome trim and grille",
      "swatch": 2,
      "hex": "#A9B4BC"
+    },
+    {
+     "part": "Window backing",
+     "swatch": 3,
+     "hex": "#4A525A"
     }
    ]
   },

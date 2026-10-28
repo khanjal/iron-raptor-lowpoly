@@ -135,9 +135,10 @@
   "metal_dark": "Inside"
  },
  "GH_Jukebox_01": {
-  "glass": "Display frame",
-  "cloth_red": "Top dome",
-  "metal_galv": "Lower front panel"
+  "black": "Plinth, record and buttons",
+  "fabric_mustard": "Speaker cloth",
+  "metal_galv": "Chrome trim and grille",
+  "metal_dark": "Window backing"
  },
  "GO_Copier_01": {
   "glass": "Scanner glass",
