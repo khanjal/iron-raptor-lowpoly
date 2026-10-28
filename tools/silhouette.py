@@ -43,6 +43,7 @@ COLUMNS = {SIDE: ("back", "middle", FRONT), FRONT: ("its right", "middle", "its 
 FITS = ("height", "length", "box")
 ROWS = 240                                                      # mask height in pixels
 MAX_PIXELS = 6_000_000                                          # refuse bigger reference images (the decoder is pure Python: about 2500 x 2400)
+CUT_OUT = 0.02                                                  # a PNG is a cut-out when at least this share of it is transparent
 MAX_STRETCH = 8                                                 # a fitted reference is at most this many times the model's length or height
 
 COMPONENTS = {5120: "b", 5121: "B", 5122: "h", 5123: "H", 5125: "I", 5126: "f"}
@@ -94,8 +95,9 @@ def accessor(doc, binary, index):
     stride = view.get("byteStride", item.size)
     base = view.get("byteOffset", 0) + acc.get("byteOffset", 0)
     count = acc["count"]
-    if not isinstance(count, int) or count < 0 or base + max(count - 1, 0) * stride + item.size > len(binary):
-        raise ValueError(f"accessor {index} runs past the end of the binary chunk")
+    end = min(len(binary), view.get("byteOffset", 0) + view.get("byteLength", len(binary)))
+    if not isinstance(count, int) or count < 0 or (count and base + (count - 1) * stride + item.size > end):
+        raise ValueError(f"accessor {index} runs past the end of its buffer view")
     return [item.unpack_from(binary, base + i * stride) for i in range(count)]
 
 
@@ -174,19 +176,27 @@ def row_span(tri, y):
     return (min(xs), max(xs)) if xs else None
 
 
+def mark(rows, j, span):
+    """OR the pixels whose centres are in the x span into row j; a span narrower than a pixel marks the one it is in."""
+    if span is None or not 0 <= j < len(rows):
+        return
+    first, last = math.ceil(span[0] - 0.5), math.floor(span[1] - 0.5)
+    if first > last:
+        first = last = math.floor((span[0] + span[1]) / 2)
+    first = max(first, 0)
+    if last >= first:
+        rows[j] |= ((1 << (last - first + 1)) - 1) << first
+
+
 def fill(rows, tri):
-    """OR a triangle in pixel coordinates into the rows (pixel centres at +0.5); a sliver thinner than a pixel still marks one."""
+    """OR a triangle in pixel coordinates into the rows (pixel centres at +0.5); a sliver thinner than a pixel either way still marks one."""
     top, bottom = min(p[1] for p in tri), max(p[1] for p in tri)
-    for j in range(max(0, math.ceil(top - 0.5)), min(len(rows) - 1, math.floor(bottom - 0.5)) + 1):
-        span = row_span(tri, j + 0.5)
-        if span is None:
-            continue
-        first, last = math.ceil(span[0] - 0.5), math.floor(span[1] - 0.5)
-        if first > last:
-            first = last = max(0, math.floor((span[0] + span[1]) / 2))
-        first = max(first, 0)
-        if last >= first:
-            rows[j] |= ((1 << (last - first + 1)) - 1) << first
+    first, last = math.ceil(top - 0.5), math.floor(bottom - 0.5)
+    if first > last:                                            # flatter than a row: its whole length on the row its middle is in
+        mark(rows, math.floor((top + bottom) / 2), (min(p[0] for p in tri), max(p[0] for p in tri)))
+        return
+    for j in range(max(0, first), min(len(rows) - 1, last) + 1):
+        mark(rows, j, row_span(tri, j + 0.5))
 
 
 def model_mask(tris, view=SIDE, rows=ROWS):
@@ -270,6 +280,8 @@ def paeth(a, b, c):
 
 
 def unfilter_row(kind, row, prev, bpp):
+    if kind > 4:
+        raise ValueError(f"unknown PNG filter type {kind}: the file is damaged")
     out = bytearray(row)
     if kind == 2:
         return bytearray((x + p) & 255 for x, p in zip(row, prev))
@@ -297,6 +309,8 @@ def samples(row, depth, count):
 def pixels(values, ctype, depth, palette):
     """The row's pixels as (r, g, b, a), 0-255 (tRNS is read for palette images only)."""
     if ctype == 3:
+        if max(values, default=0) >= len(palette):
+            raise ValueError("a palette image with a missing or short palette")
         return [palette[i] for i in values]
     if ctype in (0, 4):
         top = (1 << min(depth, 8)) - 1
@@ -354,7 +368,8 @@ def read_png_mask(path):
         row = pixels(samples(prev, depth, count), ctype, depth, palette)
         opaque.append(bits([a >= 128 for _, _, _, a in row]))
         shape.append(bits([a >= 128 and dark(r, g, b) for r, g, b, a in row]))
-    cut_out = any(r != (1 << width) - 1 for r in opaque)
+    clear = width * height - sum(r.bit_count() for r in opaque)
+    cut_out = clear >= CUT_OUT * width * height                 # a few transparent corners do not make a photo a cut-out
     return crop(Mask(width, opaque if cut_out else shape))
 
 
@@ -506,6 +521,8 @@ def all_jobs():
         stem, _, view = png.stem.partition(".")
         if (MODELS / f"{stem}.glb").exists() and view in ("", FRONT):
             found.append((MODELS / f"{stem}.glb", png, view or SIDE))
+        else:
+            print(f"skipped {png.name}: not <model id>.png or <model id>.front.png (use --ref for it)")
     if not found:
         raise ValueError(f"no <model id>.png or <model id>.front.png in {REFERENCES}")
     return found

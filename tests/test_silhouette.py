@@ -49,6 +49,11 @@ class Masks(unittest.TestCase):
         silhouette.fill(rows, [(0, 0), (4, 0), (0, 4)])
         self.assertEqual(silhouette.to_text(silhouette.Mask(4, rows)), "####\n###.\n##..\n#...")
 
+    def test_flat_sliver_still_marks_a_row(self):
+        rows = [0] * 3
+        silhouette.fill(rows, [(0, 1.3), (3, 1.3), (3, 1.4)])
+        self.assertEqual(rows, [0, 0b111, 0])
+
     def test_sliver_still_marks_a_pixel(self):
         rows = [0] * 3
         silhouette.fill(rows, [(1.4, 0), (1.45, 0), (1.45, 3)])
@@ -113,6 +118,16 @@ class Png(unittest.TestCase):
         self.assertEqual(self.read(png(3, [[0, 1, 2]], 3, plte=plte, trns=trns)), "#.#")     # index 1 is transparent
         self.assertEqual(self.read(png(8, [[0b00001111]], 0, depth=1)), "####")
 
+    def test_photo_with_clear_corners_is_not_a_cut_out(self):
+        white, black, clear = [255, 255, 255, 255], [0, 0, 0, 255], [0, 0, 0, 0]
+        rows = [white * 5 + black + white * 4 for _ in range(10)]          # a dark column on an opaque photo
+        rows[0][:4] = clear                                                 # one clear corner pixel: 1 %
+        self.assertEqual(self.read(png(10, rows, 6)), "\n".join(["#"] * 10))   # the dark column, not the whole picture
+
+    def test_unknown_filter_is_an_error(self):
+        with self.assertRaises(ValueError):
+            silhouette.unfilter_row(7, bytes(1), bytearray(1), 1)
+
     def test_broken_pngs_are_errors(self):
         truncated = png(2, [[0, 0]], 0)[:-30]                                   # cut before the image data ends
         blank = png(2, [[255, 255]], 0)                                         # no silhouette in it
@@ -166,6 +181,7 @@ class CommandLine(unittest.TestCase):
             return silhouette.main(argv)
 
     def test_a_named_reference_that_is_missing_fails(self):
+        (ROOT / "out").mkdir(exist_ok=True)                    # git-ignored: absent on a fresh checkout
         with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp, mock.patch.object(silhouette, "OVERLAYS", Path(tmp)):
             self.assertEqual(self.run_quietly(["GN_CatTabby_faceted_01", "--ref", str(Path(tmp) / "nope.png")]), 1)
 
