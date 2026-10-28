@@ -188,7 +188,7 @@ Tracked in [#91](https://github.com/khanjal/iron-raptor-lowpoly/issues/91) (comm
 
 **References.** The low-poly fridges (Quaternius and single authors) are slightly rounded boxes with a visible door gap, a big handle, and a kick plate or feet.
 
-**Our gaps.** Shapes and details are right (washer and dryer portholes, stove, copier, microwave); edges are sharp and handles thin. The toaster, bread box, cooler and fuse box are plain. The fit of doors and drawers is covered by the item-fit audit (`docs/assets/item-fit-audit.md` in [PR #196](https://github.com/khanjal/iron-raptor-lowpoly/pull/196), not merged yet).
+**Our gaps.** Shapes and details are right (washer and dryer portholes, stove, copier, microwave); edges are sharp and handles thin. The toaster, bread box, cooler and fuse box are plain. The fit of doors and drawers is covered by the item-fit audit ([`item-fit-audit.md`](item-fit-audit.md), PR #196).
 
 **Changes.** A chamfer on the outer edges of white goods, handles 1.5x, a kick plate; the toaster with slots, lever and rounded ends. No issue: fold into the fit batches.
 
