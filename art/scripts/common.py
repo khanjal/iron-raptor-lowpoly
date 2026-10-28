@@ -451,22 +451,6 @@ def subsurf(obj, levels=1):
     bpy.ops.object.modifier_apply(modifier=mod.name)
 
 
-def facet(obj, ratio, symmetric=True):
-    """Turn a part's regular loft bands into the irregular triangles published low-poly models have: decimate it (collapse, mirrored about X so the
-    two sides match) to `ratio` of its faces, triangulated. Run it on a form fine enough to lose detail from (a lofted part subdivided once), and
-    before the part is painted: colour goes by face, and decimating mixes the faces' UVs."""
-    mod = obj.modifiers.new("Facet", "DECIMATE")
-    mod.decimate_type = "COLLAPSE"
-    mod.ratio = ratio
-    mod.use_collapse_triangulate = True
-    mod.use_symmetry = symmetric
-    mod.symmetry_axis = "X"
-    bpy.ops.object.select_all(action="DESELECT")
-    obj.select_set(True)
-    bpy.context.view_layer.objects.active = obj
-    bpy.ops.object.modifier_apply(modifier=mod.name)
-
-
 def paint_faces(obj, fn):
     """Colour each face from the palette: fn(centre, normal) returns a swatch name or index."""
     me = obj.data

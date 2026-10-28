@@ -35,11 +35,16 @@ HEAD_SHARE = 0.45     # HEAD=True: the head end is the top HEAD_SHARE of the mod
 
 
 def _points(obj):
-    """World-space vertices of obj and its mesh children."""
+    """World-space vertices of obj and its mesh children as they are drawn: the evaluated mesh, after its modifiers (a rigged model's armature
+    moves its vertices away from where its own data has them, and framing those left the picture empty)."""
+    dg = bpy.context.evaluated_depsgraph_get()
     pts = []
     for o in [obj] + list(obj.children_recursive):
         if o.type == "MESH":
-            pts += [o.matrix_world @ v.co for v in o.data.vertices]
+            ev = o.evaluated_get(dg)
+            me = ev.to_mesh()
+            pts += [ev.matrix_world @ v.co for v in me.vertices]
+            ev.to_mesh_clear()
     return pts
 
 

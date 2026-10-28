@@ -8,7 +8,6 @@ Each entry gives, in metres:
     tail    (z, y, radius) top to tip
     ear_x, ear_y, ear_z   where the ear bone sits (left side)
     coat(c, n) / head_coat / tail_coat / leg_coat   -> palette swatch for a face centred at c with normal n (leg_coat optional, defaults to coat)
-    facet                                  -> optional {"ratio": r, "sub": n}: the lofted parts subdivided n times, then decimated to r of their faces (common.facet)
     extras(ctx) optional hook that adds parts with ctx.make(name, build(bm), colour, bones)
 """
 
