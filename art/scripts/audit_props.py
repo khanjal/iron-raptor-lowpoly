@@ -655,19 +655,25 @@ def _boxes_meet(a, b, pad):
     return not any(a.lo[i] - pad > b.hi[i] or b.lo[i] - pad > a.hi[i] for i in range(3))
 
 
+def _colour_pairs(parts):
+    """The pairs of parts of different colours whose bounding boxes meet: the ones that can share a face plane."""
+    for i, a in enumerate(parts):
+        for b in parts[i + 1:]:
+            if a.colour != b.colour and _boxes_meet(a, b, PLANE_EPS):
+                yield a, b
+
+
 def test_coplanar(name, prop, parts, mounted, lo, hi):
     """Faces of two parts of different colours in one plane, facing the same way and overlapping where it can be seen: they z-fight."""
     seen = {}
-    for i, a in enumerate(parts):
-        for b in parts[i + 1:]:
-            if a.colour == b.colour or not _boxes_meet(a, b, PLANE_EPS):
-                continue
-            hits = _coplanar_hits(a, b, [o for o in parts if o is not a and o is not b])
-            if hits:
-                key = (a.src, b.src)                        # a loop makes many copies of the same pair: report the lines once
-                if key not in seen:
-                    seen[key] = [f"{a.label()} and {b.label()} share a face plane ({hits} face pair(s))", 0]
-                seen[key][1] += 1
+    for a, b in _colour_pairs(parts):
+        hits = _coplanar_hits(a, b, [o for o in parts if o is not a and o is not b])
+        if not hits:
+            continue
+        key = (a.src, b.src)                                # a loop makes many copies of the same pair: report the lines once
+        if key not in seen:
+            seen[key] = [f"{a.label()} and {b.label()} share a face plane ({hits} face pair(s))", 0]
+        seen[key][1] += 1
     return [msg + (f" (and {n - 1} more like it)" if n > 1 else "") for msg, n in seen.values()]
 
 
