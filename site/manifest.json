@@ -1051,14 +1051,14 @@
      "hex": "#8DB752"
     },
     {
-     "part": "Cloth red",
-     "swatch": 13,
-     "hex": "#B8443B"
-    },
-    {
      "part": "Paint yellow",
      "swatch": 42,
      "hex": "#E0B83A"
+    },
+    {
+     "part": "Cloth red",
+     "swatch": 13,
+     "hex": "#B8443B"
     }
    ]
   },
@@ -21602,6 +21602,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Pickup_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21631,20 +21632,22 @@
    ],
    "aliases": [
     "GV_Pickup_Blue_01"
-   ],
-   "interactions": "models/GV_Pickup_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Tractor_01",
    "name": "Tractor",
    "type": "vehicles/farm/tractor",
    "tags": [
+    "blue",
     "farm",
     "green",
     "machine",
     "new",
+    "orange",
     "red",
-    "rural"
+    "rural",
+    "yellow"
    ],
    "rigged": false,
    "interactive": true,
@@ -21750,6 +21753,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Tractor_01.interactions.json",
    "paintable": [
     {
      "part": "Body",
@@ -21795,8 +21799,7 @@
    ],
    "aliases": [
     "GV_Tractor_Green_01"
-   ],
-   "interactions": "models/GV_Tractor_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Ambulance_White_01",
@@ -21960,6 +21963,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Ambulance_White_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -21986,8 +21990,7 @@
      "swatch": 2,
      "hex": "#A9B4BC"
     }
-   ],
-   "interactions": "models/GV_Ambulance_White_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Motorcycle_01",
@@ -22044,6 +22047,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Motorcycle_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -22073,8 +22077,7 @@
    ],
    "aliases": [
     "GV_Motorcycle_Red_01"
-   ],
-   "interactions": "models/GV_Motorcycle_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Police_Sheriff_01",
@@ -22254,6 +22257,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Police_Sheriff_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -22280,22 +22284,26 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ],
-   "interactions": "models/GV_Police_Sheriff_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Sedan_01",
    "name": "Sedan",
    "type": "vehicles/road/sedan",
    "tags": [
+    "black",
     "blue",
     "car",
     "civilian",
+    "green",
+    "grey",
     "modern",
     "new",
     "red",
     "suburban",
-    "urban"
+    "tan",
+    "urban",
+    "white"
    ],
    "rigged": false,
    "interactive": true,
@@ -22463,6 +22471,7 @@
    "variants": [
     "GV_Sedan_Damaged_01"
    ],
+   "interactions": "models/GV_Sedan_01.interactions.json",
    "paintable": [
     {
      "part": "Body",
@@ -22522,8 +22531,7 @@
    ],
    "aliases": [
     "GV_Sedan_Blue_01"
-   ],
-   "interactions": "models/GV_Sedan_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Sedan_Damaged_01",
@@ -22705,6 +22713,7 @@
    "variants": [
     "GV_Sedan_01"
    ],
+   "interactions": "models/GV_Sedan_Damaged_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -22729,8 +22738,7 @@
    ],
    "aliases": [
     "GV_Sedan_Red_Damaged_01"
-   ],
-   "interactions": "models/GV_Sedan_Damaged_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Taxi_Yellow_01",
@@ -22909,6 +22917,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Taxi_Yellow_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -22930,8 +22939,7 @@
      "swatch": 15,
      "hex": "#2E2E32"
     }
-   ],
-   "interactions": "models/GV_Taxi_Yellow_01.interactions.json"
+   ]
   },
   {
    "id": "GV_Van_01",
@@ -23094,6 +23102,7 @@
    },
    "clips": [],
    "variants": [],
+   "interactions": "models/GV_Van_01.interactions.json",
    "paintable": [
     {
      "part": "Main",
@@ -23123,8 +23132,7 @@
    ],
    "aliases": [
     "GV_Van_Brown_01"
-   ],
-   "interactions": "models/GV_Van_01.interactions.json"
+   ]
   },
   {
    "id": "GV_ShipBunk_01",
