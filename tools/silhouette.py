@@ -4,13 +4,16 @@
     python tools/silhouette.py --ref out/reference/cat.png GN_CatTabby_faceted_01 GN_CatTuxedo_faceted_01
     python tools/silhouette.py --view front GN_Horse_faceted_01             # reference: out/reference/GN_Horse_faceted_01.front.png
     python tools/silhouette.py --all                                        # every out/reference/<model id>[.front].png
+    python tools/silhouette.py --facing left GN_DogHusky_faceted_01         # the reference's head is on the left: mirror it, never guess
     python tools/silhouette.py --min-iou 0.8 ...                            # exit 1 when a model scores lower
 
 The proportion ratios of animal_proportions.py can all pass while the animal still reads wrong (a tube on four posts, issue #125); an outline laid
 over the real animal's shows that at once. The model's rest pose is read from its GLB in site/models/ (every mesh, skinned or not), projected from the
 side (the model's front, +Z in a GLB, on the right of the image) or the front, and filled into a mask. The reference is any side-view PNG of the
 real animal: a shape cut out on a transparent background (any colour), or a dark shape on a light, opaque one. It is scaled to the model's height (--fit length or box for the others), aligned on
-the ground, flipped if it faces the other way and slid along for the best overlap.
+the ground, flipped if it faces the other way and slid along for the best overlap. Which way it faces is guessed from the better overlap unless
+--facing names it (left or right: where the animal's head is in the picture); name it for a gate, since a model far from the reference can
+overlap a backwards reference better (a husky laid tail to nose).
 
 Reference images are third-party pictures and are never committed (the blender-assets skill): keep them in out/reference/, which git ignores
 (in a worktree, its own out/reference/: paths outside the checkout are refused).
@@ -41,6 +44,7 @@ SIDE, FRONT = "side", "front"
 VIEWS = {SIDE: (2, 1), FRONT: (0, 1)}                      # (horizontal, vertical) GLB axes; the side view has the model's front on the right
 COLUMNS = {SIDE: ("back", "middle", FRONT), FRONT: ("its right", "middle", "its left")}   # the model faces the viewer in the front view
 FITS = ("height", "length", "box")
+FACINGS = ("auto", "left", "right")                             # where the reference's front is; the side view puts the model's on the right
 ROWS = 240                                                      # mask height in pixels
 MAX_PIXELS = 6_000_000                                          # refuse bigger reference images (the decoder is pure Python: about 2500 x 2400)
 CUT_OUT = 0.02                                                  # a PNG is a cut-out when at least this share of it is transparent
@@ -415,12 +419,20 @@ def iou(m, r):
     return sum((a & b).bit_count() for a, b in zip(m, r)) / union if union else 0.0
 
 
-def best_overlap(model, ref):
-    """(iou, flipped, offset) for the reference as it is and mirrored, slid along the model by up to a quarter of the wider one."""
+def flips(facing):
+    """The mirrorings to try for a reference facing this way: right is the model's way, left needs a mirror, auto tries both."""
+    if facing not in FACINGS:
+        raise ValueError(f"facing is one of {', '.join(FACINGS)}, not {facing!r}")
+    return {"auto": (False, True), "right": (False,), "left": (True,)}[facing]
+
+
+def best_overlap(model, ref, facing="auto"):
+    """(iou, flipped, offset) for the reference as it is and/or mirrored (see flips), slid along the model by up to a quarter of the wider one."""
     centre = (model.width - ref.width) // 2
     reach = max(model.width, ref.width) // 4
     best = (-1.0, False, 0)
-    for flipped, candidate in ((False, ref), (True, mirror(ref))):
+    for flipped in flips(facing):
+        candidate = mirror(ref) if flipped else ref
         for offset in range(centre - reach, centre + reach + 1):
             m, r, _ = place(model, candidate, offset)
             score = iou(m, r)
@@ -458,11 +470,11 @@ class Result:
     regions: dict
 
 
-def compare(model, ref, view=SIDE, fit="height"):
+def compare(model, ref, view=SIDE, fit="height", facing="auto"):
     ref = fit_reference(model, ref, fit)
     if not ref.area():
         raise ValueError("the reference has no pixels left at the model's size")
-    score, flipped, offset = best_overlap(model, ref)
+    score, flipped, offset = best_overlap(model, ref, facing)
     m, r, width = place(model, mirror(ref) if flipped else ref, offset)
     ref_area, model_area = sum(x.bit_count() for x in r), sum(x.bit_count() for x in m)
     return Result(score, flipped, offset, width, m, r,
@@ -496,7 +508,7 @@ def check_model(glb, ref_path, view, args):
         print(f"{glb.stem}: no reference at {ref_path.relative_to(ROOT)}; wrote the model's outline to {out.relative_to(ROOT)}")
         return not args.ref
     ref = read_png_mask(ref_path)
-    result = compare(model, ref, view, args.fit)
+    result = compare(model, ref, view, args.fit, args.facing if view == SIDE else "auto")
     write_png(out, result.width, overlay(result.model, result.reference, result.width))
     report(glb.stem, result, model, ref)
     print(f"  overlay: {out.relative_to(ROOT)}")
@@ -542,12 +554,16 @@ def main(argv=None):
     parser.add_argument("--ref", help="one reference PNG for every model given")
     parser.add_argument("--view", choices=list(VIEWS), default=SIDE)
     parser.add_argument("--fit", choices=FITS, default="height", help="scale the reference to the model's height, length or both")
+    parser.add_argument("--facing", choices=FACINGS, default="auto",
+                        help="side view: where the reference's head is (left or right); auto takes the better overlap")
     parser.add_argument("--rows", type=int, default=ROWS, help="mask height in pixels")
     parser.add_argument("--min-iou", type=float, default=0.0, help="exit 1 when a model's overlap is lower")
     parser.add_argument("--all", action="store_true", help="every out/reference/<model id>[.front].png (without models, --ref or --view)")
     args = parser.parse_args(argv)
     if args.all == bool(args.models) or (args.all and (args.ref or args.view != SIDE)):
         parser.error("name models, or pass --all alone")
+    if args.facing != "auto" and args.view != SIDE:
+        parser.error("--facing is for the side view")
     try:
         failed = 0
         for glb, ref_path, view in jobs(args):              # every model, not only up to the first failure
