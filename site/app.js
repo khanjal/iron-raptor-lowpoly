@@ -423,6 +423,23 @@ function setupLook(a) {
   state.wantPaint = state.wantTheme = null;
 }
 
+// Options: one row per group of the model's `options` (the buck's antlers), a pill per choice and one for none when the group allows it.
+function setupOptions(a) {
+  const groups = a.options || [];
+  $('v-options').hidden = groups.length === 0;
+  $('v-options').replaceChildren(...groups.map((g) => {
+    const pills = [...g.choices.map((c) => c.name), ...(g.none ? [null] : [])].map((name) => {
+      const b = el('button', { class: 'pill', type: 'button', 'aria-pressed': name === g.default ? 'true' : 'false' }, name ?? g.none);
+      b.onclick = () => {
+        state.viewer.setOption(g.name, name);
+        for (const other of pills) other.setAttribute('aria-pressed', other === b ? 'true' : 'false');
+      };
+      return b;
+    });
+    return el('div', { class: 'row' }, el('span', { class: 'label', text: g.name }), el('div', { class: 'pills' }, ...pills));
+  }));
+}
+
 function fmt(n) {
   if (n >= 10) return n.toFixed(1);
   return n >= 1 ? n.toFixed(2) : n.toFixed(3);
@@ -436,6 +453,7 @@ function setupControls(a, info) {
   const v = state.viewer;
   // moving parts
   setupLook(a); // the viewer has the model by now
+  setupOptions(a);
   const roles = info.parts;
   $('v-parts').hidden = roles.length === 0;
   $('v-part-list').replaceChildren(...roles.map((r) => el('button', { class: 'pill', type: 'button', 'data-role': r, 'aria-pressed': 'false', onclick: () => v.togglePart(r) }, r)));

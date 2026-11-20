@@ -9,6 +9,8 @@ Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Bl
 Axes. The models are built in Blender's space (x right, y back, z up, the front faces -y). The GLB exporter turns that into glTF's (x, z, -y), so everything
 the viewer uses is converted here, once:
   size   [width, height, depth] in metres (glTF x, y, z)
+  options  [{name, default, none, choices: [{name, node}]}]: groups of separate meshes of which one is shown at a time (the buck's antler sets);
+           `node` is the GLB node's name, `none` the label of showing no choice (null when the group always shows one)
   parts  pivot = the part's origin as the GLB node holds it; axis = a unit vector in glTF space (Blender x stays x, Blender z becomes y, Blender y becomes -z).
          The mapping is a proper rotation, so a hinge turns by `limit` degrees about `axis` in the same direction as in Blender, and a slide moves
          `limit` metres along `axis`. `rest` is how far open the part already is in the exported pose (0 = shut).
@@ -99,6 +101,8 @@ def build_entry(aid, a, meta, inter, groups):
         "parts": parts, "clips": list(meta["clips"]),
         "variants": [v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
     }
+    if meta.get("options"):
+        entry["options"] = meta["options"]                          # parts shown one choice at a time (the buck's antler sets): common.option_groups
     if inter:
         entry["interactions"] = f"models/{sidecar_name(aid)}"   # the model's own file: parts, slots, emitters, traits
         lights = sum(1 for e in (inter.get("emitters") or {}).values() if e.get("kind") == "light" and e.get("working", True))
@@ -185,7 +189,14 @@ def catalog_only():
     """Bring site/manifest.json in line with tools/catalog.py (names, tags, which models exist, variants, paints) without the Blender facts: for a change of
     description or of what is folded into a paint. Facts about a model (size, triangles, parts, clips) are kept as they are."""
     path = ROOT / "site" / MANIFEST_NAME
-    doc = json.loads(path.read_text(encoding="utf-8"))
+    doc = refreshed_from_catalog(json.loads(path.read_text(encoding="utf-8")))
+    path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
+    print("updated site/manifest.json from the catalog:", len(doc["assets"]), "assets")
+
+
+def refreshed_from_catalog(doc):
+    """The manifest document `doc` brought in line with the catalog (see catalog_only); changes and returns it. A committed manifest comes back unchanged
+    (tests/test_manifest.py), so a refresh shows only what a catalog change did."""
     groups = variant_groups(catalog.ASSETS)
     assets = []
     present = {a["id"] for a in doc["assets"]}
@@ -214,9 +225,17 @@ def catalog_only():
     apply_themes(doc, assets, entries)
     doc.setdefault("palette", {})["common"] = paints_tool.common_colours(entries)
     doc["palette"]["realistic"] = paints_tool.REALISTIC
-    doc["assets"] = assets
-    path.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
-    print("updated site/manifest.json from the catalog:", len(assets), "assets")
+    doc["assets"] = [_in_build_order(a) for a in assets]
+    return doc
+
+
+BUILD_ORDER = ("id", "name", "type", "tags", "rigged", "interactive", "triangles", "size", "glb", "thumb", "parts", "clips", "variants", "options", "interactions",
+               "lights", "paintable", "paints", "themes", "aliases")
+
+
+def _in_build_order(entry):
+    """The entry's fields in one fixed order, whichever path wrote them (a full build or a catalog-only refresh), any unknown ones after them."""
+    return {k: entry[k] for k in BUILD_ORDER if k in entry} | {k: v for k, v in entry.items() if k not in BUILD_ORDER}
 
 
 def part_names_only():
@@ -261,6 +280,7 @@ def main():
     write_sidecars([x["id"] for x in assets], inter, ROOT / "site" / "models")
     doc = {"version": 1, "generated_from": "tools/make_manifest.py", "palette": {"glow": glow_swatches(), "common": paints_tool.common_colours(paints_tool.palette_entries()), "realistic": paints_tool.REALISTIC}, "assets": assets}
     apply_themes(doc, assets, paints_tool.palette_entries())
+    doc["assets"] = [_in_build_order(a) for a in assets]          # the same field order as a catalog-only refresh
     (ROOT / "site" / MANIFEST_NAME).write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8")
     counts = {}
     for x in assets:

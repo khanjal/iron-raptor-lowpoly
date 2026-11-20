@@ -79,6 +79,41 @@ The ratios above held, and the animals still looked like a straight tube on four
 
 A straight tube on posts fails all of the first five (the test builds one from the collie). The farm animals of #87 had legs that started at the barrel's underside and a stifle that barely came forward; they got a shoulder and a thigh ring and a keel too. Triangles: dogs 1060-1164 (were about 1000-1050), cats 900 (676), farm animals 776-1040 (up by 40 each), within the budget below.
 
+## Laid over real outlines: the dogs and the deer (2026-11-20)
+
+The keels, set-in legs and bent hind legs above passed `check_shape`, and the dogs and deer still read wrong in the face, body and legs. The first real references, scored with `tools/silhouette.py --facing right` against the committed GLBs, show where.
+
+**References.** One side view per model, all from PhyloPic, kept in the git-ignored `out/reference/` with their source, licence and attribution in `out/reference/SOURCES.json` (never committed). Each was chosen for a standing animal with its head in profile: a head turned to the viewer, or a body at an angle, moves the outline more than the model's faults do (the first set had four such, and the husky was laid tail to nose until `--facing` was added). All are saved facing right.
+
+| Model | Reference (PhyloPic image, licence) | Overlap | Model length / real (same height) | Nose past the real one | Rear past the real one |
+| --- | --- | --- | --- | --- | --- |
+| Shepherd | German shepherd, `d149744f`, CC0 | 0.60 | 1.05 | 11 % | -6 % |
+| Retriever | long-coated retriever type, `762af985`, CC0 | 0.59 | 1.49 | 30 % | 19 % |
+| Beagle | scent hound standing, `b9bd2274`, CC0 | 0.57 | 1.11 | 17 % | -6 % |
+| Husky | West Siberian laika (a spitz with a curled tail), `e4e0554d`, CC BY | 0.55 | 1.20 | 6 % | 14 % |
+| Collie | long-coated herding type, `6c9cb19d`, CC0 | 0.49 | 1.24 | 7 % | 17 % |
+| Stray | village dog walking, `bb2ba44c`, CC BY | 0.41 | 1.02 | 0 % | 3 % |
+| Buck | white-tailed buck, `4584be20`, CC0 | 0.48 | 1.33 | 12 % | 21 % |
+| Doe, fawn | elk cow walking, `97f83f5e`, CC0 (no antlerless deer in profile on PhyloPic; heavier than a doe) | 0.61 | 1.16 | 7 % | 9 % |
+
+(Percentages are shares of the real animal's length with both outlines at the model's height. The bulldog and dachshund have no reference yet: PhyloPic has nothing close.)
+
+**What the overlays show**, in every dog and deer:
+
+| Seen (red: model only, blue: real only) | Cause | To change |
+| --- | --- | --- |
+| a red wedge in front of the face | the muzzle is a long tapering point, and the stop (the step from forehead to nose) is shallow | a shorter, blunter muzzle that ends in a block, with a clear stop; the deer's head shorter and deeper at the jaw |
+| red behind the rump, blue above it on the husky | the tail sticks straight out and droops, longer than real | each breed's tail carriage: the husky's curled over the back, the shepherd's hanging in a low curve, the beagle's up, the collie's low with a lift at the tip, the deer's a short flag |
+| blue under the chest and on the legs | the chest is too shallow and the legs too thin; the hind legs barely bend | a deeper chest (the brisket at about the elbow), thicker upper legs, and a sharper hock: the hind cannon sloping and the foot under or behind the hip |
+| blue above the back of the neck (deer, collie, retriever) | the neck is carried forward like a dog's | the deer's neck upright, the head held high with big ears; the long-coated dogs' ruff and neck raised |
+| a model longer than the real animal at the same height (1.2-1.5 on four of them) | the trunk and the head-to-tail span are long for the height | shorter trunks, or the same length with a taller back and head |
+
+**Stylised, by the owner's choice.** The models need not be realistic: exaggerating the face or the body is fine where it makes the animal read as itself (a bigger head and ears, a blockier muzzle, chunkier legs and paws), as in "Stylised" for the cats. The overlap is therefore a guide, not a target of 1.0: a pass mark is set once the first rebuilt dog and deer have been looked at, somewhere above today's 0.41-0.61.
+
+**Antler varieties (decided: one buck with several antler sets).** The buck carries five sets, each a mesh of its own on the Head bone (`species_wild.ANTLER_SETS`, made by `antler_tubes`; quadruped_builder keeps a part made with `option=` out of the joined body): Spike (one point a side, a near-straight spike clear of the ears), Forkhorn (a smaller beam that forks once), 6-point (the beam, the brow tine and one tine), 8-point (two tines) and 10-point (three tines: the antlers the buck always had, the same triangles, and the default). Points are counted a side, as hunters do. The manifest lists them as the `Antlers` option with "None (shed)"; the viewer has a row of pills for it, and a game hides all but one (README, "Parts with choices"), at random if it wants variety. Not done: mule-deer forked tines, elk, moose and caribou antlers (other species), non-typical racks, and a seed for small left-right differences; goat and sheep horns could use the same option mechanism.
+
+**Order.** One dog (the shepherd: the cleanest reference) and one deer (the buck) first, with the overlay and a sheet against the committed model each round; then the other dogs on the same builder.
+
 ## Proportion table: the audit's ranges
 
 These are the ranges in `animal_proportions.RANGES` (the test checks that the script and this table agree). Every four-legged animal fails the audit outside them. The horse's depth and elbow ranges start at 0.48 and 0.47: the horseman's rule is that the girth is as deep as the leg is long from the elbow, so both are about half the height (the first estimate of 0.50 and 0.55 was too high). The wildlife's rows (#125) are estimates from wildlife references and photographs, like the dogs'; the fawn is checked against the deer's row. The breeds' rows (#125) are estimates from the American Kennel Club standards' heights and photographs, like the collie's; the stray is checked against the collie's row. The hen is a biped and has its own table below.
@@ -156,7 +191,7 @@ The kitten (`GN_CatKitten_faceted_01`, issue #125) is a 10-12 week kitten: 0.15 
 
 For every rebuilt animal, in Blender with `look` (mode `angles`) and again in the site's viewer:
 
-1. **Side (right)**: the profile. Head carried above the back with a visible neck, a chest that hangs lower than the belly, a tucked waist, the hips rounder than the shoulders, four legs with a bend at the hock, feet longer than they are wide, a tail with a shape of its own. Lay it over the real animal's: `python tools/silhouette.py <model id> --ref out/reference/<species>.png` with a side-view silhouette of the species in `out/reference/` (git-ignored; never commit it). Read the overlay (red: only the model, blue: only the real animal) for where the back line, belly, legs and head go wrong, not only the overlap number.
+1. **Side (right)**: the profile. Head carried above the back with a visible neck, a chest that hangs lower than the belly, a tucked waist, the hips rounder than the shoulders, four legs with a bend at the hock, feet longer than they are wide, a tail with a shape of its own. Lay it over the real animal's: `python tools/silhouette.py <model id> --facing right` (the reference saved as `out/reference/<model id>.png` with its head on the right; `--ref` for one shared by several models) with a side-view silhouette of the species in `out/reference/` (git-ignored; never commit it). Read the overlay (red: only the model, blue: only the real animal) for where the back line, belly, legs and head go wrong, not only the overlap number.
 2. **Front**: the body wider at the chest than the legs are apart; the head wider than the neck; two ears and two eyes visible; the legs under the shoulders, not at the sides.
 3. **Top**: the body a barrel (widest at the rib cage, narrower at the waist), the head a wedge that narrows to the muzzle, the tail laid along the body.
 4. **Three-quarter**, and at 10 m (the size in the game): it reads as the animal in a silhouette.

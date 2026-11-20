@@ -59,7 +59,7 @@ REQUIRED = {                        # the parts a species must have besides the 
     "goat": ["horns", "beard"],
     "skunk": ["blaze"],
     "fox": ["ear_tips"],
-    "deer_buck": ["antlers"],
+    "deer_buck": ["antlers"],       # an option group: met by its choices (Antlers_Spike ... Antlers_10pt)
 }
 # Real-world sizes in metres (docs/art/animal-notes.md has the sources): (shoulder height, head-and-body length, tail length); None = not checked.
 # The model's back height may be up to 20% above the shoulder range (the back is higher than the shoulder), its lengths 10-15% either way.
@@ -117,25 +117,28 @@ def _inside(bvh, p):
     return hits % 2 == 1
 
 
-def _part_problems(key, parts):
-    """Every part the species needs is there, and a nose or nostrils."""
+def _part_problems(key, parts, options=None):
+    """Every part the species needs is there (an option group counts by its lower-case name), and a nose or nostrils."""
     problems = []
     need = COMMON + REQUIRED.get(key, [])
+    have = set(parts) | {group.lower() for group, _, _ in (options or {}).values()}
     for n in need:
-        if n not in parts:
+        if n not in have:
             problems.append(f"missing part: {n}")
     if "nose" not in parts and "nostrils" not in parts:
         problems.append("missing part: a nose or nostrils")
     return problems
 
 
-def _join_problems(parts):
-    """Every part except the body touches the rest of the animal."""
+def _join_problems(parts, options=None):
+    """Every part except the body touches the rest of the animal. An option's choice is checked against the animal without the other choices (they are
+    never shown together), and nothing is checked against a choice."""
+    options = options or {}
     problems = []
     for name, (verts, tris) in parts.items():
         if name == "body":
             continue
-        bvh = _bvh(parts, name)
+        bvh = _bvh({k: v for k, v in parts.items() if k == name or k not in options}, name)
         best = min(bvh.find_nearest(v)[3] for v in verts)
         if best > ATTACH and not any(_inside(bvh, v) for v in verts):
             problems.append(f"{name} floats: its nearest point is {best * 100:.1f} cm from the rest of the animal")
@@ -245,9 +248,10 @@ def audit(key):
     sp = species.SPECIES[key]
     quadruped_builder.build(sp, "faceted")
     parts = dict(quadruped_builder.LAST_PARTS)
+    options = dict(quadruped_builder.LAST_OPTIONS)
     problems = []
-    problems += _part_problems(key, parts)
-    problems += _join_problems(parts)
+    problems += _part_problems(key, parts, options)
+    problems += _join_problems(parts, options)
     problems += _eye_problems(parts)
     problems += _ear_problems(parts)
     problems += _size_problems(key, sp, parts)
