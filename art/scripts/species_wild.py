@@ -221,17 +221,50 @@ def _deer_extras(ctx):
     _deer_ears(ctx)
 
 
+# The buck's antlers: a main beam sweeping up and forward from each side, a brow tine low on the beam and tines rising from it. Every set is a choice of the
+# "Antlers" option (quadruped_builder Context.make): a mesh of its own on the Head bone, so the browser shows one and a game shows one (or none, shed).
+# Points are counted a side, as hunters do (a "10-point" buck has five a side: the beam's tip, the brow tine and three more).
+_BEAM = [(0.06, -0.84, 1.55), (0.09, -0.84, 1.69), (0.13, -0.89, 1.82), (0.15, -0.97, 1.90), (0.15, -1.05, 1.93)]      # x for the left side; mirrored for the right
+_BEAM_R = [0.022, 0.02, 0.017, 0.014, 0.008]
+_BROW = ((0.06, -0.84, 1.55), (0.05, -0.95, 1.61))                     # the brow tine, forward over the eye
+_TINES = [((0.09, -0.84, 1.69), (0.11, -0.81, 1.85)), ((0.13, -0.89, 1.82), (0.15, -0.87, 1.99)), ((0.15, -0.97, 1.90), (0.15, -0.97, 2.05))]
+_TINE_R = [0.013, 0.011, 0.005]
+# (choice, points a side, part name); the 10-point is the buck's default (the antlers it always had)
+ANTLER_SETS = [("Spike", 1, "Antlers_Spike"), ("Forkhorn", 2, "Antlers_Fork"), ("6-point", 3, "Antlers_6pt"), ("8-point", 4, "Antlers_8pt"), ("10-point", 5, "Antlers_10pt")]
+ANTLER_DEFAULT = "10-point"
+
+
+def _shrunk(points, k):
+    """The points pulled towards the beam's base by k (a young buck's smaller rack on the same base)."""
+    bx, by, bz = _BEAM[0]
+    return [(bx + (x - bx) * k, by + (y - by) * k, bz + (z - bz) * k) for x, y, z in points]
+
+
+def antler_tubes(points):
+    """The tubes of one side's antlers with this many points (left side, x > 0): [(centre line, radii)]. 5 points is the set the buck always had;
+    4 and 3 drop the top tines, 2 is a short beam that forks once, 1 a short straight spike."""
+    if points <= 1:
+        return [([_BEAM[0], (0.07, -0.845, 1.66), (0.08, -0.86, 1.77)], [0.018, 0.014, 0.006])]      # a near-straight spike, clear of the ears
+    if points == 2:
+        beam = _shrunk(_BEAM, 0.7)
+        fork = _shrunk(list(_TINES[1]), 0.7)
+        return [(beam, _BEAM_R), (_tine(*fork), _TINE_R)]
+    tines = _TINES[:points - 2] + [_BROW]                              # the order the buck's antlers were always built in
+    return [(list(_BEAM), _BEAM_R)] + [(_tine(*t), _TINE_R) for t in tines]
+
+
+def _tine(base, tip):
+    return [base, tuple((a + b) / 2 for a, b in zip(base, tip)), tip]
+
+
 def _buck_extras(ctx):
     _deer_ears(ctx)
-
-    def antlers(bm):                                                   # a main beam sweeping up and forward from each side, with four tines
-        for s in (-1, 1):
-            beam = [(s * 0.06, -0.84, 1.55), (s * 0.09, -0.84, 1.69), (s * 0.13, -0.89, 1.82), (s * 0.15, -0.97, 1.90), (s * 0.15, -1.05, 1.93)]
-            sp_mod.tube(bm, beam, [0.022, 0.02, 0.017, 0.014, 0.008], n=5)
-            for (px, py, pz), (tx, ty, tz) in (((s * 0.09, -0.84, 1.69), (s * 0.11, -0.81, 1.85)), ((s * 0.13, -0.89, 1.82), (s * 0.15, -0.87, 1.99)),
-                                               ((s * 0.15, -0.97, 1.90), (s * 0.15, -0.97, 2.05)), ((s * 0.06, -0.84, 1.55), (s * 0.05, -0.95, 1.61))):
-                sp_mod.tube(bm, [(px, py, pz), ((px + tx) / 2, (py + ty) / 2, (pz + tz) / 2), (tx, ty, tz)], [0.013, 0.011, 0.005], n=4)
-    ctx.make("antlers", antlers, lambda c_, n: "horn_cream", ["Head"], sub=0, smooth=False)
+    for choice, points, part in ANTLER_SETS:
+        def antlers(bm, points=points):
+            for s in (-1, 1):
+                for line, radii in antler_tubes(points):
+                    sp_mod.tube(bm, [(s * x, y, z) for x, y, z in line], radii, n=5 if len(line) == len(_BEAM) else 4)
+        ctx.make(part, antlers, lambda c_, n: "horn_cream", ["Head"], sub=0, smooth=False, option=("Antlers", choice, choice == ANTLER_DEFAULT, "None (shed)"))
 
 
 def _fawn_coat(c, n):

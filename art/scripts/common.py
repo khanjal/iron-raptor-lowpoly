@@ -714,14 +714,33 @@ def _measure(meshes):
     return tris, lo, hi
 
 
+def option_groups(meshes):
+    """The option groups among the meshes (the parts quadruped_builder's Context.make kept apart, such as the buck's antler sets), in the order they were
+    made: [{"name", "default", "none" (the label of showing no choice, or None), "choices": [{"name", "node"}]}]."""
+    groups = {}
+    for o in sorted((o for o in meshes if "option_group" in o), key=lambda o: o["option_order"]):
+        g = groups.setdefault(o["option_group"], {"name": o["option_group"], "default": None, "none": None, "choices": []})
+        g["choices"].append({"name": o["option"], "node": plain(o.name)})
+        if o["option_default"]:
+            g["default"] = o["option"]
+        if "option_none" in o:
+            g["none"] = o["option_none"]
+    for g in groups.values():
+        if g["default"] is None:
+            raise ValueError(f"option group {g['name']} has no default choice")
+    return list(groups.values())
+
+
 def describe(coll):
     """Facts about a built collection, in Blender's axes (x right, y back, z up, front is -y), metres: triangles, the bounding box of the meshes in their exported pose,
-    the moving-part objects (child meshes of the body: their name and origin, which is the pivot) and the clips on a rig."""
+    the moving-part objects (child meshes of the body: their name and origin, which is the pivot), the clips on a rig and the option groups (option_groups).
+    The triangles and the box are of the model as shown first: an option's other choices are left out."""
     rigs = [o for o in coll.all_objects if o.type == "ARMATURE"]
     muted = _mute_clips(rigs)
     bpy.context.view_layer.update()
     meshes = [o for o in coll.all_objects if o.type == "MESH"]
-    tris, lo, hi = _measure(meshes)
+    options = option_groups(meshes)
+    tris, lo, hi = _measure([o for o in meshes if "option_group" not in o or o["option_default"]])
     for t in muted:
         t.mute = False
     clips = []
@@ -732,7 +751,10 @@ def describe(coll):
     for o in meshes:
         if o.parent is not None and o.parent.type == "MESH":
             parts[plain(o.name)] = [round(v, 4) for v in o.location]
-    return {"triangles": tris, "bbox_min": [round(v, 4) for v in lo], "bbox_max": [round(v, 4) for v in hi], "rigged": bool(rigs), "clips": clips, "part_nodes": parts}
+    info = {"triangles": tris, "bbox_min": [round(v, 4) for v in lo], "bbox_max": [round(v, 4) for v in hi], "rigged": bool(rigs), "clips": clips, "part_nodes": parts}
+    if options:
+        info["options"] = options
+    return info
 
 
 def _strip_prefix(path, root):

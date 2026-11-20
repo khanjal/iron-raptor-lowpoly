@@ -12,6 +12,18 @@ const LIGHT_COLOURS = { warm: 0xffc97a, cool: 0xcfe4ff, flame: 0xff9a3c, red: 0x
 
 // A copy of the palette texture `base` with every swatch in `swap` ({index: '#rrggbb'}) painted over: a new texture, so whatever uses it is a new material
 // to the renderer (stress.js shows what that does to batching).
+// The nodes of a model's option groups (manifest `options`: separate meshes shown one at a time, the buck's antler sets): group -> (choice -> node).
+// Each group starts on its default choice, the others hidden; the stress page shows models this way too.
+export function optionNodes(root, asset) {
+  const groups = new Map();
+  for (const g of asset.options || []) {
+    const nodes = new Map(g.choices.map((c) => [c.name, root.getObjectByName(c.node)]));
+    for (const [name, node] of nodes) if (node) node.visible = name === g.default;
+    groups.set(g.name, nodes);
+  }
+  return groups;
+}
+
 export function paintedTexture(base, swap) {
   const img = base.image, w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));
   const c = document.createElement('canvas');
@@ -62,6 +74,7 @@ export class Viewer {
     this.speed = 1;
     this.playing = true;
     this.parts = {}; // role -> state
+    this.options = {}; // option group -> { nodes: choice name -> node, choice }
     this.hover = null;
     this.clock = new THREE.Clock();
     this.ray = new THREE.Raycaster();
@@ -95,6 +108,7 @@ export class Viewer {
     this.scene.add(root);
     this._materials(root, asset);
     this._parts(root, asset);
+    this._options(root, asset);
     await this._lights(root, asset, token);
     if (token !== this._token) return null;
     this._applyLights(); // (also puts the room light back after a model that dimmed it)
@@ -109,6 +123,7 @@ export class Viewer {
     this.actions = {};
     this.clip = null;
     this.parts = {};
+    this.options = {};
     this.lights = [];
     this.hover = null;
     if (this.shadow) { this.scene.remove(this.shadow); this.shadow.material.map.dispose(); this.shadow.material.dispose(); this.shadow.geometry.dispose(); this.shadow = null; }
@@ -232,6 +247,20 @@ export class Viewer {
     for (const [l, v] of this.ambient) l.intensity = v * dim;
     const open = Object.values(this.parts).some((p) => p.kind !== 'spin' && p.target > 0.5);
     for (const l of this.lights) l.light.visible = this.lightsOn && (l.when !== 'door_open' || open);
+  }
+
+  // ---- options ---------------------------------------------------------------------------------------------------------------------------
+  // Groups of separate meshes of which one is shown at a time (the buck's antler sets: manifest `options`); the default choice first.
+  _options(root, asset) {
+    for (const g of asset.options || []) this.options[g.name] = { nodes: optionNodes(root, { options: [g] }).get(g.name), choice: g.default };
+  }
+
+  // Show one choice of a group and hide the others; a name that is not a choice (null: the group's `none`, such as shed antlers) hides them all.
+  setOption(group, choice) {
+    const st = this.options[group];
+    if (!st) return;
+    for (const [name, node] of st.nodes) if (node) node.visible = name === choice;
+    st.choice = st.nodes.has(choice) ? choice : null;
   }
 
   // ---- moving parts ----------------------------------------------------------------------------------------------------------------------

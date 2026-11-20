@@ -9,6 +9,8 @@ Plain Python, no Blender. Needs the models: run tools/build_site_assets.py in Bl
 Axes. The models are built in Blender's space (x right, y back, z up, the front faces -y). The GLB exporter turns that into glTF's (x, z, -y), so everything
 the viewer uses is converted here, once:
   size   [width, height, depth] in metres (glTF x, y, z)
+  options  [{name, default, none, choices: [{name, node}]}]: groups of separate meshes of which one is shown at a time (the buck's antler sets);
+           `node` is the GLB node's name, `none` the label of showing no choice (null when the group always shows one)
   parts  pivot = the part's origin as the GLB node holds it; axis = a unit vector in glTF space (Blender x stays x, Blender z becomes y, Blender y becomes -z).
          The mapping is a proper rotation, so a hinge turns by `limit` degrees about `axis` in the same direction as in Blender, and a slide moves
          `limit` metres along `axis`. `rest` is how far open the part already is in the exported pose (0 = shut).
@@ -99,6 +101,8 @@ def build_entry(aid, a, meta, inter, groups):
         "parts": parts, "clips": list(meta["clips"]),
         "variants": [v for v in groups.get(a["group"], []) if v != aid] if a["group"] else [],
     }
+    if meta.get("options"):
+        entry["options"] = meta["options"]                          # parts shown one choice at a time (the buck's antler sets): common.option_groups
     if inter:
         entry["interactions"] = f"models/{sidecar_name(aid)}"   # the model's own file: parts, slots, emitters, traits
         lights = sum(1 for e in (inter.get("emitters") or {}).values() if e.get("kind") == "light" and e.get("working", True))

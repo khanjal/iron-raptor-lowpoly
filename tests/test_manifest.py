@@ -91,6 +91,11 @@ class Entries(unittest.TestCase):
         self.assertFalse(e["interactive"])
         self.assertEqual((e["parts"], e["variants"]), ({}, []))
 
+    def test_option_groups_pass_through(self):
+        options = [{"name": "Antlers", "default": "10-point", "none": "None (shed)", "choices": [{"name": "10-point", "node": "X_Antlers_10pt"}]}]
+        self.assertEqual(mm.build_entry("X", self.cat, dict(self.meta, part_nodes={}, options=options), None, {})["options"], options)
+        self.assertNotIn("options", mm.build_entry("X", self.cat, dict(self.meta, part_nodes={}), None, {}))
+
     def test_variant_groups(self):
         g = mm.variant_groups({"a": {"group": "g"}, "b": {"group": "g"}, "c": {"group": None}})
         self.assertEqual(g, {"g": ["a", "b"]})

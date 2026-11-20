@@ -2501,6 +2501,35 @@
     "GN_DeerDoe_faceted_01",
     "GN_DeerFawn_faceted_01"
    ],
+   "options": [
+    {
+     "name": "Antlers",
+     "default": "10-point",
+     "none": "None (shed)",
+     "choices": [
+      {
+       "name": "Spike",
+       "node": "GN_DeerBuck_faceted_Antlers_Spike"
+      },
+      {
+       "name": "Forkhorn",
+       "node": "GN_DeerBuck_faceted_Antlers_Fork"
+      },
+      {
+       "name": "6-point",
+       "node": "GN_DeerBuck_faceted_Antlers_6pt"
+      },
+      {
+       "name": "8-point",
+       "node": "GN_DeerBuck_faceted_Antlers_8pt"
+      },
+      {
+       "name": "10-point",
+       "node": "GN_DeerBuck_faceted_Antlers_10pt"
+      }
+     ]
+    }
+   ],
    "paintable": [
     {
      "part": "Main",
