@@ -199,13 +199,18 @@ class Options(unittest.TestCase):
                    (lambda a: a["options"][0]["choices"].append(dict(a["options"][0]["choices"][0])), "distinct names"),
                    (lambda a: a["options"][0].update(choices=[]), "non-empty list of choices"),
                    (lambda a: a["options"][0].update(none=3), "none should be a label"),
-                   (lambda a: a.update(options=[]), "non-empty list"))
+                   (lambda a: a.update(options=[]), "non-empty list"),
+                   (lambda a: a["options"][0]["choices"][0].update(node=["x"]), "needs a node name"),
+                   (lambda a: a["options"][0]["choices"][0].update(name=["x"]), "distinct names"),
+                   (lambda a: a.update(options=3), "non-empty list"))
         for damage, said in damages:
             a = json.loads(json.dumps(self.a))
             damage(a)
             errs = []
             check_site.check_options(a, errs.append)
             self.assertTrue(any(said in e for e in errs), said)
+            check_site.hidden_choice_triangles(a, {})              # a damaged entry is reported, never an exception
+            check_site.check_option_nodes(a, {}, errs.append)
 
 
 if __name__ == "__main__":

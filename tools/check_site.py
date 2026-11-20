@@ -66,10 +66,19 @@ def triangles(doc):
     return n
 
 
+def option_choices(a):
+    """(group, choice) for every well-formed choice of a's options; a damaged entry gives fewer (check_options reports it) instead of an exception."""
+    groups = a.get("options")
+    for g in groups if isinstance(groups, list) else []:
+        choices = g.get("choices") if isinstance(g, dict) else None
+        for c in choices if isinstance(choices, list) else []:
+            if isinstance(c, dict) and isinstance(c.get("node"), str):
+                yield g, c
+
+
 def hidden_choice_triangles(a, doc):
     """The triangles of the option choices not shown first (every choice of a group but its default): the manifest counts the model as it is shown."""
-    hidden = {c.get("node") for g in a.get("options") or [] if isinstance(g, dict) for c in g.get("choices") or []
-              if isinstance(c, dict) and c.get("name") != g.get("default")}
+    hidden = {c["node"] for g, c in option_choices(a) if c.get("name") != g.get("default")}
     meshes = {n["mesh"] for n in doc.get("nodes", []) if n.get("name") in hidden and "mesh" in n}
     return triangles({"accessors": doc.get("accessors", []), "meshes": [m for i, m in enumerate(doc.get("meshes", [])) if i in meshes]})
 
@@ -184,7 +193,7 @@ def check_parts(a, err):
 def _check_option_choices(g, nodes, err):
     """A group's choices: distinct names, the default one of them, every node named once across the model (nodes collects them)."""
     choices = [c.get("name") for c in g["choices"] if isinstance(c, dict)]
-    if len(choices) != len(g["choices"]) or len(set(choices)) != len(choices) or not all(isinstance(c, str) for c in choices):
+    if len(choices) != len(g["choices"]) or not all(isinstance(c, str) for c in choices) or len(set(choices)) != len(choices):
         err(f"options {g['name']}: choices need distinct names")
     if g.get("default") not in choices:
         err(f"options {g['name']}: default {g.get('default')!r} is not one of its choices")
@@ -192,7 +201,8 @@ def _check_option_choices(g, nodes, err):
         node = c.get("node") if isinstance(c, dict) else None
         if not isinstance(node, str) or node in nodes:
             err(f"options {g['name']}: choice {c!r} needs a node name of its own")
-        nodes.add(node)
+        if isinstance(node, str):
+            nodes.add(node)
 
 
 def _check_option_group(g, names, nodes, err):
@@ -222,10 +232,9 @@ def check_options(a, err):
 def check_option_nodes(a, doc, err):
     """Every option choice names a mesh node of the GLB."""
     meshes = {n.get("name") for n in doc.get("nodes", []) if "mesh" in n}
-    for g in a.get("options") or []:
-        for c in (g.get("choices") or []) if isinstance(g, dict) else []:
-            if isinstance(c, dict) and c.get("node") not in meshes:
-                err(f"options {g.get('name')}: choice {c.get('name')!r} has no mesh node {c.get('node')!r} in the GLB")
+    for g, c in option_choices(a):
+        if c["node"] not in meshes:
+            err(f"options {g.get('name')}: choice {c.get('name')!r} has no mesh node {c.get('node')!r} in the GLB")
 
 
 def check_swatches_used(a, glb, err):
