@@ -10,8 +10,6 @@ const loader = new GLTFLoader();
 // emitter colour names (art/scripts/emitters.py) -> light colours
 const LIGHT_COLOURS = { warm: 0xffc97a, cool: 0xcfe4ff, flame: 0xff9a3c, red: 0xff3b30, green: 0x4cff7a, pink: 0xff6fb5 };
 
-// A copy of the palette texture `base` with every swatch in `swap` ({index: '#rrggbb'}) painted over: a new texture, so whatever uses it is a new material
-// to the renderer (stress.js shows what that does to batching).
 // The nodes of a model's option groups (manifest `options`: separate meshes shown one at a time, the buck's antler sets): group -> (choice -> node).
 // Each group starts on its default choice, the others hidden; the stress page shows models this way too.
 export function optionNodes(root, asset) {
@@ -24,6 +22,8 @@ export function optionNodes(root, asset) {
   return groups;
 }
 
+// A copy of the palette texture `base` with every swatch in `swap` ({index: '#rrggbb'}) painted over: a new texture, so whatever uses it is a new material
+// to the renderer (stress.js shows what that does to batching).
 export function paintedTexture(base, swap) {
   const img = base.image, w = img.width, h = img.height, cell = Math.max(1, Math.round(w / GRID));
   const c = document.createElement('canvas');
@@ -252,7 +252,7 @@ export class Viewer {
   // ---- options ---------------------------------------------------------------------------------------------------------------------------
   // Groups of separate meshes of which one is shown at a time (the buck's antler sets: manifest `options`); the default choice first.
   _options(root, asset) {
-    for (const g of asset.options || []) this.options[g.name] = { nodes: optionNodes(root, { options: [g] }).get(g.name), choice: g.default };
+    for (const g of asset.options || []) this.options[g.name] = { nodes: optionNodes(root, { options: [g] }).get(g.name) };
   }
 
   // Show one choice of a group and hide the others; a name that is not a choice (null: the group's `none`, such as shed antlers) hides them all.
@@ -260,7 +260,6 @@ export class Viewer {
     const st = this.options[group];
     if (!st) return;
     for (const [name, node] of st.nodes) if (node) node.visible = name === choice;
-    st.choice = st.nodes.has(choice) ? choice : null;
   }
 
   // ---- moving parts ----------------------------------------------------------------------------------------------------------------------

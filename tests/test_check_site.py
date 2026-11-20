@@ -207,5 +207,6 @@ class Options(unittest.TestCase):
             check_site.check_options(a, errs.append)
             self.assertTrue(any(said in e for e in errs), said)
 
+
 if __name__ == "__main__":
     unittest.main()
