@@ -22,7 +22,7 @@ import math
 # (low, high) per species key, from the brief (docs/assets/briefs/animals.md, "Proportion table"). A species with no entry is not checked.
 RANGES = {
     "cat": {"LH": (1.05, 1.65), "width": (0.43, 0.66), "depth": (0.46, 0.66), "elbow": (0.36, 0.52), "head": (0.28, 0.40), "head_w": (0.64, 1.00),
-                "carry": (1.05, 1.35), "leg_top": (0.13, 0.22), "leg_low": (0.07, 0.12), "paw": (0.15, 0.26)},
+                "carry": (1.05, 1.35), "leg_top": (0.13, 0.26), "leg_low": (0.07, 0.16), "paw": (0.15, 0.31)},   # legs and paws stylised (brief: "Stylised")
     "collie": {"LH": (0.95, 1.35), "width": (0.30, 0.50), "depth": (0.44, 0.58), "elbow": (0.44, 0.54), "head": (0.31, 0.44), "head_w": (0.45, 0.62),
                    "carry": (1.05, 1.30), "leg_top": (0.12, 0.18), "leg_low": (0.07, 0.11), "paw": (0.15, 0.24)},
     "husky": {"LH": (0.95, 1.30), "width": (0.32, 0.52), "depth": (0.44, 0.58), "elbow": (0.44, 0.54), "head": (0.32, 0.42), "head_w": (0.50, 0.68),

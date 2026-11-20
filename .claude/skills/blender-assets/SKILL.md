@@ -35,6 +35,24 @@ Reference pictures: look at the real object and at other people's low-poly model
 
 **Build order:** (1) blockout of the main shapes at the right proportions, and `look` at it before adding anything; (2) secondary features (bevels, trim, handles, feet, seams, wear; not bevels on the 3 m grid kit pieces, which must butt without a groove, nor on the faceted animals and people); hollow only what anyone can see into or put something in; (3) small details with the triangle budget left. Check from four angles and at 10 m, then against the brief: size, front faces -Y, pivot, palette-only colours, triangles, markers.
 
+## Matching the references (asset-brief step 3)
+
+What a model is judged on is a sheet: the references in one row, **the model as it was before the change** in the next, and the change in the last, at the same angles and the same size. Not a description of any of them, and not the change on its own or next to the previous trial only.
+
+1. **The reference card first** (asset-brief step 3): the owner's references, measured into ratios, agreed before anything is built.
+2. **Start from the committed model**, and keep it on every sheet. Prototype in Blender in a script under `out/` (git ignores it), next to the committed model; a trial that is not better than it is thrown away, not built on.
+3. **The sheet, every round.** Render the committed model, the trial and any reference models with `art/scripts/render_views.py` (the thumbnail angle, front, side and the other three-quarter, the whole model and `HEAD=True`), then put them with the reference pictures with `python tools/compare_sheet.py --row "References" ... --row "Before" ... --row "After" ...`. Look at the whole sheet before anyone else does, and say first whether the trial is better than the committed model, then row by row what still differs from the references.
+4. **One change per round**, the biggest difference on the sheet first, and keep it only if the sheet shows it is better than before. Shape before detail, colour last.
+5. **Check it at 256 px.** The site's thumbnails are that size, from the front-left. A detail that reads in a close-up can vanish there (forward-facing eyes, eyes set in sockets did); a face is judged at both sizes.
+
+**What went wrong on the cat (issue #125's pets rework), so it is not repeated.** More than a dozen rounds of trials, each fixing what the last round's look or the owner's words pointed at and each judged against the round before it, ended worse than the first pass they started from; the owner saw it, the session did not, because no sheet carried the first pass. In particular:
+- *A decimate "facet pass"* (subdivide the lofted parts, collapse them to a share of their faces) does not give the references' look. Their facets are a few deliberate planes that follow the form, in one light colour, and read through light; random small triangles, each painted by the coat's rules, read as noise and dirt (speckled stripes, scattered white). It was removed.
+- *Eyes in sockets* came out small and dark at thumbnail size, the brow's shadow swallowing them; the first pass's round eyes with a black pupil read better there. *A short flat face* with forward-facing eyes lost the eyes from the three-quarter view.
+- *An upright neck* made the head small and stuck on a column; the references sit, and a standing cat is not a sitting one with its head lifted.
+- What held up: the ears' height measured above the crown from the owner's reference models (ours were three times too tall), coat-coloured ears with a smaller pink inside, and the white kept to the chin and chest.
+
+**Who designs it.** A design pass for a new body shape (a head, a body plan) can go to the strongest model available, as a sub-agent given the code, the references and the card, not this session's earlier attempts, and its result goes on a sheet with the committed model like any other trial.
+
 ## Conventions that bite
 
 - A model faces **-Y** in Blender (arrives facing **+Z** in a GLB and in Unity), origin on the floor at the centre of its base, 1 unit = 1 m. Wall-mounted pieces have the origin at the mount's centre.

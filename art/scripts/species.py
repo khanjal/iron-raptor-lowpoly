@@ -7,7 +7,7 @@ Each entry gives, in metres:
                    (z, y offset, half x, half y). Front legs have 5 rings, hind legs 6.
     tail    (z, y, radius) top to tip
     ear_x, ear_y, ear_z   where the ear bone sits (left side)
-    coat(c, n) / head_coat / tail_coat   -> palette swatch for a face centred at c with normal n
+    coat(c, n) / head_coat / tail_coat / leg_coat   -> palette swatch for a face centred at c with normal n (leg_coat optional, defaults to coat)
     extras(ctx) optional hook that adds parts with ctx.make(name, build(bm), colour, bones)
 """
 
