@@ -285,8 +285,7 @@ def make_farm_dog(name, skin=DEFAULT_SKIN, shape=None):
     drop = _ELBOW - leg                                           # how much lower the body is than the collie's
     body, head, tail = shape.get("body", _COLLIE_BODY), shape.get("head", _COLLIE_HEAD), shape.get("tail", _COLLIE_TAIL)
     front_leg = {"x": 0.064 * wx, "y": -0.195 * ly, "joints": (3, 4), "profile": _legs(_COLLIE_FRONT, _ELBOW, drop, thick)}
-    hind = _COLLIE_HIND if not shape.get("hind_back") else [(r[0], r[1] + b, *r[2:]) for r, b in zip(_COLLIE_HIND, shape["hind_back"], strict=True)]
-    hind_leg = {"x": 0.062 * wx, "y": 0.175 * ly, "joints": (2, 4), "profile": _legs(hind, _STIFLE, drop, thick)}
+    hind_leg = {"x": 0.062 * wx, "y": 0.175 * ly, "joints": (2, 4), "profile": _legs(_COLLIE_HIND, _STIFLE, drop, thick)}
     skull = head[3]
     ear_x = skull[2] * 0.85
     st = SimpleNamespace(sk=sk, shape=shape, head=head, skull=skull, ear_x=ear_x, front_leg=front_leg, hind_leg=hind_leg, drop=drop, thick=thick,
@@ -326,13 +325,11 @@ def make_husky(name="DogHusky"):
 # ---- the other breeds (issue #125): the same builder, the collie's sections moved and scaled. A breed is drawn at about the collie's size (legs lowered by `leg`, the body
 # stretched by `length`, `width` and `depth`, the head by `head`, `head_w` and `snout`) and its rig is scaled to its real size (`size`). Docs/assets/briefs/animals.md has their numbers.
 def make_breed(name, skin, size, leg=_ELBOW, length=1.0, width=1.0, depth=1.0, head=1.0, head_w=1.0, snout=1.0, neck_w=1.0, thick=1.0,  # NOSONAR
-               ears="drop", ear_k=1.0, tail=None, tip_at=None, ruff=None, body_w=None, neck_len=1.0, head_low=0.0, nose_k=1.0, muzzle=1.0, hind_back=None):
+               ears="drop", ear_k=1.0, tail=None, tip_at=None, ruff=None, body_w=None, neck_len=1.0, head_low=0.0, nose_k=1.0):
     """skin: a coat dict like SKINS' (with "saddle" for the saddle pattern, "patch" for patches, optionally "tail_top"); leg: the height to the elbow before scaling (the
     collie's 0.25); body_w: a width factor per body section (a bulldog is wider at the chest than the hips); tail: (height, y, radius) points as drawn for the collie's rump,
     moved with it; tip_at: (y, height, radius) of the tail's tip as drawn, for a coloured tip on a tail carried up; ruff: the collar's width factor or None; neck_len: the
-    neck's length factor (the head comes back towards the shoulders) and head_low how far the head is carried lower (a bulldog's sits on its shoulders); nose_k: the nose pad's size;
-    muzzle: a girth factor on the rings in front of the stop (a deeper, wider muzzle that reads at a distance); hind_back: metres to move each ring of the hind leg back
-    (one per ring of _COLLIE_HIND, from the hip down: a shepherd stands with its hocks well behind it)."""
+    neck's length factor (the head comes back towards the shoulders) and head_low how far the head is carried lower (a bulldog's sits on its shoulders); nose_k: the nose pad's size."""
     drop = _ELBOW - leg
     bw = body_w or (1.0,) * len(_COLLIE_BODY)
     if len(bw) != len(_COLLIE_BODY):
@@ -346,11 +343,10 @@ def make_breed(name, skin, size, leg=_ELBOW, length=1.0, width=1.0, depth=1.0, h
         dy = y - y0 if i <= _STOP else (stop - y0) + (y - stop) * snout       # the muzzle (in front of the stop) is scaled on its own
         if i:
             dy += (1.0 - neck_len) * (y0 - _COLLIE_HEAD[1][0])    # a shorter neck brings the head back towards the root
-        g = muzzle if i > _STOP else 1.0
-        hd.append((ny + dy * head, nz + (z - z0) * head, w * head * (neck_w if i < 2 else head_w) * g, h * head * g))
+        hd.append((ny + dy * head, nz + (z - z0) * head, w * head * (neck_w if i < 2 else head_w), h * head))
     rear = _COLLIE_BODY[-1][0] * (length - 1)
     shape = {"body": body, "head": hd, "tail": [(z - drop, y + rear, r) for z, y, r in (tail or _COLLIE_TAIL)], "leg": leg, "length": length, "width": width,
-             "thick": thick, "hind_back": hind_back, "ears": ears, "ear_k": ear_k, "ruff": ruff, "neck": (ny, nz, head, neck_w), "size": size, "nose_k": nose_k}
+             "thick": thick, "ears": ears, "ear_k": ear_k, "ruff": ruff, "neck": (ny, nz, head, neck_w), "size": size, "nose_k": nose_k}
     if tip_at:
         shape["tip_at"] = (tip_at[0] + rear, tip_at[1] - drop, tip_at[2])
     return make_farm_dog(name, skin, shape)

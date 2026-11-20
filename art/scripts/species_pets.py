@@ -38,10 +38,9 @@ DOGS = {
                                                  depth=0.92, head=1.05, snout=1.25, thick=1.1, ears="long",
                                                  tail=[(0.440, 0.285, 0.028), (0.430, 0.370, 0.026), (0.400, 0.450, 0.020), (0.360, 0.510, 0.013)]),
     "dog_husky":     species_farm_dog.make_husky("DogHusky"),                                     # built on the farm dog's builder with its own numbers (issue #87)
-    "dog_shepherd":  species_farm_dog.make_breed("DogShepherd", species_farm_dog.BREED_SKINS["shepherd"], size=1.165, length=0.97, head=1.0, head_w=0.98,
-                                                 snout=0.95, muzzle=1.12, ears="up", ear_k=1.45, ruff=0.95, depth=1.1, thick=1.2, head_low=-0.04,
-                                                 hind_back=(0.0, 0.0, -0.015, 0.03, 0.06, 0.075, 0.075),
-                                                 tail=[(0.445, 0.290, 0.030), (0.360, 0.330, 0.042), (0.260, 0.355, 0.045), (0.170, 0.375, 0.030)]),
+    "dog_shepherd":  species_farm_dog.make_breed("DogShepherd", species_farm_dog.BREED_SKINS["shepherd"], size=1.165, length=0.97, head=0.93, head_w=1.02,
+                                                 snout=1.1, ears="up", ear_k=1.35, ruff=0.95,
+                                                 tail=[(0.455, 0.285, 0.030), (0.370, 0.350, 0.042), (0.270, 0.390, 0.045), (0.190, 0.400, 0.030)]),
     "dog_stray":     species_farm_dog.make_breed("DogStray", species_farm_dog.BREED_SKINS["stray"], size=0.88, ears="fold"),
 }
 

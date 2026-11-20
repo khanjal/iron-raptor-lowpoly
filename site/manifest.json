@@ -2349,9 +2349,9 @@
    "interactive": false,
    "triangles": 1164,
    "size": [
-    0.273,
-    0.964,
-    1.2
+    0.261,
+    0.887,
+    1.226
    ],
    "glb": "models/GN_DogShepherd_faceted_01.glb",
    "thumb": "thumbs/GN_DogShepherd_faceted_01.png",
@@ -2486,9 +2486,9 @@
    "interactive": false,
    "triangles": 1056,
    "size": [
-    0.37,
-    1.797,
-    1.575
+    0.361,
+    1.763,
+    1.76
    ],
    "glb": "models/GN_DeerBuck_faceted_01.glb",
    "thumb": "thumbs/GN_DeerBuck_faceted_01.png",
