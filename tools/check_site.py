@@ -66,6 +66,23 @@ def triangles(doc):
     return n
 
 
+def option_choices(a):
+    """(group, choice) for every well-formed choice of a's options; a damaged entry gives fewer (check_options reports it) instead of an exception."""
+    groups = a.get("options")
+    for g in groups if isinstance(groups, list) else []:
+        choices = g.get("choices") if isinstance(g, dict) else None
+        for c in choices if isinstance(choices, list) else []:
+            if isinstance(c, dict) and isinstance(c.get("node"), str):
+                yield g, c
+
+
+def hidden_choice_triangles(a, doc):
+    """The triangles of the option choices not shown first (every choice of a group but its default): the manifest counts the model as it is shown."""
+    hidden = {c["node"] for g, c in option_choices(a) if c.get("name") != g.get("default")}
+    meshes = {n["mesh"] for n in doc.get("nodes", []) if n.get("name") in hidden and "mesh" in n}
+    return triangles({"accessors": doc.get("accessors", []), "meshes": [m for i, m in enumerate(doc.get("meshes", [])) if i in meshes]})
+
+
 def png_size(path):
     raw = Path(path).read_bytes()[:24]
     if raw[:8] != PNG_MAGIC:
@@ -173,6 +190,53 @@ def check_parts(a, err):
             err(f"part {role}: rest missing")
 
 
+def _check_option_choices(g, nodes, err):
+    """A group's choices: distinct names, the default one of them, every node named once across the model (nodes collects them)."""
+    choices = [c.get("name") for c in g["choices"] if isinstance(c, dict)]
+    if len(choices) != len(g["choices"]) or not all(isinstance(c, str) for c in choices) or len(set(choices)) != len(choices):
+        err(f"options {g['name']}: choices need distinct names")
+    if g.get("default") not in choices:
+        err(f"options {g['name']}: default {g.get('default')!r} is not one of its choices")
+    for c in g["choices"]:
+        node = c.get("node") if isinstance(c, dict) else None
+        if not isinstance(node, str) or node in nodes:
+            err(f"options {g['name']}: choice {c!r} needs a node name of its own")
+        if isinstance(node, str):
+            nodes.add(node)
+
+
+def _check_option_group(g, names, nodes, err):
+    """One group of options; names and nodes collect what the groups before it used."""
+    if not (isinstance(g, dict) and isinstance(g.get("name"), str) and isinstance(g.get("choices"), list) and g["choices"]):
+        err("options: each group needs a name and a non-empty list of choices")
+        return
+    if g["name"] in names:
+        err(f"options: group {g['name']!r} twice")
+    names.add(g["name"])
+    if g.get("none") is not None and not isinstance(g["none"], str):
+        err(f"options {g['name']}: none should be a label or null")
+    _check_option_choices(g, nodes, err)
+
+
+def check_options(a, err):
+    """options: [{name, default, none (a label or null), choices: [{name, node}]}], names unique, the default one of the choices, every node named once."""
+    groups = a.get("options")
+    if not isinstance(groups, list) or not groups:
+        err("options should be a non-empty list")
+        return
+    names, nodes = set(), set()
+    for g in groups:
+        _check_option_group(g, names, nodes, err)
+
+
+def check_option_nodes(a, doc, err):
+    """Every option choice names a mesh node of the GLB."""
+    meshes = {n.get("name") for n in doc.get("nodes", []) if "mesh" in n}
+    for g, c in option_choices(a):
+        if c["node"] not in meshes:
+            err(f"options {g.get('name')}: choice {c.get('name')!r} has no mesh node {c.get('node')!r} in the GLB")
+
+
 def check_swatches_used(a, glb, err):
     """Every paintable swatch is one the GLB uses."""
     if a.get("paintable") and isinstance(a["paintable"], list):
@@ -207,6 +271,8 @@ def check_entry(a, site, errors):
         return
     check_values(a, err)
     check_parts(a, err)
+    if "options" in a:
+        check_options(a, err)
     if "paints" in a or "paintable" in a:
         check_paints(a, err)
     if "themes" in a:
@@ -263,15 +329,16 @@ def check_against_glb(a, doc, err):
     if doc.get("asset", {}).get("copyright") != stamp_glb.COPYRIGHT:
         err("the GLB has no credit line in asset.copyright (run tools/stamp_glb.py)")
     check_materials(doc, err)
-    t = triangles(doc)
+    t = triangles(doc) - hidden_choice_triangles(a, doc)
     if t != a["triangles"]:
-        err(f"manifest says {a['triangles']} triangles, the GLB has {t}")
+        err(f"manifest says {a['triangles']} triangles, the GLB has {t}{' as first shown' if a.get('options') else ''}")
     if bool(doc.get("skins")) != a["rigged"]:
         err(f"rigged is {a['rigged']} but the GLB has {len(doc.get('skins', []))} skins")
     names = [x.get("name") for x in doc.get("animations", [])]
     if sorted(names) != sorted(a["clips"]):
         err(f"clips {a['clips']} differ from the GLB's animations {names}")
     check_part_nodes(a, doc, err)
+    check_option_nodes(a, doc, err)
 
 
 # page -> (its own script, whose element lookups must all be in the page; every script of the page, whose imports must exist)

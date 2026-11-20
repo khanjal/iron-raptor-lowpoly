@@ -73,6 +73,21 @@ class Overlap(unittest.TestCase):
         self.assertTrue(result.flipped)
         self.assertAlmostEqual(result.iou, 1.0)
 
+    def test_named_facing_is_kept_even_when_the_other_way_overlaps_more(self):
+        mask = silhouette.crop(silhouette.from_text(SHAPE))
+        backwards = silhouette.mirror(mask)
+        kept = silhouette.compare(mask, backwards, facing="right")
+        self.assertFalse(kept.flipped)
+        self.assertLess(kept.iou, 1.0)
+        turned = silhouette.compare(mask, backwards, facing="left")
+        self.assertTrue(turned.flipped)
+        self.assertAlmostEqual(turned.iou, 1.0)
+
+    def test_unknown_facing_is_an_error(self):
+        mask = silhouette.crop(silhouette.from_text(SHAPE))
+        with self.assertRaises(ValueError):
+            silhouette.compare(mask, mask, facing="up")
+
     def test_reference_at_another_scale_is_fitted(self):
         mask = silhouette.crop(silhouette.from_text(SHAPE))
         big = silhouette.resample(mask, mask.width * 3, mask.height * 3)
@@ -188,6 +203,10 @@ class CommandLine(unittest.TestCase):
     def test_errors_exit_2(self):
         self.assertEqual(self.run_quietly(["GN_NoSuchModel_01"]), 2)
         self.assertEqual(self.run_quietly(["GN_CatTabby_faceted_01", "--ref", str(ROOT.parent / "x.png")]), 2)
+
+    def test_facing_is_only_for_the_side_view(self):
+        with self.assertRaises(SystemExit):
+            self.run_quietly(["GN_CatTabby_faceted_01", "--view", "front", "--facing", "left"])
 
     def test_all_takes_no_models(self):
         with self.assertRaises(SystemExit):

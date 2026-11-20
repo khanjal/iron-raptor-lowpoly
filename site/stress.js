@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { paintedTexture } from './viewer.js';
+import { optionNodes, paintedTexture } from './viewer.js';
 
 const GLASS = 'GlobalPaletteGlass';
 const GOLDEN = Math.PI * (3 - Math.sqrt(5)); // turns each copy by the golden angle, so a field of them does not all face one way
@@ -83,7 +83,7 @@ function piecesOf(gltf) {
   root.updateMatrixWorld(true);
   const pieces = [];
   root.traverse((o) => {
-    if (!o.isMesh) return;
+    if (!o.isMesh || !o.visible) return;
     const owned = !!o.isSkinnedMesh;
     if (owned) roomyBounds(o);
     pieces.push({ geometry: owned ? bakeSkinned(o) : o.geometry, material: o.material, matrix: o.matrixWorld.clone(), owned, order: o.renderOrder });
@@ -139,6 +139,7 @@ async function loadModel(a) {
   $('note').textContent = 'Loading ' + a.name + '…';
   const gltf = await loader.loadAsync(a.glb);
   if (token !== state.token) return false; // another model was picked meanwhile
+  optionNodes(gltf.scene, a); // only the default choice of each option group (the buck's antlers) is shown and copied
   clearField();
   disposeModel();
   prepareMaterials(gltf.scene);

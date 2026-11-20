@@ -1,4 +1,5 @@
 """The pure parts of the manifest builder: the Blender -> glTF axis conversion of the moving parts, and the entry builder."""
+import json
 import math
 import sys
 import unittest
@@ -91,6 +92,11 @@ class Entries(unittest.TestCase):
         self.assertFalse(e["interactive"])
         self.assertEqual((e["parts"], e["variants"]), ({}, []))
 
+    def test_option_groups_pass_through(self):
+        options = [{"name": "Antlers", "default": "10-point", "none": "None (shed)", "choices": [{"name": "10-point", "node": "X_Antlers_10pt"}]}]
+        self.assertEqual(mm.build_entry("X", self.cat, dict(self.meta, part_nodes={}, options=options), None, {})["options"], options)
+        self.assertNotIn("options", mm.build_entry("X", self.cat, dict(self.meta, part_nodes={}), None, {}))
+
     def test_variant_groups(self):
         g = mm.variant_groups({"a": {"group": "g"}, "b": {"group": "g"}, "c": {"group": None}})
         self.assertEqual(g, {"g": ["a", "b"]})
@@ -130,6 +136,18 @@ class Palette(unittest.TestCase):
         self.assertEqual(glow["glow_cyan"]["index"], 14)
         self.assertEqual(glow["glow_cyan"]["hex"], "#6FE8E0")
         self.assertTrue(all(g["name"].startswith("glow_") for g in glow.values()))
+
+
+class CatalogRefresh(unittest.TestCase):
+    def test_the_committed_manifest_is_already_in_line_with_the_catalog(self):
+        """A catalog-only refresh of the committed manifest changes nothing (else the next catalog edit drags unrelated drift along with it)."""
+        path = mm.ROOT / "site" / mm.MANIFEST_NAME
+        text = path.read_text(encoding="utf-8")
+        self.assertEqual(json.dumps(mm.refreshed_from_catalog(json.loads(text)), indent=1) + "\n", text)
+
+    def test_fields_in_build_order(self):
+        e = mm._in_build_order({"aliases": ["Y"], "zzz": 1, "interactions": "f", "id": "X", "paintable": []})
+        self.assertEqual(list(e), ["id", "interactions", "paintable", "aliases", "zzz"])
 
 
 if __name__ == "__main__":

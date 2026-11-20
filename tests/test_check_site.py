@@ -165,5 +165,53 @@ class Damage(unittest.TestCase):
         self.assertTrue(any("manifest.json" in p for p in check_site.check(self.tmp)))
 
 
+class Options(unittest.TestCase):
+    """The buck's antler sets: a group of separate meshes shown one at a time (manifest `options`)."""
+
+    def setUp(self):
+        doc = json.loads((SITE / "manifest.json").read_text(encoding="utf-8"))
+        self.a = json.loads(json.dumps(next(a for a in doc["assets"] if a["id"] == "GN_DeerBuck_faceted_01")))
+        self.glb, _ = check_site.read_glb(SITE / self.a["glb"])
+
+    def errors(self, check):
+        errs = []
+        check(errs.append)
+        return errs
+
+    def test_the_buck_has_its_antler_sets(self):
+        g = self.a["options"][0]
+        self.assertEqual((g["name"], g["default"], g["none"]), ("Antlers", "10-point", "None (shed)"))
+        self.assertEqual([c["name"] for c in g["choices"]], ["Spike", "Forkhorn", "6-point", "8-point", "10-point"])
+        self.assertEqual(self.errors(lambda e: check_site.check_options(self.a, e)), [])
+        self.assertEqual(self.errors(lambda e: check_site.check_against_glb(self.a, self.glb, e)), [])
+
+    def test_triangles_count_only_the_default_choice(self):
+        self.assertLess(self.a["triangles"], check_site.triangles(self.glb))
+        self.a["triangles"] = check_site.triangles(self.glb)
+        self.assertTrue(any("as first shown" in e for e in self.errors(lambda e: check_site.check_against_glb(self.a, self.glb, e))))
+
+    def test_a_choice_without_a_node(self):
+        self.a["options"][0]["choices"][0]["node"] = "Nowhere"
+        self.assertTrue(any("no mesh node 'Nowhere'" in e for e in self.errors(lambda e: check_site.check_against_glb(self.a, self.glb, e))))
+
+    def test_bad_groups(self):
+        damages = ((lambda a: a["options"][0].update(default="12-point"), "is not one of its choices"),
+                   (lambda a: a["options"][0]["choices"].append(dict(a["options"][0]["choices"][0])), "distinct names"),
+                   (lambda a: a["options"][0].update(choices=[]), "non-empty list of choices"),
+                   (lambda a: a["options"][0].update(none=3), "none should be a label"),
+                   (lambda a: a.update(options=[]), "non-empty list"),
+                   (lambda a: a["options"][0]["choices"][0].update(node=["x"]), "needs a node name"),
+                   (lambda a: a["options"][0]["choices"][0].update(name=["x"]), "distinct names"),
+                   (lambda a: a.update(options=3), "non-empty list"))
+        for damage, said in damages:
+            a = json.loads(json.dumps(self.a))
+            damage(a)
+            errs = []
+            check_site.check_options(a, errs.append)
+            self.assertTrue(any(said in e for e in errs), said)
+            check_site.hidden_choice_triangles(a, {})              # a damaged entry is reported, never an exception
+            check_site.check_option_nodes(a, {}, errs.append)
+
+
 if __name__ == "__main__":
     unittest.main()

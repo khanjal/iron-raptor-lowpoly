@@ -4,6 +4,9 @@
     quadruped_builder.build(species.SPECIES["cow"], style="smooth")      # our own, rounded
     quadruped_builder.build(species.SPECIES["cow"], style="faceted")     # the Quaternius-style, hard facets
 
+A part can be one choice of an option (the buck's antler sets): it stays a mesh of its own, skinned like the rest, instead of being joined into the
+animal, so the browser shows one choice at a time and a game can hide all but one (common.describe lists them; see Context.make).
+
 A species (species.py) lists cross-sections for the body and the neck-and-head, a profile for the front and hind
 legs, the tail, a colour function and an optional extras(ctx) hook for udders, horns, manes and the like. The
 builder lofts them, skins each part to the right bones and derives the skeleton from the same numbers, so every
@@ -24,6 +27,7 @@ import common
 import quadruped_rig
 
 LAST_PARTS = {}                  # the parts of the last animal built (see the end of build)
+LAST_OPTIONS = {}                # of those, the option choices: part name -> (group, choice, default)
 
 STYLES = {
     "faceted": {"body_n": 8, "head_n": 6, "leg_n": 5, "tail_n": 4, "sub_body": 0, "sub": 0, "smooth": False},
@@ -34,12 +38,16 @@ STYLES = {
 class Context:
     """What a species' extras() hook is given."""
 
-    def __init__(self, name, coll, rig, style, parts):
+    def __init__(self, name, coll, rig, style, parts, options=None):
         self.name, self.coll, self.rig, self.style, self._parts = name, coll, rig, style, parts
+        self._options = [] if options is None else options
         self.common = common
 
-    def make(self, part, build, colour, bones, sub=None, smooth=None):
-        """One mesh part: build(bm) then subdivide, shade, colour and skin it. sub/smooth default to the style's."""
+    def make(self, part, build, colour, bones, sub=None, smooth=None, option=None):
+        """One mesh part: build(bm) then subdivide, shade, colour and skin it. sub/smooth default to the style's.
+        option=(group, choice, default[, none]): the part is one choice of an option group (the buck's antlers: ("Antlers", "10-point", True, "None (shed)"));
+        it is kept as a mesh of its own, not joined into the animal, and carries them as custom properties for common.describe (option_group, option,
+        option_default, option_order: the order the choices were made in, and option_none: the label of showing no choice, when the group may show none)."""
         bm = bmesh.new()
         build(bm)
         obj = common.new_mesh_object(f"{self.name}_{part}", bm, self.coll, "paint_white")
@@ -49,7 +57,14 @@ class Context:
         common.smooth(obj, self.style["smooth"] if smooth is None else smooth)
         common.paint_faces(obj, colour)
         quadruped_rig.weights(obj, self.rig, bones)
-        self._parts.append(obj)
+        if option is None:
+            self._parts.append(obj)
+        else:
+            obj["option_group"], obj["option"], obj["option_default"] = option[0], option[1], bool(option[2])
+            obj["option_order"] = sum(1 for o in self._options if o["option_group"] == option[0])
+            if len(option) > 3:
+                obj["option_none"] = option[3]
+            self._options.append(obj)
         return obj
 
 
@@ -221,8 +236,8 @@ def build(sp, style="smooth", rig_name=None):
     coll = common.fresh_collection(name)
     rig = quadruped_rig.build(rig_name or f"{name}_Rig", skeleton(sp), coll)
     rig["gait_leg"] = gait_leg(sp)                                   # read by quadruped_walk.py
-    parts = []
-    ctx = Context(name, coll, rig, st, parts)
+    parts, options = [], []
+    ctx = Context(name, coll, rig, st, parts, options)
     side = lambda s: "R" if s < 0 else "L"
 
     # a species can ask for its own number of sides, whatever the style (the farm dog's head and tail need theirs to read as a dog's; they do not follow the style's)
@@ -248,15 +263,21 @@ def build(sp, style="smooth", rig_name=None):
 
     # what the parts were, for audit_animals.py: name -> (world vertices, triangles), taken before they are joined into one mesh
     LAST_PARTS.clear()
-    for o in parts:
+    LAST_OPTIONS.clear()
+    for o in parts + options:
         o.data.calc_loop_triangles()
-        LAST_PARTS[o.name[len(name) + 1:].split(".")[0]] = ([o.matrix_world @ v.co for v in o.data.vertices], [tuple(t.vertices) for t in o.data.loop_triangles])
+        key = o.name[len(name) + 1:].split(".")[0]
+        LAST_PARTS[key] = ([o.matrix_world @ v.co for v in o.data.vertices], [tuple(t.vertices) for t in o.data.loop_triangles])
+        if "option_group" in o:
+            LAST_OPTIONS[key] = (o["option_group"], o["option"], bool(o["option_default"]))
 
     mesh = common.join(parts, name)
     mesh.location = (0, 0, 0)
     if sp.get("uv_jitter"):
         _jitter_uvs(mesh)
     quadruped_rig.bind(mesh, rig)
+    for o in options:                                                               # each option choice skinned on its own, beside the joined animal
+        quadruped_rig.bind(o, rig)
     if not math.isclose(sp.get("scale", 1.0), 1.0):                                 # the drawn animal scaled to its real size (the wildlife, the fawn)
         rig.scale = (sp["scale"],) * 3
     return mesh, rig, coll

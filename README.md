@@ -50,7 +50,7 @@ Every model in the browser has one **type**, a three-level lowercase path, `cate
 
 ## The asset browser
 
-`site/` is a static page (no build step, no framework; three.js is vendored under `site/vendor/three`, MIT) that browses 504 of the models: search as you type, a category tree, tag chips that filter together, a thumbnail grid and a 3D viewer with orbit / zoom / pan, a variant switcher, doors / drawers / lids you click to open (and an "Open all" button) and, for animals and people, a clip dropdown (Idle, Walk, Trot, Run, Sit; the tom turkey's Display) with a speed slider. `#GV_Sedan_01` in the URL opens a model; the filters are in the query string. It works at phone width.
+`site/` is a static page (no build step, no framework; three.js is vendored under `site/vendor/three`, MIT) that browses 504 of the models: search as you type, a category tree, tag chips that filter together, a thumbnail grid and a 3D viewer with orbit / zoom / pan, a variant switcher, a choice of parts where a model has them (the buck's antlers: spike to 10-point, or none), doors / drawers / lids you click to open (and an "Open all" button) and, for animals and people, a clip dropdown (Idle, Walk, Trot, Run, Sit; the tom turkey's Display) with a speed slider. `#GV_Sedan_01` in the URL opens a model; the filters are in the query string. It works at phone width.
 
 Run it locally:
 
@@ -78,6 +78,7 @@ It has to be served over http (a `file://` page cannot load the models). Publish
 | `parts` | moving parts: `kind` (`hinge`, `slide`, or `spin` for a wheel that turns freely about its axis; its `limit` is 360), `axis` (a unit vector), `pivot`, `limit` (degrees to open, or metres to slide; the sign is the direction), `rest` (how far open the exported pose is; 0 = shut), **in glTF axes** |
 | `clips` | animation names in the GLB |
 | `variants` | ids of the same model in another skin |
+| `options` | (some models) groups of separate meshes of which one is shown at a time: `name` (`Antlers`), `default`, `none` (the label of showing none, or `null`), `choices` (`name` and the GLB `node`); `triangles` and `size` are of the default choice |
 
 ## Rebuilding the assets
 
@@ -101,7 +102,7 @@ To rebuild the browser's slice:
 | check | `python tools/check_site.py` |
 | compare with references | in Blender: `runpy.run_path(r"<repo>\art\scripts\render_views.py", init_globals={"TARGETS": ["GN_CatTabby_faceted"]}, run_name="__main__")` renders a model from the thumbnail angle, front, side and the other three-quarter into `out/compare`; then `python tools/compare_sheet.py --row "References" <images> --row "Ours" <renders> --out out/compare/sheet.png` lays them side by side (needs Pillow; the method is in `.claude/skills/blender-assets`, "Matching the references") |
 | compare two builds | `python tools/compare_builds.py <worktree> <worktree>`: the GLBs, `out/meta` and `art/data/interactions.json` of two builds (how to prove an `art/scripts/` change changed nothing: `.claude/skills/sonar-check`) |
-| silhouette | `python tools/silhouette.py <model id>`: the model's side (or `--view front`) outline from its GLB laid over a reference picture of the real thing in `out/reference/<id>.png` (git-ignored, never committed; `--ref` for one shared by several models), with the overlap and where they differ; the overlay goes to `out/silhouette/` |
+| silhouette | `python tools/silhouette.py <model id>`: the model's side (or `--view front`) outline from its GLB laid over a reference picture of the real thing in `out/reference/<id>.png` (git-ignored, never committed; `--ref` for one shared by several models), with the overlap and where they differ (`--facing left` or `right` says which way the reference faces instead of guessing); the overlay goes to `out/silhouette/` |
 
 ## Using the models in your engine
 
@@ -159,6 +160,10 @@ People share one rig: **65 bones**, the layout of Quaternius's Universal Animati
 - **Godot 4.x**: in the advanced import dialog set a `BoneMap` with the `SkeletonProfileHumanoid` profile; Godot auto-maps by name patterns and recommends common English bone names; the profile's reference pose is a T-pose facing +Z, which is how these models arrive (`docs.godotengine.org`, "Retargeting 3D skeletons"). The Retarget import options let clips from one model play on another. Untested here.
 - **Unreal**: create an IK Rig for the source and the target, define the retarget chains, and an IK Retargeter between them; match the retarget poses when the reference poses differ (`dev.epicgames.com`, "IK Rig Animation Retargeting"). Untested here.
 - Animals use a different, quadruped skeleton (`art/scripts/quadruped_rig.py`) with its own Idle / Walk (dogs also Trot / Run) clips; birds have a biped-bird rig and no clips yet. They are Generic rigs.
+
+### Parts with choices (the buck's antlers)
+
+A model with `options` in the manifest carries every choice as a mesh of its own, skinned to the same skeleton: `GN_DeerBuck_faceted_01` has `GN_DeerBuck_faceted_Antlers_Spike`, `_Fork`, `_6pt`, `_8pt` and `_10pt` on its `Head` bone. glTF cannot mark a mesh hidden, so **an engine shows them all until told otherwise**: after importing, hide every choice but one (in Unity, `SetActive(false)` on the other children; in Godot, `visible = false`), or pick one at random per animal for variety, or hide all of them for a buck that has shed. The browser and the stress page show the default (the 10-point).
 
 ### Marker empties and `interactions.json`
 
