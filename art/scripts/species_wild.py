@@ -200,25 +200,34 @@ def _deer_coat(c, n):
     return "tan"
 
 
-def _deer_head(c, n):
-    if c.y < -1.225:
-        return B                                                       # the nose (the last ring's faces; their centres are at y -1.215)
-    if c.y < -1.06 and c.z < 1.40:
-        return "cream"
-    return "tan"
+# The ears, the antlers and the ear bones were drawn for a skull (the head's ring 3) at y -0.86, z 1.52; _at moves a point drawn that way to where a head's skull is.
+_SKULL_DRAWN = (-0.86, 1.52)
 
 
-def _deer_ears(ctx):
+def _at(head, x, y, z):
+    return (x, y + head[3][0] - _SKULL_DRAWN[0], z + head[3][1] - _SKULL_DRAWN[1])
+
+
+def _deer_head_coat(head):
+    """The head's colours for these head rings: a black nose (the last ring's faces) and a cream muzzle below the eyes, in front of ring 5."""
+    nose_y, muzzle_y, muzzle_z = head[-1][0] + 0.015, head[5][0] + 0.04, head[5][1] - 0.01
+
+    def coat(c, n):
+        if c.y < nose_y:
+            return B
+        if c.y < muzzle_y and c.z < muzzle_z:
+            return "cream"
+        return "tan"
+    return coat
+
+
+def _deer_ears(ctx, head):
     c = ctx.common
 
     def ears(bm):
         for s in (-1, 1):
-            c.add_box(bm, (s * 0.095, -0.815, 1.635), (0.115, 0.022, 0.20), taper=0.6, rot_deg=(0, s * 32, 0))      # big ears, held out to the sides behind the antlers' bases
+            c.add_box(bm, _at(head, s * 0.095, -0.815, 1.635), (0.115, 0.022, 0.20), taper=0.6, rot_deg=(0, s * 32, 0))      # big ears, held out to the sides behind the antlers' bases
     ctx.make("ears", ears, lambda c_, n: "tan", ["Ear_L", "Ear_R"], sub=0, smooth=False)
-
-
-def _deer_extras(ctx):
-    _deer_ears(ctx)
 
 
 # The buck's antlers: a main beam sweeping up and forward from each side, a brow tine low on the beam and tines rising from it. Every set is a choice of the
@@ -257,13 +266,13 @@ def _tine(base, tip):
     return [base, tuple((a + b) / 2 for a, b in zip(base, tip)), tip]
 
 
-def _buck_extras(ctx):
-    _deer_ears(ctx)
+def _buck_extras(ctx, head):
+    _deer_ears(ctx, head)
     for choice, points, part in ANTLER_SETS:
         def antlers(bm, points=points):
             for s in (-1, 1):
                 for line, radii in antler_tubes(points):
-                    sp_mod.tube(bm, [(s * x, y, z) for x, y, z in line], radii, n=5 if len(line) == len(_BEAM) else 4)
+                    sp_mod.tube(bm, [_at(head, s * x, y, z) for x, y, z in line], radii, n=5 if len(line) == len(_BEAM) else 4)
         ctx.make(part, antlers, lambda c_, n: "horn_cream", ["Head"], sub=0, smooth=False, option=("Antlers", choice, choice == ANTLER_DEFAULT, "None (shed)"))
 
 
@@ -274,28 +283,50 @@ def _fawn_coat(c, n):
     return base
 
 
+# a long neck that carries the head well above the back, a long narrow muzzle (y, z, half width, half height); ring 3 is the skull, ring 5 where the muzzle starts
+_DEER_HEAD = [(-0.56, 1.10, 0.11, 0.16), (-0.70, 1.28, 0.09, 0.14), (-0.80, 1.45, 0.08, 0.12), (-0.86, 1.52, 0.08, 0.11),
+              (-0.98, 1.48, 0.07, 0.09), (-1.10, 1.41, 0.058, 0.068), (-1.19, 1.37, 0.05, 0.055), (-1.24, 1.35, 0.043, 0.046)]
+
+
+def _deer_head_keys(head, buck=False):
+    """The species keys that follow the head: its rings, its colours, the ear bones and the ears (and the buck's antlers) placed on its skull."""
+    _, ear_y, ear_z = _at(head, 0, -0.86, 1.62)
+    extras = (lambda ctx: _buck_extras(ctx, head)) if buck else (lambda ctx: _deer_ears(ctx, head))
+    return {"head": head, "head_coat": _deer_head_coat(head), "ear_y": ear_y, "ear_z": ear_z, "extras": extras}
+
+
 DEER_DOE = {
     "name": "DeerDoe", "scale": 0.82, "body_n": 10, "head_n": 8,      # real: 0.80-1.00 m at the shoulder, a trunk about as long as it is tall (docs/assets/briefs/animals.md)
     "body_keel": [0.25, 0.35, 0.35, 0.25, 0.15, 0.1, 0.1],
     "body": [(-0.66, 0.96, 0.13, 0.20), (-0.50, 0.99, 0.17, 0.27), (-0.25, 0.99, 0.19, 0.275), (0.05, 0.99, 0.18, 0.24), (0.35, 1.00, 0.18, 0.23),
              (0.55, 0.99, 0.16, 0.21), (0.66, 0.97, 0.11, 0.16)],
-    # a long neck that carries the head well above the back, a long narrow muzzle
-    "head": [(-0.56, 1.10, 0.11, 0.16), (-0.70, 1.28, 0.09, 0.14), (-0.80, 1.45, 0.08, 0.12), (-0.86, 1.52, 0.08, 0.11),
-             (-0.98, 1.48, 0.07, 0.09), (-1.10, 1.41, 0.058, 0.068), (-1.19, 1.37, 0.05, 0.055), (-1.24, 1.35, 0.043, 0.046)],
     "front": {"x": 0.10, "y": -0.48, "joints": (2, 4),
                "profile": [(0.909, 0.0, 0.067, 0.099, -0.035), (0.8, 0.0, 0.07, 0.09), (0.5, 0.0, 0.045, 0.055), (0.28, 0.0, 0.032, 0.036), (0.1, 0.0, 0.032, 0.036), (0.0, -0.01, 0.035, 0.05)]},
     "hind": {"x": 0.11, "y": 0.48, "joints": (3, 5),
               "profile": [(0.928, 0.0, 0.081, 0.132, -0.038), (0.86, 0.0, 0.085, 0.12), (0.6, -0.089, 0.05, 0.07), (0.4, 0.1, 0.034, 0.04), (0.22, 0.063, 0.03, 0.034), (0.08, 0.02, 0.032, 0.036), (0.0, 0.0, 0.035, 0.05)]},
     "tail": [(1.05, 0.64, 0.035), (0.99, 0.71, 0.05), (0.90, 0.75, 0.05), (0.83, 0.76, 0.03)],
-    "ear_x": 0.10, "ear_y": -0.86, "ear_z": 1.62,
-    "coat": _deer_coat, "head_coat": _deer_head, "tail_coat": lambda c, n: W if n.z < 0.2 else "tan",
+    "ear_x": 0.10,
+    "coat": _deer_coat, "tail_coat": lambda c, n: W if n.z < 0.2 else "tan",
     "eyes": {"gap": 0.13, "inset": 0.55, "up": 0.30, "forward": 0.2, "size": 0.14},
-    "extras": _deer_extras,
+    **_deer_head_keys(_DEER_HEAD),
 }
 
-DEER_BUCK = dict(DEER_DOE, name="DeerBuck", scale=0.86, extras=_buck_extras,                 # heavier in the chest and neck than the doe
-                 body=[(-0.66, 0.97, 0.14, 0.21), (-0.50, 1.00, 0.19, 0.285), (-0.25, 1.00, 0.21, 0.29), (0.05, 0.99, 0.20, 0.25), (0.35, 1.00, 0.19, 0.235),
-                       (0.55, 0.99, 0.165, 0.21), (0.66, 0.97, 0.11, 0.16)])
+# The buck, laid over a white-tailed buck's side view (docs/assets/briefs/animals.md, "Laid over real outlines"): a shorter, deeper-looking trunk than the doe's with a round
+# rump, heavier upper legs, and the legs set in to match the shorter trunk
+def _thick_leg(leg, y, k, rings=2):
+    """A leg moved to y with its top `rings` rings `k` times as thick (the shoulder and the thigh)."""
+    return dict(leg, y=y, profile=[(r[0], r[1], r[2] * k, r[3] * k, *r[4:]) if i < rings else r for i, r in enumerate(leg["profile"])])
+
+
+# a thick neck rising nearly upright from the chest and a short head carried high (ring 3 the skull, 5 where the muzzle starts)
+_BUCK_HEAD = [(-0.53, 1.12, 0.13, 0.20), (-0.61, 1.30, 0.115, 0.16), (-0.67, 1.46, 0.09, 0.13), (-0.71, 1.56, 0.08, 0.115),
+              (-0.81, 1.53, 0.072, 0.095), (-0.92, 1.47, 0.06, 0.072), (-1.0, 1.43, 0.052, 0.058), (-1.045, 1.41, 0.045, 0.048)]
+
+DEER_BUCK = dict(DEER_DOE, name="DeerBuck", scale=0.86, **_deer_head_keys(_BUCK_HEAD, buck=True),
+                 body=[(-0.63, 1.00, 0.15, 0.25), (-0.465, 1.035, 0.20, 0.32), (-0.23, 1.02, 0.215, 0.31), (0.045, 0.99, 0.20, 0.245), (0.35, 0.995, 0.20, 0.225),
+                       (0.56, 0.97, 0.185, 0.225), (0.67, 0.94, 0.13, 0.18)],
+                 front=_thick_leg(DEER_DOE["front"], -0.445, 1.15), hind=_thick_leg(DEER_DOE["hind"], 0.445, 1.15),
+                 tail=[(1.04, 0.635, 0.035), (0.98, 0.695, 0.05), (0.90, 0.73, 0.05), (0.83, 0.74, 0.03)])
 DEER_FAWN = dict(DEER_DOE, name="DeerFawn", scale=0.50, coat=_fawn_coat)
 
 
