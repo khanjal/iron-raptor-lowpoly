@@ -181,6 +181,33 @@ def check_parts(a, err):
             err(f"part {role}: rest missing")
 
 
+def _check_option_choices(g, nodes, err):
+    """A group's choices: distinct names, the default one of them, every node named once across the model (nodes collects them)."""
+    choices = [c.get("name") for c in g["choices"] if isinstance(c, dict)]
+    if len(choices) != len(g["choices"]) or len(set(choices)) != len(choices) or not all(isinstance(c, str) for c in choices):
+        err(f"options {g['name']}: choices need distinct names")
+    if g.get("default") not in choices:
+        err(f"options {g['name']}: default {g.get('default')!r} is not one of its choices")
+    for c in g["choices"]:
+        node = c.get("node") if isinstance(c, dict) else None
+        if not isinstance(node, str) or node in nodes:
+            err(f"options {g['name']}: choice {c!r} needs a node name of its own")
+        nodes.add(node)
+
+
+def _check_option_group(g, names, nodes, err):
+    """One group of options; names and nodes collect what the groups before it used."""
+    if not (isinstance(g, dict) and isinstance(g.get("name"), str) and isinstance(g.get("choices"), list) and g["choices"]):
+        err("options: each group needs a name and a non-empty list of choices")
+        return
+    if g["name"] in names:
+        err(f"options: group {g['name']!r} twice")
+    names.add(g["name"])
+    if g.get("none") is not None and not isinstance(g["none"], str):
+        err(f"options {g['name']}: none should be a label or null")
+    _check_option_choices(g, nodes, err)
+
+
 def check_options(a, err):
     """options: [{name, default, none (a label or null), choices: [{name, node}]}], names unique, the default one of the choices, every node named once."""
     groups = a.get("options")
@@ -189,24 +216,7 @@ def check_options(a, err):
         return
     names, nodes = set(), set()
     for g in groups:
-        if not (isinstance(g, dict) and isinstance(g.get("name"), str) and isinstance(g.get("choices"), list) and g["choices"]):
-            err("options: each group needs a name and a non-empty list of choices")
-            continue
-        if g["name"] in names:
-            err(f"options: group {g['name']!r} twice")
-        names.add(g["name"])
-        if g.get("none") is not None and not isinstance(g["none"], str):
-            err(f"options {g['name']}: none should be a label or null")
-        choices = [c.get("name") for c in g["choices"] if isinstance(c, dict)]
-        if len(choices) != len(g["choices"]) or len(set(choices)) != len(choices) or not all(isinstance(c, str) for c in choices):
-            err(f"options {g['name']}: choices need distinct names")
-        if g.get("default") not in choices:
-            err(f"options {g['name']}: default {g.get('default')!r} is not one of its choices")
-        for c in g["choices"]:
-            node = c.get("node") if isinstance(c, dict) else None
-            if not isinstance(node, str) or node in nodes:
-                err(f"options {g['name']}: choice {c!r} needs a node name of its own")
-            nodes.add(node)
+        _check_option_group(g, names, nodes, err)
 
 
 def check_option_nodes(a, doc, err):
